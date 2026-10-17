@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Capture depuis votre navigateur — Guide d’achat</title>
+<title>Capture depuis votre navigateur : Guide·Achat</title>
+<meta content="Analysez une fiche produit bloquée : un signet lit le modèle depuis votre propre navigateur et l’envoie au guide." name="description"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
 :root{--bg:#fff;--fg:#1a1a1a;--muted:#555;--card:#f4f4f6;--accent:#0b57d0}
 @media (prefers-color-scheme:dark){:root{--bg:#121214;--fg:#eee;--muted:#aaa;--card:#1e1e22;--accent:#8ab4f8}}
@@ -19,9 +21,14 @@ a{color:var(--accent)} p.muted{color:var(--muted)}
 <link rel="stylesheet" href="assets/css/gotham.css">
 <script src="assets/js/gotham.js" defer></script>
 
-<script id="ga-early">try{if(localStorage.getItem("guide-achat-theme")!=="light")document.documentElement.classList.add("dark-theme")}catch(e){document.documentElement.classList.add("dark-theme")}</script>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
+if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+if(t==="dark")r.classList.add("dark-theme");
+var n=navigator,c=n.connection||{};
+if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
+<link rel="stylesheet" href="assets/css/theme-dual.css">
 </head>
 <body class="tool-page">
 <h1>Capture depuis votre navigateur</h1>

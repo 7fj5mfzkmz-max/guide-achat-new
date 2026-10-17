@@ -24,6 +24,11 @@
       window.scrollTo({ top: b.getAttribute("data-to") === "top" ? 0 : document.documentElement.scrollHeight, behavior: "smooth" });
     });
     document.body.appendChild(fab);
+    var fabTick = false;
+    window.addEventListener("scroll", function () {
+      if (fabTick) return; fabTick = true;
+      requestAnimationFrame(function () { fab.classList.toggle("is-visible", (window.scrollY || 0) > 480); fabTick = false; });
+    }, { passive: true });
   }
   /* Ouvre le bloc dépliable qui contient la cible d'un lien interne (sommaire, boutons, URL) */
   function openFor(hash) {

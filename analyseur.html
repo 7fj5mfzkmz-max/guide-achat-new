@@ -4,13 +4,14 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<meta content="dark" name="color-scheme"/>
-<meta name="theme-color" content="#0f0d0d">
-<title>Analyseur de smartphone — Guide d’achat</title>
+<meta content="light dark" name="color-scheme"/>
+<meta name="theme-color" content="#f5ead8">
+<title>Analyseur de smartphone : Guide·Achat</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta content="Comprendre les grandes différences entre les smartphones, puis choisir le modèle adapté à son budget et à ses priorités." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/core-foundation.css">
 <link href="assets/css/concept-visuals.css" rel="stylesheet"/>
 <link href="assets/css/audit-visuals.css" rel="stylesheet"/>
@@ -20,9 +21,14 @@
 <link rel="stylesheet" href="assets/css/gotham.css">
 <script src="assets/js/gotham.js" defer></script>
 
-<script id="ga-early">try{if(localStorage.getItem("guide-achat-theme")!=="light")document.documentElement.classList.add("dark-theme")}catch(e){document.documentElement.classList.add("dark-theme")}</script>
+<script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
+if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+if(t==="dark")r.classList.add("dark-theme");
+var n=navigator,c=n.connection||{};
+if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
 <link rel="stylesheet" href="assets/css/grounded-category.css">
 <link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
+<link rel="stylesheet" href="assets/css/theme-dual.css">
 </head>
 <body class="site-redesign">
 <header class="site-header">
@@ -36,14 +42,7 @@
 </span>
 <span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span>
 </a>
-<nav aria-label="Catégories" class="site-nav">
-<a href="smartphones.html">Smartphones</a>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">PC portables</span>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Batteries</span>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Écouteurs</span>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Montres</span>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Projecteurs</span>
-</nav>
+<nav aria-label="Catégories" class="site-nav" data-category-nav><a href="smartphones.html" data-tone="orchid">Smartphones</a><a href="pc-portables.html" data-tone="teal">PC portables</a></nav>
 <div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button">⌕</button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span></button></div>
 </div>
 </header>
@@ -66,7 +65,7 @@
 </span>
 <span><b>Guide</b> <strong>d’achat</strong></span>
 </div>
-<div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p>
+<div class="footer-copy"><p class="footer-links"><a href="smartphones.html">Smartphones</a> <a href="pc-portables.html">PC portables</a> <a href="comparateur.html">Comparateur</a> <a href="lexique.html">Lexique smartphones</a> <a href="lexique-pc-portables.html">Lexique PC</a> <a href="analyseur.html">Analyseur</a> <a href="a-propos.html">À propos</a></p>
 <p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l’achat.</p>
 <p>Les fiches indiquent leur date de dernière vérification.</p>
 </div>
