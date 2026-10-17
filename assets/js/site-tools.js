@@ -121,9 +121,7 @@
 
     var savedTheme = null;
     try { savedTheme = localStorage.getItem("guide-achat-theme"); } catch (e) {}
-    var isHome = document.body && document.body.classList.contains("home");
-    var fallback = isHome ? ((window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light") : "dark";
-    applyTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : (isHome ? fallback : "dark"));
+    applyTheme(savedTheme === "light" ? "light" : "dark");
 
     if (themeButton) {
       themeButton.addEventListener("click", function (event) {
@@ -131,7 +129,6 @@
         event.stopPropagation();
         var next = root.classList.contains("dark-theme") ? "light" : "dark";
         applyTheme(next);
-        var mt = document.querySelector('meta[name="theme-color"]'); if (mt) mt.setAttribute("content", next === "dark" ? "#050706" : "#f8ead3");
         try { localStorage.setItem("guide-achat-theme", next); } catch (e) {}
       }, false);
     }
