@@ -83,7 +83,7 @@
   /* Éventail de smartphones (carte Smartphones de l'accueil) : cinq cartes photo sur un socle lumineux. */
   function fan() {
     var h = '<span class="hx-fan"><span class="hx-fan-base"></span>';
-    for (var i = 1; i <= 5; i++) h += '<span class="hx-fan-card f' + i + '"><img src="assets/phones/fan-' + i + '.webp" alt="" width="300" height="400" loading="lazy" decoding="async"></span>';
+    for (var i = 1; i <= 5; i++) h += '<span class="hx-fan-card f' + i + '"><img src="assets/phones/fan-' + i + '.webp" alt="" width="300" height="400" decoding="async"></span>';
     return h + "</span>";
   }
 

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<meta name="color-scheme" content="dark"/>
-<meta name="theme-color" content="#1b2442"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="theme-color" content="#f6f5f0"/>
 <title>Bien choisir un PC portable : Guide·Achat</title>
 <meta name="description" content="Choisir un PC portable selon votre usage : écran, mémoire et stockage, processeur, carte graphique et mobilité. Audit adapté aux étudiants, professionnels, créateurs et joueurs."/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/core-foundation.css">
 <link href="assets/css/concept-visuals.css" rel="stylesheet"/>
 <link href="assets/css/audit-visuals.css" rel="stylesheet"/>
@@ -21,9 +21,14 @@
 <link rel="stylesheet" href="assets/css/pc-visuals.css">
 <link rel="stylesheet" href="assets/css/pc-audit-visual.css">
 <script src="assets/js/gotham.js" defer></script>
-<script id="ga-early">try{if(localStorage.getItem("guide-achat-theme")!=="light")document.documentElement.classList.add("dark-theme")}catch(e){document.documentElement.classList.add("dark-theme")}</script>
+<script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
+if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+if(t==="dark")r.classList.add("dark-theme");
+var n=navigator,c=n.connection||{};
+if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
 <link rel="stylesheet" href="assets/css/grounded-category.css">
 <link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
+<link rel="stylesheet" href="assets/css/theme-dual.css">
 </head>
 <body class="site-redesign">
 <header class="site-header">
