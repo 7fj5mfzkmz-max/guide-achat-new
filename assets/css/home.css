@@ -9,19 +9,19 @@
   --font-serif:"Newsreader",Georgia,serif;                      /* ← titres des cartes */
   --font-label:"Archivo","Arial Narrow",Arial,sans-serif;               /* ← étiquettes / kickers */
   --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
-  --bg:#f5ead8; --bg-2:#fbf3e4; --line:rgba(60,80,120,.14);
-  --text:#2d3b5e; --mute:#697591;
-  --navy:#3b5a85; --dusk:#342548; --sunset:#e59a66; --gold:#e9b949; --teal:#3f8a8c; --lav:#a69bc8; --rose:#d9826f;
-  --card-bg:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.4) 46%,transparent 60%) 120% 0/260% 100% no-repeat,linear-gradient(160deg,#fcf6ea 0%,#f8ecd8 100%);
-  --card-line:rgba(60,80,120,.18);
-  --accent:#d9653d; --on-accent:#fffaf0;          /* ← l'unique couleur */
-  --on-strong:#fffaf0; --header-bg:rgba(245,234,216,.97); --panel-bg:#fbf3e4; --scrim:rgba(45,59,94,.5);
-  --chip-bg:#fcf6ea; --phone-bg:#fcf6ea; --track:rgba(60,80,120,.12); --tab-hover:var(--navy);
-  --tag-bg:#f8ecd8; --card-shadow:0 14px 30px -24px rgba(45,59,94,.3); --card-hi:rgba(255,255,255,.6); --card-hover:var(--navy);
+  --bg:#f8ead3; --bg-2:#fff6e6; --line:rgba(35,70,110,.22);
+  --text:#1c2f55; --mute:#586585;
+  --navy:#23466e; --dusk:#342548; --sunset:#f0a366; --gold:#e9b949; --teal:#3f8a8c; --lav:#a69bc8; --rose:#d9826f;
+  --card-bg:linear-gradient(115deg,transparent 32%,rgba(255,255,255,.55) 46%,transparent 60%) 120% 0/260% 100% no-repeat,linear-gradient(160deg,#fffaf0 0%,#fdeccf 100%);
+  --card-line:rgba(35,70,110,.28);
+  --accent:#e4572e; --on-accent:#fffaf0;          /* ← l'unique couleur */
+  --on-strong:#fffaf0; --header-bg:rgba(248,234,211,.9); --panel-bg:#fff6e6; --scrim:rgba(28,47,85,.55);
+  --chip-bg:#fffaf0; --phone-bg:#fffaf0; --track:rgba(35,70,110,.15); --tab-hover:var(--navy);
+  --tag-bg:#fdeccf; --card-shadow:0 18px 36px -22px rgba(35,70,110,.45); --card-hi:rgba(255,255,255,.7); --card-hover:var(--navy);
   --soon-h:#7a86a0; --soon-t:#8a93a8;
-  --final-bg:linear-gradient(135deg,#d9653d 0%,#e59a66 70%,#e2bb64 100%); --final-text:var(--dusk); --final-btn:var(--dusk); --final-btn-text:#fffaf0;
-  --footer-bg:#34476b; --footer-text:#f5ead8; --footer-mute:#c3cde0;
-  --sky:linear-gradient(180deg,#f5ead8,#f5ead8);
+  --final-bg:linear-gradient(135deg,#e4572e 0%,#f0a366 70%,#e9b949 100%); --final-text:var(--dusk); --final-btn:var(--dusk); --final-btn-text:#fffaf0;
+  --footer-bg:var(--navy); --footer-text:#f8ead3; --footer-mute:#cdd6e6;
+  --sky:linear-gradient(180deg,#b9d0e8 0,#e9dcc9 520px,#f8ead3 900px,#fbe3c0 100%);
   --pad:clamp(20px,4vw,56px); --max:1320px;
 }
 *,*::before,*::after{box-sizing:border-box}
@@ -51,7 +51,7 @@ img{max-width:100%;display:block}
 
 .site-nav{display:none;gap:28px}
 .site-nav a{text-decoration:none;padding:9px 0;border-bottom:1px solid var(--accent)}
-.header-tools{display:flex;gap:6px}
+.header-tools{display:flex;gap:8px}
 .header-tool{font-size:18px;line-height:1;padding:8px 12px}
 @media(min-width:820px){.site-nav{display:flex}}
 
@@ -100,7 +100,7 @@ body.menu-open,body.search-open{overflow:hidden}
 .hx-lead{max-width:560px;color:var(--mute);font-size:19px;margin:28px 0 36px}
 .hx-cta{display:flex;flex-wrap:wrap;align-items:center;gap:24px}
 .hx-stage{position:relative;min-height:340px;display:grid;place-items:center}
-.hx-phone{position:relative;width:min(260px,70vw);border:1px solid var(--card-line);border-radius:28px;padding:46px 22px 24px;display:grid;gap:12px;background:var(--phone-bg);box-shadow:0 24px 48px -24px rgba(35,70,110,.5)}
+.hx-phone{position:relative;width:min(260px,70vw);border:2px solid var(--navy);border-radius:28px;padding:46px 22px 24px;display:grid;gap:12px;background:var(--phone-bg);box-shadow:0 24px 48px -24px rgba(35,70,110,.5)}
 .hx-phone-notch{position:absolute;top:14px;left:50%;width:46px;height:5px;margin-left:-23px;background:var(--line)}
 .hx-phone-title{font-weight:700;font-size:18px;letter-spacing:-.02em;margin-bottom:6px}
 .hx-phone-bar{height:6px;background:var(--line);display:block;overflow:hidden}
@@ -169,6 +169,7 @@ body.menu-open,body.search-open{overflow:hidden}
 .hx-fan-base{display:none}
 .hx-fan-card{border-radius:6px;position:absolute;left:50%;bottom:0;width:26%;margin-left:-13%;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--line);background:var(--bg-2);transform:translateX(calc(var(--x)*1%)) rotate(var(--r));transform-origin:50% 120%;transition:transform .5s cubic-bezier(.2,.7,.1,1)}
 .hx-fan-pc .hx-fan-card{aspect-ratio:1}
+.hx-fan-card img{width:100%;height:100%;object-fit:cover}
 .f1{--x:-130;--r:-12deg}.f2{--x:-65;--r:-6deg}.f3{--x:0;--r:0deg;z-index:2}.f4{--x:65;--r:6deg}.f5{--x:130;--r:12deg}
 .ct-live:hover .f1{--x:-150;--r:-15deg}.ct-live:hover .f2{--x:-75;--r:-7deg}.ct-live:hover .f4{--x:75;--r:7deg}.ct-live:hover .f5{--x:150;--r:15deg}
 @media(min-width:820px){.ct-grid{grid-template-columns:repeat(2,1fr)}.ct-wide{grid-column:1/-1;min-height:200px}.hx-fan{height:280px}}
@@ -244,18 +245,18 @@ body.menu-open,body.search-open{overflow:hidden}
 /* ---------- Thème sombre : palette de la photo (noir, vert forêt, bleu acier, blanc froid, ambre) ---------- */
 :root.dark-theme{
   color-scheme:dark;
-  --bg:#060908; --bg-2:#0b100d; --line:rgba(180,210,200,.12);
-  --text:#dde5df; --mute:#8a9a93;
-  --navy:#c4d3cd; --dusk:#0b120e; --sunset:#e0a93f; --gold:#e0a93f; --teal:#2f6f73; --lav:#6f93ad; --rose:#c98f2b;
-  --card-bg:linear-gradient(115deg,transparent 32%,rgba(200,230,220,.05) 46%,transparent 60%) 120% 0/260% 100% no-repeat,linear-gradient(160deg,#0f1914 0%,#0a110d 100%);
-  --card-line:rgba(150,190,180,.17);
-  --accent:#d1a043; --on-accent:#0a0a06;
-  --on-strong:#050706; --header-bg:rgba(6,9,8,.96); --panel-bg:#070b09; --scrim:rgba(0,0,0,.7);
+  --bg:#050706; --bg-2:#0b100c; --line:rgba(180,210,200,.16);
+  --text:#eef3ea; --mute:#8f9f98;
+  --navy:#dfe9e4; --dusk:#0b120e; --sunset:#e0a93f; --gold:#e0a93f; --teal:#2f6f73; --lav:#6f93ad; --rose:#c98f2b;
+  --card-bg:linear-gradient(115deg,transparent 32%,rgba(200,230,220,.07) 46%,transparent 60%) 120% 0/260% 100% no-repeat,linear-gradient(160deg,#101b15 0%,#09100c 100%);
+  --card-line:rgba(150,190,180,.24);
+  --accent:#e0a93f; --on-accent:#0a0a06;
+  --on-strong:#050706; --header-bg:rgba(5,7,6,.82); --panel-bg:#070b09; --scrim:rgba(0,0,0,.7);
   --chip-bg:#0b120e; --phone-bg:#0b120e; --track:rgba(180,210,200,.16);
   --tag-bg:#101b15; --card-shadow:0 20px 40px -24px #000; --card-hi:rgba(255,255,255,.07); --card-hover:#8fb3c9;
   --soon-h:#6f7d77; --soon-t:#566560;
-  --final-bg:linear-gradient(135deg,#cf9f45 0%,#b98a30 60%,#8a6a28 100%); --final-text:#15110a; --final-btn:#060908; --final-btn-text:#d1a043;
-  --footer-bg:#070b09; --footer-text:#dde5df; --footer-mute:#8a9a93;
+  --final-bg:linear-gradient(135deg,#e0a93f 0%,#c98f2b 60%,#8f6a1f 100%); --final-text:#16110a; --final-btn:#050706; --final-btn-text:#e0a93f;
+  --footer-bg:#070b09; --footer-text:#eef3ea; --footer-mute:#8f9f98;
 }
 :root.dark-theme .hx-phone-bar i{background:#8fb3c9}
 :root.dark-theme .hx-tab:hover,:root.dark-theme .hx-cat-tab:hover{border-color:#8fb3c9}
@@ -269,7 +270,7 @@ body::before{inset:0;background:var(--sky)}
 body::after{display:none}
 :root.dark-theme body{
   background-color:var(--bg);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpath d='M7 0 14 7 7 14 0 7Z' fill='none' stroke='%23b4d2c8' stroke-opacity='.04'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14'%3E%3Cpath d='M7 0 14 7 7 14 0 7Z' fill='none' stroke='%23b4d2c8' stroke-opacity='.05'/%3E%3C/svg%3E");
 }
 :root.dark-theme body::before{
   inset:-25%;
@@ -294,15 +295,3 @@ body::after{display:none}
 :root.fx-paused.dark-theme body::before,:root.fx-paused.dark-theme body::after{animation-play-state:paused}
 
 #theme-toggle{display:flex}
-
-@media(max-width:480px){
-  .header-inner{gap:8px}
-  .brand-menu-toggle{padding:9px 10px;gap:8px}
-  .header-tool{padding:8px 10px}
-  .brand-menu-toggle,.header-tool{font-size:12px}
-  .header-tools{flex:0 0 auto}
-}
-@media(max-width:380px){.brand-menu-label{display:none}}
-
-/* ---- Photos de la carte Smartphones : l'image remplit son cadre sans dépendre de height:100% (Safari) ---- */
-.hx-fan-card img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}
