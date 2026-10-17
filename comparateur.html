@@ -4,14 +4,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<meta content="light dark" name="color-scheme"/>
-<meta name="theme-color" content="#f5ead8">
+<meta content="dark" name="color-scheme"/>
+<meta name="theme-color" content="#0f0d0d">
 <title>Comparateur smartphones : Guide·Achat</title>
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<meta content="Comparez 2 à 5 smartphones côte à côte : les critères qui changent votre usage d’abord, les chiffres secondaires ensuite." name="description"/>
+<meta content="Guide d'achat smartphones : comprendre le processeur, la RAM, l'écran, la photo et la batterie en langage simple, puis comparer et choisir selon son budget." name="description"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/core-foundation.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}.hx-js .hx-word>span{transform:none!important}</style></noscript>
@@ -19,13 +18,8 @@
 <link rel="stylesheet" href="assets/css/gotham.css">
 <script src="assets/js/gotham.js" defer></script>
 
-<script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
-if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
-if(t==="dark")r.classList.add("dark-theme");
-var n=navigator,c=n.connection||{};
-if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
+<script id="ga-early">try{if(localStorage.getItem("guide-achat-theme")!=="light")document.documentElement.classList.add("dark-theme")}catch(e){document.documentElement.classList.add("dark-theme")}</script>
 <link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
-<link rel="stylesheet" href="assets/css/theme-dual.css">
 </head>
 <body class="site-redesign">
 <header class="site-header">
@@ -40,7 +34,14 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </span>
 <span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span>
 </a>
-<nav aria-label="Catégories" class="site-nav" data-category-nav><a href="smartphones.html" data-tone="orchid">Smartphones</a><a href="pc-portables.html" data-tone="teal">PC portables</a></nav>
+<nav aria-label="Catégories" class="site-nav">
+<a href="smartphones.html">Smartphones</a>
+<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">PC portables</span>
+<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Batteries</span>
+<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Écouteurs</span>
+<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Montres</span>
+<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Projecteurs</span>
+</nav>
 <div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button">⌕</button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span></button></div></div>
 </header>
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section><main id="main">
@@ -72,7 +73,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </span>
 <span><b>Guide</b> <strong>d’achat</strong></span>
 </div>
-<div class="footer-copy"><p class="footer-links"><a href="smartphones.html">Smartphones</a> <a href="pc-portables.html">PC portables</a> <a href="comparateur.html">Comparateur</a> <a href="lexique.html">Lexique smartphones</a> <a href="lexique-pc-portables.html">Lexique PC</a> <a href="analyseur.html">Analyseur</a> <a href="a-propos.html">À propos</a></p>
+<div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p>
 <p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l'achat.</p>
 <p>Les fiches indiquent leur date de dernière vérification.</p>
 </div>
