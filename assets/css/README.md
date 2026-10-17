@@ -10,4 +10,4 @@ Ordre de chargement = ordre dans chaque page HTML (la cascade compte).
 
 ## Refonte (en cours)
 - `home.css` (thème clair, palette tirée du décor dessiné) : **nouvelle** feuille unique de l'accueil (variables en tête de fichier : police, couleurs, accent). L'accueil ne charge plus aucune des anciennes feuilles.
-- `theme-dual.css` : couche chargée EN DERNIER sur `smartphones.html` et `pc-portables.html` (double thème clair/sombre, mêmes palettes que `home.css`). Variables en tête de fichier. Les anciennes feuilles restent chargées dessous.
+- Les autres pages utilisent encore les anciennes feuilles, à migrer une par une.

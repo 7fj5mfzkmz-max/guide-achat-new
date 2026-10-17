@@ -79,7 +79,7 @@ var answers={}, catalogueItems=[], currentFilter='all';
 
 function laptopHero(){
   var stage=document.getElementById('pc-hero-stage'); if(!stage||stage.dataset.ready)return; stage.dataset.ready='1';
-  stage.innerHTML='<div class="pc-photo-stage" aria-label="Sélection de PC portables"><span class="pc-photo-orbit"></span>'+["laptop-01.webp","laptop-02.jpeg","laptop-03.webp","laptop-04.webp","laptop-05.jpeg"].map(function(n,i){return '<figure class="pc-photo-card pc-photo-card-'+(i+1)+'"><img src="assets/pc-photo/'+n+'" alt="PC portable, vue produit '+(i+1)+'" '+(i===0?'fetchpriority="high"':'loading="lazy"')+'></figure>';}).join('')+'</div>';
+  stage.innerHTML='<div class="pc-photo-stage" aria-label="Sélection de PC portables"><span class="pc-photo-orbit"></span>'+["laptop-01.jpeg","laptop-02.jpeg","laptop-03.jpeg","laptop-04.jpeg","laptop-05.jpeg"].map(function(n,i){return '<figure class="pc-photo-card pc-photo-card-'+(i+1)+'"><img src="assets/pc-photo/'+n+'" alt="PC portable, vue produit '+(i+1)+'" '+(i===0?'fetchpriority="high"':'loading="lazy"')+'></figure>';}).join('')+'</div>';
 }
 function buildAudit(){
   var root=document.getElementById('pc-audit'); if(!root||root.dataset.ready)return; root.dataset.ready='1';

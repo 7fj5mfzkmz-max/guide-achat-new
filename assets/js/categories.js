@@ -89,7 +89,7 @@
 
   /* Éventail photo PC : même logique de profondeur que la carte smartphone, avec les visuels fournis. */
   function pcFan() {
-    var ids = ["laptop-01.webp", "laptop-02.jpeg", "laptop-03.webp", "laptop-04.webp", "laptop-05.jpeg"];
+    var ids = ["laptop-01.jpeg", "laptop-02.jpeg", "laptop-03.jpeg", "laptop-04.jpeg", "laptop-05.jpeg"];
     var h = '<span class="hx-fan hx-fan-pc"><span class="hx-fan-base"></span>';
     ids.forEach(function (name, i) { h += '<span class="hx-fan-card f' + (i + 1) + '"><img src="assets/pc-photo/' + name + '" alt="" width="340" height="340" loading="lazy" decoding="async"></span>'; });
     return h + '</span>';
