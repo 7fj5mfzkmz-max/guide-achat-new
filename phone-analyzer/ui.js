@@ -9,11 +9,27 @@
   if (!card || !form || !input || !stage) return;
 
   var PROFILS = { etudiant: "Étudiant", professionnel: "Professionnel", gamer: "Gamer", photographe: "Photographe" };
-  var KIT = window.GuideCategoryKit && window.GuideCategoryKit.get();   // profil de la catégorie (smartphones aujourd’hui)
+  var KIT = window.GuideCategoryKit && window.GuideCategoryKit.get();   // profil de la catégorie (smartphones par défaut)
   var SPEC_LABELS = (KIT && KIT.specLabels) || { ecran: "Écran", refresh: "Fréquence d’écran", processeur: "Processeur", ram: "Mémoire", stockage: "Stockage", batterie: "Batterie", charge: "Charge", photo: "Photo", etancheite: "Étanchéité", os: "Système" };
   var CRIT_LABELS = { autonomie: "autonomie", performance: "performance", gaming: "jeu", prix: "prix", recharge: "recharge", durabilite: "durée du suivi/réparabilité", stockage: "stockage", photo: "photo", ecran: "écran", connectivite: "connectivité" };
-  var state = { page: null, identity: null, queue: [], year: null, pageOffered: false, needsCapture: false };
+  var state = { page: null, identity: null, queue: [], year: null, pageOffered: false, needsCapture: false, category: "smartphones" };
   var CORE_SPECS = (KIT && KIT.coreSpecs) || ["ecran", "processeur", "ram", "batterie", "charge", "refresh"];
+
+  /* Catégorie : un pc portable (lien ou saisie) est détecté par ses mots-clés et bascule
+     libellés, profils et requêtes vers le kit pc-portables. Smartphones par défaut. */
+  var LAPTOP_WORD = /\b(?:pc portable|ordinateur portable|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book|matebook|surface laptop|victus|legion|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga|pavilion|envy|spectre|rog)\b/i;
+  function detectCategory(text) { return LAPTOP_WORD.test(String(text || "")) ? "pc-portables" : "smartphones"; }
+  function setCategory(cat) {
+    state.category = cat === "pc-portables" ? "pc-portables" : "smartphones";
+    var kit = window.GuideCategoryKit ? window.GuideCategoryKit.get(state.category) : null;
+    if (kit) { KIT = kit; if (kit.specLabels) SPEC_LABELS = kit.specLabels; if (kit.coreSpecs) CORE_SPECS = kit.coreSpecs; }
+    PROFILS = state.category === "pc-portables"
+      ? { etudiant: "Étudiant", professionnel: "Professionnel", gamer: "Gamer", createur: "Créateur" }
+      : { etudiant: "Étudiant", professionnel: "Professionnel", gamer: "Gamer", photographe: "Photographe" };
+  }
+  function techSearchLabel() {
+    return state.category === "pc-portables" ? "Recherche du modèle dans le catalogue et les sources publiques…" : "Recherche croisée dans PhonesData, Kimovil et GSMArena…";
+  }
 
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]; }); }
   function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
@@ -45,7 +61,8 @@
   function isVerifiedModel(data) { return !!(data && data.ok && data.strategy !== "static-url-generic" && hasSpecs(data)); }
   function lookupModel(text) {
     var f = window.PhoneAnalyzerFetcher;
-    return f && f.resolveModel ? f.resolveModel(text) : Promise.reject(new Error("Résolveur indisponible"));
+    setCategory(detectCategory(text));
+    return f && f.resolveModel ? f.resolveModel(text, state.category) : Promise.reject(new Error("Résolveur indisponible"));
   }
   var UNAVAILABLE_NOTE = "La recherche technique est momentanément indisponible et ce modèle ne figure pas dans le catalogue local. Réessayez dans quelques instants.";
   function searchByModel(text, loadingText, notFound, failure) {
@@ -269,7 +286,7 @@
       e.preventDefault();
       var value = f.querySelector('input').value.trim();
       if (!value) return;
-      searchByModel(value, 'Recherche croisée dans PhonesData, Kimovil et GSMArena…',
+      searchByModel(value, techSearchLabel(),
         'Le modèle « ' + value + ' » n’a pas été retrouvé dans les référentiels disponibles. Vérifiez la marque et la référence complète.',
         'La recherche technique a échoué. Réessayez avec la référence complète du modèle.');
     });
@@ -281,15 +298,16 @@
     var raw = input.value.trim();
     if (!raw) return;
     if (!/^https?:\/\//i.test(raw)) {
-      searchByModel(raw, 'Recherche croisée dans PhonesData, Kimovil et GSMArena…',
+      searchByModel(raw, techSearchLabel(),
         'Le modèle « ' + raw + ' » n’a pas été retrouvé dans les référentiels disponibles. Essayez avec la marque et la référence complète.',
         'La recherche technique a échoué. Réessayez avec la référence complète du modèle.');
       return;
     }
     try { new URL(raw); } catch (_) { return viewManual("Ce lien n’est pas valide."); }
+    setCategory(detectCategory(raw));
     state.page = null; state.identity = null; state.queue = []; state.pageOffered = false; state.needsCapture = false;
     loading("Analyse du lien en cours…");
-    window.PhoneAnalyzerFetcher.resolveProduct(raw).catch(function () { return localFallback(raw); }).then(function (data) {
+    window.PhoneAnalyzerFetcher.resolveProduct(raw, { category: state.category }).catch(function () { return localFallback(raw); }).then(function (data) {
       if (data.kind === "page") return viewNotAModel(data.pageLabel);
       var k = data.clues || {};
       state.year = k.year || null;

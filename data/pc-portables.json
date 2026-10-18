@@ -3395,6 +3395,356 @@
         "mobilite": "poids_absent_score_neutre_5",
         "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
       }
+    },
+    {
+      "id": "asus-vivobook-15-x1504va",
+      "nom": "ASUS Vivobook 15 X1504VA (BQ674W)",
+      "marque": "ASUS",
+      "prix_indicatif": 800,
+      "prix_note": "Config 16 Go / 512 Go relevée à 799,99 € (Fnac, 16 oct. 2026) ; variante ISCBQ5351W à 1 164,64 € sur idealo (sept. 2026).",
+      "caracteristiques": {
+        "processeur": "Intel Core 7 150U (10 cœurs, 12 threads, jusqu'à 5,4 GHz)",
+        "ram": "16 Go DDR4 3200",
+        "stockage": "512 Go SSD PCIe",
+        "ecran": "15,6\" FHD (1920 × 1080) IPS, 60 Hz, 250 nits, anti-reflets",
+        "gpu": "Intel Graphics (intégrée)",
+        "poids": "1,7 kg",
+        "autonomie": "batterie 42 Wh (autonomie non mesurée)",
+        "os": "Windows 11"
+      },
+      "points_forts": [
+        "16 Go de RAM et SSD 512 Go à prix contenu",
+        "Clavier complet avec pavé numérique",
+        "Indice de réparabilité relevé à 9,3/10 (idealo)"
+      ],
+      "points_faibles": [
+        "Écran 60 Hz limité à 250 nits",
+        "Pas de carte graphique dédiée",
+        "Mémoire DDR4 (une partie soudée selon configuration)"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 5,
+        "ecran": 5,
+        "prix": 7,
+        "gaming": 3,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/resultats.html?q=ASUS+Vivobook+15+X1504VA",
+      "fabricant_url": "https://www.asus.com/uk/laptops/for-home/vivobook/asus-vivobook-15-x1504/techspec/",
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 6,
+        "gamer": 3,
+        "createur": 4
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 60,
+          "definition": "FHD",
+          "luminosite_nits": 250
+        },
+        "performance": {
+          "cpu": "Intel Core 7",
+          "niveau": 3,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Graphics",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": 1.7
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Fnac (fiche produit, oct. 2026)",
+          "idealo.fr (sept. 2026)",
+          "ASUS (fiche technique)"
+        ],
+        "autonomie": "non_documentee",
+        "prix": "indicatif_octobre_2026",
+        "autonomie_detail": "Batterie 42 Wh documentée par le constructeur ; aucune autonomie horaire sourcée."
+      }
+    },
+    {
+      "id": "hp-victus-15-fa3005nf",
+      "nom": "HP Victus 15-fa3005nf",
+      "marque": "HP",
+      "prix_indicatif": 1249,
+      "prix_note": "1 249 € relevés sur la boutique HP France (oct. 2026) ; prix de lancement 1 599 € (juillet 2026, comparez-malin).",
+      "caracteristiques": {
+        "processeur": "Intel Core 5 205H (8 cœurs, 12 threads, jusqu'à 4,8 GHz)",
+        "ram": "16 Go DDR4 3200",
+        "stockage": "512 Go SSD PCIe 4.0",
+        "ecran": "15,6\" FHD (1920 × 1080) IPS, 144 Hz, anti-reflets",
+        "gpu": "NVIDIA GeForce RTX 3050 6 Go (dédiée)",
+        "poids": "à documenter",
+        "autonomie": "à documenter",
+        "os": "Windows 11"
+      },
+      "points_forts": [
+        "Écran 144 Hz",
+        "Carte graphique dédiée RTX 3050 6 Go",
+        "Refroidissement pensé gaming"
+      ],
+      "points_faibles": [
+        "Prix élevé pour une RTX 3050",
+        "Carte graphique datée pour les jeux lourds",
+        "Poids et autonomie non documentés par HP"
+      ],
+      "profil_adapte": [
+        "gamer"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 4,
+        "ecran": 6,
+        "prix": 4,
+        "gaming": 6,
+        "mobilite": 3,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/resultats.html?q=HP+Victus+15-fa3005nf",
+      "fabricant_url": "https://www.hp.com/fr-fr/shop/products/laptops/victus-gaming-laptop-15-fa3005nf-e37v9ea-abf",
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 4,
+        "professionnel": 5,
+        "gamer": 7,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 144,
+          "definition": "FHD",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core 5",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 3050",
+          "niveau": 3,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "HP.com France (fiche produit, oct. 2026)",
+          "comparez-malin.fr (oct. 2026)"
+        ],
+        "autonomie": "non_documentee",
+        "prix": "indicatif_octobre_2026",
+        "autonomie_detail": "Aucune autonomie sourcée par HP pour cette référence."
+      }
+    },
+    {
+      "id": "dell-inspiron-15-3535",
+      "nom": "Dell Inspiron 15 3535",
+      "marque": "Dell",
+      "prix_indicatif": 492,
+      "prix_note": "Config 16 Go / 512 Go relevée à 491,99 € (PcComponentes, nov. 2025) ; base Dell dès 349 € ; variantes relevées entre 627 € et 814 € (123comparer, 2025-2026).",
+      "caracteristiques": {
+        "processeur": "AMD Ryzen 5 7530U (6 cœurs, 12 threads, jusqu'à 4,5 GHz)",
+        "ram": "16 Go DDR4 3200",
+        "stockage": "512 Go SSD NVMe",
+        "ecran": "15,6\" FHD (1920 × 1080) IPS, 120 Hz",
+        "gpu": "AMD Radeon Graphics (intégrée)",
+        "poids": "1,63 kg",
+        "autonomie": "batterie 41 Wh (autonomie non mesurée)",
+        "os": "Windows 11"
+      },
+      "points_forts": [
+        "Prix très contenu en 16 Go / 512 Go",
+        "Écran 120 Hz",
+        "Lecteur de carte SD"
+      ],
+      "points_faibles": [
+        "Wi-Fi 5 seulement",
+        "Batterie 41 Wh modeste",
+        "Pas de carte graphique dédiée"
+      ],
+      "profil_adapte": [
+        "etudiant"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 5,
+        "ecran": 5,
+        "prix": 8,
+        "gaming": 3,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/resultats.html?q=Dell+Inspiron+15+3535",
+      "fabricant_url": "https://www.dell.com/fr-fr/shop/ordinateurs-portables-dell/ordinateur-portable-inspiron-15/spd/inspiron-15-3535-laptop",
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 5,
+        "gamer": 3,
+        "createur": 4
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 120,
+          "definition": "FHD",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "AMD Ryzen 5",
+          "niveau": 3,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Radeon intégrée",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": 1.63
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Dell France (fiche produit)",
+          "idealo.fr (oct. 2026)",
+          "PcComponentes (nov. 2025)"
+        ],
+        "autonomie": "non_documentee",
+        "prix": "indicatif_octobre_2026",
+        "autonomie_detail": "Batterie 41 Wh documentée ; aucune autonomie horaire sourcée pour cette configuration."
+      }
+    },
+    {
+      "id": "thinkpad-e14-gen-6-ultra5",
+      "nom": "Lenovo ThinkPad E14 Gen 6",
+      "marque": "Lenovo",
+      "prix_indicatif": 970,
+      "prix_note": "Config Core Ultra 5 / 16 Go / 512 Go relevée à 969,95 € (LDLC et Materiel.net, oct. 2026) ; ZDNet relève 1 439 € pour la variante Core Ultra 7 155U.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 5 125U",
+        "ram": "16 Go DDR5 5600 (extensible jusqu'à 64 Go)",
+        "stockage": "512 Go SSD PCIe 4.0 (+ emplacement libre)",
+        "ecran": "14\" WUXGA (1920 × 1200) IPS, 60 Hz, 300 nits",
+        "gpu": "Intel Graphics (intégrée)",
+        "poids": "1,44 kg",
+        "autonomie": "batterie 57 Wh (autonomie non mesurée)",
+        "os": "Windows 11 Pro"
+      },
+      "points_forts": [
+        "Châssis aluminium certifié MIL-STD-810H",
+        "Clavier ThinkPad avec TrackPoint",
+        "Windows 11 Pro, TPM 2.0, webcam IR",
+        "Mémoire extensible jusqu'à 64 Go"
+      ],
+      "points_faibles": [
+        "Écran 60 Hz, colorimétrie limitée",
+        "Pas de carte graphique dédiée",
+        "Prix élevé face aux gammes grand public"
+      ],
+      "profil_adapte": [
+        "professionnel",
+        "etudiant"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 6,
+        "gaming": 3,
+        "mobilite": 6,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/resultats.html?q=Lenovo+ThinkPad+E14+Gen+6",
+      "fabricant_url": "https://www.lenovo.com/fr/fr/p/laptops/thinkpad/thinkpade/lenovo-thinkpad-e14-gen-6-14-inch-intel/len101t0087",
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 8,
+        "gamer": 3,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 14.0,
+          "frequence_max_hz": 60,
+          "definition": "WUXGA",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 5",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Graphics",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": 1.44
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "LDLC (fiche produit, oct. 2026)",
+          "Materiel.net (oct. 2026)",
+          "ZDNet France (oct. 2026)"
+        ],
+        "autonomie": "non_documentee",
+        "prix": "indicatif_octobre_2026",
+        "autonomie_detail": "Batterie 57 Wh documentée (fiche leDénicheur, variante 155H) ; aucune autonomie horaire sourcée."
+      }
     }
   ],
   "profils": {
@@ -3505,15 +3855,19 @@
     }
   ],
   "catalogue_meta": {
-    "derniere_verification": "2026-10-09",
-    "count": 40,
+    "derniere_verification": "2026-10-18",
+    "count": 44,
     "note": "Les scores classent une compatibilité avec un profil. Ils sont plafonnés à 9. Ce ne sont pas des notes de laboratoire.",
     "sources": [
       "Les Numériques",
       "JVTECH",
       "FranceMetrics",
       "Que Choisir",
-      "fiches Apple, Asus et HP"
+      "fiches Apple, Asus et HP",
+      "Fnac (fiches produit)",
+      "HP.com France",
+      "LDLC",
+      "idealo.fr"
     ],
     "scoring": {
       "max": 9,
@@ -3524,6 +3878,6 @@
     "note_fiabilite": "Chaque fiche a ses sources et dit si l’autonomie est annoncée, mesurée ou seulement estimée par catégorie. Les prix bougent. Les configurations (8/256 contre 16/512) changent le produit."
   },
   "meta": {
-    "prix_verifies_le": "2026-10-09"
+    "prix_verifies_le": "2026-10-18"
   }
 }

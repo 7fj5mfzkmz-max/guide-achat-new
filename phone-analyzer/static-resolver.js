@@ -107,14 +107,21 @@
   function loadCatalog() {
     if (catalogCache) return Promise.resolve(catalogCache);
     if (catalogPromise) return catalogPromise;
-    catalogPromise = fetch("data/smartphones.json", { cache: "no-store" }).then(function (r) {
-      if (!r.ok) throw new Error("Catalogue HTTP " + r.status);
-      return r.json();
-    }).then(function (data) {
-      catalogCache = Array.isArray(data) ? data : (data && Array.isArray(data.produits) ? data.produits : []);
-      return catalogCache;
-    }).catch(function () {
-      catalogCache = [];
+    /* Les deux catalogues (smartphones, pc portables) sont chargés et combinés : la
+       correspondance par nom tranche d'elle-même, un téléphone ne ressemble pas à un pc. */
+    function readJson(url) {
+      return fetch(url, { cache: "no-store" }).then(function (r) {
+        if (!r.ok) throw new Error("Catalogue HTTP " + r.status);
+        return r.json();
+      }).then(function (data) {
+        return Array.isArray(data) ? data : (data && Array.isArray(data.produits) ? data.produits : []);
+      }).catch(function () { return []; });
+    }
+    catalogPromise = Promise.all([
+      readJson("data/smartphones.json"),
+      readJson("data/pc-portables.json")
+    ]).then(function (lists) {
+      catalogCache = lists[0].concat(lists[1]);
       return catalogCache;
     });
     return catalogPromise;

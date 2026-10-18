@@ -15,6 +15,7 @@
     var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     var timeoutMs = typeof options.timeout === "number" ? options.timeout : 28000;
     var timer = controller ? setTimeout(function () { controller.abort(); }, timeoutMs) : null;
+    var category = options.category || "smartphones";
     function staticFallback() {
       if (root.PhoneAnalyzerStaticResolver && typeof root.PhoneAnalyzerStaticResolver.resolve === "function") {
         return root.PhoneAnalyzerStaticResolver.resolve(url);
@@ -28,7 +29,7 @@
       if (timer) clearTimeout(timer);
       return staticFallback();
     }
-    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: url }), signal: controller ? controller.signal : undefined })
+    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: url, category: category }), signal: controller ? controller.signal : undefined })
       .then(function (response) {
         return response.json().catch(function () { return {}; }).then(function (data) {
           if (!response.ok && !(data && data.clues)) throw new Error(data.error || ("HTTP " + response.status));
@@ -62,8 +63,8 @@
   /* Appel du résolveur par nom de modèle. Seules deux réponses sont des réponses MÉTIER : un succès, ou
      « modèle introuvable » (le serveur répond alors HTTP 502 avec reason:"model-not-found"). Tout le reste
      (pas de JSON, erreur 5xx, réseau coupé, CORS) est une indisponibilité technique. */
-  function modelRequest(endpoint, model) {
-    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: "smartphones" }) })
+  function modelRequest(endpoint, model, category) {
+    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: category || "smartphones" }) })
       .then(function (r) {
         return r.json().catch(function () { return null; }).then(function (d) {
           if (d && (d.ok === true || (d.ok === false && d.reason === "model-not-found"))) return d;
@@ -85,13 +86,13 @@
       return unavailable;
     }, function () { return unavailable; });
   }
-  function resolveModel(model) {
+  function resolveModel(model, category) {
     var base = apiBase();
     var onGithubPages = typeof window !== "undefined" && /\.github\.io$/i.test(window.location.hostname);
     /* Backend configuré (ex. GitHub Pages → Vercel) ou même origine : la fonction /api/resolve connaît PhonesData,
        Kimovil et GSMArena. Si elle est injoignable, on se rabat sur le catalogue local, jamais sur un nom deviné. */
-    if (base) return modelRequest(base + "/api/resolve", model).catch(function () { return localModel(model); });
-    if (typeof window !== "undefined" && !onGithubPages) return modelRequest("/api/resolve", model).catch(function () { return localModel(model); });
+    if (base) return modelRequest(base + "/api/resolve", model, category).catch(function () { return localModel(model); });
+    if (typeof window !== "undefined" && !onGithubPages) return modelRequest("/api/resolve", model, category).catch(function () { return localModel(model); });
     return localModel(model);
   }
   var api = { resolveProduct: resolveProduct, resolveModel: resolveModel };

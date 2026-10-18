@@ -26,19 +26,23 @@ const kimovil = require('../sources/kimovil.js');
 const kimovilCalibration = require('../phone-analyzer/kimovil-calibration.js');
 const guideReferences = require('../phone-analyzer/references.js');
 
-/* Catalogue local : lu une fois par instance de fonction (Vercel le met en cache entre les invocations).
-   Il sert d'accélérateur et de repli honnête : ses caractéristiques gardent la provenance « catalogue ». */
+/* Catalogues locaux : lus une fois par instance de fonction (Vercel les met en cache entre les
+   invocations). Ils servent d'accélérateur et de repli honnête : leurs caractéristiques gardent
+   la provenance « catalogue ». Le catalogue suit la catégorie demandée (smartphones par défaut). */
 const fs = require('node:fs');
 const path = require('node:path');
-let cachedCatalogue = null;
-function localCatalogue() {
-  if (cachedCatalogue !== null) return cachedCatalogue;
+const cachedCatalogues = new Map();
+function localCatalogue(category) {
+  const key = category === 'pc-portables' ? 'pc-portables' : 'smartphones';
+  if (cachedCatalogues.has(key)) return cachedCatalogues.get(key);
+  let catalogue = [];
   try {
-    const file = path.join(__dirname, '..', 'data', 'smartphones.json');
+    const file = path.join(__dirname, '..', 'data', key === 'pc-portables' ? 'pc-portables.json' : 'smartphones.json');
     const data = JSON.parse(fs.readFileSync(file, 'utf-8'));
-    cachedCatalogue = Array.isArray(data) ? data : (data && Array.isArray(data.produits) ? data.produits : []);
-  } catch (_) { cachedCatalogue = []; }
-  return cachedCatalogue;
+    catalogue = Array.isArray(data) ? data : (data && Array.isArray(data.produits) ? data.produits : []);
+  } catch (_) { catalogue = []; }
+  cachedCatalogues.set(key, catalogue);
+  return catalogue;
 }
 
 const BUDGET_MS = 24000;      // Vercel : maxDuration 30 s
@@ -371,7 +375,7 @@ async function resolveModelRaw(model, options) {
   const budget = Math.min(8000, Math.max(5000, (options && options.timeout) || 8000));
 
   // 1. Le catalogue est une accélération, jamais une condition de réussite.
-  const cat = Array.isArray(options && options.catalogue) ? options.catalogue : localCatalogue();
+  const cat = Array.isArray(options && options.catalogue) ? options.catalogue : localCatalogue((options && options.category) || 'smartphones');
   const exact = cat.find(p => identity.verifyReference(p.nom || p.model || '', [query], [], profile).verdict === 'confirmed');
   if (exact) {
     trace.push({ step: 'catalogue', outcome: 'exact', name: exact.nom || exact.model });
