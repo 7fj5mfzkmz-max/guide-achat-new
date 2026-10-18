@@ -249,7 +249,7 @@ function check(label, fn) {
       '</body></html>';
     serverNet.assertPublicHost = async () => {};
     serverNet.fetchHtml = async () => ({ status: 200, finalUrl: TARGET, html: MERCHANT, headers: {}, attempts: [] });
-    notebookcheck.resolve = async () => { calls.push('notebookcheck'); return { found: true, name: 'Acer Aspire Go 15 AG15-71P-5730', specs: { gpu: 'Intel Graphics', processeur: 'Intel Core i9 (autre fiche)', ram: '32 Go' }, specSources: 'notebookcheck', url: 'https://www.notebookcheck.biz/x.0.html', confidence: 'medium' }; };
+    notebookcheck.resolve = async () => { calls.push('notebookcheck'); return { found: true, name: 'Acer Aspire Go 15 AG15-71P', specs: { gpu: 'Intel Graphics', processeur: 'Intel Core i9 (autre fiche)', ram: '32 Go' }, specSources: 'notebookcheck', url: 'https://www.notebookcheck.biz/x.0.html', confidence: 'medium' }; };
     calls.length = 0;
     let r;
     try { r = await serverResolve.resolve(TARGET, { category: 'smartphones' }); }
@@ -260,8 +260,29 @@ function check(label, fn) {
     assert.equal(r.specs.ram, '8 Go de mémoire', 'la valeur marchande doit être conservée');
     assert.equal(r.specs.gpu, 'Intel Graphics', 'la case GPU vide est comblée par NotebookCheck');
     assert.equal(r.specSources.gpu, 'notebookcheck');
+    assert.ok(/famille ou une variante proche/.test(r.warning || ''), 'la fiche de famille doit être signalée');
     assert.ok(calls.includes('notebookcheck'), 'NotebookCheck doit être sollicité en recoupe');
     assert.ok(!calls.includes('phonesdata') && !calls.includes('kimovil') && !calls.includes('gsmarena'), 'sources smartphone appelées : ' + calls.join(','));
+  });
+
+  /* 9bis. Fiche de famille NotebookCheck : le nom de fiche sans suffixe SKU passe
+     la porte d'identité ('same') mais doit être signalé — les valeurs ajoutées
+     peuvent décrire une autre configuration de la famille. */
+  await check('fiche de famille : divergence de nom signalée (externalSpecEnrich + lecteur)', async () => {
+    const TARGET = 'https://www.ldlc.com/fiche/PB00698153.html';
+    serverNet.assertPublicHost = async () => {};
+    serverNet.fetchHtml = async () => ({ status: 403, finalUrl: TARGET, html: '<html><head><title>Page indisponible</title></head><body>Page indisponible</body></html>', headers: {}, attempts: [] });
+    serverNet.fetchReader = async () => ({ text: '# Acer Aspire Go 15 AG15-71P-5730 - PC portable\nIntel Core i5-1334U 8 Go SSD 512 Go' });
+    notebookcheck.resolve = async () => ({ found: true, name: 'Acer Aspire Go 15 AG15-71P', specs: { gpu: 'Intel UHD Graphics 64EUs' }, specSources: 'notebookcheck', url: 'https://www.notebookcheck.biz/Acer-Aspire-Go-15-AG15-71P.1097043.0.html', confidence: 'medium' });
+    let r;
+    try { r = await serverResolve.resolve(TARGET, { category: 'smartphones' }); }
+    finally { serverNet.fetchHtml = realFetchHtml; serverNet.fetchReader = realFetchReader; serverNet.assertPublicHost = realAssertPublicHost; }
+    assert.equal(r.ok, true, 'échec : ' + JSON.stringify({ reason: r.reason, error: r.error }));
+    assert.equal(r.category, 'pc-portables');
+    assert.equal(r.specs.gpu, 'Intel UHD Graphics 64EUs');
+    assert.ok(/famille ou une variante proche/.test(r.warning || ''), 'la divergence de nom de fiche doit être signalée : ' + (r.warning || ''));
+    const direct = await serverResolve.externalSpecEnrich('Acer Aspire Go 15 AG15-71P-5730', {}, 3000, [], pcKit);
+    assert.equal(direct.familySheet, true, 'externalSpecEnrich doit marquer la fiche de famille');
   });
 
   /* 10. Branche « url-hint » : un slug de PC (marchand illisible, lecteur

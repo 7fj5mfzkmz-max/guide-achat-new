@@ -290,8 +290,12 @@ async function externalSpecEnrich(name, existing, timeout, trace, profile) {
       const specs = Object.assign({}, existing || {});
       const added = Object.keys(r.specs || {}).filter(k => !existing || !existing[k]);
       added.forEach(k => { specs[k] = r.specs[k]; });
-      trace.push({ step: 'notebookcheck', outcome: 'trouvé', name: r.name, confidence: r.confidence, specs: Object.keys(r.specs || {}).length, added: added.length });
-      return { name: r.name, specs, source: 'notebookcheck', confidence: r.confidence || 0.8, url: r.url, added };
+      /* La porte d'identité (compare 'same') accepte une fiche de famille (le nom
+         demandé porte un suffixe SKU que la fiche n'a pas). On le signale : les
+         valeurs ajoutées peuvent décrire une autre configuration de la famille. */
+      const familySheet = String(r.name || '').trim() !== query;
+      trace.push({ step: 'notebookcheck', outcome: 'trouvé', name: r.name, confidence: r.confidence, specs: Object.keys(r.specs || {}).length, added: added.length, familySheet });
+      return { name: r.name, specs, source: 'notebookcheck', confidence: r.confidence || 0.8, url: r.url, added, familySheet };
     }
     const r = await gsmarena.resolve(query, { timeout: Math.max(2500, timeout || 6000) });
     if (!r || !r.found) { trace.push({ step: 'gsmarena', outcome: 'rien' }); return null; }
@@ -341,6 +345,7 @@ async function crossCheckTechnicalSources(name, initialSpecs, initialSources, ti
      smartphones ne sont jamais interrogées pour un PC, et inversement. */
   if (profile && profile.id === 'pc-portables') {
     const sourcesUsed = [];
+    let familySheet = false, sheetName = null;
     try {
       const r = await notebookcheck.resolve(query, { timeout: perSource, profile });
       if (!r || !r.found) {
@@ -357,12 +362,14 @@ async function crossCheckTechnicalSources(name, initialSpecs, initialSources, ti
               trace.push({ step: 'spec-conflict', field: key, kept: specs[key], ignored: value, keptSource: specSources[key] || 'source initiale', ignoredSource: 'notebookcheck' });
             }
           }
+          familySheet = String(r.name || '').trim() !== query;
+          sheetName = r.name;
         }
       }
     } catch (error) {
       trace.push({ step: 'notebookcheck-crosscheck', outcome: 'erreur', detail: String(error && error.message || error) });
     }
-    return { specs, specSources, kimovil: null, sourcesUsed };
+    return { specs, specSources, kimovil: null, sourcesUsed, familySheet, notebookcheckName: familySheet ? sheetName : null };
   }
   const jobs = await Promise.allSettled([
     phonesdata.resolve(query, { timeout: perSource }),
@@ -651,6 +658,7 @@ async function resolve(target, options) {
     const warnings = [];
     if (!page.product || page.product.evidence !== 'JSON-LD Product') warnings.push('Aucun objet Product structuré confirmé ; titre du marchand utilisé, identité à vérifier.');
     if (!product.price) warnings.push('Prix non détecté dans la page accessible.');
+    if (technical.familySheet) warnings.push('La fiche technique publique NotebookCheck décrit « ' + (technical.notebookcheckName || 'une famille ou une variante proche du modèle vendu') + ' » — une famille ou une variante proche du modèle vendu : les valeurs qu’elle ajoute peuvent ne pas correspondre à la configuration exacte.');
     let warning = warnings.length ? warnings.join(' ') : null;
     if (ic && ic.conflict) warning = 'Le référentiel produit désigne un autre modèle que la page : ses données n’ont pas été utilisées.';
     return Object.assign(base, {
@@ -716,11 +724,13 @@ async function resolve(target, options) {
           const external = needExternal ? await externalSpecEnrich((page.product && page.product.name) || best.name, pageSpecs, Math.min(5500, Math.max(2500, left() - 1000)), trace, profile) : null;
           const finalSpecs = external ? external.specs : pageSpecs;
           const finalSources = {}; Object.keys(finalSpecs).forEach(k => { finalSources[k] = external && external.specs[k] && !pageSpecs[k] ? external.source : 'reader'; });
+          const readerWarnings = ['Informations extraites par un lecteur secondaire ; à confirmer si la page affiche plusieurs variantes.'];
+          if (external && external.familySheet) readerWarnings.push('La fiche technique publique NotebookCheck décrit « ' + external.name + ' » — une famille ou une variante proche du modèle vendu : les valeurs qu’elle ajoute peuvent ne pas correspondre à la configuration exacte.');
           return Object.assign(base, {
             product: page.product || { name: best.name, brand: null, sku: null, mpn: null, gtin: null, price: null, currency: null, availability: null, source: 'reader', evidence: 'lecteur secondaire' },
             specs: finalSpecs, specSources: finalSources,
             evidence: ['lecteur secondaire'].concat(external ? ['fiche technique publique ' + (external.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')] : []),
-            warning: 'Informations extraites par un lecteur secondaire ; à confirmer si la page affiche plusieurs variantes.'
+            warning: readerWarnings.join(' ')
           });
         }
       }

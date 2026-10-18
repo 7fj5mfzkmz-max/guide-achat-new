@@ -180,11 +180,13 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
 
 ## Reste à faire (par ordre d'utilité)
 
-> **Mise à jour du 18/10/2026** — les points 1 à 3 et 5 sont FAITS (voir
-> « Compléments apportés à la reprise » en fin de note). Reste le point 4 :
-> commit + push + déploiement (connexion GitHub en attente d’autorisation
-> côté utilisateur ; le push sur `main` déploie automatiquement le projet Vercel
-> `guide-achat-new-1`).
+> **Mise à jour du 18/10/2026 (fin de journée)** — les cinq points sont FAITS
+> et déployés. Commit fonctionnel `ae724e1` poussé sur `main` (+ compléments
+> ensuite), production vérifiée sur https://guide-achat-new-1.vercel.app :
+> `/api/health` ok, lien court LDLC résolu en `category: pc-portables` avec
+> valeurs marchandes conservées et complément NotebookCheck, résolution
+> smartphone inchangée. 31 vérifications dédiées (`npm run pc:test`),
+> 15 parcours UI (`npm run test:ui`), suites complètes au vert.
 
 
 1. **Front : lire `data.category`** dans `ui.js` après `resolveProduct` : si le
@@ -223,7 +225,8 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
    (Vercel) a été supprimé, ne pas réutiliser ce nom. Vérifier ensuite la
    production avec un lien PC réel. La connexion GitHub est faite ; la connexion
    Vercel était en attente côté utilisateur (bouton d'autorisation).
-   → **EN COURS** : bouton d’autorisation GitHub affiché, en attente du clic.
+   → **FAIT** : commit `ae724e1` poussé sur `main` (14 fichiers, +2067/−42),
+   déploiement Vercel automatique vérifié (voir l’encadré ci-dessus).
 5. Documentation : mettre à jour `docs/sources.md` et cette note après déploiement.
    → **FAIT** : `docs/sources.md` créé (sources par catégorie, re-routage, éthique).
 
@@ -284,6 +287,21 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
 > - les branches « url-hint » et « merchant-id+search » propagent la catégorie
 >   résolue dans leur réponse (`technical.category`).
 > Le parcours réel confirme : processeur/RAM/stockage du marchand conservés,
-> GPU/batterie/dimensions complétés par NotebookCheck. Limite héritée assumée :
-> l'extraction lecteur peut lire plusieurs variantes d'une même fiche
-> (avertissement « à confirmer » conservé).
+> GPU/batterie/dimensions complétés par NotebookCheck.
+>
+> Fiche de famille NotebookCheck (3e passage, bloquant fiabilité) : la porte
+> d'identité accepte une fiche sans le suffixe SKU (`compare(fiche, demande)`
+> = `same` pour « AG15-71P » vs « AG15-71P-5730 »). Vérifié sur le cas réel :
+> la fiche LDLC est une fiche de famille (i7-13620H/32 Go) alors que le SKU
+> vendu est i5-1334U/8 Go — les valeurs i7/32 Go vues en cours de route venaient
+> de cette fiche écrasant le marchand (bug de fusion), PAS d'un lecteur
+> « multi-variantes ». Décision conservée (l'identité était déjà tranchée) +
+> garde-fous renforcés : remplissage des cases vides uniquement, et
+> avertissement explicite dans la réponse quand le nom de fiche diffère du nom
+> demandé (« une famille ou une variante proche du modèle vendu »), dans les
+> branches lecture directe et lecteur. Limites restantes, précises : le GPU
+> comblé depuis une fiche de famille peut ne pas être celui du SKU exact
+> (provenance NotebookCheck affichée, avertissement présent) ; l'avertissement
+> lecteur « à confirmer si la page affiche plusieurs variantes » est conservé
+> (le lecteur LDLC a livré i5/8 Go de façon stable sur les passages sains ; le
+> passage en i7/32 Go était l'effet du bug de fusion, pas du lecteur).
