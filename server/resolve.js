@@ -129,6 +129,14 @@ function inspectHtml(fetched, context) {
   const expectedName = context.urlHint || merchant.title || null;
   const c = ex.candidates(html, { expectedName });
   let list = c.list.slice(), product = c.product, identityConflict = false;
+  /* L’image est illustrative uniquement : préférer l’image déclarée pour le produit, sinon og:image.
+     Ne conserver que les URL HTTP(S) absolues ; l’interface les revalide avant affichage. */
+  if (product) {
+    let image = product.image || ex.meta(html, 'og:image') || ex.meta(html, 'twitter:image');
+    try { if (image) image = new URL(image, fetched.finalUrl).toString(); } catch (_) { image = null; }
+    if (!/^https?:\/\//i.test(String(image || ''))) image = null;
+    product = Object.assign({}, product, { image: image || null });
+  }
   const same = (a,b) => !!a && !!b && identity.compare(a,b,context.profile || kit.get()).verdict === 'same';
   const different = (a,b) => !!a && !!b && identity.compare(a,b,context.profile || kit.get()).verdict === 'different';
   if (merchant.title && !list.some(x => x.name.toLowerCase() === merchant.title.toLowerCase())) {
@@ -155,6 +163,11 @@ function inspectHtml(fetched, context) {
       price: merchant.price || product.price, priceSource:merchant.price ? merchant.priceSource : (product.price ? 'jsonld-offer' : null), currency: merchant.currency || product.currency,
       gtin: identity.cleanGtin(product.gtin || merchant.gtin), sku: product.sku || merchant.sku, mpn: product.mpn || merchant.mpn, asin:product.asin || merchant.asin
     });
+  }
+  if (product && !product.image) {
+    let image = ex.meta(html, 'og:image') || ex.meta(html, 'twitter:image');
+    try { if (image) image = new URL(image, fetched.finalUrl).toString(); } catch (_) { image = null; }
+    if (/^https?:\/\//i.test(String(image || ''))) product = Object.assign({}, product, { image });
   }
   list.sort((a,b) => context.urlHint ? (Number(same(b.name,context.urlHint))-Number(same(a.name,context.urlHint)) || b.confidence-a.confidence) : b.confidence-a.confidence);
   const usable = fetched.status < 400 && list.length > 0 && !identityConflict;

@@ -132,12 +132,50 @@
     var insights = window.PhoneSpecInsights || {};
     var profileForInsights = myProfile() || 'etudiant';
     var appleModel = /apple|iphone/i.test(title);
-    var rows = Object.keys(SPEC_LABELS).filter(function (k) { return merged[k]; }).map(function (k) {
+    /* Des groupes compacts conservent les valeurs et les explications tout en évitant une longue pile de cartes. */
+    var SPEC_GROUPS = [
+      { title: 'Écran & confort', keys: ['ecran', 'refresh'] },
+      { title: 'Performances & espace', keys: ['processeur', 'ram', 'stockage'] },
+      { title: 'Autonomie & recharge', keys: ['batterie', 'charge'] },
+      { title: 'Photo & résistance', keys: ['photo', 'etancheite'] },
+      { title: 'Logiciel', keys: ['os'] }
+    ];
+    function screenScenario(value, profile) {
+      var v = String(value || ''), bits = [];
+      var size = v.match(/(\d+(?:[.,]\d+)?)\s*(?:pouces|inch|inches|[”″"])/i);
+      var hz = v.match(/(\d{2,3})\s*hz/i);
+      var nits = v.match(/(\d{3,4})\s*(?:nits|cd\/m(?:²|2)?)/i);
+      var oled = /oled|amoled|ltpo/i.test(v);
+      var res = /4k|qhd\+?|1440\s*[x×]\s*\d+|1080\s*[x×]\s*\d+/i.test(v);
+      if (size) bits.push(Number(size[1].replace(',', '.')) >= 6.7 ? 'La grande diagonale est agréable pour lire, regarder des vidéos et utiliser plusieurs contenus, mais le téléphone sera généralement moins facile à manier à une main.' : Number(size[1].replace(',', '.')) <= 6.2 ? 'Le format compact facilite la prise en main et le transport ; les vidéos et les textes seront moins grands qu’avec une dalle plus vaste.' : 'La diagonale offre un compromis entre confort de lecture et encombrement.');
+      if (oled) bits.push('L’OLED/AMOLED produit des noirs profonds et un contraste élevé, appréciables pour les films et la lecture dans une pièce sombre.');
+      if (hz) bits.push(Number(hz[1]) >= 90 ? 'Le taux de ' + hz[1] + ' Hz rend le défilement et les animations plus fluides ; il ne garantit pas que les jeux tournent à ce nombre d’images par seconde.' : 'Le taux de 60 Hz est suffisant pour les usages courants, mais le défilement paraît moins fluide qu’à 90 ou 120 Hz.');
+      if (nits) bits.push('La luminosité annoncée (' + nits[1] + ' nits) donne un indice pour l’extérieur, mais il s’agit parfois d’un pic : les reflets et la luminosité maintenue en plein soleil comptent aussi.');
+      if (res) bits.push('La définition annoncée favorise la finesse des textes et des images ; sur un usage courant, la qualité de calibration et la luminosité comptent également.');
+      if (!bits.length) bits.push('La seule mention « ' + v + ' » ne suffit pas à juger précisément le confort : la définition, la luminosité mesurée et les reflets ne sont pas tous documentés.');
+      if (profile === 'gamer') bits.push('Pour jouer, vérifiez aussi la stabilité des performances et la chauffe : une dalle rapide ne suffit pas à garantir une expérience fluide.');
+      else if (profile === 'professionnel') bits.push('Pour consulter des plans, des PDF ou des documents dehors, privilégiez surtout une bonne lisibilité réelle et une taille adaptée à vos déplacements.');
+      else if (profile === 'photographe') bits.push('Pour retoucher des photos, le contraste est utile, mais la fidélité des couleurs n’est pas déductible de ces seules caractéristiques.');
+      return bits.join(' ');
+    }
+    function specRow(k) {
       var insight = insights.verdict ? insights.verdict(profileForInsights, k, merged[k], { apple: appleModel }) : null;
-      var badge = insight && insight.level !== 'neutral' ? '<span class="spec-badge spec-' + insight.level + '">' + esc(insight.label) + '</span>' : '';
-      var why = insight && insight.why ? '<small class="spec-why">' + esc(insight.why) + '</small>' : '';
-      return '<div class="spec-row spec-' + (insight ? insight.level : 'neutral') + '"><dt>' + esc(SPEC_LABELS[k]) + badge + '</dt><dd>' + esc(merged[k]) + why + '</dd></div>';
-    }).join("");
+      var level = insight && insight.level || 'neutral';
+      var arrow = level === 'good' ? '↑' : level === 'bad' ? '↓' : level === 'warn' ? '→' : '•';
+      var badge = insight && insight.level !== 'neutral' ? '<span class="spec-badge spec-' + level + '"><span aria-hidden="true">' + arrow + '</span> ' + esc(insight.label) + '</span>' : '<span class="spec-badge spec-neutral">À interpréter</span>';
+      var whyText = k === 'ecran' ? screenScenario(merged[k], profileForInsights) : (insight && insight.why ? insight.why : 'Cette caractéristique seule ne permet pas de conclure sur la qualité globale.');
+      var why = '<details class="spec-explain"><summary>Pourquoi c’est utile ?</summary><p class="spec-why">' + esc(whyText) + '</p></details>'; 
+      return '<div class="spec-row spec-' + level + '"><div class="spec-row-head"><span class="spec-label">' + esc(SPEC_LABELS[k] || k) + '</span>' + badge + '</div><div class="spec-value">' + esc(merged[k]) + '</div>' + why + '</div>';
+    }
+    var usedSpecs = {};
+    var rows = SPEC_GROUPS.map(function (group) {
+      var keys = group.keys.filter(function (k) { return usable(merged[k]) && SPEC_LABELS[k]; });
+      keys.forEach(function (k) { usedSpecs[k] = true; });
+      if (!keys.length) return '';
+      return '<section class="spec-group"><h4>' + esc(group.title) + '</h4><div class="spec-group-grid">' + keys.map(specRow).join('') + '</div></section>';
+    }).join('');
+    var extraSpecs = Object.keys(SPEC_LABELS).filter(function (k) { return usable(merged[k]) && !usedSpecs[k]; });
+    if (extraSpecs.length) rows += '<section class="spec-group"><h4>Autres caractéristiques</h4><div class="spec-group-grid">' + extraSpecs.map(specRow).join('') + '</div></section>';
     var list = function (arr) { return arr.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join(""); };
     var notes = "";
     var sources = (page && page.specSources) || {};
@@ -178,14 +216,17 @@
     var scoreNote = !profs ? "<p><strong>Score indisponible pour le moment :</strong> aucune caractéristique fiable n’est disponible pour ce modèle. Une information absente n’est pas considérée comme un défaut.</p>"
       : '<p class="model-analyzer-note">Score Guide·Achat calculé à partir des caractéristiques techniques disponibles (' + esc(sourceLabel) + '). Il mesure la <strong>compatibilité avec un profil d’usage</strong>, pas une qualité générale absolue.</p>' + (hasProvisional ? '<p class="model-analyzer-note"><strong>* Score provisoire :</strong> couverture technique ou tests terrain incomplets. Le jeu/photo reste plafonné sans mesure spécialisée.</p>' : '') + (chemistry && chemistry.status !== "documente" ? '<p class="model-analyzer-note">Technologie de batterie détectée : ' + esc(chemistry.label) + ". Son effet n’est pas bonifié automatiquement sans source comparable.</p>" : "") + '<p class="model-analyzer-note">Analyse fondée sur : ' + esc(documented.map(function (k) { return CRIT_LABELS[k] || k; }).join(", ")) + ". Une donnée non documentée n’est jamais comptée comme un point négatif.</p>";
 
+    var imageCandidate = (page && page.product && page.product.image) || cat.image || cat.image_url || null;
+    var productImage = /^https?:\/\//i.test(String(imageCandidate || '')) ? String(imageCandidate) : null;
+    var imageBlock = productImage ? '<div class="model-analyzer-product-visual"><img src="' + esc(productImage) + '" alt="Illustration du ' + esc(title) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.hidden=true"><span>Illustration issue de la fiche produit</span></div>' : '';
     var compareId = cat.id || (page && page.product && page.product.id) || null;
     var compareHref = compareId ? "comparateur.html?selection=" + encodeURIComponent(compareId) : "comparateur.html";
     var compareText = compareId ? "Comparer →" : "Ouvrir le comparateur →";
     var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : "smartphones.html#purchase-audit";
     var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';
-    show('<div class="model-analyzer-card"><span class="eyebrow">ANALYSE DU MODÈLE</span><h3>' + esc(title) + "</h3>" + notes +
+    show('<div class="model-analyzer-card"><span class="eyebrow">ANALYSE DU MODÈLE</span><h3>' + esc(title) + "</h3>" + imageBlock + notes +
       (price ? "<p><strong>" + (cat.prix_indicatif ? "Prix indicatif" : "Prix trouvé sur la page") + " :</strong> " + esc(price) + " €</p>" : "") +
-      (rows ? '<dl class="model-analyzer-specs">' + rows + "</dl>" : "") +
+      (rows ? '<div class="model-analyzer-specs" aria-label="Caractéristiques et interprétation">' + rows + "</div>" : "") +
       (fromRef.length ? '<p class="model-analyzer-note">Issu du référentiel produit (code-barres) : ' + esc(fromRef.join(", ")) + ".</p>" : "") +
       (unknownKeys.length ? '<p class="model-analyzer-note"><strong>Inconnu (non trouvé) :</strong> ' + esc(unknownKeys.join(", ")) + ". Une information inconnue n’est jamais comptée comme un défaut." + (/apple|iphone/i.test(title) && unknownKeys.some(function (k) { return /ram|mémoire|batterie/i.test(k); }) ? " Apple ne publie ni la RAM ni la capacité de la batterie en mAh : ce n’est pas un oubli du guide." : "") + "</p>" : "") +
       (profs ? '<h4>Compatibilité par profil</h4><ul class="model-analyzer-profiles">' + profs + "</ul>" : "") + sourceBlock + scoreNote +

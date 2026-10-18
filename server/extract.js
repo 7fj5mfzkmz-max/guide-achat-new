@@ -132,6 +132,8 @@ function pickProduct(ld, expectedName) {
   if (!product) return null;
   const offers = pickOffer(product.offers);
   const brand = product.brand && typeof product.brand === 'object' ? product.brand.name : product.brand;
+  const rawImage = Array.isArray(product.image) ? product.image[0] : product.image;
+  const imageValue = rawImage && typeof rawImage === 'object' ? (rawImage.url || rawImage.contentUrl) : rawImage;
   const additional = Array.isArray(product.additionalProperty) ? product.additionalProperty : [];
   const additionalProperty = additional.map(p => ({
     name: clean(p && (p.name || p.propertyID)),
@@ -141,6 +143,7 @@ function pickProduct(ld, expectedName) {
     name: clean(decodeHtml(product.name)), brand: clean(brand), model: clean(product.model), sku: clean(product.sku), mpn: clean(product.mpn), asin: /^[A-Z0-9]{10}$/i.test(String(product.asin||'')) ? String(product.asin).toUpperCase() : null,
     gtin: clean(product.gtin || product.gtin13 || product.gtin14 || product.gtin12 || product.gtin8),
     description: clean(decodeHtml(product.description)),
+    image: /^https?:\/\//i.test(String(imageValue || '')) ? String(imageValue) : null,
     additionalProperty,
     price: offers ? clean(offers.price || offers.lowPrice) : null,
     priceSource: offers ? 'jsonld-offer' : null,
