@@ -24,11 +24,13 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c];
     });
   }
-  /* Idealo : recherche par nom (les anciennes URLs « /s/smartphones/... » renvoyaient une 404). */
+  /* Idealo : recherche par nom. « resultats.html » renvoyait une 404 ; le point
+     d'entrée qui marche est « prechcat.html?q=… » : idealo y redirige vers la bonne
+     catégorie (smartphones, ordinateurs portables…), parenthèses du nom acceptées. */
   function idealoUrl(p) {
     var n = p.nom || "", m = p.marque || "";
     var q = n.toLowerCase().indexOf(m.toLowerCase()) === -1 ? (m + " " + n).trim() : n;
-    return "https://www.idealo.fr/resultats.html?q=" + encodeURIComponent(q).replace(/%20/g, "+");
+    return "https://www.idealo.fr/prechcat.html?q=" + encodeURIComponent(q).replace(/%20/g, "+");
   }
 
   /* ---------- Proximité : on cherche « autour » de la valeur choisie, pas « au moins » ---------- */

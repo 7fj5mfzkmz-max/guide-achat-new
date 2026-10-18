@@ -507,7 +507,7 @@ def auto_text(m):
 
 def idealo(nom):
     from urllib.parse import quote_plus
-    return "https://www.idealo.fr/resultats.html?q=" + quote_plus(nom)
+    return "https://www.idealo.fr/prechcat.html?q=" + quote_plus(nom)
 
 
 def build_product(m):
