@@ -107,6 +107,9 @@ function looksLikeLaptop(page) {
 function detectCategoryFromText(text) {
   return LAPTOP_HINT.test(String(text || '')) ? 'pc-portables' : null;
 }
+/* Comparaison de noms tolérante aux normalisations (espaces des références,
+   casse, ponctuation) — utilisée pour repérer une fiche de famille. */
+function sameName(a, b) { const n = (x) => String(x || '').toLowerCase().replace(/[^a-z0-9]+/g, ''); return n(a) === n(b); }
 
 /* Décide si le contenu reçu décrit UN modèle ou une page générale. Pure et testable. */
 function classifyContent({ urlClass, ld, html, text, product }) {
@@ -293,7 +296,7 @@ async function externalSpecEnrich(name, existing, timeout, trace, profile) {
       /* La porte d'identité (compare 'same') accepte une fiche de famille (le nom
          demandé porte un suffixe SKU que la fiche n'a pas). On le signale : les
          valeurs ajoutées peuvent décrire une autre configuration de la famille. */
-      const familySheet = String(r.name || '').trim() !== query;
+      const familySheet = !sameName(r.name, query);
       trace.push({ step: 'notebookcheck', outcome: 'trouvé', name: r.name, confidence: r.confidence, specs: Object.keys(r.specs || {}).length, added: added.length, familySheet });
       return { name: r.name, specs, source: 'notebookcheck', confidence: r.confidence || 0.8, url: r.url, added, familySheet };
     }
@@ -362,7 +365,7 @@ async function crossCheckTechnicalSources(name, initialSpecs, initialSources, ti
               trace.push({ step: 'spec-conflict', field: key, kept: specs[key], ignored: value, keptSource: specSources[key] || 'source initiale', ignoredSource: 'notebookcheck' });
             }
           }
-          familySheet = String(r.name || '').trim() !== query;
+          familySheet = !sameName(r.name, query);
           sheetName = r.name;
         }
       }

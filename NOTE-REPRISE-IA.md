@@ -185,7 +185,7 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
 > ensuite), production vérifiée sur https://guide-achat-new-1.vercel.app :
 > `/api/health` ok, lien court LDLC résolu en `category: pc-portables` avec
 > valeurs marchandes conservées et complément NotebookCheck, résolution
-> smartphone inchangée. 31 vérifications dédiées (`npm run pc:test`),
+> smartphone inchangée. 32 vérifications dédiées (`npm run pc:test`),
 > 15 parcours UI (`npm run test:ui`), suites complètes au vert.
 
 
@@ -206,7 +206,7 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
      `scripts/identification-regression.js`) ;
    - RAM 32/64 Go acceptée sur pc-portables, rejetée sur smartphones ;
    - `estimatePc` : gamer plafonné si GPU inconnu, CPU inconnu → null.
-   → **FAIT** : `scripts/pc-portables-test.js` (25 vérifications, dans `npm test`
+   → **FAIT** : `scripts/pc-portables-test.js` (32 vérifications, dans `npm test`
    via `npm run pc:test`) + fixture réelle
    `tests/fixtures/notebookcheck-lenovo-legion-5-15iax11.html` + parcours UI
    Playwright « Lien court PC » (15/15).
@@ -289,17 +289,24 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
 > Le parcours réel confirme : processeur/RAM/stockage du marchand conservés,
 > GPU/batterie/dimensions complétés par NotebookCheck.
 >
-> Fiche de famille NotebookCheck (3e passage, bloquant fiabilité) : la porte
-> d'identité accepte une fiche sans le suffixe SKU (`compare(fiche, demande)`
-> = `same` pour « AG15-71P » vs « AG15-71P-5730 »). Vérifié sur le cas réel :
-> la fiche LDLC est une fiche de famille (i7-13620H/32 Go) alors que le SKU
-> vendu est i5-1334U/8 Go — les valeurs i7/32 Go vues en cours de route venaient
-> de cette fiche écrasant le marchand (bug de fusion), PAS d'un lecteur
-> « multi-variantes ». Décision conservée (l'identité était déjà tranchée) +
-> garde-fous renforcés : remplissage des cases vides uniquement, et
-> avertissement explicite dans la réponse quand le nom de fiche diffère du nom
-> demandé (« une famille ou une variante proche du modèle vendu »), dans les
-> branches lecture directe et lecteur. Limites restantes, précises : le GPU
+> Fiche de famille NotebookCheck (3e passage, bloquant fiabilité) : le contrôle
+> d'identité était asymétrique — `compare(fiche, demande)` = `same` accepte
+> une fiche de famille (« AG15-71P » pour le SKU « AG15-71P-5730 ») alors que
+> le sens inverse (`compare(demande, fiche)`) répond `different`. Ce n'était
+> pas une décision, mais un contrôle incomplet : une fiche de famille décrit
+> une autre configuration que le SKU vendu. La fiche LDLC réelle est une fiche
+> de famille (i7-13620H/32 Go) alors que le SKU vendu est i5-1334U/8 Go — les
+> valeurs i7/32 Go vues en cours de route venaient de cette fiche écrasant le
+> marchand (bug de fusion), PAS d'un lecteur « multi-variantes ».
+> **Correction finale** : `sources/notebookcheck.js` exige désormais `same`
+> dans les DEUX sens ; une fiche de famille est refusée pour un SKU précis
+> (« fiche trouvée mais identité non confirmée »), les champs qu'elle aurait
+> comblés restent inconnus — jamais attribués au SKU. Vérifié en réel : le
+> lien LDLC garde ses valeurs marchandes (i5/8 Go/SSD 512 Go) et son GPU reste
+> honnêtement vide ; la fiche Legion (nom exact) reste acceptée. Régression
+> déterministe sur le VRAI `notebookcheck.resolve` (réseau simulé). Un
+> avertissement reste émis si un nom de fiche diverge du nom demandé après
+> normalisation (branches lecture directe et lecteur). Limites restantes, précises : le GPU
 > comblé depuis une fiche de famille peut ne pas être celui du SKU exact
 > (provenance NotebookCheck affichée, avertissement présent) ; l'avertissement
 > lecteur « à confirmer si la page affiche plusieurs variantes » est conservé

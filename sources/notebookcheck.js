@@ -209,8 +209,16 @@ async function resolve(raw, options) {
     const parsed = parseSpecsTable(r.html);
     if (!parsed.name || !Object.keys(parsed.specs).length) continue;
     if (profile) {
+      /* Identité exigée dans les DEUX sens. La comparaison est directionnelle :
+         compare(fiche, demande) = « same » accepte une fiche de famille quand la
+         demande porte un suffixe SKU (AG15-71P vs AG15-71P-5730) ; le sens inverse
+         (demande → fiche) répond alors « different ». Une fiche de famille décrit
+         une autre configuration que le SKU vendu : refus honnête, les champs
+         qu'elle aurait comblés restent inconnus — jamais attribués au SKU. */
       const verdict = identity.compare(parsed.name, query, profile).verdict;
       if (verdict !== 'same') continue;
+      const strict = identity.compare(query, parsed.name, profile).verdict;
+      if (strict !== 'same') continue;
     }
     const specs = Object.assign({}, parsed.specs);
     const wh = batteryWh(specs.batterie);
