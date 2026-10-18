@@ -182,14 +182,17 @@ function readerPage(text) {
   const lines = raw.split('\n').map(x => x.trim()).filter(Boolean);
   /* Un lecteur de rendu peut renvoyer la page de blocage du marchand (403 rendu) : ses titres
      génériques (« Title », « FNAC DARTY - Maintenance »…) ne sont jamais un nom de modèle. */
-  const GENERIC = /^(title|titre|accueil|home|maintenance|erreur|error|forbidden|not found|page introuvable|40[0-9]|fnac darty\s*[-–—]\s*maintenance)$/i;
+  const GENERIC = /^(title|titre|accueil|home|maintenance|erreur|error|forbidden|not found|page introuvable|40[0-9]|vérification en cours|verification in progress|fnac darty\s*[-–—]\s*maintenance)$/i;
   const titleLine = lines.find(x => /^#{1,2}\s+/.test(x)) || lines.find(x => /^Title\s*:/i.test(x));
   let title = titleLine ? titleLine.replace(/^#{1,2}\s+/, '').replace(/^Title\s*:\s*/i, '').trim() : '';
   title = ex.cleanName(title);
   if (GENERIC.test(title)) title = '';
   if (!title || !ex.usableName(title)) {
-    const candidate = lines.find(x => ex.usableName(x) && !GENERIC.test(x) && !/^https?:\/\//i.test(x) && x.length < 220);
-    title = candidate ? ex.cleanName(candidate) : '';
+    /* Les lignes candidates sont nettoyées AVANT le filtre : une ligne préfixée (« # … »,
+       « Title: … ») ne doit pas échapper au rejet des titres génériques. */
+    const candidate = lines.map(x => ex.cleanName(String(x).replace(/^Title\s*:\s*/i, '').replace(/^#{1,2}\s+/, '')))
+      .find(c => c && ex.usableName(c) && !GENERIC.test(c) && !/^https?:\/\//i.test(c) && c.length < 220);
+    title = candidate || '';
   }
   const safe = String(title || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   const body = raw.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
@@ -645,13 +648,16 @@ async function resolve(target, options) {
     trace.push({ step: 'search', outcome: found ? 'trouvé' : 'rien', n: found ? found.titles.length : 0 });
     if (found) {
       /* Fiche Fnac courte : le moteur indexe l'adresse complète du produit, qui contient le nom
-         du modèle. On extrait cet indice de l'URL indexée, puis on résout le modèle dans les sources
-         techniques publiques. La page du marchand, protégée par une vérification anti-robot, n'est
-         jamais lue : aucun contournement n'est tenté. */
-      const indexedHint = (found.results || []).map(r => r && r.url || '')
-        .filter(u => /fnac\.[a-z]{2,3}\/[^\s]*\/a\d{5,}/i.test(u))
-        .map(u => { try { return identify.identifyFromUrl(u).titleHint; } catch (_) { return null; } })
-        .filter(h => h && h.split(/\s+/).length >= 2)[0] || null;
+         du modèle. On n'accepte un résultat que si son adresse porte EXACTEMENT le même identifiant
+         Fnac que le lien d'origine : sinon la recherche est écartée (la capture reste proposée).
+         La page du marchand, protégée par une vérification anti-robot, n'est jamais lue : aucun
+         contournement n'est tenté. */
+      const wantedId = urlLocal.fnacId || null;
+      const indexed = (found.results || []).map(r => r && r.url || '')
+        .filter(u => /fnac\.[a-z]{2,3}\//i.test(u))
+        .map(u => { try { return identify.identifyFromUrl(u); } catch (_) { return null; } })
+        .filter(l => l && l.fnacId && (!wantedId || l.fnacId === wantedId) && l.titleHint && l.titleHint.split(/\s+/).length >= 2);
+      const indexedHint = indexed.length ? indexed[0].titleHint : null;
       const indexedName = indexedHint && cleanHint(indexedHint).length >= 4 ? cleanHint(indexedHint) : null;
       if (indexedName && left() > 3500) {
         const technical = await resolveModel(indexedName, { category: (options && options.category) || 'smartphones', timeout: Math.min(7000, left() - 500) });
@@ -665,6 +671,11 @@ async function resolve(target, options) {
           return technical;
         }
       }
+      /* Une fiche courte Fnac ne peut aboutir que par son identifiant : sans adresse indexée
+         concordante, aucun produit n'est déduit de la recherche (pas de « meilleur titre » générique). */
+      if (wantedId) {
+        trace.push({ step: 'search', outcome: 'écarté', detail: 'aucune adresse indexée ne porte l’identifiant du lien' });
+      } else {
       const external = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(2500, left() - 1000)), trace);
       return {
         ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external ? 'search+gsmarena' : 'search',
@@ -672,6 +683,7 @@ async function resolve(target, options) {
         specs: external ? external.specs : {}, specSources: external ? Object.fromEntries(Object.keys(external.specs).map(k => [k, 'gsmarena'])) : {}, evidence: ['recherche web'].concat(external ? ['fiche technique publique GSMArena'] : []), warning: external ? null : 'Page illisible : modèle déduit d’une recherche web, à confirmer.',
         clues: buildClues([target, finalUrl], null, null, { searchBest: found.best, searchTitles: found.titles }), trace
       };
+      }
     }
   } else trace.push({ step: 'search', outcome: 'budget' });
 
@@ -698,7 +710,7 @@ async function resolve(target, options) {
   return fail({ reason: 'network', error: 'Impossible de récupérer la page.' });
 }
 
-module.exports = { apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
+module.exports = { apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
 
 async function resolveModel(model, options) {
   const result = await resolveModelRaw(model, options);

@@ -233,7 +233,7 @@ function candidates(html, options) {
 }
 
 /* --- détection de page de vérification (précise : jamais sur une page où un produit a été lu) --- */
-const CHALLENGE_TITLE = /robot check|captcha|just a moment|attention required|access denied|pardon our interruption|are you (?:a )?(?:human|robot)|verify you are (?:a )?human|security check|checking your browser|vérification de sécurité|accès refusé|acces refuse|un instant|veuillez patienter|maintenance/i;
+const CHALLENGE_TITLE = /robot check|captcha|just a moment|attention required|access denied|pardon our interruption|are you (?:a )?(?:human|robot)|verify you are (?:a )?human|security check|checking your browser|vérification de sécurité|accès refusé|acces refuse|un instant|veuillez patienter|vérification en cours|maintenance/i;
 const VENDORS = [
   ['amazon', /validateCaptcha|opfcaptcha|Saisissez les caract[èe]res|Type the characters you see|Entrez les caract[èe]res/i],
   ['cloudflare', /cf-chl-|challenge-platform|__cf_chl|Cloudflare Ray ID/i],

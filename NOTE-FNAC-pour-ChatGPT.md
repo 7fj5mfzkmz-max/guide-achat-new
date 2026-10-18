@@ -93,33 +93,40 @@ Une donnée non documentée est affichée comme inconnue, jamais comme vérifié
 modèle introuvable est refusé honnêtement ; aucune tentative de contournement
 d'une page anti-robot. Merci de préserver ces règles.
 
-## Correctif appliqué (v10) : la forme courte est maintenant résolue
+## Correctif appliqué (v10) : résolution de la forme courte par identifiant
 
 Le blocage Fnac lui-même (403 Datadome) n'est **pas** contourné — la règle
 « aucune tentative de contournement d'une page anti-robot » est conservée.
-Ce qui manquait à la forme courte est un indice de nom ; il est maintenant obtenu
+Ce qui manquait à la forme courte est un indice de nom ; il est désormais obtenu
 **sans lire la page Fnac** :
 
 1. `phone-analyzer/identify.js` extrait l'identifiant produit des adresses Fnac
    (`/a21318597/w-4` → `fnacId: "a21318597"`) et le porte dans les indices.
 2. `server/search.js` ajoute la requête `fnac a21318597` quand cet identifiant
    est disponible.
-3. `server/resolve.js` (étape 5b) cherche dans les résultats de recherche une
-   **adresse Fnac complète indexée** (les moteurs indexent la forme avec le nom,
-   ex. `…/Smartphone-Samsung-Galaxy-A56-…/a21318597/w-4`), en extrait le nom du
-   modèle, puis déroule la résolution technique habituelle (catalogue, PhonesData,
-   Kimovil, GSMArena). Stratégie tracée : `merchant-id+search+…`.
+3. `server/resolve.js` (étape 5b) n'accepte un résultat de recherche que si son
+   adresse porte **exactement le même identifiant** que le lien d'origine ; le
+   nom du modèle est alors extrait de cette adresse complète indexée et déroulé
+   dans la résolution technique habituelle (catalogue, PhonesData, Kimovil,
+   GSMArena). Stratégie tracée : `merchant-id+search+…`. Sans adresse concordante,
+   aucun produit n'est déduit de la recherche : la capture navigateur reste
+   proposée.
+4. La page de blocage Fnac (titre « maintenance ») est maintenant reconnue comme
+   un défi anti-robot, et le lecteur de rendu n'accepte plus les titres
+   génériques (« Title », « FNAC DARTY - Maintenance ») comme noms de modèle.
 
-Vérifié bout en bout : `https://www.fnac.com/a21318597/w-4` → « Samsung Galaxy
-A56 », caractéristiques complètes, avertissement explicite. Régression couverte
-dans `scripts/identification-regression.js` (section 6).
+Tests déterministes dans `scripts/identification-regression.js` (sections 6 et 7),
+réseau simulé : identifiant concordant → modèle résolu ; identifiant divergent →
+capture proposée, jamais de produit approximatif.
 
-### Limite et réglage recommandé
+### État en production et dépendance restante
 
-Google indexe les adresses complètes, mais les pages publiques des moteurs
-(DuckDuckGo HTML, Bing) ne résolvent pas fiablement un identifiant Fnac depuis
-une adresse IP de serveur (DDG affiche un défi, Bing ne retourne rien pour
-l'identifiant). Pour que la forme courte fonctionne en production, configurer
-une clé de recherche dans l'environnement Vercel : `SERPER_API_KEY` (recherche
-Google, palier gratuit) ou `BRAVE_API_KEY`. Sans clé, le repli reste la capture
-navigateur (`capture.html`), qui fonctionne déjà.
+Le mécanisme est déployé et les URL Fnac **complètes** fonctionnent en production
+(`url-hint+catalogue`). Pour la forme **courte**, le branchement est vérifié en
+test avec des résultats de recherche simulés ; en production, il suppose que le
+moteur de recherche résout l'identifiant, ce qui exige une clé configurée dans
+l'environnement Vercel : `SERPER_API_KEY` ou `BRAVE_API_KEY` (à créer sur le
+site de l'éditeur). Les pages publiques des moteurs (DuckDuckGo HTML, Bing) ne
+résolvent pas fiablement un identifiant Fnac depuis une adresse IP de serveur.
+Sans clé, la fiche courte reste honnêtement refusée avec la capture navigateur
+(`capture.html`) comme solution, qui fonctionne déjà.

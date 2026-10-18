@@ -118,6 +118,49 @@ const cmp = (a, b) => identity.compare(a, b, kit).verdict;
     assert.equal(local.fnacId, null);
   });
 
+  /* 7. Fiche Fnac courte côté serveur : résolution par identifiant, jamais par approximation.
+     Réseau remplacé par des réponses simulées : page de blocage Fnac (403 « maintenance »)
+     et résultats de recherche. Aucun accès réseau réel. */
+  const serverResolve = require('../server/resolve.js');
+  const serverSearch = require('../server/search.js');
+  const serverNet = require('../server/net.js');
+  const realFetchHtml = serverNet.fetchHtml;
+  const realAssert = serverNet.assertPublicHost;
+  const realLookup = serverSearch.lookup;
+  serverNet.assertPublicHost = async () => {};
+  serverNet.fetchHtml = async () => ({ status: 403, finalUrl: 'https://www.fnac.com/a21318597/w-4', html: '<html><head><title>FNAC DARTY - Maintenance</title></head><body>Maintenance</body></html>', headers: {}, attempts: [] });
+  const fnacBlocked = async (url) => { const r = await serverResolve.resolve(url, { category: 'smartphones' }); return r; };
+  await check('lecteur : titre générique « Title » rejeté', () => {
+    const page = serverResolve.readerPage('Title\nFNAC DARTY - Maintenance\nVérification en cours');
+    assert.equal(page.title, '', 'obtenu : ' + page.title);
+  });
+  await check('lecteur : page de blocage rendue rejetée', () => {
+    const page = serverResolve.readerPage('# FNAC DARTY - Maintenance\nTitle: FNAC DARTY - Maintenance');
+    assert.equal(page.title, '', 'obtenu : ' + page.title);
+  });
+  await check('lecteur : vrai titre conservé', () => {
+    const page = serverResolve.readerPage('# Smartphone Samsung Galaxy A56 5G\nCaractéristiques…');
+    assert.match(page.title, /Galaxy A56/, 'obtenu : ' + page.title);
+  });
+  await check('Fnac courte : identifiant concordant → modèle résolu', async () => {
+    serverSearch.lookup = async () => ({ titles: ['Smartphone Samsung Galaxy A56'], best: 'Smartphone Samsung Galaxy A56',
+      results: [{ title: 'Smartphone Samsung Galaxy A56', url: 'https://www.fnac.com/Smartphone-Samsung-Galaxy-A56-6-7-5G-Nano-SIM-128-Go-Graphite/a21318597/w-4', query: 'fnac a21318597' }], provider: 'stub' });
+    const r = await fnacBlocked('https://www.fnac.com/a21318597/w-4');
+    assert.equal(r.ok, true, JSON.stringify(r.error || r.reason));
+    assert.match(r.strategy, /^merchant-id\+search/, 'stratégie : ' + r.strategy);
+    assert.equal(r.product && r.product.name, 'Samsung Galaxy A56');
+  });
+  await check('Fnac courte : identifiant divergent → aucune déduction, capture proposée', async () => {
+    serverSearch.lookup = async () => ({ titles: ['Autre téléphone indexé'], best: 'Autre téléphone indexé',
+      results: [{ title: 'Autre téléphone', url: 'https://www.fnac.com/Autre-Telephone-X200/a99999999/w-4', query: 'fnac a21318597' }], provider: 'stub' });
+    const r = await fnacBlocked('https://www.fnac.com/a21318597/w-4');
+    assert.equal(r.ok, false, 'une recherche non concordante ne doit pas aboutir à un produit');
+    assert.equal(r.needsCapture, true);
+  });
+  serverNet.fetchHtml = realFetchHtml;
+  serverNet.assertPublicHost = realAssert;
+  serverSearch.lookup = realLookup;
+
   console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
   if (failures) process.exitCode = 1;
 })();
