@@ -46,7 +46,7 @@
     textSpecRules: [
       { key: "processeur", patterns: [/\b(?:Intel\s+Core\s+(?:Ultra\s+)?(?:[A-Za-z]*\d[\w-]*)|AMD\s+Ryzen(?:\s+AI)?\s+\d[\w -]{0,16}|Apple\s+(?:M\d|A\d{2})(?:\s+(?:Pro|Max|Ultra))?|Snapdragon\s+X[\w -]{0,24}|MediaTek\s+Kompanio[\w -]{0,16})/i] },
       { key: "ram", patterns: [/\b(\d{1,2})\s*(?:Go|GB)\s*(?:de\s+)?(?:RAM|DDR\d|LPDDR\d|unifi[ée]s?|m[ée]moire)/i, /\b(?:RAM|m[ée]moire(?:\s+vive)?)\s*(?:de\s*)?(\d{1,2})\s*(?:Go|GB)/i] },
-      { key: "stockage", patterns: [/\b(\d{1,4})\s*(?:Go|GB|To|TB)\s*(?:SSD|NVMe|UFS|eMMC)/i, /\bSSD\s*(?:de\s*)?(\d{1,4})\s*(?:Go|GB|To|TB)/i] },
+      { key: "stockage", patterns: [/\bSSD\s*(?:de\s*)?(\d{1,4})\s*(?:Go|GB|To|TB)/i, /\bNVMe\s*(?:de\s*)?(\d{1,4})\s*(?:Go|GB|To|TB)/i, /\b(\d{1,4})\s*(?:Go|GB|To|TB)\s*(?:SSD|NVMe|UFS|eMMC)/i] },
       { key: "ecran", patterns: [/\b(\d{2}(?:[.,]\d)?)\s*(?:pouces|po|"|″|inch)/i] },
       { key: "gpu", patterns: [/\b(?:GeForce\s+RTX\s+\d{4}(?:\s+Ti)?|Radeon\s+RX\s+\d{4}\s*M|Intel\s+Arc\s+[\w\d]+|Apple\s+M\d(?:\s+(?:Pro|Max))?)\b/i] },
       { key: "poids", patterns: [/\b(\d(?:[.,]\d{1,2})?)\s*kg\b/i] },

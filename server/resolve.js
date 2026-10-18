@@ -23,6 +23,7 @@ const phonesdata = require('../sources/phonesdata.js');
 const reviews = require('./reviews.js');
 const apple = require('./apple.js');
 const kimovil = require('../sources/kimovil.js');
+const notebookcheck = require('../sources/notebookcheck.js');
 const kimovilCalibration = require('../phone-analyzer/kimovil-calibration.js');
 const guideReferences = require('../phone-analyzer/references.js');
 
@@ -66,22 +67,45 @@ function candidateFromText(text, product, profile, structuredPairs) {
   ].filter(Boolean).join(' ');
   const specs = {};
   // Les combinaisons vendeur « 4GB RAM 256GB ROM » sont traitées avant les règles génériques.
-  // Une valeur > 24 Go ne peut jamais devenir de la RAM sur un smartphone grand public :
-  // elle est interprétée comme stockage si le contexte le permet.
+  // Une valeur > ramMax ne peut jamais devenir de la RAM (24 Go sur un smartphone grand
+  // public ; le kit pc-portables monte à 128) : le stockage de la paire reste exploité,
+  // la RAM non — même discipline que les règles génériques ci-dessous.
+  const ramMax = (profile && profile.ramMaxGb) || 24;
+  const ramOk = (gb) => { const n = Number(String(gb || '').replace(',', '.')); return n > 0 && n <= ramMax; };
   const pair = source.match(/\b(\d{1,2})\s*(?:GB|Go)\s*RAM\s*[+\/,-]?\s*(\d{2,4})\s*(?:GB|Go)\s*(?:ROM|storage|stockage|mémoire interne)?\b/i);
-  if (pair) { specs.ram = pair[1] + ' Go'; specs.stockage = pair[2] + ' Go'; }
+  if (pair) { specs.stockage = pair[2] + ' Go'; if (ramOk(pair[1])) specs.ram = pair[1] + ' Go'; }
   const romFirst = source.match(/\b(\d{2,4})\s*(?:GB|Go)\s*(?:ROM|storage|stockage)\s*[+,\/,-]?\s*(\d{1,2})\s*(?:GB|Go)\s*RAM\b/i);
-  if (romFirst) { specs.stockage = romFirst[1] + ' Go'; specs.ram = romFirst[2] + ' Go'; }
+  if (romFirst) { specs.stockage = romFirst[1] + ' Go'; if (ramOk(romFirst[2])) specs.ram = romFirst[2] + ' Go'; }
   (profile.textSpecRules || []).forEach(rule => {
     if (specs[rule.key]) return;
     for (const re of rule.patterns) { const m = source.match(re); if (m) {
       const value = ex.clean(m[0]);
-      if (rule.key === 'ram') { const n = Number(String(m[1] || '').replace(',', '.')); if (!n || n > 24) continue; }
+      if (rule.key === 'ram') { const n = Number(String(m[1] || '').replace(',', '.')); if (!n || n > ramMax) continue; }
       specs[rule.key] = value; break;
     } }
   });
   // Le champ photo brut reste une caractéristique, jamais une preuve de qualité.
   return specs;
+}
+
+/* Décide si un contenu de page décrit un PC portable plutôt qu'un smartphone :
+   utile quand un lien court (ASIN, fiche Fnac courte) ne dit rien de la catégorie
+   et que l'interface a appliqué son défaut. Signaux : vocabulaire portable,
+   ou association GPU dédié + CPU de PC sans signal téléphone. */
+const LAPTOP_HINT = /\b(?:pc portable|ordinateur portable|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book|matebook|surface laptop|victus|legion|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga|pavilion|envy|spectre|rog|ultrabook|extensa|travelmate|loq)\b/i;
+function looksLikeLaptop(page) {
+  const text = (((page && page.text) || '') + ' ' + ((page && page.product && page.product.name) || '')).toLowerCase();
+  const gpuSignal = /\b(?:geforce rtx|radeon rx\s?\d{3,4}\s*m|rtx\s?\d{4})\b/i;
+  const cpuSignal = /\b(?:intel core (?:i\d|ultra)|amd ryzen \d|apple m\d|snapdragon x)\b/i;
+  const phoneSignal = /\b(?:smartphone|t[ée]l[ée]phone|galaxy s\d|iphone|pixel \d)\b/i;
+  if (LAPTOP_HINT.test(text)) return true;
+  return gpuSignal.test(text) && cpuSignal.test(text) && !phoneSignal.test(text);
+}
+/* Même vocabulaire, appliqué à un simple indice de nom (slug d'URL, résultat de
+   recherche) : permet aux branches « url-hint » et « search » de la cascade de
+   résoudre un PC via NotebookCheck au lieu des sources smartphones. */
+function detectCategoryFromText(text) {
+  return LAPTOP_HINT.test(String(text || '')) ? 'pc-portables' : null;
 }
 
 /* Décide si le contenu reçu décrit UN modèle ou une page générale. Pure et testable. */
@@ -250,18 +274,33 @@ function buildIdentity({ name, product, ic }) {
 }
 
 
-async function externalSpecEnrich(name, existing, timeout, trace) {
+async function externalSpecEnrich(name, existing, timeout, trace, profile) {
   const query = String(name || '').trim();
   if (!query || query.length < 3) return null;
   try {
+    /* PC portables : NotebookCheck (miroir francophone lisible) joue le rôle de
+       GSMArena. Même discipline : ne complète que les cases vides, ne remplace
+       jamais une valeur déjà lue, aucune valeur non documentée présentée comme vérifiée. */
+    if (profile && profile.id === 'pc-portables') {
+      const r = await notebookcheck.resolve(query, { timeout: Math.max(2500, timeout || 6000), profile });
+      if (!r || !r.found) { trace.push({ step: 'notebookcheck', outcome: 'rien' }); return null; }
+      /* Règle du projet : la source externe ne complète que les cases vides,
+         elle ne remplace JAMAIS une valeur lue sur la page marchande — deux
+         configurations différentes peuvent partager un nom commercial. */
+      const specs = Object.assign({}, existing || {});
+      const added = Object.keys(r.specs || {}).filter(k => !existing || !existing[k]);
+      added.forEach(k => { specs[k] = r.specs[k]; });
+      trace.push({ step: 'notebookcheck', outcome: 'trouvé', name: r.name, confidence: r.confidence, specs: Object.keys(r.specs || {}).length, added: added.length });
+      return { name: r.name, specs, source: 'notebookcheck', confidence: r.confidence || 0.8, url: r.url, added };
+    }
     const r = await gsmarena.resolve(query, { timeout: Math.max(2500, timeout || 6000) });
     if (!r || !r.found) { trace.push({ step: 'gsmarena', outcome: 'rien' }); return null; }
     const specs = Object.assign({}, existing || {}, r.specs || {});
     const added = Object.keys(r.specs || {}).filter(k => !existing || !existing[k]);
     trace.push({ step: 'gsmarena', outcome: 'trouvé', name: r.name, confidence: r.confidence, specs: Object.keys(r.specs || {}).length, added: added.length });
-    return { name: r.name, specs, source: r.source, confidence: r.confidence, url: r.url, added };
+    return { name: r.name, specs, source: 'gsmarena', confidence: r.confidence, url: r.url, added };
   } catch (error) {
-    trace.push({ step: 'gsmarena', outcome: 'erreur', detail: error.message });
+    trace.push({ step: (profile && profile.id === 'pc-portables') ? 'notebookcheck' : 'gsmarena', outcome: 'erreur', detail: error.message });
     return null;
   }
 }
@@ -297,6 +336,34 @@ async function crossCheckTechnicalSources(name, initialSpecs, initialSources, ti
   const specSources = Object.assign({}, initialSources || {});
   if (query.length < 3) return { specs, specSources, kimovil: null, sourcesUsed: [] };
   const perSource = Math.max(2500, Math.min(6000, Number(timeout) || 6000));
+  /* Isolation des catégories : sur pc-portables, la recoupe technique passe par
+     NotebookCheck seul (l'équivalent de PhonesData/Kimovil/GSMArena) — les sources
+     smartphones ne sont jamais interrogées pour un PC, et inversement. */
+  if (profile && profile.id === 'pc-portables') {
+    const sourcesUsed = [];
+    try {
+      const r = await notebookcheck.resolve(query, { timeout: perSource, profile });
+      if (!r || !r.found) {
+        trace.push({ step: 'notebookcheck-crosscheck', outcome: 'aucun résultat' });
+      } else {
+        const match = identity.compare(r.name, query, profile);
+        trace.push({ step: 'notebookcheck-crosscheck', outcome: match.verdict === 'same' ? 'modèle confirmé' : 'résultat écarté', name: r.name, match: match.verdict, fields: Object.keys(r.specs || {}).length });
+        if (match.verdict === 'same') {
+          sourcesUsed.push('notebookcheck');
+          for (const [key, value] of Object.entries(r.specs || {})) {
+            if (value == null || String(value).trim() === '') continue;
+            if (!specs[key]) { specs[key] = value; specSources[key] = 'notebookcheck'; }
+            else if (String(specs[key]).trim().toLowerCase() !== String(value).trim().toLowerCase()) {
+              trace.push({ step: 'spec-conflict', field: key, kept: specs[key], ignored: value, keptSource: specSources[key] || 'source initiale', ignoredSource: 'notebookcheck' });
+            }
+          }
+        }
+      }
+    } catch (error) {
+      trace.push({ step: 'notebookcheck-crosscheck', outcome: 'erreur', detail: String(error && error.message || error) });
+    }
+    return { specs, specSources, kimovil: null, sourcesUsed };
+  }
   const jobs = await Promise.allSettled([
     phonesdata.resolve(query, { timeout: perSource }),
     kimovil.resolve(query, { timeout: perSource }),
@@ -384,6 +451,20 @@ async function resolveModelRaw(model, options) {
       identity: { status: 'identified', name: exact.nom || exact.model, basis: ['correspondance exacte du catalogue'] }, trace };
   }
 
+  // 2. PC portables : la source technique publique est NotebookCheck (miroir
+  //    francophone lisible). Exigence d'identité identique aux smartphones : la fiche
+  //    doit porter le même nom que la demande, sinon refus honnête.
+  if (profile.id === 'pc-portables') {
+    const r = await notebookcheck.resolve(query, { timeout: Math.min(6000, budget), profile }).catch(() => null);
+    if (r && r.found) {
+      return { ok: true, kind: 'product', strategy: 'notebookcheck', product: { name: r.name, source: 'notebookcheck', evidence: r.url },
+        specs: r.specs, specSources: Object.fromEntries(Object.keys(r.specs || {}).map(k => [k, 'notebookcheck'])),
+        specsConfidence: 0.8, identity: { status: 'identified', name: r.name, basis: ['fiche technique publique NotebookCheck'], confidence: 0.8 },
+        evidence: ['fiche technique publique NotebookCheck'], trace };
+    }
+    trace.push({ step: 'notebookcheck', outcome: 'rien' });
+  } else {
+
   // 2. Les trois fiches publiques sont interrogées en parallèle : une panne ou un
   //    blocage d'une source ne retarde pas les autres. PhonesData est vérifié avant usage.
   const [pd, kv, gs] = await Promise.allSettled([
@@ -431,21 +512,22 @@ async function resolveModelRaw(model, options) {
       specsConfidence:g.confidence, reviews:review, identity:{status:g.confidence>=.9?'identified':'partial',name:g.name,basis:['fiche technique publique GSMArena'],confidence:g.confidence},
       evidence:['fiche technique publique GSMArena'].concat(review ? ['analyses publiques'] : []), trace };
   }
+  } // fin du branchement smartphones (les PC portables passent par NotebookCheck)
 
   // 3. Dernier recours : recherche externe si disponible.
   if (search.enabled()) {
     const found = await search.lookup({ urlHint: query, name: query, title: query }, Math.min(3500, budget), profile).catch(() => null);
     if (found && found.best) {
-      const rr = await externalSpecEnrich(found.best, {}, Math.min(3500, budget), trace).catch(() => null);
-      if (rr) return { ok:true, kind:'product', strategy:'search+gsmarena', product:{name:rr.name,source:'gsmarena'}, specs:rr.specs,
-        specSources:Object.fromEntries(Object.keys(rr.specs || {}).map(k => [k,'gsmarena'])), identity:{status:rr.confidence>=.9?'identified':'partial',name:rr.name,basis:['recherche externe','fiche technique publique'],confidence:rr.confidence}, evidence:['fiche technique publique GSMArena'], trace };
+      const rr = await externalSpecEnrich(found.best, {}, Math.min(3500, budget), trace, profile).catch(() => null);
+      if (rr) return { ok:true, kind:'product', strategy:'search+' + rr.source, product:{name:rr.name,source:rr.source}, specs:rr.specs,
+        specSources:Object.fromEntries(Object.keys(rr.specs || {}).map(k => [k,rr.source])), identity:{status:rr.confidence>=.9?'identified':'partial',name:rr.name,basis:['recherche externe','fiche technique publique'],confidence:rr.confidence}, evidence:['fiche technique publique ' + (rr.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')], trace };
     }
   }
   return { ok:false, kind:'product', reason:'model-not-found', error:'Modèle non retrouvé dans les sources techniques publiques.', trace };
 }
 
 async function resolve(target, options) {
-  const profile = kit.get((options && options.category) || kit.DEFAULT);
+  let profile = kit.get((options && options.category) || kit.DEFAULT);
   if (!profile || profile.status !== 'active') return { ok: false, error: 'Catégorie non disponible : ' + String((options && options.category) || '') };
   const started = Date.now();
   const left = () => BUDGET_MS - (Date.now() - started);
@@ -508,10 +590,19 @@ async function resolve(target, options) {
 
   if (good) {
     const { fetched, page, strategy } = good;
+    /* Lien court sans indice de catégorie : la page elle-même tranche. Si elle
+       décrit un PC portable alors que « smartphones » a été appliqué par défaut,
+       on bascule avant extraction : règles PC, source NotebookCheck, et la
+       réponse porte la catégorie effective pour que l'interface s'aligne. */
+    const effCategory = looksLikeLaptop(page) && profile.id !== 'pc-portables' ? 'pc-portables' : profile.id;
+    if (effCategory !== profile.id) {
+      profile = kit.get(effCategory);
+      trace.push({ step: 'category', outcome: 'pc-portables détecté depuis le contenu de la page' });
+    }
     const verdict = classifyContent({ urlClass, ld: page.ld, html: page.html, text: page.text, product:page.product });
     const best = page.list[0];
     const clues = buildClues([target, fetched.finalUrl], page.product, best.name);
-    const base = { ok: true, kind: verdict.kind, pageLabel: verdict.label, finalUrl: fetched.finalUrl, merchantHost: parsed.hostname, strategy, clues, trace };
+    const base = { ok: true, kind: verdict.kind, pageLabel: verdict.label, finalUrl: fetched.finalUrl, merchantHost: parsed.hostname, strategy, category: effCategory, clues, trace };
     if (verdict.kind === 'page') return base;
     const gtins = Array.from(new Set([urlGtin, identity.cleanGtin(page.product && page.product.gtin)].concat(identity.gtinsInHtml(page.html)).filter(Boolean))).slice(0, 3);
     const ic = await enrich({
@@ -565,7 +656,7 @@ async function resolve(target, options) {
     return Object.assign(base, {
       product, specs: merged.specs, specSources: merged.specSources, specsUnknown: merged.specsUnknown, reviews: kim ? { reviewScores: applyKimovilScores(kim, null), evidence: ['Kimovil'] } : review, kimovilScores: kim ? kim.scores : null,
       identity: buildIdentity({ name: product.name, product, ic }),
-      evidence: [best.source].concat(strategy === 'render' ? ['rendu navigateur'] : []).concat(ic && !ic.conflict ? ['référentiel produit'] : []).concat(technical.sourcesUsed.map(source => ({ phonesdata:'fiche technique PhonesData', kimovil:'fiche technique Kimovil', gsmarena:'fiche technique GSMArena' })[source])),
+      evidence: [best.source].concat(strategy === 'render' ? ['rendu navigateur'] : []).concat(ic && !ic.conflict ? ['référentiel produit'] : []).concat(technical.sourcesUsed.map(source => ({ phonesdata:'fiche technique PhonesData', kimovil:'fiche technique Kimovil', gsmarena:'fiche technique GSMArena', notebookcheck:'fiche technique publique NotebookCheck' })[source])),
       warning
     });
   }
@@ -602,20 +693,33 @@ async function resolve(target, options) {
         if (page.identityConflict) return fail({ reason:'identity-conflict', finalUrl:target, error:'Le lecteur secondaire indique un modèle différent de celui du lien. Aucune donnée n’a été fusionnée.' });
         trace.push({ step: 'reader', outcome: page.usable ? 'lu' : 'sans modèle', source: 'reader', title: rp.title || null });
         if (page.usable) {
+          /* Même re-routage que la lecture directe : un lien court sans indice de
+             catégorie, résolu par le lecteur secondaire, doit basculer vers
+             pc-portables AVANT l'extraction et l'enrichissement (sinon GSMArena
+             serait interrogé pour un PC). La réponse porte la catégorie effective. */
+          const effCategory = looksLikeLaptop(page) && profile.id !== 'pc-portables' ? 'pc-portables' : profile.id;
+          if (effCategory !== profile.id) {
+            profile = kit.get(effCategory);
+            trace.push({ step: 'category', outcome: 'pc-portables détecté depuis le contenu de la page' });
+          }
           const verdict = classifyContent({ urlClass, ld: page.ld, html: page.html, text: page.text, product:page.product });
           const best = page.list[0];
           const clues = buildClues([target], page.product, best.name);
-          const base = { ok: true, kind: verdict.kind, pageLabel: verdict.label, finalUrl: target, merchantHost: parsed.hostname, strategy: 'reader', clues, trace };
+          const base = { ok: true, kind: verdict.kind, pageLabel: verdict.label, finalUrl: target, merchantHost: parsed.hostname, strategy: 'reader', category: effCategory, clues, trace };
           if (verdict.kind === 'page') return base;
           const pageSpecs = candidateFromText(page.text, page.product, profile);
+          /* Enrichissement externe dès que la fiche est lacunaire. Sur PC portable,
+             le GPU est un axe de décision central : son absence seule justifie
+             d'interroger la source technique (NotebookCheck). */
           const missingCore = profile.coreSpecs.filter(k => !pageSpecs[k]).length;
-          const external = missingCore >= 2 ? await externalSpecEnrich((page.product && page.product.name) || best.name, pageSpecs, Math.min(5500, Math.max(2500, left() - 1000)), trace) : null;
+          const needExternal = missingCore >= 2 || (profile.id === 'pc-portables' && !pageSpecs.gpu);
+          const external = needExternal ? await externalSpecEnrich((page.product && page.product.name) || best.name, pageSpecs, Math.min(5500, Math.max(2500, left() - 1000)), trace, profile) : null;
           const finalSpecs = external ? external.specs : pageSpecs;
-          const finalSources = {}; Object.keys(finalSpecs).forEach(k => { finalSources[k] = external && external.specs[k] && !pageSpecs[k] ? 'gsmarena' : 'reader'; });
+          const finalSources = {}; Object.keys(finalSpecs).forEach(k => { finalSources[k] = external && external.specs[k] && !pageSpecs[k] ? external.source : 'reader'; });
           return Object.assign(base, {
             product: page.product || { name: best.name, brand: null, sku: null, mpn: null, gtin: null, price: null, currency: null, availability: null, source: 'reader', evidence: 'lecteur secondaire' },
             specs: finalSpecs, specSources: finalSources,
-            evidence: ['lecteur secondaire'].concat(external ? ['fiche technique publique GSMArena'] : []),
+            evidence: ['lecteur secondaire'].concat(external ? ['fiche technique publique ' + (external.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')] : []),
             warning: 'Informations extraites par un lecteur secondaire ; à confirmer si la page affiche plusieurs variantes.'
           });
         }
@@ -633,8 +737,12 @@ async function resolve(target, options) {
   const urlNameHintRaw = urlLocal.titleHint && urlLocal.titleHint.length >= 4 ? urlLocal.titleHint : null;
   const urlNameHint = urlNameHintRaw ? (cleanHint(urlNameHintRaw).length >= 4 ? cleanHint(urlNameHintRaw) : urlNameHintRaw) : null;
   if (!good && urlNameHint && left() > 3500) {
-    const technical = await resolveModel(urlNameHint, { category: (options && options.category) || 'smartphones', timeout: Math.min(7000, left() - 500) });
+    /* L'indice de nom peut dire la catégorie (slug « pc-portable-… », famille
+       connue) : on la suit pour interroger la bonne source technique. */
+    const hintCategory = detectCategoryFromText(urlNameHintRaw) || (options && options.category) || 'smartphones';
+    const technical = await resolveModel(urlNameHint, { category: hintCategory, timeout: Math.min(7000, left() - 500) });
     if (technical && technical.ok) {
+      technical.category = hintCategory;   // l'interface s'aligne sur la catégorie effectivement résolue
       technical.merchantHost = parsed.hostname;
       technical.finalUrl = finalUrl;
       technical.strategy = 'url-hint+' + (technical.strategy || 'technical');
@@ -664,8 +772,10 @@ async function resolve(target, options) {
       const indexedHint = indexed.length ? indexed[0].titleHint : null;
       const indexedName = indexedHint && cleanHint(indexedHint).length >= 4 ? cleanHint(indexedHint) : null;
       if (indexedName && left() > 3500) {
-        const technical = await resolveModel(indexedName, { category: (options && options.category) || 'smartphones', timeout: Math.min(7000, left() - 500) });
+        const indexedCategory = detectCategoryFromText(indexedHint) || (options && options.category) || 'smartphones';
+        const technical = await resolveModel(indexedName, { category: indexedCategory, timeout: Math.min(7000, left() - 500) });
         if (technical && technical.ok) {
+          technical.category = indexedCategory;   // l'interface s'aligne sur la catégorie effectivement résolue
           technical.merchantHost = parsed.hostname;
           technical.finalUrl = finalUrl;
           technical.strategy = 'merchant-id+search+' + (technical.strategy || 'technical');
@@ -680,11 +790,11 @@ async function resolve(target, options) {
       if (wantedId) {
         trace.push({ step: 'search', outcome: 'écarté', detail: 'aucune adresse indexée ne porte l’identifiant du lien' });
       } else {
-      const external = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(2500, left() - 1000)), trace);
+      const external = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(2500, left() - 1000)), trace, profile);
       return {
-        ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external ? 'search+gsmarena' : 'search',
-        product: { name: external ? external.name : found.best, brand: null, sku: null, mpn: null, gtin: null, price: null, currency: null, availability: null, source: external ? 'gsmarena' : 'search', evidence: 'recherche web' },
-        specs: external ? external.specs : {}, specSources: external ? Object.fromEntries(Object.keys(external.specs).map(k => [k, 'gsmarena'])) : {}, evidence: ['recherche web'].concat(external ? ['fiche technique publique GSMArena'] : []), warning: external ? null : 'Page illisible : modèle déduit d’une recherche web, à confirmer.',
+        ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external ? 'search+' + external.source : 'search',
+        product: { name: external ? external.name : found.best, brand: null, sku: null, mpn: null, gtin: null, price: null, currency: null, availability: null, source: external ? external.source : 'search', evidence: 'recherche web' },
+        specs: external ? external.specs : {}, specSources: external ? Object.fromEntries(Object.keys(external.specs).map(k => [k, external.source])) : {}, evidence: ['recherche web'].concat(external ? ['fiche technique publique ' + (external.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')] : []), warning: external ? null : 'Page illisible : modèle déduit d’une recherche web, à confirmer.',
         clues: buildClues([target, finalUrl], null, null, { searchBest: found.best, searchTitles: found.titles }), trace
       };
       }
@@ -694,13 +804,13 @@ async function resolve(target, options) {
   /* 5b : recherche technique publique sans clé API. Elle transforme un nom extrait de l'URL en fiche technique. */
   const technicalHint = urlLocal.titleHint || (baseClues && baseClues.name);
   if (technicalHint && left() > 2500) {
-    const external = await externalSpecEnrich(technicalHint, {}, Math.min(6500, left() - 800), trace);
+    const external = await externalSpecEnrich(technicalHint, {}, Math.min(6500, left() - 800), trace, profile);
     if (external) {
-      return { ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: 'gsmarena',
-        product: { name: external.name, brand: null, source: 'gsmarena', evidence: external.url }, specs: external.specs,
-        specSources: Object.fromEntries(Object.keys(external.specs).map(k => [k, 'gsmarena'])), specsConfidence: external.confidence,
-        identity: { status: external.confidence >= .9 ? 'identified' : 'partial', name: external.name, basis: ['fiche technique publique GSMArena'], confidence: external.confidence },
-        evidence: ['fiche technique publique GSMArena'], trace, clues: buildClues([target, finalUrl], null, external.name) };
+      return { ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external.source,
+        product: { name: external.name, brand: null, source: external.source, evidence: external.url }, specs: external.specs,
+        specSources: Object.fromEntries(Object.keys(external.specs).map(k => [k, external.source])), specsConfidence: external.confidence,
+        identity: { status: external.confidence >= .9 ? 'identified' : 'partial', name: external.name, basis: ['fiche technique publique ' + (external.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')], confidence: external.confidence },
+        evidence: ['fiche technique publique ' + (external.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')], trace, clues: buildClues([target, finalUrl], null, external.name) };
     }
   }
 
@@ -714,7 +824,7 @@ async function resolve(target, options) {
   return fail({ reason: 'network', error: 'Impossible de récupérer la page.' });
 }
 
-module.exports = { apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
+module.exports = { apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, looksLikeLaptop, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
 
 async function resolveModel(model, options) {
   const result = await resolveModelRaw(model, options);

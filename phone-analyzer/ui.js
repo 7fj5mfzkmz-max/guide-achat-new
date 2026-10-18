@@ -11,7 +11,7 @@
   var PROFILS = { etudiant: "Étudiant", professionnel: "Professionnel", gamer: "Gamer", photographe: "Photographe" };
   var KIT = window.GuideCategoryKit && window.GuideCategoryKit.get();   // profil de la catégorie (smartphones par défaut)
   var SPEC_LABELS = (KIT && KIT.specLabels) || { ecran: "Écran", refresh: "Fréquence d’écran", processeur: "Processeur", ram: "Mémoire", stockage: "Stockage", batterie: "Batterie", charge: "Charge", photo: "Photo", etancheite: "Étanchéité", os: "Système" };
-  var CRIT_LABELS = { autonomie: "autonomie", performance: "performance", gaming: "jeu", prix: "prix", recharge: "recharge", durabilite: "durée du suivi/réparabilité", stockage: "stockage", photo: "photo", ecran: "écran", connectivite: "connectivité" };
+  var CRIT_LABELS = { autonomie: "autonomie", performance: "performance", gaming: "jeu", prix: "prix", recharge: "recharge", durabilite: "durée du suivi/réparabilité", stockage: "stockage", photo: "photo", ecran: "écran", connectivite: "connectivité", memoire: "mémoire", mobilite: "mobilité" };
   var state = { page: null, identity: null, queue: [], year: null, pageOffered: false, needsCapture: false, category: "smartphones" };
   var CORE_SPECS = (KIT && KIT.coreSpecs) || ["ecran", "processeur", "ram", "batterie", "charge", "refresh"];
 
@@ -126,7 +126,12 @@
     var cat = c || (page && page.catalogProduct) || {}; /* Fiche du catalogue quand le serveur l'a reconnue ; les caractéristiques restent dans page.specs. */
     var pageSpecs = (page && page.specs) || {};
     var merged = {};
-    [pageSpecs, cat.caracteristiques || {}].forEach(function (src) { Object.keys(src).forEach(function (k) { if (usable(src[k])) merged[k] = src[k]; }); });
+    /* PC portables : la fiche marchande (SKU exact) prime sur l'entrée du
+       catalogue (qui peut décrire une autre configuration de la même famille) —
+       le catalogue ne comble que les cases vides. Smartphones : comportement
+       historique inchangé. */
+    var mergeOrder = state.category === "pc-portables" ? [cat.caracteristiques || {}, pageSpecs] : [pageSpecs, cat.caracteristiques || {}];
+    mergeOrder.forEach(function (src) { Object.keys(src).forEach(function (k) { if (usable(src[k])) merged[k] = src[k]; }); });
     var pagePrice = page && page.product && /^(EUR|€)?$/i.test(page.product.currency || "") && page.product.price ? page.product.price : null;
     var price = cat.prix_indicatif || pagePrice;
 
@@ -137,7 +142,7 @@
     var title = c ? displayName(c, state.year) : (pageName() || 'Modèle lu sur la page');
     // Une analyse publique disponible devient prioritaire sur les scores historiques du catalogue.
     // Le catalogue conserve ses caractéristiques, mais ne peut plus écraser une mesure/revue plus récente.
-    var est = window.PhoneAnalyzerSpecScore.estimate({ specs: merged, price: price, modelName: cat.nom || title, modelId: cat.id, reviews: null, sourceScores: calibratedScores });
+    var est = window.PhoneAnalyzerSpecScore.estimate({ specs: merged, price: price, modelName: cat.nom || title, modelId: cat.id, reviews: null, sourceScores: calibratedScores, category: state.category });
     scores = est.profiles; documented = est.documented; chemistry = est.chemistry; estimated = true;
     var decisionDomains = {};
     var confidence = 'source référencée';
@@ -149,8 +154,15 @@
     var insights = window.PhoneSpecInsights || {};
     var profileForInsights = myProfile() || 'etudiant';
     var appleModel = /apple|iphone/i.test(title);
-    /* Des groupes compacts conservent les valeurs et les explications tout en évitant une longue pile de cartes. */
-    var SPEC_GROUPS = [
+    /* Des groupes compacts conservent les valeurs et les explications tout en évitant une longue pile de cartes.
+       PC portables : le GPU dédié est un axe de décision central, et le poids
+       rejoint la mobilité ; la batterie en Wh est une caractéristique lisible. */
+    var SPEC_GROUPS = state.category === 'pc-portables' ? [
+      { title: 'Écran & image', keys: ['ecran', 'refresh'] },
+      { title: 'Performances & mémoire', keys: ['processeur', 'gpu', 'ram', 'stockage'] },
+      { title: 'Mobilité & autonomie', keys: ['poids', 'batterie', 'batterie_wh', 'autonomie'] },
+      { title: 'Système', keys: ['os'] }
+    ] : [
       { title: 'Écran & confort', keys: ['ecran', 'refresh'] },
       { title: 'Performances & espace', keys: ['processeur', 'ram', 'stockage'] },
       { title: 'Autonomie & recharge', keys: ['batterie', 'charge'] },
@@ -164,6 +176,18 @@
       var nits = v.match(/(\d{3,4})\s*(?:nits|cd\/m(?:²|2)?)/i);
       var oled = /oled|amoled|ltpo/i.test(v);
       var res = /4k|qhd\+?|1440\s*[x×]\s*\d+|1080\s*[x×]\s*\d+/i.test(v);
+      if (state.category === 'pc-portables') {
+        /* Vocabulaire PC : diagonale, dalle, Hz et OLED des ordinateurs portables. */
+        if (size) bits.push(Number(size[1].replace(',', '.')) >= 16 ? 'La grande diagonale profite au multitâche et au jeu, mais alourdit et agrandit la machine : à réserver à un usage plutôt fixe.' : Number(size[1].replace(',', '.')) <= 14 ? 'Le format compact facilite le transport au quotidien ; le confort de deux fenêtres côte à côte s\u2019en ressent un peu.' : 'Cette diagonale est un compromis courant entre confort de travail et transportabilité.');
+        if (oled) bits.push('L\u2019OLED donne des noirs profonds et un excellent contraste, appréciés pour les films et la retouche photo.');
+        if (hz) bits.push(Number(hz[1]) >= 120 ? 'Le taux de ' + hz[1] + ' Hz rend le jeu et le défilement plus fluides ; le framerate réel dépend surtout du GPU et des watts qui l\u2019alimentent.' : 'Le taux de 60 Hz suffit pour la bureautique, mais paraît moins fluide qu\u2019à 120 Hz pour le défilement.');
+        if (nits) bits.push('La luminosité annoncée (' + nits[1] + ' nits) donne un indice pour l\u2019extérieur ; la dalle brillante ou mate change beaucoup le confort en pièces éclairées.');
+        if (res) bits.push('La définition annoncée favorise la finesse des textes ; la couverture colorimétrique, déterminante pour la création, n\u2019est pas déductible de ce chiffre.');
+        if (!bits.length) bits.push('La seule mention « ' + v + ' » ne suffit pas à juger le confort : dalle, luminosité mesurée et fluidité ne sont pas tous documentés.');
+        if (profile === 'gamer') bits.push('Pour jouer, la dalle compte moins que le GPU et son alimentation en watts : une dalle rapide ne rattrape pas un GPU limité.');
+        else if (profile === 'createur') bits.push('Pour la création, la fidélité des couleurs et la couverture sRGB/Adobe RGB ne sont pas déductibles de ces seules caractéristiques.');
+        return bits.join(' ');
+      }
       if (size) bits.push(Number(size[1].replace(',', '.')) >= 6.7 ? 'La grande diagonale est agréable pour lire, regarder des vidéos et utiliser plusieurs contenus, mais le téléphone sera généralement moins facile à manier à une main.' : Number(size[1].replace(',', '.')) <= 6.2 ? 'Le format compact facilite la prise en main et le transport ; les vidéos et les textes seront moins grands qu’avec une dalle plus vaste.' : 'La diagonale offre un compromis entre confort de lecture et encombrement.');
       if (oled) bits.push('L’OLED/AMOLED produit des noirs profonds et un contraste élevé, appréciables pour les films et la lecture dans une pièce sombre.');
       if (hz) bits.push(Number(hz[1]) >= 90 ? 'Le taux de ' + hz[1] + ' Hz rend le défilement et les animations plus fluides ; il ne garantit pas que les jeux tournent à ce nombre d’images par seconde.' : 'Le taux de 60 Hz est suffisant pour les usages courants, mais le défilement paraît moins fluide qu’à 90 ou 120 Hz.');
@@ -176,7 +200,7 @@
       return bits.join(' ');
     }
     function specRow(k) {
-      var insight = insights.verdict ? insights.verdict(profileForInsights, k, merged[k], { apple: appleModel }) : null;
+      var insight = insights.verdict ? insights.verdict(profileForInsights, k, merged[k], { apple: appleModel, pc: state.category === 'pc-portables' }) : null;
       var level = insight && insight.level || 'neutral';
       var arrow = level === 'good' ? '↑' : level === 'bad' ? '↓' : level === 'warn' ? '→' : '•';
       var badge = insight && insight.level !== 'neutral' ? '<span class="spec-badge spec-' + level + '"><span aria-hidden="true">' + arrow + '</span> ' + esc(insight.label) + '</span>' : '<span class="spec-badge spec-neutral">À interpréter</span>';
@@ -213,7 +237,7 @@
       var v = Number(kimovilScores[k]);
       return '<div class="model-analyzer-domain"><span><strong>' + esc(domainNames[k]) + '</strong><small>référence technique</small></span><b>' + v.toFixed(1) + '/10</b></div>';
     }).join('');
-    var sourceMap = { phonesdata: 'PhonesData', kimovil: 'Kimovil', gsmarena: 'GSMArena', icecat: 'Icecat', apple: 'Apple', page: 'fiche vendeur', catalogue: 'catalogue local', reader: 'lecteur secondaire' };
+    var sourceMap = { phonesdata: 'PhonesData', kimovil: 'Kimovil', gsmarena: 'GSMArena', notebookcheck: 'NotebookCheck', icecat: 'Icecat', apple: 'Apple', page: 'fiche vendeur', catalogue: 'catalogue local', reader: 'lecteur secondaire' };
     var actualSources = Object.keys((page && page.specSources) || {}).map(function(k){ return page.specSources[k]; }).filter(Boolean);
     if (page && page.product && page.product.source) actualSources.push(page.product.source);
     if (page && page.evidence) actualSources = actualSources.concat(page.evidence.map(function(e){ return /phonesdata/i.test(e) ? 'phonesdata' : /kimovil/i.test(e) ? 'kimovil' : /gsmarena/i.test(e) ? 'gsmarena' : null; }).filter(Boolean));
@@ -231,7 +255,7 @@
     var sourceBlock = analysisIndexBlock + confidenceBlock + decisionBlock + (domainRows ? '<details class="model-analyzer-why"><summary>Pourquoi cette note ?</summary><div class="model-analyzer-why-body"><p>La note par profil ne part pas d’un chiffre marketing unique. Elle combine plusieurs domaines documentés, avec une pondération différente selon l’usage.</p><div class="model-analyzer-domains">' + domainRows + '</div><p class="model-analyzer-note">Une note élevée exige des caractéristiques documentées sur plusieurs critères. 120 Hz, beaucoup de RAM ou une grosse batterie ne suffisent pas à eux seuls ; les fiches techniques ne remplacent pas les essais terrain.</p></div></details>' : '');
     var hasProvisional = Object.keys(scores).some(function(k){ return scores[k] && scores[k].provisional; });
     var scoreNote = !profs ? "<p><strong>Score indisponible pour le moment :</strong> aucune caractéristique fiable n’est disponible pour ce modèle. Une information absente n’est pas considérée comme un défaut.</p>"
-      : '<p class="model-analyzer-note">Score Guide·Achat calculé à partir des caractéristiques techniques disponibles (' + esc(sourceLabel) + '). Il mesure la <strong>compatibilité avec un profil d’usage</strong>, pas une qualité générale absolue.</p>' + (hasProvisional ? '<p class="model-analyzer-note"><strong>* Score provisoire :</strong> couverture technique ou tests terrain incomplets. Le jeu/photo reste plafonné sans mesure spécialisée.</p>' : '') + (chemistry && chemistry.status !== "documente" ? '<p class="model-analyzer-note">Technologie de batterie détectée : ' + esc(chemistry.label) + ". Son effet n’est pas bonifié automatiquement sans source comparable.</p>" : "") + '<p class="model-analyzer-note">Analyse fondée sur : ' + esc(documented.map(function (k) { return CRIT_LABELS[k] || k; }).join(", ")) + ". Une donnée non documentée n’est jamais comptée comme un point négatif.</p>";
+      : '<p class="model-analyzer-note">Score Guide·Achat calculé à partir des caractéristiques techniques disponibles (' + esc(sourceLabel) + '). Il mesure la <strong>compatibilité avec un profil d’usage</strong>, pas une qualité générale absolue.</p>' + (hasProvisional ? '<p class="model-analyzer-note"><strong>* Score provisoire :</strong> couverture technique incomplète' + (state.category === 'pc-portables' ? ' (GPU, CPU ou autonomie non documentés) : le profil concerné reste à confirmer.' : ' ou tests terrain incomplets. Le jeu/photo reste plafonné sans mesure spécialisée.') + '</p>' : '') + (chemistry && chemistry.status !== "documente" ? '<p class="model-analyzer-note">Technologie de batterie détectée : ' + esc(chemistry.label) + ". Son effet n’est pas bonifié automatiquement sans source comparable.</p>" : "") + '<p class="model-analyzer-note">Analyse fondée sur : ' + esc(documented.map(function (k) { return CRIT_LABELS[k] || k; }).join(", ")) + ". Une donnée non documentée n’est jamais comptée comme un point négatif.</p>";
 
     var imageCandidate = (page && page.product && page.product.image) || cat.image || cat.image_url || null;
     var productImage = /^https?:\/\//i.test(String(imageCandidate || '')) ? String(imageCandidate) : null;
@@ -308,6 +332,10 @@
     state.page = null; state.identity = null; state.queue = []; state.pageOffered = false; state.needsCapture = false;
     loading("Analyse du lien en cours…");
     window.PhoneAnalyzerFetcher.resolveProduct(raw, { category: state.category }).catch(function () { return localFallback(raw); }).then(function (data) {
+      /* Le serveur peut re-router vers pc-portables (lien court sans indice de catégorie dans l’adresse) :
+         la réponse porte la catégorie effective (data.category) et l’interface s’y aligne AVANT tout
+         traitement — profils, libellés, fusion des specs et scoring en dépendent. */
+      if (data && data.category && data.category !== state.category) setCategory(data.category);
       if (data.kind === "page") return viewNotAModel(data.pageLabel);
       var k = data.clues || {};
       state.year = k.year || null;

@@ -247,6 +247,31 @@ async function main() {
     await close(page);
   });
 
+  /* Lien court sans indice de catégorie : l'interface part de son défaut (smartphones),
+     le serveur re-route vers pc-portables (looksLikeLaptop) et sa réponse porte category.
+     Le front doit s'aligner AVANT l'affichage : profils PC (Créateur, pas Photographe),
+     libellés du kit PC (Carte graphique), provenance NotebookCheck. */
+  await run('Lien court PC : re-routage serveur vers pc-portables, l’interface s’aligne', async () => {
+    const PC_SPECS = { processeur: 'Intel Core Ultra 7 251HX', gpu: 'NVIDIA GeForce RTX 5070 Laptop', ram: '16 Go', ecran: '15.30 pouces 16:10, 2560 x 1600 pixel, OLED, 165 Hz', batterie: '80 Wh', poids: '1.946 kg', os: 'Microsoft Windows 11 Home' };
+    const pcResult = () => ({ status: 200, body: { ok: true, kind: 'product', strategy: 'notebookcheck', category: 'pc-portables',
+      product: { name: 'Lenovo Legion 5 15IAX11', source: 'notebookcheck', price: 1499 },
+      specs: PC_SPECS, specSources: Object.fromEntries(Object.keys(PC_SPECS).map(k => [k, 'notebookcheck'])),
+      identity: { status: 'identified', name: 'Lenovo Legion 5 15IAX11', basis: ['fiche technique publique NotebookCheck'] },
+      clues: { name: 'Lenovo Legion 5 15IAX11' }, trace: [] } });
+    const page = await open(A, 'stub', pcResult);
+    await submitMain(page, 'https://www.fnac.com/a99999999/w-4');
+    assert(page.calls.length === 1 && page.calls[0].category === 'smartphones', 'l’interface doit partir de sa catégorie par défaut (obtenu : ' + JSON.stringify(page.calls[0]) + ')');
+    await waitAnalysis(page);
+    const t = await stageText(page);
+    assert(/Créateur/.test(t), 'les profils PC doivent être affichés (Créateur)');
+    assert(!/Photographe/.test(t), 'le profil Photographe (smartphones) ne doit pas apparaître');
+    assert(/Carte graphique/.test(t), 'les libellés du kit PC doivent être utilisés (Carte graphique)');
+    assert(/NotebookCheck/.test(t), 'la provenance NotebookCheck doit être affichée');
+    assert(/Lenovo Legion 5 15IAX11/.test(t), 'le modèle doit être analysé');
+    assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
+    await close(page);
+  });
+
   await browser.close(); backend.child.kill(); site.close();
 }
 

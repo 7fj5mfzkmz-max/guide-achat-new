@@ -46,6 +46,8 @@
             if (local && local.ok && local.strategy === "static-catalogue") {
               local.warning = "La page du marchand n’a pas pu être lue : le modèle est reconnu d’après l’adresse et le catalogue. Prix et variante non vérifiés.";
               local.fallbackFrom = data.reason || "unreadable";
+              /* La catégorie effective décidée par le serveur (ex. re-routage pc-portables) survit au repli statique. */
+              if (data.category && !local.category) local.category = data.category;
               return local;
             }
             return data;

@@ -286,8 +286,200 @@
     });
     return out;
   }
+  /* ——— Mode PC portables ——— */
+  /* Critères, seuils et poids repris des relevés documentés du projet
+     (tools/pc-portables/construire.py) : mêmes domaines (prix, autonomie,
+     mobilite, memoire, performance, ecran, gaming), mêmes profils (étudiant,
+     professionnel, gamer, créateur), mêmes plafonds (gamer bridé si gaming < 7).
+     Un score est une compatibilité de profil plafonnée à 9, jamais une note
+     absolue. Une caractéristique inconnue reste inconnue : elle n'entre pas
+     dans la moyenne et la couverture est signalée. */
+  var PC_WEIGHTS = {
+    etudiant: { prix: 1.15, autonomie: 0.8, mobilite: 0.6, memoire: 0.55, performance: 0.35, ecran: 0.25, gaming: 0.05 },
+    professionnel: { performance: 0.9, autonomie: 0.8, memoire: 0.7, ecran: 0.65, mobilite: 0.55, prix: 0.35, gaming: 0.1 },
+    gamer: { gaming: 1.7, performance: 0.55, ecran: 0.35, memoire: 0.3, prix: 0.2, autonomie: 0.1, mobilite: 0.05 },
+    createur: { ecran: 1.0, memoire: 0.9, performance: 0.8, gaming: 0.45, autonomie: 0.35, mobilite: 0.3, prix: 0.2 }
+  };
+  var PC_REFERENCE = { method: 'pondération par profil PC portable, seuils des relevés documentés du projet ; aucune valeur inconnue transformée en défaut' };
+
+  function pcPrixScore(prix) {
+    var p = numericPrice(prix);
+    if (p == null) return null;
+    if (p <= 400) return 9;
+    if (p <= 600) return 8;
+    if (p <= 850) return 7;
+    if (p <= 1100) return 6;
+    if (p <= 1500) return 5;
+    if (p <= 2000) return 4;
+    if (p <= 3200) return 3;
+    return 2;
+  }
+  function pcMobiliteScore(specs) {
+    var kg = firstNumber([specs.poids], /(\d(?:[.,]\d{1,2})?)\s*kg/i, 0.5, 6);
+    if (kg == null) return null;
+    if (kg <= 1.25) return 9;
+    if (kg <= 1.4) return 8;
+    if (kg <= 1.6) return 7;
+    if (kg <= 1.85) return 6;
+    if (kg <= 2.15) return 5;
+    if (kg <= 2.5) return 4;
+    return 3;
+  }
+  /* Heures mesurées ou annoncées d'abord ; sinon capacité Wh (indicateur, pas
+     une durée : le score reste modeste). */
+  function pcAutonomieScore(specs) {
+    var h = firstNumber([specs.autonomie, specs.autonomie_heures], /(\d{1,2}(?:[.,]\d)?)\s*h/i, 2, 30);
+    if (h != null) {
+      if (h < 8) return 4;
+      if (h < 12) return 6;
+      if (h < 16) return 7;
+      if (h < 20) return 8;
+      return 9;
+    }
+    var wh = specs.batterie_wh != null ? specs.batterie_wh : firstNumber([specs.batterie], /(\d{2,3})\s*wh/i, 20, 200);
+    if (wh == null) return null;
+    if (wh < 50) return 5;
+    if (wh < 65) return 6;
+    if (wh < 80) return 6.5;
+    if (wh < 95) return 7;
+    return 7.5;
+  }
+  function pcMemoireScore(specs) {
+    var ram = firstNumber([specs.ram], /(\d{1,3})\s*(?:go|gb)/i, 2, 192);
+    if (ram == null) return null;
+    var ssd = firstNumber([specs.stockage], /(\d{1,4})\s*(?:go|gb|to|tb)/i, 16, 8192);
+    if (ssd != null && /to|tb/i.test(String(specs.stockage || ''))) ssd = ssd * 1024 > 8192 ? 2048 : ssd * 1024;
+    var base = ram <= 8 ? 3 : ram <= 16 ? 6 : ram <= 24 ? 7 : ram < 48 ? 8 : 9;
+    if (ssd != null) {
+      if (ssd <= 256) base -= 1;
+      else if (ssd >= 2048) base += 1;
+      else if (ssd >= 1024) base += 0.5;
+    }
+    return clamp(base);
+  }
+  function pcEcranScore(specs) {
+    var v = String(specs.ecran || '');
+    if (!v) return null;
+    var hz = firstNumber([v], /(\d{2,3})\s*hz/i, 24, 500);
+    var diag = firstNumber([v], /(1[0-9](?:[.,]\d)?|2[0-2](?:[.,]\d)?)\s*(?:pouces|po|")/i, 9, 23);
+    if (/mini-?led/i.test(v)) return 9;
+    if (/oled/i.test(v)) return (hz != null && hz >= 120) || /2880|3k/i.test(v) ? 9 : 8;
+    if (/ips/i.test(v)) {
+      if (hz != null && hz >= 144) return 7;
+      if (diag != null && diag <= 14) return 6;
+      return 5;
+    }
+    if (hz != null && hz >= 144) return 6.5;
+    return null;
+  }
+  /* Puissance processeur (0-9). Table issue des niveaux documentés du projet
+     (construire.py), interpolée avec parcimonie ; un CPU inconnu vaut null,
+     jamais un mauvais score. */
+  var PC_CPU_RULES = [
+    [/apple\s+m\d\s*(max|ultra)/i, 9],
+    [/apple\s+m\d\s*pro/i, 8.5],
+    [/apple\s+m5/i, 8],
+    [/apple\s+m4/i, 7.5],
+    [/apple\s+m3/i, 7],
+    [/apple\s+a1[89]\s*pro/i, 5],
+    [/core\s*ultra\s*9|ryzen\s*9|ryzen\s*ai\s*9|i9[- ]/i, 8],
+    [/snapdragon\s*x2\s*elite/i, 7.5],
+    [/snapdragon\s*x\s*elite/i, 7],
+    [/core\s*ultra\s*[57]\s*\d*hx|ryzen\s*[79]\s*\d*hx|i[79][- ]\d{3,4}hx/i, 7.5],
+    [/core\s*ultra\s*x\d/i, 8],
+    [/core\s*ultra\s*7\s*2\d\dv|ryzen\s*ai\s*7\s*3\d\d|ryzen\s*[79]\s*2\d\d(?![\d\d]hx)/i, 7],
+    [/core\s*ultra\s*5\s*2\d\dv|ryzen\s*ai\s*5/i, 6],
+    [/ryzen\s*7\s*\d\d\d|core\s*i7(?![- ]\d{3,4}hx)/i, 6.5],
+    [/ryzen\s*5|core\s*i5|core\s*[35]\b/i, 5.5],
+    [/celeron|pentium|athlon/i, 3]
+  ];
+  function pcCpuScore(cpu) {
+    var s = String(cpu || '').trim();
+    if (!s) return null;
+    for (var i = 0; i < PC_CPU_RULES.length; i++) if (PC_CPU_RULES[i][0].test(s)) return PC_CPU_RULES[i][1];
+    return null;
+  }
+  /* Puissance GPU (0-9), sur l'échelle documentée : iGPU modeste 3, iGPU solide 5,
+     RTX 5060 7, RTX 5070 8, RTX 5090 9. Interpolations parcimonieuses (4080/4090…).
+     Le TGP n'entre pas dans le score : il est signalé dans les explications. */
+  var PC_GPU_RULES = [
+    [/rtx\s*50\d\d|rtx\s*4090/i, 9],
+    [/rtx\s*5080|rtx\s*4080/i, 8.5],
+    [/rtx\s*50\d\d\s*ti|rtx\s*40\d\d\s*ti/i, 8.25],
+    [/rtx\s*50\d70|rtx\s*40\d70|rtx\s*\d{4}70/i, 8],
+    [/rtx\s*50\d60|rtx\s*40\d60|rtx\s*\d{4}60/i, 7],
+    [/rtx\s*50\d50|rtx\s*40\d50|rtx\s*\d{4}50/i, 6],
+    [/rtx\s*2050|rtx\s*3050|mx\s*5\d\d/i, 4.5],
+    [/radeon\s*rx\s*7[678]\d\dm?/i, 6],
+    [/radeon\s*rx\s*68\dm?/i, 5],
+    [/radeon\s*680m|780m|880m|890m/i, 5],
+    [/arc\s*b\d\d\d/i, 5.5],
+    [/arc\s*1\d\dv|arc\s*graphics/i, 5.5],
+    [/gpu\s*apple\s*m\d/i, 5],
+    [/adreno|iris\s*xe|uhd\s*graphics|graphics\s*intégré|radeon\s*intégrée/i, 4]
+  ];
+  function pcGpuScore(gpu) {
+    var s = String(gpu || '').trim();
+    if (!s) return null;
+    for (var i = 0; i < PC_GPU_RULES.length; i++) if (PC_GPU_RULES[i][0].test(s)) return PC_GPU_RULES[i][1];
+    return null;
+  }
+  function pcCriteria(specs, price) {
+    var out = {
+      prix: pcPrixScore(price),
+      performance: pcCpuScore(specs.processeur),
+      gaming: null,
+      ecran: pcEcranScore(specs),
+      memoire: pcMemoireScore(specs),
+      mobilite: pcMobiliteScore(specs),
+      autonomie: pcAutonomieScore(specs)
+    };
+    var gpu = pcGpuScore(specs.gpu);
+    if (gpu != null) {
+      /* Échelle documentée : en dessous d'une vraie carte dédiée, le CPU pèse
+         dans le jeu (mélange 80/20 comme construire.py). */
+      out.gaming = gpu >= 7 ? gpu : (out.performance != null ? clamp(gpu * 0.8 + out.performance * 0.2) : gpu);
+    }
+    return out;
+  }
+  function estimatePc(input) {
+    input = input || {};
+    var specs = input.specs || {};
+    var crit = pcCriteria(specs, input.price);
+    var profiles = {};
+    Object.keys(PC_WEIGHTS).forEach(function (profile) {
+      var weights = PC_WEIGHTS[profile], sum = 0, observed = 0, full = 0;
+      Object.keys(weights).forEach(function (k) {
+        full += weights[k];
+        if (crit[k] != null) { sum += crit[k] * weights[k]; observed += weights[k]; }
+      });
+      if (!observed) return;
+      var score = sum / observed, coverage = observed / full;
+      /* Plafond documenté : un gamer bridé si la puissance de jeu est sous 7. */
+      if (profile === 'gamer' && crit.gaming != null && crit.gaming < 7) score = Math.min(score, 6);
+      /* Règles OS documentées (construire.py) : ChromeOS bride jeu/création,
+         un PC sans OS dessert le profil étudiant. */
+      var os = text(specs.os);
+      if (/chromeos|chrome os/i.test(os)) {
+        if (profile === 'gamer') score = Math.min(score, 3);
+        else if (profile === 'createur') score = Math.min(score, 4);
+        else if (profile === 'professionnel') score = Math.min(score, 6);
+      }
+      if (/sans syst|dos\b|sans os/i.test(os) && profile === 'etudiant') score = Math.max(1, score - 1);
+      /* Forte lacune d'information => note plafonnée et marquée provisoire. */
+      if (coverage < 0.38) score = Math.min(score, 6.0);
+      else if (coverage < 0.62) score = Math.min(score, 7.2);
+      profiles[profile] = {
+        score: clamp(score),
+        coverage: Math.round(coverage * 100) / 100,
+        provisional: coverage < 0.78 || (profile === 'gamer' && crit.gaming == null) || (profile === 'createur' && crit.performance == null)
+      };
+    });
+    return { evidence: {}, criteria: crit, documented: Object.keys(crit).filter(function (k) { return crit[k] != null; }), profiles: profiles, reference: PC_REFERENCE };
+  }
   function estimate(input) {
     input=input||{};
+    if (input.category === 'pc-portables') return estimatePc(input);
     var crit=criteria(input.specs||{},input.sourceScores||{},input.price), profiles={};
     var specs=input.specs||{}, sourceScores=input.sourceScores||{};
     var referenceApi=typeof module!=='undefined'&&module.exports?require('./references.js'):root.PhoneReferences;
@@ -319,6 +511,6 @@
     });
     return {evidence:evidence,criteria:crit,documented:Object.keys(crit).filter(function(k){return crit[k]!=null;}),profiles:profiles,reference:REFERENCE};
   }
-  var api={estimate:estimate,criteria:criteria,weights:PROFILES,WEIGHTS:PROFILES,REFERENCE:REFERENCE,helpers:{numericPrice:numericPrice,chipTier:chipTier}};
+  var api={estimate:estimate,criteria:criteria,weights:PROFILES,WEIGHTS:PROFILES,REFERENCE:REFERENCE,estimatePc:estimatePc,pcCriteria:pcCriteria,PC_WEIGHTS:PC_WEIGHTS,helpers:{numericPrice:numericPrice,chipTier:chipTier,pcCpuScore:pcCpuScore,pcGpuScore:pcGpuScore}};
   if(typeof module!=='undefined'&&module.exports) module.exports=api; else root.PhoneAnalyzerSpecScore=api;
 })(typeof window!=='undefined'?window:globalThis);
