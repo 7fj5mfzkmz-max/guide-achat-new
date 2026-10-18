@@ -62,8 +62,11 @@ async function main() {
   async function open(pathname, mode, handler) {
     const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await context.newPage();
-    page.errors = []; page.calls = [];
+    page.errors = []; page.calls = []; page.backendCalls = 0;
     page.on('pageerror', e => page.errors.push(e.message));
+    /* Attester que la réponse vient bien du backend, pas du secours local :
+       la note « indisponible » du secours est exclue et l'adresse du backend est observée. */
+    page.on('request', req => { if (req.url().startsWith(backend.base + '/api/resolve')) page.backendCalls++; });
     await context.route(u => { const s = u.toString(); return !s.startsWith(SITE) && !s.startsWith(backend.base); }, r => r.abort());
     if (mode === 'real') await page.addInitScript(base => { window.GUIDE_API_BASE = base; }, backend.base);
     if (mode === 'stub') {
@@ -120,6 +123,8 @@ async function main() {
       assert((await page.locator('#phone-analyzer-result .spec-badge').count()) > 0, 'des verdicts techniques (badges) doivent s’afficher');
       const link = page.locator('#phone-analyzer-result [data-compare-link]');
       assert((await link.getAttribute('href')) === 'comparateur.html?selection=galaxy-a56', 'lien Comparer attendu avec l’identifiant, obtenu ' + (await link.getAttribute('href')));
+      assert(page.backendCalls >= 1, 'le backend doit avoir réellement été interrogé (secours local non utilisé)');
+      assert(!/indisponible/i.test(await stageText(page)), 'la note d’indisponibilité du secours local ne doit pas apparaître : le vrai backend a été utilisé');
       await link.click();
       await page.waitForURL(/comparateur\.html\?selection=galaxy-a56/);
       await page.waitForSelector('#compare-count', { timeout: 15000 });

@@ -11,7 +11,9 @@ const MODEL = 'Samsung Galaxy A16';
   const r = await resolve.resolveModel(MODEL, { timeout: 15000 });
   if (!r.ok) {
     const steps = (r.trace || []).filter(t => ['kimovil', 'gsmarena', 'phonesdata-identity'].includes(t.step));
-    const silent = steps.length > 0 && steps.every(t => t.outcome === 'rien' || t.outcome === 'erreur');
+    /* « NON EXÉCUTÉ » est réservé à une indisponibilité attestée : chaque source sollicitée a échoué
+       par erreur technique (erreur réseau, CORS, HTTP en échec), pas par absence de résultat. */
+    const silent = steps.length > 0 && steps.every(t => t.outcome === 'erreur');
     if (silent && process.env.LIVE_STRICT !== '1') {
       console.warn('NON EXÉCUTÉ : aucune source externe n’a répondu pour « ' + MODEL + ' » (réseau ou services indisponibles).');
       console.warn('Ce test n’est ni réussi ni échoué. Relancez avec un accès réseau, ou LIVE_STRICT=1 pour en faire un échec.');
@@ -21,7 +23,7 @@ const MODEL = 'Samsung Galaxy A16';
     assert.fail('Résolution de « ' + MODEL + ' » refusée alors que des sources ont répondu : ' + JSON.stringify(r.trace));
   }
   assert.ok(['phonesdata+crosscheck', 'kimovil-first', 'gsmarena+reviews'].includes(r.strategy), 'stratégie inattendue : ' + r.strategy);
-  assert.match(r.identity.name, /Galaxy A16/, 'le nom doit contenir le modèle');
+  assert.equal(r.identity.name, 'Samsung Galaxy A16', 'le nom exact doit être identifié, pas une variante (ex. Galaxy A16 5G)');
   assert.ok(Object.keys(r.specs).length >= 5, 'des caractéristiques doivent être fournies');
   assert.equal(r.identity.status, 'identified');
   console.log('OK : « ' + MODEL + ' » résolu via ' + r.strategy + ' (' + Object.keys(r.specs).length + ' caractéristiques).');
