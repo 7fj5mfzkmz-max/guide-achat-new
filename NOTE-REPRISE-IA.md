@@ -312,3 +312,20 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
 > lecteur « à confirmer si la page affiche plusieurs variantes » est conservé
 > (le lecteur LDLC a livré i5/8 Go de façon stable sur les passages sains ; le
 > passage en i7/32 Go était l'effet du bug de fusion, pas du lecteur).
+
+## Complément du 18/10 (suite) — liens idealo corrigés (commit 11316d9)
+
+- **Problème** : tous les liens « Comparer le prix / Idealo → » des cartes
+  recommandées renvoyaient une page idealo « Not Found ». Le format
+  `idealo.fr/resultats.html?q=…` n'existe plus.
+- **Correctif** : remplacé partout par `idealo.fr/prechcat.html?q=…` — idealo y
+  redirige vers la bonne catégorie (smartphones, ordinateurs portables…),
+  parenthèses des noms acceptées. Quatre endroits : `idealoUrl()`
+  (smartphones-scoring.js), le générateur `tools/pc-portables/construire.py`
+  (pour que les régénérations gardent le correctif), et les `idealo_url` des deux
+  catalogues (86 smartphones, 44 PC).
+- **Vérifié en production** (navigateur réel sur guide-achat-new-1.vercel.app) :
+  parcours PC → carte « Asus ROG Strix Scar 18 » → « Comparer le prix » →
+  résultats idealo ordinateurs portables (offres ROG Strix SCAR 18) ; parcours
+  smartphone → audit (OLED) → carte « Apple iPhone 17 Pro » → résultats idealo
+  smartphones (offres iPhone 17 Pro). Tests au vert (32 + 15/15).
