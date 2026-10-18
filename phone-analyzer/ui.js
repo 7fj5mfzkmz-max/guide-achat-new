@@ -24,6 +24,7 @@
   /* Un seul écran visible à la fois : le formulaire est masqué dès qu'une étape s'affiche. */
   function show(html, opts) {
     form.hidden = true;
+    if (manualEntry) { manualEntry.hidden = true; manualEntry.innerHTML = ""; }
     stage.hidden = false;
     stage.setAttribute("aria-busy", opts && opts.busy ? "true" : "false");
     stage.innerHTML = html;
@@ -37,6 +38,29 @@
     input.focus({ preventScroll: true });
   }
   function retryButton(label) { return '<button class="btn btn-secondary" type="button" data-act="reset">' + esc(label || "Essayer un autre lien") + "</button>"; }
+  /* --- recherche par nom de modèle (saisie principale, saisie dédiée, écran « Quel modèle ? ») --- */
+  function hasSpecs(data) { return !!(data && data.specs && Object.keys(data.specs).some(function (k) { return usable(data.specs[k]); })); }
+  /* Une identification n'est vérifiée que si une source technique a fourni des caractéristiques :
+     un simple nom reconstitué depuis une adresse (static-url-generic) n'en est jamais une. */
+  function isVerifiedModel(data) { return !!(data && data.ok && data.strategy !== "static-url-generic" && hasSpecs(data)); }
+  function lookupModel(text) {
+    var f = window.PhoneAnalyzerFetcher;
+    return f && f.resolveModel ? f.resolveModel(text) : Promise.reject(new Error("Résolveur indisponible"));
+  }
+  var UNAVAILABLE_NOTE = "La recherche technique est momentanément indisponible et ce modèle ne figure pas dans le catalogue local. Réessayez dans quelques instants.";
+  function searchByModel(text, loadingText, notFound, failure) {
+    state.page = null; state.identity = null; state.queue = []; state.pageOffered = true; state.needsCapture = false;
+    loading(loadingText);
+    return lookupModel(text).then(function (data) {
+      if (!isVerifiedModel(data)) return viewManual(data && data.reason === "resolver-unavailable" ? UNAVAILABLE_NOTE : notFound, false);
+      state.page = data; state.identity = data.identity || null;
+      showAnalysis(null, data);
+    }).catch(function (error) {
+      if (window.console && console.error) console.error(error);
+      viewManual(failure, false);
+    });
+  }
+
   function loading(text) { show('<div class="model-analyzer-loading" role="status"><span class="model-analyzer-spinner" aria-hidden="true"></span><p>' + esc(text) + "</p></div>", { busy: true }); }
 
   function displayName(c, year) {
@@ -72,18 +96,9 @@
     stage.querySelector("[data-manual]").addEventListener("submit", function (e) {
       e.preventDefault();
       var text = e.target.querySelector("input").value.trim();
-      if (text) {
-        state.pageOffered = true;
-        loading('Recherche technique du modèle…');
-        (window.PhoneAnalyzerFetcher ? window.PhoneAnalyzerFetcher.resolveModel : function (v) { return Promise.reject(new Error('Résolveur indisponible')); })(text)
-          .then(function (data) {
-            if (!data || !data.ok) return viewManual('Le modèle « ' + text + ' » n’a pas été retrouvé automatiquement. Essayez avec la marque et le nom commercial complet.', false);
-            state.page = data;
-            state.identity = data.identity || null;
-            showAnalysis(null, data);
-          })
-          .catch(function () { viewManual('La recherche technique a dépassé le délai prévu. Vous pouvez réessayer avec la référence complète.', false); });
-      }
+      if (text) searchByModel(text, 'Recherche technique du modèle…',
+        'Le modèle « ' + text + ' » n’a pas été retrouvé automatiquement. Essayez avec la marque et le nom commercial complet.',
+        'La recherche technique a dépassé le délai prévu. Vous pouvez réessayer avec la référence complète.');
     });
   }
   function scoreBar(v) { var n = Math.max(0, Math.min(10, v)); return '<span class="model-analyzer-bar" aria-hidden="true"><i style="width:' + Math.round(n / 10 * 100) + '%"></i></span>'; }
@@ -128,7 +143,10 @@
     var sources = (page && page.specSources) || {};
     var fromRef = Object.keys(sources).filter(function (k) { return sources[k] === "icecat"; }).map(function (k) { return SPEC_LABELS[k] || k; });
     var unknownKeys = CORE_SPECS.filter(function (k) { return !merged[k]; }).map(function (k) { return SPEC_LABELS[k] || k; });
-    if (!c) notes += "<p>Le modèle est identifié à partir du lien source. Les caractéristiques techniques sont réconciliées à partir des référentiels disponibles.</p>";
+    var identityConfirmed = !!(state.identity && state.identity.status === "identified");
+    if (page && page.captured) notes += '<p class="model-analyzer-note">Modèle repéré d’après votre capture de page (« ' + esc(page.captured.name) + ' »), puis retrouvé dans les référentiels techniques. Les indices capturés ne remplacent pas les caractéristiques vérifiées.</p>';
+    else if (!c && identityConfirmed) notes += "<p>Le modèle est identifié. Les caractéristiques techniques sont réconciliées à partir des référentiels disponibles.</p>";
+    else if (!c) notes += '<p class="model-analyzer-note"><strong>Identification non confirmée :</strong> le nom provient d’un indice (adresse ou saisie) et aucune fiche technique n’a pu y être rattachée avec certitude.</p>';
     if (page && page.warning) notes += '<p class="model-analyzer-note">' + esc(page.warning) + "</p>";
     if (state.identity && state.identity.conflict) notes += '<p class="model-analyzer-note">' + esc(state.identity.conflict) + "</p>";
     if (page && page.reconciliation && page.reconciliation.disagreements) notes += '<p class="model-analyzer-note"><strong>Vérification croisée :</strong> ' + esc(page.reconciliation.disagreements) + ' caractéristique(s) diffère(nt) entre les sources. La valeur principale est conservée avec sa provenance.</p>';
@@ -160,7 +178,11 @@
     var scoreNote = !profs ? "<p><strong>Score indisponible pour le moment :</strong> aucune caractéristique fiable n’est disponible pour ce modèle. Une information absente n’est pas considérée comme un défaut.</p>"
       : '<p class="model-analyzer-note">Score Guide·Achat calculé à partir des caractéristiques techniques disponibles (' + esc(sourceLabel) + '). Il mesure la <strong>compatibilité avec un profil d’usage</strong>, pas une qualité générale absolue.</p>' + (hasProvisional ? '<p class="model-analyzer-note"><strong>* Score provisoire :</strong> couverture technique ou tests terrain incomplets. Le jeu/photo reste plafonné sans mesure spécialisée.</p>' : '') + (chemistry && chemistry.status !== "documente" ? '<p class="model-analyzer-note">Technologie de batterie détectée : ' + esc(chemistry.label) + ". Son effet n’est pas bonifié automatiquement sans source comparable.</p>" : "") + '<p class="model-analyzer-note">Analyse fondée sur : ' + esc(documented.map(function (k) { return CRIT_LABELS[k] || k; }).join(", ")) + ". Une donnée non documentée n’est jamais comptée comme un point négatif.</p>";
 
-    var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="#purchase-audit">Faire l’audit →</a><a class="btn btn-secondary" href="comparateur.html?selection=" + encodeURIComponent(c && c.id ? c.id : "") + "">Comparer →</a></div></div>';
+    var compareId = cat.id || (page && page.product && page.product.id) || null;
+    var compareHref = compareId ? "comparateur.html?selection=" + encodeURIComponent(compareId) : "comparateur.html";
+    var compareText = compareId ? "Comparer →" : "Ouvrir le comparateur →";
+    var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : "smartphones.html#purchase-audit";
+    var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';
     show('<div class="model-analyzer-card"><span class="eyebrow">ANALYSE DU MODÈLE</span><h3>' + esc(title) + "</h3>" + notes +
       (price ? "<p><strong>" + (cat.prix_indicatif ? "Prix indicatif" : "Prix trouvé sur la page") + " :</strong> " + esc(price) + " €</p>" : "") +
       (rows ? '<dl class="model-analyzer-specs">' + rows + "</dl>" : "") +
@@ -198,22 +220,19 @@
   function openManualEntry() {
     if (!manualEntry) return viewManual('');
     manualEntry.hidden = false;
+    /* Ce bloc est placé HORS du formulaire principal : un <form> imbriqué serait supprimé par le navigateur. */
     manualEntry.innerHTML = '<form class="model-analyzer-input-row" data-direct-manual><input type="text" data-autofocus required placeholder="Ex. Samsung Galaxy A56 5G" aria-label="Marque et modèle" autocomplete="off"><button class="btn" type="submit">Analyser le modèle</button></form>';
     var f = manualEntry.querySelector('[data-direct-manual]');
-    f.addEventListener('submit', function(e){
+    if (!f) return viewManual('');
+    f.addEventListener('submit', function (e) {
       e.preventDefault();
       var value = f.querySelector('input').value.trim();
       if (!value) return;
-      state.page = null; state.identity = null; state.pageOffered = true; state.needsCapture = false;
-      loading('Recherche croisée dans PhonesData, Kimovil et GSMArena…');
-      (window.PhoneAnalyzerFetcher ? window.PhoneAnalyzerFetcher.resolveModel : function (v) { return Promise.reject(new Error('Résolveur indisponible')); })(value)
-        .then(function(data){
-          if(!data || !data.ok) return viewManual('Le modèle « '+value+' » n’a pas été retrouvé dans les référentiels disponibles. Vérifiez la marque et la référence complète.', false);
-          state.page=data; state.identity=data.identity||null; showAnalysis(null,data);
-        })
-        .catch(function(){ viewManual('La recherche technique a échoué. Réessayez avec la référence complète du modèle.', false); });
+      searchByModel(value, 'Recherche croisée dans PhonesData, Kimovil et GSMArena…',
+        'Le modèle « ' + value + ' » n’a pas été retrouvé dans les référentiels disponibles. Vérifiez la marque et la référence complète.',
+        'La recherche technique a échoué. Réessayez avec la référence complète du modèle.');
     });
-    var inp=manualEntry.querySelector('input'); if(inp) inp.focus({preventScroll:true});
+    var inp = manualEntry.querySelector('input'); if (inp) inp.focus({ preventScroll: true });
   }
 
   form.addEventListener("submit", function (event) {
@@ -221,15 +240,9 @@
     var raw = input.value.trim();
     if (!raw) return;
     if (!/^https?:\/\//i.test(raw)) {
-      state.page = null; state.identity = null; state.queue = []; state.pageOffered = true; state.needsCapture = false;
-      loading('Recherche croisée dans PhonesData, Kimovil et GSMArena…');
-      (window.PhoneAnalyzerFetcher ? window.PhoneAnalyzerFetcher.resolveModel : function (v) { return Promise.reject(new Error('Résolveur indisponible')); })(raw)
-        .then(function (data) {
-          if (!data || !data.ok) return viewManual('Le modèle « ' + raw + ' » n’a pas été retrouvé dans les référentiels disponibles. Essayez avec la marque et la référence complète.', false);
-          state.page = data; state.identity = data.identity || null;
-          showAnalysis(null, data);
-        })
-        .catch(function () { viewManual('La recherche technique a échoué. Réessayez avec la référence complète du modèle.', false); });
+      searchByModel(raw, 'Recherche croisée dans PhonesData, Kimovil et GSMArena…',
+        'Le modèle « ' + raw + ' » n’a pas été retrouvé dans les référentiels disponibles. Essayez avec la marque et la référence complète.',
+        'La recherche technique a échoué. Réessayez avec la référence complète du modèle.');
       return;
     }
     try { new URL(raw); } catch (_) { return viewManual("Ce lien n’est pas valide."); }
@@ -246,13 +259,47 @@
     });
   });
   if (manualToggle) manualToggle.addEventListener("click", openManualEntry);
+  /* Capture faite dans le navigateur : le nom capturé est un INDICE. On le résout comme une saisie de modèle,
+     puis on vérifie que la fiche trouvée est bien la même (identité) ; au moindre doute, confirmation demandée.
+     Les indices capturés ne deviennent jamais des caractéristiques vérifiées. */
+  function resolveCaptured(cap) {
+    var ck = cap.clues || {};
+    var names = [];
+    [cap.product && cap.product.name, ck.name, ck.title, ck.urlHint].forEach(function (n) {
+      n = String(n || "").trim();
+      if (n && names.indexOf(n) < 0) names.push(n);
+    });
+    if (!names.length) return viewManual("La capture ne contient aucun nom de modèle exploitable.", false);
+    var shown = names[0], index = 0, unavailable = false;
+    var I = window.PhoneAnalyzerIdentity;
+    function verdict(a, b) { try { return I && I.compare ? I.compare(a, b, KIT).verdict : "unknown"; } catch (_) { return "unknown"; } }
+    loading("Recherche technique du modèle capturé…");
+    function attempt() {
+      if (index >= names.length) {
+        return viewManual(unavailable ? UNAVAILABLE_NOTE : "Le modèle capturé « " + shown + " » n’a pas été retrouvé automatiquement. Saisissez sa marque et sa référence complète.", false);
+      }
+      var query = names[index++];
+      return lookupModel(query).then(function (data) {
+        if (data && data.reason === "resolver-unavailable") unavailable = true;
+        if (!isVerifiedModel(data)) return attempt();
+        var found = (data.identity && data.identity.name) || (data.product && data.product.name) || query;
+        var v = verdict(shown, found);
+        if (v === "different") return viewManual("La capture indique « " + shown + " » mais la fiche trouvée est « " + found + " » : ce n’est pas le même modèle. Saisissez la référence exacte.", false);
+        data.captured = { name: shown };
+        state.page = data; state.identity = data.identity || null; state.year = ck.year || null;
+        var hintConflict = !!(ck.urlHint && ck.urlHint !== shown && verdict(ck.urlHint, found) === "different");
+        if (v === "same" && !hintConflict) return showAnalysis(null, data);
+        return viewConfirm(found, function () { showAnalysis(null, data); }, function () { viewManual("Saisissez la référence exacte du modèle.", false); });
+      }, function () { return attempt(); });
+    }
+    return attempt();
+  }
   /* Arrivée depuis le signet de capture : #capture=… */
   var captured = window.PhoneAnalyzerCapture && window.PhoneAnalyzerCapture.fromHash(location.hash, window.PhoneAnalyzerIdentify);
   if (captured) {
     try { history.replaceState(null, "", location.pathname + location.search + "#analyse-modele"); } catch (_) {}
-    state.page = captured; state.year = captured.clues.year || null; state.queue = []; state.pageOffered = false; state.needsCapture = false;
-    var ck = captured.clues;
-    searchAndContinue({ hints: [ck.name, ck.title, ck.urlHint], ean: ck.ean, asin: ck.asin }, false);
+    state.page = null; state.identity = null; state.queue = []; state.pageOffered = true; state.needsCapture = false;
+    resolveCaptured(captured);
     if (card.scrollIntoView) card.scrollIntoView({ block: "start" });
   }
   stage.addEventListener("click", function(event){

@@ -2090,6 +2090,10 @@ html.dark-theme .buy-spec-grid span{color:#b9c8c9}
 .decision-profile-block{display:grid;gap:.65rem;margin:1rem 0;padding:.9rem;border:1px solid var(--line);border-radius:16px;background:var(--surface-2)}.decision-profile-block strong{display:block}.decision-profile-block small{display:block;color:var(--muted);margin-top:.15rem}.decision-profile-chips{display:flex;flex-wrap:wrap;gap:.45rem}.decision-profile-chip{display:inline-flex;padding:.45rem .65rem;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);font-size:.72rem;font-weight:800;background:var(--surface)}.decision-profile-chip.is-current{border-color:#2f9e52;background:rgba(47,158,82,.08)}.model-analyzer-next-actions{display:flex;gap:.5rem;flex-wrap:wrap}
 @media(max-width:620px){.decision-confidence{align-items:flex-start;flex-direction:column}.model-analyzer-next-actions{width:100%}.model-analyzer-next-actions .btn{flex:1;text-align:center}}
 .criteria-recommendation-reasons{margin:.45rem 0 .7rem;font-size:.78rem;line-height:1.4;color:var(--ink-soft)}
+/* v55 — indice d'analyse : « fiable / à compléter / incomplet » n'était pas stylé, les mots se collaient. */
+.analysis-index{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .5rem;margin:1rem 0;padding:.75rem .9rem;border-radius:14px;background:var(--surface-2);border:1px solid var(--line);font-size:.78rem}.analysis-index strong{color:var(--ink)}.analysis-index small{color:var(--tone,#3f8aa3);font-weight:700}.analysis-index em{flex-basis:100%;font-style:normal;color:var(--ink-soft);font-size:.72rem;line-height:1.4}
+html.dark-theme .analysis-index small{color:var(--ink-soft)}
+html.dark-theme .decision-confidence small,html.dark-theme .model-analyzer-next span{color:var(--ink-soft)}
 .criteria-recommendation-reasons strong{color:var(--ink)}
 .criteria-recommendation-card{transition:transform .2s ease,box-shadow .2s ease}
 .criteria-recommendation-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.08)}
@@ -2661,6 +2665,9 @@ html,body{max-width:100%}
 .spec-row dd{margin:.35rem 0 0;color:var(--ink-soft)}
 .spec-why{display:block;margin-top:.25rem;color:var(--muted)}
 .spec-badge{display:inline-flex;align-items:center;border-radius:999px;padding:.12rem .5rem;font-size:.72rem;font-weight:700}
+/* Une ligne avec verdict est empilée (libellé + badge, puis valeur) : la grille 8rem/1fr de .model-analyzer-specs faisait déborder le badge sur la valeur. */
+.model-analyzer-specs>.spec-row{grid-template-columns:minmax(0,1fr);gap:0}
+.spec-row dt{flex-wrap:wrap}
 .spec-good{background:#e6f6ea;color:#176b34;border:1px solid #b7e3c4}
 .spec-warn{background:#fff4dc;color:#8a5a00;border:1px solid #f2d79a}
 .spec-bad{background:#fdeaea;color:#a52820;border:1px solid #f3bcbc}

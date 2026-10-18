@@ -354,7 +354,7 @@ async function resolveModelRaw(model, options) {
   const exact = cat.find(p => identity.verifyReference(p.nom || p.model || '', [query], [], profile).verdict === 'confirmed');
   if (exact) {
     trace.push({ step: 'catalogue', outcome: 'exact', name: exact.nom || exact.model });
-    return { ok: true, kind: 'product', strategy: 'catalogue', product: { name: exact.nom || exact.model, source: 'Guide·Achat catalogue', evidence: exact.id || null }, specs: exact.caracteristiques || {},
+    return { ok: true, kind: 'product', strategy: 'catalogue', product: { name: exact.nom || exact.model, source: 'Guide·Achat catalogue', evidence: exact.id || null, id: exact.id || null }, specs: exact.caracteristiques || {},
       specSources: Object.fromEntries(Object.keys(exact.caracteristiques || {}).map(k => [k, 'catalogue'])),
       identity: { status: 'identified', name: exact.nom || exact.model, basis: ['correspondance exacte du catalogue'] }, trace };
   }

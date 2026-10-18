@@ -2,9 +2,10 @@ const http = require('node:http');
 const resolver = require('./resolve');
 const { resolve, resolveModel } = resolver;
 const PORT = Number(process.env.PORT || 8787);
-function json(res, status, body) { res.writeHead(status, { 'content-type': 'application/json; charset=utf-8', 'access-control-allow-origin': process.env.ALLOWED_ORIGIN || '*' }); res.end(JSON.stringify(body)); }
+const CORS = { 'access-control-allow-origin': process.env.ALLOWED_ORIGIN || '*', 'access-control-allow-methods': 'POST, OPTIONS', 'access-control-allow-headers': 'Content-Type' };
+function json(res, status, body) { res.writeHead(status, Object.assign({ 'content-type': 'application/json; charset=utf-8' }, CORS)); res.end(JSON.stringify(body)); }
 const server = http.createServer(async (req, res) => {
-  if (req.method === 'OPTIONS') return json(res, 204, {});
+  if (req.method === 'OPTIONS') { res.writeHead(204, CORS); return res.end(); }
   if (req.method === 'GET' && req.url === '/api/health') return json(res, 200, { ok: true, service: 'guide-achat-resolver' });
   if (req.method !== 'POST' || req.url !== '/api/resolve') return json(res, 404, { error: 'Not found' });
   let body = '';

@@ -1,5 +1,5 @@
 'use strict';
-/* Non-régression v113 : score photo calibré, recherche manuelle (catalogue + référentiels),
+/* Non-régression v113 (déterministe, sans réseau) : score photo calibré, recherche par modèle (catalogue),
    indices d'URL Cdiscount avec connectivité collée, et noms marchands seuls rejetés. */
 const assert = require('node:assert/strict');
 const score = require('../phone-analyzer/spec-score');
@@ -58,10 +58,6 @@ const resolve = require('../server/resolve');
   assert.ok(Object.keys(r.specs).length >= 5, 'le catalogue doit fournir ses caractéristiques');
   assert.equal(r.identity.status, 'identified');
 
-  /* Hors catalogue : PhonesData doit être interrogé en POST (vérifié par trace). */
-  const r2 = await resolve.resolveModel('Samsung Galaxy A16', { timeout: 15000 });
-  assert.equal(r2.ok, true);
-  assert.ok(['phonesdata+crosscheck', 'kimovil-first', 'gsmarena+reviews'].includes(r2.strategy), 'stratégie inattendue : ' + r2.strategy);
-  assert.match(r2.identity.name, /Galaxy A16/, 'le nom doit contenir le modèle');
-  console.log('12 vérifications réussies (score photo calibré, URL Cdiscount, noms marchands, résolution modèle).');
+  assert.equal(r.product.id, 'galaxy-a56', 'la réponse catalogue doit transporter l’identifiant utilisé par le comparateur');
+  console.log('Vérifications déterministes réussies (score photo calibré, URL Cdiscount, noms marchands, résolution catalogue). La résolution hors catalogue via les sources externes est testée par « npm run analyzer:live-test ».');
 })().catch(e => { console.error(e.message); process.exit(1); });

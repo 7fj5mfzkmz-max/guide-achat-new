@@ -228,7 +228,7 @@
     return {
       ok: true, kind: "product", strategy: "static-catalogue",
       finalUrl: raw, merchantHost: host(raw),
-      product: { name: p.nom, source: "Guide·Achat catalogue", evidence: p.id || null },
+      product: { name: p.nom, source: "Guide·Achat catalogue", evidence: p.id || null, id: p.id || null },
       specs: specs, specSources: specSources,
       specsConfidence: Math.min(.96, .78 + best.score * .18),
       identity: { status: best.score >= .88 ? "identified" : "partial", name: p.nom, observedNames: [best.hint], basis: ["URL + catalogue local"], confidence: best.score },
@@ -275,7 +275,8 @@
     var local = fromCatalog(raw, info.hints, products);
     if (local) return local;
 
-    var read = await jina(raw);
+    /* « local.invalid » est l'adresse artificielle d'une recherche par nom : aucune page à lire. */
+    var read = /(^|\.)local\.invalid$/i.test(host(raw)) ? null : await jina(raw);
     if (read && read.title) {
       var hints = [read.title].concat(info.hints);
       var byPage = fromCatalog(raw, hints, products);

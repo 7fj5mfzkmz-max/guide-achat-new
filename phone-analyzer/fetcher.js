@@ -59,29 +59,40 @@
         });
       });
   }
+  /* Appel du résolveur par nom de modèle. Seules deux réponses sont des réponses MÉTIER : un succès, ou
+     « modèle introuvable » (le serveur répond alors HTTP 502 avec reason:"model-not-found"). Tout le reste
+     (pas de JSON, erreur 5xx, réseau coupé, CORS) est une indisponibilité technique. */
+  function modelRequest(endpoint, model) {
+    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: "smartphones" }) })
+      .then(function (r) {
+        return r.json().catch(function () { return null; }).then(function (d) {
+          if (d && (d.ok === true || (d.ok === false && d.reason === "model-not-found"))) return d;
+          throw new Error((d && d.error) || ("HTTP " + r.status));
+        });
+      });
+  }
+  /* Secours hors service : seul un modèle reconnu dans le catalogue local est accepté. Un nom reconstitué
+     (static-url-generic) n'est PAS une identification et n'est jamais renvoyé comme succès. */
+  function localModel(model) {
+    var unavailable = { ok: false, kind: "product", reason: "resolver-unavailable", error: "Recherche technique indisponible et modèle absent du catalogue local." };
+    var S = root.PhoneAnalyzerStaticResolver;
+    if (!S || typeof S.resolve !== "function") return Promise.resolve(unavailable);
+    return S.resolve("https://local.invalid/" + encodeURIComponent(model)).then(function (local) {
+      if (local && local.ok && local.strategy === "static-catalogue") {
+        local.warning = "Le service de recherche technique est indisponible : modèle reconnu d’après le catalogue local, caractéristiques non recoupées.";
+        return local;
+      }
+      return unavailable;
+    }, function () { return unavailable; });
+  }
   function resolveModel(model) {
     var base = apiBase();
-    /* Sur GitHub Pages sans backend configuré, on utilise le résolveur statique local.
-       Partout ailleurs (Vercel même-origine inclus), la fonction /api/resolve traite la saisie :
-       c'est elle qui connaît PhonesData, Kimovil et GSMArena. */
-    if (base) {
-      return fetch(base + "/api/resolve", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: "smartphones" }) })
-        .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || ("HTTP " + r.status)); return d; }); });
-    }
-    if (typeof window !== "undefined" && !/\.github\.io$/i.test(window.location.hostname)) {
-      return fetch("/api/resolve", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: "smartphones" }) })
-        .then(function (r) { return r.json().then(function (d) { if (!r.ok) throw new Error(d.error || ("HTTP " + r.status)); return d; }); })
-        .catch(function () {
-          if (root.PhoneAnalyzerStaticResolver && typeof root.PhoneAnalyzerStaticResolver.resolve === "function") {
-            return root.PhoneAnalyzerStaticResolver.resolve("https://local.invalid/" + encodeURIComponent(model));
-          }
-          throw new Error("Résolveur indisponible.");
-        });
-    }
-    if (root.PhoneAnalyzerStaticResolver && typeof root.PhoneAnalyzerStaticResolver.resolve === "function") {
-      return root.PhoneAnalyzerStaticResolver.resolve("https://local.invalid/" + encodeURIComponent(model));
-    }
-    return Promise.reject(new Error("Résolveur indisponible."));
+    var onGithubPages = typeof window !== "undefined" && /\.github\.io$/i.test(window.location.hostname);
+    /* Backend configuré (ex. GitHub Pages → Vercel) ou même origine : la fonction /api/resolve connaît PhonesData,
+       Kimovil et GSMArena. Si elle est injoignable, on se rabat sur le catalogue local, jamais sur un nom deviné. */
+    if (base) return modelRequest(base + "/api/resolve", model).catch(function () { return localModel(model); });
+    if (typeof window !== "undefined" && !onGithubPages) return modelRequest("/api/resolve", model).catch(function () { return localModel(model); });
+    return localModel(model);
   }
   var api = { resolveProduct: resolveProduct, resolveModel: resolveModel };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
