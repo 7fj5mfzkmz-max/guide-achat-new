@@ -119,14 +119,13 @@ Tests déterministes dans `scripts/identification-regression.js` (sections 6 et 
 réseau simulé : identifiant concordant → modèle résolu ; identifiant divergent →
 capture proposée, jamais de produit approximatif.
 
-### État en production et dépendance restante
+### État en production (vérifié)
 
-Le mécanisme est déployé et les URL Fnac **complètes** fonctionnent en production
-(`url-hint+catalogue`). Pour la forme **courte**, le branchement est vérifié en
-test avec des résultats de recherche simulés ; en production, il suppose que le
-moteur de recherche résout l'identifiant, ce qui exige une clé configurée dans
-l'environnement Vercel : `SERPER_API_KEY` ou `BRAVE_API_KEY` (à créer sur le
-site de l'éditeur). Les pages publiques des moteurs (DuckDuckGo HTML, Bing) ne
-résolvent pas fiablement un identifiant Fnac depuis une adresse IP de serveur.
-Sans clé, la fiche courte reste honnêtement refusée avec la capture navigateur
-(`capture.html`) comme solution, qui fonctionne déjà.
+Les URL Fnac **complètes** fonctionnent (`url-hint+catalogue`). La forme
+**courte** est résolue automatiquement via `SERPER_API_KEY` configurée dans
+l'environnement Vercel, avec deux requêtes de recherche par identifiant
+(`site:fnac.com a<id>`, puis `fnac.com/<id>` — la formulation simple
+« fnac a<id> » ne trouve pas toutes les fiches). Vérifié en production :
+`/a21318597/w-4` → « Samsung Galaxy A56 » ; `/a21960839/w-4` → « Apple iPhone
+17 Pro Max ». Une fiche non indexée par le moteur est honnêtement refusée avec
+la capture navigateur (`capture.html`) comme solution, qui fonctionne déjà.
