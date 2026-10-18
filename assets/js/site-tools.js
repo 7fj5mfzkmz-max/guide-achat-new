@@ -481,13 +481,15 @@
         }; return icons[type]||icons.battery;
       }
       function groupVisual(group,o){ return window.AuditVisuals?window.AuditVisuals.render(group.key,o[0]):''; }
+      /* Aides courtes, en langage courant, pour chaque groupe de critères. */
+      var HINTS={tech:'couleurs et noirs',refresh:'fluidité du défilement',brightness:'lisibilité en extérieur',capacity:'taille du réservoir',chemistry:'format interne',charge:'vitesse de recharge',reference:'le moteur du téléphone',gaming:'puissance nécessaire',sensor:'lumière captée, surtout la nuit',stabilization:'photos nettes le soir',zoom:'portraits et sujets éloignés',resolution:'détails et recadrage',updates:'durée de vie logicielle',repair:'coût et facilité d’entretien',protection:'eau et poussière'};
       function renderGroup(group, selected){
         var opts=group.options.map(function(o){
           var active=selected===o[0];
           var cls='audit-pill audit-pill--'+esc(group.key)+' audit-pill--'+esc(o[0])+(active?' is-selected':'');
           return '<button type="button" class="'+cls+'" data-value="'+esc(o[0])+'" aria-pressed="'+active+'">'+groupVisual(group,o)+'<span class="pill-copy"><strong>'+esc(o[1])+'</strong></span></button>';
         }).join('');
-                return '<div class="audit-control" data-group="'+group.key+'"><div class="audit-control-head"><strong>'+esc(group.label)+'</strong><span class="audit-control-value">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','Choisir'])[1]):'Choisir')+'</span></div><div class="audit-pills">'+opts+'</div><p class="audit-def">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','',''])[2]):'Touchez une option pour voir ce qu’elle change.')+(selected?' <a class="audit-more" href="lexique.html">En savoir plus →</a>':'')+'</p></div>';
+                return '<div class="audit-control" data-group="'+group.key+'"><div class="audit-control-head"><span class="audit-control-label"><strong>'+esc(group.label)+'</strong><small class="audit-hint">'+esc(HINTS[group.key]||'')+'</small></span><span class="audit-control-value">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','Choisir'])[1]):'Choisir')+'</span></div><div class="audit-pills">'+opts+'</div><p class="audit-def">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','',''])[2]):'Touchez une option pour voir ce qu’elle change.')+(selected?' <a class="audit-more" href="lexique.html">En savoir plus →</a>':'')+'</p></div>';
       }
       function renderCard(card,key){
         var cfg=configs[key]; state[key]=state[key]||{};
@@ -502,16 +504,20 @@
         requestAnimationFrame(function(){panel.classList.add('is-open');});
       }
       function updateCard(card,key){
-        var cfg=configs[key], complete=cfg.groups.every(function(g){return state[key]&&state[key][g.key];});
-        card.querySelector('.audit-status').textContent=complete?'Vérifié':'À vérifier';
+        /* Une famille est « renseignée » dès qu'un choix y est fait — même définition
+           que les recommandations (site côté scoring : au moins un groupe répondu). */
+        var cfg=configs[key], complete=cfg.groups.some(function(g){return state[key]&&state[key][g.key];});
+        card.querySelector('.audit-status').textContent=complete?'Renseignée':'À renseigner';
         card.classList.toggle('is-complete',complete);
         updateTotal();
       }
       function updateTotal(){
-        var done=Object.keys(configs).reduce(function(n,k){return n+(configs[k].groups.every(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
+        var done=Object.keys(configs).reduce(function(n,k){return n+(configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
         var count=document.getElementById('audit-count'),msg=document.getElementById('audit-message');
-        if(count) count.textContent=done+' / 5 vérifié'+(done>1?'s':'');
-        if(msg) msg.textContent=done===5?'Vos cinq familles sont définies : voici les modèles du catalogue les plus proches de votre sélection.':done?'Chaque famille renseignée compte pour 1/5. Les résultats se resserrent à mesure que vous ajoutez des choix.':'Choisissez au moins une caractéristique dans chaque famille. Une première correspondance apparaît dès le premier choix et devient plus précise à chaque catégorie ajoutée.';
+        if(count) count.textContent=done+(done===1?' / 5 famille renseignée':' / 5 familles renseignées');
+        if(msg) msg.textContent=done===5?'Vos cinq familles sont définies : voici les modèles du catalogue les plus proches de votre sélection.':done?'Chaque famille renseignée affine les recommandations — les autres peuvent rester sans réponse.':'Choisissez ce qui compte pour vous — une famille peut rester sans réponse.';
+        var see=document.getElementById('audit-see-results');
+        if(see) see.hidden=done<1;
       }
       board.querySelectorAll('.audit-card').forEach(function(card){
         var key=card.getAttribute('data-audit-card');
@@ -555,18 +561,35 @@
         try{ localStorage.removeItem(AUDIT_KEY); }catch(e){}
         board.querySelectorAll('.audit-card').forEach(function(card){
           card.classList.remove('is-complete');
-          card.querySelector('.audit-status').textContent='À vérifier';
+          card.querySelector('.audit-status').textContent='À renseigner';
           var tr=card.querySelector('.audit-card-trigger'); tr.setAttribute('aria-expanded','false');
           var p=card.querySelector('.audit-panel'); p.classList.remove('is-open'); p.hidden=true; p.innerHTML='';
         });
         updateTotal();
+        openFirstCard();
         window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state } }));
       }
+      /* Premier critère ouvert par défaut : les options sont visibles dès l'arrivée,
+         l'utilisateur comprend immédiatement ce qu'on lui demande. */
+      function openFirstCard(){
+        var first=board.querySelector('.audit-card');
+        if(!first) return;
+        var tr=first.querySelector('.audit-card-trigger');
+        if(tr.getAttribute('aria-expanded')==='true') return;
+        tr.setAttribute('aria-expanded','true');
+        renderCard(first, first.getAttribute('data-audit-card'));
+      }
+      var seeBtn=document.getElementById('audit-see-results');
+      if(seeBtn) seeBtn.addEventListener('click',function(){
+        var t=document.getElementById('criteria-recommendations');
+        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+      });
       window.GuideAuditReset = resetAudit;
       document.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('[data-audit-reset]')) resetAudit(); });
       var bar=document.querySelector('.audit-result-live');
       if(bar&&!bar.querySelector('[data-audit-reset]')){ var rb=document.createElement('button'); rb.type='button'; rb.className='audit-reset-btn'; rb.setAttribute('data-audit-reset',''); rb.textContent='Réinitialiser la sélection'; bar.appendChild(rb); }
       updateTotal();
+      if(!Object.keys(state).length) openFirstCard();
       if (window.dispatchEvent) window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state } }));
     })();
 

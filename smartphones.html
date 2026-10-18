@@ -78,37 +78,35 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </div>
 </section>
 <div class="container-wide hx-body">
-<section class="section profile-picker" data-tone="blue" id="choisir-profil">
-<div class="section-heading"><span class="eyebrow">POUR ADAPTER LA LECTURE</span><h2>Choisissez un profil pour concentrer votre attention</h2></div>
-<div aria-label="Choisir un profil" class="profile-picker-tabs" role="tablist">
-<a class="profile-picker-tab" data-profile="etudiant" data-tone="teal" href="#etudiant">01 · Étudiant</a>
-<a class="profile-picker-tab" data-profile="professionnel" data-tone="blue" href="#professionnel">02 · Professionnel</a>
-<a class="profile-picker-tab" data-profile="gamer" data-tone="orchid" href="#gamer">03 · Gamer</a>
-<a class="profile-picker-tab" data-profile="photographe" data-tone="coral" href="#photographe">04 · Photographe</a>
+<section class="section guide-journey" data-tone="blue" id="deux-chemins">
+<div class="section-heading"><span class="eyebrow">PAR OÙ COMMENCER ?</span><h2>Deux façons d’utiliser ce guide</h2></div>
+<div class="journey-grid two-paths-grid">
+<article class="journey-step two-paths-card"><i class="journey-number">1</i><h3>Je cherche un smartphone</h3><p>Partez de ce qui compte pour vous : écran, batterie, performance, photo ou durée de vie. Les modèles qui correspondent s’affichent au fur et à mesure de vos choix.</p><a class="btn" href="#audit">Faire le point →</a></article>
+<article class="journey-step two-paths-card"><i class="journey-number">2</i><h3>J’ai déjà un modèle</h3><p>Collez le lien de sa fiche marchande (LDLC, Amazon…) ou saisissez son nom : l’analyseur relève ses caractéristiques et les note profil par profil.</p><a class="btn" href="#analyse-modele">Analyser ce modèle →</a></article>
 </div>
 </section>
 
 <section class="section store-scene-section decision-audit-section smartphone-audit-section" data-tone="peach" id="en-magasin">
 <span class="anchor-alias" id="audit" aria-hidden="true"></span>
-<div class="profile-header"><div aria-hidden="true" class="profile-icon">45 s</div><h2>Faites le point en 45 secondes</h2><p class="profile-situation">Cinq familles de critères. En 45 secondes, indiquez ce qui compte pour vous.</p></div>
+<div class="profile-header"><div aria-hidden="true" class="profile-icon">5</div><h2>Trouvez les modèles adaptés à vos priorités</h2><p class="profile-situation">Cinq familles de critères. Renseignez celles qui comptent pour vous et laissez les autres de côté : les recommandations s’affinent à chaque choix.</p></div>
 <div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
-<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Technologie · fréquence · luminosité</small></span><span class="audit-status">À vérifier</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>Capacité · recharge · autonomie · chimie</small></span><span class="audit-status">À vérifier</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Puce · usage · tenue dans le temps</small></span><span class="audit-status">À vérifier</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Capteur · optique · stabilisation · usages</small></span><span class="audit-status">À vérifier</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Mises à jour · réparation · protection</small></span><span class="audit-status">À vérifier</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Technologie · fréquence · luminosité</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>Capacité · recharge · autonomie · chimie</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Puce · usage · tenue dans le temps</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Capteur · optique · stabilisation · usages</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Mises à jour · réparation · protection</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
 </div>
-<div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 / 5 critères renseignés</strong><span id="audit-message">Ouvrez chaque famille et indiquez le niveau ou les caractéristiques que vous recherchez.</span><button type="button" class="audit-reset-btn" data-audit-reset>↺ Réinitialiser l’audit</button></div>
+<div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 / 5 familles renseignées</strong><span id="audit-message">Choisissez ce qui compte pour vous — une famille peut rester sans réponse.</span><button type="button" class="btn audit-see-btn" id="audit-see-results" hidden>Voir mes recommandations →</button><button type="button" class="audit-reset-btn" data-audit-reset>↺ Réinitialiser l’audit</button></div>
 <div class="audit-next-step"><p>Prix : comparez les offres sur <strong>Idealo</strong>.</p><p class="audit-learn">Un mot vous échappe ? Le <a href="lexique.html">lexique</a> et les <a href="#aller-plus-loin">explications détaillées</a> le décrivent pas à pas.</p></div>
-<div aria-live="polite" class="criteria-recommendations" hidden="" id="criteria-recommendations">
+<div aria-live="polite" class="criteria-recommendations" id="criteria-recommendations">
 <div class="criteria-recommendations-head">
 <div><span class="eyebrow">Résultat de l’audit</span><h3>Les modèles qui correspondent à votre sélection</h3><p>Du plus proche de vos choix au moins proche.</p></div><button type="button" class="audit-reset-btn" data-audit-reset>↺ Réinitialiser l’audit</button>
 </div>
 <div class="criteria-recommendation-grid" id="scoring-results"></div>
-<p class="criteria-recommendations-note" id="scoring-status">Choisissez une caractéristique pour commencer.</p>
+<p class="criteria-recommendations-note" id="scoring-status">Vos premiers modèles apparaîtront ici dès votre premier choix.</p>
 </div>
 </section>
-<section class="section guide-journey smartphone-analyzer-section" data-tone="orchid" id="deux-chemins">
+<section class="section guide-journey smartphone-analyzer-section" data-tone="orchid" id="analyser-modele">
 <div class="section-heading"><span class="eyebrow">VOUS AVEZ DÉJÀ UN MODÈLE ?</span><h2>Analysez sa fiche produit</h2></div>
 <p class="section-lead">Collez le lien d’une fiche produit. L’analyseur identifie le téléphone, récupère les caractéristiques disponibles et signale les informations manquantes.</p>
 <div class="journey-grid two-paths-grid">
@@ -122,9 +120,19 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <p class="model-analyzer-help"><a href="capture.html">Un site bloque la lecture ? Capturez la fiche depuis votre navigateur.</a></p>
 <div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
 </article>
-<article class="journey-step two-paths-card smartphone-start-by-use"><i class="journey-number">B</i><h3>Vous partez de votre usage</h3><p>Études, travail, photo ou jeu : choisissez votre profil pour voir les critères à privilégier.</p><a class="btn" href="#choisir-profil">Choisir mon profil →</a></article>
+</div>
 </div>
 </section>
+<section class="section profile-picker" data-tone="blue" id="choisir-profil">
+<div class="section-heading"><span class="eyebrow">POUR ADAPTER LA LECTURE</span><h2>Choisissez un profil pour concentrer votre attention</h2></div>
+<div aria-label="Choisir un profil" class="profile-picker-tabs" role="tablist">
+<a class="profile-picker-tab" data-profile="etudiant" data-tone="teal" href="#etudiant">01 · Étudiant</a>
+<a class="profile-picker-tab" data-profile="professionnel" data-tone="blue" href="#professionnel">02 · Professionnel</a>
+<a class="profile-picker-tab" data-profile="gamer" data-tone="orchid" href="#gamer">03 · Gamer</a>
+<a class="profile-picker-tab" data-profile="photographe" data-tone="coral" href="#photographe">04 · Photographe</a>
+</div>
+</section>
+
 <details class="profile-toggle" data-tone="teal" id="etudiant-toggle" open="">
 <summary class="profile-toggle-summary"><span class="profile-toggle-index">01</span><span>Profil 1 · Étudier au quotidien</span><span aria-hidden="true" class="profile-toggle-caret">＋</span></summary>
 <section class="section profile-section" id="etudiant"><div class="profile-header"><div aria-hidden="true" class="profile-icon">01</div><h2>Profil 1 · Étudier au quotidien</h2><p class="profile-situation">Pour les cours, les trajets et les révisions : l’objectif est de tenir la journée, garder ses fichiers et éviter de changer trop vite.</p></div>

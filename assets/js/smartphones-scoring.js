@@ -278,18 +278,17 @@
     var status = document.getElementById("scoring-status");
     if (!container) return;
     container.innerHTML = "";
-    // Synchronise explicitement la zone détaillée : le bandeau compact reste indépendant.
-    root.hidden = true;
+    /* Synchronise explicitement la zone détaillée : le bandeau compact reste indépendant.
+       La zone reste visible dès l'arrivée (avec son emplacement d'attente) pour montrer
+       qu'il y a une récompense aux choix — elle ne se cache plus. */
+    root.hidden = false;
     root.removeAttribute("aria-hidden");
     root.dataset.resultsState = "empty";
 
     var done = completedCategories(state).length;
     if (!done) {
-      root.hidden = true;
-      root.style.removeProperty("display");
-      root.dataset.resultsState = "empty";
       renderLive(null);
-      if (status) status.textContent = "Choisissez au moins une caractéristique : les premiers modèles apparaissent tout de suite.";
+      if (status) status.textContent = "Vos premiers modèles apparaîtront ici dès votre premier choix.";
       return;
     }
 

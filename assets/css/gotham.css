@@ -246,8 +246,14 @@ html.dark-theme [data-tone="orchid"], html.dark-theme [data-tone="blue"] { --ton
 /* L'aperçu reste visible pendant la sélection (barre collée en bas de l'écran) */
 .audit-result-live { position: sticky; bottom: .7rem; z-index: 6; padding: .65rem .9rem; border-radius: 16px; background: var(--glass); border: 1px solid var(--line-strong); box-shadow: 0 10px 30px rgba(4, 6, 30, .25); }
 
-.audit-result-live { padding: .5rem .8rem; } .audit-result-live #audit-message { font-size: .8rem; }
-@media (max-width: 700px) { .audit-result-live #audit-message { display: none; } }
+.audit-result-live { padding: .5rem .8rem; } .audit-result-live #audit-message { font-size: .8rem; color: var(--ink-soft, #475569); }
+/* Sur mobile, le message d'aide reste visible (plus court et discret) : le cacher rendait l'audit incompréhensible. */
+@media (max-width: 700px) { .audit-result-live #audit-message { font-size: .72rem; } }
+/* Audit guidé : coche sur l'option choisie (repère au-delà de la couleur), libellé d'aide en langage courant, bouton d'accès aux recommandations. */
+.audit-pill.is-selected .pill-copy strong::after { content: " ✓"; font-weight: 900; color: #2f9e52; }
+.audit-control-label { display: flex; flex-direction: column; gap: .12rem; }
+.audit-hint { font-size: .68rem; font-weight: 500; color: var(--ink-soft, #475569); }
+.audit-see-btn { padding: .38rem .7rem; font-size: .78rem; border-radius: 99px; }
 .cm-txt strong, .cm-txt small { display: block; } .cm-txt small { margin-top: .1rem; }
 
 /* ============ 2. Base : un fond continu sur toutes les pages ============ */
@@ -481,7 +487,7 @@ html:not(.dark-theme) .site-footer { background: rgba(15,25,54,.06); }
   content: "Meilleure correspondance"; align-self: flex-start; margin-bottom: .2rem; font: 700 .8rem/1 var(--font-display); letter-spacing: .03em; color: var(--gold-ink);
 }
 .criteria-recommendation-score { background: var(--gold); color: var(--on-gold); border-radius: 3px; font-family: var(--font-display); }
-.criteria-recommendation-link { border-radius: 4px; border: 1px solid var(--cape); color: var(--cape); text-decoration: none; padding: .4rem .7rem; min-height: 34px; display: inline-flex; align-items: center; }
+.criteria-recommendation-link { border-radius: 4px; border: 1px solid var(--cape); color: var(--cape); background: transparent; text-decoration: none; padding: .4rem .7rem; min-height: 34px; display: inline-flex; align-items: center; }
 .criteria-recommendation-link:hover { background: color-mix(in srgb, var(--cape) 10%, transparent); }
 .criteria-empty-state { background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 8px; color: var(--ink); }
 .audit-live-chip { border-radius: 4px; background: var(--lime-tint); border-color: var(--gold-deep); color: var(--ink); }

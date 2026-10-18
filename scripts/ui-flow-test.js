@@ -272,6 +272,38 @@ async function main() {
     await close(page);
   });
 
+  /* Audit smartphone guidé : premier critère ouvert à l'arrivée (les options sont
+     visibles sans rien faire), zone de recommandations visible avec son emplacement
+     d'attente, premier choix → recommandations affichées sans saut de page, bouton
+     « Voir mes recommandations » qui y conduit, réinitialisation cohérente. */
+  await run('Audit smartphone : guidé de bout en bout (critère ouvert, attente visible, accès aux résultats)', async () => {
+    const page = await open(S, 'stub', () => NOT_FOUND);
+    /* État initial : premier critère (Écran) ouvert, options visibles, emplacement d'attente visible. */
+    await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger[aria-expanded="true"]', { timeout: 10000 });
+    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill').count()) > 0, 'les options du premier critère doivent être visibles sans interaction');
+    assert(/0 \/ 5 familles renseignées/.test(await page.locator('#audit-count').innerText()), 'compteur initial attendu : 0 / 5 familles renseignées');
+    assert(!(await page.locator('#criteria-recommendations').isHidden()), 'la zone de recommandations doit être visible dès l\u2019arrivée (emplacement d\u2019attente)');
+    assert(/apparaîtront ici dès votre premier choix/.test(await page.locator('#scoring-status').innerText()), 'emplacement d\u2019attente attendu dans le statut');
+    /* Premier choix : recommandations affichées sans quitter l'audit, pas de saut de page. */
+    const boardTop = await page.evaluate(() => document.getElementById('purchase-audit').getBoundingClientRect().top + window.scrollY);
+    await page.click('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="oled"]');
+    await page.waitForSelector('#scoring-results .criteria-recommendation-card', { timeout: 10000 });
+    const boardTopAfter = await page.evaluate(() => document.getElementById('purchase-audit').getBoundingClientRect().top + window.scrollY);
+    assert(Math.abs(boardTopAfter - boardTop) < 60, 'le premier choix ne doit pas faire sauter la page (écart : ' + Math.round(Math.abs(boardTopAfter - boardTop)) + 'px)');
+    assert(!(await page.locator('#audit-see-results').isHidden()), 'le bouton « Voir mes recommandations » doit apparaître dès le premier choix');
+    assert(/1 \/ 5/.test(await page.locator('#audit-count').innerText()), 'compteur attendu après le premier choix : 1 / 5');
+    /* Le bouton conduit bien à la zone de recommandations. */
+    await page.click('#audit-see-results');
+    await page.waitForFunction(() => { const r = document.getElementById('criteria-recommendations').getBoundingClientRect(); return r.top > -60 && r.top < window.innerHeight * 0.6; }, null, { timeout: 5000 });
+    /* Réinitialisation : retour à zéro, premier critère rouvert. */
+    await page.click('.audit-result-live [data-audit-reset]');
+    await page.waitForFunction(() => /0 \/ 5/.test((document.getElementById('audit-count') || {}).innerText || ''), null, { timeout: 5000 });
+    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger').getAttribute('aria-expanded')) === 'true', 'après réinitialisation, le premier critère doit être rouvert');
+    assert((await page.locator('#scoring-results .criteria-recommendation-card').count()) === 0, 'les recommandations doivent être vidées après réinitialisation');
+    assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
+    await close(page);
+  });
+
   await browser.close(); backend.child.kill(); site.close();
 }
 
