@@ -106,6 +106,7 @@ function buildClues(urls, product, bestName, extra) {
     ean: (product && product.gtin) || pick('ean'),
     mpn: (product && (product.mpn || product.sku)) || null,
     asin: pick('asin'),
+    fnacId: pick('fnacId'),
     urlHint,
     searchTitles: (extra && extra.searchTitles) || undefined,
     year: extractYear(name, bestName, urlHint)
@@ -639,6 +640,27 @@ async function resolve(target, options) {
     const found = await search.lookup(baseClues, Math.min(6000, left() - 1000), profile);
     trace.push({ step: 'search', outcome: found ? 'trouvé' : 'rien', n: found ? found.titles.length : 0 });
     if (found) {
+      /* Fiche Fnac courte : le moteur indexe l'adresse complète du produit, qui contient le nom
+         du modèle. On extrait cet indice de l'URL indexée, puis on résout le modèle dans les sources
+         techniques publiques. La page du marchand, protégée par une vérification anti-robot, n'est
+         jamais lue : aucun contournement n'est tenté. */
+      const indexedHint = (found.results || []).map(r => r && r.url || '')
+        .filter(u => /fnac\.[a-z]{2,3}\/[^\s]*\/a\d{5,}/i.test(u))
+        .map(u => { try { return identify.identifyFromUrl(u).titleHint; } catch (_) { return null; } })
+        .filter(h => h && h.split(/\s+/).length >= 2)[0] || null;
+      const indexedName = indexedHint && cleanHint(indexedHint).length >= 4 ? cleanHint(indexedHint) : null;
+      if (indexedName && left() > 3500) {
+        const technical = await resolveModel(indexedName, { category: (options && options.category) || 'smartphones', timeout: Math.min(7000, left() - 500) });
+        if (technical && technical.ok) {
+          technical.merchantHost = parsed.hostname;
+          technical.finalUrl = finalUrl;
+          technical.strategy = 'merchant-id+search+' + (technical.strategy || 'technical');
+          technical.clues = buildClues([target, finalUrl], technical.product, technical.product && technical.product.name);
+          technical.trace = trace.concat(technical.trace || []).concat([{ step: 'merchant-id', outcome: 'résolu', hint: indexedName }]);
+          technical.warning = (blockedBy ? 'Le marchand a demandé une vérification anti-robot : sa page n’a pas été lue (aucun contournement). ' : 'La fiche marchand n’a pas pu être lue directement ; ') + 'le modèle a été identifié d’après l’adresse complète indexée par un moteur de recherche, puis vérifié dans des sources techniques publiques.';
+          return technical;
+        }
+      }
       const external = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(2500, left() - 1000)), trace);
       return {
         ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external ? 'search+gsmarena' : 'search',

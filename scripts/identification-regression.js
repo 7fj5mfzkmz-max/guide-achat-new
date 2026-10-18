@@ -95,6 +95,29 @@ const cmp = (a, b) => identity.compare(a, b, kit).verdict;
     assert.equal(r.strategy, 'fetch');
   });
 
+  /* 6. Fiche Fnac courte : identifiant produit conservé, aucun faux indice de nom */
+  await check('Fnac courte : identifiant extrait', () => {
+    const local = identify.identifyFromUrl('https://www.fnac.com/a21318597/w-4');
+    assert.equal(local.fnacId, 'a21318597');
+    assert.equal(local.merchant, 'fnac');
+  });
+  await check('Fnac courte : pas d’indice de nom inventé', () => {
+    const local = identify.identifyFromUrl('https://www.fnac.com/a21318597/w-4');
+    assert.equal(local.titleHint, '');
+  });
+  await check('Fnac complète : le nom du lien reste l’indice', () => {
+    const local = identify.identifyFromUrl('https://www.fnac.com/Smartphone-Samsung-Galaxy-A56-6-7-5G-Nano-SIM-128-Go-Graphite/a21318597/w-4');
+    assert.ok(/Galaxy A56/.test(local.titleHint), 'obtenu : ' + local.titleHint);
+  });
+  await check('Fnac courte : requête de recherche par identifiant', () => {
+    const queries = require('../server/search.js').queriesFor({ fnacId: 'a21318597' });
+    assert.ok(queries.includes('fnac a21318597'), JSON.stringify(queries));
+  });
+  await check('hors Fnac : aucun identifiant extrait', () => {
+    const local = identify.identifyFromUrl('https://www.boulanger.com/a123456/ref-12345');
+    assert.equal(local.fnacId, null);
+  });
+
   console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
   if (failures) process.exitCode = 1;
 })();

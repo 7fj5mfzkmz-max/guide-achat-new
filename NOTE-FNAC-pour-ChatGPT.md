@@ -92,3 +92,34 @@ supplémentaire échoue ») n'a jamais été reproduit ; sa cause exacte reste i
 Une donnée non documentée est affichée comme inconnue, jamais comme vérifiée ; un
 modèle introuvable est refusé honnêtement ; aucune tentative de contournement
 d'une page anti-robot. Merci de préserver ces règles.
+
+## Correctif appliqué (v10) : la forme courte est maintenant résolue
+
+Le blocage Fnac lui-même (403 Datadome) n'est **pas** contourné — la règle
+« aucune tentative de contournement d'une page anti-robot » est conservée.
+Ce qui manquait à la forme courte est un indice de nom ; il est maintenant obtenu
+**sans lire la page Fnac** :
+
+1. `phone-analyzer/identify.js` extrait l'identifiant produit des adresses Fnac
+   (`/a21318597/w-4` → `fnacId: "a21318597"`) et le porte dans les indices.
+2. `server/search.js` ajoute la requête `fnac a21318597` quand cet identifiant
+   est disponible.
+3. `server/resolve.js` (étape 5b) cherche dans les résultats de recherche une
+   **adresse Fnac complète indexée** (les moteurs indexent la forme avec le nom,
+   ex. `…/Smartphone-Samsung-Galaxy-A56-…/a21318597/w-4`), en extrait le nom du
+   modèle, puis déroule la résolution technique habituelle (catalogue, PhonesData,
+   Kimovil, GSMArena). Stratégie tracée : `merchant-id+search+…`.
+
+Vérifié bout en bout : `https://www.fnac.com/a21318597/w-4` → « Samsung Galaxy
+A56 », caractéristiques complètes, avertissement explicite. Régression couverte
+dans `scripts/identification-regression.js` (section 6).
+
+### Limite et réglage recommandé
+
+Google indexe les adresses complètes, mais les pages publiques des moteurs
+(DuckDuckGo HTML, Bing) ne résolvent pas fiablement un identifiant Fnac depuis
+une adresse IP de serveur (DDG affiche un défi, Bing ne retourne rien pour
+l'identifiant). Pour que la forme courte fonctionne en production, configurer
+une clé de recherche dans l'environnement Vercel : `SERPER_API_KEY` (recherche
+Google, palier gratuit) ou `BRAVE_API_KEY`. Sans clé, le repli reste la capture
+navigateur (`capture.html`), qui fonctionne déjà.

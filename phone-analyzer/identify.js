@@ -79,11 +79,16 @@
     var titleHint = p.q || p.search || p.title || p.name || "";
     if (!titleHint && merchant === "amazon") titleHint = (path.match(/\/([^/]+?)(?:\/dp|\/gp\/)/i) || [])[1] || "";
     if (!titleHint) titleHint = slugHint(url.pathname);
+    /* Fiche Fnac courte (Google Shopping, app) : /a21318597/w-4 ne contient pas le nom du modèle.
+       L'identifiant est conservé comme indice : il permet de retrouver l'adresse complète indexée
+       par un moteur de recherche, qui elle contient le nom. La page Fnac reste non lue (403 anti-robot). */
+    var fnacId = merchant === "fnac" ? ((path.match(/\ba(\d{5,})(?:[/?\s]|$)/i) || [])[1] || null) : null;
 
     return {
       url: rawUrl,
       merchant: merchant,
       host: host,
+      fnacId: fnacId ? "a" + fnacId : null,
       asin: asin ? asin.toUpperCase() : null,
       ean: ean ? String(ean).replace(/\D/g, "") : null,
       titleHint: titleHint.replace(/[-_]+/g, " ").replace(/\b(\d)\s+(5|4)\s+g\b/gi, "$1 $2g").replace(/\b(\d+\s*[km]?g|go)\b/gi, function (m) { return m.replace(/\s+/g, ""); }).trim()

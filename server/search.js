@@ -14,6 +14,9 @@ function queriesFor(clues) {
   if (clues.ean) out.push(String(clues.ean));
   if (clues.asin) out.push(String(clues.asin));
   if (clues.mpn) out.push(String(clues.mpn));
+  /* Fiche Fnac courte : l'identifiant produit est recherché tel quel. Le moteur indexe l'adresse
+     complète (avec le nom du modèle) ; la page Fnac elle-même n'est jamais lue. */
+  if (clues.fnacId) out.push('fnac ' + String(clues.fnacId));
   if (clues.urlHint && clues.urlHint.split(/\s+/).length >= 2) out.push(String(clues.urlHint));
   if (clues.name && clues.name.split(/\s+/).length >= 2) out.push(String(clues.name));
   return Array.from(new Set(out)).slice(0, 3);
