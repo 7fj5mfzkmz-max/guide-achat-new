@@ -491,15 +491,19 @@
         }).join('');
                 return '<div class="audit-control" data-group="'+group.key+'"><div class="audit-control-head"><span class="audit-control-label"><strong>'+esc(group.label)+'</strong><small class="audit-hint">'+esc(HINTS[group.key]||'')+'</small></span><span class="audit-control-value">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','Choisir'])[1]):'Choisir')+'</span></div><div class="audit-pills">'+opts+'</div><p class="audit-def">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','',''])[2]):'Touchez une option pour voir ce qu’elle change.')+(selected?' <a class="audit-more" href="lexique.html">En savoir plus →</a>':'')+'</p></div>';
       }
-      function renderCard(card,key){
-        var cfg=configs[key]; state[key]=state[key]||{};
-        var panel=card.querySelector('.audit-panel');
+      function panelHtml(key){
+        var cfg=configs[key];
         var basic=cfg.groups.filter(function(g){return !g.advanced;}), advanced=cfg.groups.filter(function(g){return g.advanced;});
         var html=basic.map(function(g){return renderGroup(g,state[key][g.key]);}).join('');
         if(advanced.length){
           html+='<details class="audit-advanced"><summary>Critères avancés</summary>'+advanced.map(function(g){return renderGroup(g,state[key][g.key]);}).join('')+'<p class="audit-def">Ces critères ne sont pas toujours documentés. S’ils sont absents, ils ne sont ni bonifiés ni pénalisés.</p></details>';
         }
-        panel.innerHTML=html;
+        return html;
+      }
+      function renderCard(card,key){
+        state[key]=state[key]||{};
+        var panel=card.querySelector('.audit-panel');
+        panel.innerHTML=panelHtml(key);
         panel.hidden=false;
         requestAnimationFrame(function(){panel.classList.add('is-open');});
       }
@@ -548,11 +552,18 @@
           state[key]=state[key]||{}; state[key][group]=opt.getAttribute('data-value');
           persistAudit();
           var panel=card.querySelector('.audit-panel');
-          panel.innerHTML=configs[key].groups.map(function(g){return renderGroup(g,state[key][g.key]);}).join('');
+          /* Re-render complet du panneau via panelHtml : les critères avancés
+             restent repliés dans leur <details>, comme à l'ouverture. */
+          panel.innerHTML=panelHtml(key);
           updateCard(card,key);
           if (window.dispatchEvent) window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state, user: true } }));
           var active=panel.querySelector('.audit-control[data-group="'+group+'"]').querySelector('.audit-pill[data-value="'+CSS.escape(state[key][group])+'"]');
-          if(active) active.animate([{transform:'translateY(3px) scale(.97)'},{transform:'translateY(0) scale(1)'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
+          if(active){
+            /* Le re-render remplace le bouton focus : rendre le focus à l'option
+               choisie pour que la navigation clavier continue sans saut. */
+            active.focus();
+            active.animate([{transform:'translateY(3px) scale(.97)'},{transform:'translateY(0) scale(1)'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
+          }
         });
       });
       board.querySelectorAll('.audit-card').forEach(function(card){ var k=card.getAttribute('data-audit-card'); if(state[k]&&Object.keys(state[k]).length) updateCard(card,k); });

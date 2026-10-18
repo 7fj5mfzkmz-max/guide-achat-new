@@ -373,10 +373,9 @@
     // Le conteneur peut avoir été masqué par un état précédent ou un style global.
     root.hidden = false;
     root.dataset.resultsState = "ready";
-    if (userTriggered && root.dataset.shown !== "1") {
-      root.dataset.shown = "1";
-      window.setTimeout(function () { root.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, 80);
-    }
+    /* Pas de défilement automatique vers les recommandations : la page ne saute
+       pas sous les pieds de l'utilisateur. L'accès se fait par le bouton
+       « Voir mes recommandations » (barre de l'audit) et les puces de l'aperçu. */
   }
 
   function profileLabel(profile) {

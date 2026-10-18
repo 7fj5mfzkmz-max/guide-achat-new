@@ -247,8 +247,15 @@ html.dark-theme [data-tone="orchid"], html.dark-theme [data-tone="blue"] { --ton
 .audit-result-live { position: sticky; bottom: .7rem; z-index: 6; padding: .65rem .9rem; border-radius: 16px; background: var(--glass); border: 1px solid var(--line-strong); box-shadow: 0 10px 30px rgba(4, 6, 30, .25); }
 
 .audit-result-live { padding: .5rem .8rem; } .audit-result-live #audit-message { font-size: .8rem; color: var(--ink-soft, #475569); }
-/* Sur mobile, le message d'aide reste visible (plus court et discret) : le cacher rendait l'audit incompréhensible. */
-@media (max-width: 700px) { .audit-result-live #audit-message { font-size: .72rem; } }
+/* Sur mobile, le message d'aide reste visible (plus court et discret) : le cacher rendait l'audit incompréhensible.
+   La barre d'état devient non collante sous 700px : en flux, elle ne recouvre plus les options du critère ouvert. */
+@media (max-width: 700px) { .audit-result-live { position: static; box-shadow: none; } .audit-result-live #audit-message { font-size: .72rem; } }
+/* Le bouton d'accès aux recommandations doit rester masqué tant qu'aucun choix n'est fait
+   (.btn force display:inline-flex et neutralisait l'attribut hidden). */
+#audit-see-results[hidden] { display: none !important; }
+/* Lien « Idealo → » : corail du thème clair trop clair pour du texte 12,5px (~3,5:1)
+   — assombri pour le thème clair uniquement (le sombre garde l'ambre, contrasté). */
+html.dual:not(.dark-theme) .criteria-recommendation-link { color: #a8481f; }
 /* Audit guidé : coche sur l'option choisie (repère au-delà de la couleur), libellé d'aide en langage courant, bouton d'accès aux recommandations. */
 .audit-pill.is-selected .pill-copy strong::after { content: " ✓"; font-weight: 900; color: #2f9e52; }
 .audit-control-label { display: flex; flex-direction: column; gap: .12rem; }
