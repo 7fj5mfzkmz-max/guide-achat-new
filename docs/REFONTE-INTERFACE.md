@@ -64,7 +64,7 @@ les caches). Il tranche tous les conflits :
   lien polices remplacé (Archivo + Libre Baskerville), `theme-color` → `#0f0d0d`.
 - `capture.html`, `diagnostic.html` : classe `tool-page` sur `<body>` + lien polices ajouté.
 - `assets/phones/fan-1..5.webp` : images de l'éventail Smartphones absentes de l'archive
-  source, récupérées depuis le site en ligne (guide-achat-new.vercel.app) et intégrées.
+  source, récupérées depuis le site en ligne (guide-achat-new-1.vercel.app) et intégrées.
 
 ## Non modifiés
 Aucun contenu, aucune logique JS, aucune structure HTML (hors attributs de chargement).

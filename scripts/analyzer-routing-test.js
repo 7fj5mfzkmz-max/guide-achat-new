@@ -22,7 +22,7 @@ const context = {
 vm.runInNewContext(source, context);
 context.window.PhoneAnalyzerFetcher.resolveProduct('https://www.amazon.fr/dp/B0ABCDE123')
   .then(() => {
-    assert.equal(requestUrl, 'https://guide-achat-new.vercel.app/api/resolve',
+    assert.equal(requestUrl, 'https://guide-achat-new-1.vercel.app/api/resolve',
       'Le site GitHub Pages doit appeler le backend Vercel et non /api/resolve local.');
     console.log('OK : script de secours chargé ; GitHub Pages route vers le backend Vercel.');
   })

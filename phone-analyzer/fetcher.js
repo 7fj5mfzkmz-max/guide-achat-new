@@ -5,7 +5,7 @@
     if (window.GUIDE_API_BASE) return window.GUIDE_API_BASE.replace(/\/$/, "");
     /* GitHub Pages ne fournit pas d'API Node : utiliser le backend Vercel explicitement.
        Sans cela, /api/resolve pointe vers GitHub Pages et l'analyseur bascule toujours en local. */
-    if (/\.github\.io$/i.test(window.location.hostname)) return "https://guide-achat-new.vercel.app";
+    if (/\.github\.io$/i.test(window.location.hostname)) return "https://guide-achat-new-1.vercel.app";
     return "";
   }
   function resolveProduct(url, options) {

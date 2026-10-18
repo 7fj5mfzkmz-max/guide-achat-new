@@ -180,11 +180,15 @@ function inspectHtml(fetched, context) {
 function readerPage(text) {
   const raw = String(text || '').replace(/\r/g, '');
   const lines = raw.split('\n').map(x => x.trim()).filter(Boolean);
+  /* Un lecteur de rendu peut renvoyer la page de blocage du marchand (403 rendu) : ses titres
+     génériques (« Title », « FNAC DARTY - Maintenance »…) ne sont jamais un nom de modèle. */
+  const GENERIC = /^(title|titre|accueil|home|maintenance|erreur|error|forbidden|not found|page introuvable|40[0-9]|fnac darty\s*[-–—]\s*maintenance)$/i;
   const titleLine = lines.find(x => /^#{1,2}\s+/.test(x)) || lines.find(x => /^Title\s*:/i.test(x));
   let title = titleLine ? titleLine.replace(/^#{1,2}\s+/, '').replace(/^Title\s*:\s*/i, '').trim() : '';
   title = ex.cleanName(title);
+  if (GENERIC.test(title)) title = '';
   if (!title || !ex.usableName(title)) {
-    const candidate = lines.find(x => ex.usableName(x) && !/^https?:\/\//i.test(x) && x.length < 220);
+    const candidate = lines.find(x => ex.usableName(x) && !GENERIC.test(x) && !/^https?:\/\//i.test(x) && x.length < 220);
     title = candidate ? ex.cleanName(candidate) : '';
   }
   const safe = String(title || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
