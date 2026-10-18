@@ -15,6 +15,12 @@ du dépôt GitHub `7fj5mfzkmz-max/guide-achat-new`, commit `57bb02f`).
   les fiches complètes ET courtes sont résolues en production via l'identifiant
   produit + recherche Google (clé `SERPER_API_KEY` configurée dans Vercel).
   Vérifié : `/a21318597/w-4` → Samsung Galaxy A56 ; `/a21960839/w-4` → iPhone 17 Pro Max.
+- Analyseur PC portables : branché de bout en bout (détection de catégorie dans
+  `phone-analyzer/ui.js`, catalogue `data/pc-portables.json` côté serveur et repli
+  statique, kit de catégorie chargé par `analyseur.html`). Catalogue de 44 modèles.
+  Vérifié en production : lien Fnac PC portable → `url-hint+catalogue` ; saisie
+  manuelle → catalogue. Une requête sans la référence exacte entre parenthèses
+  (ex. « BQ674W ») est refusée honnêtement : la variante est ambiguë.
 - Tests : `npm test` (30 vérifications d'identification, sans réseau),
   `npm run test:ui` (14 parcours Playwright/Chromium),
   `npm run analyzer:live-test` (réseau réel). Tous réussis à la livraison.
