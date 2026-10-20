@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="assets/css/gotham.css">
 <link rel="stylesheet" href="assets/css/pc-visuals.css">
 <link rel="stylesheet" href="assets/css/pc-audit-visual.css">
+<link rel="stylesheet" href="assets/css/pc-chapitres.css">
 <script src="assets/js/gotham.js" defer></script>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
 if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
@@ -42,24 +43,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section><div class="detail-mode-floating lexique-detail-floating" id="lexique-detail-floating"><button aria-label="Activer le mode détails" aria-pressed="false" class="detail-bubble is-off" id="lexique-detail-floating-button" type="button"><span data-floating-label="">Mode simple</span></button></div>
 <main id="main">
 <div class="hx hx-page" data-cat="pc" data-tone="teal">
-<section class="hx-hero hx-hero--page">
-<div aria-hidden="true" class="hx-blob hx-blob-a"></div><div aria-hidden="true" class="hx-blob hx-blob-b"></div>
-<div class="container-wide hx-hero-inner">
-<div class="hx-hero-copy">
-<nav class="breadcrumb"><a href="index.html">Accueil</a> / PC portables</nav>
-<span class="hx-kicker">GUIDE PRATIQUE · À LIRE AVANT D’ACHETER</span>
-<h1 class="hx-title">Choisir un PC portable à partir de votre usage</h1>
-<p class="hx-lead">Étudier, travailler, monter des vidéos ou jouer : les priorités ne sont pas les mêmes. L’audit identifie les critères qui comptent vraiment pour vous.</p>
-<div class="hx-cta"><a class="btn hx-btn" href="#audit">Faire le point en 45 secondes →</a><a class="hx-link" href="#modeles">Voir des modèles</a></div>
-</div>
-<div aria-hidden="true" class="pc-hero-stage" id="pc-hero-stage"></div>
-<ul class="hx-points">
-<li class="hx-reveal"><b>01</b><strong>Léger pour étudier</strong><span>Autonomie, poids et écran confortable.</span></li>
-<li class="hx-reveal"><b>02</b><strong>Puissant pour créer</strong><span>CPU, GPU, RAM et stockage pour les projets.</span></li>
-<li class="hx-reveal"><b>03</b><strong>Stable pour jouer</strong><span>GPU dédiée, refroidissement et écran rapide.</span></li>
-</ul>
-</div>
-</section>
+<div class="pcc container-wide" id="pc-chapitres"><noscript><p>Cette page utilise JavaScript pour ses illustrations interactives.</p></noscript></div>
 
 <div class="container-wide hx-body">
 <section class="section" data-tone="teal" id="audit">
@@ -72,12 +56,6 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <h2 class="section-heading"><span class="eyebrow">CATALOGUE</span>Des modèles repérés pour chaque profil</h2>
 <p class="section-lead">Score sur 10 : il mesure l’adéquation à un profil, pas une qualité absolue.</p>
 <div id="pc-catalogue"><p>Chargement du catalogue…</p></div>
-</section>
-
-<section class="section guide-journey" data-tone="orchid" id="comment-lire">
-<h2 class="section-heading"><span class="eyebrow">COMPRENDRE</span>Ce que change chaque critère</h2>
-<p class="section-lead">Un PC portable n’est pas une liste de chiffres : c’est un équilibre entre confort, puissance, refroidissement, poids et budget. Choisissez votre usage, puis manipulez chaque critère pour en mesurer l’effet.</p>
-<div class="pcx" id="pc-comprendre"><noscript><p>Cette section interactive nécessite JavaScript : elle explique l’écran, la RAM, le stockage, le processeur, la carte graphique et la mobilité.</p></noscript></div>
 </section>
 
 <section class="section" data-tone="orchid" id="lexique">
@@ -99,7 +77,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/concept-visuals.js" defer></script>
 <script src="assets/js/pc-icons.js" defer></script>
 <script src="assets/js/pc-visuals.js" defer></script>
-<script src="assets/js/pc-comprendre.js" defer></script>
+<script src="assets/js/pc-chapitres.js" defer></script>
 <script src="assets/js/reading-time.js" defer></script>
 <script src="assets/js/site-extras.js" defer></script>
 </body>
