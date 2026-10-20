@@ -37,6 +37,20 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
       if (!(await c.getAttribute('class')).includes('is-open')) throw new Error('carte stockage non ouverte');
       if (!await c.locator('.pcx-planner').count()) throw new Error('planificateur SSD absent');
     });
+    await check(name + ' : démos comparatives (RAM, GPU, stockage…) interactives', async () => {
+      for (const [k, i, mot] of [['ram', 1, '16 Go'], ['gpu', 2, 'haut de gamme'], ['cpu', 2, '16 cœurs'], ['poids', 2, '2,5 kg']]) {
+        const c = page.locator('.pcc-card[data-k="' + k + '"]'); await c.scrollIntoViewIfNeeded();
+        if (!(await c.getAttribute('class')).includes('is-open')) await c.locator('.pcc-btn').click();
+        await c.locator('.pcc-seg button[data-i="' + i + '"]').click();
+        const t = await c.locator('.pcc-dt').innerText();
+        if (!t.includes(mot)) throw new Error(k + ' : ' + t);
+        if (!await c.locator('.pcc-sc svg').count()) throw new Error(k + ' : scène absente');
+      }
+    });
+    await check(name + ' : les icônes du questionnaire gardent une taille raisonnable', async () => {
+      const w = await page.locator('.pc-audit-ico svg').first().evaluate(e => e.getBoundingClientRect().width);
+      if (w > 120) throw new Error('icône trop grande : ' + w + 'px');
+    });
     await check(name + ' : questionnaire et catalogue toujours présents', async () => {
       if (!await page.locator('.pc-audit-card').count()) throw new Error('.pc-audit-card absent');
       if (!await page.locator('#pc-cat-top').count()) throw new Error('#pc-cat-top absent');

@@ -60,9 +60,54 @@ var T=[
 function layers(i){var s='',x,y,d;for(y=0;y<4;y++)for(x=0;x<20;x++){d=Math.abs(x-16);var on=i===0?1:i===1?(d<4?1:.12):(d<2?1:.04);if(i===1)on=Math.abs(Math.floor(x/4)*4+2-16)<5?1:.12;s+='<rect class="pcc-px" style="animation-delay:-'+((x+y)%5*.3)+'s" x="'+(x*17+10)+'" y="'+(y*17+8)+'" width="'+(i===2?10:14)+'" height="'+(i===2?10:14)+'" rx="'+(i===2?5:2)+'" opacity="'+on+'" fill="'+(i===0?'#f5d76e':i===1?'#9fe8ff':'#ff6b9a')+'"/>'}
 return '<svg viewBox="0 0 350 80" aria-hidden="true">'+s+'</svg>'}
 var scr='<div class="pcc-lcd" data-t="0"><p class="pcc-note"><b>Comparer la dalle.</b> Faites glisser : la scène et la couche de lumière en dessous changent.</p><div class="pcc-tv">'+SCN+'<i class="pcc-haze"></i></div><div class="pcc-lay" id="pcc-lay"></div><div class="pcc-seg" role="group" aria-label="Technologie">'+T.map(function(t,i){return '<button type="button" data-i="'+i+'">'+t.n+'</button>'}).join('')+'</div><label class="pcc-note" for="pcc-rng">Technologie de dalle</label><input class="pcc-range" id="pcc-rng" type="range" min="0" max="2" step="1" value="0"/><div id="pcc-scr-txt"></div></div>';
+
+/* ---- démos comparatives (même logique que l’écran) : scène animée + couche mécanisme + curseur + pastilles ---- */
+function sv(b){return '<svg viewBox="0 0 320 180" aria-hidden="true" focusable="false"><rect width="320" height="180" fill="#0b1020"/>'+b+'</svg>'}
+function tx(x,y,t,z){return '<text x="'+x+'" y="'+y+'" font-family="Inter Tight,system-ui,sans-serif" font-weight="700" font-size="'+(z||14)+'" text-anchor="middle">'+t+'</text>'}
+function cells(on,total,cols,col){var w=Math.min(26,300/cols-4),s='',k;for(k=0;k<total;k++)s+='<rect class="pcc-px" style="animation-delay:-'+(k%5*.3)+'s" x="'+(10+(k%cols)*(w+4))+'" y="'+(8+Math.floor(k/cols)*(w+4))+'" width="'+w+'" height="'+w+'" rx="4" fill="'+(k<on?col:'#64748b')+'" opacity="'+(k<on?1:.25)+'"/>';return '<svg viewBox="0 0 350 '+(16+Math.ceil(total/cols)*(w+4))+'" aria-hidden="true">'+s+'</svg>'}
+function fan(cx,cy,rr,d){return '<g class="pcc-fan" style="transform-origin:'+cx+'px '+cy+'px;animation-duration:'+d+'s"><circle cx="'+cx+'" cy="'+cy+'" r="'+rr+'" fill="none" stroke="#e8eef5" stroke-width="2"/><path fill="#5eead4" opacity=".6" d="M'+cx+' '+cy+'v-'+rr+'a'+rr/2+' '+rr/2+' 0 0 1 '+rr/2+' '+rr/2+'zM'+cx+' '+cy+'h'+rr+'a'+rr/2+' '+rr/2+' 0 0 1-'+rr/2+' '+rr/2+'zM'+cx+' '+cy+'v'+rr+'a'+rr/2+' '+rr/2+' 0 0 1-'+rr/2+'-'+rr/2+'zM'+cx+' '+cy+'h-'+rr+'a'+rr/2+' '+rr/2+' 0 0 1 '+rr/2+'-'+rr/2+'z"/></g>'}
+var DM={
+cpu:{hint:'Faites glisser pour changer le nombre de cœurs.',o:[
+ {n:'4 cœurs',p:[['g','prix bas'],['b','suffisant pour le quotidien']],t:'Quatre tâches en parallèle : un export vidéo prend le plus de temps.'},
+ {n:'8 cœurs',p:[['o','prix moyen'],['b','multitâche à l’aise']],t:'Huit cœurs se partagent le travail : l’export est deux fois plus court.'},
+ {n:'16 cœurs',p:[['r','prix élevé'],['b','création et calcul lourds']],t:'Seize cœurs : le gain existe surtout si le logiciel sait s’en servir.'}],
+ scene:function(i){var d=[8,4,2][i];return sv(tx(160,40,'Export vidéo',16)+'<rect x="30" y="70" width="260" height="26" rx="13" fill="none" stroke="#e8eef5" stroke-width="2"/><rect class="pcc-load" style="animation-duration:'+d+'s" x="33" y="73" width="254" height="20" rx="10" fill="#5eead4"/>'+tx(160,140,'≈ '+d+' s · durée illustrative',14))},
+ layer:function(i){return cells([4,8,16][i],16,8,'#5eead4')}},
+gpu:{hint:'Faites glisser : la fluidité de la scène change.',o:[
+ {n:'Intégrée',p:[['g','prix bas'],['b','légère, très autonome']],t:'Intégrée au processeur : suffisante pour la vidéo et le bureau, saccadée en jeu exigeant.'},
+ {n:'Dédiée d’entrée',p:[['o','prix moyen'],['b','jeu en 1080p, montage']],t:'Une vraie carte graphique : le jeu courant devient fluide.'},
+ {n:'Dédiée haut de gamme',p:[['r','prix élevé'],['b','jeu exigeant, 3D']],t:'Plus de cœurs graphiques et un refroidissement renforcé, au prix du poids et de la chaleur.'}],
+ scene:function(i){var F=[4,12,40][i],f=[15,45,90][i];return sv('<g class="pcc-rot" style="animation-timing-function:steps('+F+')"><rect x="125" y="50" width="70" height="70" rx="12" fill="#f472b6"/><rect x="142" y="67" width="36" height="36" fill="#fde047"/></g>'+tx(160,160,'≈ '+f+' images/s · illustratif',14))},
+ layer:function(i){var n=[0,1,3][i],w=[90,200,330][i],s='<rect x="10" y="12" width="'+w+'" height="'+(i?66:40)+'" rx="8" fill="none" stroke="#e8eef5" stroke-width="2"/>',k;if(!i)s+=tx(55,38,'iGPU',13);for(k=0;k<n;k++)s+=fan(10+w/(n+1)*(k+1),45,24,[0,1.6,.9][i]);return '<svg viewBox="0 0 350 90" aria-hidden="true">'+s+'</svg>'}},
+ram:{hint:'Faites glisser : sept applications sont ouvertes.',o:[
+ {n:'8 Go',p:[['r','juste'],['b','prix bas']],t:'Au-delà de trois applications, le système déplace des données vers le SSD : tout ralentit.'},
+ {n:'16 Go',p:[['o','prix moyen'],['b','le bon équilibre']],t:'Six applications tiennent confortablement ; la septième commence à peser.'},
+ {n:'32 Go',p:[['g','confort'],['b','création, jeu, durée de vie']],t:'Tout reste en mémoire : utile pour le montage, les machines virtuelles, les années à venir.'}],
+ scene:function(i){var fit=[3,6,7][i],s='',k;for(k=0;k<7;k++){var x=16+(k%4)*76,y=36+Math.floor(k/4)*60,ok=k<fit;s+='<rect class="'+(ok?'pcc-win':'')+'" x="'+x+'" y="'+y+'" width="66" height="50" rx="6" fill="'+(ok?'#5eead4':'none')+'" stroke="'+(ok?'#5eead4':'#f87171')+'" stroke-width="2" stroke-dasharray="'+(ok?0:'5 4')+'" opacity="'+(ok?.8:.9)+'"/>'+(ok?'':tx(x+33,y+30,'lent',12))}return sv(tx(160,22,'7 applications ouvertes · illustratif',13)+s)},
+ layer:function(i){var c=[8,16,32][i];return cells(Math.min(c,14),c,16,'#5eead4')}},
+sto:{hint:'Faites glisser : 380 Go de fichiers à ranger.',o:[
+ {n:'256 Go',p:[['r','se remplit vite'],['b','prix bas']],t:'380 Go de fichiers ne tiennent pas : il faut déporter ou supprimer.'},
+ {n:'512 Go',p:[['o','prix moyen'],['b','usage courant']],t:'Tout tient, avec environ un quart d’espace libre pour les mises à jour.'},
+ {n:'1 To',p:[['g','confort'],['b','photos, vidéos, jeux']],t:'Beaucoup d’espace libre : de quoi ajouter des projets et des jeux.'}],
+ scene:function(i){var cap=[256,512,1000][i],it=[[60,'#94a3b8'],[50,'#f472b6'],[120,'#a78bfa'],[150,'#fb923c']],x=20,s='<rect x="20" y="70" width="280" height="30" rx="6" fill="none" stroke="#e8eef5" stroke-width="2"/>',tot=380,k;for(k=0;k<it.length;k++){var w=Math.min(it[k][0]/cap*280,300-x);if(w>0){s+='<rect class="pcc-win" style="animation-delay:-'+k*.5+'s" x="'+x+'" y="70" width="'+w+'" height="30" fill="'+it[k][1]+'"/>';x+=w}}return sv(tx(160,40,'Système, photos, jeux, projet vidéo',13)+s+tx(160,135,tot>cap?'Il manque '+(tot-cap)+' Go':(cap-tot)+' Go libres',16)+tx(160,160,'tailles indicatives',12))},
+ layer:function(i){var cap=[256,512,1000][i];return cells(Math.min(20,Math.round(380/cap*20)),20,20,380>cap?'#f87171':'#5eead4')}},
+bat:{hint:'Faites glisser : la batterie se vide en bureautique.',o:[
+ {n:'40 Wh',p:[['r','autonomie courte']],t:'Petite batterie : prévoyez le chargeur.'},
+ {n:'60 Wh',p:[['o','autonomie moyenne']],t:'Une journée légère.'},
+ {n:'80 Wh',p:[['g','autonomie longue'],['b','plus lourd en général']],t:'Grande capacité : le poids augmente avec elle.'}],
+ scene:function(i){var d=[3,5,7][i],h=[4,7,10][i];return sv('<rect x="50" y="50" width="200" height="70" rx="10" fill="none" stroke="#e8eef5" stroke-width="3"/><rect x="250" y="72" width="14" height="26" fill="#e8eef5"/><rect class="pcc-drain" style="animation-duration:'+d+'s" x="56" y="56" width="188" height="58" rx="6" fill="#4ade80"/>'+tx(160,155,'≈ '+h+' h · valeur illustrative, usage de bureau',12))},
+ layer:function(i){return cells([4,6,8][i],8,8,'#4ade80')}},
+poids:{hint:'Faites glisser : le sac pèse de plus en plus.',o:[
+ {n:'1,2 kg',p:[['g','mobilité maximale']],t:'On l’oublie dans un sac, même en déplacement quotidien.'},
+ {n:'1,8 kg',p:[['o','compromis']],t:'Polyvalent : on le sent après une journée de transport.'},
+ {n:'2,5 kg',p:[['r','encombrant']],t:'Surtout fait pour rester sur un bureau, chargeur en plus.'}],
+ scene:function(i){var a=[-3,5,13][i],kg=['1,2','1,8','2,5'][i];return sv('<path d="M160 60v90M120 150h80" stroke="#e8eef5" stroke-width="3" fill="none"/><g style="transform:rotate('+a+'deg);transform-origin:160px 60px;transform-box:view-box"><path d="M60 60h200" stroke="#e8eef5" stroke-width="3"/><rect x="62" y="'+(62+i*8)+'" width="'+(34+i*10)+'" height="'+(22+i*5)+'" rx="4" fill="#5eead4"/><circle cx="250" cy="76" r="14" fill="#94a3b8"/></g>'+tx(160,172,kg+' kg contre 1 kg de référence · illustratif',12))},
+ layer:function(i){return cells([4,7,10][i],12,12,'#fb923c')}}};
+function demo(k){var d=DM[k];return '<div class="pcc-lcd pcc-dm" data-dm="'+k+'"><p class="pcc-note"><b>Comparer.</b> '+d.hint+'</p><div class="pcc-tv pcc-sc"></div><div class="pcc-lay"></div><div class="pcc-seg" role="group" aria-label="Option">'+d.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+o.n+'</button>'}).join('')+'</div><input class="pcc-range" type="range" min="0" max="2" step="1" value="0" aria-label="Comparer les options"/><div class="pcc-dt"></div></div>'}
+function wireDm(box){var d=DM[box.dataset.dm],rg=box.querySelector('input');function go(i){i=+i;rg.value=i;box.querySelector('.pcc-sc').innerHTML=d.scene(i);box.querySelector('.pcc-lay').innerHTML=d.layer(i);var o=d.o[i];box.querySelector('.pcc-dt').innerHTML='<p><b>'+o.n+'</b> — '+o.t+'</p><ul class="pcc-opts"><li>'+o.p.map(function(q){return pill(q[0],(q[0]==='b'?'Avantage : ':'')+q[1])}).join(' ')+'</li></ul>';box.querySelectorAll('.pcc-seg button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.i===i)})}rg.addEventListener('input',function(){go(rg.value)});box.querySelectorAll('.pcc-seg button').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.i)})});go(0)}
 var h='';
 C.forEach(function(c,i){
-h+='<section class="pcc-ch pcc-card'+(i%2?'':' is-flip')+'" data-k="'+c[0]+'" data-pcrit="'+(c[1]||'')+'" tabindex="0" role="button" aria-expanded="false"><div class="pcc-in"><div class="pcc-art">'+ART[c[0]]+'</div><div class="pcc-txt"><span class="pcc-kick">0'+(i+1)+' / 07</span><h2>'+c[2]+'</h2><p>'+c[3]+'</p><span class="pcc-btn">Explorer</span><div class="pcc-more pcx">'+(c[0]==='ecran'?scr:'')+(c[5]?'<p>'+c[5]+'</p>':'')+(c[4]?opts(c[4]):'')+'</div></div></div></section>'});
+h+='<section class="pcc-ch pcc-card'+(i%2?'':' is-flip')+'" data-k="'+c[0]+'" data-pcrit="'+(c[1]||'')+'" tabindex="0" role="button" aria-expanded="false"><div class="pcc-in"><div class="pcc-art">'+ART[c[0]]+'</div><div class="pcc-txt"><span class="pcc-kick">0'+(i+1)+' / 07</span><h2>'+c[2]+'</h2><p>'+c[3]+'</p><span class="pcc-btn">Explorer</span><div class="pcc-more pcx">'+(c[0]==='ecran'?scr:(DM[c[0]]?demo(c[0]):''))+(c[5]?'<p>'+c[5]+'</p>':'')+'</div></div></div></section>'});
 H3.innerHTML=h;
 /* démos existantes (pc-comprendre.js) : on déplace leur corps dans la carte */
 var src=document.getElementById('pc-comprendre');
@@ -70,6 +115,7 @@ H3.querySelectorAll('.pcc-card').forEach(function(card){var k=card.dataset.pcrit
 H3.querySelectorAll('.pcc-card').forEach(function(card){
  card.addEventListener('click',function(e){if(e.target.closest('.pcc-more'))return;var o=card.classList.toggle('is-open');card.setAttribute('aria-expanded',o);card.querySelector('.pcc-btn').textContent=o?'Réduire':'Explorer'});
  card.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target===card){e.preventDefault();card.click()}})});
+H3.querySelectorAll('.pcc-dm').forEach(wireDm);
 var rng=document.getElementById('pcc-rng'),box=H3.querySelector('.pcc-lcd');
 function scr2(i){i=+i;rng.value=i;box.dataset.t=i;document.getElementById('pcc-lay').innerHTML=layers(i);var s=T[i];document.getElementById('pcc-scr-txt').innerHTML='<p><b>'+s.n+'</b> — '+s.t+'</p><ul class="pcc-opts"><li>'+s.o.map(function(o){return pill(o[1],o[0]+' : '+o[2])}).join(' ')+'</li></ul>';box.querySelectorAll('.pcc-seg button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.i===i)})}
 rng.addEventListener('input',function(){scr2(rng.value)});
