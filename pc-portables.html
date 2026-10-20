@@ -9,27 +9,19 @@
 <meta name="description" content="Choisir un PC portable selon votre usage : écran, mémoire et stockage, processeur, carte graphique et mobilité. Audit adapté aux étudiants, professionnels, créateurs et joueurs."/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/core-foundation.css">
-<link href="assets/css/concept-visuals.css" rel="stylesheet"/>
-<link href="assets/css/audit-visuals.css" rel="stylesheet"/>
-<script>document.documentElement.classList.add("hx-js")</script>
-<noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}.hx-js .hx-word>span{transform:none!important}</style></noscript>
-<link rel="stylesheet" href="assets/css/legacy-fixes.css">
-<link rel="stylesheet" href="assets/css/v88-visual.css">
-<link rel="stylesheet" href="assets/css/gotham.css">
-<link rel="stylesheet" href="assets/css/pc-visuals.css">
-<link rel="stylesheet" href="assets/css/pc-audit-visual.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/design-system.css">
+<link rel="stylesheet" href="assets/css/pc-page.css">
 <link rel="stylesheet" href="assets/css/pc-chapitres.css">
-<script src="assets/js/gotham.js" defer></script>
+<script>document.documentElement.classList.add("hx-js")</script>
+<noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
 if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 if(t==="dark")r.classList.add("dark-theme");
 var n=navigator,c=n.connection||{};
 if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
-<link rel="stylesheet" href="assets/css/grounded-category.css">
-<link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
-<link rel="stylesheet" href="assets/css/theme-dual.css">
+<script src="assets/js/categories.js" defer></script>
+<script src="assets/js/category-menu.js" defer></script>
 </head>
 <body class="site-redesign">
 <header class="site-header">
@@ -37,10 +29,10 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <a aria-label="Guide d’achat : accueil" class="brand-logo" href="index.html"><span aria-hidden="true" class="brand-mark"><svg focusable="false" viewbox="0 0 56 56"><path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path><path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path></svg></span><span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span></a>
 <button class="brand-menu-toggle" id="category-menu-toggle" type="button" aria-expanded="false" aria-controls="category-menu" aria-label="Ouvrir les catégories"><span aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-menu-label">Catégories</span></button>
 <nav aria-label="Catégories" class="site-nav" data-category-nav></nav>
-<div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button">⌕</button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span></button></div>
+<div aria-label="Outils du guide" class="header-tools"><button class="header-detail-toggle" id="pc-detail-toggle" type="button" aria-pressed="false" aria-label="Activer le mode détails"><span aria-hidden="true">✦</span><span class="header-detail-label">Mode détails</span></button><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button">⌕</button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span></button></div>
 </div>
 </header>
-<section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section><div class="detail-mode-floating lexique-detail-floating" id="lexique-detail-floating"><button aria-label="Activer le mode détails" aria-pressed="false" class="detail-bubble is-off" id="lexique-detail-floating-button" type="button"><span data-floating-label="">Mode simple</span></button></div>
+<section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main">
 <div class="hx hx-page" data-cat="pc" data-tone="teal">
 <div class="pcc container-wide" id="pc-chapitres"><noscript><p>Cette page utilise JavaScript pour ses illustrations interactives.</p></noscript></div>
@@ -73,18 +65,14 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </div>
 </main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><span><b>Guide</b> <strong>d'achat</strong></span></div><div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p><p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l'achat.</p></div></div></footer>
-<script src="assets/js/categories.js" defer></script>
-<script src="assets/js/category-menu.js" defer></script>
 <script src="assets/js/theme.js" defer></script>
 <script src="assets/js/site-tools.js" defer></script>
 <script src="assets/js/site-motion.js" defer></script>
-<script src="assets/js/visual-pedagogy.js" defer></script>
-<script src="assets/js/concept-visuals.js" defer></script>
 <script src="assets/js/pc-icons.js" defer></script>
 <script src="assets/js/pc-visuals.js" defer></script>
 <script src="assets/js/pc-comprendre.js" defer></script>
 <script src="assets/js/pc-chapitres.js" defer></script>
+<script src="assets/js/pc-detail-mode.js" defer></script>
 <script src="assets/js/reading-time.js" defer></script>
-<script src="assets/js/site-extras.js" defer></script>
 </body>
 </html>
