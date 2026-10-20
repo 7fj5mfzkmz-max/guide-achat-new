@@ -266,26 +266,26 @@ input[type="range"].pcx-slider { cursor: pointer; }
 
 /* ---------- Tiroir dialogue (modèles par budget / profil) ---------- */
 .pcd {
-  position: fixed;
-  inset: 0;
-  max-width: none; max-height: none;
-  background: rgba(10, 14, 13, .5);
-  display: grid;
-  place-items: center;
-  padding: 24px;
-}
-.pcd[open] { display: grid; }
-.pcd > div {
-  width: min(880px, 100%);
-  max-height: min(78vh, 720px);
-  overflow-y: auto;
+  width: min(880px, calc(100vw - 32px));
+  max-height: min(80vh, 760px);
   background: var(--paper);
+  color: var(--ink);
   border: 1px solid var(--line-soft);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-lg);
   padding: clamp(20px, 3vw, 32px);
+  overflow-y: auto;
 }
-.pcd-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 6px; position: sticky; top: -20px; background: var(--paper); z-index: 1; }
+.pcd::backdrop { background: rgba(10, 14, 13, .5); }
+.pcd-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  position: sticky;
+  top: calc(-1 * clamp(20px, 3vw, 32px));
+  background: var(--paper);
+  padding: 6px 0 14px;
+  margin-bottom: 4px;
+  z-index: 1;
+}
 .pcd-title { font-size: 24px; margin: 0; }
 .pcd-close {
   width: 34px; height: 34px;
@@ -296,10 +296,11 @@ input[type="range"].pcx-slider { cursor: pointer; }
   display: grid; place-items: center;
 }
 .pcd-close:hover { color: var(--accent); border-color: var(--accent); }
-.pcd-grid { grid-template-columns: 1fr; margin-top: 10px; }
+.pcd-grid { grid-template-columns: 1fr; }
 
 /* ---------- Section « comprendre » (mode détails) ---------- */
 html:not(.pcx-on) .pc-audit-more { display: none; }
+.pcx-block.is-empty { display: none; }
 .pcx-ask { font-size: 15.5px; color: var(--ink-soft); margin: 0; }
 .pcx-picker { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 4px; }
 .pcx-card {
@@ -363,7 +364,6 @@ html:not(.pcx-on) .pc-audit-more { display: none; }
 .site-footer { padding-bottom: 76px; }
 
 @media (max-width: 720px) {
-  .pcc-paths { grid-template-columns: 1fr; }
   .pcc-path { padding: 18px; }
   .pc-product .meta { font-size: 12.5px; }
   .pc-options[data-lay="rows"] { grid-template-columns: 1fr; }
