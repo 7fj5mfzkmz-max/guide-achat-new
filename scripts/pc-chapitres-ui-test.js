@@ -26,9 +26,16 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
     await check(name + ' : clic carte écran + slider LCD/OLED/miniLED', async () => {
       const c = page.locator('.pcc-card[data-k="ecran"]'); await c.scrollIntoViewIfNeeded(); await c.locator('.pcc-btn').click();
       if (!(await c.getAttribute('class')).includes('is-open')) throw new Error('non ouverte');
-      await page.locator('#pcc-rng').fill('1');
+      await page.locator('#pcc-rng').fill('2');
       const t = await page.locator('#pcc-scr-txt').innerText();
       if (!t.includes('OLED') || !t.includes('prix élevé') || !t.includes('couleurs plus belles')) throw new Error('texte OLED/pastilles : ' + t);
+    });
+    await check(name + ' : boussole 5 points, clic ouvre la carte, démo stockage déplacée', async () => {
+      if (await page.locator('#pcb [data-go]').count() !== 6) throw new Error('points boussole');
+      await page.locator('#pcb [data-go="stockage"]').click();
+      const c = page.locator('.pcc-card[data-k="sto"]');
+      if (!(await c.getAttribute('class')).includes('is-open')) throw new Error('carte stockage non ouverte');
+      if (!await c.locator('.pcx-planner').count()) throw new Error('planificateur SSD absent');
     });
     await check(name + ' : questionnaire et catalogue toujours présents', async () => {
       if (!await page.locator('.pc-audit-card').count()) throw new Error('.pc-audit-card absent');

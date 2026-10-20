@@ -494,8 +494,9 @@ function setProfile(i) {
     var b = $('[data-crit="' + c.id + '"]');
     $('.pcx-dots', b).innerHTML = dots(c.prio[i]);
     $('.pcx-prio-t', b).innerHTML = '<b>' + LEVELS[c.prio[i]] + '</b> pour « ' + PROFILES[i].label.toLowerCase() + ' »';
-    $('.pcx-verdict-h', b).textContent = 'Pour « ' + PROFILES[i].label.toLowerCase() + ' »';
-    $('.pcx-verdict-t', b).textContent = c.verdict[i];
+    var vb = $('.pcx-verdict-h', b) ? b : document.querySelector('[data-pcrit="' + c.id + '"]');
+    if (vb && $('.pcx-verdict-h', vb)) { $('.pcx-verdict-h', vb).textContent = 'Pour « ' + PROFILES[i].label.toLowerCase() + ' »';
+    $('.pcx-verdict-t', vb).textContent = c.verdict[i]; }
   });
 
   $$('[data-col]').forEach(function (n) { n.classList.toggle('is-me', +n.getAttribute('data-col') === i); });

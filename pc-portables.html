@@ -46,17 +46,22 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <div class="pcc container-wide" id="pc-chapitres"><noscript><p>Cette page utilise JavaScript pour ses illustrations interactives.</p></noscript></div>
 
 <div class="container-wide hx-body">
-<section class="section" data-tone="teal" id="audit">
-<h2 class="section-heading"><span class="eyebrow">SIX QUESTIONS SIMPLES</span>Répondez comme si on vous posait la question</h2>
-<p class="section-lead">Six questions courtes, avec une phrase d’explication sous chaque réponse. Le guide en déduit votre profil, puis propose les modèles adaptés.</p>
+<section class="section pcc" data-tone="teal" id="audit">
+<h2 class="section-heading"><span class="eyebrow">LA BOUSSOLE · SIX QUESTIONS SIMPLES</span>Alors, comment choisir ? Répondez comme si on vous posait la question</h2>
+<p class="section-lead">Suivez ce guide qui explique les éléments qui composent un ordinateur (touchez un point de la boussole), ou répondez aux six questions : nous vous recommanderons un PC selon votre budget et votre usage. Vous avez déjà une idée ? Collez l’URL de la page du PC : nous l’analyserons et vous dirons s’il convient à vos projets.</p>
+<div id="pc-boussole"></div>
 <div class="pc-audit" id="pc-audit"></div>
 </section>
+
+<div class="pcc" id="composants"><div id="pc-composants"></div></div>
 
 <section class="section" data-tone="teal" id="modeles">
 <h2 class="section-heading"><span class="eyebrow">CATALOGUE</span>Des modèles repérés pour chaque profil</h2>
 <p class="section-lead">Score sur 10 : il mesure l’adéquation à un profil, pas une qualité absolue.</p>
 <div id="pc-catalogue"><p>Chargement du catalogue…</p></div>
 </section>
+
+<div class="pcx" id="pc-comprendre" hidden></div>
 
 <section class="section" data-tone="orchid" id="lexique">
 <details class="pc-lex-wrap"><summary class="pc-lex-sum"><span class="eyebrow">LEXIQUE RAPIDE</span><span>Les termes des fiches PC</span><span class="pc-lex-chev" aria-hidden="true">+</span></summary>
@@ -77,6 +82,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/concept-visuals.js" defer></script>
 <script src="assets/js/pc-icons.js" defer></script>
 <script src="assets/js/pc-visuals.js" defer></script>
+<script src="assets/js/pc-comprendre.js" defer></script>
 <script src="assets/js/pc-chapitres.js" defer></script>
 <script src="assets/js/reading-time.js" defer></script>
 <script src="assets/js/site-extras.js" defer></script>
