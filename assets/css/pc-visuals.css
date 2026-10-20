@@ -18,6 +18,8 @@
 .pc-audit{display:grid;gap:.8rem}
 .pc-audit-card{border:1px solid rgba(255,255,255,.12);border-radius:18px;background:rgba(255,255,255,.03);overflow:hidden}
 .pc-audit-head{display:flex;align-items:center;gap:.8rem;width:100%;padding:1rem;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}
+.pc-audit-ico{display:inline-flex;flex:none;color:var(--muted,#7a7468)}
+.pc-audit-ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .pc-audit-no{font:700 .8rem/1 DM Sans,sans-serif;color:var(--tone,#3f8aa3);min-width:2rem}
 .pc-audit-title{display:grid;gap:.15rem;flex:1}
 .pc-audit-title strong{font-size:1.02rem}
@@ -44,7 +46,7 @@
 .pc-catalogue{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 .pc-product{border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:1rem;background:rgba(255,255,255,.03);display:flex;flex-direction:column;gap:.55rem}
 .pc-product h3{font-size:1.05rem;margin:0}
-.pc-product .meta{color:rgba(255,255,255,.65);font-size:.85rem}
+.pc-product .meta{color:var(--ink-soft,#6b655a);font-size:.85rem}
 .pc-score{display:flex;gap:.35rem;flex-wrap:wrap}
 .pc-score span{font-size:.72rem;border:1px solid rgba(255,255,255,.16);border-radius:99px;padding:.2rem .5rem}
 .pc-bar{height:7px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden}

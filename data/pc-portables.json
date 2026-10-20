@@ -1448,7 +1448,7 @@
         "processeur": "Intel Core i5-13450HX",
         "ram": "16 Go",
         "stockage": "512 Go SSD",
-        "ecran": "15,6\", IPS, 1920 × 1080, 144 Hz",
+        "ecran": "15,6\", IPS, FHD, 144 Hz",
         "gpu": "NVIDIA GeForce RTX 5060 (100 W)",
         "poids": "non cité dans le relevé",
         "autonomie": "non chiffrée dans le relevé",
@@ -1491,7 +1491,7 @@
           "technologie": "IPS",
           "diagonale_pouces": 15.6,
           "frequence_max_hz": 144,
-          "definition": "1920 × 1080",
+          "definition": "FHD",
           "luminosite_nits": null
         },
         "performance": {
@@ -2721,8 +2721,8 @@
       "id": "omen-16-5070",
       "nom": "HP Omen 16",
       "marque": "HP",
-      "prix_indicatif": 1671,
-      "prix_note": "Omen 16-ap0034nf, à partir de 1 671,32 € (JVTECH).",
+      "prix_indicatif": 1300,
+      "prix_note": "Omen 16-ap0034nf : 1 299,99 € (Cdiscount via frandroid, relevé 19 oct. 2026) ; 1 671,32 € relevé le 7 oct. (JVTECH).",
       "caracteristiques": {
         "processeur": "AMD Ryzen AI 7 350",
         "ram": "16 Go",
@@ -2750,7 +2750,7 @@
         "performance": 7,
         "autonomie": 4,
         "ecran": 7,
-        "prix": 4,
+        "prix": 5,
         "gaming": 8,
         "mobilite": 5,
         "memoire": 6
@@ -2795,7 +2795,8 @@
       "ready_for_recommendation": true,
       "spec_provenance": {
         "sources": [
-          "JVTECH 2026-10-07"
+          "JVTECH 2026-10-07",
+          "frandroid (bon plan, relevé 19 oct. 2026) — https://www.frandroid.com/bons-plans/3001783_on-a-deniche-une-excellente-offre-laptop-gaming-le-surpuissant-hp-omen-16-sous-rtx-5070-est-a-1-299-euros"
         ],
         "autonomie": "estimation_de_categorie",
         "prix": "indicatif_octobre_2026",
@@ -3403,7 +3404,7 @@
       "prix_indicatif": 800,
       "prix_note": "Config 16 Go / 512 Go relevée à 799,99 € (Fnac, 16 oct. 2026) ; variante ISCBQ5351W à 1 164,64 € sur idealo (sept. 2026).",
       "caracteristiques": {
-        "processeur": "Intel Core 7 150U (10 cœurs, 12 threads, jusqu'à 5,4 GHz)",
+        "processeur": "Intel Core 7 150U (10 cœurs, 12 threads, jusqu’à 5,4 GHz)",
         "ram": "16 Go DDR4 3200",
         "stockage": "512 Go SSD PCIe",
         "ecran": "15,6\" FHD (1920 × 1080) IPS, 60 Hz, 250 nits, anti-reflets",
@@ -3428,21 +3429,21 @@
       ],
       "scores": {
         "performance": 5,
-        "autonomie": 5,
+        "autonomie": 6,
         "ecran": 5,
         "prix": 7,
         "gaming": 3,
-        "mobilite": 5,
+        "mobilite": 6,
         "memoire": 6
       },
-      "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+Vivobook+15+X1504VA",
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+Vivobook+15+X1504VA+%28BQ674W%29",
       "fabricant_url": "https://www.asus.com/uk/laptops/for-home/vivobook/asus-vivobook-15-x1504/techspec/",
       "date_verification": "2026-10",
       "profil_scores": {
-        "etudiant": 7,
+        "etudiant": 6,
         "professionnel": 6,
-        "gamer": 3,
-        "createur": 4
+        "gamer": 4,
+        "createur": 5
       },
       "compatibilite": {
         "ecran": {
@@ -3453,13 +3454,13 @@
           "luminosite_nits": 250
         },
         "performance": {
-          "cpu": "Intel Core 7",
+          "cpu": "Intel Core 7 150U",
           "niveau": 3,
           "ram_go": 16,
           "stockage_go": 512
         },
         "graphique": {
-          "gpu": "Intel Graphics",
+          "gpu": "Intel Graphics (intégrée)",
           "niveau": 0,
           "dedie": false
         },
@@ -3485,99 +3486,13 @@
       }
     },
     {
-      "id": "hp-victus-15-fa3005nf",
-      "nom": "HP Victus 15-fa3005nf",
-      "marque": "HP",
-      "prix_indicatif": 1249,
-      "prix_note": "1 249 € relevés sur la boutique HP France (oct. 2026) ; prix de lancement 1 599 € (juillet 2026, comparez-malin).",
-      "caracteristiques": {
-        "processeur": "Intel Core 5 205H (8 cœurs, 12 threads, jusqu'à 4,8 GHz)",
-        "ram": "16 Go DDR4 3200",
-        "stockage": "512 Go SSD PCIe 4.0",
-        "ecran": "15,6\" FHD (1920 × 1080) IPS, 144 Hz, anti-reflets",
-        "gpu": "NVIDIA GeForce RTX 3050 6 Go (dédiée)",
-        "poids": "à documenter",
-        "autonomie": "à documenter",
-        "os": "Windows 11"
-      },
-      "points_forts": [
-        "Écran 144 Hz",
-        "Carte graphique dédiée RTX 3050 6 Go",
-        "Refroidissement pensé gaming"
-      ],
-      "points_faibles": [
-        "Prix élevé pour une RTX 3050",
-        "Carte graphique datée pour les jeux lourds",
-        "Poids et autonomie non documentés par HP"
-      ],
-      "profil_adapte": [
-        "gamer"
-      ],
-      "scores": {
-        "performance": 6,
-        "autonomie": 4,
-        "ecran": 6,
-        "prix": 4,
-        "gaming": 6,
-        "mobilite": 3,
-        "memoire": 6
-      },
-      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HP+Victus+15-fa3005nf",
-      "fabricant_url": "https://www.hp.com/fr-fr/shop/products/laptops/victus-gaming-laptop-15-fa3005nf-e37v9ea-abf",
-      "date_verification": "2026-10",
-      "profil_scores": {
-        "etudiant": 4,
-        "professionnel": 5,
-        "gamer": 7,
-        "createur": 5
-      },
-      "compatibilite": {
-        "ecran": {
-          "technologie": "IPS",
-          "diagonale_pouces": 15.6,
-          "frequence_max_hz": 144,
-          "definition": "FHD",
-          "luminosite_nits": null
-        },
-        "performance": {
-          "cpu": "Intel Core 5",
-          "niveau": 4,
-          "ram_go": 16,
-          "stockage_go": 512
-        },
-        "graphique": {
-          "gpu": "NVIDIA GeForce RTX 3050",
-          "niveau": 3,
-          "dedie": true
-        },
-        "batterie": {
-          "autonomie_heures": null,
-          "autonomie_source": null
-        },
-        "mobilite": {
-          "poids_kg": null
-        }
-      },
-      "os": "windows",
-      "ready_for_recommendation": true,
-      "spec_provenance": {
-        "sources": [
-          "HP.com France (fiche produit, oct. 2026)",
-          "comparez-malin.fr (oct. 2026)"
-        ],
-        "autonomie": "non_documentee",
-        "prix": "indicatif_octobre_2026",
-        "autonomie_detail": "Aucune autonomie sourcée par HP pour cette référence."
-      }
-    },
-    {
       "id": "dell-inspiron-15-3535",
       "nom": "Dell Inspiron 15 3535",
       "marque": "Dell",
       "prix_indicatif": 492,
       "prix_note": "Config 16 Go / 512 Go relevée à 491,99 € (PcComponentes, nov. 2025) ; base Dell dès 349 € ; variantes relevées entre 627 € et 814 € (123comparer, 2025-2026).",
       "caracteristiques": {
-        "processeur": "AMD Ryzen 5 7530U (6 cœurs, 12 threads, jusqu'à 4,5 GHz)",
+        "processeur": "AMD Ryzen 5 7530U (6 cœurs, 12 threads, jusqu’à 4,5 GHz)",
         "ram": "16 Go DDR4 3200",
         "stockage": "512 Go SSD NVMe",
         "ecran": "15,6\" FHD (1920 × 1080) IPS, 120 Hz",
@@ -3597,25 +3512,26 @@
         "Pas de carte graphique dédiée"
       ],
       "profil_adapte": [
-        "etudiant"
+        "etudiant",
+        "professionnel"
       ],
       "scores": {
         "performance": 5,
-        "autonomie": 5,
+        "autonomie": 6,
         "ecran": 5,
         "prix": 8,
         "gaming": 3,
-        "mobilite": 5,
+        "mobilite": 6,
         "memoire": 6
       },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Dell+Inspiron+15+3535",
       "fabricant_url": "https://www.dell.com/fr-fr/shop/ordinateurs-portables-dell/ordinateur-portable-inspiron-15/spd/inspiron-15-3535-laptop",
       "date_verification": "2026-10",
       "profil_scores": {
-        "etudiant": 7,
-        "professionnel": 5,
-        "gamer": 3,
-        "createur": 4
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 4,
+        "createur": 5
       },
       "compatibilite": {
         "ecran": {
@@ -3626,13 +3542,13 @@
           "luminosite_nits": null
         },
         "performance": {
-          "cpu": "AMD Ryzen 5",
+          "cpu": "AMD Ryzen 5 7530U",
           "niveau": 3,
           "ram_go": 16,
           "stockage_go": 512
         },
         "graphique": {
-          "gpu": "Radeon intégrée",
+          "gpu": "AMD Radeon Graphics (intégrée)",
           "niveau": 0,
           "dedie": false
         },
@@ -3658,6 +3574,94 @@
       }
     },
     {
+      "id": "hp-victus-15-fa3005nf",
+      "nom": "HP Victus 15-fa3005nf",
+      "marque": "HP",
+      "prix_indicatif": 1249,
+      "prix_note": "1 249 € relevés sur la boutique HP France (oct. 2026) ; prix de lancement 1 599 € (juillet 2026, comparez-malin).",
+      "caracteristiques": {
+        "processeur": "Intel Core 5 205H (8 cœurs, 12 threads, jusqu’à 4,8 GHz)",
+        "ram": "16 Go DDR4 3200",
+        "stockage": "512 Go SSD PCIe 4.0",
+        "ecran": "15,6\" FHD (1920 × 1080) IPS, 144 Hz, anti-reflets",
+        "gpu": "NVIDIA GeForce RTX 3050 6 Go (dédiée)",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11"
+      },
+      "points_forts": [
+        "Écran 144 Hz",
+        "Carte graphique dédiée RTX 3050 6 Go",
+        "Refroidissement pensé gaming"
+      ],
+      "points_faibles": [
+        "Prix élevé pour une RTX 3050",
+        "Carte graphique datée pour les jeux lourds",
+        "Poids et autonomie non documentés par HP"
+      ],
+      "profil_adapte": [
+        "professionnel",
+        "gamer"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 4,
+        "ecran": 7,
+        "prix": 5,
+        "gaming": 6,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HP+Victus+15-fa3005nf",
+      "fabricant_url": "https://www.hp.com/fr-fr/shop/products/laptops/victus-gaming-laptop-15-fa3005nf-e37v9ea-abf",
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 6,
+        "gamer": 6,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 144,
+          "definition": "FHD",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core 5 205H",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 3050 6 Go (dédiée)",
+          "niveau": 3,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "HP.com France (fiche produit, oct. 2026)",
+          "comparez-malin.fr (oct. 2026)"
+        ],
+        "autonomie": "non_documentee",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Aucune autonomie sourcée par HP pour cette référence."
+      }
+    },
+    {
       "id": "thinkpad-e14-gen-6-ultra5",
       "nom": "Lenovo ThinkPad E14 Gen 6",
       "marque": "Lenovo",
@@ -3665,7 +3669,7 @@
       "prix_note": "Config Core Ultra 5 / 16 Go / 512 Go relevée à 969,95 € (LDLC et Materiel.net, oct. 2026) ; ZDNet relève 1 439 € pour la variante Core Ultra 7 155U.",
       "caracteristiques": {
         "processeur": "Intel Core Ultra 5 125U",
-        "ram": "16 Go DDR5 5600 (extensible jusqu'à 64 Go)",
+        "ram": "16 Go DDR5 5600 (extensible jusqu’à 64 Go)",
         "stockage": "512 Go SSD PCIe 4.0 (+ emplacement libre)",
         "ecran": "14\" WUXGA (1920 × 1200) IPS, 60 Hz, 300 nits",
         "gpu": "Intel Graphics (intégrée)",
@@ -3677,7 +3681,7 @@
         "Châssis aluminium certifié MIL-STD-810H",
         "Clavier ThinkPad avec TrackPoint",
         "Windows 11 Pro, TPM 2.0, webcam IR",
-        "Mémoire extensible jusqu'à 64 Go"
+        "Mémoire extensible jusqu’à 64 Go"
       ],
       "points_faibles": [
         "Écran 60 Hz, colorimétrie limitée",
@@ -3685,26 +3689,26 @@
         "Prix élevé face aux gammes grand public"
       ],
       "profil_adapte": [
-        "professionnel",
-        "etudiant"
+        "etudiant",
+        "professionnel"
       ],
       "scores": {
-        "performance": 5,
+        "performance": 6,
         "autonomie": 6,
-        "ecran": 5,
+        "ecran": 6,
         "prix": 6,
-        "gaming": 3,
-        "mobilite": 6,
+        "gaming": 4,
+        "mobilite": 7,
         "memoire": 6
       },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Lenovo+ThinkPad+E14+Gen+6",
       "fabricant_url": "https://www.lenovo.com/fr/fr/p/laptops/thinkpad/thinkpade/lenovo-thinkpad-e14-gen-6-14-inch-intel/len101t0087",
       "date_verification": "2026-10",
       "profil_scores": {
-        "etudiant": 5,
-        "professionnel": 8,
-        "gamer": 3,
-        "createur": 5
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
       },
       "compatibilite": {
         "ecran": {
@@ -3715,13 +3719,13 @@
           "luminosite_nits": 300
         },
         "performance": {
-          "cpu": "Intel Core Ultra 5",
+          "cpu": "Intel Core Ultra 5 125U",
           "niveau": 4,
           "ram_go": 16,
           "stockage_go": 512
         },
         "graphique": {
-          "gpu": "Intel Graphics",
+          "gpu": "Intel Graphics (intégrée)",
           "niveau": 0,
           "dedie": false
         },
@@ -3744,6 +3748,1383 @@
         "autonomie": "non_documentee",
         "prix": "indicatif_octobre_2026",
         "autonomie_detail": "Batterie 57 Wh documentée (fiche leDénicheur, variante 155H) ; aucune autonomie horaire sourcée."
+      }
+    },
+    {
+      "id": "lenovo-ideapad-slim-3x",
+      "nom": "Lenovo IdeaPad Slim 3x",
+      "marque": "Lenovo",
+      "prix_indicatif": 550,
+      "prix_note": "IdeaPad Slim 3x 15Q8X10 : 549,99 € (Boulanger, tableau de prix du test Les Numériques, config 16 Go / 512 Go, réf. 83N3006QFR ; même prix vérifié le 19 oct. sur leDénicheur). Windows 11 Home Arm64, dalle WUXGA 300 nits 60 Hz, 60 Wh (fiches constructeur et marchandes).",
+      "caracteristiques": {
+        "processeur": "Snapdragon X (X1-26-100)",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "15,3\", IPS, 1920 × 1200, 60 Hz, 300 nits",
+        "gpu": "Qualcomm Adreno (intégrée)",
+        "poids": "1,6 kg",
+        "autonomie": "jusqu’à 18,5 h annoncées (vidéo ou constructeur)",
+        "os": "Windows 11"
+      },
+      "points_forts": [
+        "Prix très contenu en 16 Go / 512 Go",
+        "Écran 15,3\" IPS 300 nits anti-reflets",
+        "Batterie 60 Wh, 18,5 h annoncées",
+        "Châssis MIL-STD 810H"
+      ],
+      "points_faibles": [
+        "Processeur ARM : vérifiez la compatibilité de vos logiciels",
+        "Un pack 8 Go / 512 Go existe au même prix : lisez la fiche avant de commander",
+        "60 Hz seulement",
+        "Chargeur non fourni sur certaines offres Boulanger"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 8,
+        "ecran": 5,
+        "prix": 8,
+        "gaming": 5,
+        "mobilite": 7,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Lenovo+IdeaPad+Slim+3x",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.3,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1200",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "Snapdragon X (X1-26-100)",
+          "niveau": 3,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Qualcomm Adreno (intégrée)",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": 18.5,
+          "autonomie_source": "annoncee"
+        },
+        "mobilite": {
+          "poids_kg": 1.6
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Les Numériques (test et tableau de prix, oct. 2026) — https://www.lesnumeriques.com/ordinateur-portable/lenovo-ideapad-slim-3x-gen-10-p76656/test.html",
+          "Fnac (fiche 16 Go / 512 Go) — https://www.fnac.com/PC-portable-Lenovo-IdeaPad-Slim-3-15Q8X10-15-3-Copilot-Qualcomm-Snapdragon-X-16-Go-RAM-512-Go-SSD-Gris-luna/a21968435/w-4",
+          "leDénicheur 2026-10-19 — https://ledenicheur.fr/s/lenovo-ideapad-slim-3-15q8x10/",
+          "guide < 800 € — https://www.lesnumeriques.com/ordinateur-portable/guide-achat-quels-sont-les-meilleurs-pc-portables-a-moins-de-800-euros-g151.html"
+        ],
+        "autonomie": "annoncee",
+        "prix": "indicatif_octobre_2026"
+      }
+    },
+    {
+      "id": "hp-15-fd0005sf",
+      "nom": "HP 15-fd0005sf",
+      "marque": "HP",
+      "prix_indicatif": 679,
+      "prix_note": "HP 15-fd0005sf : 679 € (Amazon, guide La Voix du Nord, oct. 2026) — i7, 16 Go, 512 Go.",
+      "caracteristiques": {
+        "processeur": "Intel Core i7 (génération non précisée)",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "15,6\"",
+        "gpu": "Intel Graphics (intégrée)",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "Core i7 et 16 Go sous 700 €",
+        "512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Génération du processeur non précisée dans le relevé",
+        "Dalle non précisée",
+        "Pas de GPU dédié"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 7,
+        "gaming": 3,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HP+15-fd0005sf",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 5,
+        "gamer": 4,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core i7 (génération non précisée)",
+          "niveau": 3,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Graphics (intégrée)",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "La Voix du Nord (comparatif < 700 €, oct. 2026) — https://www.lavoixdunord.fr/1693241/article/2026-04-10/quel-pc-portable-choisir-moins-de-700-eu-comparatif-2026"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "hp-250r-g9",
+      "nom": "HP 250R G9",
+      "marque": "HP",
+      "prix_indicatif": 749,
+      "prix_note": "HP 250R G9 (C38K9AT) : 749 € (Materiel.net, relevé 19 oct. 2026) — Core 5 120U, 16 Go, 512 Go, 15,6\" TN.",
+      "caracteristiques": {
+        "processeur": "Intel Core 5 120U",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "15,6\", TN, 1920 × 1080, 60 Hz",
+        "gpu": "Intel Graphics (intégrée)",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "Core 5 120U récent",
+        "16 Go / 512 Go complets"
+      ],
+      "points_faibles": [
+        "Dalle TN basique (angles et couleurs limités)",
+        "Poids non publié"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 7,
+        "gaming": 3,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HP+250R+G9",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 5,
+        "gamer": 4,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "TN",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1080",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core 5 120U",
+          "niveau": 3,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Graphics (intégrée)",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Materiel.net (relevé 19 oct. 2026) — https://www.materiel.net/pc-portable/l409/+fp-h800/"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "acer-aspire-14-ai",
+      "nom": "Acer Aspire 14 AI",
+      "marque": "Acer",
+      "prix_indicatif": 768,
+      "prix_note": "Acer Aspire 14 AI : 767,85 €, noté 8/10 (Clubic, oct. 2026) — Core Ultra 5, 16 Go, Intel Arc. Configuration exacte à vérifier sur la fiche marchand.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 5 226V",
+        "ram": "16 Go",
+        "stockage": "non documenté",
+        "ecran": "14\"",
+        "gpu": "Intel Arc 130V (intégrée)",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "Core Ultra 5 226V avec NPU",
+        "Note Clubic 8/10",
+        "Arc 130V : iGPU au-dessus de la moyenne"
+      ],
+      "points_faibles": [
+        "Stockage non détaillé dans le relevé",
+        "Dalle non précisée"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 7,
+        "gaming": 5,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Acer+Aspire+14+AI",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 14,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 5 226V",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": null
+        },
+        "graphique": {
+          "gpu": "Intel Arc 130V (intégrée)",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Clubic (comparatif, oct. 2026) — https://www.clubic.com/pc-portable/comparatif/moins-1000-euros"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "samsung-galaxy-book-5-pro",
+      "nom": "Samsung Galaxy Book 5 Pro",
+      "marque": "Samsung",
+      "prix_indicatif": 900,
+      "prix_note": "Samsung Galaxy Book 5 Pro : 899,99 € (Clubic, oct. 2026) — Core Ultra 7 256V, 16 Go, Intel Arc.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 7 256V",
+        "ram": "16 Go",
+        "stockage": "non documenté",
+        "ecran": "À lire sur la fiche marchand",
+        "gpu": "Intel Arc (intégrée)",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "Core Ultra 7 256V : puce récente et sobre",
+        "Châssis fin Samsung"
+      ],
+      "points_faibles": [
+        "Stockage non détaillé dans le relevé",
+        "Écran non détaillé dans le relevé"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 7,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 6,
+        "gaming": 5,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+Book+5+Pro",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 6,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": null,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 7 256V",
+          "niveau": 5,
+          "ram_go": 16,
+          "stockage_go": null
+        },
+        "graphique": {
+          "gpu": "Intel Arc (intégrée)",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Clubic oct. 2026"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "hp-pavilion-plus-14-ew1001nf",
+      "nom": "HP Pavilion Plus 14-ew1001nf",
+      "marque": "HP",
+      "prix_indicatif": 999,
+      "prix_note": "HP Pavilion Plus 14-ew1001nf : 999 € (Clubic, oct. 2026) — Core Ultra 5, 16 Go, Intel Arc Graphics. Configuration exacte à vérifier sur la fiche marchand.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 5 (série non précisée)",
+        "ram": "16 Go",
+        "stockage": "non documenté",
+        "ecran": "14\"",
+        "gpu": "Intel Arc (intégrée)",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "PC fin et polyvalent sous 1 000 €",
+        "16 Go de RAM",
+        "iGPU Intel Arc correct pour l’usage courant"
+      ],
+      "points_faibles": [
+        "Stockage non détaillé dans le relevé",
+        "Série du processeur non précisée",
+        "Écran non détaillé dans le relevé"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 6,
+        "gaming": 5,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HP+Pavilion+Plus+14-ew1001nf",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 14,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 5 (série non précisée)",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": null
+        },
+        "graphique": {
+          "gpu": "Intel Arc (intégrée)",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Clubic oct. 2026 — https://www.clubic.com/pc-portable/comparatif/moins-1000-euros"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "medion-erazer-crawler-e40",
+      "nom": "Medion Erazer Crawler E40",
+      "marque": "Medion",
+      "prix_indicatif": 1000,
+      "prix_note": "Medion Erazer Crawler E40 : 999,99 € (Clubic, oct. 2026) — i5-13500H, 16 Go, RTX 4050.",
+      "caracteristiques": {
+        "processeur": "Intel Core i5-13500H",
+        "ram": "16 Go",
+        "stockage": "non documenté",
+        "ecran": "À lire sur la fiche marchand",
+        "gpu": "NVIDIA GeForce RTX 4050",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "GPU dédié RTX 4050 sous 1 000 €",
+        "Refroidissement pensé gaming"
+      ],
+      "points_faibles": [
+        "RTX 4050 : génération précédente, juste pour les jeux lourds",
+        "Stockage non détaillé dans le relevé",
+        "Écran non détaillé dans le relevé"
+      ],
+      "profil_adapte": [
+        "gamer",
+        "createur"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 6,
+        "gaming": 6,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Medion+Erazer+Crawler+E40",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 5,
+        "gamer": 6,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": null,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core i5-13500H",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": null
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 4050",
+          "niveau": 3,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Clubic oct. 2026"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "honor-magicbook-16",
+      "nom": "Honor MagicBook 16 (2026)",
+      "marque": "Honor",
+      "prix_indicatif": 1000,
+      "prix_note": "Honor MagicBook 16 (2026) : 999,90 € (Clubic, oct. 2026) — Intel Core Ultra 5, 16 Go, Intel Graphics.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 5 325",
+        "ram": "16 Go",
+        "stockage": "non documenté",
+        "ecran": "16\"",
+        "gpu": "Intel Graphics (intégrée)",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "PC familial 16 Go sous 1 000 €",
+        "NPU pour les fonctions IA"
+      ],
+      "points_faibles": [
+        "Stockage non détaillé dans le relevé",
+        "Pas de GPU dédié",
+        "Écran non détaillé dans le relevé"
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 6,
+        "gaming": 4,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+MagicBook+16+%282026%29",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 5 325",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": null
+        },
+        "graphique": {
+          "gpu": "Intel Graphics (intégrée)",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Clubic oct. 2026"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "gigabyte-gaming-a16-i7",
+      "nom": "Gigabyte Gaming A16 (i7-13620H)",
+      "marque": "Gigabyte",
+      "prix_indicatif": 1400,
+      "prix_note": "Gigabyte Gaming A16 CWHI3FR894SH : 1 399,90 € (Grosbill, relevé oct. 2026) — i7-13620H, 16 Go, 1 To, RTX 5070, 16\" WUXGA 165 Hz, Windows 11.",
+      "caracteristiques": {
+        "processeur": "Intel Core i7-13620H",
+        "ram": "16 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\", 1920 × 1200, 165 Hz",
+        "gpu": "NVIDIA GeForce RTX 5070",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11"
+      },
+      "points_forts": [
+        "RTX 5070 et 1 To vers 1 400 €",
+        "Écran 165 Hz"
+      ],
+      "points_faibles": [
+        "16 Go seulement",
+        "Poids non publié",
+        "TGP non publié"
+      ],
+      "profil_adapte": [
+        "gamer",
+        "createur"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 5,
+        "gaming": 8,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Gigabyte+Gaming+A16+%28i7-13620H%29",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 5,
+        "gamer": 7,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 165,
+          "definition": "1920 × 1200",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core i7-13620H",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5070",
+          "niveau": 5,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Grosbill oct. 2026",
+          "Ratake oct. 2026"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "gigabyte-aero-x16-5060",
+      "nom": "Gigabyte Aero X16 (RTX 5060)",
+      "marque": "Gigabyte",
+      "prix_indicatif": 1450,
+      "prix_note": "Gigabyte Aero X16 1VH93FRC64AH : 1 449,90 € (leDénicheur, oct. 2026) — Ryzen 7 AI 350, 32 Go, 1 To, RTX 5060.",
+      "caracteristiques": {
+        "processeur": "AMD Ryzen 7 AI 350",
+        "ram": "32 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\"",
+        "gpu": "NVIDIA GeForce RTX 5060",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "32 Go / 1 To",
+        "RTX 5060"
+      ],
+      "points_faibles": [
+        "Écran non détaillé dans le relevé",
+        "OS non précisé dans le relevé"
+      ],
+      "profil_adapte": [
+        "professionnel",
+        "gamer"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 5,
+        "gaming": 7,
+        "mobilite": 5,
+        "memoire": 8
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Gigabyte+Aero+X16+%28RTX+5060%29",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 6,
+        "gamer": 6,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "AMD Ryzen 7 AI 350",
+          "niveau": 4,
+          "ram_go": 32,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5060",
+          "niveau": 4,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "leDénicheur (fiche produit, oct. 2026) — https://ledenicheur.fr/product.php?p=16148598"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "gigabyte-gaming-a16-ultra9",
+      "nom": "Gigabyte Gaming A16 (Core Ultra 9)",
+      "marque": "Gigabyte",
+      "prix_indicatif": 1499,
+      "prix_note": "Gigabyte Gaming A16 EWHS3FRC94SH : 1 499 € (Rue du Commerce via Ratake, oct. 2026) — Core Ultra 9 185H, 16 Go, 1 To, RTX 5070, 16\" QHD+ 165 Hz.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 9 185H",
+        "ram": "16 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\", 2560 × 1600, 165 Hz",
+        "gpu": "NVIDIA GeForce RTX 5070",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "Écran QHD+ 165 Hz",
+        "Core Ultra 9 185H"
+      ],
+      "points_faibles": [
+        "16 Go seulement",
+        "OS non précisé dans le relevé"
+      ],
+      "profil_adapte": [
+        "gamer",
+        "createur"
+      ],
+      "scores": {
+        "performance": 7,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 5,
+        "gaming": 8,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Gigabyte+Gaming+A16+%28Core+Ultra+9%29",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 5,
+        "gamer": 7,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 165,
+          "definition": "2560 × 1600",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 9 185H",
+          "niveau": 5,
+          "ram_go": 16,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5070",
+          "niveau": 5,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Ratake (comparatif gaming < 1 500 €) — https://www.ratake.com/fr/pc-portable/top/meilleurs-gaming-moins-1500-euros",
+          "Grosbill (liste RTX 5070) — https://www.grosbill.com/pc-portable-40/rtx-5070"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "gigabyte-gaming-a16-ryzen",
+      "nom": "Gigabyte Gaming A16 (Ryzen 7 260)",
+      "marque": "Gigabyte",
+      "prix_indicatif": 1699,
+      "prix_note": "Gigabyte Gaming A16 3WHK3FR864SH : 1 699 € (Darty via frandroid, relevé 19 oct. 2026 ; 1 699,99 € sur idealo) — Ryzen 7 260, 32 Go, 1 To, RTX 5070, 16\" WUXGA 165 Hz.",
+      "caracteristiques": {
+        "processeur": "AMD Ryzen 7 260",
+        "ram": "32 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\", 1920 × 1200, 165 Hz",
+        "gpu": "NVIDIA GeForce RTX 5070",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "32 Go et RTX 5070",
+        "Promo relevée de 2 399 € à 1 699 €"
+      ],
+      "points_faibles": [
+        "Écran WUXGA, pas QHD+",
+        "Poids non publié"
+      ],
+      "profil_adapte": [
+        "gamer",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 4,
+        "gaming": 8,
+        "mobilite": 5,
+        "memoire": 8
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Gigabyte+Gaming+A16+%28Ryzen+7+260%29",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 6,
+        "gamer": 7,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 165,
+          "definition": "1920 × 1200",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "AMD Ryzen 7 260",
+          "niveau": 4,
+          "ram_go": 32,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5070",
+          "niveau": 5,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "frandroid (bon plan Darty, relevé 19 oct. 2026) — https://www.frandroid.com/bons-plans/3263245_ce-puissant-pc-portable-gaming-avec-rtx-5070-et-32-go-de-ram-coute-700-e-de-moins-chez-darty",
+          "Grosbill (liste Gigabyte) — https://www.grosbill.com/pc-portable-40/gigabyte?fv[84][]=8733"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "msi-vector-16hx-ai",
+      "nom": "MSI Vector 16 HX AI",
+      "marque": "MSI",
+      "prix_indicatif": 2150,
+      "prix_note": "MSI Vector 16 HX AI A2XWHG-087FR : 2 149,95 € (leDénicheur, oct. 2026) — Core Ultra 7 255HX, 16 Go, 1 To, RTX 5070 Ti.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 7 255HX",
+        "ram": "16 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\"",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "RTX 5070 Ti vers 2 150 €",
+        "CPU HX orienté performance"
+      ],
+      "points_faibles": [
+        "16 Go seulement",
+        "Écran non détaillé dans le relevé",
+        "Poids non publié"
+      ],
+      "profil_adapte": [
+        "gamer",
+        "createur"
+      ],
+      "scores": {
+        "performance": 7,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 3,
+        "gaming": 8,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=MSI+Vector+16+HX+AI",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 5,
+        "gamer": 7,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": null,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 7 255HX",
+          "niveau": 5,
+          "ram_go": 16,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5070 Ti",
+          "niveau": 5,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "leDénicheur (recherche RTX 5070 Ti, oct. 2026) — https://ledenicheur.fr/s/pc-rtx-5070/"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "asus-rog-zephyrus-g16",
+      "nom": "Asus ROG Zephyrus G16",
+      "marque": "ASUS",
+      "prix_indicatif": 2400,
+      "prix_note": "Asus ROG Zephyrus G16 : environ 2 400 € (Futura, oct. 2026) — RTX 5070, Core Ultra 9 285HS, 32 Go, OLED 2,5K 240 Hz. Prix à confirmer sur les fiches.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 9 285HS",
+        "ram": "32 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\", OLED, 2560 × 1600, 240 Hz",
+        "gpu": "NVIDIA GeForce RTX 5070",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "OLED 2,5K 240 Hz",
+        "32 Go",
+        "Format fin et transportable pour un PC gamer"
+      ],
+      "points_faibles": [
+        "Prix",
+        "Prix indicatif approximatif (~2 400 €), à confirmer"
+      ],
+      "profil_adapte": [
+        "gamer",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 8,
+        "autonomie": 4,
+        "ecran": 9,
+        "prix": 3,
+        "gaming": 8,
+        "mobilite": 5,
+        "memoire": 8
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Asus+ROG+Zephyrus+G16",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 7,
+        "gamer": 8,
+        "createur": 7
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "OLED",
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 240,
+          "definition": "2560 × 1600",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 9 285HS",
+          "niveau": 6,
+          "ram_go": 32,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5070",
+          "niveau": 5,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Futura (guide gaming, oct. 2026) — https://www.futura-sciences.com/conso/guides-achat/test-pc-portable-meilleur-pc-portable-jouer-2026-1452/"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "asus-rog-strix-g18",
+      "nom": "Asus ROG Strix G18 G815LP",
+      "marque": "ASUS",
+      "prix_indicatif": 2500,
+      "prix_note": "Asus ROG Strix G18 G815LP : 2 499,99 € (Amazon via Tom’s Hardware, oct. 2026) — Core Ultra 9 275HX, 32 Go, 1 To, RTX 5070, 18\" QHD 240 Hz.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 9 275HX",
+        "ram": "32 Go",
+        "stockage": "1 To SSD",
+        "ecran": "18\", 2560 × 1600, 240 Hz",
+        "gpu": "NVIDIA GeForce RTX 5070",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "non précisé dans le relevé"
+      },
+      "points_forts": [
+        "18\" QHD 240 Hz",
+        "32 Go / 1 To",
+        "Refroidissement ROG"
+      ],
+      "points_faibles": [
+        "Peu portable",
+        "Prix"
+      ],
+      "profil_adapte": [
+        "gamer",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 8,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 3,
+        "gaming": 8,
+        "mobilite": 5,
+        "memoire": 8
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Asus+ROG+Strix+G18+G815LP",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 6,
+        "gamer": 7,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 18,
+          "frequence_max_hz": 240,
+          "definition": "2560 × 1600",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 9 275HX",
+          "niveau": 6,
+          "ram_go": 32,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5070",
+          "niveau": 5,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "inconnu",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "Tom’s Hardware (guide gaming, oct. 2026) — https://www.tomshardware.fr/guide-achat-meilleurs-portables-gaming/"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "apple-macbook-pro-14-m5-pro",
+      "nom": "Apple MacBook Pro 14 (M5 Pro)",
+      "marque": "Apple",
+      "prix_indicatif": 2699,
+      "prix_note": "Apple MacBook Pro 14 (M5 Pro) : 2 699 € (Boulanger via FranceMetrics, relevé 20 oct. 2026) — M5 Pro, 24 Go, 1 To, 14,2\" mini-LED 120 Hz, 1,60 kg, 72,4 Wh.",
+      "caracteristiques": {
+        "processeur": "Apple M5 Pro",
+        "ram": "24 Go",
+        "stockage": "1 To SSD",
+        "ecran": "14,2\", Mini-LED, 120 Hz",
+        "gpu": "GPU M5 Pro (16 cœurs, intégré)",
+        "poids": "1,6 kg",
+        "autonomie": "jusqu’à 22 h annoncées (vidéo ou constructeur)",
+        "os": "macOS"
+      },
+      "points_forts": [
+        "22 h annoncées",
+        "Écran mini-LED 120 Hz",
+        "M5 Pro : 15 cœurs CPU, 16 cœurs GPU"
+      ],
+      "points_faibles": [
+        "GPU intégré (pas de dédiée NVIDIA)",
+        "Prix"
+      ],
+      "profil_adapte": [
+        "professionnel",
+        "createur"
+      ],
+      "scores": {
+        "performance": 9,
+        "autonomie": 9,
+        "ecran": 9,
+        "prix": 3,
+        "gaming": 6,
+        "mobilite": 7,
+        "memoire": 8
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+MacBook+Pro+14+%28M5+Pro%29",
+      "fabricant_url": null,
+      "date_verification": "2026-10",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 8,
+        "gamer": 6,
+        "createur": 8
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "Mini-LED",
+          "diagonale_pouces": 14.2,
+          "frequence_max_hz": 120,
+          "definition": null,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "Apple M5 Pro",
+          "niveau": 7,
+          "ram_go": 24,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "GPU M5 Pro (16 cœurs, intégré)",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": 22,
+          "autonomie_source": "annoncee"
+        },
+        "mobilite": {
+          "poids_kg": 1.6
+        }
+      },
+      "os": "macos",
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "sources": [
+          "FranceMetrics (classement vérifié le 20 oct. 2026) — https://www.francemetrics.fr/meilleurs/pc-portables-2026"
+        ],
+        "autonomie": "annoncee",
+        "prix": "indicatif_octobre_2026"
       }
     }
   ],
@@ -3855,8 +5236,9 @@
     }
   ],
   "catalogue_meta": {
-    "derniere_verification": "2026-10-18",
-    "count": 44,
+    "derniere_verification": "2026-10-20",
+    "detail_verification": "Mise à jour du 20 oct. 2026 : 16 modèles ajoutés (4 par tranche), prix Omen 16 actualisé (1 671 → 1 300 €), 4 fiches réintégrées au générateur. Les prix des fiches antérieures conservent leur relevé d'origine (sept.-oct. 2026).",
+    "count": 60,
     "note": "Les scores classent une compatibilité avec un profil. Ils sont plafonnés à 9. Ce ne sont pas des notes de laboratoire.",
     "sources": [
       "Les Numériques",
@@ -3864,10 +5246,18 @@
       "FranceMetrics",
       "Que Choisir",
       "fiches Apple, Asus et HP",
-      "Fnac (fiches produit)",
-      "HP.com France",
-      "LDLC",
-      "idealo.fr"
+      "Clubic",
+      "Materiel.net",
+      "Boulanger",
+      "leDénicheur",
+      "Grosbill",
+      "Ratake",
+      "idealo",
+      "frandroid",
+      "Tom's Hardware",
+      "Futura",
+      "La Voix du Nord",
+      "fiches Lenovo, Dell, Samsung et Honor"
     ],
     "scoring": {
       "max": 9,
@@ -3878,6 +5268,6 @@
     "note_fiabilite": "Chaque fiche a ses sources et dit si l’autonomie est annoncée, mesurée ou seulement estimée par catégorie. Les prix bougent. Les configurations (8/256 contre 16/512) changent le produit."
   },
   "meta": {
-    "prix_verifies_le": "2026-10-18"
+    "prix_releves": "nouveaux modèles et prix Omen relevés le 20 oct. 2026 ; les autres fiches conservent leur relevé d'origine (sept.-oct. 2026)"
   }
 }

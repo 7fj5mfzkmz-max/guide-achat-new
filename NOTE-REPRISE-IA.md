@@ -329,3 +329,102 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
   résultats idealo ordinateurs portables (offres ROG Strix SCAR 18) ; parcours
   smartphone → audit (OLED) → carte « Apple iPhone 17 Pro » → résultats idealo
   smartphones (offres iPhone 17 Pro). Tests au vert (32 + 15/15).
+## Complément du 20/10/2026 — catalogue étoffé, questionnaire narratif, site allégé
+
+> Travail vérifié : `npm test` au vert (dont 32 vérifications PC + 6 vérifications
+> catalogue), `npm run test:ui` 16/16 parcours + 7 parcours questionnaire PC,
+> QA navigateur en thème clair, thème sombre et mobile (zéro erreur JS,
+> captures relues). Revue par un modèle conseiller : deux points corrigés après
+> revue (voir ci-dessous, « Éthique »).
+
+### Catalogue : 44 → 60 modèles (+4 par tranche de prix)
+
+- **Tranche < 800 €** : Lenovo IdeaPad Slim 3x (550 €, config vérifiée 16 Go /
+  512 Go réf. 83N3006QFR, Windows 11, dalle 300 nits, 60 Wh, 18,5 h annoncées),
+  HP 15-fd0005sf (679 €), HP 250R G9 (749 €), Acer Aspire 14 AI (768 €).
+- **Tranche 800-1 200 €** : Samsung Galaxy Book 5 Pro (900 €), HP Pavilion
+  Plus 14-ew1001nf (999 €, remplace le Framework Laptop 13 dont le prix « dès
+  979 € » n'a pas pu être confirmé comme édition complète — site constructeur
+  bloqué en lecture serveur, pas de contournement), Medion Erazer Crawler E40
+  (1 000 €), Honor MagicBook 16 (1 000 €).
+- **Tranche 1 200-1 800 €** : Gigabyte Gaming A16 i7-13620H (1 400 €), Gigabyte
+  Aero X16 RTX 5060 (1 450 €), Gigabyte Gaming A16 Core Ultra 9 (1 499 €),
+  Gigabyte Gaming A16 Ryzen 7 260 (1 699 €).
+- **Tranche > 1 800 €** : MSI Vector 16 HX AI RTX 5070 Ti (2 150 €), Asus ROG
+  Zephyrus G16 (2 400 €), Asus ROG Strix G18 (2 500 €), MacBook Pro 14 M5 Pro
+  (2 699 €).
+- **Prix Omen 16-ap0034nf mis à jour** : 1 671 € → 1 300 € (Cdiscount via
+  frandroid, relevé 19 oct. 2026), sources conservées.
+- **Correction structurelle** : 4 modèles existaient uniquement dans le JSON
+  (Vivobook 15 X1504VA, Inspiron 15 3535, Victus 15-fa3005nf, ThinkPad E14 Gen 6)
+  — session précédente ajoutée à la main. Ils sont **réintégrés dans
+  `construire.py`** : descriptions détaillées et `fabricant_url` préservés par
+  des champs optionnels (`cpu_detail`, `ram_detail`, `ssd_detail`,
+  `ecran_detail`, `autonomie_detail`, `os_detail`, `prov_autonomie`). Le
+  garde-fou passe de 40 à 60 modèles : la régénération ne peut plus les perdre.
+  Leurs scores sont recalculés par les formules documentées du générateur
+  (l'ancien JSON manuel s'en écartait, ex. Victus gaming 6 conservé).
+
+### Éthique (règles durcies après revue)
+
+- **Niveaux GPU** : l'échelle du générateur gagne le niveau 3 « dédiée
+  d'entrée » (`{0,2,3,4,5,7}`, `dedie: gpu_n>=3`). Les données reprennent leurs
+  niveaux d'origine au lieu d'être déformées pour entrer dans le code (Victus
+  RTX 3050 → 3, Medion RTX 4050 → 3).
+- **OS non documenté** : nouveau `os="inconnu"` (« non précisé dans le relevé »).
+  Un relevé qui ne mentionne pas l'OS ne peut pas être enregistré `windows` :
+  la fiche est exclue du filtre OS tant que ce n'est pas confirmé (14 nouvelles
+  fiches concernées, l'IdeaPad étant documenté Windows 11 Home Arm64).
+- **Stockage non documenté** : `ssd=None` accepté (affiché « non documenté »,
+  ni bonus ni malus au score) — 5 relevés ne détaillaient pas le stockage.
+- **Dates** : `catalogue_meta.detail_verification` distingue la mise à jour du
+  20 oct. (nouveaux modèles, prix Omen) des relevés d'origine des fiches
+  antérieures (sept.-oct. 2026). Chaque fiche garde ses sources datées.
+
+### Questionnaire : sept familles techniques → six questions de conversation
+
+- `pc-visuals.js` : le questionnaire demande **ce que la personne fait**
+  (usage, choses ouvertes, transport, taille d'écran, budget, système) au lieu
+  de lui faire choisir des specs (dalle/Hz/couleur/CPU/GPU). Une phrase
+  d'explication s'affiche sous chaque option ; une petite icône simple par
+  question ; la première carte s'ouvre seule.
+- **L'usage déclaré domine le profil** (poids ×5) : « jouer + transportable +
+  13″ » reste Gamer, comme l'exige la revue. Budget et système sont des
+  filtres : ils ne comptent pas dans « 4/4 réponses ».
+- « Recommencer » réinitialise profil, recommandations, filtres et accordéon
+  (première carte rouverte).
+- Le résultat est narratif (« Votre profil : Étudiant (4/4 réponses) »,
+  « Vos réponses penchent vers… »). Clé `answers.ecran` (l'ancienne
+  `ecran.taille` disparaît avec les sous-groupes).
+- `pc-audit-visual.js` **supprimé** (glyphes animés, scènes SVG, flèches prix,
+  double chargement du catalogue) ; son CSS reste chargé car il style les
+  options (`data-ag`, `.ao-say`). Corrigé au passage : marque dupliquée
+  (« Asus Asus »), ligne prix illisible en thème clair (`.pc-product .meta`
+  blanc 65 % → `var(--ink-soft)`), libellé « Vos 1 modèle ».
+
+### Site allégé
+
+- `pc-portables.html` et `smartphones.html` : la police **Archivo variable
+  (ital + wdth 62-125)** était chargée mais quasi inutilisée sur ces pages (le
+  thème dual, toujours actif via `ga-early`, passe `--font-body/display` en
+  Inter Tight ; le seul usage restant, `--font-mono`, retombe sur
+  `ui-monospace`). Retirée de l'URL Google Fonts ; Inter Tight (poids statiques)
+  et Libre Baskerville restent. Une vérification au poids réel du payload
+  reste à faire en production.
+
+### Tests ajoutés (persistants)
+
+- `scripts/pc-catalogue-test.js` (dans `npm test`) : 60 produits, effectifs
+  14/15/19/12 par tranche, conservation des 4 fiches réintégrées, prix Omen,
+  sources non vides, inconnus affichés comme inconnus.
+- `scripts/pc-questionnaire-ui-test.js` (dans `npm run test:ui`) : 8 parcours
+  Playwright — usage dominant (les 4 usages), scénario « jouer + transportable »,
+  reset complet, bornes des tranches du catalogue, bornes des tranches **du
+  formulaire** (les quatre tranches testées avec recommandations affichées),
+  parcours étudiant complet.
+- **Bornes partagées** : le questionnaire et le catalogue utilisent les mêmes
+  intervalles [a, b[ (un PC à 1 200 € n'appartient qu'à la tranche
+  800-1 200 € ; « 1 800 € et plus » remplace « plus de 1 800 € »).
+- **URLs probantes** : les 16 nouvelles fiches (et le prix Omen actualisé)
+  enregistrent les pages consultées dans leurs `sources` (test, comparatif,
+  fiche marchande), pas seulement le nom du relevé.

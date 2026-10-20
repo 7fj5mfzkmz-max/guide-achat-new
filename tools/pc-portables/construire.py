@@ -154,7 +154,7 @@ MODELS = [
          sources=["FranceMetrics 2026-10-09"]),
     dict(id="loq-15-intel-5060", nom="Lenovo LOQ 15 (Intel, RTX 5060)", marque="Lenovo", prix=1215,
          cpu="Intel Core i5-13450HX", ram=16, ssd=512, gpu="NVIDIA GeForce RTX 5060 (100 W)", gpu_n=4, cpu_n=4,
-         tech="IPS", diag=15.6, hz=144, res="1920 × 1080", nits=None, poids=None, heures=None, hsrc=None,
+         tech="IPS", diag=15.6, hz=144, res="FHD", nits=None, poids=None, heures=None, hsrc=None,
          os="sans", classe="gamer",
          forts=["RTX 5060 100 W sous 1 250 €", "144 Hz", "Connectique généreuse"],
          faibles=["Souvent sans Windows", "CPU plus ancien", "FHD seulement"],
@@ -272,14 +272,14 @@ MODELS = [
          faibles=["300 nits : fade en plein jour", "WUXGA, pas 3K", "D’autres configs (Core Ultra 7, Snapdragon) changent tout"],
          note="Bas de comparateur idealo.de, oct. 2026, variante 16-bp0153ng. Le prix français peut différer. Batterie des séries HP : 68 Wh sur la fiche support, pas forcément cette variante.",
          sources=["idealo.de oct. 2026", "HP Support 2026"]),
-    dict(id="omen-16-5070", nom="HP Omen 16", marque="HP", prix=1671,
+    dict(id="omen-16-5070", nom="HP Omen 16", marque="HP", prix=1300,
          cpu="AMD Ryzen AI 7 350", ram=16, ssd=512, gpu="NVIDIA GeForce RTX 5070", gpu_n=5, cpu_n=5,
          tech="IPS", diag=16.0, hz=240, res="2560 × 1600", nits=None, poids=None, heures=None, hsrc=None,
          os="sans", classe="gamer",
          forts=["RTX 5070 et dalle 240 Hz", "Rapport cité comme bon pour cette carte"],
          faibles=["16 Go / 512 Go courts pour une 5070", "Souvent sans Windows", "TGP non publié"],
-         note="Omen 16-ap0034nf, à partir de 1 671,32 € (JVTECH).",
-         sources=["JVTECH 2026-10-07"]),
+         note="Omen 16-ap0034nf : 1 299,99 € (Cdiscount via frandroid, relevé 19 oct. 2026) ; 1 671,32 € relevé le 7 oct. (JVTECH).",
+         sources=["JVTECH 2026-10-07", "frandroid (bon plan, relevé 19 oct. 2026) — https://www.frandroid.com/bons-plans/3001783_on-a-deniche-une-excellente-offre-laptop-gaming-le-surpuissant-hp-omen-16-sous-rtx-5070-est-a-1-299-euros"]),
     dict(id="surface-laptop-8", nom="Microsoft Surface Laptop 8 (13,8\")", marque="Microsoft", prix=1450,
          cpu="Qualcomm Snapdragon X2 Plus", ram=16, ssd=512, gpu="Adreno intégré", gpu_n=2, cpu_n=5,
          tech=None, diag=13.8, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
@@ -336,6 +336,199 @@ MODELS = [
          faibles=["Fiche courte : dalle, poids et référence exacte du Ryzen 5 à lire en magasin"],
          note="699,99 €, relevé FranceMetrics. Ne pas confondre avec l’Aspire Lite.",
          sources=["FranceMetrics oct. 2026"]),
+
+    # --- Modèles portés depuis le JSON (session précédente, absents du générateur) ---
+    dict(id="asus-vivobook-15-x1504va", nom="ASUS Vivobook 15 X1504VA (BQ674W)", marque="ASUS", prix=800,
+         cpu="Intel Core 7 150U", ram=16, ssd=512, gpu="Intel Graphics (intégrée)", gpu_n=0, cpu_n=3,
+         tech="IPS", diag=15.6, hz=60, res="FHD", nits=250, poids=1.7, heures=None, hsrc=None,
+         os="windows", classe="poly",
+         cpu_detail="Intel Core 7 150U (10 cœurs, 12 threads, jusqu’à 5,4 GHz)",
+         ram_detail="16 Go DDR4 3200", ssd_detail="512 Go SSD PCIe",
+         ecran_detail="15,6\" FHD (1920 × 1080) IPS, 60 Hz, 250 nits, anti-reflets",
+         autonomie_detail="batterie 42 Wh (autonomie non mesurée)", os_detail="Windows 11",
+         prov_autonomie="non_documentee",
+         prov_autonomie_detail="Batterie 42 Wh documentée par le constructeur ; aucune autonomie horaire sourcée.",
+         fabricant_url="https://www.asus.com/uk/laptops/for-home/vivobook/asus-vivobook-15-x1504/techspec/",
+         forts=["16 Go de RAM et SSD 512 Go à prix contenu", "Clavier complet avec pavé numérique", "Indice de réparabilité relevé à 9,3/10 (idealo)"],
+         faibles=["Écran 60 Hz limité à 250 nits", "Pas de carte graphique dédiée", "Mémoire DDR4 (une partie soudée selon configuration)"],
+         note="Config 16 Go / 512 Go relevée à 799,99 € (Fnac, 16 oct. 2026) ; variante ISCBQ5351W à 1 164,64 € sur idealo (sept. 2026).",
+         sources=["Fnac (fiche produit, oct. 2026)", "idealo.fr (sept. 2026)", "ASUS (fiche technique)"]),
+    dict(id="dell-inspiron-15-3535", nom="Dell Inspiron 15 3535", marque="Dell", prix=492,
+         cpu="AMD Ryzen 5 7530U", ram=16, ssd=512, gpu="AMD Radeon Graphics (intégrée)", gpu_n=0, cpu_n=3,
+         tech="IPS", diag=15.6, hz=120, res="FHD", nits=None, poids=1.63, heures=None, hsrc=None,
+         os="windows", classe="poly",
+         cpu_detail="AMD Ryzen 5 7530U (6 cœurs, 12 threads, jusqu’à 4,5 GHz)",
+         ram_detail="16 Go DDR4 3200", ssd_detail="512 Go SSD NVMe",
+         ecran_detail="15,6\" FHD (1920 × 1080) IPS, 120 Hz",
+         autonomie_detail="batterie 41 Wh (autonomie non mesurée)", os_detail="Windows 11",
+         prov_autonomie="non_documentee",
+         prov_autonomie_detail="Batterie 41 Wh documentée ; aucune autonomie horaire sourcée pour cette configuration.",
+         fabricant_url="https://www.dell.com/fr-fr/shop/ordinateurs-portables-dell/ordinateur-portable-inspiron-15/spd/inspiron-15-3535-laptop",
+         forts=["Prix très contenu en 16 Go / 512 Go", "Écran 120 Hz", "Lecteur de carte SD"],
+         faibles=["Wi-Fi 5 seulement", "Batterie 41 Wh modeste", "Pas de carte graphique dédiée"],
+         note="Config 16 Go / 512 Go relevée à 491,99 € (PcComponentes, nov. 2025) ; base Dell dès 349 € ; variantes relevées entre 627 € et 814 € (123comparer, 2025-2026).",
+         sources=["Dell France (fiche produit)", "idealo.fr (oct. 2026)", "PcComponentes (nov. 2025)"]),
+    dict(id="hp-victus-15-fa3005nf", nom="HP Victus 15-fa3005nf", marque="HP", prix=1249,
+         cpu="Intel Core 5 205H", ram=16, ssd=512, gpu="NVIDIA GeForce RTX 3050 6 Go (dédiée)", gpu_n=3, cpu_n=4,
+         tech="IPS", diag=15.6, hz=144, res="FHD", nits=None, poids=None, heures=None, hsrc=None,
+         os="windows", classe="gamer",
+         cpu_detail="Intel Core 5 205H (8 cœurs, 12 threads, jusqu’à 4,8 GHz)",
+         ram_detail="16 Go DDR4 3200", ssd_detail="512 Go SSD PCIe 4.0",
+         ecran_detail="15,6\" FHD (1920 × 1080) IPS, 144 Hz, anti-reflets",
+         os_detail="Windows 11",
+         prov_autonomie="non_documentee",
+         prov_autonomie_detail="Aucune autonomie sourcée par HP pour cette référence.",
+         fabricant_url="https://www.hp.com/fr-fr/shop/products/laptops/victus-gaming-laptop-15-fa3005nf-e37v9ea-abf",
+         forts=["Écran 144 Hz", "Carte graphique dédiée RTX 3050 6 Go", "Refroidissement pensé gaming"],
+         faibles=["Prix élevé pour une RTX 3050", "Carte graphique datée pour les jeux lourds", "Poids et autonomie non documentés par HP"],
+         note="1 249 € relevés sur la boutique HP France (oct. 2026) ; prix de lancement 1 599 € (juillet 2026, comparez-malin).",
+         sources=["HP.com France (fiche produit, oct. 2026)", "comparez-malin.fr (oct. 2026)"]),
+    dict(id="thinkpad-e14-gen-6-ultra5", nom="Lenovo ThinkPad E14 Gen 6", marque="Lenovo", prix=970,
+         cpu="Intel Core Ultra 5 125U", ram=16, ssd=512, gpu="Intel Graphics (intégrée)", gpu_n=0, cpu_n=4,
+         tech="IPS", diag=14.0, hz=60, res="WUXGA", nits=300, poids=1.44, heures=None, hsrc=None,
+         os="windows", classe="poly",
+         cpu_detail="Intel Core Ultra 5 125U",
+         ram_detail="16 Go DDR5 5600 (extensible jusqu’à 64 Go)",
+         ssd_detail="512 Go SSD PCIe 4.0 (+ emplacement libre)",
+         ecran_detail="14\" WUXGA (1920 × 1200) IPS, 60 Hz, 300 nits",
+         autonomie_detail="batterie 57 Wh (autonomie non mesurée)", os_detail="Windows 11 Pro",
+         prov_autonomie="non_documentee",
+         prov_autonomie_detail="Batterie 57 Wh documentée (fiche leDénicheur, variante 155H) ; aucune autonomie horaire sourcée.",
+         fabricant_url="https://www.lenovo.com/fr/fr/p/laptops/thinkpad/thinkpade/lenovo-thinkpad-e14-gen-6-14-inch-intel/len101t0087",
+         forts=["Châssis aluminium certifié MIL-STD-810H", "Clavier ThinkPad avec TrackPoint", "Windows 11 Pro, TPM 2.0, webcam IR", "Mémoire extensible jusqu’à 64 Go"],
+         faibles=["Écran 60 Hz, colorimétrie limitée", "Pas de carte graphique dédiée", "Prix élevé face aux gammes grand public"],
+         note="Config Core Ultra 5 / 16 Go / 512 Go relevée à 969,95 € (LDLC et Materiel.net, oct. 2026) ; ZDNet relève 1 439 € pour la variante Core Ultra 7 155U.",
+         sources=["LDLC (fiche produit, oct. 2026)", "Materiel.net (oct. 2026)", "ZDNet France (oct. 2026)"]),
+
+    # --- Étoffage du catalogue : 4 modèles par tranche de prix (relevés oct. 2026) ---
+    dict(id="lenovo-ideapad-slim-3x", nom="Lenovo IdeaPad Slim 3x", marque="Lenovo", prix=550,
+         cpu="Snapdragon X (X1-26-100)", ram=16, ssd=512, gpu="Qualcomm Adreno (intégrée)", gpu_n=2, cpu_n=3,
+         tech="IPS", diag=15.3, hz=60, res="1920 × 1200", nits=300, poids=1.6, heures=18.5, hsrc="annoncee",
+         os="windows", classe="arm",
+         forts=["Prix très contenu en 16 Go / 512 Go", "Écran 15,3\" IPS 300 nits anti-reflets", "Batterie 60 Wh, 18,5 h annoncées", "Châssis MIL-STD 810H"],
+         faibles=["Processeur ARM : vérifiez la compatibilité de vos logiciels", "Un pack 8 Go / 512 Go existe au même prix : lisez la fiche avant de commander", "60 Hz seulement", "Chargeur non fourni sur certaines offres Boulanger"],
+         note="IdeaPad Slim 3x 15Q8X10 : 549,99 € (Boulanger, tableau de prix du test Les Numériques, config 16 Go / 512 Go, réf. 83N3006QFR ; même prix vérifié le 19 oct. sur leDénicheur). Windows 11 Home Arm64, dalle WUXGA 300 nits 60 Hz, 60 Wh (fiches constructeur et marchandes).",
+         sources=["Les Numériques (test et tableau de prix, oct. 2026) — https://www.lesnumeriques.com/ordinateur-portable/lenovo-ideapad-slim-3x-gen-10-p76656/test.html", "Fnac (fiche 16 Go / 512 Go) — https://www.fnac.com/PC-portable-Lenovo-IdeaPad-Slim-3-15Q8X10-15-3-Copilot-Qualcomm-Snapdragon-X-16-Go-RAM-512-Go-SSD-Gris-luna/a21968435/w-4", "leDénicheur 2026-10-19 — https://ledenicheur.fr/s/lenovo-ideapad-slim-3-15q8x10/", "guide < 800 € — https://www.lesnumeriques.com/ordinateur-portable/guide-achat-quels-sont-les-meilleurs-pc-portables-a-moins-de-800-euros-g151.html"]),
+    dict(id="hp-15-fd0005sf", nom="HP 15-fd0005sf", marque="HP", prix=679,
+         cpu="Intel Core i7 (génération non précisée)", ram=16, ssd=512, gpu="Intel Graphics (intégrée)", gpu_n=0, cpu_n=3,
+         tech=None, diag=15.6, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="poly",
+         forts=["Core i7 et 16 Go sous 700 €", "512 Go de SSD"],
+         faibles=["Génération du processeur non précisée dans le relevé", "Dalle non précisée", "Pas de GPU dédié"],
+         note="HP 15-fd0005sf : 679 € (Amazon, guide La Voix du Nord, oct. 2026) — i7, 16 Go, 512 Go.",
+         sources=["La Voix du Nord (comparatif < 700 €, oct. 2026) — https://www.lavoixdunord.fr/1693241/article/2026-04-10/quel-pc-portable-choisir-moins-de-700-eu-comparatif-2026"]),
+    dict(id="hp-250r-g9", nom="HP 250R G9", marque="HP", prix=749,
+         cpu="Intel Core 5 120U", ram=16, ssd=512, gpu="Intel Graphics (intégrée)", gpu_n=0, cpu_n=3,
+         tech="TN", diag=15.6, hz=60, res="1920 × 1080", nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="poly",
+         forts=["Core 5 120U récent", "16 Go / 512 Go complets"],
+         faibles=["Dalle TN basique (angles et couleurs limités)", "Poids non publié"],
+         note="HP 250R G9 (C38K9AT) : 749 € (Materiel.net, relevé 19 oct. 2026) — Core 5 120U, 16 Go, 512 Go, 15,6\" TN.",
+         sources=["Materiel.net (relevé 19 oct. 2026) — https://www.materiel.net/pc-portable/l409/+fp-h800/"]),
+    dict(id="acer-aspire-14-ai", nom="Acer Aspire 14 AI", marque="Acer", prix=768,
+         cpu="Intel Core Ultra 5 226V", ram=16, ssd=None, gpu="Intel Arc 130V (intégrée)", gpu_n=2, cpu_n=4,
+         tech=None, diag=14, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="poly",
+         forts=["Core Ultra 5 226V avec NPU", "Note Clubic 8/10", "Arc 130V : iGPU au-dessus de la moyenne"],
+         faibles=["Stockage non détaillé dans le relevé", "Dalle non précisée"],
+         note="Acer Aspire 14 AI : 767,85 €, noté 8/10 (Clubic, oct. 2026) — Core Ultra 5, 16 Go, Intel Arc. Configuration exacte à vérifier sur la fiche marchand.",
+         sources=["Clubic (comparatif, oct. 2026) — https://www.clubic.com/pc-portable/comparatif/moins-1000-euros"]),
+    dict(id="samsung-galaxy-book-5-pro", nom="Samsung Galaxy Book 5 Pro", marque="Samsung", prix=900,
+         cpu="Intel Core Ultra 7 256V", ram=16, ssd=None, gpu="Intel Arc (intégrée)", gpu_n=2, cpu_n=5,
+         tech=None, diag=None, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="poly",
+         forts=["Core Ultra 7 256V : puce récente et sobre", "Châssis fin Samsung"],
+         faibles=["Stockage non détaillé dans le relevé", "Écran non détaillé dans le relevé"],
+         note="Samsung Galaxy Book 5 Pro : 899,99 € (Clubic, oct. 2026) — Core Ultra 7 256V, 16 Go, Intel Arc.",
+         sources=["Clubic oct. 2026"]),
+    dict(id="hp-pavilion-plus-14-ew1001nf", nom="HP Pavilion Plus 14-ew1001nf", marque="HP", prix=999,
+         cpu="Intel Core Ultra 5 (série non précisée)", ram=16, ssd=None, gpu="Intel Arc (intégrée)", gpu_n=2, cpu_n=4,
+         tech=None, diag=14, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="poly",
+         forts=["PC fin et polyvalent sous 1 000 €", "16 Go de RAM", "iGPU Intel Arc correct pour l’usage courant"],
+         faibles=["Stockage non détaillé dans le relevé", "Série du processeur non précisée", "Écran non détaillé dans le relevé"],
+         note="HP Pavilion Plus 14-ew1001nf : 999 € (Clubic, oct. 2026) — Core Ultra 5, 16 Go, Intel Arc Graphics. Configuration exacte à vérifier sur la fiche marchand.",
+         sources=["Clubic oct. 2026 — https://www.clubic.com/pc-portable/comparatif/moins-1000-euros"]),
+    dict(id="medion-erazer-crawler-e40", nom="Medion Erazer Crawler E40", marque="Medion", prix=1000,
+         cpu="Intel Core i5-13500H", ram=16, ssd=None, gpu="NVIDIA GeForce RTX 4050", gpu_n=3, cpu_n=4,
+         tech=None, diag=None, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="gamer",
+         forts=["GPU dédié RTX 4050 sous 1 000 €", "Refroidissement pensé gaming"],
+         faibles=["RTX 4050 : génération précédente, juste pour les jeux lourds", "Stockage non détaillé dans le relevé", "Écran non détaillé dans le relevé"],
+         note="Medion Erazer Crawler E40 : 999,99 € (Clubic, oct. 2026) — i5-13500H, 16 Go, RTX 4050.",
+         sources=["Clubic oct. 2026"]),
+    dict(id="honor-magicbook-16", nom="Honor MagicBook 16 (2026)", marque="Honor", prix=1000,
+         cpu="Intel Core Ultra 5 325", ram=16, ssd=None, gpu="Intel Graphics (intégrée)", gpu_n=0, cpu_n=4,
+         tech=None, diag=16, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="poly",
+         forts=["PC familial 16 Go sous 1 000 €", "NPU pour les fonctions IA"],
+         faibles=["Stockage non détaillé dans le relevé", "Pas de GPU dédié", "Écran non détaillé dans le relevé"],
+         note="Honor MagicBook 16 (2026) : 999,90 € (Clubic, oct. 2026) — Intel Core Ultra 5, 16 Go, Intel Graphics.",
+         sources=["Clubic oct. 2026"]),
+    dict(id="gigabyte-gaming-a16-i7", nom="Gigabyte Gaming A16 (i7-13620H)", marque="Gigabyte", prix=1400,
+         cpu="Intel Core i7-13620H", ram=16, ssd=1024, gpu="NVIDIA GeForce RTX 5070", gpu_n=5, cpu_n=4,
+         tech=None, diag=16, hz=165, res="1920 × 1200", nits=None, poids=None, heures=None, hsrc=None,
+         os="windows", classe="gamer",
+         forts=["RTX 5070 et 1 To vers 1 400 €", "Écran 165 Hz"],
+         faibles=["16 Go seulement", "Poids non publié", "TGP non publié"],
+         note="Gigabyte Gaming A16 CWHI3FR894SH : 1 399,90 € (Grosbill, relevé oct. 2026) — i7-13620H, 16 Go, 1 To, RTX 5070, 16\" WUXGA 165 Hz, Windows 11.",
+         sources=["Grosbill oct. 2026", "Ratake oct. 2026"]),
+    dict(id="gigabyte-aero-x16-5060", nom="Gigabyte Aero X16 (RTX 5060)", marque="Gigabyte", prix=1450,
+         cpu="AMD Ryzen 7 AI 350", ram=32, ssd=1024, gpu="NVIDIA GeForce RTX 5060", gpu_n=4, cpu_n=4,
+         tech=None, diag=16, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="gamer",
+         forts=["32 Go / 1 To", "RTX 5060"],
+         faibles=["Écran non détaillé dans le relevé", "OS non précisé dans le relevé"],
+         note="Gigabyte Aero X16 1VH93FRC64AH : 1 449,90 € (leDénicheur, oct. 2026) — Ryzen 7 AI 350, 32 Go, 1 To, RTX 5060.",
+         sources=["leDénicheur (fiche produit, oct. 2026) — https://ledenicheur.fr/product.php?p=16148598"]),
+    dict(id="gigabyte-gaming-a16-ultra9", nom="Gigabyte Gaming A16 (Core Ultra 9)", marque="Gigabyte", prix=1499,
+         cpu="Intel Core Ultra 9 185H", ram=16, ssd=1024, gpu="NVIDIA GeForce RTX 5070", gpu_n=5, cpu_n=5,
+         tech=None, diag=16, hz=165, res="2560 × 1600", nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="gamer",
+         forts=["Écran QHD+ 165 Hz", "Core Ultra 9 185H"],
+         faibles=["16 Go seulement", "OS non précisé dans le relevé"],
+         note="Gigabyte Gaming A16 EWHS3FRC94SH : 1 499 € (Rue du Commerce via Ratake, oct. 2026) — Core Ultra 9 185H, 16 Go, 1 To, RTX 5070, 16\" QHD+ 165 Hz.",
+         sources=["Ratake (comparatif gaming < 1 500 €) — https://www.ratake.com/fr/pc-portable/top/meilleurs-gaming-moins-1500-euros", "Grosbill (liste RTX 5070) — https://www.grosbill.com/pc-portable-40/rtx-5070"]),
+    dict(id="gigabyte-gaming-a16-ryzen", nom="Gigabyte Gaming A16 (Ryzen 7 260)", marque="Gigabyte", prix=1699,
+         cpu="AMD Ryzen 7 260", ram=32, ssd=1024, gpu="NVIDIA GeForce RTX 5070", gpu_n=5, cpu_n=4,
+         tech=None, diag=16, hz=165, res="1920 × 1200", nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="gamer",
+         forts=["32 Go et RTX 5070", "Promo relevée de 2 399 € à 1 699 €"],
+         faibles=["Écran WUXGA, pas QHD+", "Poids non publié"],
+         note="Gigabyte Gaming A16 3WHK3FR864SH : 1 699 € (Darty via frandroid, relevé 19 oct. 2026 ; 1 699,99 € sur idealo) — Ryzen 7 260, 32 Go, 1 To, RTX 5070, 16\" WUXGA 165 Hz.",
+         sources=["frandroid (bon plan Darty, relevé 19 oct. 2026) — https://www.frandroid.com/bons-plans/3263245_ce-puissant-pc-portable-gaming-avec-rtx-5070-et-32-go-de-ram-coute-700-e-de-moins-chez-darty", "Grosbill (liste Gigabyte) — https://www.grosbill.com/pc-portable-40/gigabyte?fv[84][]=8733"]),
+    dict(id="msi-vector-16hx-ai", nom="MSI Vector 16 HX AI", marque="MSI", prix=2150,
+         cpu="Intel Core Ultra 7 255HX", ram=16, ssd=1024, gpu="NVIDIA GeForce RTX 5070 Ti", gpu_n=5, cpu_n=5,
+         tech=None, diag=16, hz=None, res=None, nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="gamer",
+         forts=["RTX 5070 Ti vers 2 150 €", "CPU HX orienté performance"],
+         faibles=["16 Go seulement", "Écran non détaillé dans le relevé", "Poids non publié"],
+         note="MSI Vector 16 HX AI A2XWHG-087FR : 2 149,95 € (leDénicheur, oct. 2026) — Core Ultra 7 255HX, 16 Go, 1 To, RTX 5070 Ti.",
+         sources=["leDénicheur (recherche RTX 5070 Ti, oct. 2026) — https://ledenicheur.fr/s/pc-rtx-5070/"]),
+    dict(id="asus-rog-zephyrus-g16", nom="Asus ROG Zephyrus G16", marque="ASUS", prix=2400,
+         cpu="Intel Core Ultra 9 285HS", ram=32, ssd=1024, gpu="NVIDIA GeForce RTX 5070", gpu_n=5, cpu_n=6,
+         tech="OLED", diag=16, hz=240, res="2560 × 1600", nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="gamer",
+         forts=["OLED 2,5K 240 Hz", "32 Go", "Format fin et transportable pour un PC gamer"],
+         faibles=["Prix", "Prix indicatif approximatif (~2 400 €), à confirmer"],
+         note="Asus ROG Zephyrus G16 : environ 2 400 € (Futura, oct. 2026) — RTX 5070, Core Ultra 9 285HS, 32 Go, OLED 2,5K 240 Hz. Prix à confirmer sur les fiches.",
+         sources=["Futura (guide gaming, oct. 2026) — https://www.futura-sciences.com/conso/guides-achat/test-pc-portable-meilleur-pc-portable-jouer-2026-1452/"]),
+    dict(id="asus-rog-strix-g18", nom="Asus ROG Strix G18 G815LP", marque="ASUS", prix=2500,
+         cpu="Intel Core Ultra 9 275HX", ram=32, ssd=1024, gpu="NVIDIA GeForce RTX 5070", gpu_n=5, cpu_n=6,
+         tech=None, diag=18, hz=240, res="2560 × 1600", nits=None, poids=None, heures=None, hsrc=None,
+         os="inconnu", classe="gamer",
+         forts=["18\" QHD 240 Hz", "32 Go / 1 To", "Refroidissement ROG"],
+         faibles=["Peu portable", "Prix"],
+         note="Asus ROG Strix G18 G815LP : 2 499,99 € (Amazon via Tom’s Hardware, oct. 2026) — Core Ultra 9 275HX, 32 Go, 1 To, RTX 5070, 18\" QHD 240 Hz.",
+         sources=["Tom’s Hardware (guide gaming, oct. 2026) — https://www.tomshardware.fr/guide-achat-meilleurs-portables-gaming/"]),
+    dict(id="apple-macbook-pro-14-m5-pro", nom="Apple MacBook Pro 14 (M5 Pro)", marque="Apple", prix=2699,
+         cpu="Apple M5 Pro", ram=24, ssd=1024, gpu="GPU M5 Pro (16 cœurs, intégré)", gpu_n=2, cpu_n=7,
+         tech="Mini-LED", diag=14.2, hz=120, res=None, nits=None, poids=1.60, heures=22, hsrc="annoncee",
+         os="macos", classe="arm",
+         forts=["22 h annoncées", "Écran mini-LED 120 Hz", "M5 Pro : 15 cœurs CPU, 16 cœurs GPU"],
+         faibles=["GPU intégré (pas de dédiée NVIDIA)", "Prix"],
+         note="Apple MacBook Pro 14 (M5 Pro) : 2 699 € (Boulanger via FranceMetrics, relevé 20 oct. 2026) — M5 Pro, 24 Go, 1 To, 14,2\" mini-LED 120 Hz, 1,60 kg, 72,4 Wh.",
+         sources=["FranceMetrics (classement vérifié le 20 oct. 2026) — https://www.francemetrics.fr/meilleurs/pc-portables-2026"]),
 ]
 
 
@@ -422,7 +615,9 @@ def autonomie_score(m):
 
 def memoire_score(ram, ssd):
     base = 3 if ram <= 8 else 6 if ram <= 16 else 7 if ram <= 24 else 8 if ram < 48 else 9
-    if ssd <= 256:
+    if ssd is None:
+        pass  # stockage non documenté : ni bonus ni malus, la fiche reste honnête
+    elif ssd <= 256:
         base -= 1
     elif ssd >= 2048:
         base += 1
@@ -436,7 +631,7 @@ def perf_score(cpu_n):
 
 
 def game_score(gpu_n, cpu_n):
-    base = {0: 3, 2: 5, 4: 7, 5: 8, 7: 9}[gpu_n]
+    base = {0: 3, 2: 5, 3: 6, 4: 7, 5: 8, 7: 9}[gpu_n]
     if gpu_n >= 4:
         return base
     return cap(base * 0.8 + perf_score(cpu_n) * 0.2)
@@ -467,6 +662,8 @@ def profile_scores(scores, os_name):
 
 
 def fmt_go(n):
+    if n is None:
+        return "non documenté"
     if n >= 1024 and n % 1024 == 0:
         to = n // 1024
         return f"{to} To" if to > 1 else "1 To"
@@ -522,14 +719,14 @@ def build_product(m):
     }
     provenance = {
         "sources": m["sources"],
-        "autonomie": m["hsrc"] or "estimation_de_categorie",
+        "autonomie": m.get("prov_autonomie") or (m["hsrc"] or "estimation_de_categorie"),
         "prix": "indicatif_octobre_2026",
     }
     if m["poids"] is None:
         provenance["mobilite"] = "poids_absent_score_neutre_5"
     if not m["heures"]:
-        provenance["autonomie_detail"] = "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
-    os_label = {"macos": "macOS", "windows": "Windows 11", "chromeos": "ChromeOS", "sans": "souvent vendu sans Windows"}[m["os"]]
+        provenance["autonomie_detail"] = m.get("prov_autonomie_detail") or "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+    os_label = {"macos": "macOS", "windows": "Windows 11", "chromeos": "ChromeOS", "sans": "souvent vendu sans Windows", "inconnu": "non précisé dans le relevé"}[m["os"]]
     return {
         "id": m["id"],
         "nom": m["nom"],
@@ -537,21 +734,21 @@ def build_product(m):
         "prix_indicatif": m["prix"],
         "prix_note": m["note"],
         "caracteristiques": {
-            "processeur": m["cpu"],
-            "ram": f"{m['ram']} Go",
-            "stockage": fmt_go(m["ssd"]) + (" UFS" if m["id"] == "chromebook-plus-14" else " SSD"),
-            "ecran": ecran_text(m),
+            "processeur": m.get("cpu_detail") or m["cpu"],
+            "ram": m.get("ram_detail") or f"{m['ram']} Go",
+            "stockage": m.get("ssd_detail") or ((fmt_go(m["ssd"]) + (" UFS" if m["id"] == "chromebook-plus-14" else " SSD")) if m["ssd"] is not None else "non documenté"),
+            "ecran": m.get("ecran_detail") or ecran_text(m),
             "gpu": m["gpu"],
             "poids": f"{str(m['poids']).replace('.', ',')} kg" if m["poids"] else "non cité dans le relevé",
-            "autonomie": auto_text(m),
-            "os": os_label,
+            "autonomie": m.get("autonomie_detail") or auto_text(m),
+            "os": m.get("os_detail") or os_label,
         },
         "points_forts": m["forts"],
         "points_faibles": m["faibles"],
         "profil_adapte": sorted(profile_scores(scores, m["os"]), key=lambda k: -profile_scores(scores, m["os"])[k])[:2],
         "scores": scores,
         "idealo_url": idealo(m["nom"]),
-        "fabricant_url": None,
+        "fabricant_url": m.get("fabricant_url"),
         "date_verification": "2026-10",
         "profil_scores": profile_scores(scores, m["os"]),
         "compatibilite": {
@@ -571,7 +768,7 @@ def build_product(m):
             "graphique": {
                 "gpu": m["gpu"],
                 "niveau": m["gpu_n"],
-                "dedie": m["gpu_n"] >= 4,
+                "dedie": m["gpu_n"] >= 3,
             },
             "batterie": {
                 "autonomie_heures": m["heures"],
@@ -868,8 +1065,8 @@ def lexique_html(sections):
 
 def main():
     ids = [m["id"] for m in MODELS]
-    if len(ids) != 40 or len(set(ids)) != 40:
-        raise SystemExit(f"attendu 40 ids uniques, obtenu {len(ids)} / {len(set(ids))}")
+    if len(ids) != 60 or len(set(ids)) != 60:
+        raise SystemExit(f"attendu 60 ids uniques, obtenu {len(ids)} / {len(set(ids))}")
     produits = [build_product(m) for m in MODELS]
     catalogue = {
         "categorie": "pc-portables",
@@ -899,10 +1096,11 @@ def main():
         "poids_des_profils": WEIGHTS,
         "audit_familles": AUDIT,
         "catalogue_meta": {
-            "derniere_verification": "2026-10-09",
-            "count": 40,
+            "derniere_verification": "2026-10-20",
+            "detail_verification": "Mise à jour du 20 oct. 2026 : 16 modèles ajoutés (4 par tranche), prix Omen 16 actualisé (1 671 → 1 300 €), 4 fiches réintégrées au générateur. Les prix des fiches antérieures conservent leur relevé d'origine (sept.-oct. 2026).",
+            "count": 60,
             "note": "Les scores classent une compatibilité avec un profil. Ils sont plafonnés à 9. Ce ne sont pas des notes de laboratoire.",
-            "sources": ["Les Numériques", "JVTECH", "FranceMetrics", "Que Choisir", "fiches Apple, Asus et HP"],
+            "sources": ["Les Numériques", "JVTECH", "FranceMetrics", "Que Choisir", "fiches Apple, Asus et HP", "Clubic", "Materiel.net", "Boulanger", "leDénicheur", "Grosbill", "Ratake", "idealo", "frandroid", "Tom's Hardware", "Futura", "La Voix du Nord", "fiches Lenovo, Dell, Samsung et Honor"],
             "scoring": {
                 "max": 9,
                 "min": 1,
@@ -911,7 +1109,7 @@ def main():
             },
             "note_fiabilite": "Chaque fiche a ses sources et dit si l’autonomie est annoncée, mesurée ou seulement estimée par catégorie. Les prix bougent. Les configurations (8/256 contre 16/512) changent le produit.",
         },
-        "meta": {"prix_verifies_le": "2026-10-09"},
+        "meta": {"prix_releves": "nouveaux modèles et prix Omen relevés le 20 oct. 2026 ; les autres fiches conservent leur relevé d'origine (sept.-oct. 2026)"},
     }
     (DATA / "pc-portables.json").write_text(json.dumps(catalogue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DATA / "lexique-pc-portables.json").write_text(json.dumps({"categorie": "pc-portables", "sections": LEXIQUE}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
