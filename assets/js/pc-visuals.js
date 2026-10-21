@@ -68,7 +68,6 @@ var PROFILES=[
  {id:'gamer',label:'Gamer',priorities:['Une carte graphique dédiée récente','Un processeur à la hauteur du GPU','16 Go de RAM minimum','Un écran 120 Hz ou plus','Un SSD de 512 Go à 1 To','Un châssis qui refroidit réellement pendant les sessions longues']}
 ];
 
-var MORE={ecran:'ecran',memoire:'ram',processeur:'cpu',graphique:'gpu',mobilite:'mobilite'};
 var answers={}, catalogueItems=[], currentFilter='all';
 
 function laptopHero(){
@@ -78,7 +77,7 @@ function laptopHero(){
 function buildAudit(){
   var root=document.getElementById('pc-audit'); if(!root||root.dataset.ready)return; root.dataset.ready='1';
   root.innerHTML=FAMILIES.map(f=>
-    '<article class="pc-audit-card" data-family="'+f.id+'"><button class="pc-audit-head" type="button" aria-expanded="false"><span class="pc-audit-no">'+f.no+'</span><span class="pc-audit-ico" aria-hidden="true">'+(f.ico||'')+'</span><span class="pc-audit-title"><strong>'+f.title+'</strong><small>'+f.hint+'</small></span><span class="pc-audit-state">À choisir</span></button><div class="pc-audit-body"><div class="pc-options" data-lay="rows">'+f.options.map(o=>'<button type="button" data-value="'+o.v+'" data-ag="1"><span class="ao-name">'+o.l+'</span><span class="ao-say">'+o.note+'</span></button>').join('')+'</div><p class="pc-audit-help">'+f.help+'</p>'+(MORE[f.id]?'<a class="pc-audit-more" href="#cmp-'+MORE[f.id]+'">Comprendre ce critère ↓</a>':'')+'</div></article>').join('')+
+    '<article class="pc-audit-card" data-family="'+f.id+'"><button class="pc-audit-head" type="button" aria-expanded="false"><span class="pc-audit-no">'+f.no+'</span><span class="pc-audit-ico" aria-hidden="true">'+(f.ico||'')+'</span><span class="pc-audit-title"><strong>'+f.title+'</strong><small>'+f.hint+'</small></span><span class="pc-audit-state">À choisir</span></button><div class="pc-audit-body"><div class="pc-options" data-lay="rows">'+f.options.map(o=>'<button type="button" data-value="'+o.v+'" data-ag="1"><span class="ao-name">'+o.l+'</span><span class="ao-say">'+o.note+'</span></button>').join('')+'</div><p class="pc-audit-help">'+f.help+'</p>'+'</div></article>').join('')+
     '<div class="pc-audit-result" id="pc-audit-result" hidden><span class="hx-kicker">RÉSULTAT</span><h3>Choisissez une première réponse</h3><p>Le guide en déduit votre profil au fil de vos réponses, puis propose les modèles adaptés.</p><div class="pc-profile-pills">'+PROFILES.map(p=>'<span data-pill="'+p.id+'">'+p.label+'</span>').join('')+'</div><div class="pc-priorities" id="pc-priorities"></div><div class="pc-audit-actions"><a class="btn hx-btn" href="#modeles" id="pc-audit-cta">Voir les modèles adaptés →</a><button class="hx-link" type="button" id="pc-audit-reset">Recommencer</button></div></div>';
   root.querySelectorAll('.pc-audit-card').forEach(card=>{
     var head=card.querySelector('.pc-audit-head');

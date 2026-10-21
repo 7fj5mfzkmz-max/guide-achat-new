@@ -1,70 +1,7 @@
 /* ============================================================
    PAGE PC PORTABLES — module graphique v4 « spec exacte »
-   Mashup questionnaire + démos : chaque carte-question embarque
-   les démos interactives de son critère.
+   Questionnaire, catalogue et lexique (le guide visuel vit dans pc-guide.css).
    ============================================================ */
-
-/* ---------- Harmonisation du module démos (sans le modifier) ---------- */
-body .pcc, #audit {
-  --pcc-bg: #ffffff;
-  --pcc-alt: #e3e7eb;
-  --pcc-ink: #0f1115;
-  --pcc-mut: #3c424b;
-  --pcc-acc: #0f1115;
-  --pcc-line: rgba(15, 17, 21, .35);
-}
-html.dark-theme .pcc, html.dark-theme #audit {
-  --pcc-bg: #171b20;
-  --pcc-alt: #0f1115;
-  --pcc-ink: #e7eaee;
-  --pcc-mut: #b3b9c2;
-  --pcc-acc: #ffd400;
-  --pcc-line: rgba(231, 234, 238, .25);
-}
-body .pcc-ch { border-radius: 0; border: 1px solid var(--line); }
-body .pcc-path, body .pcc .pcc-art, body .pcc .pcc-stage, body .pcc .pcc-sku, body .pcc .pcc-card, body .pcc .pcc-stage::after { border-radius: 0; }
-body .pcc-hero-story, body .pcc-hero-visual, body .pcb-node, body .pcb-sub { border-radius: 0; }
-html.dark-theme .pcc-hero-story { background: var(--pcc-bg); border-color: var(--pcc-line); }
-html.dark-theme .pcc-hero-visual { background: var(--pcc-alt); border-color: var(--pcc-line); }
-body .pcc .pcc-btn, body .pcc-seg button {
-  border-radius: 0;
-  border-width: 1px;
-  border-color: var(--pcc-ink);
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-body .pcc .pcc-btn:hover, body .pcc-seg button:hover { background: var(--pcc-ink); color: var(--pcc-bg); }
-body .pcc-seg button[aria-pressed="true"] { background: #ffd400; border-color: #0f1115; color: #0f1115; }
-body .pcc .pcc-pill { border-radius: 0; letter-spacing: .03em; font-size: 11.5px; font-family: var(--mono); font-weight: 500; }
-body .pcc .pcc-hero-cta { border-radius: 0; font-family: var(--mono); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
-body .pcc .pcc-hero-cta:hover { background: #ffd400; color: #0f1115; }
-.pcc .pcc-card h2, .pcc .pcc-path b, .pcc .pcc-hero-copy h1, #audit .pcc-card h2 {
-  font-family: var(--head);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-.pcc .pcc-card h2 { font-size: clamp(22px, 2.4vw, 34px); text-transform: uppercase; }
-.pcc .pcc-path b { font-size: 15px; }
-.pcc .pcc-kick { font-family: var(--mono); font-weight: 500; letter-spacing: .14em; }
-
-/* ---------- Mashup : démos dans les cartes-questions ---------- */
-.pc-audit-body .pcc-more { display: block; margin-top: 4px; }
-.pc-audit-body .pcc-more .pcx-body { margin-top: 0; }
-.pc-demo-label {
-  margin: 6px 0 14px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font: 700 11px/1.4 var(--mono);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.pc-demo-label::before { content: ''; width: 11px; height: 11px; background: var(--accent); flex-shrink: 0; }
-.pc-audit-body .pcc-more + .pc-audit-help { display: none; }
 
 /* ---------- Questionnaire « audit 45 s » ---------- */
 .pc-audit { display: grid; gap: 10px; margin-top: 28px; }

@@ -21,7 +21,7 @@
     "test:ui": "npm run analyzer:ui-test && npm run pc:ui-test",
     "test:full": "npm test && npm run test:ui && npm run analyzer:live-test",
     "pc:catalogue-test": "node scripts/pc-catalogue-test.js",
-    "pc:ui-test": "node scripts/pc-questionnaire-ui-test.js && node scripts/pc-chapitres-ui-test.js"
+    "pc:ui-test": "node scripts/pc-questionnaire-ui-test.js && node scripts/pc-guide-ui-test.js"
   },
   "engines": {
     "node": ">=20"
