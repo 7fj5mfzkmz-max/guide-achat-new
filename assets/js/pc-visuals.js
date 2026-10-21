@@ -10,7 +10,7 @@
 var FAMILIES=[
  {id:'usage',no:'01',title:'Qu’est-ce que vous en faites surtout ?',hint:'Votre usage principal',
   help:'Un PC n’est pas bon « en général » : il est bon pour quelque chose. Dites ce que vous faites le plus — le reste du questionnaire affine.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c.8-4 3.5-6.2 7-6.2s6.2 2.2 7 6.2"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.8 20.4a7.7 7.7 0 0 1 14.4 0"/></svg>',
   options:[
    {v:'cours',l:'Des cours, des notes, du web',p:{etudiant:15,professionnel:0,createur:0,gamer:0},note:'Écrire, naviguer, des visios : le poids, l’autonomie et le prix passent avant la puissance.'},
    {v:'bureau',l:'Du travail de bureau',p:{etudiant:0,professionnel:15,createur:0,gamer:0},note:'Mails, tableaux et multitâche : 16 Go de mémoire et un écran lisible comptent plus que la carte graphique.'},
@@ -19,7 +19,7 @@ var FAMILIES=[
   ]},
  {id:'memoire',no:'02',title:'Vous gardez combien de choses ouvertes ?',hint:'Mémoire et stockage',
   help:'La mémoire (RAM) garde vos logiciels ouverts en même temps ; le SSD accueille le système, les logiciels et vos fichiers.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="16" height="5.5" rx="1.2"/><rect x="4" y="13.5" width="16" height="5.5" rx="1.2"/><path d="M8.5 10.5v3M15.5 10.5v3"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4.5" y="4.5" width="15" height="5.6" rx="1.2"/><rect x="4.5" y="13.9" width="15" height="5.6" rx="1.2"/><path d="M8.5 10.1v3.8M15.5 10.1v3.8M7 7.3h3M7 16.7h3"/></svg>',
   options:[
    {v:'8',l:'Peu : un navigateur et un logiciel',p:{etudiant:0,professionnel:-2,createur:-3,gamer:-3},note:'Ça passe pour des cours et de la bureautique légère — pas pour le montage ni les jeux.'},
    {v:'16',l:'Beaucoup d’onglets et de logiciels',p:{etudiant:2,professionnel:2,createur:1,gamer:1},note:'16 Go avec 512 Go de SSD : le plancher confortable pour étudier et travailler sans ralentissements.'},
@@ -27,7 +27,7 @@ var FAMILIES=[
   ]},
  {id:'mobilite',no:'03',title:'Vous le transportez comment ?',hint:'Poids et autonomie',
   help:'Un PC puissant peut être lourd : acceptable s’il reste sur un bureau. Pour les cours ou les déplacements, le poids et l’autonomie priment.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5.5 9.5h13l-1.4 10.5h-10.2z"/><path d="M9 9.5V7.5a3 3 0 0 1 6 0v2"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5.5" y="7.5" width="13" height="12.5" rx="2.6"/><path d="M9.2 7.5a2.8 2.8 0 0 1 5.6 0M5.5 12h13M10.2 4.7v2.8M13.8 4.7v2.8"/></svg>',
   options:[
    {v:'ultra',l:'Tous les jours, dans un sac',p:{etudiant:3,professionnel:3,createur:0,gamer:-2},note:'Léger et autonome, mais souvent limité pour les gros rendus et les jeux.'},
    {v:'polyvalent',l:'De temps en temps, plutôt le week-end',p:{etudiant:1,professionnel:1,createur:1,gamer:0},note:'Le compromis : transportable, écran confortable, puissance correcte.'},
@@ -35,7 +35,7 @@ var FAMILIES=[
   ]},
  {id:'ecran',no:'04',title:'Plutôt un grand écran ou un PC léger ?',hint:'La diagonale',
   help:'La taille de l’écran se choisit avec le poids : un grand écran réconforte, un petit portable se transporte.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="5" width="17" height="11.5" rx="1.5"/><path d="M9.5 21h5M12 16.5V21"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4.8h16v10H4z"/><path d="M2.2 19h19.6l-2-4.2H4.2z"/><path d="M10 17h4"/></svg>',
   options:[
    {v:'13',l:'Petit et léger (13-14″)',p:{etudiant:2,professionnel:2,createur:0,gamer:-1},size:[0,14.5],note:'Il se range dans n’importe quel sac et se sort d’une main.'},
    {v:'15',l:'Le compromis (15″)',p:{etudiant:1,professionnel:1,createur:1,gamer:1},size:[14.5,15.9],note:'Assez d’écran pour travailler confortablement, encore transportable.'},
@@ -44,7 +44,7 @@ var FAMILIES=[
   ]},
  {id:'budget',no:'05',title:'Quel est votre budget ?',hint:'Plafond avant frais',
   help:'Le budget filtre les modèles affichés : il ne sert pas à deviner votre profil.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5"/><path d="M15 9c-1-1-2.2-1.5-3.4-1.2M15 15c-1 1-2.2 1.5-3.4 1.2M8.2 11h4.8M8.2 13h4.8M9.6 7.5V6M9.6 18v-1.5"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.6"/><path d="M8.3 10.1h7.4M8.3 13.9h7.4M15.8 8.2a5.1 5.1 0 1 0 0 7.6"/></svg>',
   options:[
    {v:'under800',l:'Moins de 800 €',p:{},budget:[0,800],note:'Bon pour la bureautique et les études légères ; attention au stockage et à la RAM.'},
    {v:'800-1200',l:'800 à 1 200 €',p:{},budget:[800,1200],note:'Zone raisonnable pour un PC polyvalent avec 16 Go de RAM et 512 Go de SSD.'},
@@ -53,7 +53,7 @@ var FAMILIES=[
   ]},
  {id:'os',no:'06',title:'Un système en particulier ?',hint:'Windows · macOS · ChromeOS',
   help:'Le système détermine vos logiciels, vos habitudes et la compatibilité avec vos autres appareils.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4" y="5" width="7" height="6" rx="1"/><rect x="13" y="5" width="7" height="6" rx="1"/><rect x="4" y="13" width="7" height="6" rx="1"/><rect x="13" y="13" width="7" height="6" rx="1"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4.4" y="4.4" width="6.6" height="6.6" rx="1.5"/><rect x="13" y="4.4" width="6.6" height="6.6" rx="1.5"/><rect x="4.4" y="13" width="6.6" height="6.6" rx="1.5"/><rect x="13" y="13" width="6.6" height="6.6" rx="1.5"/></svg>',
   options:[
    {v:'all',l:'Peu importe',p:{},os:null,note:'Affiche tous les systèmes.'},
    {v:'windows',l:'Windows',p:{},os:'windows',note:'Large choix de logiciels, de jeux et de configurations.'},
@@ -77,20 +77,34 @@ function laptopHero(){
 function buildAudit(){
   var root=document.getElementById('pc-audit'); if(!root||root.dataset.ready)return; root.dataset.ready='1';
   root.innerHTML=FAMILIES.map(f=>
-    '<article class="pc-audit-card" data-family="'+f.id+'"><button class="pc-audit-head" type="button" aria-expanded="false"><span class="pc-audit-no">'+f.no+'</span><span class="pc-audit-ico" aria-hidden="true">'+(f.ico||'')+'</span><span class="pc-audit-title"><strong>'+f.title+'</strong><small>'+f.hint+'</small></span><span class="pc-audit-state">À choisir</span></button><div class="pc-audit-body"><div class="pc-options" data-lay="rows">'+f.options.map(o=>'<button type="button" data-value="'+o.v+'" data-ag="1"><span class="ao-name">'+o.l+'</span><span class="ao-say">'+o.note+'</span></button>').join('')+'</div><p class="pc-audit-help">'+f.help+'</p>'+'</div></article>').join('')+
+    '<article class="pc-audit-card" data-family="'+f.id+'"><button class="pc-audit-head" type="button" aria-expanded="false"><span class="pc-audit-no">'+f.no+'</span><span class="pc-audit-ico" aria-hidden="true">'+(f.ico||'')+'</span><span class="pc-audit-title"><strong>'+f.title+'</strong><small>'+f.hint+'</small></span><span class="pc-audit-state">À choisir</span><span class="pc-audit-chev" aria-hidden="true">+</span></button><div class="pc-audit-body"><div class="pc-options" data-lay="rows">'+f.options.map(o=>'<button type="button" data-value="'+o.v+'" data-ag="1"><span class="ao-name">'+o.l+'</span><span class="ao-say">'+o.note+'</span></button>').join('')+'</div><p class="pc-audit-help">'+f.help+'</p>'+'</div></article>').join('')+
     '<div class="pc-audit-result" id="pc-audit-result" hidden><span class="hx-kicker">RÉSULTAT</span><h3>Choisissez une première réponse</h3><p>Le guide en déduit votre profil au fil de vos réponses, puis propose les modèles adaptés.</p><div class="pc-profile-pills">'+PROFILES.map(p=>'<span data-pill="'+p.id+'">'+p.label+'</span>').join('')+'</div><div class="pc-priorities" id="pc-priorities"></div><div class="pc-audit-actions"><a class="btn hx-btn" href="#modeles" id="pc-audit-cta">Voir les modèles adaptés →</a><button class="hx-link" type="button" id="pc-audit-reset">Recommencer</button></div></div>';
-  root.querySelectorAll('.pc-audit-card').forEach(card=>{
-    var head=card.querySelector('.pc-audit-head');
-    head.addEventListener('click',()=>{var open=card.classList.toggle('is-open');head.setAttribute('aria-expanded',open);});
+  var cards=[].slice.call(root.querySelectorAll('.pc-audit-card'));
+  function setOpen(card,open){
+    card.classList.toggle('is-open',open);
+    var h=card.querySelector('.pc-audit-head');if(h)h.setAttribute('aria-expanded',open);
+  }
+  root.addEventListener('click',e=>{
+    var head=e.target.closest('.pc-audit-head');
+    if(!head)return;
+    var card=head.closest('.pc-audit-card');
+    var willOpen=!card.classList.contains('is-open');
+    cards.forEach(c=>setOpen(c,false));
+    if(willOpen)setOpen(card,true);
+  });
+  cards.forEach(card=>{
     card.querySelectorAll('[data-value]').forEach(btn=>btn.addEventListener('click',()=>{
       var fam=card.dataset.family, grp=btn.dataset.group, key=grp?fam+'.'+grp:fam;
       answers[key]=btn.dataset.value;
       var scope=grp?btn.closest('.pc-group'):card;
       scope.querySelectorAll('[data-value]').forEach(x=>x.classList.toggle('is-active',x===btn));
       card.classList.add('is-done');
-      var f=FAMILIES.find(x=>x.id===fam), st=card.querySelector('.pc-audit-state');
-      st.textContent='Choisi';
+      var st=card.querySelector('.pc-audit-state');
+      st.textContent='Répondu';st.dataset.state='chosen';
       updateAudit();
+      /* La question se replie, la suivante s'ouvre : le questionnaire avance tout seul. */
+      var next=cards[cards.indexOf(card)+1];
+      if(next){cards.forEach(c=>setOpen(c,false));setOpen(next,true);next.scrollIntoView({behavior:'smooth',block:'center'});}
     }));
   });
   document.getElementById('pc-audit-reset').addEventListener('click',()=>{
@@ -99,7 +113,7 @@ function buildAudit(){
       c.classList.remove('is-done','is-open');
       c.querySelectorAll('[data-value]').forEach(x=>x.classList.remove('is-active'));
       var h=c.querySelector('.pc-audit-head');if(h)h.setAttribute('aria-expanded','false');
-      c.querySelector('.pc-audit-state').textContent='À choisir';
+      var st=c.querySelector('.pc-audit-state');st.textContent='À choisir';delete st.dataset.state;
     });
     var first=root.querySelector('.pc-audit-card');
     if(first){first.classList.add('is-open');var fh=first.querySelector('.pc-audit-head');if(fh)fh.setAttribute('aria-expanded','true');}

@@ -112,22 +112,54 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
  var m=/^#critere-([a-z]+)$/.exec(location.hash);
  pick(m&&byK(m[1])?m[1]:'cpu',false);
 }
-/* ---------- nomenclature ---------- */
+/* ---------- nomenclature — scan « DedSec » façon Watch Dogs 2 : une machine, plusieurs références ---------- */
 function setupNomenclature(){
  var host=document.getElementById('pc-nomenclature');if(!host)return;
- var SK=['Legion 5 15IAX11','Legion 5 15IRX11','Legion 5i 16IAX11','Legion Pro 5 16IAX11','Legion 5 15ARP11'],ix=0,x0=null;
- host.innerHTML='<div class="pg-nom"><div class="pg-nomcopy"><p>Un même PC visible peut cacher de nombreuses configurations. Faites glisser le dessin ou utilisez les boutons : la silhouette reste, la référence change.</p><p><b>À retenir.</b> Ne comparez jamais deux PC sur leur seul nom commercial : comparez la référence complète, puis les composants qu’elle désigne.</p></div>'+
- '<div class="pg-stagewrap"><div class="pg-stage" id="pg-stage" tabindex="0" role="slider" aria-label="Changer de référence" aria-valuemin="1" aria-valuemax="'+SK.length+'" aria-valuenow="1" aria-valuetext="'+SK[0]+'"><svg viewBox="0 0 400 240" role="img" aria-label="Silhouette d’un ordinateur portable, répétée en arrière-plan"><g class="pg-ghost" id="pg-g2" opacity=".12"><rect x="90" y="30" width="220" height="140" rx="6"/></g><g class="pg-ghost" id="pg-g1" opacity=".25"><rect x="90" y="30" width="220" height="140" rx="6"/></g><g class="pg-lap"><rect x="90" y="30" width="220" height="140" rx="6"/><rect x="102" y="42" width="196" height="116" class="scr"/><path d="M56 186h288l-16 22H72z"/></g></svg><div class="pg-sku" id="pg-sku" aria-live="polite"></div></div>'+
- '<div class="pg-nav"><button type="button" class="pg-btn alt" id="pg-prev" aria-label="Référence précédente">←</button><span class="pg-dots" id="pg-dots" aria-hidden="true">'+SK.map(function(){return '<i></i>'}).join('')+'</span><button type="button" class="pg-btn alt" id="pg-next" aria-label="Référence suivante">→</button></div><p class="pg-note">Références données à titre d’exemple, plausibles mais non vérifiées.</p></div></div>';
- var st=document.getElementById('pg-stage'),sk=document.getElementById('pg-sku'),g1=document.getElementById('pg-g1'),g2=document.getElementById('pg-g2'),dots=document.querySelectorAll('#pg-dots i');
- function set(n){ix=(n+SK.length)%SK.length;sk.textContent=SK[ix];st.setAttribute('aria-valuenow',ix+1);st.setAttribute('aria-valuetext',SK[ix]);var k=ix%2?-1:1;g1.style.transform='translate('+(30*k)+'px,-8px)';g2.style.transform='translate('+(60*k)+'px,-16px)';dots.forEach(function(d,i){d.className=i===ix?'on':''})}
- set(0);
+ /* Le nom commercial reste ; la référence change — et avec elle les composants. */
+ var SK=[
+  {ref:'15IAX11',nom:'Legion 5',cpu:'Core i5-12450H',ram:'8 Go',ssd:'256 Go',gpu:'GTX 1650'},
+  {ref:'15IRX11',nom:'Legion 5',cpu:'Core i5-12450H',ram:'16 Go',ssd:'512 Go',gpu:'RTX 3050'},
+  {ref:'16IAX11',nom:'Legion 5i',cpu:'Core i7-12700H',ram:'16 Go',ssd:'1 To',gpu:'RTX 3060'},
+  {ref:'16IAX9',nom:'Legion Pro 5',cpu:'Core i7-12700H',ram:'32 Go',ssd:'1 To',gpu:'RTX 3070'},
+  {ref:'15ARP11',nom:'Legion 5',cpu:'Ryzen 7 6800H',ram:'16 Go',ssd:'512 Go',gpu:'RX 6600M'}
+ ],ix=0,x0=null,glitchT=null;
+ host.innerHTML='<div class="pg-nom"><div class="pg-nomcopy"><p>Sur une fiche, deux PC portent le même nom et peuvent n’avoir que l’écran en commun. Faites glisser le scan : le dessin reste, la référence change — et les composants avec elle.</p><p><b>À retenir.</b> Ne comparez jamais deux PC sur leur seul nom commercial : comparez la référence complète, puis les composants qu’elle désigne.</p></div>'+
+ '<div class="pg-wdwrap" id="pg-wdwrap"><div class="pg-wd" id="pg-stage" tabindex="0" role="slider" aria-label="Changer de référence" aria-valuemin="1" aria-valuemax="'+SK.length+'" aria-valuenow="1" aria-valuetext="'+SK[0].nom+' '+SK[0].ref+'">'+
+ '<svg class="pg-wdsvg" viewBox="0 0 420 300" role="img" aria-label="Un même ordinateur portable analysé par un scanner">'+
+ '<defs><pattern id="wdgrid" width="21" height="21" patternUnits="userSpaceOnUse"><path d="M21 0H0V21" fill="none" stroke="#14222e" stroke-width="1"/></pattern></defs>'+
+ '<rect width="420" height="300" fill="url(#wdgrid)"/>'+
+ /* équerres HUD */
+ '<path d="M14 34V14h20M386 14h20v20M406 266v20h-20M34 286H14v-20" fill="none" stroke="#35e0ff" stroke-width="2.5" opacity=".85"/>'+
+ /* machine : la même silhouette, trait néon */
+ '<g class="pg-wdlap"><rect x="122" y="52" width="176" height="108" rx="8" fill="#0a1219" stroke="#35e0ff" stroke-width="2.5"/>'+
+ '<g fill="#35e0ff"><rect x="136" y="68" width="54" height="6" rx="3" opacity=".9"/><rect x="136" y="82" width="86" height="6" rx="3" opacity=".55"/><rect x="136" y="96" width="40" height="6" rx="3" opacity=".55"/><rect x="136" y="110" width="64" height="6" rx="3" opacity=".55"/><rect x="136" y="124" width="30" height="6" rx="3" opacity=".55"/></g>'+
+ '<rect x="212" y="68" width="72" height="48" rx="4" fill="#ff2e88" opacity=".18"/><rect x="212" y="68" width="72" height="48" rx="4" fill="none" stroke="#ff2e88" stroke-width="1.5" stroke-dasharray="5 5"/>'+
+ '<rect x="212" y="124" width="72" height="6" rx="3" fill="#ffd400" opacity=".8"/>'+
+ '<path d="M96 178h228l18 26H78z" fill="#0a1219" stroke="#35e0ff" stroke-width="2.5" stroke-linejoin="round"/>'+
+ '<g fill="#35e0ff" opacity=".7"><rect x="130" y="186" width="70" height="5" rx="2.5"/><rect x="214" y="186" width="34" height="5" rx="2.5"/><rect x="258" y="186" width="24" height="5" rx="2.5"/></g></g>'+
+ /* balayage du scanner */
+ '<g class="pg-wdscan" aria-hidden="true"><rect x="96" y="0" width="228" height="300" fill="#35e0ff" opacity=".05"/><rect class="pg-wdbeam" x="96" y="0" width="228" height="2.5" fill="#35e0ff"/></g>'+
+ '</svg>'+
+ '<div class="pg-wdref"><span class="pg-wdlbl">RÉFÉRENCE SCANNÉE</span><b id="pg-sku" aria-live="polite"></b></div>'+
+ '<div class="pg-wdspecs" id="pg-specs"></div></div>'+
+ '<div class="pg-nav"><button type="button" class="pg-btn alt" id="pg-prev" aria-label="Référence précédente">←</button><span class="pg-dots" id="pg-dots" role="tablist" aria-label="Références">'+SK.map(function(_,i){return '<button type="button" role="tab" aria-label="Référence '+(i+1)+'"><i></i></button>'}).join('')+'</span><button type="button" class="pg-btn alt" id="pg-next" aria-label="Référence suivante">→</button></div><p class="pg-note">Faites glisser le scan, utilisez les flèches ou le clavier (← →). Références données à titre d’exemple, plausibles mais non vérifiées.</p></div></div>';
+ var st=document.getElementById('pg-stage'),wrap=document.getElementById('pg-wdwrap'),sk=document.getElementById('pg-sku'),sp=document.getElementById('pg-specs'),dots=document.querySelectorAll('#pg-dots button');
+ function glitch(){wrap.classList.remove('is-glitch');void wrap.offsetWidth;wrap.classList.add('is-glitch');clearTimeout(glitchT);glitchT=setTimeout(function(){wrap.classList.remove('is-glitch')},480)}
+ function set(n){ix=(n+SK.length)%SK.length;var d=SK[ix];
+  sk.textContent=d.nom+' · '+d.ref;
+  st.setAttribute('aria-valuenow',ix+1);st.setAttribute('aria-valuetext',d.nom+' '+d.ref);
+  sp.innerHTML=[['CPU',d.cpu],['RAM',d.ram],['SSD',d.ssd],['GPU',d.gpu]].map(function(x){return '<span><b>'+x[0]+'</b>'+x[1]+'</span>'}).join('');
+  dots.forEach(function(b,i){b.setAttribute('aria-selected',i===ix)});
+  glitch();
+ }
+ set(0);glitchT=setTimeout(function(){wrap.classList.remove('is-glitch')},480);
  st.addEventListener('pointerdown',function(e){x0=e.clientX;try{st.setPointerCapture(e.pointerId)}catch(_){}});
  st.addEventListener('pointermove',function(e){if(x0===null)return;var dx=e.clientX-x0;if(Math.abs(dx)>40){set(ix+(dx<0?1:-1));x0=e.clientX}});
  ['pointerup','pointercancel'].forEach(function(t){st.addEventListener(t,function(){x0=null})});
  st.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')set(ix-1);if(e.key==='ArrowRight')set(ix+1)});
  document.getElementById('pg-prev').addEventListener('click',function(){set(ix-1)});
  document.getElementById('pg-next').addEventListener('click',function(){set(ix+1)});
+ dots.forEach(function(b,i){b.addEventListener('click',function(){set(i)})});
 }
 /* ---------- animations : pause (WCAG 2.2.2), pause par défaut si mouvement réduit ---------- */
 function setupMotion(){

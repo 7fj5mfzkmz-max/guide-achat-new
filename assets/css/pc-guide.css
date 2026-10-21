@@ -33,19 +33,42 @@
 .pg-link{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 0 0;padding:14px 18px;border:1px solid var(--ink);background:var(--paper-2)}
 .pg-link p{margin:0;font:400 15px/1.5 var(--sans);color:var(--ink-soft)}
 
-/* ---------- nomenclature ---------- */
+/* ---------- nomenclature — scan « DedSec » (Watch Dogs 2) ---------- */
 .pg-nom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;margin-top:22px}
 .pg-nomcopy p{font:400 clamp(16px,1.5vw,18px)/1.65 var(--sans);color:var(--ink-soft);margin:0 0 14px}
 .pg-nomcopy b{color:var(--ink)}
-.pg-stage{border:1px solid var(--ink);background:var(--paper-2);box-shadow:var(--shadow);padding:clamp(14px,2.4vw,26px);cursor:grab;user-select:none;touch-action:pan-y}
-.pg-stage:active{cursor:grabbing}
-.pg-stage svg{display:block;width:100%;height:auto}
-.pg-stage svg *{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
-.pg-stage svg .scr{fill:var(--accent-soft);stroke:none}
-.pg-ghost{transition:transform .35s var(--ease)}
-.pg-sku{margin-top:12px;padding:10px;border:1px dashed var(--ink);text-align:center;font:700 clamp(17px,2.8vw,24px) var(--mono);background:var(--paper)}
+.pg-wdwrap{position:relative}
+.pg-wd{border:1px solid var(--ink);background:#0a0f14;box-shadow:var(--shadow);padding:clamp(10px,2vw,18px);cursor:grab;user-select:none;touch-action:pan-y;overflow:hidden}
+.pg-wd:active{cursor:grabbing}
+.pg-wd:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.pg-wdsvg{display:block;width:100%;height:auto}
+/* balayage du scanner : la ligne descend en boucle */
+.pg-wdscan{animation:pgScan 3.6s linear infinite;pointer-events:none}
+@keyframes pgScan{0%{transform:translateY(-10px)}88%{transform:translateY(300px)}100%{transform:translateY(300px)}}
+.pg-wdbeam{filter:drop-shadow(0 0 6px #35e0ff)}
+/* lecture des données : référence + composants */
+.pg-wdref{display:flex;align-items:baseline;gap:12px;margin-top:12px;padding:10px 12px;border:1px solid #1d2b38;background:#0d141b}
+.pg-wdlbl{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#5d7488}
+.pg-wdref b{font:700 clamp(15px,2.4vw,21px) var(--mono);color:#35e0ff;letter-spacing:.04em}
+.pg-wdspecs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px}
+.pg-wdspecs span{border:1px solid #1d2b38;background:#0d141b;padding:7px 9px;font:400 11.5px/1.35 var(--mono);color:#b9c6d2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pg-wdspecs b{display:block;font:700 9.5px var(--mono);letter-spacing:.12em;color:#ff5f14;margin-bottom:2px}
+/* glitch au changement de référence : décalage RGB et secousse */
+.pg-wdwrap.is-glitch .pg-wdsvg{animation:wdJit .44s steps(3,end) both}
+.pg-wdwrap.is-glitch .pg-wdlap{animation:wdLap .44s steps(3,end) both}
+.pg-wdwrap.is-glitch .pg-wdref b{animation:wdTxt .44s steps(3,end) both}
+.pg-wdwrap.is-glitch .pg-wdspecs span{animation:wdTxt .44s steps(3,end) both}
+@keyframes wdJit{0%{transform:translate(3px,-2px)}33%{transform:translate(-4px,2px)}66%{transform:translate(2px,3px)}100%{transform:none}}
+@keyframes wdLap{0%,100%{filter:none}33%{filter:drop-shadow(2px 0 #ff2e88) drop-shadow(-2px 0 #35e0ff)}66%{filter:drop-shadow(-3px 1px #ff2e88) drop-shadow(3px -1px #35e0ff)}}
+@keyframes wdTxt{0%,100%{text-shadow:none;opacity:1}33%{text-shadow:2px 0 #ff2e88,-2px 0 #35e0ff;opacity:.55}66%{text-shadow:-2px 1px #ff2e88,2px -1px #35e0ff;opacity:.8}}
+/* pause : mouvement réduit, économe, hors écran */
+.pg[data-motion="off"] .pg-wdscan,.fx-lite .pg-wdscan{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.pg-wdscan{animation:none}.pg-wdwrap.is-glitch .pg-wdsvg,.pg-wdwrap.is-glitch .pg-wdlap,.pg-wdwrap.is-glitch .pg-wdref b,.pg-wdwrap.is-glitch .pg-wdspecs span{animation:none}}
 .pg-nav{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:14px}
-.pg-dots{display:flex;gap:8px}.pg-dots i{width:10px;height:10px;border:1px solid var(--ink);background:none}.pg-dots i.on{background:var(--accent)}
+.pg-dots{display:flex;gap:8px}
+.pg-dots button{display:grid;place-items:center;width:22px;height:22px;border:0;background:none;padding:0;cursor:pointer}
+.pg-dots i{width:10px;height:10px;border:1px solid var(--ink);background:none;display:block;transition:background .2s}
+.pg-dots button[aria-selected="true"] i{background:var(--accent)}
 .pg-note{font:400 13px/1.5 var(--sans);color:var(--ink-mute);margin:12px 0 0}
 
 /* ---------- boussole ---------- */
@@ -167,6 +190,7 @@
  .pg-top{grid-template-columns:1fr}
  .pg-strip{grid-template-columns:repeat(2,1fr)}.pg-strip div:nth-child(2){border-right:0}.pg-strip div:nth-child(-n+2){border-bottom:1px solid var(--line-soft)}
  .pg-panel{scroll-margin-top:calc(var(--header-h,64px) + 56px)}
+ .pg-wdspecs{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:420px){.pg-node b,.pg-hubbtn b{font-size:9.5px}.pg-node{width:62px}.pg-cta .pg-btn{flex:1 1 100%;justify-content:center}}
 
