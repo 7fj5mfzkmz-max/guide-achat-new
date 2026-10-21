@@ -8,7 +8,7 @@
    - Créateur / montage : stockage, GPU, CPU, écran colorimétrique, RAM.
    - Gamer : GPU dédiée, CPU, RAM, écran rapide, stockage. */
 var FAMILIES=[
- {id:'usage',no:'01',title:'Qu’est-ce que vous en faites surtout ?',hint:'Votre usage principal',
+ {id:'usage',no:'01',title:'Qu’est-ce que vous en faites <em>surtout</em> ?',hint:'Votre usage principal',
   help:'Un PC n’est pas bon « en général » : il est bon pour quelque chose. Dites ce que vous faites le plus — le reste du questionnaire affine.',
   ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="7.6" r="3.4"/><path d="M4.8 20.4a7.7 7.7 0 0 1 14.4 0"/></svg>',
   options:[
@@ -17,7 +17,7 @@ var FAMILIES=[
    {v:'creation',l:'De la photo ou du montage vidéo',p:{etudiant:0,professionnel:0,createur:15,gamer:0},note:'Exports, effets et fichiers lourds : processeur, mémoire, stockage et un écran fidèle en couleurs.'},
    {v:'jeu',l:'Jouer, avant tout',p:{etudiant:0,professionnel:0,createur:0,gamer:15},note:'La carte graphique dédiée et un écran rapide décident avant tout ; le poids passe après.'}
   ]},
- {id:'memoire',no:'02',title:'Vous gardez combien de choses ouvertes ?',hint:'Mémoire et stockage',
+ {id:'memoire',no:'02',title:'Vous gardez <em>combien de choses</em> ouvertes ?',hint:'Mémoire et stockage',
   help:'La mémoire (RAM) garde vos logiciels ouverts en même temps ; le SSD accueille le système, les logiciels et vos fichiers.',
   ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4.5" y="4.5" width="15" height="5.6" rx="1.2"/><rect x="4.5" y="13.9" width="15" height="5.6" rx="1.2"/><path d="M8.5 10.1v3.8M15.5 10.1v3.8M7 7.3h3M7 16.7h3"/></svg>',
   options:[
@@ -25,7 +25,7 @@ var FAMILIES=[
    {v:'16',l:'Beaucoup d’onglets et de logiciels',p:{etudiant:2,professionnel:2,createur:1,gamer:1},note:'16 Go avec 512 Go de SSD : le plancher confortable pour étudier et travailler sans ralentissements.'},
    {v:'32',l:'Des projets lourds, de gros fichiers',p:{etudiant:0,professionnel:1,createur:3,gamer:2},note:'32 Go et 1 To : le bon point de départ pour le montage et les projets qui grossissent.'}
   ]},
- {id:'mobilite',no:'03',title:'Vous le transportez comment ?',hint:'Poids et autonomie',
+ {id:'mobilite',no:'03',title:'Vous le transportez <em>comment</em> ?',hint:'Poids et autonomie',
   help:'Un PC puissant peut être lourd : acceptable s’il reste sur un bureau. Pour les cours ou les déplacements, le poids et l’autonomie priment.',
   ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5.5" y="7.5" width="13" height="12.5" rx="2.6"/><path d="M9.2 7.5a2.8 2.8 0 0 1 5.6 0M5.5 12h13M10.2 4.7v2.8M13.8 4.7v2.8"/></svg>',
   options:[
@@ -33,25 +33,25 @@ var FAMILIES=[
    {v:'polyvalent',l:'De temps en temps, plutôt le week-end',p:{etudiant:1,professionnel:1,createur:1,gamer:0},note:'Le compromis : transportable, écran confortable, puissance correcte.'},
    {v:'station',l:'Presque jamais : il reste sur un bureau',p:{etudiant:-2,professionnel:-2,createur:2,gamer:3},note:'Plus puissant et mieux refroidi, mais lourd et rarement autonome toute la journée.'}
   ]},
- {id:'ecran',no:'04',title:'Plutôt un grand écran ou un PC léger ?',hint:'La diagonale',
+ {id:'ecran',no:'04',title:'Plutôt un <em>grand écran</em> ou un <em>PC léger</em> ?',hint:'La diagonale',
   help:'La taille de l’écran se choisit avec le poids : un grand écran réconforte, un petit portable se transporte.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4.8h16v10H4z"/><path d="M2.2 19h19.6l-2-4.2H4.2z"/><path d="M10 17h4"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect class="fl" x="5" y="4.5" width="14" height="10.5" rx="1.8"/><path d="M2.5 18.2h19l-1.4 1.8H3.9z"/><path d="M10 17h4"/></svg>',
   options:[
    {v:'13',l:'Petit et léger (13-14″)',p:{etudiant:2,professionnel:2,createur:0,gamer:-1},size:[0,14.5],note:'Il se range dans n’importe quel sac et se sort d’une main.'},
    {v:'15',l:'Le compromis (15″)',p:{etudiant:1,professionnel:1,createur:1,gamer:1},size:[14.5,15.9],note:'Assez d’écran pour travailler confortablement, encore transportable.'},
    {v:'16',l:'Grand espace de travail (16″)',p:{etudiant:0,professionnel:1,createur:2,gamer:2},size:[15.9,16.9],note:'Confortable pour le montage et le jeu, mais plus lourd à trimballer.'},
    {v:'18',l:'Une station de bureau (18″)',p:{etudiant:-1,professionnel:-1,createur:2,gamer:2},size:[16.9,99],note:'Confort maximal, à réserver aux machines qui ne bougent pas.'}
   ]},
- {id:'budget',no:'05',title:'Quel est votre budget ?',hint:'Plafond avant frais',
+ {id:'budget',no:'05',title:'Quel est votre <em>budget</em> ?',hint:'Plafond avant frais',
   help:'Le budget filtre les modèles affichés : il ne sert pas à deviner votre profil.',
-  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.6"/><path d="M8.3 10.1h7.4M8.3 13.9h7.4M15.8 8.2a5.1 5.1 0 1 0 0 7.6"/></svg>',
+  ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 7.6V6.2A1.7 1.7 0 0 0 14.8 4.5H5.6A2.1 2.1 0 0 0 3.5 6.6"/><rect class="fl" x="3.5" y="7.6" width="17" height="12" rx="2.4"/><path d="M15 13.6h5.5"/><circle cx="16.8" cy="13.6" r=".8" fill="currentColor"/></svg>',
   options:[
    {v:'under800',l:'Moins de 800 €',p:{},budget:[0,800],note:'Bon pour la bureautique et les études légères ; attention au stockage et à la RAM.'},
    {v:'800-1200',l:'800 à 1 200 €',p:{},budget:[800,1200],note:'Zone raisonnable pour un PC polyvalent avec 16 Go de RAM et 512 Go de SSD.'},
    {v:'1200-1800',l:'1 200 à 1 800 €',p:{},budget:[1200,1800],note:'Permet souvent un meilleur écran, plus de RAM ou une carte graphique dédiée.'},
    {v:'over1800',l:'1 800 € et plus',p:{},budget:[1800,99999],note:'Réservé aux besoins réellement exigeants : création lourde, jeu haut de gamme ou mobilité premium.'}
   ]},
- {id:'os',no:'06',title:'Un système en particulier ?',hint:'Windows · macOS · ChromeOS',
+ {id:'os',no:'06',title:'Un <em>système</em> en particulier ?',hint:'Windows · macOS · ChromeOS',
   help:'Le système détermine vos logiciels, vos habitudes et la compatibilité avec vos autres appareils.',
   ico:'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="4.4" y="4.4" width="6.6" height="6.6" rx="1.5"/><rect x="13" y="4.4" width="6.6" height="6.6" rx="1.5"/><rect x="4.4" y="13" width="6.6" height="6.6" rx="1.5"/><rect x="13" y="13" width="6.6" height="6.6" rx="1.5"/></svg>',
   options:[
@@ -100,7 +100,7 @@ function buildAudit(){
       scope.querySelectorAll('[data-value]').forEach(x=>{x.classList.toggle('is-active',x===btn);x.setAttribute('aria-pressed',x===btn)});
       card.classList.add('is-done');
       var st=card.querySelector('.pc-audit-state');
-      st.textContent='Répondu';st.dataset.state='chosen';
+      st.textContent='Répondu';st.dataset.state='chosen';var pk=card.querySelector('.pc-audit-title small'),nm=btn.querySelector('.ao-name');if(pk&&nm){if(!pk.dataset.hint)pk.dataset.hint=pk.textContent;pk.textContent='→ '+nm.textContent;pk.classList.add('is-picked');}
       updateAudit();
       /* La question se replie, la suivante s'ouvre : le questionnaire avance tout seul. */
       var next=cards[cards.indexOf(card)+1];
@@ -116,7 +116,7 @@ function buildAudit(){
       c.classList.remove('is-done','is-open');
       c.querySelectorAll('[data-value]').forEach(x=>{x.classList.remove('is-active');x.setAttribute('aria-pressed','false')});
       var h=c.querySelector('.pc-audit-head');if(h)h.setAttribute('aria-expanded','false');
-      var st=c.querySelector('.pc-audit-state');st.textContent='À choisir';delete st.dataset.state;
+      var st=c.querySelector('.pc-audit-state');st.textContent='À choisir';delete st.dataset.state;var pk=c.querySelector('.pc-audit-title small');if(pk&&pk.dataset.hint){pk.textContent=pk.dataset.hint;pk.classList.remove('is-picked');}
     });
     var first=root.querySelector('.pc-audit-card');
     if(first){first.classList.add('is-open');var fh=first.querySelector('.pc-audit-head');if(fh)fh.setAttribute('aria-expanded','true');}

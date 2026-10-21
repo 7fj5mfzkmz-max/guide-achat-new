@@ -205,3 +205,21 @@
 }
 .pg-dt .pg-opts{padding:0;margin:10px 0 0}.pg-dt .pg-opts li{padding:0;margin:0}
 .pg-pill{white-space:normal}
+
+/* ---------- Scan « profiler » : ce qui reste identique vs ce qui change ---------- */
+.pg-wdref{align-items:stretch;justify-content:space-between;gap:10px}
+.pg-wdref>div{flex:1;display:flex;flex-direction:column;gap:3px;min-width:0}
+.pg-wdref b.same{font:700 clamp(15px,2.4vw,21px) var(--mono);color:#e8eef5;letter-spacing:.04em}
+.pg-wdref em{font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;font-style:normal}
+.pg-wdref em.ok{color:#4ade80}.pg-wdref em.ko{color:#ff2e88}
+.pg-wdtags .pg-tag path{stroke:#35e0ff;stroke-width:1.5;stroke-dasharray:3 3;fill:none}
+.pg-wdtags .pg-tag circle{fill:#35e0ff}
+.pg-wdtags .pg-tag rect{fill:#0a1219;stroke:#35e0ff;stroke-width:1.5}
+.pg-wdtags .pg-tag text{fill:#35e0ff;font:700 11px JetBrains Mono,monospace;letter-spacing:.1em}
+.pg-wdtags .pg-tag.is-diff path{stroke:#ff2e88}.pg-wdtags .pg-tag.is-diff circle{fill:#ff2e88}
+.pg-wdtags .pg-tag.is-diff rect{fill:#ff2e88;stroke:#ff2e88}.pg-wdtags .pg-tag.is-diff text{fill:#0a0f14}
+.pg-wdspecs span.is-diff{border-color:#ff2e88;background:#2a0f1e;color:#fff}
+.pg-wdspecs span.is-diff b{color:#ff2e88}
+.pg-wdkey{grid-column:1/-1;margin:4px 0 0;font:500 10.5px var(--mono);letter-spacing:.06em;color:#7f93a6;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pg-wdkey i{width:10px;height:10px;display:inline-block;margin-left:8px}
+.pg-wdkey i:first-child{margin-left:0}.pg-wdkey i.s{background:#35e0ff}.pg-wdkey i.d{background:#ff2e88}

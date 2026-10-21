@@ -502,3 +502,20 @@ input[type="range"].pcx-slider { cursor: pointer; }
   .pcx-prio { justify-content: flex-start; }
 }
 .site-footer { padding-bottom: 40px; }
+
+/* ---------- Questionnaire v2 : icônes plus grandes, mots-clés colorés, choix visible une fois replié ---------- */
+.pc-audit-ico { width: 58px; height: 58px; border-width: 1.5px; background: color-mix(in srgb, var(--crox) 7%, transparent); }
+.pc-audit-ico svg { width: 34px; height: 34px; stroke-width: 1.6; }
+.pc-audit-ico svg .fl { fill: currentColor; fill-opacity: .16; }
+.pc-audit-card.is-open .pc-audit-ico { background: color-mix(in srgb, var(--crox) 14%, transparent); }
+.pc-audit-title strong { line-height: 1.2; }
+.pc-audit-title strong em { font-style: normal; color: var(--crox); box-shadow: inset 0 -.32em 0 color-mix(in srgb, var(--crox) 22%, transparent); }
+.pc-audit-title small { margin-top: 3px; }
+.pc-audit-title small.is-picked { color: var(--crox); font-weight: 700; font-size: 13.5px; }
+.pc-audit-card.is-done:not(.is-open) .pc-audit-head { background: color-mix(in srgb, var(--crox) 6%, var(--paper-2)); }
+.pc-audit-head { min-height: 76px; }
+@media (max-width: 640px) {
+  .pc-audit-ico { width: 48px; height: 48px; }
+  .pc-audit-ico svg { width: 29px; height: 29px; }
+  .pc-audit-no { min-width: 20px; }
+}

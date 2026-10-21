@@ -139,16 +139,17 @@ function setupNomenclature(){
  '<g fill="#35e0ff" opacity=".7"><rect x="130" y="186" width="70" height="5" rx="2.5"/><rect x="214" y="186" width="34" height="5" rx="2.5"/><rect x="258" y="186" width="24" height="5" rx="2.5"/></g></g>'+
  /* balayage du scanner */
  '<g class="pg-wdscan" aria-hidden="true"><rect x="96" y="0" width="228" height="300" fill="#35e0ff" opacity=".05"/><rect class="pg-wdbeam" x="96" y="0" width="228" height="2.5" fill="#35e0ff"/></g>'+
- '</svg>'+
- '<div class="pg-wdref"><span class="pg-wdlbl">RÉFÉRENCE SCANNÉE</span><b id="pg-sku" aria-live="polite"></b></div>'+
+ '<g class="pg-wdtags"><g class="pg-tag" data-k="cpu"><path d="M72 87H150"/><circle cx="150" cy="87" r="3.5"/><rect x="14" y="76" width="58" height="22" rx="3"/><text x="43" y="91" text-anchor="middle">CPU</text></g><g class="pg-tag" data-k="ram"><path d="M72 133H150"/><circle cx="150" cy="133" r="3.5"/><rect x="14" y="122" width="58" height="22" rx="3"/><text x="43" y="137" text-anchor="middle">RAM</text></g><g class="pg-tag" data-k="gpu"><path d="M348 87H270"/><circle cx="270" cy="87" r="3.5"/><rect x="348" y="76" width="58" height="22" rx="3"/><text x="377" y="91" text-anchor="middle">GPU</text></g><g class="pg-tag" data-k="ssd"><path d="M348 133H270"/><circle cx="270" cy="133" r="3.5"/><rect x="348" y="122" width="58" height="22" rx="3"/><text x="377" y="137" text-anchor="middle">SSD</text></g></g></svg>'+
+ '<div class="pg-wdref"><div><span class="pg-wdlbl">NOM AFFICHÉ</span><b class="same">'+NOM+'</b><em class="ok">identique</em></div><div><span class="pg-wdlbl">RÉFÉRENCE SCANNÉE</span><b id="pg-sku" aria-live="polite"></b><em class="ko">change</em></div></div>'+
  '<div class="pg-wdspecs" id="pg-specs"></div></div>'+
  '<div class="pg-nav"><button type="button" class="pg-btn alt" id="pg-prev" aria-label="Référence précédente">←</button><span class="pg-dots" id="pg-dots" role="tablist" aria-label="Références">'+SK.map(function(_,i){return '<button type="button" role="tab" aria-label="Référence '+(i+1)+'"><i></i></button>'}).join('')+'</span><button type="button" class="pg-btn alt" id="pg-next" aria-label="Référence suivante">→</button></div><p class="pg-note">Faites glisser le scan, utilisez les flèches ou le clavier (← →). Modèle et références fictifs, inspirés des conventions de nommage des constructeurs.</p></div></div>';
  var st=document.getElementById('pg-stage'),wrap=document.getElementById('pg-wdwrap'),sk=document.getElementById('pg-sku'),sp=document.getElementById('pg-specs'),dots=document.querySelectorAll('#pg-dots button');
  function glitch(){wrap.classList.remove('is-glitch');void wrap.offsetWidth;wrap.classList.add('is-glitch');clearTimeout(glitchT);glitchT=setTimeout(function(){wrap.classList.remove('is-glitch')},480)}
- function set(n){ix=(n+SK.length)%SK.length;var d=SK[ix];
-  sk.textContent=NOM+' · '+d.ref;
+ function set(n){var prev=st.dataset.ready?ix:null;ix=(n+SK.length)%SK.length;var d=SK[ix];st.dataset.ready='1';
+  sk.textContent=d.ref;
   st.setAttribute('aria-valuenow',ix+1);st.setAttribute('aria-valuetext',NOM+' '+d.ref);
-  sp.innerHTML=[['CPU',d.cpu],['RAM',d.ram],['SSD',d.ssd],['GPU',d.gpu]].map(function(x){return '<span><b>'+x[0]+'</b>'+x[1]+'</span>'}).join('');
+  var pv=prev===null?null:SK[prev];
+  sp.innerHTML=[['CPU','cpu'],['RAM','ram'],['SSD','ssd'],['GPU','gpu']].map(function(x){var df=pv&&pv[x[1]]!==d[x[1]];var tg=st.querySelector('.pg-tag[data-k="'+x[1]+'"]');if(tg)tg.classList.toggle('is-diff',!!df);return '<span'+(df?' class="is-diff"':'')+'><b>'+x[0]+(df?' · ≠':'')+'</b>'+d[x[1]]+'</span>'}).join('')+'<p class="pg-wdkey"><i class="s"></i>identique <i class="d"></i>ce qui change</p>';
   dots.forEach(function(b,i){b.setAttribute('aria-selected',i===ix)});
   glitch();
  }
