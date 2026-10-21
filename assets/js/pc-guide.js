@@ -93,7 +93,7 @@ function setupCriteria(){
   '<div class="pg-top"><div class="pg-art">'+(ART[c.k]||'')+'</div><p class="pg-why">'+c.why+'</p></div>'+
   '<div class="pg-more pcx">'+d+'</div>'+
   '<nav class="pg-step" aria-label="Critère précédent ou suivant">'+(prev?'<button type="button" class="pg-btn alt" data-comp="'+prev.k+'">← '+prev.n+'</button>':'<span></span>')+(next?'<button type="button" class="pg-btn" data-comp="'+next.k+'">'+next.n+' →</button>':'<a class="pg-btn" href="#audit">Passer au questionnaire →</a>')+'</nav></article>'}).join('');
- host.innerHTML='<div class="pg-wrap"><div class="pg-cmpcol"><div class="pg-cmp" id="pg-cmp" role="group" aria-label="Boussole des critères : choisissez un composant"><svg class="pg-ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="152"/><circle cx="200" cy="200" r="100" class="in"/>'+ticks+spokes+'</svg>'+nodes+'<div class="pg-hub"><span class="pg-hublbl">Cœur de la machine</span>'+hub+'</div></div><p class="pg-hint">Touchez un point : le critère s’affiche avec sa démo.</p></div><div class="pg-panels" id="pg-panels">'+panels+'</div></div>';
+ host.innerHTML='<div class="pg-wrap"><div class="pg-cmpcol"><div class="pg-cmp" id="pg-cmp" role="group" aria-label="Boussole des critères : choisissez un composant"><svg class="pg-ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="152"/><circle cx="200" cy="200" r="100" class="in"/>'+ticks+spokes+'</svg>'+nodes+'<div class="pg-hub"><span class="pg-hublbl">Cœur de la machine</span>'+hub+'</div></div><p class="pg-hint">Touchez un point : le critère s’affiche avec sa démo. Touchez-le à nouveau pour le replier.</p></div><div class="pg-panels" id="pg-panels">'+panels+'</div></div>';
  PANELS=document.getElementById('pg-panels');
  /* démos existantes : le corps « explication » de pc-comprendre est déplacé sous la démo */
  var src=document.getElementById('pc-comprendre');
@@ -113,7 +113,17 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
   if(scroll){if(window.matchMedia('(max-width:900px)').matches)p.scrollIntoView({behavior:'smooth',block:'start'});var h=p.querySelector('h3');if(h)h.focus({preventScroll:true})}
   try{history.replaceState(null,'','#critere-'+k)}catch(_){}
  }
- host.addEventListener('click',function(e){var b=e.target.closest('[data-comp]');if(b)pick(b.dataset.comp,true)});
+ /* Replier : toucher à nouveau le point actif referme le panneau ouvert. */
+ function foldAll(){
+  host.querySelectorAll('[data-comp][aria-pressed]').forEach(function(b){b.setAttribute('aria-pressed','false')});
+  host.querySelectorAll('.pg-spoke').forEach(function(l){l.classList.remove('on')});
+  PANELS.querySelectorAll('.pg-panel').forEach(function(p){p.hidden=true});
+  try{history.replaceState(null,'','#criteres')}catch(_){}
+ }
+ host.addEventListener('click',function(e){var b=e.target.closest('[data-comp]');if(!b)return;
+  /* le point actif se replie ; un autre point ouvre son panneau */
+  if(b.getAttribute('aria-pressed')==='true'){foldAll();return}
+  pick(b.dataset.comp,true)});
  var m=/^#critere-([a-z]+)$/.exec(location.hash);
  pick(m&&byK(m[1])?m[1]:'cpu',false);
 }

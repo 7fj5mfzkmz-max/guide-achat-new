@@ -125,6 +125,17 @@ function buildAudit(){
   /* Ouvre la première carte : le questionnaire commence sans clic inutile. */
   var first=root.querySelector('.pc-audit-card');
   if(first){first.classList.add('is-open');var fh=first.querySelector('.pc-audit-head');if(fh)fh.setAttribute('aria-expanded','true');}
+  /* « Voir les modèles adaptés » : ouvre la sélection précise (profil, budget, système, écran)
+     dans le tiroir, avec les fiches détaillées — au lieu d'un simple défilement vers le catalogue. */
+  var cta=document.getElementById('pc-audit-cta');
+  if(cta)cta.addEventListener('click',function(e){
+    if(currentFilter==='all')return; /* pas encore de profil : le lien ancre suffit */
+    var d=document.getElementById('pc-drawer');
+    if(!d||!profileList().length)return; /* tiroir absent ou vide : on laisse le défilement */
+    e.preventDefault();
+    var label=PROFILES.find(p=>p.id===currentFilter);
+    openDrawer('Modèles adaptés à votre profil « '+(label?label.label.toLowerCase():currentFilter)+' »',profileList());
+  });
 }
 function dominantProfile(){
   var totals={etudiant:0,professionnel:0,createur:0,gamer:0}, done=0;
