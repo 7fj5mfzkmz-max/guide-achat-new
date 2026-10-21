@@ -18,7 +18,13 @@
   /* Catégorie : un pc portable (lien ou saisie) est détecté par ses mots-clés et bascule
      libellés, profils et requêtes vers le kit pc-portables. Smartphones par défaut. */
   var LAPTOP_WORD = /\b(?:pc portable|ordinateur portable|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book|matebook|surface laptop|victus|legion|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga|pavilion|envy|spectre|rog)\b/i;
-  function detectCategory(text) { return LAPTOP_WORD.test(String(text || "")) ? "pc-portables" : "smartphones"; }
+  var PHONE_WORD = /\b(?:smartphone|iphone|galaxy|redmi|poco|xiaomi|pixel|oneplus|fairphone|motorola|oppo|realme|nothing phone)\b/i;
+  function detectCategory(text) {
+    var s = String(text || "");
+    if (LAPTOP_WORD.test(s)) return "pc-portables";
+    if (PHONE_WORD.test(s)) return "smartphones";
+    return state.category; /* pas d’indice : on garde la catégorie en cours (celle de la page d’origine) */
+  }
   function setCategory(cat) {
     state.category = cat === "pc-portables" ? "pc-portables" : "smartphones";
     var kit = window.GuideCategoryKit ? window.GuideCategoryKit.get(state.category) : null;
@@ -30,6 +36,10 @@
   function techSearchLabel() {
     return state.category === "pc-portables" ? "Recherche du modèle dans le catalogue et les sources publiques…" : "Recherche croisée dans PhonesData, Kimovil et GSMArena…";
   }
+
+  /* Catégorie initiale transmise par la page d’origine (ex. analyseur.html?cat=pc-portables depuis le guide PC) :
+     elle prépare libellés et profils avant toute soumission et sert de repli si le lien collé ne dit rien. */
+  try { var catParam = /[?&]cat=([a-z-]+)/.exec(location.search); if (catParam) setCategory(catParam[1]); } catch (e) {}
 
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]; }); }
   function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
@@ -109,7 +119,7 @@
   function viewManual(note, withCapture) {
     var capture = withCapture ? '<div class="model-analyzer-capture"><strong>Le site bloque la lecture automatique.</strong><p>Sur Safari, vous pouvez lire la fiche telle que vous la voyez et la transmettre au guide.</p><a class="btn" href="capture.html">Lire la page avec Safari</a></div>' : '';
     show('<div class="model-analyzer-card"><h3>Quel modèle recherchez-vous ?</h3><p>' + esc(note || "Le lien ne permet pas d’identifier le modèle avec certitude.") + " Saisissez sa marque et sa référence complète.</p>" + capture +
-      '<form class="model-analyzer-input-row" data-manual><input type="text" data-autofocus required placeholder="Ex. Nokia G10" aria-label="Marque et modèle" autocomplete="off"><button class="btn" type="submit">Utiliser ce modèle</button></form>' + retryButton() + "</div>");
+      '<form class="model-analyzer-input-row" data-manual><input type="text" data-autofocus required placeholder="' + (state.category === "pc-portables" ? "Ex. Asus Vivobook 15" : "Ex. Nokia G10") + '" aria-label="Marque et modèle" autocomplete="off"><button class="btn" type="submit">Utiliser ce modèle</button></form>' + retryButton() + "</div>");
     stage.querySelector("[data-manual]").addEventListener("submit", function (e) {
       e.preventDefault();
       var text = e.target.querySelector("input").value.trim();
