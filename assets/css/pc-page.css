@@ -504,6 +504,10 @@ input[type="range"].pcx-slider { cursor: pointer; }
   .pcx-head { text-align: left; }
   .pcx-headr { text-align: left; }
   .pcx-prio { justify-content: flex-start; }
+  /* jauges d’usage : libellé sur sa propre ligne, barre + verdict dessous */
+  .pcx-meter > span { flex: 1 1 100%; }
+  .pcx-meter .pcx-mtrack { flex: 1; min-width: 0; }
+  .pcx-meter > b { flex: none; min-width: 0; }
 }
 .site-footer { padding-bottom: 40px; }
 

@@ -23,7 +23,6 @@ var scr='<div class="pg-lcd pg-ecr" data-t="0"><p class="pg-note"><b>Comparer la
 function sv(b){return '<svg viewBox="0 0 320 180" aria-hidden="true" focusable="false"><rect width="320" height="180" fill="#060b10"/>'+b+'</svg>'}
 function tx(x,y,t,z){return '<text x="'+x+'" y="'+y+'" font-family="Inter Tight,system-ui,sans-serif" font-weight="700" font-size="'+(z||14)+'" text-anchor="middle">'+t+'</text>'}
 function cells(on,total,cols,col){var w=Math.min(26,300/cols-4),s='',k;for(k=0;k<total;k++)s+='<rect class="pg-px" style="animation-delay:-'+(k%5*.3)+'s" x="'+(10+(k%cols)*(w+4))+'" y="'+(8+Math.floor(k/cols)*(w+4))+'" width="'+w+'" height="'+w+'" rx="4" fill="'+(k<on?col:'#64748b')+'" opacity="'+(k<on?1:.25)+'"/>';return '<svg viewBox="0 0 350 '+(16+Math.ceil(total/cols)*(w+4))+'" aria-hidden="true">'+s+'</svg>'}
-function fan(cx,cy,rr,d){return '<g class="pg-fan" style="transform-origin:'+cx+'px '+cy+'px;animation-duration:'+d+'s"><circle cx="'+cx+'" cy="'+cy+'" r="'+rr+'" fill="none" stroke="#e8eef5" stroke-width="2"/><path fill="#35e0ff" opacity=".6" d="M'+cx+' '+cy+'v-'+rr+'a'+rr/2+' '+rr/2+' 0 0 1 '+rr/2+' '+rr/2+'zM'+cx+' '+cy+'h'+rr+'a'+rr/2+' '+rr/2+' 0 0 1-'+rr/2+' '+rr/2+'zM'+cx+' '+cy+'v'+rr+'a'+rr/2+' '+rr/2+' 0 0 1-'+rr/2+'-'+rr/2+'zM'+cx+' '+cy+'h-'+rr+'a'+rr/2+' '+rr/2+' 0 0 1 '+rr/2+'-'+rr/2+'z"/></g>'}
 var DM={
 cpu:{hint:'Faites glisser pour changer le nombre de cœurs.',o:[
  {n:'4 cœurs',p:[['g','prix bas'],['b','suffisant pour le quotidien']],t:'Quatre tâches en parallèle : un export vidéo prend le plus de temps.'},
@@ -31,12 +30,34 @@ cpu:{hint:'Faites glisser pour changer le nombre de cœurs.',o:[
  {n:'16 cœurs',p:[['r','prix élevé'],['b','création et calcul lourds']],t:'Seize cœurs : le gain existe surtout si le logiciel sait s’en servir.'}],
  scene:function(i){var d=[8,4,2][i];return sv(tx(160,40,'Export vidéo',16)+'<rect x="30" y="70" width="260" height="26" rx="13" fill="none" stroke="#e8eef5" stroke-width="2"/><rect class="pg-load" style="animation-duration:'+d+'s" x="33" y="73" width="254" height="20" rx="10" fill="#35e0ff"/>'+tx(160,140,'≈ '+d+' s · durée illustrative',14))},
  layer:function(i){return cells([4,8,16][i],16,8,'#35e0ff')}},
-gpu:{hint:'Faites glisser : la fluidité de la scène change.',o:[
- {n:'Intégrée',p:[['g','prix bas'],['b','légère, très autonome']],t:'Intégrée au processeur : suffisante pour la vidéo et le bureau, saccadée en jeu exigeant.'},
- {n:'Dédiée d’entrée',p:[['o','prix moyen'],['b','jeu en 1080p, montage']],t:'Une vraie carte graphique : le jeu courant devient fluide.'},
- {n:'Dédiée haut de gamme',p:[['r','prix élevé'],['b','jeu exigeant, 3D']],t:'Plus de cœurs graphiques et un refroidissement renforcé, au prix du poids et de la chaleur.'}],
- scene:function(i){var F=[4,12,40][i],f=[15,45,90][i];return sv('<g class="pg-rot" style="animation-timing-function:steps('+F+')"><rect x="125" y="50" width="70" height="70" rx="12" fill="#ff2e88"/><rect x="142" y="67" width="36" height="36" fill="#ffd400"/></g>'+tx(160,160,'≈ '+f+' images/s · illustratif',14))},
- layer:function(i){var n=[0,1,3][i],w=[90,200,330][i],s='<rect x="10" y="12" width="'+w+'" height="'+(i?66:40)+'" rx="8" fill="none" stroke="#e8eef5" stroke-width="2"/>',k;if(!i)s+=tx(55,38,'iGPU',13);for(k=0;k<n;k++)s+=fan(10+w/(n+1)*(k+1),45,24,[0,1.6,.9][i]);return '<svg viewBox="0 0 350 90" aria-hidden="true">'+s+'</svg>'}},
+gpu:{hint:'Faites glisser : le paysage se dessine avec de plus en plus de détails.',o:[
+ {n:'Intégrée',p:[['g','prix bas'],['b','légère, très autonome']],t:'Partagée avec le processeur : la vidéo et le bureau restent fluides, mais les jeux exigeants doivent fortement réduire leurs détails.'},
+ {n:'Dédiée d’entrée',p:[['o','prix moyen'],['b','jeu en 1080p, montage']],t:'Une carte dédiée d’entrée de gamme : les jeux courants deviennent fluides, avec textures et ombres.'},
+ {n:'Dédiée haut de gamme',p:[['r','prix élevé'],['b','jeu exigeant, 3D']],t:'Davantage de cœurs graphiques et un refroidissement renforcé : détails fins, reflets et effets, au prix du poids et de la chaleur.'}],
+ scene:function(i){var L=i,defs='<defs><linearGradient id="gpu-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1420"/><stop offset="1" stop-color="#29506e"/></linearGradient><linearGradient id="gpu-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#153852"/><stop offset="1" stop-color="#08131f"/></linearGradient><radialGradient id="gpu-glow"><stop offset="0" stop-color="#f6efd2" stop-opacity=".5"/><stop offset="1" stop-color="#f6efd2" stop-opacity="0"/></radialGradient></defs>';
+  function dr(d,c){return '<g class="dr" style="transition-delay:'+d+'s">'+c+'</g>'}
+  function tree(x){return '<path d="M'+x+' 99l6 12h-12zM'+x+' 92l5 10h-10z" fill="#081521"/>'}
+  var sky='<rect width="320" height="112" fill="'+(L?'url(#gpu-sky)':'#0d1b2a')+'"/>';
+  sky+=L?'<circle class="pg-pulse" cx="252" cy="42" r="30" fill="url(#gpu-glow)"/><circle cx="252" cy="42" r="15" fill="#f6efd2"/>'+(L>1?'<circle cx="247" cy="38" r="3" fill="#d9cfae"/><circle cx="257" cy="46" r="2" fill="#d9cfae"/>':''):'<circle cx="252" cy="42" r="14" fill="#cdd9e4" opacity=".9"/>';
+  if(L>1){var k;for(k=0;k<9;k++)sky+='<circle class="pg-twinkle" style="animation-delay:-'+(k*.4)+'s" cx="'+(18+k*33)+'" cy="'+(12+(k*23)%42)+'" r="'+(1+(k%3)*.4)+'" fill="#fff"/>'}
+  if(L)sky+='<ellipse cx="80" cy="30" rx="26" ry="6" fill="#16324a" opacity=".85"/><ellipse cx="186" cy="22" rx="32" ry="7" fill="#16324a" opacity=".8"/>';
+  if(L>1)sky+='<path d="M120 26q4-5 8 0q4-5 8 0M64 34q4-5 8 0q4-5 8 0" fill="none" stroke="#23405c" stroke-width="1.5"/>';
+  var far='<path d="M0 112L44 60L92 112L142 66L198 112L246 62L320 112Z" fill="#1d3a52"/>';
+  if(L)far+='<path d="M44 60L92 112H64L44 84ZM142 66L198 112H166L142 88ZM246 62L320 112H282L246 86Z" fill="#2a5273"/>';
+  if(L>1)far+='<path d="M44 60l7 8-5 2-4-5zM246 62l7 8-5 2-4-5z" fill="#dbe7f0" opacity=".9"/>';
+  var mid=(L>1?'<rect y="103" width="320" height="10" fill="#29506e" opacity=".18"/>':'')+'<path d="M0 112L70 76L148 112L212 78L290 112Z" fill="#142c3f"/>';
+  if(L)mid+='<path d="M70 76L148 112H114L70 94ZM212 78L290 112H258L212 96Z" fill="#1f4258"/>';
+  var hill='<path d="M0 112C50 98 110 100 160 108C210 116 260 98 320 104V112H0Z" fill="#0c1c29"/>';
+  if(L===1)hill+=tree(58)+tree(200)+tree(284);
+  if(L>1)hill+=tree(40)+tree(66)+tree(110)+tree(168)+tree(236)+tree(296);
+  var water='<rect y="112" width="320" height="68" fill="'+(L?'url(#gpu-sea)':'#0a1826')+'"/>'+(L?'<path d="M0 112h320" stroke="#2a5878" stroke-width="1.5" opacity=".8"/>':'');
+  var det;
+  if(!L)det='<path d="M0 132h320M0 152h220" stroke="#12283a" stroke-width="2"/>';
+  else{det='<g fill="#9fb3c4"><rect class="pg-blink" style="animation-delay:-1.2s" x="232" y="120" width="40" height="3" rx="1.5"/><rect class="pg-blink" style="animation-delay:-2.4s" x="237" y="127" width="30" height="3" rx="1.5"/><rect class="pg-blink" style="animation-delay:-.6s" x="241" y="134" width="22" height="3" rx="1.5"/><rect class="pg-blink" style="animation-delay:-1.8s" x="245" y="142" width="14" height="3" rx="1.5"/></g>';
+   if(L>1)det+='<path d="M20 156q14 3 28 0M120 164q14 3 28 0M210 158q14 3 28 0M60 172q14 3 28 0" stroke="#1e4258" stroke-width="2" fill="none"/>'}
+  var cap=tx(160,158,'Niveau de détail : '+['bas','moyen','élevé'][i],14)+tx(160,174,'scène calculée par le GPU · illustration pédagogique',10.5);
+  return sv(defs+dr(0,sky)+dr(.12,far)+dr(.22,mid)+dr(.32,hill)+dr(.42,water+det)+dr(.55,cap))},
+ layer:function(i){var L=['FORMES','TEXTURES','OMBRES','REFLETS','EFFETS'],n=[1,3,5][i],k,s='';for(k=0;k<5;k++){var on=k<n,x=8+k*68;s+='<g><rect x="'+x+'" y="8" width="62" height="30" rx="5" fill="'+(on?'#0a1219':'none')+'" stroke="'+(on?'#35e0ff':'#64748b')+'" stroke-width="1.5"'+(on?'':' stroke-dasharray="4 3"')+'/><text x="'+(x+31)+'" y="27" text-anchor="middle" font-size="10.5" font-family="JetBrains Mono,monospace" fill="'+(on?'#35e0ff':'#64748b')+'">'+L[k]+'</text></g>'}return '<svg viewBox="0 0 350 46" aria-hidden="true">'+s+'</svg>'}},
 ram:{hint:'Faites glisser : sept applications sont ouvertes.',o:[
  {n:'8 Go',p:[['r','juste'],['b','prix bas']],t:'Au-delà de trois applications, le système déplace des données vers le SSD : tout ralentit.'},
  {n:'16 Go',p:[['o','prix moyen'],['b','le bon équilibre']],t:'Six applications tiennent confortablement ; la septième commence à peser.'},
@@ -62,7 +83,7 @@ poids:{hint:'Faites glisser : le sac pèse de plus en plus.',o:[
  scene:function(i){var a=[-3,5,13][i],kg=['1,2','1,8','2,5'][i];return sv('<path d="M160 60v90M120 150h80" stroke="#e8eef5" stroke-width="3" fill="none"/><g style="transform:rotate('+a+'deg);transform-origin:160px 60px;transform-box:view-box"><path d="M60 60h200" stroke="#e8eef5" stroke-width="3"/><rect x="62" y="'+(62+i*8)+'" width="'+(34+i*10)+'" height="'+(22+i*5)+'" rx="4" fill="#35e0ff"/><circle cx="250" cy="76" r="14" fill="#94a3b8"/></g>'+tx(160,172,kg+' kg contre 1 kg de référence · illustratif',12))},
  layer:function(i){return cells([4,7,10][i],12,12,'#fb923c')}}};
 function demo(k){var d=DM[k];return '<div class="pg-lcd pg-dm" data-dm="'+k+'"><p class="pg-note"><b>Comparer.</b> '+d.hint+'</p><div class="pg-tv pg-sc"></div><div class="pg-lay"></div><div class="pg-seg" role="group" aria-label="Option">'+d.o.map(function(o,i){return '<button type="button" data-i="'+i+'">'+o.n+'</button>'}).join('')+'</div><input class="pg-range" type="range" min="0" max="2" step="1" value="0" aria-label="Comparer les options"/><div class="pg-dt"></div></div>'}
-function wireDm(box){var d=DM[box.dataset.dm],rg=box.querySelector('input');function go(i){i=+i;rg.value=i;box.querySelector('.pg-sc').innerHTML=d.scene(i);box.querySelector('.pg-lay').innerHTML=d.layer(i);var o=d.o[i];box.querySelector('.pg-dt').innerHTML='<p><b>'+o.n+'</b> — '+o.t+'</p><ul class="pg-opts"><li>'+o.p.map(function(q){return pill(q[0],(q[0]==='b'?'Avantage : ':'')+q[1])}).join(' ')+'</li></ul>';box.querySelectorAll('.pg-seg button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.i===i)})}rg.addEventListener('input',function(){go(rg.value)});box.querySelectorAll('.pg-seg button').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.i)})});go(0)}
+function wireDm(box){var d=DM[box.dataset.dm],rg=box.querySelector('input');function go(i){i=+i;rg.value=i;var sc=box.querySelector('.pg-sc');sc.innerHTML=d.scene(i);sc.classList.remove('pg-drawn');void sc.offsetWidth;sc.classList.add('pg-drawn');box.querySelector('.pg-lay').innerHTML=d.layer(i);var o=d.o[i];box.querySelector('.pg-dt').innerHTML='<p><b>'+o.n+'</b> — '+o.t+'</p><ul class="pg-opts"><li>'+o.p.map(function(q){return pill(q[0],(q[0]==='b'?'Avantage : ':'')+q[1])}).join(' ')+'</li></ul>';box.querySelectorAll('.pg-seg button').forEach(function(b){b.setAttribute('aria-pressed',+b.dataset.i===i)})}rg.addEventListener('input',function(){go(rg.value)});box.querySelectorAll('.pg-seg button').forEach(function(b){b.addEventListener('click',function(){go(b.dataset.i)})});go(0)}
 
 /* ---------- critères ---------- */
 function ic(p){return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+p+'</svg>'}

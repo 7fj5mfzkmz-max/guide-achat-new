@@ -112,6 +112,11 @@
 .pg-dm .pg-tv{background:#060b10}
 .pg-tv svg text,.pg-lay svg text{fill:#e8eef5!important}
 .pg-lay{border:1px dashed var(--ink);background:#0a0f14;padding:4px}
+/* paysage GPU : le dessin se révèle par étapes à chaque changement de niveau (désactivé si mouvement réduit, en pause ou mode économe) */
+.pg-sc svg .dr{opacity:0;transform:translateY(7px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+.pg-sc.pg-drawn svg .dr{opacity:1;transform:none}
+.pg[data-motion="off"] .pg-sc svg .dr,.fx-lite .pg-sc svg .dr{transition:none;opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.pg-sc svg .dr{transition:none;opacity:1;transform:none}}
 /* ligne de balayage des scènes (style scan Watch Dogs 2) */
 .pg-scanln{animation:pgScanY 3.6s linear infinite}
 @keyframes pgScanY{0%{transform:translateY(-4px)}88%{transform:translateY(178px)}100%{transform:translateY(178px)}}
