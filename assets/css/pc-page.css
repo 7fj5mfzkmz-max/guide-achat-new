@@ -469,7 +469,7 @@ input[type="range"].pcx-slider { cursor: pointer; }
 .pcx-compare { --pos: 50%; --r: 50%; position: relative; display: grid; border: 1px solid var(--ink); overflow: hidden; }
 .pcx-compare > .pcx-scene { grid-area: 1 / 1; }
 .pcx-compare > .pcx-scene:first-child { clip-path: inset(0 var(--r) 0 0); }
-.pcx-compare .pcx-ips { clip-path: inset(0 0 0 var(--pos)); }
+.pcx-compare > .pcx-scene.pcx-ips + .pcx-scene { clip-path: inset(0 0 0 var(--pos)); }
 .pcx-compare .pcx-scene svg { width: 100%; height: 100%; display: block; }
 .pcx-lift { position: absolute; inset: 0; background: radial-gradient(circle at 72% 18%, rgba(255, 255, 255, .28), transparent 42%); pointer-events: none; }
 .pcx-tag { position: absolute; top: 10px; z-index: 3; font: 700 10px var(--mono); letter-spacing: .1em; background: #ffd400; color: #0f1115; padding: 4px 8px; }
@@ -486,6 +486,9 @@ input[type="range"].pcx-slider { cursor: pointer; }
 .pcx-ball { position: absolute; top: 2px; bottom: 2px; left: 0; width: 22px; background: var(--ink); animation: pcx-run 3s steps(var(--n, 30), end) infinite; }
 .pcx-hz.is-paused .pcx-ball { animation-play-state: paused; }
 @keyframes pcx-run { from { left: 0; } to { left: calc(100% - 24px); } }
+/* pause du mouvement : bouton global, mode économe, préférence système */
+.pg[data-motion="off"] .pcx-ball, .fx-lite .pcx-ball { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { .pcx-ball { animation: none; } }
 .pcx-gamut { width: 100%; }
 .pcx-gamut svg { width: 100%; height: auto; display: block; }
 

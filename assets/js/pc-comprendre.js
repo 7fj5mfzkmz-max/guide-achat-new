@@ -207,8 +207,8 @@ function stageEcran() {
     '<div class="pcx-tabs" role="tablist" aria-label="Propriétés d’un écran">' +
       '<button type="button" role="tab">Noirs et contraste</button><button type="button" role="tab">Fluidité</button><button type="button" role="tab">Couleurs</button></div>' +
 
-    '<div role="tabpanel"><div class="pcx-compare"><div class="pcx-scene">' + scene + '</div>' +
-      '<div class="pcx-scene pcx-ips">' + scene + '<div class="pcx-lift"></div></div>' +
+    '<div role="tabpanel"><div class="pcx-compare"><div class="pcx-scene pcx-ips">' + scene + '<div class="pcx-lift"></div></div>' +
+      '<div class="pcx-scene">' + scene + '</div>' +
       '<span class="pcx-tag pcx-tag-l">IPS</span><span class="pcx-tag pcx-tag-r">OLED</span><div class="pcx-handle"></div></div>' +
       '<input class="pcx-range" type="range" min="4" max="96" value="50" aria-label="Faire glisser pour comparer l’IPS (à gauche) et l’OLED (à droite)">' +
       '<div class="pcx-two"><p><b>IPS : un rétroéclairage reste allumé.</b> Le noir est un gris très sombre, et les zones lumineuses « débordent » légèrement sur leur voisinage. En contrepartie, la luminosité soutenue est élevée.</p>' +
