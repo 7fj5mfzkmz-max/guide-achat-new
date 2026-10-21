@@ -83,3 +83,25 @@ et le code nettoyé :
 ### Validation
 - npm test, pc:catalogue-test, test:ui : 100 % vert.
 - QA visuelle desktop + mobile (aucun débordement), thèmes clair/sombre.
+
+## v3 — style « fiche technique » (21 octobre 2026, 2e itération)
+
+Nouvelles références : crox.framer.website × accessibilitychecking.org.
+La page adopte un langage « fiche technique d'ingénierie » :
+
+- Fond gris clair (#ecebe7), encre presque noire, bordures fines carrées
+  (radius 0), filets verticaux sur le conteneur, titres h1/h2 en capitales.
+- Barre de métadonnées sous l'en-tête (PC Portables — Guide visuel ·
+  60 modèles · Édition 2026) et bandeau défilant (marquee) sous le hero.
+- Boutons carrés à ombre portée dure, étiquettes monospace avec marqueur
+  carré, états choisis inversés (fond encre).
+- Module démos harmonisé par surcharge des variables --pcc-* et des rayons
+  (pc-chapitres.css reste inchangé) : fonds neutres, angles carrés,
+  boutons techniques.
+- Correctifs de régression : la mise en capitales des h3 et des pastilles
+  cassait 5 tests UI (innerText rendu) — capitales limitées à h1/h2.
+
+### Validation
+- npm test, pc:catalogue-test, test:ui : 100 % vert (les 5 régressions
+  corrigées), QA visuelle desktop/mobile, thèmes clair/sombre, aucun
+  débordement horizontal.
