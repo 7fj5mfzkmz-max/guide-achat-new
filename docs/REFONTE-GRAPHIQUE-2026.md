@@ -58,3 +58,28 @@ Design (éditorial premium, typographie serif, grands visuels) et de ref.digital
 - Étendre design-system.css à `index.html` et aux pages catégories.
 - Migrer progressivement les autres pages, puis supprimer les anciennes
   feuilles quand plus aucune page ne les référence.
+
+## v2.1 — nettoyage et épuration (21 octobre 2026)
+
+Retour utilisateur : le rendu précédent ne plaisait pas. La page a été épurée
+et le code nettoyé :
+
+### Design
+- Fond blanc pur (l'écru beige est abandonné), typo 100 % Inter Tight
+  (Libre Baskerville retiré du chargement des polices), titres resserrés.
+- Eyebrows monospace en gris discret au lieu du teal décoratif.
+- Icônes du questionnaire neutres et compactes (plus de pastilles colorées).
+- Typographie des cartes chapitres unifiée en sans (override dans pc-page.css,
+  pc-chapitres.css reste inchangé).
+
+### Code mort supprimé (design-system.css / pc-page.css)
+- Règles orphelines : .detail-mode-floating, .detail-bubble (x4), .backdrop,
+  .category-menu-intro, .category-menu-icon, .site-nav-disabled, .draw-ready
+  (x3), .dark-theme .btn:hover, .pcx-name, .pcx-val, .pcx-cta, .pcx-grid,
+  .pcx-lbl, .pc-section-eyebrow-row, .pc-cat-top (l'élément n'a que l'id).
+- Vérification par audit de couverture du DOM (Playwright) + parcours des
+  états paresseux (profil choisi, tiroir budget, mode détails).
+
+### Validation
+- npm test, pc:catalogue-test, test:ui : 100 % vert.
+- QA visuelle desktop + mobile (aucun débordement), thèmes clair/sombre.
