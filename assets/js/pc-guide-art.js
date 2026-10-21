@@ -41,20 +41,13 @@ g(9,function(i){return '<circle class="pg-twinkle" style="animation-delay:-'+(i*
 g(14,function(i){return '<rect class="pg-blink" style="animation-delay:-'+(i*.7)+'s" x="'+(74+(i%7)*36)+'" y="'+(150+Math.floor(i/7)*18)+'" width="6" height="8" fill="#ffd400"/>'}).join('')+
 '<g clip-path="url(#pg-clip)"><rect class="pg-shine" x="-90" y="30" width="90" height="180" fill="url(#pg-shine)" transform="skewX(-18)"/></g>'+
 '<path class="pg-flow" d="M64 191h272" stroke="#35e0ff" stroke-width="4" fill="none" stroke-dasharray="12 8" clip-path="url(#pg-clip)"/><path d="M26 214h348l-16 20H42z" fill="url(#pg-metal)"/><rect x="170" y="214" width="60" height="6" rx="3" fill="#64748b"/></svg>';
-/* GPU : carte en traitement papier (contours --ink, accent --accent) — deux ventilateurs, puce, banque VRAM, connecteur, bande de rendu */
-function blades(cx,cy,r){return g(7,function(i){return '<path d="M'+cx+' '+(cy-6)+'Q'+(cx+16)+' '+(cy-r*.7)+' '+(cx+5)+' '+(cy-r)+'Q'+(cx-10)+' '+(cy-r*.6)+' '+cx+' '+(cy-6)+'z" class="gi-b" transform="rotate('+(i*51.43)+' '+cx+' '+cy+')"/>'}).join('')}
-A.gpu=open('Carte graphique : deux ventilateurs en rotation, puce centrale, mémoire vidéo et pixels rendus')+
-'<rect x="14" y="52" width="18" height="98" rx="3" class="gi-o"/>'+
-'<rect x="30" y="40" width="340" height="128" rx="14" class="gi-card"/>'+
-'<path class="pg-flow gi-o" d="M40 54h320" stroke-width="2" stroke-dasharray="10 8" opacity=".5"/>'+
-[120,262].map(function(cx){return '<circle cx="'+cx+'" cy="106" r="44" class="gi-o"/><g class="pg-spin pg-vb" style="transform-origin:'+cx+'px 106px">'+blades(cx,106,38)+'</g><circle class="pg-pulse gi-a" cx="'+cx+'" cy="106" r="9"/>'}).join('')+
-'<rect x="170" y="72" width="44" height="68" rx="6" class="gi-o"/>'+
-g(4,function(i){return '<rect class="pg-pulse gi-a" style="animation-delay:-'+(i*.5)+'s" x="'+(178+(i%2)*20)+'" y="'+(80+Math.floor(i/2)*26)+'" width="12" height="18" rx="2"/>'}).join('')+
-g(6,function(i){return '<rect x="'+(52+i*52)+'" y="150" width="38" height="12" rx="2" class="gi-o" stroke-width="1.5"/><rect class="pg-pulse gi-a" style="animation-delay:-'+(i*.35)+'s" x="'+(56+i*52)+'" y="153" width="30" height="6" rx="3" opacity=".8"/>'}).join('')+
-'<rect x="110" y="168" width="180" height="8" class="gi-a"/>'+g(5,function(i){return '<path d="M'+(140+i*30)+' 168v8" class="gi-s"/>'}).join('')+
-'<rect x="60" y="192" width="280" height="42" rx="6" class="gi-o" stroke-width="1.5"/>'+
-g(14,function(i){return '<rect class="pg-blink gi-f" style="animation-delay:-'+(i*.55)+'s" x="'+(68+i*19)+'" y="200" width="13" height="26" rx="2" opacity=".8"/>'}).join('')+
-'<text x="200" y="252" text-anchor="middle" class="gi-t">GPU · VRAM · RENDU</text></svg>';
+/* GPU : carte simple et lisible — deux ventilateurs qui tournent, connecteur, étiquette GPU. Pales pré-calculées (aucun attribut transform : rien ne peut se décoller à l’animation). */
+function blades(cx,cy){var s='',i,a;for(i=0;i<7;i++){a=i*2*Math.PI/7-Math.PI/2;s+='<path d="M'+(cx+12*Math.cos(a)).toFixed(1)+' '+(cy+12*Math.sin(a)).toFixed(1)+'L'+(cx+38*Math.cos(a)).toFixed(1)+' '+(cy+38*Math.sin(a)).toFixed(1)+'" class="gi-bl"/>'}return s}
+A.gpu=open('Carte graphique : une carte avec deux ventilateurs en rotation')+
+'<rect x="40" y="60" width="320" height="130" rx="14" class="gi-card"/>'+
+[125,275].map(function(cx){return '<circle cx="'+cx+'" cy="125" r="45" class="gi-o"/><g class="pg-spin pg-vb" style="transform-origin:'+cx+'px 125px">'+blades(cx,125)+'</g><circle class="pg-pulse gi-a" cx="'+cx+'" cy="125" r="8"/>'}).join('')+
+'<rect x="140" y="190" width="120" height="10" class="gi-a"/>'+g(5,function(i){return '<path d="M'+(160+i*20)+' 190v10" class="gi-s"/>'}).join('')+
+'<text x="200" y="230" text-anchor="middle" class="gi-t">GPU</text></svg>';
 /* RAM : barrette, 8 puces, paquets de données qui montent vers des fenêtres d’applications */
 A.ram=open('Mémoire vive : puces actives et données alimentant des fenêtres d’applications')+
 g(3,function(i){var x=60+i*106;return '<g class="pg-float" style="animation-delay:-'+i*.9+'s"><rect x="'+x+'" y="18" width="92" height="56" rx="8" fill="#0f172a" stroke="#35e0ff" stroke-width="2"/><rect x="'+x+'" y="18" width="92" height="12" rx="6" fill="#134e4a"/><circle cx="'+(x+10)+'" cy="24" r="2.5" fill="#f87171"/><circle cx="'+(x+19)+'" cy="24" r="2.5" fill="#ffd400"/><rect class="pg-pulse" style="animation-delay:-'+i*.6+'s" x="'+(x+10)+'" y="40" width="'+(50+i*8)+'" height="6" rx="3" fill="#35e0ff"/><rect x="'+(x+10)+'" y="52" width="'+(36+i*10)+'" height="6" rx="3" fill="#64748b"/></g>'}).join('')+
