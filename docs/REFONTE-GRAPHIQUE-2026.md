@@ -105,3 +105,26 @@ La page adopte un langage « fiche technique d'ingénierie » :
 - npm test, pc:catalogue-test, test:ui : 100 % vert (les 5 régressions
   corrigées), QA visuelle desktop/mobile, thèmes clair/sombre, aucun
   débordement horizontal.
+
+## v4 — mashup questionnaire + démos (21 octobre 2026, 3e itération)
+
+Reproduction exacte des références (polices et couleurs extraites des sites) :
+Archivo 800 (titres), JetBrains Mono (labels/boutons), Public Sans (corps),
+accent jaune #FFD400, fond gris #E3E7EB, boutons noirs carrés.
+
+**Mashup structurel — questionnaire et démos ne font plus qu'un :**
+- Nouveau script `pc-mashup.js` : chaque carte-question embarque les démos
+  interactives de son critère (usage → CPU + GPU, mémoire → RAM + stockage,
+  mobilité → poids + batterie, écran → dalle). La section #composants
+  disparaît ; la boussole ouvre directement la carte-question.
+- Styles complets restitués pour les blocs « comprendre » (60+ classes pcx-* :
+  planificateur de capacité, barres de temps CPU, comparateur IPS/OLED,
+  fluidité 60/120 Hz, curseur mobilité, sac SVG) perdus lors du nettoyage v2.
+- Bug corrigé dans site-motion.js : les sections plus hautes que l'écran ne
+  pouvaient jamais atteindre le seuil de révélation (6 %) et restaient
+  invisibles — seuil ramené à 0 (toute section qui entre dans le viewport se révèle).
+- Tests adaptés à la structure fusionnée (scripts/pc-chapitres-ui-test.js).
+
+### Validation
+- npm test, pc:catalogue-test, test:ui : 100 % vert, QA visuelle
+  desktop/mobile, thèmes clair/sombre, aucun débordement horizontal.

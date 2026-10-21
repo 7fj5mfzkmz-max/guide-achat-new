@@ -77,7 +77,7 @@
         if (!e.isIntersecting) return;
         e.target.classList.add("is-in"); rv.unobserve(e.target);
       });
-    }, { threshold: 0.06, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
     revealEls.forEach(function (el, i) {
       el.classList.add("ga-rv");
       el.style.setProperty("--rv-d", Math.min((i % 5) * 0.04, 0.16) + "s");
