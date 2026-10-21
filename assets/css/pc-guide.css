@@ -100,6 +100,15 @@
 .pg-ph h3{font:800 clamp(24px,3.4vw,38px)/1.05 var(--head);text-transform:uppercase;letter-spacing:-.02em;margin:6px 0 14px;outline:0}
 .pg-top{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(14px,2.4vw,28px);align-items:center}
 .pg-art{background:#0a0f14;border:1px solid var(--ink);background-image:linear-gradient(#ffffff0d 1px,transparent 1px),linear-gradient(90deg,#ffffff0d 1px,transparent 1px);background-size:20px 20px;padding:6px}
+/* Critère GPU : illustration en traitement papier, cohérente avec la page — couleurs du thème, ciblée sur ce seul critère */
+#pg-p-gpu .pg-art{background:var(--paper-2);background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:20px 20px}
+#pg-p-gpu .pg-art .gi-card{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+#pg-p-gpu .pg-art .gi-o{fill:none;stroke:var(--ink);stroke-width:2}
+#pg-p-gpu .pg-art .gi-b{fill:var(--paper);stroke:var(--ink);stroke-width:1.8}
+#pg-p-gpu .pg-art .gi-f{fill:var(--ink)}
+#pg-p-gpu .pg-art .gi-a{fill:var(--accent)}
+#pg-p-gpu .pg-art .gi-s{stroke:var(--ink);stroke-width:2;fill:none}
+#pg-p-gpu .pg-art .gi-t{fill:var(--ink-soft);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px}
 .pg-art svg,.pg-tv svg,.pg-lay svg{display:block;width:100%;height:auto}
 .pg-why{font:400 clamp(15.5px,1.5vw,17.5px)/1.65 var(--sans);color:var(--ink-soft);margin:0}
 .pg-more{margin-top:22px;padding-top:20px;border-top:1px solid var(--line-soft)}

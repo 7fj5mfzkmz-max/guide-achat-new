@@ -32,7 +32,7 @@ cpu:{hint:'Faites glisser pour changer le nombre de cœurs.',o:[
  layer:function(i){return cells([4,8,16][i],16,8,'#35e0ff')}},
 gpu:{hint:'Faites glisser : le paysage se dessine avec de plus en plus de détails.',o:[
  {n:'Intégrée',p:[['g','prix bas'],['b','légère, très autonome']],t:'Partagée avec le processeur : la vidéo et le bureau restent fluides, mais les jeux exigeants doivent fortement réduire leurs détails.'},
- {n:'Dédiée d’entrée',p:[['o','prix moyen'],['b','jeu en 1080p, montage']],t:'Une carte dédiée d’entrée de gamme : les jeux courants deviennent fluides, avec textures et ombres.'},
+ {n:'Dédiée d’entrée',p:[['o','prix moyen'],['b','jeu en 1080p, montage']],t:'Une carte dédiée d’entrée de gamme : les jeux courants deviennent généralement fluides, selon le jeu, le modèle exact et les réglages.'},
  {n:'Dédiée haut de gamme',p:[['r','prix élevé'],['b','jeu exigeant, 3D']],t:'Davantage de cœurs graphiques et un refroidissement renforcé : détails fins, reflets et effets, au prix du poids et de la chaleur.'}],
  scene:function(i){var L=i,defs='<defs><linearGradient id="gpu-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a1420"/><stop offset="1" stop-color="#29506e"/></linearGradient><linearGradient id="gpu-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#153852"/><stop offset="1" stop-color="#08131f"/></linearGradient><radialGradient id="gpu-glow"><stop offset="0" stop-color="#f6efd2" stop-opacity=".5"/><stop offset="1" stop-color="#f6efd2" stop-opacity="0"/></radialGradient></defs>';
   function dr(d,c){return '<g class="dr" style="transition-delay:'+d+'s">'+c+'</g>'}
@@ -57,7 +57,7 @@ gpu:{hint:'Faites glisser : le paysage se dessine avec de plus en plus de détai
    if(L>1)det+='<path d="M20 156q14 3 28 0M120 164q14 3 28 0M210 158q14 3 28 0M60 172q14 3 28 0" stroke="#1e4258" stroke-width="2" fill="none"/>'}
   var cap=tx(160,158,'Niveau de détail : '+['bas','moyen','élevé'][i],14)+tx(160,174,'scène calculée par le GPU · illustration pédagogique',10.5);
   return sv(defs+dr(0,sky)+dr(.12,far)+dr(.22,mid)+dr(.32,hill)+dr(.42,water+det)+dr(.55,cap))},
- layer:function(i){var L=['FORMES','TEXTURES','OMBRES','REFLETS','EFFETS'],n=[1,3,5][i],k,s='';for(k=0;k<5;k++){var on=k<n,x=8+k*68;s+='<g><rect x="'+x+'" y="8" width="62" height="30" rx="5" fill="'+(on?'#0a1219':'none')+'" stroke="'+(on?'#35e0ff':'#64748b')+'" stroke-width="1.5"'+(on?'':' stroke-dasharray="4 3"')+'/><text x="'+(x+31)+'" y="27" text-anchor="middle" font-size="10.5" font-family="JetBrains Mono,monospace" fill="'+(on?'#35e0ff':'#64748b')+'">'+L[k]+'</text></g>'}return '<svg viewBox="0 0 350 46" aria-hidden="true">'+s+'</svg>'}},
+ layer:function(i){var L=['FORMES','TEXTURES','OMBRES','REFLETS','EFFETS'],st=[[1,.4,.4,0,0],[1,1,1,.4,0],[1,1,1,1,1]][i],k,s='';for(k=0;k<5;k++){var v=st[k],x=8+k*68,c=v===1?'#35e0ff':(v?'#9fb3c4':'#64748b');s+='<g><rect x="'+x+'" y="6" width="62" height="28" rx="5" fill="'+(v?'#0a1219':'none')+'" stroke="'+c+'" stroke-width="1.5"'+(v?'':' stroke-dasharray="4 3"')+'/><text x="'+(x+31)+'" y="24" text-anchor="middle" font-size="10.5" font-family="JetBrains Mono,monospace" fill="'+c+'">'+L[k]+'</text></g>'}return '<svg viewBox="0 0 350 56" aria-hidden="true">'+s+'<text x="175" y="48" text-anchor="middle" font-size="9.5" font-family="JetBrains Mono,monospace" fill="#7f93a6">finesse illustrée — dépend du jeu, du modèle et des réglages</text></svg>'}},
 ram:{hint:'Faites glisser : sept applications sont ouvertes.',o:[
  {n:'8 Go',p:[['r','juste'],['b','prix bas']],t:'Au-delà de trois applications, le système déplace des données vers le SSD : tout ralentit.'},
  {n:'16 Go',p:[['o','prix moyen'],['b','le bon équilibre']],t:'Six applications tiennent confortablement ; la septième commence à peser.'},
@@ -131,6 +131,8 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
   host.querySelectorAll('.pg-spoke').forEach(function(l){l.classList.toggle('on',l.dataset.spoke===k)});
   PANELS.querySelectorAll('.pg-panel').forEach(function(p){p.hidden=p.dataset.k!==k});
   var p=document.getElementById('pg-p-'+k);
+  /* la démo se redessine (révélation) à chaque ouverture du critère */
+  var dsc=p.querySelector('.pg-sc');if(dsc){dsc.classList.remove('pg-drawn');void dsc.offsetWidth;dsc.classList.add('pg-drawn')}
   if(scroll){if(window.matchMedia('(max-width:900px)').matches)p.scrollIntoView({behavior:'smooth',block:'start'});var h=p.querySelector('h3');if(h)h.focus({preventScroll:true})}
   try{history.replaceState(null,'','#critere-'+k)}catch(_){}
  }
