@@ -77,7 +77,7 @@ function laptopHero(){
 function buildAudit(){
   var root=document.getElementById('pc-audit'); if(!root||root.dataset.ready)return; root.dataset.ready='1';
   root.innerHTML=FAMILIES.map(f=>
-    '<article class="pc-audit-card" data-family="'+f.id+'"><button class="pc-audit-head" type="button" aria-expanded="false"><span class="pc-audit-no">'+f.no+'</span><span class="pc-audit-ico" aria-hidden="true">'+(f.ico||'')+'</span><span class="pc-audit-title"><strong>'+f.title+'</strong><small>'+f.hint+'</small></span><span class="pc-audit-state">À choisir</span><span class="pc-audit-chev" aria-hidden="true">+</span></button><div class="pc-audit-body"><div class="pc-options" data-lay="rows">'+f.options.map(o=>'<button type="button" data-value="'+o.v+'" data-ag="1"><span class="ao-name">'+o.l+'</span><span class="ao-say">'+o.note+'</span></button>').join('')+'</div><p class="pc-audit-help">'+f.help+'</p>'+'</div></article>').join('')+
+    '<article class="pc-audit-card" data-family="'+f.id+'"><button class="pc-audit-head" type="button" aria-expanded="false" aria-controls="pcq-'+f.id+'"><span class="pc-audit-no">'+f.no+'</span><span class="pc-audit-ico" aria-hidden="true">'+(f.ico||'')+'</span><span class="pc-audit-title"><strong>'+f.title+'</strong><small>'+f.hint+'</small></span><span class="pc-audit-state">À choisir</span><span class="pc-audit-chev" aria-hidden="true">+</span></button><div class="pc-audit-body" id="pcq-'+f.id+'"><div class="pc-options" data-lay="rows">'+f.options.map(o=>'<button type="button" data-value="'+o.v+'" data-ag="1" aria-pressed="false"><span class="ao-name">'+o.l+'</span><span class="ao-say">'+o.note+'</span></button>').join('')+'</div><p class="pc-audit-help">'+f.help+'</p>'+'</div></article>').join('')+
     '<div class="pc-audit-result" id="pc-audit-result" hidden><span class="hx-kicker">RÉSULTAT</span><h3>Choisissez une première réponse</h3><p>Le guide en déduit votre profil au fil de vos réponses, puis propose les modèles adaptés.</p><div class="pc-profile-pills">'+PROFILES.map(p=>'<span data-pill="'+p.id+'">'+p.label+'</span>').join('')+'</div><div class="pc-priorities" id="pc-priorities"></div><div class="pc-audit-actions"><a class="btn hx-btn" href="#modeles" id="pc-audit-cta">Voir les modèles adaptés →</a><button class="hx-link" type="button" id="pc-audit-reset">Recommencer</button></div></div>';
   var cards=[].slice.call(root.querySelectorAll('.pc-audit-card'));
   function setOpen(card,open){
@@ -97,21 +97,24 @@ function buildAudit(){
       var fam=card.dataset.family, grp=btn.dataset.group, key=grp?fam+'.'+grp:fam;
       answers[key]=btn.dataset.value;
       var scope=grp?btn.closest('.pc-group'):card;
-      scope.querySelectorAll('[data-value]').forEach(x=>x.classList.toggle('is-active',x===btn));
+      scope.querySelectorAll('[data-value]').forEach(x=>{x.classList.toggle('is-active',x===btn);x.setAttribute('aria-pressed',x===btn)});
       card.classList.add('is-done');
       var st=card.querySelector('.pc-audit-state');
       st.textContent='Répondu';st.dataset.state='chosen';
       updateAudit();
       /* La question se replie, la suivante s'ouvre : le questionnaire avance tout seul. */
       var next=cards[cards.indexOf(card)+1];
-      if(next){cards.forEach(c=>setOpen(c,false));setOpen(next,true);next.scrollIntoView({behavior:'smooth',block:'center'});}
+      if(next){cards.forEach(c=>setOpen(c,false));setOpen(next,true);
+        var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+        next.scrollIntoView({behavior:rm?'auto':'smooth',block:'center'});
+        var nh=next.querySelector('.pc-audit-head');if(nh)nh.focus({preventScroll:true});}
     }));
   });
   document.getElementById('pc-audit-reset').addEventListener('click',()=>{
     answers={};currentFilter='all';
     root.querySelectorAll('.pc-audit-card').forEach(c=>{
       c.classList.remove('is-done','is-open');
-      c.querySelectorAll('[data-value]').forEach(x=>x.classList.remove('is-active'));
+      c.querySelectorAll('[data-value]').forEach(x=>{x.classList.remove('is-active');x.setAttribute('aria-pressed','false')});
       var h=c.querySelector('.pc-audit-head');if(h)h.setAttribute('aria-expanded','false');
       var st=c.querySelector('.pc-audit-state');st.textContent='À choisir';delete st.dataset.state;
     });

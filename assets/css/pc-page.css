@@ -108,7 +108,7 @@
   color: var(--ink-mute);
   transition: all .25s var(--ease);
 }
-.pc-profile-pills span[data-active="true"], .pc-profile-pills span[aria-current="true"] {
+.pc-profile-pills span[data-active="true"], .pc-profile-pills span[aria-current="true"], .pc-profile-pills span.is-active {
   color: #0f1115;
   border-color: #0f1115;
   background: var(--crox, #ff5f14);

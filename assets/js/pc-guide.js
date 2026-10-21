@@ -115,16 +115,16 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
 /* ---------- nomenclature — scan « DedSec » façon Watch Dogs 2 : une machine, plusieurs références ---------- */
 function setupNomenclature(){
  var host=document.getElementById('pc-nomenclature');if(!host)return;
- /* Le nom commercial reste ; la référence change — et avec elle les composants. */
+ /* Le nom commercial reste ; la référence change — et avec elle les composants. Modèle fictif, codes inspirés des conventions des constructeurs. */
  var SK=[
-  {ref:'15IAX11',nom:'Legion 5',cpu:'Core i5-12450H',ram:'8 Go',ssd:'256 Go',gpu:'GTX 1650'},
-  {ref:'15IRX11',nom:'Legion 5',cpu:'Core i5-12450H',ram:'16 Go',ssd:'512 Go',gpu:'RTX 3050'},
-  {ref:'16IAX11',nom:'Legion 5i',cpu:'Core i7-12700H',ram:'16 Go',ssd:'1 To',gpu:'RTX 3060'},
-  {ref:'16IAX9',nom:'Legion Pro 5',cpu:'Core i7-12700H',ram:'32 Go',ssd:'1 To',gpu:'RTX 3070'},
-  {ref:'15ARP11',nom:'Legion 5',cpu:'Ryzen 7 6800H',ram:'16 Go',ssd:'512 Go',gpu:'RX 6600M'}
- ],ix=0,x0=null,glitchT=null;
+  {ref:'15IA11',cpu:'Core i5-12450H',ram:'8 Go',ssd:'256 Go',gpu:'GTX 1650'},
+  {ref:'15IRX11',cpu:'Core i5-12450H',ram:'16 Go',ssd:'512 Go',gpu:'RTX 3050'},
+  {ref:'16IA11',cpu:'Core i7-12700H',ram:'16 Go',ssd:'1 To',gpu:'RTX 3060'},
+  {ref:'16IRX11',cpu:'Core i7-12700H',ram:'32 Go',ssd:'1 To',gpu:'RTX 3070'},
+  {ref:'15ARP11',cpu:'Ryzen 7 6800H',ram:'16 Go',ssd:'512 Go',gpu:'RX 6600M'}
+ ],NOM='Aero 15',ix=0,x0=null,glitchT=null;
  host.innerHTML='<div class="pg-nom"><div class="pg-nomcopy"><p>Sur une fiche, deux PC portent le même nom et peuvent n’avoir que l’écran en commun. Faites glisser le scan : le dessin reste, la référence change — et les composants avec elle.</p><p><b>À retenir.</b> Ne comparez jamais deux PC sur leur seul nom commercial : comparez la référence complète, puis les composants qu’elle désigne.</p></div>'+
- '<div class="pg-wdwrap" id="pg-wdwrap"><div class="pg-wd" id="pg-stage" tabindex="0" role="slider" aria-label="Changer de référence" aria-valuemin="1" aria-valuemax="'+SK.length+'" aria-valuenow="1" aria-valuetext="'+SK[0].nom+' '+SK[0].ref+'">'+
+ '<div class="pg-wdwrap" id="pg-wdwrap"><div class="pg-wd" id="pg-stage" tabindex="0" role="slider" aria-label="Changer de référence" aria-valuemin="1" aria-valuemax="'+SK.length+'" aria-valuenow="1" aria-valuetext="'+NOM+' '+SK[0].ref+'">'+
  '<svg class="pg-wdsvg" viewBox="0 0 420 300" role="img" aria-label="Un même ordinateur portable analysé par un scanner">'+
  '<defs><pattern id="wdgrid" width="21" height="21" patternUnits="userSpaceOnUse"><path d="M21 0H0V21" fill="none" stroke="#14222e" stroke-width="1"/></pattern></defs>'+
  '<rect width="420" height="300" fill="url(#wdgrid)"/>'+
@@ -142,12 +142,12 @@ function setupNomenclature(){
  '</svg>'+
  '<div class="pg-wdref"><span class="pg-wdlbl">RÉFÉRENCE SCANNÉE</span><b id="pg-sku" aria-live="polite"></b></div>'+
  '<div class="pg-wdspecs" id="pg-specs"></div></div>'+
- '<div class="pg-nav"><button type="button" class="pg-btn alt" id="pg-prev" aria-label="Référence précédente">←</button><span class="pg-dots" id="pg-dots" role="tablist" aria-label="Références">'+SK.map(function(_,i){return '<button type="button" role="tab" aria-label="Référence '+(i+1)+'"><i></i></button>'}).join('')+'</span><button type="button" class="pg-btn alt" id="pg-next" aria-label="Référence suivante">→</button></div><p class="pg-note">Faites glisser le scan, utilisez les flèches ou le clavier (← →). Références données à titre d’exemple, plausibles mais non vérifiées.</p></div></div>';
+ '<div class="pg-nav"><button type="button" class="pg-btn alt" id="pg-prev" aria-label="Référence précédente">←</button><span class="pg-dots" id="pg-dots" role="tablist" aria-label="Références">'+SK.map(function(_,i){return '<button type="button" role="tab" aria-label="Référence '+(i+1)+'"><i></i></button>'}).join('')+'</span><button type="button" class="pg-btn alt" id="pg-next" aria-label="Référence suivante">→</button></div><p class="pg-note">Faites glisser le scan, utilisez les flèches ou le clavier (← →). Modèle et références fictifs, inspirés des conventions de nommage des constructeurs.</p></div></div>';
  var st=document.getElementById('pg-stage'),wrap=document.getElementById('pg-wdwrap'),sk=document.getElementById('pg-sku'),sp=document.getElementById('pg-specs'),dots=document.querySelectorAll('#pg-dots button');
  function glitch(){wrap.classList.remove('is-glitch');void wrap.offsetWidth;wrap.classList.add('is-glitch');clearTimeout(glitchT);glitchT=setTimeout(function(){wrap.classList.remove('is-glitch')},480)}
  function set(n){ix=(n+SK.length)%SK.length;var d=SK[ix];
-  sk.textContent=d.nom+' · '+d.ref;
-  st.setAttribute('aria-valuenow',ix+1);st.setAttribute('aria-valuetext',d.nom+' '+d.ref);
+  sk.textContent=NOM+' · '+d.ref;
+  st.setAttribute('aria-valuenow',ix+1);st.setAttribute('aria-valuetext',NOM+' '+d.ref);
   sp.innerHTML=[['CPU',d.cpu],['RAM',d.ram],['SSD',d.ssd],['GPU',d.gpu]].map(function(x){return '<span><b>'+x[0]+'</b>'+x[1]+'</span>'}).join('');
   dots.forEach(function(b,i){b.setAttribute('aria-selected',i===ix)});
   glitch();
