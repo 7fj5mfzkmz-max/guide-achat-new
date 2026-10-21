@@ -17,13 +17,17 @@
 
   /* Catégorie : un pc portable (lien ou saisie) est détecté par ses mots-clés et bascule
      libellés, profils et requêtes vers le kit pc-portables. Smartphones par défaut. */
-  var LAPTOP_WORD = /\b(?:pc portable|ordinateur portable|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book|matebook|surface laptop|victus|legion|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga|pavilion|envy|spectre|rog)\b/i;
+  var LAPTOP_WORD = /\b(?:pc portable|ordinateur portable|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|matebook|surface laptop|victus|legion|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga|pavilion|envy|spectre|rog)|\bgalaxy[\s-]?book/i;
   var PHONE_WORD = /\b(?:smartphone|iphone|galaxy|redmi|poco|xiaomi|pixel|oneplus|fairphone|motorola|oppo|realme|nothing phone)\b/i;
+  /* Catégorie explicite transmise par la page d’origine (?cat=…) : elle prime sur les mots-clés ambigus
+     (ex. « galaxy-book4 » contient « galaxy ») ; le résolveur peut ensuite repréciser via data.category. */
+  var EXPLICIT_CAT = null;
   function detectCategory(text) {
+    if (EXPLICIT_CAT) return EXPLICIT_CAT;
     var s = String(text || "");
     if (LAPTOP_WORD.test(s)) return "pc-portables";
     if (PHONE_WORD.test(s)) return "smartphones";
-    return state.category; /* pas d’indice : on garde la catégorie en cours (celle de la page d’origine) */
+    return state.category;
   }
   function setCategory(cat) {
     state.category = cat === "pc-portables" ? "pc-portables" : "smartphones";
@@ -38,8 +42,8 @@
   }
 
   /* Catégorie initiale transmise par la page d’origine (ex. analyseur.html?cat=pc-portables depuis le guide PC) :
-     elle prépare libellés et profils avant toute soumission et sert de repli si le lien collé ne dit rien. */
-  try { var catParam = /[?&]cat=([a-z-]+)/.exec(location.search); if (catParam) setCategory(catParam[1]); } catch (e) {}
+     elle prépare libellés et profils avant toute soumission et prime sur les indices ambigus du lien collé. */
+  try { var catParam = /[?&]cat=([a-z-]+)/.exec(location.search); if (catParam) { EXPLICIT_CAT = catParam[1] === "pc-portables" ? "pc-portables" : "smartphones"; setCategory(EXPLICIT_CAT); } } catch (e) {}
 
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]; }); }
   function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
@@ -256,7 +260,7 @@
     var sourceLabel = sourceNames.join(' + ');
     var confidenceBlock = '<div class="decision-confidence"><span>Référentiels techniques : <strong>' + esc(sourceLabel) + '</strong></span><small>Les valeurs gardent leur provenance ; une divergence entre sources est signalée comme incertitude.</small></div>'; 
     var profileLinks = Object.keys(PROFILS).filter(function(k){return scores[k];}).map(function(k){return '<a class="decision-profile-chip'+(k===mine?' is-current':'')+'" href="#choisir-profil" data-profile-jump="'+esc(k)+'">'+esc(PROFILS[k])+'</a>';}).join('');
-    var decisionBlock = profileLinks ? '<div class="decision-profile-block"><div><strong>Votre lecture par usage</strong><small>La note change selon ce que vous faites du téléphone.</small></div><div class="decision-profile-chips">'+profileLinks+'</div></div>' : '';
+    var decisionBlock = profileLinks ? '<div class="decision-profile-block"><div><strong>Votre lecture par usage</strong><small>La note change selon ce que vous faites ' + (state.category === "pc-portables" ? "du PC" : "du téléphone") + '.</small></div><div class="decision-profile-chips">'+profileLinks+'</div></div>' : '';
     var coreKnown = CORE_SPECS.filter(function(k){ return usable(merged[k]); }).length;
     var analysisIndex = Math.round((coreKnown / CORE_SPECS.length) * 100);
     var indexSourceLabel = sourceLabel;
@@ -273,8 +277,9 @@
     var compareId = cat.id || (page && page.product && page.product.id) || null;
     var compareHref = compareId ? "comparateur.html?selection=" + encodeURIComponent(compareId) : "comparateur.html";
     var compareText = compareId ? "Comparer →" : "Ouvrir le comparateur →";
-    var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : "smartphones.html#purchase-audit";
-    var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';
+    var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : (state.category === "pc-portables" ? "pc-portables.html#audit" : "smartphones.html#purchase-audit");
+    var auditHint = state.category === "pc-portables" ? "6 questions : écran, mémoire, stockage, processeur, carte graphique et mobilité." : "5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.";
+    var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>' + auditHint + '</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';
     show('<div class="model-analyzer-card"><span class="eyebrow">ANALYSE DU MODÈLE</span><h3>' + esc(title) + "</h3>" + imageBlock + notes +
       (price ? "<p><strong>" + (cat.prix_indicatif ? "Prix indicatif" : "Prix trouvé sur la page") + " :</strong> " + esc(price) + " €</p>" : "") +
       (rows ? '<div class="model-analyzer-specs" aria-label="Caractéristiques et interprétation">' + rows + "</div>" : "") +
@@ -345,7 +350,7 @@
       /* Le serveur peut re-router vers pc-portables (lien court sans indice de catégorie dans l’adresse) :
          la réponse porte la catégorie effective (data.category) et l’interface s’y aligne AVANT tout
          traitement — profils, libellés, fusion des specs et scoring en dépendent. */
-      if (data && data.category && data.category !== state.category) setCategory(data.category);
+      if (data && data.category && data.category !== state.category) { setCategory(data.category); EXPLICIT_CAT = state.category; }
       if (data.kind === "page") return viewNotAModel(data.pageLabel);
       var k = data.clues || {};
       state.year = k.year || null;

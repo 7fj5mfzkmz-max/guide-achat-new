@@ -42,7 +42,7 @@ g(14,function(i){return '<rect class="pg-blink" style="animation-delay:-'+(i*.7)
 '<g clip-path="url(#pg-clip)"><rect class="pg-shine" x="-90" y="30" width="90" height="180" fill="url(#pg-shine)" transform="skewX(-18)"/></g>'+
 '<path class="pg-flow" d="M64 191h272" stroke="#35e0ff" stroke-width="4" fill="none" stroke-dasharray="12 8" clip-path="url(#pg-clip)"/><path d="M26 214h348l-16 20H42z" fill="url(#pg-metal)"/><rect x="170" y="214" width="60" height="6" rx="3" fill="#64748b"/></svg>';
 /* GPU : carte simple et lisible — deux ventilateurs qui tournent, connecteur, étiquette GPU. Pales pré-calculées (aucun attribut transform : rien ne peut se décoller à l’animation). */
-function blades(cx,cy){var s='',i,a;for(i=0;i<7;i++){a=i*2*Math.PI/7-Math.PI/2;s+='<path d="M'+(cx+12*Math.cos(a)).toFixed(1)+' '+(cy+12*Math.sin(a)).toFixed(1)+'L'+(cx+38*Math.cos(a)).toFixed(1)+' '+(cy+38*Math.sin(a)).toFixed(1)+'" class="gi-bl"/>'}return s}
+function blades(cx,cy){var s='',i,a;for(i=0;i<7;i++){a=i*2*Math.PI/7-Math.PI/2;s+='<path d="M'+(cx+10*Math.cos(a)).toFixed(1)+' '+(cy+10*Math.sin(a)).toFixed(1)+'L'+(cx+38*Math.cos(a)).toFixed(1)+' '+(cy+38*Math.sin(a)).toFixed(1)+'" class="gi-bl"/>'}return s}
 A.gpu=open('Carte graphique : une carte avec deux ventilateurs en rotation')+
 '<rect x="40" y="60" width="320" height="130" rx="14" class="gi-card"/>'+
 [125,275].map(function(cx){return '<circle cx="'+cx+'" cy="125" r="45" class="gi-o"/><g class="pg-spin pg-vb" style="transform-origin:'+cx+'px 125px">'+blades(cx,125)+'</g><circle class="pg-pulse gi-a" cx="'+cx+'" cy="125" r="8"/>'}).join('')+
