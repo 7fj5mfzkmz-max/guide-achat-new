@@ -174,7 +174,8 @@
   border: 1px solid var(--line-soft);
   color: var(--ink-soft);
 }
-.pc-score span:first-child { color: #0f1115; border-color: #0f1115; background: #ffd400; }
+.pc-score span.is-main { color: #0f1115; border-color: #0f1115; background: #ffd400; }
+.pcd-sub { font: 500 11px var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink-soft); padding: 8px 1.2rem 0; margin: 0; }
 .pc-bar { height: 6px; background: var(--paper-3); overflow: hidden; margin-bottom: 14px; }
 .pc-bar i { display: block; height: 100%; background: var(--ink); width: 0; transition: width .7s var(--ease); }
 .pc-product details.pc-why { font-size: 14px; color: var(--ink-soft); }

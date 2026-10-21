@@ -134,7 +134,7 @@ function buildAudit(){
     if(!d||!profileList().length)return; /* tiroir absent ou vide : on laisse le défilement */
     e.preventDefault();
     var label=PROFILES.find(p=>p.id===currentFilter);
-    openDrawer('Modèles adaptés à votre profil « '+(label?label.label.toLowerCase():currentFilter)+' »',profileList());
+    openDrawer('Modèles adaptés à votre profil « '+(label?label.label.toLowerCase():currentFilter)+' »',profileList(),filterSummary());
   });
 }
 function dominantProfile(){
@@ -174,10 +174,25 @@ function updateAudit(){
   renderCatalogue();
 }
 function euro(n){return n?new Intl.NumberFormat('fr-FR',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n):'Prix à vérifier';}
-function ten(n){return Math.round((Number(n)||0)*10/9);}
+function ten(n){return Math.round(Number(n)||0);}
+/* Système d'un modèle, normalisé (les fiches portent l'OS dans caracteristiques.os). */
+function osOf(p){var o=(((p||{}).caracteristiques||{}).os||'').toLowerCase();if(!o)return null;if(o.indexOf('mac')>-1)return 'macos';if(o.indexOf('window')>-1)return 'windows';if(o.indexOf('chrome')>-1)return 'chromeos';return null;}
+/* Sans réponse budget : plafond indicatif par profil, pour ne pas recommander
+   une machine à 4 000 € à un étudiant. La réponse budget du quiz prime toujours. */
+var PRICE_CEIL={etudiant:1800,professionnel:2500,gamer:3500,createur:5000};
+function optionLabel(fid,v){var f=FAMILIES.find(x=>x.id===fid);if(!f)return null;var o=f.options.find(x=>x.v===v);return o?o.l:null;}
+function filterSummary(){
+  var parts=[];
+  if(currentFilter!=='all'){var pr=PROFILES.find(x=>x.id===currentFilter);if(pr)parts.push('Profil : '+pr.label);}
+  if(answers.budget)parts.push('Budget : '+optionLabel('budget',answers.budget));
+  else if(currentFilter!=='all'&&PRICE_CEIL[currentFilter])parts.push('Budget : non précisé — plafond indicatif '+new Intl.NumberFormat('fr-FR').format(PRICE_CEIL[currentFilter])+' €');
+  parts.push('Système : '+(answers.os?optionLabel('os',answers.os):'peu importe'));
+  parts.push('Écran : '+(answers.ecran?optionLabel('ecran',answers.ecran):'peu importe'));
+  return parts.join(' · ');
+}
 function card(p){
   var sc=p.profil_scores||{};
-  var chips=[['Étudiant',sc.etudiant],['Pro',sc.professionnel],['Créateur',sc.createur],['Gamer',sc.gamer]].filter(x=>typeof x[1]==='number');
+  var chips=[['etudiant','Étudiant',sc.etudiant],['professionnel','Pro',sc.professionnel],['createur','Créateur',sc.createur],['gamer','Gamer',sc.gamer]].filter(x=>typeof x[2]==='number');
   var main=(typeof sc[currentFilter]==='number')?sc[currentFilter]:(sc.etudiant||sc.professionnel||sc.createur||sc.gamer||0);
   var c=p.compatibilite||{}, e=c.ecran||{}, perf=c.performance||{}, bat=c.batterie||{};
   var autonomy=bat.autonomie_heures?bat.autonomie_heures+' h'+(bat.autonomie_source==='annoncee'?' annoncées':''):'—';
@@ -188,7 +203,7 @@ function card(p){
   if(p.fabricant_url)links.push('<a href="'+p.fabricant_url+'" target="_blank" rel="noopener">Fiche fabricant</a>');
   var brand=p.marque||'', nom=p.nom||'';
   var title=(brand&&nom.toLowerCase().indexOf(brand.toLowerCase())===0)?nom:(brand?brand+' ':'')+nom;
-  return '<article class="pc-product"><h3>'+title+'</h3><p class="meta">'+euro(p.prix_indicatif)+' · '+(e.diagonale_pouces||'—')+'″ · '+(perf.ram_go||'—')+' Go · '+(perf.stockage_go!=null?perf.stockage_go+' Go':'stockage ?')+' · '+autonomy+'</p><div class="pc-score">'+chips.map(c=>'<span>'+c[0]+' '+ten(c[1])+'/10</span>').join('')+'</div><div class="pc-bar"><i data-score="'+main+'"></i></div>'+(strengths?'<details class="pc-why"><summary>Pourquoi ce PC ?</summary><ul>'+strengths+'</ul>'+(weaknesses?'<p><strong>Limites :</strong></p><ul>'+weaknesses+'</ul>':'')+'</details>':'')+(links.length?'<p class="pc-links">'+links.join(' · ')+'</p>':'')+'</article>';
+  return '<article class="pc-product"><h3>'+title+'</h3><p class="meta">'+euro(p.prix_indicatif)+' · '+(e.diagonale_pouces||'—')+'″ · '+(perf.ram_go||'—')+' Go · '+(perf.stockage_go!=null?perf.stockage_go+' Go':'stockage ?')+' · '+autonomy+'</p><div class="pc-score">'+chips.map(c=>'<span'+(c[0]===currentFilter?' class="is-main"':'')+'>'+c[1]+' '+ten(c[2])+'/10</span>').join('')+'</div><div class="pc-bar"><i data-score="'+main+'"></i></div>'+(strengths?'<details class="pc-why"><summary>Pourquoi ce PC ?</summary><ul>'+strengths+'</ul>'+(weaknesses?'<p><strong>Limites :</strong></p><ul>'+weaknesses+'</ul>':'')+'</details>':'')+(links.length?'<p class="pc-links">'+links.join(' · ')+'</p>':'')+'</article>';
 }
 var BANDS=[{l:'Moins de 800 €',r:[0,800]},{l:'De 800 à 1 200 €',r:[800,1200]},{l:'De 1 200 à 1 800 €',r:[1200,1800]},{l:'Plus de 1 800 €',r:[1800,1e9]}];
 function inBand(p,r){var x=Number(p.prix_indicatif);return x>=r[0]&&x<r[1];}
@@ -198,16 +213,19 @@ function profileList(){
   var budget=answers.budget?FAMILIES.find(f=>f.id==='budget').options.find(o=>o.v===answers.budget).budget:null;
   var wantedOs=answers.os&&answers.os!=='all'?answers.os:null;
   var sz=answers.ecran, size=sz?FAMILIES.find(f=>f.id==='ecran').options.find(o=>o.v===sz).size:null;
+  var ceil=(!budget&&currentFilter!=='all')?PRICE_CEIL[currentFilter]:null;
   return catalogueItems.filter(p=>{
     if(budget){var price=Number(p.prix_indicatif);if(!price||price<budget[0]||price>=budget[1])return false;}
-    if(wantedOs&&(p.os||'').toLowerCase()!==wantedOs)return false;
+    if(ceil){var pr=Number(p.prix_indicatif);if(pr&&pr>ceil)return false;}
+    if(wantedOs){var os=osOf(p);if(!os||os!==wantedOs)return false;}
     if(size){var d=Number(((p.compatibilite||{}).ecran||{}).diagonale_pouces);if(!d||d<size[0]||d>=size[1])return false;}
     return ((p.profil_scores||{})[currentFilter]||0)>=7;
   }).sort((a,b)=>((b.profil_scores||{})[currentFilter]||0)-((a.profil_scores||{})[currentFilter]||0));
 }
-function openDrawer(title, items){
+function openDrawer(title, items, sub){
   var d=document.getElementById('pc-drawer'); if(!d)return;
   d.querySelector('.pcd-title').textContent=title;
+  var subEl=d.querySelector('.pcd-sub'); if(subEl)subEl.textContent=sub||'';
   d.querySelector('#pcd-grid').innerHTML=items.map(card).join('')||'<p>Aucun modèle dans cette sélection.</p>';
   if(d.showModal)d.showModal(); else d.setAttribute('open','');
   requestAnimationFrame(bars);
@@ -239,13 +257,13 @@ function loadCatalogue(){
       '<table class="pc-band-table"><tbody>'+bandRows()+'</tbody></table></details>'+
       '<p class="pc-price-note">Prix indicatifs relevés en octobre 2026. Vérifiez toujours le prix et la configuration exacte chez le marchand.</p>';
     if(!document.getElementById('pc-drawer')){
-      document.body.insertAdjacentHTML('beforeend','<dialog id="pc-drawer" class="pcd"><div class="pcd-head"><h3 class="pcd-title"></h3><button type="button" class="pcd-close" aria-label="Fermer">×</button></div><div id="pcd-grid" class="pcd-grid pc-catalogue"></div></dialog>');
+      document.body.insertAdjacentHTML('beforeend','<dialog id="pc-drawer" class="pcd"><div class="pcd-head"><h3 class="pcd-title"></h3><button type="button" class="pcd-close" aria-label="Fermer">×</button></div><p class="pcd-sub"></p><div id="pcd-grid" class="pcd-grid pc-catalogue"></div></dialog>');
       var dl=document.getElementById('pc-drawer');
       dl.querySelector('.pcd-close').addEventListener('click',()=>dl.close?dl.close():dl.removeAttribute('open'));
       dl.addEventListener('click',e=>{if(e.target===dl)dl.close?dl.close():dl.removeAttribute('open');});
     }
     root.addEventListener('click',function(e){
-      var m=e.target.closest('[data-drawer]'); if(m){openDrawer('Modèles compatibles avec votre profil',profileList());return;}
+      var m=e.target.closest('[data-drawer]'); if(m){openDrawer('Modèles compatibles avec votre profil',profileList(),filterSummary());return;}
       var bd=e.target.closest('[data-band]'); if(bd){var i=+bd.getAttribute('data-band');openDrawer(BANDS[i].l,catalogueItems.filter(p=>inBand(p,BANDS[i].r)).sort((a,b)=>Number(a.prix_indicatif)-Number(b.prix_indicatif)));}
     });
     renderCatalogue();
