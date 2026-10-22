@@ -24,6 +24,7 @@
       example: { name: "Samsung Galaxy A56", note: "300 € indicatif", scores: [["Étudiant", 8], ["Professionnel", 8], ["Photographe", 7], ["Gamer", 6]] },
       stage: { title: "Compatibilité", bars: [89, 78, 67], score: 8 } },
     { id: "pc", label: "PC portables", live: true, href: "pc-portables.html", tone: "teal", icon: "laptop",
+      photo: "assets/pc-photo/laptop-04.jpeg", photoAlt: "Ordinateur portable ouvert, vu de face",
       blurb: "Choisir un PC selon les logiciels, la mobilité et le budget.", terms: ["Processeur", "RAM", "Stockage", "Écran", "Poids", "Autonomie"],
       chips: [["16 Go de RAM", "ram"], ["SSD 512 Go", "storage"], ["OLED", "pixels"]], weights: "pc-portables", example: { name: "PC portable polyvalent", note: "Catalogue 2026", scores: [["Étudiant", 8], ["Professionnel", 8], ["Créateur", 7], ["Gamer", 6]] }, stage: { title: "Compatibilité", bars: [86, 78, 70], score: 8 }, pairs: [["Processeur","Le cerveau de l’ordinateur : il décide si le PC reste fluide quand vous ouvrez beaucoup d’onglets ou un logiciel lourd."],["16 Go de RAM","La mémoire de travail. Pour le web et la bureautique 8 Go suffisent souvent ; 16 Go laissent de la marge quand on garde beaucoup de choses ouvertes."],["SSD 512 Go","Le stockage, sur mémoire flash. Il rend le démarrage et l’ouverture des logiciels rapides ; la capacité dit combien de fichiers vous gardez."],["Carte graphique dédiée","Un composant séparé pour les jeux, le montage vidéo et la 3D. Pour le web et la bureautique, la partie graphique intégrée au processeur suffit."],["Écran IPS","Un type de dalle aux angles de vision larges et aux couleurs stables. Regardez aussi la luminosité : un écran terne se lit mal près d’une fenêtre."],["1,3 kg","Un PC léger se transporte tous les jours sans y penser ; plus lourd, on le sent dans le sac au bout de quelques semaines."],["Autonomie annoncée","La durée donnée par le constructeur est mesurée dans des conditions favorables : en usage réel, comptez nettement moins."]] },
     { id: "batteries", label: "Batteries externes", live: false, tone: "peach", icon: "battery",
@@ -86,14 +87,15 @@
     liveLinks.innerHTML = C.live().map(function (c) { return '<a class="hm-btn" href="' + c.href + '">' + esc(c.label) + " →</a>"; }).join("");
   }
 
-  /* Cartes de catégories (accueil) : numéro, nom, résumé et dessin. Les guides ouverts sont des liens, les autres restent en attente. */
+  /* Cartes de catégories (accueil) : numéro, nom, résumé et photo (champ « photo » de la catégorie) ou, à défaut, dessin. Les guides ouverts sont des liens, les autres restent en attente. */
   var cards = document.getElementById("hx-cards");
   if (cards) {
     cards.innerHTML = LIST.map(function (c, i) {
       var live = !!c.live, no = (i < 9 ? "0" : "") + (i + 1);
       var inner = '<span class="hm-card-no">' + no + '</span>' +
         '<span class="hm-card-tag' + (live ? "" : " is-soon") + '">' + (live ? "Guide disponible" : "Bientôt") + "</span>" +
-        '<span class="hm-card-art" aria-hidden="true">' + C.icon(c) + "</span>" +
+        (c.photo ? '<span class="hm-card-photo"><img src="' + esc(c.photo) + '" alt="' + esc(c.photoAlt || "") + '" loading="lazy" width="640" height="480"></span>'
+                 : '<span class="hm-card-art" aria-hidden="true">' + C.icon(c) + "</span>") +
         '<span class="hm-card-body"><h3>' + esc(c.label) + "</h3><p>" + esc(c.blurb) + "</p></span>" +
         (live ? '<span class="hm-card-go">Lire le guide <i aria-hidden="true">→</i></span>' : "");
       var cls = "hm-card hx-reveal " + (live ? "is-live" : "is-soon");
