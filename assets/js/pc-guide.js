@@ -88,13 +88,13 @@ function wireDm(box){var d=DM[box.dataset.dm],rg=box.querySelector('input');func
 /* ---------- critères ---------- */
 function ic(p){return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">'+p+'</svg>'}
 var COMP=[
-{k:'cpu',crit:'cpu',n:'Processeur',a:0,ico:ic('<rect x="6" y="6" width="12" height="12"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/>'),why:'<b>Le cerveau du PC.</b> Il exécute tous les calculs. Un nom comme « Core Ultra 7 » ou « Ryzen 7 » indique une gamme, pas une garantie : à gamme égale, la puissance dépend aussi du refroidissement et de la consommation autorisée.',tip:'Une gamme intermédiaire récente (Core 5, Core Ultra 5, Ryzen 5) suffit pour l’essentiel. Payer plus ne se voit que sur les tâches lourdes.'},
-{k:'ecran',crit:'ecran',n:'Écran',a:90,ico:ic('<rect x="3" y="4" width="18" height="12"/><path d="M8 20h8M12 16v4"/>'),why:'<b>Ce que vous regardez à chaque seconde.</b> Trois choses comptent : la technologie de la dalle, la fréquence de rafraîchissement (la fluidité) et la fidélité des couleurs.',tip:'Full HD au minimum, et un écran lumineux. La fluidité (120 Hz) ne compte vraiment que pour jouer.'},
-{k:'gpu',crit:'gpu',n:'Carte graphique',a:270,ico:ic('<rect x="2.5" y="7" width="19" height="9"/><circle cx="9" cy="11.5" r="2.8"/><circle cx="16" cy="11.5" r="2.8"/><path d="M5 16v3M8 16v3"/>'),why:'<b>Le spécialiste des images.</b> Elle calcule ce qui s’affiche à l’écran. Elle est soit intégrée au processeur, soit dédiée : l’intégrée suffit au quotidien ; une carte dédiée accélère le jeu, la 3D et le montage vidéo, au prix de poids, de chaleur et d’autonomie.',tip:'Ni jeu, ni 3D, ni montage lourd ? Gardez la carte graphique intégrée : vous économisez de l’argent et de l’autonomie.'},
-{k:'ram',crit:'ram',n:'Mémoire vive',a:'hub',ico:ic('<rect x="2.5" y="7" width="19" height="8"/><path d="M6 15v3M10 15v3M14 15v3M18 15v3M6 10h2M11 10h2M16 10h2"/>'),why:'<b>Le plan de travail.</b> Plus il est grand, plus vous gardez d’applications ouvertes en même temps sans ralentir. Vérifiez si elle est soudée : une mémoire soudée ne s’augmente jamais.',tip:'16 Go conviennent à la plupart des usages. Si elle est soudée, choisissez la bonne quantité dès l’achat.'},
-{k:'sto',crit:'stockage',n:'Stockage',a:'hub',ico:ic('<rect x="4" y="3.5" width="16" height="17"/><circle cx="12" cy="10" r="3"/><path d="M8 17h8"/>'),why:'<b>Le meuble de rangement.</b> C’est là que vivent le système, vos logiciels et vos fichiers. Un SSD démarre vite et résiste aux chocs, contrairement à un ancien disque dur.',tip:'512 Go de SSD pour un usage courant ; 1 To pour la photo, la vidéo et les jeux.'},
-{k:'bat',crit:'',n:'Batterie',a:135,ico:ic('<rect x="2.5" y="7" width="16" height="10"/><path d="M21 10v4M6 10v4M10 10v4"/>'),why:'<b>Le réservoir.</b> Sa capacité (en Wh) compte, mais l’autonomie réelle dépend de l’écran, du processeur et de l’usage : les chiffres du fabricant sont rarement atteints.',tip:'Fiez-vous aux tests indépendants plus qu’aux heures annoncées. Si vous bougez souvent, visez 60 Wh ou plus.'},
-{k:'poids',crit:'mobilite',n:'Poids',a:180,ico:ic('<path d="M7 20h10l2-11H5z"/><circle cx="12" cy="6" r="2.5"/>'),why:'<b>Ce que votre épaule porte.</b> Sous 1,5 kg, on l’oublie dans un sac ; au-delà de 2 kg, il reste surtout sur un bureau. Puissance et poids vont souvent ensemble.',tip:'Vous le portez tous les jours ? Restez sous 1,5 kg. Il reste sur un bureau ? Le poids n’a plus d’importance.'}];
+{k:'cpu',hook:'Le cerveau : il fait tous les calculs',crit:'cpu',n:'Processeur',a:0,ico:ic('<rect x="6" y="6" width="12" height="12"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/>'),why:'<b>Le cerveau du PC.</b> Il exécute tous les calculs. Un nom comme « Core Ultra 7 » ou « Ryzen 7 » indique une gamme, pas une garantie : à gamme égale, la puissance dépend aussi du refroidissement et de la consommation autorisée.',tip:'Une gamme intermédiaire récente (Core 5, Core Ultra 5, Ryzen 5) suffit pour l’essentiel. Payer plus ne se voit que sur les tâches lourdes.'},
+{k:'ecran',hook:'Ce que vous regardez à chaque seconde',crit:'ecran',n:'Écran',a:90,ico:ic('<rect x="3" y="4" width="18" height="12"/><path d="M8 20h8M12 16v4"/>'),why:'<b>Ce que vous regardez à chaque seconde.</b> Trois choses comptent : la technologie de la dalle, la fréquence de rafraîchissement (la fluidité) et la fidélité des couleurs.',tip:'Full HD au minimum, et un écran lumineux. La fluidité (120 Hz) ne compte vraiment que pour jouer.'},
+{k:'gpu',hook:'Pour les images, le jeu et la 3D',crit:'gpu',n:'Carte graphique',a:270,ico:ic('<rect x="2.5" y="7" width="19" height="9"/><circle cx="9" cy="11.5" r="2.8"/><circle cx="16" cy="11.5" r="2.8"/><path d="M5 16v3M8 16v3"/>'),why:'<b>Le spécialiste des images.</b> Elle calcule ce qui s’affiche à l’écran. Elle est soit intégrée au processeur, soit dédiée : l’intégrée suffit au quotidien ; une carte dédiée accélère le jeu, la 3D et le montage vidéo, au prix de poids, de chaleur et d’autonomie.',tip:'Ni jeu, ni 3D, ni montage lourd ? Gardez la carte graphique intégrée : vous économisez de l’argent et de l’autonomie.'},
+{k:'ram',hook:'Combien de choses en même temps',crit:'ram',n:'Mémoire vive',a:'hub',ico:ic('<rect x="2.5" y="7" width="19" height="8"/><path d="M6 15v3M10 15v3M14 15v3M18 15v3M6 10h2M11 10h2M16 10h2"/>'),why:'<b>Le plan de travail.</b> Plus il est grand, plus vous gardez d’applications ouvertes en même temps sans ralentir. Vérifiez si elle est soudée : une mémoire soudée ne s’augmente jamais.',tip:'16 Go conviennent à la plupart des usages. Si elle est soudée, choisissez la bonne quantité dès l’achat.'},
+{k:'sto',hook:'Où vivent vos fichiers',crit:'stockage',n:'Stockage',a:'hub',ico:ic('<rect x="4" y="3.5" width="16" height="17"/><circle cx="12" cy="10" r="3"/><path d="M8 17h8"/>'),why:'<b>Le meuble de rangement.</b> C’est là que vivent le système, vos logiciels et vos fichiers. Un SSD démarre vite et résiste aux chocs, contrairement à un ancien disque dur.',tip:'512 Go de SSD pour un usage courant ; 1 To pour la photo, la vidéo et les jeux.'},
+{k:'bat',hook:'Combien de temps sans prise',crit:'',n:'Batterie',a:135,ico:ic('<rect x="2.5" y="7" width="16" height="10"/><path d="M21 10v4M6 10v4M10 10v4"/>'),why:'<b>Le réservoir.</b> Sa capacité (en Wh) compte, mais l’autonomie réelle dépend de l’écran, du processeur et de l’usage : les chiffres du fabricant sont rarement atteints.',tip:'Fiez-vous aux tests indépendants plus qu’aux heures annoncées. Si vous bougez souvent, visez 60 Wh ou plus.'},
+{k:'poids',hook:'Ce que porte votre épaule',crit:'mobilite',n:'Poids',a:180,ico:ic('<path d="M7 20h10l2-11H5z"/><circle cx="12" cy="6" r="2.5"/>'),why:'<b>Ce que votre épaule porte.</b> Sous 1,5 kg, on l’oublie dans un sac ; au-delà de 2 kg, il reste surtout sur un bureau. Puissance et poids vont souvent ensemble.',tip:'Vous le portez tous les jours ? Restez sous 1,5 kg. Il reste sur un bureau ? Le poids n’a plus d’importance.'}];
 var DUP={cpu:1,ram:1};/* démos déjà couvertes par le comparateur animé : on ne garde que le verdict et la fiche produit */
 function byK(k){for(var i=0;i<COMP.length;i++)if(COMP[i].k===k)return COMP[i]}
 function xy(a){var t=a*Math.PI/180;return [50+38*Math.sin(t),50-38*Math.cos(t)]}
@@ -114,7 +114,9 @@ function setupCriteria(){
   '<div class="pg-top"><div class="pg-art">'+(ART[c.k]||'')+'</div><div class="pg-copy"><p class="pg-why">'+c.why+'</p><p class="pg-tip"><b>Le bon réglage</b>'+c.tip+'</p></div></div>'+
   '<div class="pg-more pcx">'+d+'</div>'+
   '<nav class="pg-step" aria-label="Critère précédent ou suivant">'+(prev?'<button type="button" class="pg-btn alt" data-comp="'+prev.k+'">← '+prev.n+'</button>':'<span></span>')+(next?'<button type="button" class="pg-btn" data-comp="'+next.k+'">'+next.n+' →</button>':'<a class="pg-btn" href="#audit">Passer au questionnaire →</a>')+'</nav></article>'}).join('');
- host.innerHTML='<div class="pg-wrap"><div class="pg-cmpcol"><div class="pg-cmp" id="pg-cmp" role="group" aria-label="Boussole des critères : choisissez un composant"><svg class="pg-ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="152"/><circle cx="200" cy="200" r="100" class="in"/>'+ticks+spokes+'</svg>'+nodes+'<div class="pg-hub"><span class="pg-hublbl">Cœur de la machine</span>'+hub+'</div></div><p class="pg-hint">Touchez un point : le critère s’affiche avec sa démo. Touchez-le à nouveau pour le replier.</p></div><div class="pg-panels" id="pg-panels">'+panels+'</div></div>';
+ var list='<ol class="pg-list" id="pg-list">'+COMP.map(function(c,i){return '<li class="pg-li" data-li="'+c.k+'"><button type="button" class="pg-row" data-comp="'+c.k+'" aria-pressed="false" aria-controls="pg-p-'+c.k+'" style="--i:'+i+'"><span class="pg-row-no">0'+(i+1)+'</span><span class="pg-row-ico">'+c.ico+'</span><span class="pg-row-t"><b>'+c.n+'</b><small>'+c.hook+'</small></span><span class="pg-row-chev" aria-hidden="true">+</span></button></li>'}).join('')+'</ol>';
+ var prog='<div class="pg-prog" id="pg-prog" aria-live="polite"><p><b id="pg-prog-n">0</b> / '+COMP.length+' critères explorés <span id="pg-prog-msg">Touchez-en un pour commencer.</span></p><i><b id="pg-prog-bar"></b></i></div>';
+ host.innerHTML=prog+'<div class="pg-wrap"><div class="pg-cmpcol"><div class="pg-cmp" id="pg-cmp" role="group" aria-label="Boussole des critères : choisissez un composant"><svg class="pg-ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="152"/><circle cx="200" cy="200" r="100" class="in"/>'+ticks+spokes+'</svg>'+nodes+'<div class="pg-hub"><span class="pg-hublbl">Cœur de la machine</span>'+hub+'</div></div><p class="pg-hint">Touchez un point : le critère s’affiche avec sa démo. Touchez-le à nouveau pour le replier.</p></div>'+list+'<div class="pg-panels" id="pg-panels">'+panels+'</div></div>';
  PANELS=document.getElementById('pg-panels');
  /* démos existantes : le corps « explication » de pc-comprendre est déplacé sous la démo */
  var src=document.getElementById('pc-comprendre');
@@ -125,22 +127,33 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
  rng.addEventListener('input',function(){scr2(rng.value)});
  box.querySelectorAll('.pg-seg button').forEach(function(b){b.addEventListener('click',function(){scr2(b.dataset.i)})});scr2(0);
 
+ var seen={},mq=window.matchMedia('(max-width:900px)'),LIST=document.getElementById('pg-list');
+ /* mobile : chaque panneau se range sous sa ligne (accordéon) ; bureau : colonne de droite à côté de la boussole */
+ function place(){COMP.forEach(function(c){var p=document.getElementById('pg-p-'+c.k);if(mq.matches)LIST.querySelector('[data-li="'+c.k+'"]').appendChild(p);else PANELS.appendChild(p)})}
+ if(mq.addEventListener)mq.addEventListener('change',place);else if(mq.addListener)mq.addListener(place);
+ place();
+ function progress(){var n=Object.keys(seen).length,done=n===COMP.length;document.getElementById('pg-prog-n').textContent=n;document.getElementById('pg-prog-bar').style.width=(n/COMP.length*100)+'%';
+  var m=document.getElementById('pg-prog-msg');m.innerHTML=done?'Bravo, vous avez fait le tour ! <a class="pg-prog-go" href="#audit">Trouver mon PC →</a>':(n?'Encore '+(COMP.length-n)+' à découvrir.':'Touchez-en un pour commencer.');
+  document.getElementById('pg-prog').classList.toggle('is-done',done)}
  function pick(k,scroll){
   var c=byK(k);if(!c)return;
+  if(!seen[k]){seen[k]=1;host.querySelectorAll('[data-comp="'+k+'"][aria-pressed]').forEach(function(b){b.classList.add('is-seen')});progress()}
+  host.querySelectorAll('.pg-li').forEach(function(l){l.classList.toggle('is-open',l.dataset.li===k)});
   host.querySelectorAll('[data-comp][aria-pressed]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.comp===k)});
   host.querySelectorAll('.pg-spoke').forEach(function(l){l.classList.toggle('on',l.dataset.spoke===k)});
-  PANELS.querySelectorAll('.pg-panel').forEach(function(p){p.hidden=p.dataset.k!==k});
+  host.querySelectorAll('.pg-panel').forEach(function(p){p.hidden=p.dataset.k!==k});
   var p=document.getElementById('pg-p-'+k);
   /* la démo se redessine (révélation) à chaque ouverture du critère */
   var dsc=p.querySelector('.pg-sc');if(dsc){dsc.classList.remove('pg-drawn');void dsc.offsetWidth;dsc.classList.add('pg-drawn')}
-  if(scroll){if(window.matchMedia('(max-width:900px)').matches)p.scrollIntoView({behavior:'smooth',block:'start'});var h=p.querySelector('h3');if(h)h.focus({preventScroll:true})}
+  if(scroll){if(mq.matches){var li=LIST.querySelector('[data-li="'+k+'"]');li.scrollIntoView({behavior:'smooth',block:'start'})}var h=p.querySelector('h3');if(h)h.focus({preventScroll:true})}
   try{history.replaceState(null,'','#critere-'+k)}catch(_){}
  }
  /* Replier : toucher à nouveau le point actif referme le panneau ouvert. */
  function foldAll(){
   host.querySelectorAll('[data-comp][aria-pressed]').forEach(function(b){b.setAttribute('aria-pressed','false')});
   host.querySelectorAll('.pg-spoke').forEach(function(l){l.classList.remove('on')});
-  PANELS.querySelectorAll('.pg-panel').forEach(function(p){p.hidden=true});
+  host.querySelectorAll('.pg-li').forEach(function(l){l.classList.remove('is-open')});
+  host.querySelectorAll('.pg-panel').forEach(function(p){p.hidden=true});
   try{history.replaceState(null,'','#criteres')}catch(_){}
  }
  host.addEventListener('click',function(e){var b=e.target.closest('[data-comp]');if(!b)return;
@@ -149,6 +162,9 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
   pick(b.dataset.comp,true)});
  var m=/^#critere-([a-z]+)$/.exec(location.hash);
  pick(m&&byK(m[1])?m[1]:'cpu',false);
+ /* l'ouverture initiale n'est pas une exploration : la progression repart de zéro ; sur mobile tout est replié au départ */
+ seen={};host.querySelectorAll('.is-seen').forEach(function(b){b.classList.remove('is-seen')});progress();
+ if(mq.matches&&!(m&&byK(m[1])))foldAll();
 }
 /* ---------- nomenclature — scan « DedSec » façon Watch Dogs 2 : une machine, plusieurs références ---------- */
 function setupNomenclature(){
@@ -208,5 +224,27 @@ function setupMotion(){
  set(!rm);b.addEventListener('click',function(){set(root.dataset.motion!=='on')});
  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('pg-offscreen',!e.isIntersecting)})},{rootMargin:'120px'});document.querySelectorAll('.pg-art,.pg-cmp,.pg-tv').forEach(function(n){io.observe(n)})}
 }
-setupNomenclature();setupCriteria();setupMotion();
+/* ---------- cartes « profil » : un toucher répond à la première question du questionnaire ---------- */
+function setupProfiles(){
+ document.querySelectorAll('.pl-profile [data-usage]').forEach(function(a){a.addEventListener('click',function(e){
+  var card=document.querySelector('.pc-audit-card[data-family="usage"]'),audit=document.getElementById('audit');if(!card||!audit)return;
+  e.preventDefault();
+  var opt=card.querySelector('[data-value="'+a.dataset.usage+'"]');
+  if(!card.classList.contains('is-open')){var h=card.querySelector('.pc-audit-head');if(h)h.click()}
+  if(opt)opt.click();
+  audit.scrollIntoView({behavior:'smooth',block:'start'});
+  try{history.replaceState(null,'','#audit')}catch(_){}
+ })});
+}
+/* ---------- chiffres clés : compteur à l'apparition (sauf mouvement réduit / mode économe) ---------- */
+function setupCounters(){
+ var els=document.querySelectorAll('.pg-strip b');
+ if(!('IntersectionObserver' in window)||document.documentElement.classList.contains('fx-lite')||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);
+  var el=e.target,m=/^(\d+)(.*)$/.exec(el.textContent);if(!m)return;var end=+m[1],t0=null;
+  function f(t){if(t0===null)t0=t;var k=Math.min(1,(t-t0)/900);el.textContent=Math.round(end*(1-Math.pow(1-k,3)))+m[2];if(k<1)requestAnimationFrame(f)}
+  requestAnimationFrame(f)})},{threshold:.6});
+ els.forEach(function(el){io.observe(el)});
+}
+setupNomenclature();setupCriteria();setupMotion();setupProfiles();setupCounters();
 })();

@@ -162,3 +162,90 @@
   .pl-end-btns, .pl-btn { width: 100%; }
   .pl-btn { justify-content: center; }
 }
+
+/* ============================================================
+   BOUSSOLE — progression, liste tactile (mobile), vivacité
+   ============================================================ */
+.pg-prog { display: grid; gap: 8px; margin: 0 0 24px; padding: 12px 16px; border: 1px solid var(--ink); background: var(--paper-2); }
+.pg-prog p { margin: 0; font: 500 12px/1.5 var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.pg-prog p b { color: var(--ink); font-size: 15px; }
+.pg-prog p span { color: var(--ink-mute); text-transform: none; letter-spacing: .02em; margin-left: 6px; }
+.pg-prog i { display: block; height: 8px; background: var(--paper-3); border: 1px solid var(--line-soft); overflow: hidden; }
+.pg-prog i b { display: block; height: 100%; width: 0; background: var(--accent); border-right: 1px solid var(--ink); transition: width .5s var(--ease); }
+.pg-prog.is-done { background: var(--accent); border-color: #0f1115; animation: plPop .5s var(--ease); }
+.pg-prog.is-done p, .pg-prog.is-done p b, .pg-prog.is-done p span { color: #0f1115; }
+.pg-prog.is-done i { background: #fff; border-color: #0f1115; }
+.pg-prog.is-done i b { background: #0f1115; }
+.pg-prog-go { color: #0f1115; font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; }
+.pg-prog-go:hover { background: #0f1115; color: #ffd400; }
+@keyframes plPop { 0% { transform: scale(.97); } 60% { transform: scale(1.015); } 100% { transform: none; } }
+
+/* points de la roue : « vu » = pastille jaune cochée ; non vus = discret clignotement d'invitation */
+.pg-node, .pg-hubbtn { position: relative; }
+.pg-node.is-seen::after, .pg-hubbtn.is-seen::after {
+  content: '✓';
+  position: absolute; top: -8px; right: -8px;
+  display: grid; place-items: center;
+  width: 18px; height: 18px;
+  background: var(--accent); color: #0f1115; border: 1px solid #0f1115;
+  font: 700 11px/1 var(--mono);
+  animation: plPop .35s var(--ease);
+}
+.pg-node:not(.is-seen):not([aria-pressed="true"])::before, .pg-hubbtn:not(.is-seen):not([aria-pressed="true"])::before {
+  content: ''; position: absolute; top: -4px; right: -4px; width: 9px; height: 9px; background: var(--accent); border: 1px solid #0f1115;
+  animation: plPing 1.8s ease-in-out infinite;
+}
+@keyframes plPing { 0%, 100% { transform: scale(.7); opacity: .6; } 50% { transform: scale(1.15); opacity: 1; } }
+.pg[data-motion="off"] .pg-node::before, .pg[data-motion="off"] .pg-hubbtn::before, .fx-lite .pg-node::before, .fx-lite .pg-hubbtn::before { animation: none; }
+
+/* liste tactile : mobile uniquement */
+.pg-list { display: none; list-style: none; margin: 0; padding: 0; }
+@media (max-width: 900px) {
+  .pg-cmpcol { display: none; }
+  .pg-wrap { display: block; margin-top: 0; }
+  .pg-panels { display: none; }
+  .pg-list { display: grid; gap: 10px; }
+  .pg-li { border: 1px solid var(--ink); background: var(--paper-2); scroll-margin-top: calc(var(--header-h, 64px) + 12px); transition: box-shadow .2s var(--ease); }
+  .pg-li.is-open { box-shadow: var(--shadow); }
+  .pg-row {
+    width: 100%; min-height: 68px;
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px;
+    text-align: left;
+    background: var(--paper-2);
+    transition: background .2s, transform .12s var(--ease);
+    animation: plRowIn .5s var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 60ms);
+  }
+  .pg-row:active { transform: scale(.985); }
+  .pg-li.is-open > .pg-row { background: var(--accent); color: #0f1115; }
+  .pg-row-no { font: 700 12px var(--mono); color: var(--ink-mute); min-width: 22px; }
+  .pg-row-ico { width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); transition: transform .3s var(--ease), background .2s; }
+  .pg-li.is-open .pg-row-ico { background: #0f1115; color: #ffd400; transform: rotate(-6deg) scale(1.06); }
+  .pg-row-ico svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .pg-row-t { flex: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .pg-row-t b { font: 800 16px/1.15 var(--head); text-transform: uppercase; letter-spacing: -.005em; }
+  .pg-row-t small { font: 400 13px/1.35 var(--sans); color: var(--ink-mute); }
+  .pg-li.is-open .pg-row-no, .pg-li.is-open .pg-row-t small { color: #0f1115; }
+  .pg-row-chev { font: 700 18px var(--mono); transition: transform .3s var(--ease); }
+  .pg-li.is-open .pg-row-chev { transform: rotate(45deg); }
+  .pg-row.is-seen .pg-row-no { color: transparent; position: relative; }
+  .pg-row.is-seen .pg-row-no::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink); background: var(--accent); width: 20px; height: 20px; border: 1px solid #0f1115; color: #0f1115; font-size: 11px; }
+  /* panneau rangé sous sa ligne */
+  .pg-li > .pg-panel { border: 0; border-top: 1px solid var(--ink); box-shadow: none; padding: 16px 14px 18px; animation: pcFoldIn .3s var(--ease); }
+  .pg-li > .pg-panel .pg-ph { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .pg-li > .pg-panel .pg-step { margin-top: 18px; }
+}
+@keyframes plRowIn { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .pg-row { animation: none; } }
+.fx-lite .pg-row { animation: none; }
+
+/* vivacité générale : retour tactile des boutons et cartes, flottement discret de la photo */
+.pg-btn:active, .pl-btn:active { transform: translate(2px, 2px); box-shadow: none; }
+.pg-shot img { animation: plFloat 6s ease-in-out infinite; }
+@keyframes plFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.pg[data-motion="off"] .pg-shot img, .fx-lite .pg-shot img { animation: none; }
+@media (prefers-reduced-motion: reduce) { .pg-shot img { animation: none; } .pg-node::before, .pg-hubbtn::before { animation: none; } }
+.pl-rule:hover .pl-num { transform: rotate(-8deg) scale(1.08); }
+.pl-num { transition: transform .25s var(--ease); }
+.pl-profile:active { transform: translate(-1px, -1px); }

@@ -33,10 +33,13 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
     });
     await check(name + ' : boussole — 7 points, un seul panneau visible à la fois', async () => {
       if (await page.locator('#pg-cmp [data-comp]').count() !== 7) throw new Error('points');
-      if (await page.locator('.pg-panel:not([hidden])').count() !== 1) throw new Error('panneaux visibles');
+      /* bureau : un panneau ouvert d'emblée ; mobile : liste repliée au départ */
+      const open = await page.locator('.pg-panel:not([hidden])').count();
+      if (open !== (name === 'bureau' ? 1 : 0)) throw new Error('panneaux visibles : ' + open);
+      if (await page.locator('.pg-row').count() !== 7) throw new Error('liste tactile');
     });
     await check(name + ' : boussole — le stockage ouvre sa démo et le planificateur', async () => {
-      await page.locator('#pg-cmp [data-comp="sto"]').click();
+      await page.locator('[data-comp="sto"]:visible').first().click();
       const p = page.locator('#pg-p-sto'); if (await p.isHidden()) throw new Error('panneau caché');
       if (await page.locator('.pg-panel:not([hidden])').count() !== 1) throw new Error('plusieurs panneaux');
       if (!await p.locator('.pcx-planner').count()) throw new Error('planificateur absent');
@@ -44,7 +47,7 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
       if (!(await p.locator('.pg-dt').innerText()).includes('256 Go')) throw new Error('texte 256 Go');
     });
     await check(name + ' : écran — OLED : halo supprimé, pastilles prix/avantage', async () => {
-      await page.locator('#pg-cmp [data-comp="ecran"]').click();
+      await page.locator('[data-comp="ecran"]:visible').first().click();
       const p = page.locator('#pg-p-ecran'); await p.locator('#pg-rng').fill('2');
       const t = await p.locator('#pg-scr-txt').innerText();
       if (!t.includes('OLED') || !t.includes('prix élevé') || !t.includes('couleurs plus belles')) throw new Error(t);
@@ -52,13 +55,22 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
     });
     await check(name + ' : chaque critère a illustration, démo et navigation', async () => {
       for (const k of ['cpu', 'gpu', 'ram', 'bat', 'poids']) {
-        await page.locator('#pg-cmp [data-comp="' + k + '"]').click();
+        await page.locator('[data-comp="' + k + '"]:visible').first().click();
         const p = page.locator('#pg-p-' + k);
         if (!await p.locator('.pg-art svg').count()) throw new Error(k + ' : illustration');
         await p.locator('.pg-seg button[data-i="2"]').click();
         if (!await p.locator('.pg-tv svg').count()) throw new Error(k + ' : scène');
         if (!(await p.locator('.pg-dt').innerText()).length) throw new Error(k + ' : texte');
       }
+    });
+    await check(name + ' : progression — les critères ouverts sont comptés', async () => {
+      const n = +(await page.locator('#pg-prog-n').innerText());
+      if (n !== 7) throw new Error('compteur : ' + n + ' (attendu 7)');
+    });
+    await check(name + ' : profil — un toucher répond à la première question', async () => {
+      await page.locator('.pl-profile [data-usage="jeu"]').click();
+      const t = await page.locator('.pc-audit-card[data-family="usage"] .pc-audit-state').innerText();
+      if (!/choisi|jouer/i.test(t) && await page.locator('.pc-audit-card[data-family="usage"].is-done').count() !== 1) throw new Error('question non répondue : ' + t);
     });
     await check(name + ' : pause des animations (bouton, WCAG 2.2.2)', async () => {
       const b = page.locator('#pg-motion'), root = page.locator('.pg');
