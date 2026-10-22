@@ -278,7 +278,7 @@
     var compareHref = compareId ? "comparateur.html?selection=" + encodeURIComponent(compareId) : "comparateur.html";
     var compareText = compareId ? "Comparer →" : "Ouvrir le comparateur →";
     var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : (state.category === "pc-portables" ? "pc-portables.html#audit" : "smartphones.html#purchase-audit");
-    var auditHint = state.category === "pc-portables" ? "6 questions : écran, mémoire, stockage, processeur, carte graphique et mobilité." : "5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.";
+    var auditHint = state.category === "pc-portables" ? "4 questions simples : usage, budget, transport et besoin de jeux ou de montage." : "5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.";
     var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>' + auditHint + '</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';
     show('<div class="model-analyzer-card"><span class="eyebrow">ANALYSE DU MODÈLE</span><h3>' + esc(title) + "</h3>" + imageBlock + notes +
       (price ? "<p><strong>" + (cat.prix_indicatif ? "Prix indicatif" : "Prix trouvé sur la page") + " :</strong> " + esc(price) + " €</p>" : "") +

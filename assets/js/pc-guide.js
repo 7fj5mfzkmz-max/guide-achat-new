@@ -160,6 +160,13 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
   /* le point actif se replie ; un autre point ouvre son panneau */
   if(b.getAttribute('aria-pressed')==='true'){foldAll();return}
   pick(b.dataset.comp,true)});
+ /* liens « pourquoi ? » des recommandations et des cartes : ouvrent le critère correspondant */
+ window.pcShowCriterion=function(k){
+  if(!byK(k))return;
+  var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  pick(k,true);
+  if(!mq.matches){var sec=document.getElementById('criteres');if(sec)sec.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})}
+ };
  var m=/^#critere-([a-z]+)$/.exec(location.hash);
  pick(m&&byK(m[1])?m[1]:'cpu',false);
  /* l'ouverture initiale n'est pas une exploration : la progression repart de zéro ; sur mobile tout est replié au départ */
@@ -232,7 +239,8 @@ function setupProfiles(){
   var opt=card.querySelector('[data-value="'+a.dataset.usage+'"]');
   if(!card.classList.contains('is-open')){var h=card.querySelector('.pc-audit-head');if(h)h.click()}
   if(opt)opt.click();
-  audit.scrollIntoView({behavior:'smooth',block:'start'});
+  var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,res=document.getElementById('pc-audit-result');
+  (res||audit).scrollIntoView({behavior:rm?'auto':'smooth',block:'start'});
   try{history.replaceState(null,'','#audit')}catch(_){}
  })});
 }
@@ -246,5 +254,23 @@ function setupCounters(){
   requestAnimationFrame(f)})},{threshold:.6});
  els.forEach(function(el){io.observe(el)});
 }
-setupNomenclature();setupCriteria();setupMotion();setupProfiles();setupCounters();
+/* ---------- « pourquoi ? » : un lien data-why ouvre le critère de la boussole ---------- */
+document.addEventListener('click',function(e){var b=e.target.closest('[data-why]');if(b&&window.pcShowCriterion){e.preventDefault();window.pcShowCriterion(b.dataset.why)}});
+/* ---------- menu « Sections » collant : liste repliable sur mobile, rangée de liens sur bureau ---------- */
+function setupSections(){
+ var nav=document.getElementById('pl-sections'),btn=document.getElementById('pl-sections-btn'),list=document.getElementById('pl-sections-list'),cur=document.getElementById('pl-sections-cur');if(!nav||!btn||!list)return;
+ var links=[].slice.call(list.querySelectorAll('a'));
+ function set(open){nav.classList.toggle('is-open',open);btn.setAttribute('aria-expanded',open)}
+ btn.addEventListener('click',function(){set(!nav.classList.contains('is-open'))});
+ list.addEventListener('click',function(e){if(e.target.closest('a'))set(false)});
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('is-open')){set(false);btn.focus()}});
+ document.addEventListener('click',function(e){if(nav.classList.contains('is-open')&&!nav.contains(e.target))set(false)});
+ function mark(id){links.forEach(function(a){var on=a.getAttribute('href')==='#'+id;if(on){a.setAttribute('aria-current','true');cur.textContent=a.textContent.replace(/^\d+/,'')}else a.removeAttribute('aria-current')})}
+ if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)mark(e.target.id)})},{rootMargin:'-35% 0px -60% 0px'});
+  links.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));if(t)io.observe(t)});
+ }
+ mark('audit');
+}
+setupNomenclature();setupCriteria();setupMotion();setupProfiles();setupCounters();setupSections();
 })();
