@@ -110,13 +110,13 @@ function setupCriteria(){
  var panels=COMP.map(function(c,i){
   var prev=COMP[i-1],next=COMP[i+1],d=c.k==='ecran'?scr:(DM[c.k]?demo(c.k):'');
   return '<article class="pg-panel" id="pg-p-'+c.k+'" data-k="'+c.k+'" data-pcrit="'+c.crit+'" aria-labelledby="pg-h-'+c.k+'" hidden>'+
-  '<header class="pg-ph"><span class="pg-kick">Critère '+(i+1)+' / '+COMP.length+'</span><h3 id="pg-h-'+c.k+'" tabindex="-1">'+c.n+'</h3></header>'+
+  '<header class="pg-ph"><span class="pg-kick">Critère '+(i+1)+' / '+COMP.length+'</span><span class="pg-imp-tag">Important pour vous</span><h3 id="pg-h-'+c.k+'" tabindex="-1">'+c.n+'</h3></header>'+
   '<div class="pg-top"><div class="pg-art">'+(ART[c.k]||'')+'</div><div class="pg-copy"><p class="pg-why">'+c.why+'</p><p class="pg-tip"><b>Le bon réglage</b>'+c.tip+'</p></div></div>'+
   '<div class="pg-more pcx">'+d+'</div>'+
   '<nav class="pg-step" aria-label="Critère précédent ou suivant">'+(prev?'<button type="button" class="pg-btn alt" data-comp="'+prev.k+'">← '+prev.n+'</button>':'<span></span>')+(next?'<button type="button" class="pg-btn" data-comp="'+next.k+'">'+next.n+' →</button>':'<a class="pg-btn" href="#audit">Passer au questionnaire →</a>')+'</nav></article>'}).join('');
  var list='<ol class="pg-list" id="pg-list">'+COMP.map(function(c,i){return '<li class="pg-li" data-li="'+c.k+'"><button type="button" class="pg-row" data-comp="'+c.k+'" aria-pressed="false" aria-controls="pg-p-'+c.k+'" style="--i:'+i+'"><span class="pg-row-no">0'+(i+1)+'</span><span class="pg-row-ico">'+c.ico+'</span><span class="pg-row-t"><b>'+c.n+'</b><small>'+c.hook+'</small></span><span class="pg-row-chev" aria-hidden="true">+</span></button></li>'}).join('')+'</ol>';
- var prog='<div class="pg-prog" id="pg-prog" aria-live="polite"><p><b id="pg-prog-n">0</b> / '+COMP.length+' critères explorés <span id="pg-prog-msg">Touchez-en un pour commencer.</span></p><i><b id="pg-prog-bar"></b></i></div>';
- host.innerHTML=prog+'<div class="pg-wrap"><div class="pg-cmpcol"><div class="pg-cmp" id="pg-cmp" role="group" aria-label="Boussole des critères : choisissez un composant"><svg class="pg-ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="152"/><circle cx="200" cy="200" r="100" class="in"/>'+ticks+spokes+'</svg>'+nodes+'<div class="pg-hub"><span class="pg-hublbl">Cœur de la machine</span>'+hub+'</div></div><p class="pg-hint">Touchez un point : le critère s’affiche avec sa démo. Touchez-le à nouveau pour le replier.</p></div>'+list+'<div class="pg-panels" id="pg-panels">'+panels+'</div></div>';
+ var prog='<div class="pg-prog" id="pg-prog" aria-live="polite"><p><b id="pg-prog-n">0</b> / '+COMP.length+' critères vus <span id="pg-prog-msg"></span></p><i><b id="pg-prog-bar"></b></i></div>';
+ host.innerHTML='<p class="pg-imp" id="pg-imp" hidden></p>'+prog+'<div class="pg-wrap"><div class="pg-cmpcol"><div class="pg-cmp" id="pg-cmp" role="group" aria-label="Boussole des critères : choisissez un composant"><svg class="pg-ring" viewBox="0 0 400 400" aria-hidden="true" focusable="false"><circle cx="200" cy="200" r="152"/><circle cx="200" cy="200" r="100" class="in"/>'+ticks+spokes+'</svg>'+nodes+'<div class="pg-hub"><span class="pg-hublbl">Cœur de la machine</span>'+hub+'</div></div><p class="pg-hint">Touchez un point : le critère s’affiche avec sa démo. Touchez-le à nouveau pour le replier.</p></div>'+list+'<div class="pg-panels" id="pg-panels">'+panels+'</div></div>';
  PANELS=document.getElementById('pg-panels');
  /* démos existantes : le corps « explication » de pc-comprendre est déplacé sous la démo */
  var src=document.getElementById('pc-comprendre');
@@ -133,7 +133,7 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
  if(mq.addEventListener)mq.addEventListener('change',place);else if(mq.addListener)mq.addListener(place);
  place();
  function progress(){var n=Object.keys(seen).length,done=n===COMP.length;document.getElementById('pg-prog-n').textContent=n;document.getElementById('pg-prog-bar').style.width=(n/COMP.length*100)+'%';
-  var m=document.getElementById('pg-prog-msg');m.innerHTML=done?'Bravo, vous avez fait le tour ! <a class="pg-prog-go" href="#audit">Trouver mon PC →</a>':(n?'Encore '+(COMP.length-n)+' à découvrir.':'Touchez-en un pour commencer.');
+  var m=document.getElementById('pg-prog-msg'),nx=COMP.filter(function(c){return !seen[c.k]})[0];m.innerHTML=done?'Bravo, vous avez fait le tour ! <a class="pg-prog-go" href="#audit">Trouver mon PC →</a>':'Suivant : <button type="button" class="hx-link pg-prog-next" data-comp="'+nx.k+'">'+nx.n+' →</button>';
   document.getElementById('pg-prog').classList.toggle('is-done',done)}
  function pick(k,scroll){
   var c=byK(k);if(!c)return;
@@ -167,11 +167,20 @@ var rng=document.getElementById('pg-rng'),box=PANELS.querySelector('.pg-ecr');
   pick(k,true);
   if(!mq.matches){var sec=document.getElementById('criteres');if(sec)sec.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})}
  };
- var m=/^#critere-([a-z]+)$/.exec(location.hash);
- pick(m&&byK(m[1])?m[1]:'cpu',false);
- /* l'ouverture initiale n'est pas une exploration : la progression repart de zéro ; sur mobile tout est replié au départ */
- seen={};host.querySelectorAll('.is-seen').forEach(function(b){b.classList.remove('is-seen')});progress();
- if(mq.matches&&!(m&&byK(m[1])))foldAll();
+ /* ouverture par défaut : un critère parlant est déjà ouvert pour montrer ce que fait l'interaction (ancre #critere-xxx prioritaire) */
+ function fromHash(){var m=/^#critere-([a-z]+)$/.exec(location.hash);return m&&byK(m[1])?m[1]:null}
+ pick(fromHash()||'ram',false);
+ window.addEventListener('hashchange',function(){var k=fromHash();if(k)window.pcShowCriterion(k)});
+ /* « Important pour vous » : 2 à 3 critères mis en avant selon le profil du questionnaire */
+ var IMP={etudiant:['poids','bat','ram'],professionnel:['ram','cpu','ecran'],createur:['ram','gpu','ecran'],gamer:['gpu','ecran','cpu']},PNAME={etudiant:'Étudiant',professionnel:'Professionnel',createur:'Créateur',gamer:'Joueur'};
+ document.addEventListener('pc:profile',function(e){
+  var id=e.detail&&e.detail.id,list=IMP[id]||[],box=document.getElementById('pg-imp');
+  host.querySelectorAll('[data-comp][aria-pressed]').forEach(function(b){b.classList.toggle('is-imp',list.indexOf(b.dataset.comp)>-1)});
+  host.querySelectorAll('.pg-panel').forEach(function(p){p.classList.toggle('is-imp',list.indexOf(p.dataset.k)>-1)});
+  if(!list.length){box.hidden=true;box.innerHTML='';return}
+  box.hidden=false;
+  box.innerHTML='<span class="pg-imp-l">Important pour votre profil «&nbsp;'+PNAME[id]+'&nbsp;» :</span>'+list.map(function(k){return '<button type="button" class="pg-imp-chip" data-comp="'+k+'">'+byK(k).n+'</button>'}).join('');
+ });
 }
 /* ---------- nomenclature — scan « DedSec » façon Watch Dogs 2 : une machine, plusieurs références ---------- */
 function setupNomenclature(){

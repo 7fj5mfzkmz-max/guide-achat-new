@@ -207,9 +207,9 @@ function specChips(p,profile){
 }
 function whyLinks(p,all){
   var s=specOf(p), l=[];
-  if(s.perf.ram_go)l.push('<button type="button" class="hx-link pc-why-link" data-why="ram">Pourquoi '+s.perf.ram_go+' Go ?</button>');
-  l.push('<button type="button" class="hx-link pc-why-link" data-why="gpu">À quoi sert la carte graphique ?</button>');
-  if(all){if(s.w)l.push('<button type="button" class="hx-link pc-why-link" data-why="poids">Pourquoi le poids compte ?</button>');l.push('<button type="button" class="hx-link pc-why-link" data-why="ecran">Quel écran choisir ?</button>');}
+  if(s.perf.ram_go)l.push('<a class="hx-link pc-why-link" href="#critere-ram" data-why="ram">Pourquoi '+s.perf.ram_go+' Go et pas 8 ?</a>');
+  l.push('<a class="hx-link pc-why-link" href="#critere-gpu" data-why="gpu">À quoi sert la carte graphique ?</a>');
+  if(all){if(s.w)l.push('<a class="hx-link pc-why-link" href="#critere-poids" data-why="poids">Pourquoi le poids compte ?</a>');l.push('<a class="hx-link pc-why-link" href="#critere-ecran" data-why="ecran">Quel écran choisir ?</a>');}
   return '<p class="pc-why-links">'+l.join('')+'</p>';
 }
 function productTitle(p){var brand=p.marque||'', nom=p.nom||'';return (brand&&nom.toLowerCase().indexOf(brand.toLowerCase())===0)?nom:(brand?brand+' ':'')+nom;}
@@ -241,7 +241,7 @@ function updateAudit(){
     prov.hidden=true;reco.innerHTML='';osBox.hidden=true;pw.hidden=true;prio.innerHTML='';
     document.querySelectorAll('[data-pill]').forEach(p=>p.classList.remove('is-active'));
     document.querySelectorAll('[data-os]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.os==='all'));
-    currentFilter='all';catProfile='all';renderCatalogue();return;
+    currentFilter='all';catProfile='all';document.dispatchEvent(new CustomEvent('pc:profile',{detail:{id:null}}));renderCatalogue();return;
   }
   var profile=match.id, p=PROFILES.find(x=>x.id===profile);
   title.innerHTML=(match.close?'Votre profil se dessine : ':'Votre profil : ')+p.label;
@@ -251,8 +251,11 @@ function updateAudit(){
   prio.innerHTML='<ul>'+p.priorities.map(x=>'<li>'+x+'</li>').join('')+'</ul>';pw.hidden=false;
   currentFilter=profile;catProfile=profile;
   document.dispatchEvent(new CustomEvent('pc:profile',{detail:{id:profile}}));
-  if(answered<total){prov.hidden=false;prov.innerHTML='Recommandation provisoire : encore '+(total-answered)+' question'+(total-answered>1?'s':'')+' pour l’affiner. <button type="button" class="hx-link" id="pc-continue">Continuer</button>';var cb=document.getElementById('pc-continue');if(cb)cb.addEventListener('click',function(){if(window.pcNextQuestion)window.pcNextQuestion();});}
-  else prov.hidden=true;
+  prov.hidden=false;prov.classList.toggle('is-final',answered===total);
+  if(answered<total){prov.innerHTML='<b>Recommandation provisoire</b> · affinée avec '+answered+' réponse'+(answered>1?'s':'')+' sur '+total+'. Chaque réponse la précise : encore '+(total-answered)+' question'+(total-answered>1?'s':'')+'. <button type="button" class="hx-link" id="pc-continue">Continuer</button>';var cb=document.getElementById('pc-continue');if(cb)cb.addEventListener('click',function(){if(window.pcNextQuestion)window.pcNextQuestion();});}
+  else prov.innerHTML='<b>Recommandation affinée</b> avec vos '+total+' réponses.';
+  /* la carte se redessine à chaque réponse : un bref rappel visuel montre qu'elle a été mise à jour */
+  reco.classList.remove('is-updated');void reco.offsetWidth;reco.classList.add('is-updated');
   var pick=catalogueItems.length?recoPick(profile):null;
   if(!catalogueItems.length){because.textContent='';reco.innerHTML='<p class="pc-reco-empty">Chargement du catalogue…</p>';}
   else if(!pick){because.textContent='';reco.innerHTML='<p class="pc-reco-empty">Aucun modèle du catalogue ne correspond à ce budget et à ce système. Élargissez le budget ou choisissez « Peu importe » pour le système.</p>';}

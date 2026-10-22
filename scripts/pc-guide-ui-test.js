@@ -33,9 +33,10 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
     });
     await check(name + ' : boussole — 7 points, un seul panneau visible à la fois', async () => {
       if (await page.locator('#pg-cmp [data-comp]').count() !== 7) throw new Error('points');
-      /* bureau : un panneau ouvert d'emblée ; mobile : liste repliée au départ */
+      /* un critère (mémoire vive) est ouvert d'emblée, sur bureau comme sur mobile */
       const open = await page.locator('.pg-panel:not([hidden])').count();
-      if (open !== (name === 'bureau' ? 1 : 0)) throw new Error('panneaux visibles : ' + open);
+      if (open !== 1) throw new Error('panneaux visibles : ' + open);
+      if (await page.locator('.pg-panel:not([hidden])').getAttribute('data-k') !== 'ram') throw new Error('critère ouvert par défaut');
       if (await page.locator('.pg-row').count() !== 7) throw new Error('liste tactile');
     });
     await check(name + ' : boussole — le stockage ouvre sa démo et le planificateur', async () => {
@@ -62,6 +63,27 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
         if (!await p.locator('.pg-tv svg').count()) throw new Error(k + ' : scène');
         if (!(await p.locator('.pg-dt').innerText()).length) throw new Error(k + ' : texte');
       }
+    });
+    await check(name + ' : section facultative annoncée, liens de transition', async () => {
+      const lead = await page.locator('#criteres .section-lead').innerText();
+      if (!/facultatif/i.test(lead)) throw new Error('texte de pont absent');
+      if (!await page.locator('#essentiel .pl-next a[href="#criteres"]').count()) throw new Error('transition essentiel → critères');
+    });
+    await check(name + ' : ancre #critere-xxx ouvre le bon critère (au chargement et après)', async () => {
+      await page.evaluate(() => { location.hash = '#critere-gpu'; });
+      await page.waitForTimeout(500);
+      if (await page.locator('.pg-panel:not([hidden])').getAttribute('data-k') !== 'gpu') throw new Error('hashchange');
+    });
+    await check(name + ' : « Important pour vous » selon le profil', async () => {
+      await page.locator('.pl-profile [data-usage="jeu"]').click();
+      await page.waitForTimeout(600);
+      const chips = await page.locator('#pg-imp .pg-imp-chip').allInnerTexts();
+      if (chips.length < 2 || chips.length > 3) throw new Error('chips : ' + chips.join('|'));
+      if (!chips.some(t => /carte graphique/i.test(t))) throw new Error('joueur sans carte graphique : ' + chips.join('|'));
+      if (!await page.locator('.pg-panel[data-k="gpu"].is-imp').count()) throw new Error('panneau non marqué');
+      if (!await page.locator('[data-comp="gpu"].is-imp:visible').count()) throw new Error('point/ligne non marqué');
+      await page.locator('#pg-imp .pg-imp-chip').first().click();
+      await page.waitForTimeout(300);
     });
     await check(name + ' : progression — les critères ouverts sont comptés', async () => {
       const n = +(await page.locator('#pg-prog-n').innerText());
