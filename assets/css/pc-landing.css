@@ -254,10 +254,11 @@
 /* ============================================================
    FOND DISCRET — bureau en filigrane derrière « L'essentiel »
    ============================================================ */
-.pg .section#essentiel { position: relative; overflow: hidden; }
+.pg .section#essentiel { position: relative; overflow: hidden; isolation: isolate; }
 .pg .section#essentiel::before {
   content: "";
   position: absolute; inset: 0;
+  z-index: -1; /* toujours derrière le contenu de la section */
   background: url("../deco/desk-bg-pc.jpeg") center / cover no-repeat;
   opacity: .06;
   pointer-events: none;
