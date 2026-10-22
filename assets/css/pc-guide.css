@@ -153,8 +153,6 @@
 .pg-spin{animation:pgSpin 2.2s linear infinite}
 .pg-spin.pg-vb[r]{animation-duration:14s}
 @keyframes pgSpin{to{transform:rotate(360deg)}}
-.pg-fan{animation:pgSpin 1.6s linear infinite;transform-box:view-box!important}
-.pg-rot{transform-origin:center;animation:pgSpin 3s infinite}
 .pg-pulse{animation:pgPulse 2.4s ease-in-out infinite}
 /* la pulsation anime fill-opacity (pas opacity) : l'opacité propre à chaque pixel ou cellule — allumé, atténué, éteint — reste appliquée */
 .pg-px{animation:pgPulse 2.4s ease-in-out infinite alternate}
@@ -169,16 +167,12 @@
 @keyframes pgBlink{0%,100%{opacity:1}35%{opacity:.1}60%{opacity:.9}80%{opacity:.2}}
 .pg-shine{animation:pgShine 4.5s ease-in-out infinite}
 @keyframes pgShine{0%,15%{transform:translateX(0) skewX(-18deg)}70%,100%{transform:translateX(520px) skewX(-18deg)}}
-.pg-hue{animation:pgHue 5s linear infinite}
-@keyframes pgHue{to{filter:hue-rotate(360deg)}}
 .pg-rise{animation:pgRise 2.4s ease-out infinite}
 @keyframes pgRise{0%{transform:translateY(8px);opacity:0}30%{opacity:1}100%{transform:translateY(-34px);opacity:0}}
 .pg-rise2{animation:pgRise2 3s ease-in infinite}
 @keyframes pgRise2{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(-70px);opacity:0}}
 .pg-float{animation:pgFloat 3.2s ease-in-out infinite}
 @keyframes pgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.pg-bar{transform-origin:bottom;animation:pgPump 1.1s ease-in-out infinite alternate}
-@keyframes pgPump{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
 .pg-win{animation:pgWin 3.3s ease-in-out infinite;transform-origin:bottom}
 @keyframes pgWin{0%,100%{transform:scale(.6);opacity:.2}50%{transform:scale(1);opacity:.85}}
 .pg-drop{animation:pgDrop 3.4s cubic-bezier(.5,0,1,.6) infinite}
@@ -197,7 +191,7 @@
 @keyframes pgDrain{from{transform:scaleX(1)}to{transform:scaleX(.04)}}
 /* pause : bouton utilisateur, mouvement réduit, élément hors écran, mode économe */
 .pg[data-motion="off"] svg *,.pg-offscreen svg *,.fx-lite .pg svg *{animation-play-state:paused!important}
-@media(prefers-reduced-motion:reduce){.pg-spoke.on,.pg-lay svg{animation:none}.pg-ghost,.pg-haze{transition:none}}
+@media(prefers-reduced-motion:reduce){.pg-spoke.on,.pg-lay svg{animation:none}.pg-haze{transition:none}}
 
 /* ---------- mobile ---------- */
 @media(max-width:900px){

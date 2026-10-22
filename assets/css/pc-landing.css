@@ -232,10 +232,9 @@
   .pg-row-chev { font: 700 18px var(--mono); transition: transform .3s var(--ease); }
   .pg-li.is-open .pg-row-chev { transform: rotate(45deg); }
   .pg-row.is-seen .pg-row-no { color: transparent; position: relative; }
-  .pg-row.is-seen .pg-row-no::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink); background: var(--accent); width: 20px; height: 20px; border: 1px solid #0f1115; color: #0f1115; font-size: 11px; }
+  .pg-row.is-seen .pg-row-no::after { content: '✓'; position: absolute; inset: 0; display: grid; place-items: center; background: var(--accent); width: 20px; height: 20px; border: 1px solid #0f1115; color: #0f1115; font-size: 11px; }
   /* panneau rangé sous sa ligne */
   .pg-li > .pg-panel { border: 0; border-top: 1px solid var(--ink); box-shadow: none; padding: 16px 14px 18px; animation: pcFoldIn .3s var(--ease); }
-  .pg-li > .pg-panel .pg-ph { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .pg-li > .pg-panel .pg-step { margin-top: 18px; }
 }
 @keyframes plRowIn { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
@@ -424,8 +423,7 @@ html.dark-theme .pg .section#essentiel::before { opacity: .05; filter: saturate(
 .fx-lite .pc-reco.is-updated .pc-reco-card { animation: none; }
 @media (max-width: 900px) {
   .pg-imp { margin-bottom: 10px; }
-  .pg-li > .pg-panel .pg-ph { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
-  .pg-li > .pg-panel .pg-ph .pg-kick, .pg-li > .pg-panel .pg-ph h3 { display: none; }
+  /* le nom du critère est déjà sur la ligne : titre et numéro restent pour les lecteurs d'écran, seule l'étiquette « Important pour vous » se voit */
+  .pg-li > .pg-panel .pg-ph .pg-kick, .pg-li > .pg-panel .pg-ph h3 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .pg-li > .pg-panel .pg-ph .pg-imp-tag { margin: 0 0 10px; }
-  .pg-li > .pg-panel .pg-ph h3 { display: block; position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 }
