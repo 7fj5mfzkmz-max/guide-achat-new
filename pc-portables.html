@@ -5,14 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="color-scheme" content="light dark"/>
 <meta name="theme-color" content="#e3e7eb"/>
-<title>Bien choisir un PC portable : Guide·Achat</title>
-<meta name="description" content="Choisir un PC portable selon votre usage : écran, mémoire et stockage, processeur, carte graphique et mobilité. Audit adapté aux étudiants, professionnels, créateurs et joueurs."/>
+<title>Bien choisir un PC portable, sans jargon : Guide·Achat</title>
+<meta name="description" content="Quel PC portable choisir ? Un guide visuel et sans jargon : les 7 critères qui comptent expliqués en dessins, six questions pour trouver votre profil (étudiant, pro, créateur, joueur) et 60 modèles repérés."/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/design-system.css">
 <link rel="stylesheet" href="assets/css/pc-page.css">
 <link rel="stylesheet" href="assets/css/pc-guide.css">
+<link rel="stylesheet" href="assets/css/pc-landing.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
@@ -20,6 +21,7 @@ if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"d
 if(t==="dark")r.classList.add("dark-theme");
 var n=navigator,c=n.connection||{};
 if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "8 Go de mémoire, est-ce suffisant ?", "acceptedAnswer": {"@type": "Answer", "text": "Pour écrire, naviguer et regarder des vidéos, oui, mais sans marge : dès que vous ouvrez beaucoup d’onglets et un logiciel en plus, le PC ralentit. 16 Go est le choix serein, surtout si la mémoire est soudée et ne pourra donc jamais être augmentée."}}, {"@type": "Question", "name": "Faut-il une carte graphique dédiée ?", "acceptedAnswer": {"@type": "Answer", "text": "Seulement pour jouer, faire de la 3D ou du montage vidéo exigeant. Pour le reste, la partie graphique intégrée au processeur suffit, et vous gagnez en poids, en autonomie et en prix."}}, {"@type": "Question", "name": "Windows, macOS ou ChromeOS ?", "acceptedAnswer": {"@type": "Answer", "text": "Regardez d’abord vos logiciels et vos autres appareils. Windows offre le plus large choix de machines et de jeux. macOS s’accorde avec l’iPhone et l’iPad. ChromeOS est simple et léger, mais très centré sur le web."}}, {"@type": "Question", "name": "L’autonomie annoncée est-elle réelle ?", "acceptedAnswer": {"@type": "Answer", "text": "Rarement : ces chiffres sont mesurés dans des conditions idéales (écran peu lumineux, tâches légères). La capacité de la batterie, en Wh, donne un repère ; les tests indépendants sont plus fiables que la boîte."}}, {"@type": "Question", "name": "Quel budget prévoir ?", "acceptedAnswer": {"@type": "Answer", "text": "Sous 800 € : bureautique et études légères. De 800 à 1 200 € : un PC polyvalent avec 16 Go et 512 Go. De 1 200 à 1 800 € : un meilleur écran, plus de mémoire ou une carte graphique dédiée. Au-delà : réservé aux besoins exigeants."}}, {"@type": "Question", "name": "Je ne comprends pas la référence d’un PC. Que faire ?", "acceptedAnswer": {"@type": "Answer", "text": "Collez le lien de la fiche dans l’analyseur : il identifie le modèle exact et vous dit s’il convient à votre usage."}}]}</script>
 <script src="assets/js/categories.js" defer></script>
 <script src="assets/js/category-menu.js" defer></script>
 </head>
@@ -40,50 +42,92 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <header class="pg-hero" id="debut">
 <div>
 <nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / PC portables</nav>
-<span class="pg-kick">Guide visuel · 3 minutes</span>
-<h1>Quel PC portable est fait pour vous&nbsp;?</h1>
-<p class="pg-lead">Un PC portable existe en une multitude de configurations aux noms cryptiques. Ce guide apprend à les lire : d’abord les critères qui comptent, puis des modèles recommandés selon votre usage et votre budget.</p>
-<div class="pg-cta"><a class="pg-btn" href="#criteres">Comprendre les critères ↓</a><a class="pg-btn alt" href="#audit">Ma recommandation →</a></div>
+<span class="pg-kick">Guide visuel · 3 minutes · zéro jargon</span>
+<h1>Quel PC portable est fait <mark>pour vous</mark>&nbsp;?</h1>
+<p class="pg-lead">Pas besoin d’être expert. Ce guide traduit les fiches techniques en dessins et en phrases simples, puis vous propose des modèles selon ce que vous faites vraiment de votre PC, et selon votre budget.</p>
+<div class="pg-cta"><a class="pg-btn" href="#audit">Trouver mon PC en 45 s →</a><a class="pg-btn alt" href="#essentiel">Comprendre d’abord ↓</a></div>
+<ul class="pl-checks" aria-label="Nos engagements"><li>Sans jargon</li><li>Guide indépendant</li><li>Prix relevés en octobre 2026</li></ul>
 </div>
 <figure class="pg-shot"><img src="assets/pc-photo/laptop-04.jpeg" alt="Ordinateur portable ouvert, vu de face" fetchpriority="high" width="427" height="320"></figure>
 </header>
-<div class="pg-strip"><div><b>7</b><span>critères expliqués</span></div><div><b>6</b><span>questions</span></div><div><b>60</b><span>modèles repérés</span></div><div><b>3&nbsp;min</b><span>pour décider</span></div></div>
+<div class="pg-strip"><div><b>7</b><span>critères expliqués</span></div><div><b>6</b><span>questions simples</span></div><div><b>60</b><span>modèles repérés</span></div><div><b>3&nbsp;min</b><span>pour décider</span></div></div>
 </div>
 <div class="ga-ticker" aria-hidden="true"><div class="ga-ticker-track"><span>Écran <em>/</em> Processeur <em>/</em> Mémoire vive <em>/</em> Stockage SSD <em>/</em> Carte graphique <em>/</em> Mobilité <em>/</em> Autonomie <em>/</em> 60 modèles analysés <em>/</em> Édition 2026 <em>/</em> </span><span>Écran <em>/</em> Processeur <em>/</em> Mémoire vive <em>/</em> Stockage SSD <em>/</em> Carte graphique <em>/</em> Mobilité <em>/</em> Autonomie <em>/</em> 60 modèles analysés <em>/</em> Édition 2026 <em>/</em> </span></div></div>
 
 <div class="container-wide hx-body">
-<section class="section" data-tone="teal" id="piege">
-<h2 class="section-heading"><span class="eyebrow">01 · Le piège</span>La même machine, des références différentes</h2>
-<div id="pc-nomenclature"><noscript><p>Cette démonstration nécessite JavaScript : un même PC peut exister sous plusieurs références (par exemple « 15IAX11 » ou « 15IRX11 ») avec des composants différents.</p></noscript></div>
+<section class="section" data-tone="teal" id="essentiel">
+<h2 class="section-heading"><span class="eyebrow">01 · L’essentiel</span>Trois idées pour ne pas se tromper</h2>
+<p class="section-lead">Avant tout détail technique, retenez ceci. Le reste du guide sert à comprendre pourquoi, et à choisir sans stress.</p>
+<div class="pl-rules">
+<article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">1</span><h3>Un bon PC est bon pour <em>quelque chose</em></h3><p>Il n’existe pas de « meilleur PC » en général. Un PC de jeu est lourd et vide vite sa batterie ; un PC ultra-léger peine en montage vidéo. Partez de ce que vous en faites, pas de la fiche technique.</p></article>
+<article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">2</span><h3>16&nbsp;Go de mémoire, 512&nbsp;Go de stockage</h3><p>Le point de départ confortable pour la plupart des gens. En dessous, le PC ralentit vite ; au-dessus, on paie souvent pour rien, sauf en création ou en jeu.</p></article>
+<article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">3</span><h3>Ne payez pas ce que vous n’utilisez pas</h3><p>Une carte graphique dédiée ne sert qu’au jeu, à la 3D et au montage vidéo. Pour étudier, écrire ou naviguer, elle ajoute surtout du poids, de la chaleur et du prix.</p></article>
+</div>
+<p class="pl-ignore"><b>Au début, vous pouvez ignorer :</b> la fréquence en GHz, les heures d’autonomie annoncées par le fabricant et les mots « gaming » ou « pro » écrits sur la boîte. Ils pèsent bien moins que les trois idées ci-dessus.</p>
+</section>
+
+<section class="section" data-tone="teal" id="profils">
+<h2 class="section-heading"><span class="eyebrow">02 · Votre profil</span>Vous vous reconnaissez&nbsp;?</h2>
+<p class="section-lead">Quatre façons d’utiliser un PC portable. Repérez la vôtre : voici ce qui compte, et ce qui peut attendre.</p>
+<div class="pl-profiles">
+<article class="pl-profile hx-reveal"><span class="pl-tag">Profil 01</span><h3>Étudiant</h3><p>Cours, notes, recherches, visios. Un PC qui suit partout sans faire mal au dos.</p><dl><div><dt>Priorité</dt><dd>Poids et autonomie</dd></div><div><dt>On peut économiser sur</dt><dd>La carte graphique dédiée</dd></div></dl><a class="hx-link" href="#audit">Voir mes modèles</a></article>
+<article class="pl-profile hx-reveal"><span class="pl-tag">Profil 02</span><h3>Professionnel</h3><p>Mails, tableaux, visioconférences, vingt onglets ouverts. Il doit rester fluide toute la journée.</p><dl><div><dt>Priorité</dt><dd>16&nbsp;Go de mémoire, écran lisible</dd></div><div><dt>On peut économiser sur</dt><dd>La puissance graphique</dd></div></dl><a class="hx-link" href="#audit">Voir mes modèles</a></article>
+<article class="pl-profile hx-reveal"><span class="pl-tag">Profil 03</span><h3>Créateur</h3><p>Photo, montage vidéo, 3D. Les gros fichiers et les exports ne doivent pas vous faire attendre.</p><dl><div><dt>Priorité</dt><dd>Processeur, mémoire, écran fidèle</dd></div><div><dt>On peut économiser sur</dt><dd>Le poids et l’autonomie</dd></div></dl><a class="hx-link" href="#audit">Voir mes modèles</a></article>
+<article class="pl-profile hx-reveal"><span class="pl-tag">Profil 04</span><h3>Joueur</h3><p>Des jeux récents, fluides et beaux. Ici, la puissance passe avant le reste.</p><dl><div><dt>Priorité</dt><dd>Carte graphique et écran rapide</dd></div><div><dt>On peut économiser sur</dt><dd>Le poids et l’autonomie</dd></div></dl><a class="hx-link" href="#audit">Voir mes modèles</a></article>
+</div>
 </section>
 
 <section class="section" data-tone="teal" id="criteres">
-<h2 class="section-heading"><span class="eyebrow">02 · Les critères</span>Sept critères, une boussole</h2>
-<p class="section-lead">Choisissez un point sur la boussole : le critère s’explique, puis se manipule. Les démos comparent des cas types ; les valeurs affichées sont indicatives.</p>
+<h2 class="section-heading"><span class="eyebrow">03 · Les critères</span>Sept critères, une boussole</h2>
+<p class="section-lead">Un PC se résume à sept choses, pas une de plus. Touchez un point de la boussole : le critère s’explique avec une image, puis vous le manipulez vous-même. Les démos comparent des cas types ; les valeurs affichées sont indicatives.</p>
 <div class="pg-tools"><button class="pg-switch" id="pg-motion" type="button" aria-pressed="false">Mettre les animations en pause</button></div>
 <div id="pc-criteres"><noscript><p>Les démonstrations interactives nécessitent JavaScript. Le <a href="lexique-pc-portables.html">lexique</a> explique chaque critère.</p></noscript></div>
 </section>
 
+<section class="section" data-tone="teal" id="piege">
+<h2 class="section-heading"><span class="eyebrow">04 · Le piège à éviter</span>Même nom, pas la même machine</h2>
+<div id="pc-nomenclature"><noscript><p>Cette démonstration nécessite JavaScript : un même PC peut exister sous plusieurs références (par exemple « 15IAX11 » ou « 15IRX11 ») avec des composants différents.</p></noscript></div>
+</section>
+
 <section class="section" data-tone="teal" id="audit">
-<h2 class="section-heading"><span class="eyebrow">03 · Ma recommandation</span>Répondez à six questions</h2>
-<p class="section-lead">Touchez une question pour l’ouvrir, choisissez, la suivante s’ouvre. Touchez une question déjà répondue pour la rouvrir et changer d’avis.</p>
+<h2 class="section-heading"><span class="eyebrow">05 · Ma recommandation</span>Six questions, une recommandation</h2>
+<p class="section-lead">Il n’y a pas de mauvaise réponse. Touchez une question, choisissez : la suivante s’ouvre toute seule. Vous pouvez rouvrir une question déjà répondue pour changer d’avis.</p>
 <div class="pc-audit" id="pc-audit"></div>
-<div class="pg-link"><p>Vous avez déjà repéré un PC&nbsp;? Collez son lien : nous l’analyserons et vous dirons s’il convient à votre usage.</p><a class="pg-btn alt" href="analyseur.html?cat=pc-portables">Analyser un lien →</a></div>
+<div class="pg-link"><p>Un PC vous tente déjà&nbsp;? Collez le lien de sa fiche : nous l’analysons et vous disons s’il convient à votre usage.</p><a class="pg-btn alt" href="analyseur.html?cat=pc-portables">Analyser un lien →</a></div>
 </section>
 
 <section class="section" data-tone="teal" id="modeles">
-<h2 class="section-heading"><span class="eyebrow">04 · Catalogue</span>Des modèles repérés pour chaque profil</h2>
-<p class="section-lead">Score sur 10 : il mesure l’adéquation à un profil, pas une qualité absolue.</p>
+<h2 class="section-heading"><span class="eyebrow">06 · Catalogue</span>Des modèles repérés pour chaque profil</h2>
+<p class="section-lead">Chaque modèle reçoit une note sur 10 pour un profil donné. Ce n’est pas une note de qualité : un excellent PC de jeu aura une mauvaise note « étudiant », et inversement.</p>
 <div id="pc-catalogue"><p>Chargement du catalogue…</p></div>
 </section>
 
 <div class="pcx" id="pc-comprendre" hidden></div>
 
+<section class="section" data-tone="teal" id="faq">
+<h2 class="section-heading"><span class="eyebrow">07 · Questions fréquentes</span>Ce que tout le monde se demande</h2>
+<p class="section-lead">Les réponses courtes aux doutes qui reviennent le plus souvent avant un achat.</p>
+<div class="pl-faq">
+<details class="pl-q"><summary>8&nbsp;Go de mémoire, est-ce suffisant&nbsp;?</summary><p>Pour écrire, naviguer et regarder des vidéos, oui, mais sans marge : dès que vous ouvrez beaucoup d’onglets et un logiciel en plus, le PC ralentit. 16&nbsp;Go est le choix serein, surtout si la mémoire est soudée et ne pourra donc jamais être augmentée.</p></details>
+<details class="pl-q"><summary>Faut-il une carte graphique dédiée&nbsp;?</summary><p>Seulement pour jouer, faire de la 3D ou du montage vidéo exigeant. Pour le reste, la partie graphique intégrée au processeur suffit, et vous gagnez en poids, en autonomie et en prix.</p></details>
+<details class="pl-q"><summary>Windows, macOS ou ChromeOS&nbsp;?</summary><p>Regardez d’abord vos logiciels et vos autres appareils. Windows offre le plus large choix de machines et de jeux. macOS s’accorde avec l’iPhone et l’iPad. ChromeOS est simple et léger, mais très centré sur le web.</p></details>
+<details class="pl-q"><summary>L’autonomie annoncée est-elle réelle&nbsp;?</summary><p>Rarement : ces chiffres sont mesurés dans des conditions idéales (écran peu lumineux, tâches légères). La capacité de la batterie, en Wh, donne un repère ; les tests indépendants sont plus fiables que la boîte.</p></details>
+<details class="pl-q"><summary>Quel budget prévoir&nbsp;?</summary><p>Sous 800&nbsp;€ : bureautique et études légères. De 800 à 1&nbsp;200&nbsp;€ : un PC polyvalent avec 16&nbsp;Go et 512&nbsp;Go. De 1&nbsp;200 à 1&nbsp;800&nbsp;€ : un meilleur écran, plus de mémoire ou une carte graphique dédiée. Au-delà : réservé aux besoins exigeants.</p></details>
+<details class="pl-q"><summary>Je ne comprends pas la référence d’un PC. Que faire&nbsp;?</summary><p>Collez le lien de la fiche dans <a href="analyseur.html?cat=pc-portables">l’analyseur</a> : il identifie le modèle exact et vous dit s’il convient à votre usage.</p></details>
+</div>
+</section>
+
 <section class="section" data-tone="orchid" id="lexique">
-<details class="pc-lex-wrap"><summary class="pc-lex-sum"><span class="eyebrow">LEXIQUE RAPIDE</span><span>Les termes des fiches PC</span><span class="pc-lex-chev" aria-hidden="true">+</span></summary>
-<p class="section-lead">Les termes qui reviennent le plus souvent sur une fiche produit, expliqués sans jargon.</p>
+<details class="pc-lex-wrap"><summary class="pc-lex-sum"><span class="eyebrow">Un mot vous échappe&nbsp;?</span><span>Le lexique en clair</span><span class="pc-lex-chev" aria-hidden="true">+</span></summary>
+<p class="section-lead">Les termes qui reviennent le plus souvent sur une fiche produit, expliqués simplement.</p>
 <div class="pc-lexique" id="pc-lexique"><p>Chargement du lexique…</p></div></details>
 <p><a class="hx-link" href="lexique-pc-portables.html">Ouvrir le lexique complet →</a></p>
+</section>
+<section class="section pl-endwrap" id="suite">
+<div class="pl-end hx-reveal">
+<div><span class="eyebrow">À vous de jouer</span><h2>45 secondes pour trouver votre PC</h2><p>Six questions, aucune connaissance technique requise. Vous obtenez un profil, des priorités claires et des modèles adaptés.</p></div>
+<div class="pl-end-btns"><a class="pl-btn" href="#audit">Ma recommandation →</a><a class="pl-btn alt" href="analyseur.html?cat=pc-portables">Analyser un lien</a></div>
+</div>
 </section>
 </div>
 </div>

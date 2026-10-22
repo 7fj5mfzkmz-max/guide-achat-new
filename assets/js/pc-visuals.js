@@ -234,7 +234,7 @@ function openDrawer(title, items, sub){
 function renderCatalogue(){
   var top=document.getElementById('pc-cat-top'); if(!top||!catalogueItems.length)return;
   if(currentFilter==='all'){
-    top.innerHTML='<p class="pc-cat-hint">Faites le point ci-dessus : nous proposerons 5 modèles adaptés à votre usage, puis tous les autres modèles compatibles.</p>';
+    top.innerHTML='<p class="pc-cat-hint">Répondez aux six questions ci-dessus : nous vous proposerons 5 modèles adaptés à votre usage, puis tous les autres modèles compatibles.</p>';
     return;
   }
   var list=profileList(), best=list.slice(0,5), more=list.length-best.length;
