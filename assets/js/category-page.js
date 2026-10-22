@@ -27,7 +27,7 @@ function setupSections(){
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)mark(e.target.id)})},{rootMargin:'-35% 0px -60% 0px'});
   links.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));if(t)io.observe(t)});
  }
- mark('audit');
+ mark('analyser-modele');
 }
 setupCounters();setupSections();
 })();

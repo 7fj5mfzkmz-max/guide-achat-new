@@ -39,15 +39,16 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <main id="main">
 <nav class="pl-sections" id="pl-sections" aria-label="Sections de la page">
 <div class="pl-sections-in">
-<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Recommandation</b><i aria-hidden="true">▾</i></button>
+<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Analyseur</b><i aria-hidden="true">▾</i></button>
 <ul id="pl-sections-list">
-<li><a href="#audit"><small>01</small>Recommandation</a></li>
-<li><a href="#analyser-modele"><small>02</small>Analyser</a></li>
-<li><a href="#essentiel"><small>03</small>Essentiel</a></li>
-<li><a href="#choisir-profil"><small>04</small>Profils</a></li>
-<li><a href="#checklist"><small>05</small>Checklist</a></li>
-<li><a href="#aller-plus-loin"><small>06</small>Guides</a></li>
-<li><a href="#sources"><small>07</small>Sources</a></li>
+<li><a href="#analyser-modele"><small>01</small>Analyseur</a></li>
+<li><a href="#audit"><small>02</small>Sur mesure</a></li>
+<li><a href="#nos-choix"><small>03</small>Nos choix</a></li>
+<li><a href="#essentiel"><small>04</small>Essentiel</a></li>
+<li><a href="#choisir-profil"><small>05</small>Profils</a></li>
+<li><a href="#checklist"><small>06</small>Checklist</a></li>
+<li><a href="#aller-plus-loin"><small>07</small>Guides</a></li>
+<li><a href="#sources"><small>08</small>Sources</a></li>
 </ul>
 </div>
 </nav>
@@ -58,9 +59,9 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
 <span class="pg-kick">Guide pratique · à lire avant d’acheter</span>
 <h1>Choisir un smartphone <mark>à partir de votre usage</mark></h1>
-<p class="pg-lead">Partez de votre usage : appeler, filmer, jouer ou travailler. Ensuite, vérifiez les caractéristiques qui comptent pour cet usage, sans jargon.</p>
-<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#audit">Trouver mon smartphone →</a><a class="pg-skip" href="#analyser-modele">J’ai déjà repéré un modèle ↓</a></div>
-<ul class="pl-checks" aria-label="Nos engagements"><li>Sans jargon</li><li>Guide indépendant</li><li>Fiches datées et sourcées</li></ul>
+<p class="pg-lead">Collez la fiche d’un téléphone et on vous dit ce qu’elle vaut. Pas de modèle en tête ? Répondez à quelques questions, ou prenez l’un de nos cinq choix de l’année.</p>
+<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#analyser-modele">Analyser un modèle →</a><a class="pg-btn alt" href="#audit">Mon smartphone sur mesure</a><a class="pg-skip" href="#nos-choix">Voir nos 5 choix 2026 ↓</a></div>
+<ul class="pl-checks" aria-label="Ce que contient la page"><li>Analyseur de fiche</li><li>Sélection sur mesure</li><li>Prix datés et sourcés</li></ul>
 </div>
 <div class="pg-stage" aria-hidden="true" id="hx-stage"></div>
 </header>
@@ -69,33 +70,11 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <div class="ga-ticker" aria-hidden="true"><div class="ga-ticker-track"><span>Écran <em>/</em> Batterie <em>/</em> Performance <em>/</em> Photo <em>/</em> Durée de vie <em>/</em> Android <em>/</em> iOS <em>/</em> Suivi logiciel <em>/</em> Écosystème <em>/</em> </span><span>Écran <em>/</em> Batterie <em>/</em> Performance <em>/</em> Photo <em>/</em> Durée de vie <em>/</em> Android <em>/</em> iOS <em>/</em> Suivi logiciel <em>/</em> Écosystème <em>/</em> </span></div></div>
 
 <div class="container-wide hx-body">
-<section class="section smartphone-audit-section" data-tone="peach" id="en-magasin">
-<span class="anchor-alias" id="audit" aria-hidden="true"></span>
-<h2 class="section-heading"><span class="eyebrow">01 · Ma recommandation</span>Trouvez les modèles adaptés à vos priorités</h2>
-<p class="section-lead">Cinq familles de critères. Renseignez celles qui comptent pour vous et laissez les autres de côté : les recommandations s’affinent à chaque choix, dès le premier.</p>
-<div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
-<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Netteté, fluidité, lisibilité au soleil</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>Combien de temps il tient, vitesse de recharge</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Rapidité, jeux, fluidité dans le temps</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Photos de jour, de nuit, zoom, vidéo</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Combien d’années il restera utilisable</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-</div>
-<div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 / 5 familles renseignées</strong><span id="audit-message">Choisissez ce qui compte pour vous — une famille peut rester sans réponse.</span><button type="button" class="btn audit-see-btn" id="audit-see-results" hidden>Voir mes recommandations →</button><button type="button" class="audit-reset-btn" data-audit-reset>↺ Réinitialiser l’audit</button></div>
-<div class="audit-next-step"><p>Prix : comparez les offres sur <strong>Idealo</strong>.</p><p class="audit-learn">Un mot vous échappe ? Le <a href="lexique.html">lexique</a> et les <a href="#aller-plus-loin">explications détaillées</a> le décrivent pas à pas.</p></div>
-<div aria-live="polite" class="criteria-recommendations" id="criteria-recommendations">
-<div class="criteria-recommendations-head">
-<div><span class="eyebrow">Résultat de l’audit</span><h3>Les modèles qui correspondent à votre sélection</h3><p>Du plus proche de vos choix au moins proche.</p></div><button type="button" class="audit-reset-btn" data-audit-reset>↺ Réinitialiser l’audit</button>
-</div>
-<div class="criteria-recommendation-grid" id="scoring-results"></div>
-<p class="criteria-recommendations-note" id="scoring-status">Vos premiers modèles apparaîtront ici dès votre premier choix.</p>
-</div>
-</section>
-
 <section class="section smartphone-analyzer-section" data-tone="orchid" id="analyser-modele">
-<h2 class="section-heading"><span class="eyebrow">02 · Vous avez déjà un modèle ?</span>Analysez sa fiche produit</h2>
-<p class="section-lead">Collez le lien d’une fiche produit. L’analyseur identifie le téléphone, récupère les caractéristiques disponibles et signale les informations manquantes.</p>
+<h2 class="section-heading"><span class="eyebrow">01 · Analyseur</span>Un modèle en tête ? Collez sa fiche</h2>
+<p class="section-lead">Lien d’une boutique ou nom du téléphone : l’analyseur retrouve ses caractéristiques, les explique et signale ce qui manque ou ce qui est survendu.</p>
 <article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
-<h3>Vous avez déjà repéré un modèle</h3>
+<h3>Analyser un téléphone</h3>
 <form class="model-analyzer-form" id="phone-analyzer-form">
 <p>Collez un lien produit ou saisissez un modèle, par exemple « POCO F9 Ultra ». Le guide recherche ensuite ses caractéristiques dans le catalogue, PhonesData, Kimovil et GSMArena.</p>
 <label class="visually-hidden" for="phone-product-url">Lien produit ou nom du modèle</label>
@@ -106,8 +85,62 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </article>
 </section>
 
+<section class="section smartphone-audit-section" data-tone="peach" id="audit">
+<h2 class="section-heading"><span class="eyebrow">02 · Sur mesure</span>Votre smartphone, selon vos critères</h2>
+<p class="section-lead">Écran, batterie, performance, photo, durée de vie : répondez seulement aux familles qui comptent pour vous. La liste de modèles se met à jour à chaque réponse.</p>
+<div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
+<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Netteté, fluidité, lisibilité au soleil</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>Combien de temps il tient, vitesse de recharge</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Rapidité, jeux, fluidité dans le temps</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Photos de jour, de nuit, zoom, vidéo</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Combien d’années il restera utilisable</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+</div>
+<div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 / 5 familles renseignées</strong><span id="audit-message">Choisissez ce qui compte pour vous — une famille peut rester sans réponse.</span><button type="button" class="btn audit-see-btn" id="audit-see-results" hidden>Voir ma sélection →</button><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button></div>
+<div class="audit-next-step"><p>Prix : comparez les offres sur <strong>Idealo</strong>.</p><p class="audit-learn">Un mot vous échappe ? Le <a href="lexique.html">lexique</a> et les <a href="#aller-plus-loin">explications détaillées</a> le décrivent pas à pas.</p></div>
+<div aria-live="polite" class="criteria-recommendations" id="criteria-recommendations">
+<div class="criteria-recommendations-head">
+<div><span class="eyebrow">Votre sélection</span><h3>Les modèles qui correspondent à vos réponses</h3><p>Du plus proche de vos choix au moins proche.</p></div><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button>
+</div>
+<div class="criteria-recommendation-grid" id="scoring-results"></div>
+<p class="criteria-recommendations-note" id="scoring-status">Vos premiers modèles apparaîtront ici dès votre premier choix.</p>
+</div>
+</section>
+
+<section class="section picks-section" data-tone="peach" id="nos-choix">
+<h2 class="section-heading"><span class="eyebrow">03 · Nos choix 2026</span>Pas d’idée précise : partez d’ici</h2>
+<p class="section-lead">Cinq téléphones, un par besoin. Ils sont tirés des fiches vérifiées du catalogue ; les prix sont indicatifs (relevés en septembre-octobre 2026), à comparer avant d’acheter.</p>
+<div class="picks">
+<article class="pick" id="choix-photo"><p class="pick-for">Meilleur pour la photo</p><h3>Apple iPhone 17 Pro</h3><p class="pick-price">≈ 1 329 € · 256 Go</p>
+<p class="pick-why">Trois capteurs de 48 Mpx dont un téléobjectif, zoom optique jusqu’à 8×. Photo et vidéo restent la référence, et Apple suit le téléphone 6 à 7 ans.</p>
+<ul class="pick-pm"><li class="plus">Suivi logiciel très long</li><li class="minus">Prix élevé, chargeur non fourni</li></ul>
+<p class="pick-alt">Moins cher : le Xiaomi 15T (≈ 430 €) a aussi un vrai téléobjectif.</p>
+<a class="pick-link" href="https://www.idealo.fr/prechcat.html?q=Apple+iPhone+17+Pro" rel="noopener" target="_blank">Comparer les prix →</a></article>
+<article class="pick" id="choix-tout-terrain"><p class="pick-for">Meilleur tout-terrain</p><h3>Xiaomi 15T</h3><p class="pick-price">≈ 430 € · 256 Go</p>
+<p class="pick-why">Écran AMOLED 120 Hz, 12 Go de RAM, batterie de 5 500 mAh en charge 67 W, trois capteurs Leica dont un téléobjectif, IP68.</p>
+<ul class="pick-pm"><li class="plus">Téléobjectif rare à ce prix</li><li class="minus">Pas de charge sans fil, HyperOS chargé en applications</li></ul>
+
+<a class="pick-link" href="https://www.idealo.fr/prechcat.html?q=Xiaomi+15T" rel="noopener" target="_blank">Comparer les prix →</a></article>
+<article class="pick" id="choix-batterie"><p class="pick-for">Meilleure batterie</p><h3>POCO X8 Pro</h3><p class="pick-price">≈ 349 € · 256 Go</p>
+<p class="pick-why">6 500 mAh et charge 100 W : la plus grosse batterie de nos fiches vérifiées à ce niveau de prix, avec un écran AMOLED 120 Hz très lumineux.</p>
+<ul class="pick-pm"><li class="plus">Autonomie et recharge rapide</li><li class="minus">Photo correcte sans plus, pas d’indice d’étanchéité annoncé</li></ul>
+<p class="pick-alt">Sous 150 € : le Moto G06 Power (7 000 mAh, mais charge 18 W).</p>
+<a class="pick-link" href="https://www.idealo.fr/prechcat.html?q=POCO+X8+Pro" rel="noopener" target="_blank">Comparer les prix →</a></article>
+<article class="pick" id="choix-compact"><p class="pick-for">Meilleur compact</p><h3>Apple iPhone 17</h3><p class="pick-price">Prix à comparer</p>
+<p class="pick-why">Écran de 6,3" et 177 g : petit et léger pour un haut de gamme actuel, avec puce A19, 120 Hz et IP68.</p>
+<ul class="pick-pm"><li class="plus">Tient dans une main, suivi logiciel long</li><li class="minus">Autonomie moins large que les Android à grosse batterie</li></ul>
+
+<a class="pick-link" href="https://www.idealo.fr/prechcat.html?q=Apple+iPhone+17" rel="noopener" target="_blank">Comparer les prix →</a></article>
+<article class="pick" id="choix-petit-prix"><p class="pick-for">Meilleur petit prix</p><h3>Samsung Galaxy A56</h3><p class="pick-price">≈ 300 € · 128 Go</p>
+<p class="pick-why">Écran Super AMOLED 120 Hz, batterie de 5 000 mAh en charge 45 W, IP67 : un bon équilibre autour de 300 €.</p>
+<ul class="pick-pm"><li class="plus">Autonomie confortable, bonne résistance</li><li class="minus">Pas de téléobjectif, photos du soir perfectibles</li></ul>
+<p class="pick-alt">Sous 200 € : le Galaxy A17 5G (≈ 199 €).</p>
+<a class="pick-link" href="https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A56" rel="noopener" target="_blank">Comparer les prix →</a></article>
+</div>
+<p class="picks-note">Aucun n’est le meilleur pour tout le monde. Si votre priorité est ailleurs, passez par <a href="#audit">le sur mesure</a> ou <a href="#analyser-modele">l’analyseur</a>.</p>
+</section>
+
 <section class="section" data-tone="blue" id="essentiel">
-<h2 class="section-heading"><span class="eyebrow">03 · L’essentiel</span>Trois notions à connaître avant de comparer</h2>
+<h2 class="section-heading"><span class="eyebrow">04 · L’essentiel</span>Trois notions à connaître avant de comparer</h2>
 <p class="section-lead">Deux modèles au même prix peuvent n’avoir ni le même système, ni le même avenir. Ces trois notions expliquent la plupart des écarts.</p>
 <div class="pl-rules">
 <article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">1</span><h3>Android et <em>iOS</em></h3><p>Les deux principaux systèmes mobiles. Ils déterminent vos applications, vos habitudes et la compatibilité avec vos autres appareils.</p></article>
@@ -118,7 +151,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 
 
 <section class="section profile-picker" data-tone="blue" id="choisir-profil">
-<h2 class="section-heading"><span class="eyebrow">04 · Votre profil</span>Choisissez un profil pour concentrer votre attention</h2>
+<h2 class="section-heading"><span class="eyebrow">05 · Votre profil</span>Choisissez un profil pour concentrer votre attention</h2>
 <div aria-label="Choisir un profil" class="profile-picker-tabs" role="tablist">
 <a class="profile-picker-tab" data-profile="etudiant" data-tone="teal" href="#etudiant">01 · Étudiant</a>
 <a class="profile-picker-tab" data-profile="professionnel" data-tone="blue" href="#professionnel">02 · Professionnel</a>
@@ -231,7 +264,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </section>
 
 <section class="section recap-section" data-tone="peach" id="checklist">
-<h2 class="section-heading"><span class="eyebrow">05 · Checklist</span>Avant de passer commande</h2>
+<h2 class="section-heading"><span class="eyebrow">06 · Checklist</span>Avant de passer commande</h2>
 <div class="recap-grid">
 <div class="recap-card"><div class="recap-num">1</div><strong>Mon usage</strong><p>Mon usage tient en une phrase.</p></div>
 <div class="recap-card"><div class="recap-num">2</div><strong>La fiche</strong><p>J’ai relevé les lignes utiles de la fiche.</p></div>
@@ -242,7 +275,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </section>
 <div class="falc-more"><a class="falc-more-link" href="lexique.html">Comprendre chaque terme de la fiche produit <span aria-hidden="true">→</span></a><p class="hint">Un mot technique vous bloque ? Le lexique l’explique avec un exemple, puis en détail.</p></div>
 
-<section class="section deep-group" id="aller-plus-loin"><h2 class="section-heading"><span class="eyebrow">06 · Pour aller plus loin</span>Les explications détaillées</h2><p class="section-lead deep-intro">2 guides détaillés, facultatifs. Touchez un guide pour l’ouvrir ; vous pouvez l’ignorer si vous avez déjà votre réponse.</p><details class="deep-dive" id="plus-fiche-produit"><summary><span class="deep-num">Guide 1</span><span class="deep-title">Où trouver les caractéristiques sur une fiche produit</span><span class="deep-sub">Captures Amazon commentées · ≈ 4 min</span><span class="deep-cta" aria-hidden="true"></span></summary><section class="section fiche-produit-section" data-tone="coral" id="fiche-produit">
+<section class="section deep-group" id="aller-plus-loin"><h2 class="section-heading"><span class="eyebrow">07 · Pour aller plus loin</span>Les explications détaillées</h2><p class="section-lead deep-intro">2 guides détaillés, facultatifs. Touchez un guide pour l’ouvrir ; vous pouvez l’ignorer si vous avez déjà votre réponse.</p><details class="deep-dive" id="plus-fiche-produit"><summary><span class="deep-num">Guide 1</span><span class="deep-title">Où trouver les caractéristiques sur une fiche produit</span><span class="deep-sub">Captures Amazon commentées · ≈ 4 min</span><span class="deep-cta" aria-hidden="true"></span></summary><section class="section fiche-produit-section" data-tone="coral" id="fiche-produit">
 <div class="section-heading">
 <span class="eyebrow">SECTION · RETROUVER L’INFORMATION</span>
 <h2>Où retrouver les caractéristiques sur une fiche produit</h2>
@@ -306,12 +339,12 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <div class="hx-debunk-container" data-debunk-container=""></div>
 <p class="deep-next"><a href="#plus-fiche-produit">Autre guide : où trouver les caractéristiques sur une fiche produit →</a></p></section></details></section>
 
-<section class="section sources-list" data-tone="orchid" id="sources"><h2 class="section-heading"><span class="eyebrow">07 · Sources</span>Sources utiles</h2><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></section>
+<section class="section sources-list" data-tone="orchid" id="sources"><h2 class="section-heading"><span class="eyebrow">08 · Sources</span>Sources utiles</h2><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></section>
 
 <section class="section pl-endwrap" id="suite">
 <div class="pl-end hx-reveal">
-<div><span class="eyebrow">À vous de jouer</span><h2>Votre prochain smartphone en quelques choix</h2><p>Cinq familles de critères, aucune connaissance technique requise : les modèles proches de vos priorités s’affichent dès le premier choix.</p></div>
-<div class="pl-end-btns"><a class="pl-btn" href="#audit">Ma recommandation →</a><a class="pl-btn alt" href="#analyser-modele">Analyser un modèle</a></div>
+<div><span class="eyebrow">Pour finir</span><h2>Un modèle en tête, ou pas encore ?</h2><p>Collez sa fiche dans l’analyseur, ou dites ce qui compte pour vous et la liste se construit.</p></div>
+<div class="pl-end-btns"><a class="pl-btn" href="#analyser-modele">Analyser un modèle →</a><a class="pl-btn alt" href="#audit">Mon smartphone sur mesure</a></div>
 </div>
 </section>
 
