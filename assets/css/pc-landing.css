@@ -253,6 +253,19 @@
 .pl-profile:active { transform: translate(-1px, -1px); }
 
 /* ============================================================
+   FOND DISCRET — bureau en filigrane derrière « L'essentiel »
+   ============================================================ */
+.pg .section#essentiel { position: relative; overflow: hidden; }
+.pg .section#essentiel::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: url("../deco/desk-bg-pc.jpeg") center / cover no-repeat;
+  opacity: .06;
+  pointer-events: none;
+}
+html.dark-theme .pg .section#essentiel::before { opacity: .05; filter: saturate(.5); }
+
+/* ============================================================
    PARCOURS « RECOMMANDATION D'ABORD »
    ============================================================ */
 
