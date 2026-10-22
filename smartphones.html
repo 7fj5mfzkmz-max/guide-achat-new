@@ -1,94 +1,77 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<meta content="light dark" name="color-scheme"/>
-<meta name="theme-color" content="#f6f5f0">
-<title>Bien choisir un smartphone  :  Guide·Achat</title>
-<meta content="Comprendre les grandes différences entre les smartphones, puis choisir le modèle adapté à son budget et à ses priorités." name="description"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="theme-color" content="#e3e7eb"/>
+<title>Bien choisir un smartphone à partir de votre usage : Guide·Achat</title>
+<meta name="description" content="Choisir un smartphone selon votre usage : cinq familles de critères (écran, batterie, performance, photo, durée de vie), quatre profils, un analyseur de fiche produit et des guides pour décoder le marketing."/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/core-foundation.css">
-<link href="assets/css/concept-visuals.css" rel="stylesheet"/>
-<link href="assets/css/audit-visuals.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/design-system.css">
+<link rel="stylesheet" href="assets/css/category-page.css">
+<link rel="stylesheet" href="assets/css/audit-visuals.css">
+<link rel="stylesheet" href="assets/css/concept-visuals.css">
+<link rel="stylesheet" href="assets/css/smartphones-page.css">
 <script>document.documentElement.classList.add("hx-js")</script>
-<noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}.hx-js .hx-word>span{transform:none!important}</style></noscript>
-<link rel="stylesheet" href="assets/css/legacy-fixes.css">
-<link rel="stylesheet" href="assets/css/v88-visual.css">
-<link rel="stylesheet" href="assets/css/gotham.css">
-<link rel="stylesheet" href="assets/css/smartphone-category.css">
-<script src="assets/js/gotham.js" defer></script>
-
+<noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
 if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 if(t==="dark")r.classList.add("dark-theme");
 var n=navigator,c=n.connection||{};
 if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
-<link rel="stylesheet" href="assets/css/grounded-category.css">
-<link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
-<link rel="stylesheet" href="assets/css/theme-dual.css">
 </head>
 <body class="site-redesign">
 <header class="site-header">
 <div class="header-inner">
-<a aria-label="Guide d’achat : accueil" class="brand-logo" href="index.html">
-<span aria-hidden="true" class="brand-mark">
-<svg focusable="false" viewbox="0 0 56 56">
-<path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path>
-<path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path>
-</svg>
-</span>
-<span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span>
-</a>
+<a aria-label="Guide d’achat : accueil" class="brand-logo" href="index.html"><span aria-hidden="true" class="brand-mark"><svg focusable="false" viewbox="0 0 56 56"><path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path><path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path></svg></span><span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span></a>
 <button class="brand-menu-toggle" id="category-menu-toggle" type="button" aria-expanded="false" aria-controls="category-menu" aria-label="Ouvrir les catégories"><span aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-menu-label">Catégories</span></button>
-<nav aria-label="Catégories" class="site-nav">
-<a href="smartphones.html">Smartphones</a>
-<a href="pc-portables.html" data-tone="teal">PC portables</a>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Batteries</span>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Écouteurs</span>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Montres</span>
-<span aria-disabled="true" class="site-nav-disabled" title="Bientôt disponible">Projecteurs</span>
-</nav>
+<nav aria-label="Catégories" class="site-nav" data-category-nav></nav>
 <div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button">⌕</button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span></button></div>
 </div>
 </header>
-<section aria-label="Recherche" class="search-panel" hidden="" id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
+<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide pratique</span><span>Android et iOS · Édition 2026</span></div></div>
+<section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main">
-<div class="hx hx-page" data-cat="smartphones" data-tone="orchid">
-<section class="hx-hero hx-hero--page">
-<div aria-hidden="true" class="hx-blob hx-blob-a"></div>
-<div aria-hidden="true" class="hx-blob hx-blob-b"></div>
-<div class="container-wide hx-hero-inner">
-<div class="hx-hero-copy">
-<nav class="breadcrumb"><a href="index.html">Accueil</a> / Smartphones</nav>
-<span class="hx-kicker">GUIDE PRATIQUE · À LIRE AVANT D’ACHETER</span>
-<h1 class="hx-title">Choisir un smartphone à partir de votre usage</h1>
-<p class="hx-lead">Partez de votre usage : appeler, filmer, jouer ou travailler. Ensuite, vérifiez les caractéristiques qui comptent pour cet usage.</p>
-<div class="hx-cta"><a class="btn hx-btn" href="#deux-chemins">Commencer →</a><a class="hx-link" href="#analyse-modele">J’ai déjà repéré un modèle</a></div>
-</div>
-<div aria-hidden="true" class="hx-stage" id="hx-stage"></div>
-<ul class="hx-points">
-<li class="hx-reveal"><b>01</b><strong>Android et iOS</strong><span>Les deux principaux systèmes mobiles.</span></li>
-<li class="hx-reveal"><b>02</b><strong>Écosystème</strong><span>L’ensemble des appareils et services qui fonctionnent autour du téléphone.</span></li>
-<li class="hx-reveal"><b>03</b><strong>Suivi logiciel</strong><span>Les mises à jour fournies pendant sa durée de vie.</span></li>
+<nav class="pl-sections" id="pl-sections" aria-label="Sections de la page">
+<div class="pl-sections-in">
+<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Recommandation</b><i aria-hidden="true">▾</i></button>
+<ul id="pl-sections-list">
+<li><a href="#audit"><small>01</small>Recommandation</a></li>
+<li><a href="#analyser-modele"><small>02</small>Analyser</a></li>
+<li><a href="#essentiel"><small>03</small>Essentiel</a></li>
+<li><a href="#choisir-profil"><small>04</small>Profils</a></li>
+<li><a href="#checklist"><small>05</small>Checklist</a></li>
+<li><a href="#aller-plus-loin"><small>06</small>Guides</a></li>
+<li><a href="#sources"><small>07</small>Sources</a></li>
 </ul>
 </div>
-</section>
-<div class="container-wide hx-body">
-<section class="section guide-journey" data-tone="blue" id="deux-chemins">
-<div class="section-heading"><span class="eyebrow">PAR OÙ COMMENCER ?</span><h2>Deux façons d’utiliser ce guide</h2></div>
-<div class="journey-grid two-paths-grid">
-<article class="journey-step two-paths-card"><i class="journey-number">1</i><h3>Je cherche un smartphone</h3><p>Partez de ce qui compte pour vous : écran, batterie, performance, photo ou durée de vie. Les modèles qui correspondent s’affichent au fur et à mesure de vos choix.</p><a class="btn" href="#audit">Faire le point →</a></article>
-<article class="journey-step two-paths-card"><i class="journey-number">2</i><h3>J’ai déjà un modèle</h3><p>Collez le lien de sa fiche marchande (LDLC, Amazon…) ou saisissez son nom : l’analyseur relève ses caractéristiques et les note profil par profil.</p><a class="btn" href="#analyse-modele">Analyser ce modèle →</a></article>
+</nav>
+<div class="hx hx-page pg sp" data-cat="smartphones" data-tone="orchid" data-motion="on">
+<div class="container-wide">
+<header class="pg-hero" id="debut">
+<div>
+<nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
+<span class="pg-kick">Guide pratique · à lire avant d’acheter</span>
+<h1>Choisir un smartphone <mark>à partir de votre usage</mark></h1>
+<p class="pg-lead">Partez de votre usage : appeler, filmer, jouer ou travailler. Ensuite, vérifiez les caractéristiques qui comptent pour cet usage, sans jargon.</p>
+<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#audit">Trouver mon smartphone →</a><a class="pg-skip" href="#analyser-modele">J’ai déjà repéré un modèle ↓</a></div>
+<ul class="pl-checks" aria-label="Nos engagements"><li>Sans jargon</li><li>Guide indépendant</li><li>Fiches datées et sourcées</li></ul>
 </div>
-</section>
+<div class="sp-stage" aria-hidden="true" id="hx-stage"></div>
+</header>
+<div class="pg-strip"><div><b>5</b><span>familles de critères</span></div><div><b>4</b><span>profils d’usage</span></div><div><b>2</b><span>guides détaillés</span></div><div><b>1</b><span>analyseur de lien</span></div></div>
+</div>
+<div class="ga-ticker" aria-hidden="true"><div class="ga-ticker-track"><span>Écran <em>/</em> Batterie <em>/</em> Performance <em>/</em> Photo <em>/</em> Durée de vie <em>/</em> Android <em>/</em> iOS <em>/</em> Suivi logiciel <em>/</em> Écosystème <em>/</em> </span><span>Écran <em>/</em> Batterie <em>/</em> Performance <em>/</em> Photo <em>/</em> Durée de vie <em>/</em> Android <em>/</em> iOS <em>/</em> Suivi logiciel <em>/</em> Écosystème <em>/</em> </span></div></div>
 
-<section class="section store-scene-section decision-audit-section smartphone-audit-section" data-tone="peach" id="en-magasin">
+<div class="container-wide hx-body">
+<section class="section smartphone-audit-section" data-tone="peach" id="en-magasin">
 <span class="anchor-alias" id="audit" aria-hidden="true"></span>
-<div class="profile-header"><div aria-hidden="true" class="profile-icon">5</div><h2>Trouvez les modèles adaptés à vos priorités</h2><p class="profile-situation">Cinq familles de critères. Renseignez celles qui comptent pour vous et laissez les autres de côté : les recommandations s’affinent à chaque choix.</p></div>
+<h2 class="section-heading"><span class="eyebrow">01 · Ma recommandation</span>Trouvez les modèles adaptés à vos priorités</h2>
+<p class="section-lead">Cinq familles de critères. Renseignez celles qui comptent pour vous et laissez les autres de côté : les recommandations s’affinent à chaque choix, dès le premier.</p>
 <div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
 <article class="audit-card" data-audit-card="screen"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Technologie · fréquence · luminosité</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
 <article class="audit-card" data-audit-card="battery"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>Capacité · recharge · autonomie · chimie</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
@@ -106,12 +89,12 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <p class="criteria-recommendations-note" id="scoring-status">Vos premiers modèles apparaîtront ici dès votre premier choix.</p>
 </div>
 </section>
-<section class="section guide-journey smartphone-analyzer-section" data-tone="orchid" id="analyser-modele">
-<div class="section-heading"><span class="eyebrow">VOUS AVEZ DÉJÀ UN MODÈLE ?</span><h2>Analysez sa fiche produit</h2></div>
+
+<section class="section smartphone-analyzer-section" data-tone="orchid" id="analyser-modele">
+<h2 class="section-heading"><span class="eyebrow">02 · Vous avez déjà un modèle ?</span>Analysez sa fiche produit</h2>
 <p class="section-lead">Collez le lien d’une fiche produit. L’analyseur identifie le téléphone, récupère les caractéristiques disponibles et signale les informations manquantes.</p>
-<div class="journey-grid two-paths-grid">
-<article class="journey-step two-paths-card two-paths-card--analyzer" id="analyse-modele">
-<i class="journey-number">A</i><h3>Vous avez déjà repéré un modèle</h3>
+<article class="sp-card sp-analyzer" id="analyse-modele">
+<h3>Vous avez déjà repéré un modèle</h3>
 <form class="model-analyzer-form" id="phone-analyzer-form">
 <p>Collez un lien produit ou saisissez un modèle, par exemple « POCO F9 Ultra ». Le guide recherche ensuite ses caractéristiques dans le catalogue, PhonesData, Kimovil et GSMArena.</p>
 <label class="visually-hidden" for="phone-product-url">Lien produit ou nom du modèle</label>
@@ -120,10 +103,21 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <p class="model-analyzer-help"><a href="capture.html">Un site bloque la lecture ? Capturez la fiche depuis votre navigateur.</a></p>
 <div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
 </article>
+</section>
+
+<section class="section" data-tone="blue" id="essentiel">
+<h2 class="section-heading"><span class="eyebrow">03 · L’essentiel</span>Trois notions à connaître avant de comparer</h2>
+<p class="section-lead">Deux modèles au même prix peuvent n’avoir ni le même système, ni le même avenir. Ces trois notions expliquent la plupart des écarts.</p>
+<div class="pl-rules">
+<article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">1</span><h3>Android et <em>iOS</em></h3><p>Les deux principaux systèmes mobiles. Ils déterminent vos applications, vos habitudes et la compatibilité avec vos autres appareils.</p></article>
+<article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">2</span><h3>L’écosystème</h3><p>L’ensemble des appareils et services qui fonctionnent autour du téléphone : montre, écouteurs, ordinateur, sauvegardes.</p></article>
+<article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">3</span><h3>Le suivi logiciel</h3><p>Les mises à jour fournies pendant sa durée de vie. C’est ce qui décide combien d’années il restera sûr et agréable à utiliser.</p></article>
 </div>
 </section>
+
+
 <section class="section profile-picker" data-tone="blue" id="choisir-profil">
-<div class="section-heading"><span class="eyebrow">POUR ADAPTER LA LECTURE</span><h2>Choisissez un profil pour concentrer votre attention</h2></div>
+<h2 class="section-heading"><span class="eyebrow">04 · Votre profil</span>Choisissez un profil pour concentrer votre attention</h2>
 <div aria-label="Choisir un profil" class="profile-picker-tabs" role="tablist">
 <a class="profile-picker-tab" data-profile="etudiant" data-tone="teal" href="#etudiant">01 · Étudiant</a>
 <a class="profile-picker-tab" data-profile="professionnel" data-tone="blue" href="#professionnel">02 · Professionnel</a>
@@ -131,7 +125,6 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <a class="profile-picker-tab" data-profile="photographe" data-tone="coral" href="#photographe">04 · Photographe</a>
 </div>
 </section>
-
 <details class="profile-toggle" data-tone="teal" id="etudiant-toggle" open="">
 <summary class="profile-toggle-summary"><span class="profile-toggle-index">01</span><span>Profil 1 · Étudier au quotidien</span><span aria-hidden="true" class="profile-toggle-caret">＋</span></summary>
 <section class="section profile-section" id="etudiant"><div class="profile-header"><div aria-hidden="true" class="profile-icon">01</div><h2>Profil 1 · Étudier au quotidien</h2><p class="profile-situation">Pour les cours, les trajets et les révisions : l’objectif est de tenir la journée, garder ses fichiers et éviter de changer trop vite.</p></div>
@@ -194,21 +187,61 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </div>
 </section>
 </details>
+<section class="section photographer-warning" data-tone="coral" id="a-lire-photo">
+<div class="warning-panel">
+<div class="warning-head"><span class="warning-badge">À lire</span><h2>Photographe : le capteur compte plus que les mégapixels</h2></div>
+<p>Un capteur photo est la surface qui reçoit la lumière. Plus il est grand, plus chaque pixel peut recevoir de lumière. C’est pourquoi un capteur de 1/1,3" avec 50 MP peut donner de meilleures photos de nuit qu’un petit capteur de 1/2,76" avec 200 MP.</p>
+<div class="sensor-demo" role="img" aria-label="Comparaison animée entre un grand capteur avec peu de pixels et un petit capteur avec beaucoup de pixels">
+<svg viewBox="0 0 720 320" aria-hidden="true">
+<defs>
+<radialGradient id="lightBig" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#fff3c4"/><stop offset="100%" stop-color="#f6b73c"/></radialGradient>
+<radialGradient id="lightSmall" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#fff8e1"/><stop offset="100%" stop-color="#f9d976"/></radialGradient>
+</defs>
+<g class="sensor-card sensor-big">
+<rect x="40" y="60" width="280" height="200" rx="22" fill="url(#lightBig)" stroke="#c98a12" stroke-width="3"/>
+<g class="pixel-grid big-grid">
+<rect x="80" y="100" width="60" height="60" rx="10" fill="#fff" opacity=".85"/><rect x="160" y="100" width="60" height="60" rx="10" fill="#fff" opacity=".85"/><rect x="80" y="180" width="60" height="60" rx="10" fill="#fff" opacity=".85"/><rect x="160" y="180" width="60" height="60" rx="10" fill="#fff" opacity=".85"/>
+</g>
+<text x="180" y="45" text-anchor="middle" class="svg-title">Grand capteur · 50 MP</text>
+<text x="180" y="292" text-anchor="middle" class="svg-caption">Pixels larges : plus de lumière, nuit plus propre</text>
+</g>
+<g class="sensor-card sensor-small">
+<rect x="400" y="95" width="180" height="130" rx="16" fill="url(#lightSmall)" stroke="#c98a12" stroke-width="3"/>
+<g class="pixel-grid small-grid">
+<rect x="418" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
+<rect x="418" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
+<rect x="418" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
+<rect x="418" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
+</g>
+<text x="490" y="80" text-anchor="middle" class="svg-title">Petit capteur · 200 MP</text>
+<text x="490" y="252" text-anchor="middle" class="svg-caption">Pixels minuscules : moins de lumière par pixel</text>
+</g>
+<g class="light-rays big-rays"><path d="M180 10 L120 60 M180 10 L180 60 M180 10 L240 60" stroke="#f6b73c" stroke-width="5" stroke-linecap="round"/></g>
+<g class="light-rays small-rays"><path d="M490 45 L455 95 M490 45 L490 95 M490 45 L525 95" stroke="#f9d976" stroke-width="4" stroke-linecap="round"/></g>
+</svg>
+</div>
+<div class="warning-points">
+<div><strong>Grand capteur</strong><span>Chaque pixel est plus large. Il capte plus de lumière, réduit le bruit et aide en soirée, en intérieur ou en contre-jour.</span></div>
+<div><strong>Petit capteur, beaucoup de pixels</strong><span>Les pixels sont minuscules. L’image peut être très détaillée en plein jour, mais la nuit dépendra surtout du traitement logiciel.</span></div>
+<div><strong>Règle simple</strong><span>Avant de regarder 108 ou 200 MP, regardez la taille du capteur : 1/1,3" est généralement plus intéressant pour la photo que 1/2,76".</span></div>
+</div>
+<p class="warning-note">Les mégapixels servent au détail et au recadrage. La lumière dépend surtout du capteur, de l’optique, de l’OIS et du traitement.</p>
+</div>
+</section>
+
 <section class="section recap-section" data-tone="peach" id="checklist">
-<div class="section-heading"><span class="eyebrow">CHECKLIST</span><h2>Avant de passer commande</h2></div>
+<h2 class="section-heading"><span class="eyebrow">05 · Checklist</span>Avant de passer commande</h2>
 <div class="recap-grid">
-<div class="recap-card"><div class="recap-num">1</div><strong>1. Mon usage</strong><p>Mon usage tient en une phrase.</p></div>
-<div class="recap-card"><div class="recap-num">2</div><strong>2. La fiche</strong><p>J’ai relevé les lignes utiles de la fiche.</p></div>
-<div class="recap-card"><div class="recap-num">3</div><strong>3. Les chiffres compris</strong><p>Je sais ce que chaque chiffre ne prouve pas.</p></div>
-<div class="recap-card"><div class="recap-num">4</div><strong>4. La durée prévue</strong><p>Suivi logiciel et réparabilité vérifiés.</p></div>
-<div class="recap-card"><div class="recap-num">5</div><strong>5. La comparaison</strong><p>Je compare ce qui change mon usage.</p></div>
+<div class="recap-card"><div class="recap-num">1</div><strong>Mon usage</strong><p>Mon usage tient en une phrase.</p></div>
+<div class="recap-card"><div class="recap-num">2</div><strong>La fiche</strong><p>J’ai relevé les lignes utiles de la fiche.</p></div>
+<div class="recap-card"><div class="recap-num">3</div><strong>Les chiffres compris</strong><p>Je sais ce que chaque chiffre ne prouve pas.</p></div>
+<div class="recap-card"><div class="recap-num">4</div><strong>La durée prévue</strong><p>Suivi logiciel et réparabilité vérifiés.</p></div>
+<div class="recap-card"><div class="recap-num">5</div><strong>La comparaison</strong><p>Je compare ce qui change mon usage.</p></div>
 </div>
 </section>
 <div class="falc-more"><a class="falc-more-link" href="lexique.html">Comprendre chaque terme de la fiche produit <span aria-hidden="true">→</span></a><p class="hint">Un mot technique vous bloque ? Le lexique l’explique avec un exemple, puis en détail.</p></div>
 
-
-</div>
-<section class="section deep-group" id="aller-plus-loin"><span class="eyebrow">POUR ALLER PLUS LOIN</span><h2>Les explications détaillées</h2><p class="deep-intro">2 guides détaillés, facultatifs. Touchez un guide pour l’ouvrir ; vous pouvez l’ignorer si vous avez déjà votre réponse.</p><details class="deep-dive" id="plus-fiche-produit"><summary><span class="deep-num">Guide 1</span><span class="deep-title">Où trouver les caractéristiques sur une fiche produit</span><span class="deep-sub">Captures Amazon commentées · ≈ 4 min</span><span class="deep-cta" aria-hidden="true"></span></summary><section class="section fiche-produit-section" data-tone="coral" id="fiche-produit">
+<section class="section deep-group" id="aller-plus-loin"><h2 class="section-heading"><span class="eyebrow">06 · Pour aller plus loin</span>Les explications détaillées</h2><p class="section-lead deep-intro">2 guides détaillés, facultatifs. Touchez un guide pour l’ouvrir ; vous pouvez l’ignorer si vous avez déjà votre réponse.</p><details class="deep-dive" id="plus-fiche-produit"><summary><span class="deep-num">Guide 1</span><span class="deep-title">Où trouver les caractéristiques sur une fiche produit</span><span class="deep-sub">Captures Amazon commentées · ≈ 4 min</span><span class="deep-cta" aria-hidden="true"></span></summary><section class="section fiche-produit-section" data-tone="coral" id="fiche-produit">
 <div class="section-heading">
 <span class="eyebrow">SECTION · RETROUVER L’INFORMATION</span>
 <h2>Où retrouver les caractéristiques sur une fiche produit</h2>
@@ -270,22 +303,22 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </details><details class="deep-dive" id="plus-debunking"><summary><span class="deep-num">Guide 2</span><span class="deep-title">Décoder le marketing</span><span class="deep-sub">14 chiffres et promesses expliqués · ≈ 8 min</span><span class="deep-cta" aria-hidden="true"></span></summary><section class="section" data-tone="amber" id="debunking">
 <h2 class="section-heading"><span class="eyebrow">DÉCODER LE MARKETING</span> Ce que ces promesses veulent dire</h2>
 <div class="hx-debunk-container" data-debunk-container=""></div>
-<p class="deep-next"><a href="#plus-debunking">Guide suivant : décoder le marketing →</a></p><p class="deep-next"><a href="#plus-fiche-produit">Autre guide : où trouver les caractéristiques sur une fiche produit →</a></p></section></details></section><section class="section sources-list" data-tone="orchid" id="sources"><h2>Sources utiles</h2><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></section></div>
+<p class="deep-next"><a href="#plus-fiche-produit">Autre guide : où trouver les caractéristiques sur une fiche produit →</a></p></section></details></section>
+
+<section class="section sources-list" data-tone="orchid" id="sources"><h2 class="section-heading"><span class="eyebrow">07 · Sources</span>Sources utiles</h2><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></section>
+
+<section class="section pl-endwrap" id="suite">
+<div class="pl-end hx-reveal">
+<div><span class="eyebrow">À vous de jouer</span><h2>Votre prochain smartphone en quelques choix</h2><p>Cinq familles de critères, aucune connaissance technique requise : les modèles proches de vos priorités s’affichent dès le premier choix.</p></div>
+<div class="pl-end-btns"><a class="pl-btn" href="#audit">Ma recommandation →</a><a class="pl-btn alt" href="#analyser-modele">Analyser un modèle</a></div>
+</div>
+</section>
+
+</div>
+</div>
 </main>
-<footer class="site-footer">
-<div class="footer-inner">
-<div class="footer-brand">
-<span aria-hidden="true" class="footer-logo-mark">
-<svg viewbox="0 0 56 56"><path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path><path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path></svg>
-</span>
-<span><b>Guide</b> <strong>d’achat</strong></span>
-</div>
-<div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p>
-<p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l’achat.</p>
-<p>Les fiches indiquent leur date de dernière vérification.</p>
-</div>
-</div>
-</footer><script src="assets/js/categories.js"></script>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><span><b>Guide</b> <strong>d'achat</strong></span></div><div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p><p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l'achat.</p><p>Les fiches indiquent leur date de dernière vérification.</p></div></div></footer>
+<script src="assets/js/categories.js"></script>
 <script src="sources/catalogue.js"></script>
 <script src="phone-analyzer/normalizer.js"></script>
 <script src="phone-analyzer/identify.js"></script>
@@ -302,7 +335,6 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="phone-analyzer/spec-insights.js"></script>
 <script src="phone-analyzer/spec-score.js"></script>
 <script src="phone-analyzer/ui.js"></script>
-
 <script src="assets/js/audit-visuals.js"></script>
 <script src="assets/js/visuals-extra.js"></script>
 <script src="assets/js/site-tools.js"></script>
@@ -318,52 +350,10 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/comparateur-visual.js"></script>
 <script src="assets/js/debunk-marketing.js"></script>
 <script src="assets/js/concept-visuals.js"></script>
-<script src="assets/js/reading-time.js"></script>
 <script src="assets/js/site-extras.js"></script>
 <script src="assets/js/category-menu.js"></script>
 <script src="assets/js/amazon-guide.js"></script>
 <script src="assets/js/v88-platform.js" defer></script>
-
-<section class="section photographer-warning" data-tone="coral" id="a-lire-photo">
-<div class="warning-panel">
-<div class="warning-head"><span class="warning-badge">À lire</span><h2>Photographe : le capteur compte plus que les mégapixels</h2></div>
-<p>Un capteur photo est la surface qui reçoit la lumière. Plus il est grand, plus chaque pixel peut recevoir de lumière. C’est pourquoi un capteur de 1/1,3" avec 50 MP peut donner de meilleures photos de nuit qu’un petit capteur de 1/2,76" avec 200 MP.</p>
-<div class="sensor-demo" role="img" aria-label="Comparaison animée entre un grand capteur avec peu de pixels et un petit capteur avec beaucoup de pixels">
-<svg viewBox="0 0 720 320" aria-hidden="true">
-<defs>
-<radialGradient id="lightBig" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#fff3c4"/><stop offset="100%" stop-color="#f6b73c"/></radialGradient>
-<radialGradient id="lightSmall" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#fff8e1"/><stop offset="100%" stop-color="#f9d976"/></radialGradient>
-</defs>
-<g class="sensor-card sensor-big">
-<rect x="40" y="60" width="280" height="200" rx="22" fill="url(#lightBig)" stroke="#c98a12" stroke-width="3"/>
-<g class="pixel-grid big-grid">
-<rect x="80" y="100" width="60" height="60" rx="10" fill="#fff" opacity=".85"/><rect x="160" y="100" width="60" height="60" rx="10" fill="#fff" opacity=".85"/><rect x="80" y="180" width="60" height="60" rx="10" fill="#fff" opacity=".85"/><rect x="160" y="180" width="60" height="60" rx="10" fill="#fff" opacity=".85"/>
-</g>
-<text x="180" y="45" text-anchor="middle" class="svg-title">Grand capteur · 50 MP</text>
-<text x="180" y="292" text-anchor="middle" class="svg-caption">Pixels larges : plus de lumière, nuit plus propre</text>
-</g>
-<g class="sensor-card sensor-small">
-<rect x="400" y="95" width="180" height="130" rx="16" fill="url(#lightSmall)" stroke="#c98a12" stroke-width="3"/>
-<g class="pixel-grid small-grid">
-<rect x="418" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="113" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
-<rect x="418" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="133" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
-<rect x="418" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="153" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
-<rect x="418" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="438" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="458" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="478" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="498" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="518" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/><rect x="538" y="173" width="16" height="16" rx="3" fill="#fff" opacity=".85"/>
-</g>
-<text x="490" y="80" text-anchor="middle" class="svg-title">Petit capteur · 200 MP</text>
-<text x="490" y="252" text-anchor="middle" class="svg-caption">Pixels minuscules : moins de lumière par pixel</text>
-</g>
-<g class="light-rays big-rays"><path d="M180 10 L120 60 M180 10 L180 60 M180 10 L240 60" stroke="#f6b73c" stroke-width="5" stroke-linecap="round"/></g>
-<g class="light-rays small-rays"><path d="M490 45 L455 95 M490 45 L490 95 M490 45 L525 95" stroke="#f9d976" stroke-width="4" stroke-linecap="round"/></g>
-</svg>
-</div>
-<div class="warning-points">
-<div><strong>Grand capteur</strong><span>Chaque pixel est plus large. Il capte plus de lumière, réduit le bruit et aide en soirée, en intérieur ou en contre-jour.</span></div>
-<div><strong>Petit capteur, beaucoup de pixels</strong><span>Les pixels sont minuscules. L’image peut être très détaillée en plein jour, mais la nuit dépendra surtout du traitement logiciel.</span></div>
-<div><strong>Règle simple</strong><span>Avant de regarder 108 ou 200 MP, regardez la taille du capteur : 1/1,3" est généralement plus intéressant pour la photo que 1/2,76".</span></div>
-</div>
-<p class="warning-note">Les mégapixels servent au détail et au recadrage. La lumière dépend surtout du capteur, de l’optique, de l’OIS et du traitement.</p>
-</div>
-</section>
+<script src="assets/js/category-page.js" defer></script>
 </body>
 </html>
