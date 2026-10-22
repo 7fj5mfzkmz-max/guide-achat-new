@@ -11,7 +11,7 @@
 <link rel="canonical" href="https://guide-achat-new-1.vercel.app/index.html"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Caveat:wght@600&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/design-system.css">
 <link rel="stylesheet" href="assets/css/category-page.css">
 <link rel="stylesheet" href="assets/css/home.css">
@@ -40,54 +40,68 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <div class="hx hm" data-motion="on">
 
 <section class="hm-hero">
-<div class="container-wide hm-hero-in">
+<div class="hm-wrap">
+<div class="hm-hero-grid">
 <div class="hm-hero-copy">
-<span class="hm-kick hx-reveal">GUIDE·ACHAT · OUTIL INDÉPENDANT</span>
-<h1 class="hx-reveal">Choisissez le <mark>bon produit</mark>, sans jargon.</h1>
-<p class="hm-lead hx-reveal">Un guide indépendant qui explique les caractéristiques qui comptent, leur effet réel à l’usage et les pièges à éviter. Commencez par une catégorie.</p>
+<p class="hm-meta hx-reveal">Guide indépendant <i></i> Édition 2026 <i></i> Prix en euros</p>
+<h1 class="hx-reveal">Choisir le bon produit, sans jargon</h1>
+<p class="hm-lead hx-reveal">On explique les caractéristiques qui comptent, leur effet réel à l’usage et les pièges à éviter. Vous commencez par un produit, on s’occupe du reste.</p>
 <div class="hm-cta hx-reveal">
-<span class="hm-live" id="hx-live-links"><a class="hm-btn" href="smartphones.html">Smartphones →</a><a class="hm-btn" href="pc-portables.html">PC portables →</a></span>
-<a class="hm-skip" href="#analyser">J’ai déjà repéré un modèle ↓</a>
+<span class="hm-live" id="hx-live-links"><a class="hm-btn" href="smartphones.html">Smartphones<i aria-hidden="true">→</i></a><a class="hm-btn" href="pc-portables.html">PC portables<i aria-hidden="true">→</i></a></span>
+<a class="hm-link" href="#analyser">J’ai déjà repéré un modèle<i aria-hidden="true">↓</i></a>
 </div>
-<ul class="hm-checks hx-reveal" aria-label="Nos engagements"><li>Guide indépendant</li><li>Sans jargon</li><li>Fiches datées et sourcées</li></ul>
+<div class="hm-badge hx-reveal" aria-label="60 modèles de PC portables repérés"><b>60</b><span>modèles de PC<br/>repérés</span></div>
 </div>
-<div class="pg-stage" id="hx-stage" aria-hidden="true"></div>
+<div class="hm-hero-visual hx-reveal">
+<figure class="hm-photo"><img src="assets/pc-photo/laptop-04.jpeg" alt="Ordinateur portable ouvert, vu de face" fetchpriority="high" width="1280" height="960"></figure>
+<p class="hm-note-hand" aria-hidden="true"><span>On t’explique avec des mots simples&nbsp;!</span><svg viewBox="0 0 60 40" focusable="false"><path d="M4 4c18 2 34 10 48 30M52 34l-12-2M52 34l-3-12"/></svg></p>
+<dl class="hm-stats">
+<div><dt>Critères expliqués (PC)</dt><dd>7</dd></div>
+<div><dt>Familles de critères (smartphones)</dt><dd>5</dd></div>
+<div><dt>Profils d’usage</dt><dd>4</dd></div>
+<div><dt>Guides disponibles</dt><dd>2</dd></div>
+</dl>
+</div>
+</div>
 </div>
 </section>
 
 <div class="hm-marquee" id="hx-marquee" role="region" aria-label="Quelques notions abordées dans le guide"></div>
 
-<section class="hm-section container-wide" id="categories">
+<section class="hm-section" id="categories">
+<div class="hm-wrap">
 <div class="hm-head hx-reveal">
-<span class="hm-label">01 · Les guides</span>
+<p class="hm-label">Les guides</p>
 <h2>Un guide par produit</h2>
-<p>Les critères utiles et les chiffres à savoir lire avant de comparer, expliqués avec des dessins et des démos.</p>
+<p>Les critères utiles et les chiffres à savoir lire avant de comparer, expliqués avec des dessins, des photos et des démos.</p>
 </div>
 <div class="hm-cards" id="hx-cards"></div>
+</div>
 </section>
 
-<section class="hm-section hm-dark" id="methode">
-<div class="container-wide">
+<section class="hm-section hm-tight" id="methode">
+<div class="hm-wrap">
 <div class="hm-head hx-reveal">
-<span class="hm-label">02 · La méthode</span>
+<p class="hm-label">La méthode</p>
 <h2>Trois temps, aucun jargon</h2>
 </div>
 <ol class="hm-steps3">
-<li class="hm-step3 hx-reveal"><b>01</b><h3>Comprendre</h3><p>Ce que les chiffres changent vraiment à l’usage, avec un exemple et une démo pour chaque critère.</p></li>
-<li class="hm-step3 hx-reveal"><b>02</b><h3>Comparer</h3><p>Les différences qui comptent, et celles qui ne sont que des arguments commerciaux.</p></li>
-<li class="hm-step3 hx-reveal"><b>03</b><h3>Choisir</h3><p>Selon votre usage et vos priorités : un profil, une recommandation, des modèles proches de vos choix.</p></li>
+<li class="hm-step3 is-light hx-reveal"><b>01</b><h3>Comprendre</h3><p>Ce que les chiffres changent vraiment à l’usage, avec un exemple et une démo pour chaque critère.</p></li>
+<li class="hm-step3 is-white hx-reveal"><b>02</b><h3>Comparer</h3><p>Les différences qui comptent, et celles qui ne sont que des arguments commerciaux.</p></li>
+<li class="hm-step3 is-dark hx-reveal"><b>03</b><h3>Choisir</h3><p>Selon votre usage et vos priorités : un profil, une recommandation, des modèles proches de vos choix.</p></li>
 </ol>
 </div>
 </section>
 
-<section class="hm-section container-wide" id="profil">
-<div class="hm-split">
+<section class="hm-section" id="profil">
+<div class="hm-wrap hm-split">
 <div class="hm-head hx-reveal">
-<span class="hm-label">03 · Votre usage</span>
+<p class="hm-label">Votre usage</p>
 <h2>Selon qui vous êtes, les priorités changent</h2>
 <p>Le même produit ne convient pas à tous les usages. Choisissez un profil pour voir quels critères deviennent prioritaires.</p>
+<p class="hm-note-hand is-inline" aria-hidden="true"><span>Clique sur ton profil&nbsp;!</span></p>
 </div>
-<div class="hm-panel hx-reveal">
+<div class="hm-panel is-dark hx-reveal">
 <div class="hx-cat-tabs" id="hx-cat-tabs" hidden></div>
 <div class="hx-tabs" role="tablist" aria-label="Profil d’usage">
 <button class="hx-tab" role="tab" type="button" aria-selected="true" data-profile="etudiant">Étudiant</button>
@@ -96,15 +110,15 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <button class="hx-tab" role="tab" type="button" aria-selected="false" tabindex="-1" data-profile="photographe">Photographe</button>
 </div>
 <div class="hx-bars" id="hx-bars" aria-live="polite"></div>
-<p class="hm-note">Exemple indicatif de pondération des critères.</p>
+<p class="hm-panel-note">Exemple indicatif de pondération des critères.</p>
 </div>
 </div>
 </section>
 
 <section class="hm-section hm-band" id="comparer">
-<div class="container-wide hm-split is-flip">
+<div class="hm-wrap hm-split is-flip">
 <div class="hm-head hx-reveal">
-<span class="hm-label">04 · Comparer</span>
+<p class="hm-label">Comparer</p>
 <h2>Ce qui compte vraiment</h2>
 <p>Certaines caractéristiques permettent de prévoir l’usage ; d’autres sont surtout des arguments commerciaux. Le score mesure l’adéquation avec votre profil, pas la qualité absolue du produit.</p>
 </div>
@@ -112,13 +126,13 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </div>
 </section>
 
-<section class="hm-section container-wide" id="analyser">
-<div class="hm-split">
+<section class="hm-section" id="analyser">
+<div class="hm-wrap hm-split">
 <div class="hm-head hx-reveal">
-<span class="hm-label">05 · Analyser</span>
+<p class="hm-label">Analyser</p>
 <h2>Vous avez déjà choisi un produit ?</h2>
 <p>Collez le lien de la fiche produit. Le guide identifie le modèle, vous demande confirmation si nécessaire, puis présente les caractéristiques trouvées et leur adéquation avec votre profil.</p>
-<a class="hm-btn" data-cat-link="analyze" href="smartphones.html#analyse-modele">Analyser un produit →</a>
+<a class="hm-btn" data-cat-link="analyze" href="smartphones.html#analyse-modele">Analyser un produit<i aria-hidden="true">→</i></a>
 </div>
 <ol class="hx-steps hm-steps hx-reveal">
 <li class="hx-step"><i>1</i><span>Collez le lien</span></li>
@@ -128,9 +142,10 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </div>
 </section>
 
-<section class="hm-section container-wide" id="questions">
+<section class="hm-section hm-band" id="questions">
+<div class="hm-wrap">
 <div class="hm-head hx-reveal">
-<span class="hm-label">06 · Questions fréquentes</span>
+<p class="hm-label">Questions fréquentes</p>
 <h2>Les réponses aux questions courantes</h2>
 </div>
 <div class="hx-faq hm-faq">
@@ -140,12 +155,13 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <div class="hx-qa hx-reveal"><button class="hx-q" type="button" aria-expanded="false" aria-controls="qa4">Les prix affichés sont-ils à jour ?<i aria-hidden="true"></i></button><div class="hx-a" id="qa4"><div><p>Ce sont des prix indicatifs, à vérifier auprès du vendeur selon la version et le marché. Les fiches indiquent leur date de dernière vérification.</p></div></div></div>
 <div class="hx-qa hx-reveal"><button class="hx-q" type="button" aria-expanded="false" aria-controls="qa5">Que se passe-t-il si une caractéristique est introuvable ?<i aria-hidden="true"></i></button><div class="hx-a" id="qa5"><div><p>Une donnée non trouvée n’est jamais comptée comme négative : elle est indiquée comme à confirmer, et le score repose sur les critères réellement documentés.</p></div></div></div>
 </div>
+</div>
 </section>
 
 <section class="hm-end" id="suite">
-<div class="container-wide hm-end-in hx-reveal">
-<p>Pas besoin de tout retenir.<br/>Il suffit de savoir ce qui compte pour vous.</p>
-<a class="hm-btn is-dark" href="#categories">Choisir un guide →</a>
+<div class="hm-wrap hm-end-in hx-reveal">
+<p>Pas besoin de tout retenir. Il suffit de savoir ce qui compte pour vous.</p>
+<a class="hm-btn" href="#categories">Choisir un guide<i aria-hidden="true">→</i></a>
 </div>
 </section>
 
