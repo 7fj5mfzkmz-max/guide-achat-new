@@ -8,46 +8,33 @@
 
   var V = {
     tech: function (v) {
-      /* Zoom sur 6 × 3 pixels : OLED/AMOLED = chaque pixel s'allume seul (la zone noire est éteinte) ;
-         LCD = lumière derrière tout l'écran (le noir reste gris) ; LTPO = la cadence s'adapte au contenu. */
-      var cols = [T, O, L], cw = 12.6, ch = 12, x0 = 10, y0 = 8, s = '', lcd = v === 'lcd';
+      /* Même scène (lune et étoiles sur fond sombre) pour que seule la qualité du noir change. */
       if (v === 'ltpo') {
-        s += tx(14, 15, 8.5, 'défilement 120 Hz', K, 'start') + '<path d="M14 25h68" stroke="' + K + '" stroke-opacity=".25" stroke-width="2"/>';
-        for (var i = 0; i < 12; i++) s += '<circle cx="' + (14 + i * 68 / 11).toFixed(1) + '" cy="25" r="2" fill="' + T + '" stroke="none" opacity=".6"/>';
-        s += '<circle class="av-slide" style="--n:12" cx="14" cy="25" r="5" fill="' + O + '" stroke="none"/>';
-        s += tx(14, 41, 8.5, 'image fixe 1 Hz', K, 'start') + '<path d="M14 51h68" stroke="' + K + '" stroke-opacity=".25" stroke-width="2"/>';
-        for (var j = 0; j < 3; j++) s += '<circle cx="' + (14 + j * 34) + '" cy="51" r="2" fill="' + T + '" stroke="none" opacity=".6"/>';
-        return s + '<circle class="av-slide" style="--n:2" cx="14" cy="51" r="5" fill="' + L + '" stroke="' + K + '" stroke-width="1.2"/>' + tx(48, 62, 8, 'économe', K);
+        var ph = function (x, hot) { return rc(x, 4, 30, 36, 5, '#101520', K, 'stroke-width="2"') + (hot ? '<path d="M' + (x + 9) + ' 17h12M' + (x + 9) + ' 25h12M' + (x + 9) + ' 33h12" stroke="#fff" stroke-width="2.4"/><path class="av-float" d="M' + (x + 15) + ' 38l-4-5h8z" fill="' + L + '" stroke="none"/>' : '<circle cx="' + (x + 15) + '" cy="25" r="7" fill="' + O + '" stroke="none"/>'); };
+        return ph(14, true) + ph(52, false) + tx(29, 51, 8.5, '120 Hz', K) + tx(67, 51, 8.5, '10 Hz', K) + '<path d="M46 25h4m-2-2l2 2-2 2" stroke="' + K + '" stroke-width="1.6" fill="none"/>' + tx(48, 61, 7.5, 's’adapte : économe', K);
       }
-      s += rc(x0 - 2, y0 - 2, 80, 40, 6, lcd ? '#dfe9f2' : '#0b0b12', K, 'stroke-width="2.4"');
-      if (lcd) s += rc(x0 - 2, y0 - 2, 80, 40, 6, '#fff', '', 'class="av-pulse" opacity=".35"');
-      for (var r = 0; r < 3; r++) for (var c = 0; c < 6; c++) {
-        var dark = c > 3, x = x0 + c * cw + .8, y = y0 + r * ch + .8, w = cw - 1.6, h = ch - 1.6;
-        if (dark) s += lcd ? rc(x, y, w, h, 2, '#8a949e') : rc(x, y, w, h, 2, 'none', '#fff', 'stroke-opacity=".18" stroke-dasharray="2 2"');
-        else s += rc(x, y, w, h, 2, cols[(r + c) % 3], '', (lcd ? '' : 'class="av-pulse" style="--dl:' + (((r * 6 + c) % 5) * .25) + 's"'));
-      }
-      if (v === 'amoled') {
-        for (var g = 1; g < 6; g++) s += '<path d="M' + (x0 + g * cw) + ' ' + (y0 - 2) + 'v40" stroke="#fff" stroke-opacity=".22"/>';
-        for (var q = 1; q < 3; q++) s += '<path d="M' + (x0 - 2) + ' ' + (y0 + q * ch) + 'h80" stroke="#fff" stroke-opacity=".22"/>';
-        s += rc(x0 - 2, y0, 80, 3, 1.5, '#fff', '', 'class="av-scan" opacity=".55"');
-      }
-      s += tx(x0 + 5 * cw, y0 + 20, 9, lcd ? 'gris' : 'noir', lcd ? '#1d2430' : '#8892a6');
-      return s + tx(48, 58, 8.5, lcd ? 'lumière partout' : (v === 'amoled' ? 'pixels allumés seuls' : 'pixel éteint = noir'), K);
+      var bg = v === 'lcd' ? '#4b535e' : '#05060a', moon = v === 'amoled' ? O : '#fff3c4', s = rc(12, 5, 72, 42, 6, bg, K, 'stroke-width="2.4"');
+      if (v === 'lcd') s += rc(14, 40, 68, 5, 2, '#fff', '', 'opacity=".22"') + rc(14, 7, 68, 5, 2, '#fff', '', 'opacity=".22"');
+      s += '<circle cx="62" cy="21" r="9" fill="' + moon + '" stroke="none"/>';
+      [[24, 14], [34, 30], [46, 17], [26, 38], [44, 36]].forEach(function (d, i) { s += '<circle cx="' + d[0] + '" cy="' + d[1] + '" r="1.6" fill="' + (v === 'amoled' ? [T, L, O, T, L][i] : '#fff') + '" stroke="none" opacity=".9"/>'; });
+      return s + tx(48, 58, 8.5, v === 'lcd' ? 'noir un peu grisé' : (v === 'amoled' ? 'noirs + couleurs vives' : 'vrai noir (éteint)'), K);
     },
     refresh: function (v) {
-      var n = { '60': 6, '90': 9, '120': 12, '144': 14 }[v] || 6, s = tx(48, 15, 12, v + ' images', K) + '<path d="M14 40h68" stroke="' + K + '" stroke-opacity=".25" stroke-width="2"/>';
-      for (var i = 0; i < n; i++) s += '<circle cx="' + (14 + i * 68 / (n - 1)) + '" cy="40" r="2.2" fill="' + T + '" stroke="none" opacity=".6"/>';
-      return s + '<circle class="av-slide" style="--n:' + n + '" cx="14" cy="40" r="6" fill="' + O + '" stroke="none"/>' + tx(14, 58, 10, '0 s') + tx(82, 58, 10, '1 s');
+      /* Chaque point est une image affichée pendant que la balle se déplace : plus il y en a, plus le mouvement est fluide. */
+      var n = { '60': 5, '90': 7, '120': 10, '144': 13 }[v] || 5, w = { '60': 'correct', '90': 'fluide', '120': 'très fluide', '144': 'ultra fluide' }[v], s = tx(48, 13, 9.5, v + ' images / seconde');
+      for (var i = 0; i < n; i++) s += '<circle cx="' + (16 + i * 64 / (n - 1)).toFixed(1) + '" cy="32" r="6" fill="' + O + '" stroke="none" opacity="' + (i === n - 1 ? 1 : (.15 + .4 * i / n)).toFixed(2) + '"/>';
+      return s + '<path d="M14 46h68m-3-2.5l3 2.5-3 2.5" stroke="' + K + '" stroke-opacity=".4" stroke-width="1.6" fill="none"/>' + tx(48, 60, 9, w);
     },
     brightness: function (v) {
-      var g = { '600': .7, '1000': .5, '1600': .3, '2500': .1 }[v], k = { '600': 4, '1000': 6, '1600': 8, '2500': 10 }[v], lv = { '600': 1, '1000': 2, '1600': 3, '2500': 4 }[v], s = '<circle cx="78" cy="15" r="6" fill="' + L + '" stroke="' + K + '"/>';
-      for (var i = 0; i < k; i++) { var a = Math.PI * (0.55 + i * 0.9 / (k - 1)); s += '<path d="M' + (78 + Math.cos(a) * 9).toFixed(1) + ' ' + (15 + Math.sin(a) * 9).toFixed(1) + 'L' + (78 + Math.cos(a) * 13).toFixed(1) + ' ' + (15 + Math.sin(a) * 13).toFixed(1) + '" stroke="' + K + '" stroke-width="1.6"/>'; }
-      s += rc(10, 14, 52, 34, 5, '#101520', K, 'stroke-width="2.2"') + rc(16, 21, 36, 4, 2, '#fff') + rc(16, 29, 28, 4, 2, '#fff') + rc(16, 37, 32, 4, 2, '#fff') + rc(10, 14, 52, 34, 5, '#fff', '', 'opacity="' + g + '"');
-      return s + bar(4, lv, 10, 55, 18, 3, T);
+      /* Écran lisible ou noyé sous le reflet du soleil : plus de nits = plus de contraste en plein jour. */
+      var g = { '600': .75, '1000': .5, '1600': .28, '2500': .08 }[v], c = { '600': 'lisible à l’ombre', '1000': 'lisible dehors', '1600': 'plein soleil : OK', '2500': 'même en plein soleil' }[v];
+      var s = rc(10, 8, 54, 38, 5, '#101520', K, 'stroke-width="2.2"') + rc(16, 16, 36, 4, 2, '#fff') + rc(16, 25, 28, 4, 2, '#fff') + rc(16, 34, 32, 4, 2, '#fff') + rc(10, 8, 54, 38, 5, '#fff', '', 'opacity="' + g + '"') + '<circle cx="80" cy="14" r="6" fill="' + L + '" stroke="' + K + '"/>';
+      for (var i = 0; i < 8; i++) { var a = i * Math.PI / 4; s += '<path d="M' + (80 + Math.cos(a) * 9).toFixed(1) + ' ' + (14 + Math.sin(a) * 9).toFixed(1) + 'L' + (80 + Math.cos(a) * 12.5).toFixed(1) + ' ' + (14 + Math.sin(a) * 12.5).toFixed(1) + '" stroke="' + K + '" stroke-width="1.6"/>'; }
+      return s + tx(48, 59, 8.5, c);
     },
     capacity: function (v) {
-      var p = { '3000': .5, '4000': .67, '5000': .83, '6000': 1 }[v];
-      return rc(8, 14, 72, 32, 6, 'none', K, 'stroke-width="3"') + rc(80, 25, 5, 10, 2, K) + rc(12, 18, 64 * p, 24, 3, T, '', 'class="av-grow"') + tx(44, 60, 11, v.replace(/(\d)(\d{3})$/, '$1 $2') + ' mAh');
+      var p = { '3000': .5, '4000': .67, '5000': .83, '6000': 1 }[v], c = { '3000': 'peu de marge', '4000': 'journée correcte', '5000': 'journée large', '6000': '2 jours possibles' }[v];
+      return rc(8, 10, 72, 34, 6, 'none', K, 'stroke-width="3"') + rc(80, 22, 5, 10, 2, K) + rc(12, 14, 64 * p, 26, 3, T, '', 'class="av-grow"') + tx(46, 59, 9, c);
     },
     chemistry: function (v) {
       var si = v === 'silicon', t = si ? 15 : 24, y = 36 - t / 2, s = tx(46, 12, 10, 'même capacité');
@@ -58,36 +45,39 @@
       return s + '<path d="M82 ' + y + 'v' + t + 'M79 ' + y + 'h6M79 ' + (y + t) + 'h6" stroke="' + K + '" stroke-width="1.6"/>' + tx(46, 62, 10, si ? 'plus fin' : 'standard', K);
     },
     charge: function (v) {
-      var k = { '25': 1, '45': 2, '67': 3, '100': 4 }[v], d = { '25': 4, '45': 2.2, '67': 1.5, '100': 1 }[v], s = '';
-      for (var i = 0; i < k; i++) s += '<path transform="translate(' + (48 - k * 6 + i * 12 + 3) + ' 6)" d="M3 0L-3 8H1L-1 14L6 5H2Z" fill="' + L + '" stroke="' + K + '" stroke-width=".9"/>';
-      return s + rc(8, 26, 72, 24, 6, 'none', K, 'stroke-width="3"') + rc(80, 33, 5, 10, 2, K) + rc(12, 30, 64, 16, 3, T, '', 'class="av-charge" style="--d:' + d + 's"') + tx(46, 62, 11, v + ' W');
+      /* Temps indicatif pour une recharge complète d’une batterie d’environ 5 000 mAh. */
+      var d = { '25': 4, '45': 2.2, '67': 1.5, '100': 1 }[v], t = { '25': '≈ 2 h', '45': '≈ 1 h 15', '67': '≈ 55 min', '100': '≈ 40 min' }[v], k = { '25': 1, '45': 2, '67': 3, '100': 4 }[v], s = '';
+      for (var i = 0; i < k; i++) s += '<path transform="translate(' + (48 - k * 4.5 + i * 9 + 3) + ' 2) scale(.7)" d="M3 0L-3 8H1L-1 14L6 5H2Z" fill="' + L + '" stroke="' + K + '" stroke-width=".9"/>';
+      return s + rc(12, 14, 66, 22, 6, 'none', K, 'stroke-width="3"') + rc(78, 20, 5, 10, 2, K) + rc(16, 18, 58, 14, 3, T, '', 'class="av-charge" style="--d:' + d + 's"') + tx(48, 49, 12.5, t) + tx(48, 60, 7.5, 'pour charger de 0 à 100 %');
     },
     reference: function (v) {
-      var lv = { basic: 2, mid: 3, high: 4, apple: 4 }[v], on = v === 'basic' ? [1, 1, 0] : [1, 1, 1], s = rc(10, 12, 24, 24, 4, 'none', K, 'stroke-width="2.4"') + rc(17, 19, 10, 10, 2, K);
-      for (var i = 0; i < 4; i++) s += '<path d="M' + (15 + i * 5) + ' 8v4m0 24v4" stroke="' + K + '" stroke-width="1.6"/>';
-      var ic = ['<path d="M-3.5 -2.5h7v5h-4l-2 2v-2h-1z" fill="#fff" stroke="none"/>', '<path d="M-2 -3.5l5 3.5-5 3.5z" fill="#fff" stroke="none"/>', '<path d="M-1 -4h2v3h3v2h-3v3h-2v-3h-3v-2h3z" fill="#fff" stroke="none"/>'];
-      for (var j = 0; j < 3; j++) s += '<g transform="translate(' + (50 + j * 17) + ' 24)">' + (on[j] ? '<circle r="8" fill="' + T + '" stroke="none"/>' + ic[j] : '<circle r="8" fill="none" stroke="' + K + '" stroke-dasharray="2 2" opacity=".45"/>') + '</g>';
-      return s + bar(4, lv, 10, 50, 17, 4, O);
+      var lv = { basic: 1, mid: 2, high: 3, apple: 4 }[v], c = { basic: 'applis courantes', mid: 'jeux fluides', high: 'jeux exigeants', apple: 'très rapide' }[v], s = rc(10, 10, 28, 28, 5, 'none', K, 'stroke-width="2.4"') + rc(18, 18, 12, 12, 2, K);
+      for (var i = 0; i < 4; i++) s += '<path d="M' + (15 + i * 6) + ' 6v4m0 28v4" stroke="' + K + '" stroke-width="1.6"/>';
+      for (var j = 0; j < 4; j++) s += rc(50 + j * 10, 38 - (j + 1) * 7, 8, (j + 1) * 7, 2, j < lv ? O : 'none', j < lv ? '' : K, j < lv ? '' : 'stroke-dasharray="2 2" opacity=".4"');
+      return s + tx(48, 58, 9, c);
     },
     gaming: function (v) {
       var n = { daily: 3, heavy: 4, pro: 5 }[v], s = '';
       if (v === 'daily') s = '<path d="M30 14h36a4 4 0 0 1 4 4v14a4 4 0 0 1-4 4H48l-8 7v-7h-10a4 4 0 0 1-4-4V18a4 4 0 0 1 4-4z" fill="' + T + '" fill-opacity=".3" stroke="' + K + '" stroke-width="2.2"/>' + '<path d="M44 20l10 6-10 6z" fill="' + K + '" stroke="none"/>';
       if (v === 'heavy') s = rc(22, 12, 52, 28, 4, T, K, 'stroke-width="2.2" fill-opacity=".3"') + rc(28, 30, 14, 6, 2, O) + rc(44, 30, 22, 6, 2, L) + '<path d="M28 20h40" stroke="' + K + '" stroke-width="2"/>';
       if (v === 'pro') s = '<path d="M26 18h38c6 0 9 8 10 16 1 5-5 8-8 3l-5-6H29l-5 6c-3 5-9 2-8-3 1-8 4-16 10-16z" fill="' + O + '" fill-opacity=".3" stroke="' + K + '" stroke-width="2.2"/><path d="M30 22v8m-4-4h8" stroke="' + K + '" stroke-width="2"/><circle cx="58" cy="25" r="2.4" fill="' + K + '" stroke="none"/><circle cx="64" cy="30" r="2.4" fill="' + K + '" stroke="none"/><path d="M80 12c4 4 4 8 0 12-4-4-4-8 0-12z" fill="' + C + '" stroke="none"/>';
-      for (var i = 0; i < 5; i++) s += '<circle cx="' + (28 + i * 10) + '" cy="56" r="3.2" fill="' + (i < n ? L : 'none') + '" stroke="' + K + '" stroke-width="1.4" opacity="' + (i < n ? 1 : .35) + '"/>';
+      s += tx(48, 60, 8.5, { daily: 'vidéo, réseaux', heavy: 'jeux 3D', pro: 'gros jeux longtemps' }[v]);
       return s;
     },
     sensor: function (v) {
-      var d = { small: [29, 22], medium: [51, 38], large: [82, 55] }, s = '';
-      ['large', 'medium', 'small'].forEach(function (k) { var w = d[k][0], h = d[k][1], on = k === v; s += rc(48 - w / 2, 32 - h / 2, w, h, 3, on ? T : 'none', K, on ? 'stroke-width="2.4" fill-opacity=".4"' : 'stroke-dasharray="3 3" opacity=".3"'); });
-      return s;
+      /* Un capteur plus grand reçoit plus de lumière : chaque point représente une part de lumière captée. */
+      var d = { small: [26, 17], medium: [46, 30], large: [74, 44] }, cap = { small: 'peu de lumière', medium: 'plus de lumière', large: 'beaucoup de lumière' }[v], s = '';
+      ['large', 'medium', 'small'].forEach(function (k) { var w = d[k][0], h = d[k][1], on = k === v; s += rc(48 - w / 2, 28 - h / 2, w, h, 3, on ? T : 'none', K, on ? 'stroke-width="2.4" fill-opacity=".25"' : 'stroke-dasharray="3 3" opacity=".3"'); });
+      var w = d[v][0], h = d[v][1], cols = Math.floor(w / 9), rows = Math.floor(h / 9), x0 = 48 - cols * 4.5 + 2.25, y0 = 28 - rows * 4.5 + 2.25;
+      for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) s += '<circle cx="' + (x0 + c * 9) + '" cy="' + (y0 + r * 9) + '" r="2" fill="' + L + '" stroke="none"/>';
+      return s + tx(48, 60, 8.5, cap);
     },
     stabilization: function (v) {
       var eis = function (x, sc) { return '<g transform="translate(' + x + ' 0) scale(' + sc + ')" transform-origin="48 32">' + rc(20, 14, 56, 36, 3, 'none', K, 'stroke-dasharray="3 3" opacity=".4"') + '<g class="av-shift">' + rc(28, 20, 40, 24, 3, T, K, 'stroke-width="2.2" fill-opacity=".35"') + '</g></g>'; };
       var ois = function (x, sc) { return '<g transform="translate(' + x + ' 0) scale(' + sc + ')" transform-origin="48 32"><circle cx="48" cy="32" r="18" fill="none" stroke="' + K + '" stroke-width="2.4"/><circle class="av-float" cx="48" cy="32" r="8" fill="' + O + '" stroke="none"/></g>'; };
-      if (v === 'ois') return ois(0, 1) + tx(48, 62, 10, 'la lentille bouge');
-      if (v === 'both') return eis(-22, .62) + ois(24, .62);
-      return eis(0, 1) + tx(48, 62, 10, 'logiciel');
+      if (v === 'ois') return ois(0, 1) + tx(48, 60, 8.5, 'la lentille compense');
+      if (v === 'both') return eis(-22, .62) + ois(24, .62) + tx(48, 60, 8.5, 'les deux : le + stable');
+      return eis(0, 1) + tx(48, 60, 8.5, 'logiciel : recadre');
     },
     zoom: function (v) {
       var sc = v === '5x' ? 5 : 2, id = 'z' + (uid++), s = '<defs><clipPath id="' + id + '"><rect x="10" y="8" width="76" height="48" rx="6"/></clipPath><pattern id="' + id + 'm" width="9" height="9" patternUnits="userSpaceOnUse"><rect width="4.5" height="4.5" fill="#fff" opacity=".55"/><rect x="4.5" y="4.5" width="4.5" height="4.5" fill="#fff" opacity=".55"/></pattern></defs>';
@@ -95,9 +85,10 @@
       return s + rc(14, 42, v === 'digital' ? 52 : 40, 11, 5, '#fff', K, 'stroke-width="1.2"') + tx(v === 'digital' ? 40 : 34, 50.5, 9.5, v === 'digital' ? '×2 flou' : '×' + sc + ' net', '#1d2430');
     },
     resolution: function (v) {
-      var g = { '12': [4, 3], '50': [8, 6], '108': [12, 9], '200': [16, 12] }[v], s = '', w = 68 / g[0], h = 48 / g[1];
-      for (var r = 0; r < g[1]; r++) for (var c = 0; c < g[0]; c++) s += rc((14 + c * w + .4).toFixed(1), (8 + r * h + .4).toFixed(1), (w - .8).toFixed(1), (h - .8).toFixed(1), .6, T, '', 'opacity=".85"');
-      return s;
+      /* Même cercle dessiné avec plus ou moins de pixels : plus il y en a, plus le contour reste fin quand on recadre. */
+      var n = { '12': 6, '50': 10, '108': 16, '200': 24 }[v], cs = 44 / n, s = '';
+      for (var r = 0; r < n; r++) for (var c = 0; c < n; c++) { var dx = c + .5 - n / 2, dy = r + .5 - n / 2; if (dx * dx + dy * dy <= n * n / 4) s += rc((26 + c * cs).toFixed(2), (10 + r * cs).toFixed(2), (cs + .3).toFixed(2), (cs + .3).toFixed(2), 0, T, '', 'shape-rendering="crispEdges"'); }
+      return s + '<circle cx="48" cy="32" r="22" fill="none" stroke="' + K + '" stroke-opacity=".35" stroke-dasharray="2 2"/>' + tx(48, 62, 8, 'détail au recadrage');
     },
     updates: function (v) {
       var n = +v, s = tx(48, 20, 14, n + ' ans');

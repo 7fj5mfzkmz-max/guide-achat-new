@@ -21,7 +21,7 @@
     { terme: 'Charge 120 W', marketing: 'De 0 à 100 % en quelques minutes.',
       realite: 'La puissance maximale ne dure pas : le téléphone charge vite au début, puis ralentit pour protéger la batterie. Et dans beaucoup de boîtes en Europe, le chargeur n’est plus fourni.',
       impact: 'Regardez le temps de 0 à 50 % et de 0 à 100 % dans un test, et vérifiez si le chargeur est dans la boîte. Au-delà de 45 W, le gain au quotidien est souvent petit.',
-      vis: [['charge', '25', '25 W'], ['charge', '100', '100 W']] },
+      vis: [['x:chargecurve', '', 'la charge ralentit vers 80 %'], ['charge', '100', '100 W : temps indicatif']] },
     { terme: 'RAM 12 Go', marketing: 'Plus de mémoire, donc plus rapide.',
       realite: 'La RAM est la table de travail : elle garde vos applications ouvertes. Avec une table plus grande que ce que vous posez dessus, rien ne va plus vite. La vitesse vient surtout de la puce.',
       impact: '8 Go suffisent pour presque tout. Plus de RAM sert si vous gardez beaucoup d’applications ouvertes en même temps.',
@@ -38,7 +38,7 @@
       realite: 'Le capteur a une taille fixe. Y loger 200 millions de pixels, c’est découper la même surface en minuscules cases : chacune capte très peu de lumière, d’où plus de bruit et de flou, surtout le soir.',
       focus: 'Regardez le schéma : même capteur, mais beaucoup plus de cases. Chaque case reçoit moins de lumière.',
       impact: 'Entre 12 et 50 mégapixels avec un grand capteur, vos photos seront souvent meilleures qu’avec 200 mégapixels sur un petit capteur.',
-      vis: [['resolution', '200', '200 mégapixels'], ['sensor', 'small', 'petit capteur']] },
+      vis: [['x:cells', '12', 'capteur 12 MP'], ['x:cells', '200', 'même capteur, 200 MP']] },
     { terme: 'Zoom ×100', marketing: 'Photographiez la lune, lisez une enseigne très loin.',
       realite: 'Au-delà du zoom du vrai téléobjectif (×3 à ×5 en général), le téléphone agrandit l’image existante et invente les détails avec du logiciel. Plus on zoome, plus c’est flou ou artificiel.',
       impact: 'Regardez le grossissement du téléobjectif optique, pas le chiffre en gros sur la boîte. ×3 ou ×5 optique est plus utile que ×100 numérique.',
@@ -62,7 +62,7 @@
     { terme: '5G', marketing: 'Un Internet beaucoup plus rapide partout.',
       realite: 'La 5G dépend de l’antenne près de chez vous et de la bande utilisée. En ville, la différence se voit sur de gros téléchargements. Pour les réseaux sociaux, la vidéo et la navigation, la 4G suffit encore.',
       impact: 'Une 5G sur un téléphone d’entrée de gamme ne rend pas l’appareil plus rapide. Vérifiez la couverture 5G de votre opérateur chez vous avant de payer plus pour ça.',
-      vis: [['x:signal', '5g', '5G']] }
+      vis: [['x:net', '', '4G contre 5G (schéma)']] }
   ];
 
   function visuals(d) {
