@@ -17,9 +17,10 @@ const server = http.createServer(async (req, res) => {
     const data = JSON.parse(body || '{}');
     if (!data.url && !data.model) return json(res, 400, { error: 'URL ou modèle manquant.' });
     const result = data.model
-      ? await resolveModel(data.model, { category: data.category || 'smartphones', timeout: 8000 })
-      : await resolve(data.url, { category: data.category || 'smartphones' });
-    return json(res, result.ok ? 200 : 502, result);
+      ? await resolveModel(data.model, { category: data.category || 'smartphones', strict: data.strict === true, timeout: 8000 })
+      : await resolve(data.url, { category: data.category || 'smartphones', strict: data.strict === true });
+    return json(res, result.ok ? 200 : (result.reason === 'wrong-category' ? 409 : 502), result);
   } catch (error) { return json(res, 500, { error: 'Erreur interne.', detail: error.message }); }
 });
 server.listen(PORT, () => console.log(`Guide-Achat resolver: http://localhost:${PORT}`));
+

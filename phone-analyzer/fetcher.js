@@ -67,13 +67,28 @@
      « modèle introuvable » (le serveur répond alors HTTP 502 avec reason:"model-not-found"). Tout le reste
      (pas de JSON, erreur 5xx, réseau coupé, CORS) est une indisponibilité technique. */
   function modelRequest(endpoint, model, category) {
-    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: category || "smartphones", strict: true }) })
+    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+    var timer;
+    var deadline = new Promise(function (_, reject) {
+      timer = setTimeout(function () {
+        if (controller) controller.abort();
+        reject(new Error("La recherche technique a dépassé le délai de 28 secondes."));
+      }, 28000);
+    });
+    var request = fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: category || "smartphones", strict: true }), signal: controller ? controller.signal : undefined })
       .then(function (r) {
         return r.json().catch(function () { return null; }).then(function (d) {
           if (d && (d.ok === true || (d.ok === false && (d.reason === "model-not-found" || d.reason === "wrong-category")))) return d;
           throw new Error((d && d.error) || ("HTTP " + r.status));
         });
       });
+    return Promise.race([request, deadline]).then(function (result) {
+      clearTimeout(timer);
+      return result;
+    }, function (error) {
+      clearTimeout(timer);
+      throw error;
+    });
   }
   /* Secours hors service : seul un modèle reconnu dans le catalogue local est accepté. Un nom reconstitué
      (static-url-generic) n'est PAS une identification et n'est jamais renvoyé comme succès. */
@@ -102,4 +117,5 @@
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.PhoneAnalyzerFetcher = api;
 })(typeof window !== "undefined" ? window : globalThis);
+
 

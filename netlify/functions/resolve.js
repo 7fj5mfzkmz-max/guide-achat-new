@@ -15,10 +15,11 @@ exports.handler = async function (event) {
     const body = JSON.parse(event.body || '{}');
     if (!body.url && !body.model) return { statusCode: 400, headers, body: JSON.stringify({ error: 'URL ou modèle manquant.' }) };
     const result = body.model
-      ? await require('../../server/resolve').resolveModel(body.model, { category: body.category || 'smartphones', timeout: 8000 })
-      : await resolve(body.url, { category: body.category || 'smartphones' });
-    return { statusCode: result.ok ? 200 : 502, headers, body: JSON.stringify(result) };
+      ? await require('../../server/resolve').resolveModel(body.model, { category: body.category || 'smartphones', strict: body.strict === true, timeout: 8000 })
+      : await resolve(body.url, { category: body.category || 'smartphones', strict: body.strict === true });
+    return { statusCode: result.ok ? 200 : (result.reason === 'wrong-category' ? 409 : 502), headers, body: JSON.stringify(result) };
   } catch (error) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'Erreur interne pendant l’analyse.', detail: error.message }) };
   }
 };
+
