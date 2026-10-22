@@ -8,7 +8,7 @@
     { id: "smartphones", label: "Smartphones", live: true, href: "smartphones.html", tone: "orchid", icon: "phone",
       blurb: "Écran, autonomie, photo et performances : les points qui changent réellement l’usage.",
       terms: ["Écran", "Batterie", "Photo", "Puce", "Autonomie", "Charge", "Étanchéité", "Mises à jour", "Stockage", "Prix"],
-      chips: [["120 Hz", "hz"], ["5 000 mAh", "battery"], ["IP67", "drop"], ["OLED", "pixels"]],
+      chips: [["Écran fluide", "hz"], ["Longue autonomie", "battery"], ["Résiste à l’eau", "drop"], ["Écran net", "pixels"]],
       weights: "smartphones",
       pairs: [
         ["120 Hz", "À 120 Hz, l’écran peut renouveler son affichage jusqu’à 120 fois par seconde ; les mouvements paraissent généralement plus fluides."],
@@ -22,7 +22,7 @@
         ["7 ans de mises à jour", "Pendant cette durée, le fabricant corrige les failles de sécurité. Ensuite, le téléphone devient plus risqué à utiliser."]
       ],
       example: { name: "Samsung Galaxy A56", note: "300 € indicatif", scores: [["Étudiant", 8], ["Professionnel", 8], ["Photographe", 7], ["Gamer", 6]] },
-      stage: { title: "Compatibilité", bars: [89, 78, 67], score: 8 } },
+      stage: { title: "Adapté à votre usage", bars: [89, 78, 67], score: 8 } },
     { id: "pc", label: "PC portables", live: true, href: "pc-portables.html", tone: "teal", icon: "laptop",
       photo: "assets/pc-photo/laptop-04.jpeg", photoAlt: "Ordinateur portable ouvert, vu de face",
       blurb: "Choisir un PC selon les logiciels, la mobilité et le budget.", terms: ["Processeur", "RAM", "Stockage", "Écran", "Poids", "Autonomie"],

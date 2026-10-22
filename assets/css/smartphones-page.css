@@ -419,3 +419,37 @@
 .ltpo-live-value { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); color: #fff; font: 700 12px/1 var(--mono); }
 @media (max-width: 640px) { .display-compare-stage { height: 330px; } .pixel-scene { height: 150px; } .display-compare-tab { flex-basis: calc(50% - 6px); } }
 @media (prefers-reduced-motion: reduce) { .pixel-cell, .ltpo-ball, .display-compare-panel { transition: none; } }
+
+/* ---------- Lecture allégée : calme visuel et mobile ---------- */
+/* Une seule illustration animée à la fois : l’option survolée, focalisée ou choisie. */
+.audit-board .audit-pill:not(.is-selected):not(:hover):not(:focus-visible) .av * { animation-play-state: paused !important; }
+.audit-board .audit-pill:not(.is-selected):not(:hover):not(:focus-visible)::before,
+.audit-board .audit-pill:not(.is-selected):not(:hover):not(:focus-visible)::after { animation-play-state: paused !important; }
+.sp .ga-ticker { display: none; }
+
+@media (max-width: 760px) {
+  .sp .pg-stage, .sp .pg-strip { display: none; }
+  .sp .pg-hero { padding-bottom: 8px; }
+  .sp .pl-checks { gap: 6px; }
+  .sp .section { padding-block: 28px; }
+  .sp .section-lead { font-size: 15.5px; }
+
+  /* Options de l’audit : deux par ligne, illustration au-dessus du libellé */
+  .audit-board .audit-pills { grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .audit-board .audit-pill { grid-template-columns: 1fr; gap: .4rem; padding: .5rem; text-align: center; align-items: start; }
+  .audit-board .audit-pill .pill-copy { padding-right: 0; align-items: center; }
+  .audit-board .audit-pill .pill-copy strong { font-size: .92rem; }
+  .audit-board .audit-pill .pill-copy small { font-size: .78rem; line-height: 1.35; }
+  .audit-board .audit-pill.is-selected::after { top: .3rem; right: .3rem; width: 1.2rem; height: 1.2rem; }
+
+  /* Illustration du capteur : textes lisibles à petite largeur */
+  .sensor-demo { padding: 8px; }
+  .svg-title { font-size: 27px; }
+  .svg-caption { display: none; }
+
+  /* Checklist en liste compacte */
+  .recap-grid { grid-template-columns: 1fr; gap: 8px; margin-top: 18px; }
+  .recap-card { grid-template-columns: 40px 1fr; column-gap: 12px; row-gap: 2px; padding: 12px 14px; align-items: center; }
+  .recap-card:hover { transform: none; box-shadow: none; }
+  .recap-num { grid-row: span 2; }
+}
