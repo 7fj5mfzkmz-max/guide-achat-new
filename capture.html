@@ -50,17 +50,19 @@ a{color:var(--accent)} p.muted{color:var(--muted)}
 <p class="muted">Il lit les données structurées de la page (JSON-LD Product), le titre produit, la marque et l’EAN s’ils existent, puis ouvre <code id="target"></code>.</p>
 </details>
 
-<p><a href="smartphones.html#analyse-modele">← Retour à l’analyse</a></p>
+<p><a id="back" href="smartphones.html#analyse-modele">← Retour à l’analyse</a></p>
 
 <script src="phone-analyzer/normalizer.js"></script>
 <script src="phone-analyzer/identify.js"></script>
 <script src="phone-analyzer/capture.js"></script>
 <script>
 (function(){
-  var code = window.PhoneAnalyzerCapture.bookmarklet(location.origin);
+  var pc = /[?&]cat=pc-portables/.test(location.search), page = pc ? "pc-portables.html" : "smartphones.html";
+  var code = window.PhoneAnalyzerCapture.bookmarklet(location.origin, pc ? "pc-portables" : "smartphones");
+  document.getElementById("back").href = page + "#analyse-modele";
   var box = document.getElementById("code"), status = document.getElementById("status");
   box.value = code;
-  document.getElementById("target").textContent = location.origin + "/smartphones.html";
+  document.getElementById("target").textContent = location.origin + "/" + page;
   document.getElementById("copy").addEventListener("click", function(){
     function ok(){ status.textContent = "Copié. Passez à l’installation ci-dessous."; }
     function fallback(){ box.closest("details").open = true; box.focus(); box.select(); status.textContent = "Sélectionné : touchez « Copier » dans le menu qui s’affiche."; }

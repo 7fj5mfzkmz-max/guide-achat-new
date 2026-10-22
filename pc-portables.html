@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="assets/css/pc-page.css">
 <link rel="stylesheet" href="assets/css/pc-guide.css">
 <link rel="stylesheet" href="assets/css/pc-landing.css">
+<link rel="stylesheet" href="assets/css/analyzer.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
@@ -76,7 +77,16 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <h2 class="section-heading"><span class="eyebrow">01 · Ma recommandation</span>Quatre questions, une recommandation</h2>
 <p class="section-lead">Il n’y a pas de mauvaise réponse. Touchez une carte : la question suivante s’ouvre toute seule, et votre recommandation s’affiche dès la première réponse.</p>
 <div class="pc-audit" id="pc-audit"></div>
-<div class="pg-link"><p>Un PC vous tente déjà&nbsp;? Collez le lien de sa fiche : nous l’analysons et vous disons s’il convient à votre usage.</p><a class="pg-btn alt" href="analyseur.html?cat=pc-portables">Analyser un lien →</a></div>
+<article class="sp-card sp-analyzer pc-analyzer" id="analyse-modele" data-analyzer-category="pc-portables">
+<h3>Un PC vous tente déjà&nbsp;?</h3>
+<form class="model-analyzer-form" id="phone-analyzer-form">
+<p>Collez le lien de sa fiche ou saisissez son nom, par exemple « Lenovo Legion 5 ». Cet analyseur ne traite que les PC portables : il cherche dans le catalogue PC et sur NotebookCheck, et vous dit s’il convient à votre usage.</p>
+<label class="visually-hidden" for="phone-product-url">Lien ou nom du PC portable</label>
+<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="Collez un lien ou saisissez un modèle" required="" type="text"/><button class="btn" type="submit">Analyser</button></div>
+</form>
+<p class="model-analyzer-help"><a href="capture.html?cat=pc-portables">Un site bloque la lecture ? Capturez la fiche depuis votre navigateur.</a></p>
+<div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
+</article>
 </section>
 
 <section class="section" data-tone="teal" id="profils">
@@ -131,7 +141,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <details class="pl-q"><summary>Windows, macOS ou ChromeOS&nbsp;?</summary><p>Regardez d’abord vos logiciels et vos autres appareils. Windows offre le plus large choix de machines et de jeux. macOS s’accorde avec l’iPhone et l’iPad. ChromeOS est simple et léger, mais très centré sur le web.</p></details>
 <details class="pl-q"><summary>L’autonomie annoncée est-elle réelle&nbsp;?</summary><p>Rarement : ces chiffres sont mesurés dans des conditions idéales (écran peu lumineux, tâches légères). La capacité de la batterie, en Wh, donne un repère ; les tests indépendants sont plus fiables que la boîte.</p></details>
 <details class="pl-q"><summary>Quel budget prévoir&nbsp;?</summary><p>Sous 800&nbsp;€ : bureautique et études légères. De 800 à 1&nbsp;200&nbsp;€ : un PC polyvalent avec 16&nbsp;Go et 512&nbsp;Go. De 1&nbsp;200 à 1&nbsp;800&nbsp;€ : un meilleur écran, plus de mémoire ou une carte graphique dédiée. Au-delà : réservé aux besoins exigeants.</p></details>
-<details class="pl-q"><summary>Je ne comprends pas la référence d’un PC. Que faire&nbsp;?</summary><p>Collez le lien de la fiche dans <a href="analyseur.html?cat=pc-portables">l’analyseur</a> : il identifie le modèle exact et vous dit s’il convient à votre usage.</p></details>
+<details class="pl-q"><summary>Je ne comprends pas la référence d’un PC. Que faire&nbsp;?</summary><p>Collez le lien de la fiche dans <a href="#analyse-modele">l’analyseur</a> : il identifie le modèle exact et vous dit s’il convient à votre usage.</p></details>
 </div>
 </section>
 
@@ -145,13 +155,31 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <section class="section pl-endwrap" id="suite">
 <div class="pl-end hx-reveal">
 <div><span class="eyebrow">À vous de jouer</span><h2>45 secondes pour trouver votre PC</h2><p>Quatre questions, aucune connaissance technique requise. Vous obtenez un profil, un modèle conseillé et une option moins chère.</p></div>
-<div class="pl-end-btns"><a class="pl-btn" href="#audit">Ma recommandation →</a><a class="pl-btn alt" href="analyseur.html?cat=pc-portables">Analyser un lien</a></div>
+<div class="pl-end-btns"><a class="pl-btn" href="#audit">Ma recommandation →</a><a class="pl-btn alt" href="#analyse-modele">Analyser un lien</a></div>
 </div>
 </section>
 </div>
 </div>
 </main>
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><span><b>Guide</b> <strong>d'achat</strong></span></div><div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p><p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l'achat.</p></div></div></footer>
+<script src="sources/catalogue.js"></script>
+<script src="phone-analyzer/normalizer.js"></script>
+<script src="phone-analyzer/identify.js"></script>
+<script src="category-kit/index.js"></script>
+<script src="category-kit/smartphones.js"></script>
+<script src="category-kit/pc-portables.js"></script>
+<script src="phone-analyzer/identity.js"></script>
+<script src="phone-analyzer/crosscheck.js"></script>
+<script src="phone-analyzer/static-resolver.js"></script>
+<script src="phone-analyzer/fetcher.js"></script>
+<script src="phone-analyzer/capture.js"></script>
+<script src="phone-analyzer/profile-fit.js"></script>
+<script src="phone-analyzer/references.js"></script>
+<script src="phone-analyzer/spec-insights.js"></script>
+<script src="phone-analyzer/spec-score.js"></script>
+<script src="assets/js/scoring-engine.js"></script>
+<script src="assets/js/profiles.js"></script>
+<script src="phone-analyzer/ui.js"></script>
 <script src="assets/js/theme.js" defer></script>
 <script src="assets/js/site-tools.js" defer></script>
 <script src="assets/js/site-motion.js" defer></script>

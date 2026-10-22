@@ -23,13 +23,14 @@
   }
 
   /* Code du signet : lit JSON-LD Product, #productTitle, og:title, h1 puis ouvre le guide avec le résultat. */
-  function bookmarklet(origin) {
+  function bookmarklet(origin, category) {
+    var page = category === "pc-portables" ? "pc-portables.html" : "smartphones.html";
     var code = "(function(){try{var d=document,q=function(n){var e=d.querySelector('meta[property=\"'+n+'\"],meta[name=\"'+n+'\"]');return e?e.content:''},ld=[];" +
       "d.querySelectorAll('script[type=\"application/ld+json\"]').forEach(function(s){try{ld.push(JSON.parse(s.textContent))}catch(e){}});var p=null;" +
       "(function w(x){if(!x||p)return;if(Array.isArray(x))return x.forEach(w);if(typeof x==='object'){var t=x['@type'];if(t==='Product'||(Array.isArray(t)&&t.indexOf('Product')>-1)){p=x;return}w(x['@graph'])}})(ld);" +
       "var a=d.getElementById('productTitle'),h=d.querySelector('h1'),b=p&&p.brand?(p.brand.name||p.brand):'';" +
       "var o={u:location.href,t:((p&&p.name)||(a&&a.textContent)||q('og:title')||(h&&h.textContent)||d.title||'').replace(/\\s+/g,' ').trim(),b:b,e:p?(p.gtin13||p.gtin||p.gtin14||''):'',s:p?(p.sku||p.mpn||''):''};" +
-      "location.href='" + origin + "/smartphones.html#capture='+encodeURIComponent(JSON.stringify(o))}catch(e){alert('Capture impossible sur cette page')}})();";
+      "location.href='" + origin + "/" + page + "#capture='+encodeURIComponent(JSON.stringify(o))}catch(e){alert('Capture impossible sur cette page')}})();";
     return "javascript:" + code;
   }
 

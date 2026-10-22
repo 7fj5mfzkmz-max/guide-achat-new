@@ -15,20 +15,12 @@
   var state = { page: null, identity: null, queue: [], year: null, pageOffered: false, needsCapture: false, category: "smartphones" };
   var CORE_SPECS = (KIT && KIT.coreSpecs) || ["ecran", "processeur", "ram", "batterie", "charge", "refresh"];
 
-  /* Catégorie : un pc portable (lien ou saisie) est détecté par ses mots-clés et bascule
-     libellés, profils et requêtes vers le kit pc-portables. Smartphones par défaut. */
-  var LAPTOP_WORD = /\b(?:pc portable|ordinateur portable|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|matebook|surface laptop|victus|legion|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga|pavilion|envy|spectre|rog)|\bgalaxy[\s-]?book/i;
-  var PHONE_WORD = /\b(?:smartphone|iphone|galaxy|redmi|poco|xiaomi|pixel|oneplus|fairphone|motorola|oppo|realme|nothing phone)\b/i;
-  /* Catégorie explicite transmise par la page d’origine (?cat=…) : elle prime sur les mots-clés ambigus
-     (ex. « galaxy-book4 » contient « galaxy ») ; le résolveur peut ensuite repréciser via data.category. */
-  var EXPLICIT_CAT = null;
-  function detectCategory(text) {
-    if (EXPLICIT_CAT) return EXPLICIT_CAT;
-    var s = String(text || "");
-    if (LAPTOP_WORD.test(s)) return "pc-portables";
-    if (PHONE_WORD.test(s)) return "smartphones";
-    return state.category;
-  }
+  /* Catégorie VERROUILLÉE : chaque analyseur est lié à une seule catégorie (smartphones ou pc-portables),
+     donc à son kit, son catalogue et ses sources. Elle vient de la carte (data-category) ou de ?cat=, jamais
+     d'une devinette sur le lien collé. Un produit de l'autre catégorie est refusé avec un renvoi vers l'autre
+     analyseur (réponse « wrong-category » du serveur). */
+  var OTHER = { "smartphones": { id: "pc-portables", label: "PC portable", href: "pc-portables.html#analyse-modele", noun: "un PC portable" },
+                "pc-portables": { id: "smartphones", label: "smartphone", href: "smartphones.html#analyse-modele", noun: "un smartphone" } };
   function setCategory(cat) {
     state.category = cat === "pc-portables" ? "pc-portables" : "smartphones";
     var kit = window.GuideCategoryKit ? window.GuideCategoryKit.get(state.category) : null;
@@ -43,7 +35,12 @@
 
   /* Catégorie initiale transmise par la page d’origine (ex. analyseur.html?cat=pc-portables depuis le guide PC) :
      elle prépare libellés et profils avant toute soumission et prime sur les indices ambigus du lien collé. */
-  try { var catParam = /[?&]cat=([a-z-]+)/.exec(location.search); if (catParam) { EXPLICIT_CAT = catParam[1] === "pc-portables" ? "pc-portables" : "smartphones"; setCategory(EXPLICIT_CAT); } } catch (e) {}
+  try {
+    var cardCat = document.querySelector("[data-analyzer-category]");
+    var catParam = /[?&]cat=([a-z-]+)/.exec(location.search);
+    var initial = (cardCat && cardCat.getAttribute("data-analyzer-category")) || (catParam && catParam[1]);
+    setCategory(initial === "pc-portables" ? "pc-portables" : "smartphones");
+  } catch (e) { setCategory("smartphones"); }
 
   function esc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[c]; }); }
   function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
@@ -75,7 +72,6 @@
   function isVerifiedModel(data) { return !!(data && data.ok && data.strategy !== "static-url-generic" && hasSpecs(data)); }
   function lookupModel(text) {
     var f = window.PhoneAnalyzerFetcher;
-    setCategory(detectCategory(text));
     return f && f.resolveModel ? f.resolveModel(text, state.category) : Promise.reject(new Error("Résolveur indisponible"));
   }
   var UNAVAILABLE_NOTE = "La recherche technique est momentanément indisponible et ce modèle ne figure pas dans le catalogue local. Réessayez dans quelques instants.";
@@ -83,6 +79,7 @@
     state.page = null; state.identity = null; state.queue = []; state.pageOffered = true; state.needsCapture = false;
     loading(loadingText);
     return lookupModel(text).then(function (data) {
+      if (data && data.reason === "wrong-category") return viewWrongCategory(data);
       if (!isVerifiedModel(data)) return viewManual(data && data.reason === "resolver-unavailable" ? UNAVAILABLE_NOTE : notFound, false);
       state.page = data; state.identity = data.identity || null;
       showAnalysis(null, data);
@@ -112,6 +109,12 @@
   /* --- vues --- */
   function viewNotAModel(label) {
     show('<div class="model-analyzer-card"><h3>Ce lien correspond à ' + esc(label || "une page générale") + '.</h3><p>Collez le lien d’une fiche produit précise pour poursuivre l’analyse.</p>' + retryButton() + "</div>");
+  }
+  function viewWrongCategory(data) {
+    var other = OTHER[state.category], here = OTHER[other.id];
+    show('<div class="model-analyzer-card" role="alert"><h3>Ce produit n’est pas ' + esc(here.noun) + '.</h3><p>' +
+      esc(data && data.error ? data.error : "Il relève de l’autre analyseur.") + ' Cet analyseur ne traite que les ' + (state.category === "pc-portables" ? "PC portables" : "smartphones") + ' et sa propre base de données.</p>' +
+      '<div class="model-analyzer-actions"><a class="btn" href="' + other.href + '">Ouvrir l’analyseur ' + (other.id === "pc-portables" ? "PC portables" : "smartphones") + '</a>' + retryButton("Essayer un autre lien") + "</div></div>");
   }
   function viewConfirm(label, onYes, onNo) {
     show('<div class="model-analyzer-card" role="group" aria-labelledby="ma-q"><h3 id="ma-q">Avez-vous bien sélectionné ' + esc(label) + " ?</h3>" +
@@ -343,14 +346,13 @@
       return;
     }
     try { new URL(raw); } catch (_) { return viewManual("Ce lien n’est pas valide."); }
-    setCategory(detectCategory(raw));
     state.page = null; state.identity = null; state.queue = []; state.pageOffered = false; state.needsCapture = false;
     loading("Analyse du lien en cours…");
     window.PhoneAnalyzerFetcher.resolveProduct(raw, { category: state.category }).catch(function () { return localFallback(raw); }).then(function (data) {
       /* Le serveur peut re-router vers pc-portables (lien court sans indice de catégorie dans l’adresse) :
          la réponse porte la catégorie effective (data.category) et l’interface s’y aligne AVANT tout
          traitement — profils, libellés, fusion des specs et scoring en dépendent. */
-      if (data && data.category && data.category !== state.category) { setCategory(data.category); EXPLICIT_CAT = state.category; }
+      if (data && data.reason === "wrong-category") return viewWrongCategory(data);
       if (data.kind === "page") return viewNotAModel(data.pageLabel);
       var k = data.clues || {};
       state.year = k.year || null;
@@ -382,6 +384,7 @@
       }
       var query = names[index++];
       return lookupModel(query).then(function (data) {
+        if (data && data.reason === "wrong-category") return viewWrongCategory(data);
         if (data && data.reason === "resolver-unavailable") unavailable = true;
         if (!isVerifiedModel(data)) return attempt();
         var found = (data.identity && data.identity.name) || (data.product && data.product.name) || query;

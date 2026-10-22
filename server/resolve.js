@@ -88,24 +88,39 @@ function candidateFromText(text, product, profile, structuredPairs) {
   return specs;
 }
 
-/* Décide si un contenu de page décrit un PC portable plutôt qu'un smartphone :
-   utile quand un lien court (ASIN, fiche Fnac courte) ne dit rien de la catégorie
-   et que l'interface a appliqué son défaut. Signaux : vocabulaire portable,
-   ou association GPU dédié + CPU de PC sans signal téléphone. */
-const LAPTOP_HINT = /\b(?:pc portable|ordinateur portable|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book|matebook|surface laptop|victus|legion|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga|pavilion|envy|spectre|rog|ultrabook|extensa|travelmate|loq)\b/i;
-function looksLikeLaptop(page) {
-  const text = (((page && page.text) || '') + ' ' + ((page && page.product && page.product.name) || '')).toLowerCase();
+/* Catégorie d'un nom ou d'une page : deux vocabulaires distincts, jamais de bascule silencieuse.
+   - un nom de PC (« Legion 5 », « Zenbook »…) n'est pris pour un PC que s'il ne porte pas un mot de téléphone
+     (« ROG Phone », « Legion Phone », « Yoga Tab » restent des appareils mobiles) ;
+   - seule l'identité du produit (nom, titre) compte : le texte entier d'une page marchande contient des menus
+     (« PC portables », « Ordinateurs portables »…) qui ne disent rien du produit affiché. */
+const LAPTOP_HINT = /\b(?:pc portables?|ordinateurs? portables?|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book|matebook|surface laptop|victus|legion(?!\s*(?:phone|y\d))|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga(?!\s*tab)|pavilion|envy|spectre|rog(?!\s*phone)|ultrabook|extensa|travelmate|loq)\b/i;
+const PHONE_HINT = /\b(?:smartphones?|t[ée]l[ée]phones? (?:portable|mobile)|iphone|galaxy (?:[samzf]\d{1,2}|note|fold|flip)|pixel \d|redmi|poco|xperia|oneplus|fairphone|nothing phone|rog phone|legion (?:phone|y\d))\b/i;
+function categoryOfName(text) {
+  const t = String(text || '');
+  const laptop = LAPTOP_HINT.test(t), phone = PHONE_HINT.test(t);
+  if (laptop && !phone) return 'pc-portables';
+  if (phone && !laptop) return 'smartphones';
+  return null;
+}
+function categoryOfPage(page) {
+  const names = [page && page.product && page.product.name, page && page.list && page.list[0] && page.list[0].name].filter(Boolean).join(' ');
+  const byName = categoryOfName(names);
+  if (byName) return byName;
+  const text = String((page && page.text) || '').toLowerCase();
   const gpuSignal = /\b(?:geforce rtx|radeon rx\s?\d{3,4}\s*m|rtx\s?\d{4})\b/i;
   const cpuSignal = /\b(?:intel core (?:i\d|ultra)|amd ryzen \d|apple m\d|snapdragon x)\b/i;
   const phoneSignal = /\b(?:smartphone|t[ée]l[ée]phone|galaxy s\d|iphone|pixel \d)\b/i;
-  if (LAPTOP_HINT.test(text)) return true;
-  return gpuSignal.test(text) && cpuSignal.test(text) && !phoneSignal.test(text);
+  return gpuSignal.test(text) && cpuSignal.test(text) && !phoneSignal.test(text) ? 'pc-portables' : null;
 }
-/* Même vocabulaire, appliqué à un simple indice de nom (slug d'URL, résultat de
-   recherche) : permet aux branches « url-hint » et « search » de la cascade de
-   résoudre un PC via NotebookCheck au lieu des sources smartphones. */
-function detectCategoryFromText(text) {
-  return LAPTOP_HINT.test(String(text || '')) ? 'pc-portables' : null;
+function looksLikeLaptop(page) { return categoryOfPage(page) === 'pc-portables'; }
+/* Même vocabulaire, appliqué à un simple indice de nom (slug d'URL, résultat de recherche). */
+function detectCategoryFromText(text) { return categoryOfName(text); }
+/* Réponse « mauvais analyseur » : le produit relève de l'autre catégorie. Aucune donnée n'est
+   cherchée dans la mauvaise base ; l'interface renvoie l'utilisateur vers le bon analyseur. */
+function wrongCategory(requested, detected, name, trace, extra) {
+  const label = { 'pc-portables': 'un PC portable', smartphones: 'un smartphone' };
+  return Object.assign({ ok: false, kind: 'product', reason: 'wrong-category', category: requested, detectedCategory: detected,
+    error: 'Ce produit semble être ' + (label[detected] || 'un autre produit') + (name ? ' (« ' + String(name).slice(0, 80) + ' »)' : '') + ' : il relève de l’autre analyseur.', trace: trace || [] }, extra || {});
 }
 /* Comparaison de noms tolérante aux normalisations (espaces des références,
    casse, ponctuation) — utilisée pour repérer une fiche de famille. */
@@ -537,6 +552,7 @@ async function resolveModelRaw(model, options) {
 }
 
 async function resolve(target, options) {
+  const strict = !!(options && options.strict);   // le front fixe la catégorie : jamais de bascule silencieuse
   let profile = kit.get((options && options.category) || kit.DEFAULT);
   if (!profile || profile.status !== 'active') return { ok: false, error: 'Catégorie non disponible : ' + String((options && options.category) || '') };
   const started = Date.now();
@@ -604,7 +620,12 @@ async function resolve(target, options) {
        décrit un PC portable alors que « smartphones » a été appliqué par défaut,
        on bascule avant extraction : règles PC, source NotebookCheck, et la
        réponse porte la catégorie effective pour que l'interface s'aligne. */
-    const effCategory = looksLikeLaptop(page) && profile.id !== 'pc-portables' ? 'pc-portables' : profile.id;
+    const pageCategory = categoryOfPage(page);
+    if (strict && pageCategory && pageCategory !== profile.id) {
+      trace.push({ step: 'category', outcome: 'refusé : la page décrit ' + pageCategory + ', l’analyseur demandé est ' + profile.id });
+      return wrongCategory(profile.id, pageCategory, (page.product && page.product.name) || (page.list[0] && page.list[0].name), trace, { finalUrl: fetched.finalUrl, merchantHost: parsed.hostname });
+    }
+    const effCategory = !strict && looksLikeLaptop(page) && profile.id !== 'pc-portables' ? 'pc-portables' : profile.id;
     if (effCategory !== profile.id) {
       profile = kit.get(effCategory);
       trace.push({ step: 'category', outcome: 'pc-portables détecté depuis le contenu de la page' });
@@ -708,7 +729,12 @@ async function resolve(target, options) {
              catégorie, résolu par le lecteur secondaire, doit basculer vers
              pc-portables AVANT l'extraction et l'enrichissement (sinon GSMArena
              serait interrogé pour un PC). La réponse porte la catégorie effective. */
-          const effCategory = looksLikeLaptop(page) && profile.id !== 'pc-portables' ? 'pc-portables' : profile.id;
+          const pageCategory = categoryOfPage(page);
+          if (strict && pageCategory && pageCategory !== profile.id) {
+            trace.push({ step: 'category', outcome: 'refusé : la page décrit ' + pageCategory + ', l’analyseur demandé est ' + profile.id });
+            return wrongCategory(profile.id, pageCategory, (page.product && page.product.name) || (page.list[0] && page.list[0].name), trace, { finalUrl: target, merchantHost: parsed.hostname });
+          }
+          const effCategory = !strict && looksLikeLaptop(page) && profile.id !== 'pc-portables' ? 'pc-portables' : profile.id;
           if (effCategory !== profile.id) {
             profile = kit.get(effCategory);
             trace.push({ step: 'category', outcome: 'pc-portables détecté depuis le contenu de la page' });
@@ -752,7 +778,9 @@ async function resolve(target, options) {
   if (!good && urlNameHint && left() > 3500) {
     /* L'indice de nom peut dire la catégorie (slug « pc-portable-… », famille
        connue) : on la suit pour interroger la bonne source technique. */
-    const hintCategory = detectCategoryFromText(urlNameHintRaw) || (options && options.category) || 'smartphones';
+    const hinted = detectCategoryFromText(urlNameHintRaw);
+    if (strict && hinted && hinted !== profile.id) return wrongCategory(profile.id, hinted, urlNameHintRaw, trace, { finalUrl, merchantHost: parsed.hostname });
+    const hintCategory = strict ? profile.id : (hinted || (options && options.category) || 'smartphones');
     const technical = await resolveModel(urlNameHint, { category: hintCategory, timeout: Math.min(7000, left() - 500) });
     if (technical && technical.ok) {
       technical.category = hintCategory;   // l'interface s'aligne sur la catégorie effectivement résolue
@@ -785,7 +813,9 @@ async function resolve(target, options) {
       const indexedHint = indexed.length ? indexed[0].titleHint : null;
       const indexedName = indexedHint && cleanHint(indexedHint).length >= 4 ? cleanHint(indexedHint) : null;
       if (indexedName && left() > 3500) {
-        const indexedCategory = detectCategoryFromText(indexedHint) || (options && options.category) || 'smartphones';
+        const indexedDetected = detectCategoryFromText(indexedHint);
+        if (strict && indexedDetected && indexedDetected !== profile.id) return wrongCategory(profile.id, indexedDetected, indexedHint, trace, { finalUrl, merchantHost: parsed.hostname });
+        const indexedCategory = strict ? profile.id : (indexedDetected || (options && options.category) || 'smartphones');
         const technical = await resolveModel(indexedName, { category: indexedCategory, timeout: Math.min(7000, left() - 500) });
         if (technical && technical.ok) {
           technical.category = indexedCategory;   // l'interface s'aligne sur la catégorie effectivement résolue
@@ -837,9 +867,14 @@ async function resolve(target, options) {
   return fail({ reason: 'network', error: 'Impossible de récupérer la page.' });
 }
 
-module.exports = { apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, looksLikeLaptop, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
+module.exports = { apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, looksLikeLaptop, categoryOfName, categoryOfPage, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
 
 async function resolveModel(model, options) {
+  if (options && options.strict) {
+    const requested = options.category || kit.DEFAULT;
+    const detected = categoryOfName(model);
+    if (detected && detected !== requested) return wrongCategory(requested, detected, model, [{ step: 'category', outcome: 'refusé : le nom décrit ' + detected }]);
+  }
   const result = await resolveModelRaw(model, options);
   if (result && result.ok) {
     const ref = referenceScores((result.product && result.product.name) || result.identity && result.identity.name, result.product && result.product.evidence);

@@ -76,8 +76,11 @@ function check(label, fn) {
 
   /* 2. looksLikeLaptop : re-routage serveur d’un lien court sans indice de catégorie */
   await check('looksLikeLaptop : vocabulaire portable', () => {
-    assert.equal(serverResolve.looksLikeLaptop({ text: 'PC portable 15 pouces, clavier rétroéclairé' }), true);
-    assert.equal(serverResolve.looksLikeLaptop({ text: 'Lenovo Legion 5, 16 Go de RAM' }), true);
+    assert.equal(serverResolve.looksLikeLaptop({ product: { name: 'PC portable 15 pouces' } }), true);
+    assert.equal(serverResolve.looksLikeLaptop({ product: { name: 'Lenovo Legion 5' } }), true);
+    assert.equal(serverResolve.looksLikeLaptop({ product: { name: 'ROG Phone 9' } }), false, 'un ROG Phone reste un téléphone');
+    assert.equal(serverResolve.categoryOfName('Samsung Galaxy S25'), 'smartphones');
+    assert.equal(serverResolve.looksLikeLaptop({ text: 'Menu : PC portables, Smartphones' }), false, 'un menu de boutique ne dit rien du produit');
   });
   await check('looksLikeLaptop : GPU dédié + CPU de PC sans signal téléphone', () => {
     assert.equal(serverResolve.looksLikeLaptop({ text: 'GeForce RTX 4060, Intel Core i7, 512 Go SSD' }), true);

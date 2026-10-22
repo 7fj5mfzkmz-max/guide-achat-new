@@ -428,3 +428,11 @@ Source technique PC portables, même contrat que PhonesData/Kimovil/GSMArena :
 - **URLs probantes** : les 16 nouvelles fiches (et le prix Omen actualisé)
   enregistrent les pages consultées dans leurs `sources` (test, comparatif,
   fiche marchande), pas seulement le nom du relevé.
+
+## Deux analyseurs séparés (smartphones / PC portables)
+
+- Chaque analyseur est **verrouillé sur une catégorie** : `data-analyzer-category` sur la carte (`#analyse-modele`) ou `?cat=` sur `analyseur.html`. Plus aucune devinette sur le lien collé.
+- Le front envoie `{category, strict:true}` à `/api/resolve`. En mode strict le serveur ne re-route jamais : un produit de l'autre catégorie renvoie `reason:"wrong-category"` (HTTP 409) et l'interface propose l'autre analyseur. La catégorie se déduit du **nom/slug** du produit uniquement (`categoryOfName/Page` dans `server/resolve.js`), pas des menus de la page marchande.
+- Bases séparées : smartphones → PhonesData/Kimovil/GSMArena + `data/smartphones.json` ; PC → NotebookCheck + `data/pc-portables.json`. Le résolveur statique (`phone-analyzer/static-resolver.js`) prend la catégorie en paramètre.
+- Le style commun de l'analyseur est dans `assets/css/analyzer.css` ; le signet de capture cible la page de la catégorie (`capture.html?cat=…`).
+- Tests : `scripts/analyzer-separation-test.js`, `scripts/ui-flow-test.js`.

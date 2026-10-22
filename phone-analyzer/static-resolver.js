@@ -107,8 +107,7 @@
   function loadCatalog() {
     if (catalogCache) return Promise.resolve(catalogCache);
     if (catalogPromise) return catalogPromise;
-    /* Les deux catalogues (smartphones, pc portables) sont chargés et combinés : la
-       correspondance par nom tranche d'elle-même, un téléphone ne ressemble pas à un pc. */
+    /* Deux catalogues séparés (smartphones, pc portables) : chaque analyseur ne consulte que le sien. */
     function readJson(url) {
       return fetch(url, { cache: "no-store" }).then(function (r) {
         if (!r.ok) throw new Error("Catalogue HTTP " + r.status);
@@ -121,7 +120,7 @@
       readJson("data/smartphones.json"),
       readJson("data/pc-portables.json")
     ]).then(function (lists) {
-      catalogCache = lists[0].concat(lists[1]);
+      catalogCache = { "smartphones": lists[0], "pc-portables": lists[1] };
       return catalogCache;
     });
     return catalogPromise;
@@ -275,10 +274,12 @@
     } catch (_) { return null; } finally { if (timer) clearTimeout(timer); }
   }
 
-  async function resolve(raw) {
+  async function resolve(raw, category) {
+    category = category === "pc-portables" ? "pc-portables" : "smartphones";
+    if (root.GuideCategoryKit && root.GuideCategoryKit.get) kit = root.GuideCategoryKit.get(category) || kit;
     var info;
     try { info = urlHints(raw); } catch (_) { return { ok: false, error: "URL invalide." }; }
-    var products = await loadCatalog();
+    var products = (await loadCatalog())[category] || [];
     var local = fromCatalog(raw, info.hints, products);
     if (local) return local;
 

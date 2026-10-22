@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="assets/css/category-page.css">
 <link rel="stylesheet" href="assets/css/audit-visuals.css">
 <link rel="stylesheet" href="assets/css/concept-visuals.css">
+<link rel="stylesheet" href="assets/css/analyzer.css">
 <link rel="stylesheet" href="assets/css/smartphones-page.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
@@ -93,14 +94,14 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <section class="section smartphone-analyzer-section" data-tone="orchid" id="analyser-modele">
 <h2 class="section-heading"><span class="eyebrow">02 · Vous avez déjà un modèle ?</span>Analysez sa fiche produit</h2>
 <p class="section-lead">Collez le lien d’une fiche produit. L’analyseur identifie le téléphone, récupère les caractéristiques disponibles et signale les informations manquantes.</p>
-<article class="sp-card sp-analyzer" id="analyse-modele">
+<article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
 <h3>Vous avez déjà repéré un modèle</h3>
 <form class="model-analyzer-form" id="phone-analyzer-form">
 <p>Collez un lien produit ou saisissez un modèle, par exemple « POCO F9 Ultra ». Le guide recherche ensuite ses caractéristiques dans le catalogue, PhonesData, Kimovil et GSMArena.</p>
 <label class="visually-hidden" for="phone-product-url">Lien produit ou nom du modèle</label>
 <div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="Collez un lien ou saisissez un modèle" required="" type="text"/><button class="btn" type="submit">Analyser</button></div><div class="v88-platform-choice" role="group" aria-label="Écosystème souhaité"><span>Écosystème</span><button type="button" class="is-active" data-platform="auto" aria-pressed="true">Peu importe</button><button type="button" data-platform="android" aria-pressed="false">Android</button><button type="button" data-platform="ios" aria-pressed="false">iPhone / iOS</button></div>
 </form>
-<p class="model-analyzer-help"><a href="capture.html">Un site bloque la lecture ? Capturez la fiche depuis votre navigateur.</a></p>
+<p class="model-analyzer-help"><a href="capture.html?cat=smartphones">Un site bloque la lecture ? Capturez la fiche depuis votre navigateur.</a></p>
 <div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
 </article>
 </section>

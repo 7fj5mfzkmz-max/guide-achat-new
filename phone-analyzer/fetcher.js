@@ -18,7 +18,7 @@
     var category = options.category || "smartphones";
     function staticFallback() {
       if (root.PhoneAnalyzerStaticResolver && typeof root.PhoneAnalyzerStaticResolver.resolve === "function") {
-        return root.PhoneAnalyzerStaticResolver.resolve(url);
+        return root.PhoneAnalyzerStaticResolver.resolve(url, category);
       }
       return Promise.reject(new Error("Résolveur statique indisponible."));
     }
@@ -29,10 +29,10 @@
       if (timer) clearTimeout(timer);
       return staticFallback();
     }
-    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: url, category: category }), signal: controller ? controller.signal : undefined })
+    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: url, category: category, strict: true }), signal: controller ? controller.signal : undefined })
       .then(function (response) {
         return response.json().catch(function () { return {}; }).then(function (data) {
-          if (!response.ok && !(data && data.clues)) throw new Error(data.error || ("HTTP " + response.status));
+          if (!response.ok && !(data && (data.clues || data.reason === "wrong-category"))) throw new Error(data.error || ("HTTP " + response.status));
           return data;
         });
       }).then(function (data) {
@@ -41,6 +41,7 @@
            On tente alors le nom contenu dans l'adresse + le catalogue local. Jamais en cas de conflit d'identité (le serveur a
            vu une autre variante) ni pour une page qui n'est pas une fiche produit. Seule une correspondance CATALOGUE est
            retenue : un simple nom tiré de l'adresse ne remplace pas la capture manuelle. */
+        if (data && data.reason === "wrong-category") return data;
         if (data && data.ok === false && data.needsCapture && data.kind !== "page" && data.reason !== "identity-conflict") {
           return staticFallback().then(function (local) {
             if (local && local.ok && local.strategy === "static-catalogue") {
@@ -66,21 +67,21 @@
      « modèle introuvable » (le serveur répond alors HTTP 502 avec reason:"model-not-found"). Tout le reste
      (pas de JSON, erreur 5xx, réseau coupé, CORS) est une indisponibilité technique. */
   function modelRequest(endpoint, model, category) {
-    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: category || "smartphones" }) })
+    return fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: category || "smartphones", strict: true }) })
       .then(function (r) {
         return r.json().catch(function () { return null; }).then(function (d) {
-          if (d && (d.ok === true || (d.ok === false && d.reason === "model-not-found"))) return d;
+          if (d && (d.ok === true || (d.ok === false && (d.reason === "model-not-found" || d.reason === "wrong-category")))) return d;
           throw new Error((d && d.error) || ("HTTP " + r.status));
         });
       });
   }
   /* Secours hors service : seul un modèle reconnu dans le catalogue local est accepté. Un nom reconstitué
      (static-url-generic) n'est PAS une identification et n'est jamais renvoyé comme succès. */
-  function localModel(model) {
+  function localModel(model, category) {
     var unavailable = { ok: false, kind: "product", reason: "resolver-unavailable", error: "Recherche technique indisponible et modèle absent du catalogue local." };
     var S = root.PhoneAnalyzerStaticResolver;
     if (!S || typeof S.resolve !== "function") return Promise.resolve(unavailable);
-    return S.resolve("https://local.invalid/" + encodeURIComponent(model)).then(function (local) {
+    return S.resolve("https://local.invalid/" + encodeURIComponent(model), category).then(function (local) {
       if (local && local.ok && local.strategy === "static-catalogue") {
         local.warning = "Le service de recherche technique est indisponible : modèle reconnu d’après le catalogue local, caractéristiques non recoupées.";
         return local;
@@ -93,9 +94,9 @@
     var onGithubPages = typeof window !== "undefined" && /\.github\.io$/i.test(window.location.hostname);
     /* Backend configuré (ex. GitHub Pages → Vercel) ou même origine : la fonction /api/resolve connaît PhonesData,
        Kimovil et GSMArena. Si elle est injoignable, on se rabat sur le catalogue local, jamais sur un nom deviné. */
-    if (base) return modelRequest(base + "/api/resolve", model, category).catch(function () { return localModel(model); });
-    if (typeof window !== "undefined" && !onGithubPages) return modelRequest("/api/resolve", model, category).catch(function () { return localModel(model); });
-    return localModel(model);
+    if (base) return modelRequest(base + "/api/resolve", model, category).catch(function () { return localModel(model, category); });
+    if (typeof window !== "undefined" && !onGithubPages) return modelRequest("/api/resolve", model, category).catch(function () { return localModel(model, category); });
+    return localModel(model, category);
   }
   var api = { resolveProduct: resolveProduct, resolveModel: resolveModel };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
