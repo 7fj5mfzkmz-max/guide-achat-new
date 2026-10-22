@@ -1,112 +1,93 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
-<meta content="dark" name="color-scheme"/>
-<meta name="theme-color" content="#0a0a0a">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="theme-color" content="#0f1115"/>
 <title>Guide·Achat : comprendre avant d'acheter</title>
-<meta content="Guide d'achat indépendant : comprendre les caractéristiques techniques, choisir selon son usage et comparer avant d'acheter." name="description"/>
+<meta name="description" content="Guide d'achat indépendant : comprendre les caractéristiques techniques, choisir selon son usage et comparer avant d'acheter."/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="canonical" href="https://guide-achat-new-1.vercel.app/index.html"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter+Tight:wght@400;500;600;700;800&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/design-system.css">
+<link rel="stylesheet" href="assets/css/category-page.css">
 <link rel="stylesheet" href="assets/css/home.css">
-<script>(function(){var r=document.documentElement,t=null;try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
+<script>document.documentElement.classList.add("hx-js")</script>
+<noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
+<script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
 if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
 if(t==="dark")r.classList.add("dark-theme");
 var n=navigator,c=n.connection||{};
 if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
-<meta name="theme-color" content="#f6f5f0"/>
-<script>document.documentElement.classList.add("hx-js")</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Guide·Achat","url":"https://guide-achat-new-1.vercel.app/","description":"Guide d'achat indépendant pour comprendre les caractéristiques techniques, comparer les produits et choisir selon son usage.","inLanguage":"fr-FR"}
 </script>
 </head>
-<body class="home">
+<body class="site-redesign home">
 <header class="site-header">
 <div class="header-inner">
-<a aria-label="Guide d’achat, accueil" class="brand-logo" href="index.html">
-<span aria-hidden="true" class="brand-mark">
-<svg focusable="false" viewbox="0 0 56 56">
-<path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path>
-<path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path>
-<path class="cursor" d="m31 27 15 12-7.2.8 3.1 7-3.7 1.7-3.2-7-4.7 4.8-.3-19.3Z"></path>
-</svg>
-</span>
-<span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span>
-</a>
-<button class="brand-menu-toggle" id="category-menu-toggle" type="button" aria-expanded="false" aria-controls="category-menu" aria-label="Ouvrir les catégories">
-  <span aria-hidden="true"><i></i><i></i><i></i></span>
-  <span class="brand-menu-label">Catégories</span>
-</button>
-<nav aria-label="Catégories" class="site-nav"><a href="smartphones.html">Smartphones</a></nav>
-<div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button">⌕</button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span></button></div></div>
+<a aria-label="Guide d’achat : accueil" class="brand-logo" href="index.html"><span aria-hidden="true" class="brand-mark"><svg focusable="false" viewbox="0 0 56 56"><path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path><path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path></svg></span><span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span></a>
+<button class="brand-menu-toggle" id="category-menu-toggle" type="button" aria-expanded="false" aria-controls="category-menu" aria-label="Ouvrir les catégories"><span aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-menu-label">Catégories</span></button>
+<nav aria-label="Catégories" class="site-nav" data-category-nav></nav>
+<div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button">⌕</button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><span aria-hidden="true" class="theme-icon">☾</span></button></div>
+</div>
 </header>
-<section class="category-menu" id="category-menu" aria-label="Catégories de produits" hidden>
-  <button class="category-menu-backdrop" type="button" aria-label="Fermer le menu"></button>
-  <div class="category-menu-panel" role="dialog" aria-modal="true" aria-labelledby="category-menu-title">
-    <div class="category-menu-head">
-      <div>
-        <span class="drawer-kicker">GUIDE·ACHAT</span>
-        <h2 id="category-menu-title">Toutes les catégories</h2>
-      </div>
-      <button class="drawer-close" id="category-menu-close" type="button" aria-label="Fermer">×</button>
-    </div>
-    <p class="category-menu-intro">Choisissez un produit pour accéder au guide correspondant.</p>
-    <nav class="category-menu-list" aria-label="Toutes les catégories">
-      <a class="category-menu-item is-live" href="smartphones.html"><span class="category-menu-icon">01</span><span><strong>Smartphones</strong><small>Guide disponible</small></span><b aria-hidden="true">→</b></a>
-      <div class="category-menu-item"><span class="category-menu-icon">02</span><span><strong>PC portables</strong><small>Bientôt disponible</small></span><b aria-hidden="true">→</b></div>
-      <div class="category-menu-item"><span class="category-menu-icon">03</span><span><strong>Batteries externes</strong><small>Bientôt disponible</small></span><b aria-hidden="true">→</b></div>
-      <div class="category-menu-item"><span class="category-menu-icon">04</span><span><strong>Écouteurs Bluetooth</strong><small>Bientôt disponible</small></span><b aria-hidden="true">→</b></div>
-      <div class="category-menu-item"><span class="category-menu-icon">05</span><span><strong>Projecteurs</strong><small>Bientôt disponible</small></span><b aria-hidden="true">→</b></div>
-    </nav>
-    <a class="category-menu-home" href="index.html">Retour à l’accueil</a>
-  </div>
-</section>
-<section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section><main id="main">
-<div class="hx">
+<section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
+<main id="main">
+<div class="hx hm" data-motion="on">
 
-<section class="hx-hero">
-<div class="container-wide hx-hero-inner">
-<div class="hx-hero-copy">
-<span class="hx-kicker hx-reveal">GUIDE·ACHAT · OUTIL INDÉPENDANT</span>
-<h1 class="hx-title">Quel produit voulez-vous choisir ?</h1>
-<p class="hx-lead hx-reveal">Commencez par une catégorie. Le guide vous montre les caractéristiques qui comptent, leur effet réel à l’usage et les pièges à éviter.</p>
-<div class="hx-cta hx-reveal">
-<a class="btn hx-btn" data-cat-link="start" data-cat-label href="smartphones.html">Voir les catégories →</a>
-<a class="hx-link" data-cat-link="analyze" href="smartphones.html#analyse-modele">J’ai déjà repéré un modèle</a>
+<section class="hm-hero">
+<div class="container-wide hm-hero-in">
+<div class="hm-hero-copy">
+<span class="hm-kick hx-reveal">GUIDE·ACHAT · OUTIL INDÉPENDANT</span>
+<h1 class="hx-reveal">Choisissez le <mark>bon produit</mark>, sans jargon.</h1>
+<p class="hm-lead hx-reveal">Un guide indépendant qui explique les caractéristiques qui comptent, leur effet réel à l’usage et les pièges à éviter. Commencez par une catégorie.</p>
+<div class="hm-cta hx-reveal">
+<span class="hm-live" id="hx-live-links"><a class="hm-btn" href="smartphones.html">Smartphones →</a><a class="hm-btn" href="pc-portables.html">PC portables →</a></span>
+<a class="hm-skip" href="#analyser">J’ai déjà repéré un modèle ↓</a>
 </div>
+<ul class="hm-checks hx-reveal" aria-label="Nos engagements"><li>Guide indépendant</li><li>Sans jargon</li><li>Fiches datées et sourcées</li></ul>
 </div>
-<div class="hx-stage" id="hx-stage" aria-hidden="true"></div>
-<ul class="hx-points">
-<li class="hx-reveal"><b>01</b><strong>Comprendre</strong><span>Ce que les chiffres changent vraiment</span></li>
-<li class="hx-reveal"><b>02</b><strong>Comparer</strong><span>Les différences qui comptent</span></li>
-<li class="hx-reveal"><b>03</b><strong>Choisir</strong><span>Selon votre usage et vos priorités</span></li>
-</ul>
+<div class="pg-stage" id="hx-stage" aria-hidden="true"></div>
 </div>
 </section>
 
-<div class="hx-marquee hx-reveal" id="hx-marquee" aria-label="Définitions des caractéristiques" role="region"></div>
+<div class="hm-marquee" id="hx-marquee" role="region" aria-label="Quelques notions abordées dans le guide"></div>
 
-<section class="container-wide hx-section" id="categories">
-<div class="hx-head hx-reveal">
-<span class="hx-label">CATÉGORIES</span>
-<h2>Choisissez une catégorie</h2>
-<p>Un guide par produit, avec les critères utiles et les chiffres à savoir lire avant de comparer.</p>
+<section class="hm-section container-wide" id="categories">
+<div class="hm-head hx-reveal">
+<span class="hm-label">01 · Les guides</span>
+<h2>Un guide par produit</h2>
+<p>Les critères utiles et les chiffres à savoir lire avant de comparer, expliqués avec des dessins et des démos.</p>
 </div>
-<div class="hx-cards" id="hx-cards"></div>
+<div class="hm-cards" id="hx-cards"></div>
 </section>
 
-<section class="container-wide hx-section" id="profil">
-<div class="hx-head hx-reveal">
-<span class="hx-label">VOTRE USAGE</span>
+<section class="hm-section hm-dark" id="methode">
+<div class="container-wide">
+<div class="hm-head hx-reveal">
+<span class="hm-label">02 · La méthode</span>
+<h2>Trois temps, aucun jargon</h2>
+</div>
+<ol class="hm-steps3">
+<li class="hm-step3 hx-reveal"><b>01</b><h3>Comprendre</h3><p>Ce que les chiffres changent vraiment à l’usage, avec un exemple et une démo pour chaque critère.</p></li>
+<li class="hm-step3 hx-reveal"><b>02</b><h3>Comparer</h3><p>Les différences qui comptent, et celles qui ne sont que des arguments commerciaux.</p></li>
+<li class="hm-step3 hx-reveal"><b>03</b><h3>Choisir</h3><p>Selon votre usage et vos priorités : un profil, une recommandation, des modèles proches de vos choix.</p></li>
+</ol>
+</div>
+</section>
+
+<section class="hm-section container-wide" id="profil">
+<div class="hm-split">
+<div class="hm-head hx-reveal">
+<span class="hm-label">03 · Votre usage</span>
 <h2>Selon qui vous êtes, les priorités changent</h2>
-<p>Le même produit ne convient pas à tous les usages. Sélectionnez un profil pour voir quels critères deviennent prioritaires.</p>
+<p>Le même produit ne convient pas à tous les usages. Choisissez un profil pour voir quels critères deviennent prioritaires.</p>
 </div>
-<div class="hx-builder-card hx-reveal">
+<div class="hm-panel hx-reveal">
 <div class="hx-cat-tabs" id="hx-cat-tabs" hidden></div>
 <div class="hx-tabs" role="tablist" aria-label="Profil d’usage">
 <button class="hx-tab" role="tab" type="button" aria-selected="true" data-profile="etudiant">Étudiant</button>
@@ -114,47 +95,45 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <button class="hx-tab" role="tab" type="button" aria-selected="false" tabindex="-1" data-profile="gamer">Gamer</button>
 <button class="hx-tab" role="tab" type="button" aria-selected="false" tabindex="-1" data-profile="photographe">Photographe</button>
 </div>
-<div class="hx-bars" id="hx-bars" aria-live="polite">
-<div class="hx-bar"><span>Autonomie</span><span class="hx-bar-track"><span class="hx-bar-fill" style="--w:35"></span></span><strong>35 %</strong></div>
-<div class="hx-bar"><span>Prix</span><span class="hx-bar-track"><span class="hx-bar-fill" style="--w:30"></span></span><strong>30 %</strong></div>
-<div class="hx-bar"><span>Performance</span><span class="hx-bar-track"><span class="hx-bar-fill" style="--w:20"></span></span><strong>20 %</strong></div>
-<div class="hx-bar"><span>Taille</span><span class="hx-bar-track"><span class="hx-bar-fill" style="--w:15"></span></span><strong>15 %</strong></div>
+<div class="hx-bars" id="hx-bars" aria-live="polite"></div>
+<p class="hm-note">Exemple indicatif de pondération des critères.</p>
 </div>
-<p class="hx-note">Exemple indicatif de pondération des critères.</p>
-<a class="btn hx-btn" data-cat-link="start" data-cat-label href="smartphones.html">Choisir une catégorie →</a>
 </div>
 </section>
 
-<section class="container-wide hx-section">
-<div class="hx-feature is-flip">
-<div class="hx-copy hx-reveal">
-<span class="hx-label">COMPARER</span>
+<section class="hm-section hm-band" id="comparer">
+<div class="container-wide hm-split is-flip">
+<div class="hm-head hx-reveal">
+<span class="hm-label">04 · Comparer</span>
 <h2>Ce qui compte vraiment</h2>
 <p>Certaines caractéristiques permettent de prévoir l’usage ; d’autres sont surtout des arguments commerciaux. Le score mesure l’adéquation avec votre profil, pas la qualité absolue du produit.</p>
 </div>
-<div class="hx-visual hx-reveal" id="hx-example"></div>
+<div class="hm-panel hx-reveal" id="hx-example"></div>
 </div>
+</section>
 
-<div class="hx-feature">
-<div class="hx-copy hx-reveal">
-<span class="hx-label">CHOISIR</span>
+<section class="hm-section container-wide" id="analyser">
+<div class="hm-split">
+<div class="hm-head hx-reveal">
+<span class="hm-label">05 · Analyser</span>
 <h2>Vous avez déjà choisi un produit ?</h2>
 <p>Collez le lien de la fiche produit. Le guide identifie le modèle, vous demande confirmation si nécessaire, puis présente les caractéristiques trouvées et leur adéquation avec votre profil.</p>
-<a class="btn hx-btn" data-cat-link="analyze" href="smartphones.html#analyse-modele">Analyser un produit →</a>
+<a class="hm-btn" data-cat-link="analyze" href="smartphones.html#analyse-modele">Analyser un produit →</a>
 </div>
-<div class="hx-visual hx-reveal"><ol class="hx-steps">
+<ol class="hx-steps hm-steps hx-reveal">
 <li class="hx-step"><i>1</i><span>Collez le lien</span></li>
 <li class="hx-step"><i>2</i><span>Confirmez le modèle</span></li>
 <li class="hx-step"><i>3</i><span>Lisez votre score</span></li>
-</ol></div>
+</ol>
 </div>
 </section>
-<section class="container-wide hx-section" id="questions">
-<div class="hx-head hx-reveal">
-<span class="hx-label">Questions fréquentes</span>
-<h2>Les réponses aux questions courantes.</h2>
+
+<section class="hm-section container-wide" id="questions">
+<div class="hm-head hx-reveal">
+<span class="hm-label">06 · Questions fréquentes</span>
+<h2>Les réponses aux questions courantes</h2>
 </div>
-<div class="hx-faq">
+<div class="hx-faq hm-faq">
 <div class="hx-qa hx-reveal"><button class="hx-q" type="button" aria-expanded="false" aria-controls="qa1">Le guide est-il indépendant ?<i aria-hidden="true"></i></button><div class="hx-a" id="qa1"><div><p>Oui. Le guide explique, compare et renvoie vers les sources et comparateurs utiles pour l’achat.</p></div></div></div>
 <div class="hx-qa hx-reveal"><button class="hx-q" type="button" aria-expanded="false" aria-controls="qa2">Comment analyser un produit que j’ai déjà choisi ?<i aria-hidden="true"></i></button><div class="hx-a" id="qa2"><div><p>Ouvrez la catégorie du produit, choisissez « Vous avez déjà un modèle en tête » et collez le lien de la fiche. Le guide identifie le modèle, vous demande de confirmer si besoin, puis affiche l’analyse.</p></div></div></div>
 <div class="hx-qa hx-reveal"><button class="hx-q" type="button" aria-expanded="false" aria-controls="qa3">Que signifie le score sur 10 ?<i aria-hidden="true"></i></button><div class="hx-a" id="qa3"><div><p>C’est un score de compatibilité avec un profil (étudiant, professionnel, gamer, photographe), pas une note de qualité absolue. Il est plafonné à 9/10 : le guide n’attribue jamais 10/10.</p></div></div></div>
@@ -163,44 +142,20 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </div>
 </section>
 
-<section class="container-wide">
-<div class="hx-final hx-reveal">
+<section class="hm-end" id="suite">
+<div class="container-wide hm-end-in hx-reveal">
 <p>Pas besoin de tout retenir.<br/>Il suffit de savoir ce qui compte pour vous.</p>
-<a class="btn hx-btn" data-cat-link="start" data-cat-label href="smartphones.html">Choisir une catégorie →</a>
+<a class="hm-btn is-dark" href="#categories">Choisir un guide →</a>
 </div>
 </section>
 
 </div>
 </main>
-<footer class="site-footer">
-<div class="footer-inner">
-<div class="footer-brand">
-<span aria-hidden="true" class="footer-logo-mark">
-<svg viewbox="0 0 56 56"><path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path><path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path><path class="cursor" d="m31 27 15 12-7.2.8 3.1 7-3.7 1.7-3.2-7-4.7 4.8-.3-19.3Z"></path></svg>
-</span>
-<span><b>Guide</b> <strong>d’achat</strong></span>
-</div>
-<div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p>
-<p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l'achat.</p>
-<p>Les fiches indiquent leur date de dernière vérification.</p>
-</div>
-</div>
-</footer>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><span><b>Guide</b> <strong>d'achat</strong></span></div><div class="footer-copy"><p class="footer-links"><a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p><p>Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l'achat.</p><p>Les fiches indiquent leur date de dernière vérification.</p></div></div></footer>
 <script src="assets/js/categories.js"></script>
 <script src="assets/js/site-tools.js"></script>
-<script src="assets/js/scoring-engine.js"></script>
-<script src="phone-analyzer/decision-engine.js"></script>
 <script src="assets/js/profiles.js"></script>
-<script src="assets/js/notions.js"></script>
 <script src="assets/js/theme.js"></script>
-<script src="assets/js/quiz-usage.js"></script>
-<script src="assets/js/progression-reveal.js"></script>
-<script src="assets/js/glossaire-hover.js"></script>
-<script src="assets/js/comparateur-visual.js"></script>
-<script src="assets/js/debunk-marketing.js"></script>
-<script src="assets/js/reading-time.js"></script>
-<script src="assets/js/site-extras.js"></script>
 <script src="assets/js/category-menu.js" defer></script>
-
 </body>
 </html>
