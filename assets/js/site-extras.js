@@ -1,11 +1,11 @@
-/* v66 — sommaire cliquable + boutons haut/bas */
+/* Sommaire cliquable (sauf si la page a son menu « Sections ») + boutons haut/bas */
 (function () {
   "use strict";
   function init() {
     var main = document.querySelector("main");
     if (!main) return;
     var secs = Array.prototype.filter.call(main.querySelectorAll("section[id]"), function (s) { return s.querySelector("h2"); });
-    if (secs.length >= 4 && !document.querySelector(".page-toc")) {
+    if (secs.length >= 4 && !document.querySelector(".page-toc") && !document.getElementById("pl-sections")) {
       var d = document.createElement("details"); d.className = "page-toc container-wide";
       var html = "<summary>Sommaire</summary><ol>";
       secs.forEach(function (s) {
@@ -24,6 +24,11 @@
       window.scrollTo({ top: b.getAttribute("data-to") === "top" ? 0 : document.documentElement.scrollHeight, behavior: "smooth" });
     });
     document.body.appendChild(fab);
+    /* le bouton n'apparaît qu'après un peu de défilement */
+    var ticking = false;
+    function update() { ticking = false; fab.classList.toggle("is-visible", (window.pageYOffset || document.documentElement.scrollTop || 0) > 480); }
+    window.addEventListener("scroll", function () { if (!ticking) { ticking = true; window.requestAnimationFrame(update); } }, { passive: true });
+    update();
   }
   /* Ouvre le bloc dépliable qui contient la cible d'un lien interne (sommaire, boutons, URL) */
   function openFor(hash) {
