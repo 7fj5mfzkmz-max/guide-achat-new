@@ -80,47 +80,37 @@
     if (a.hasAttribute("data-cat-label")) a.textContent = C.startLabel() + " →";
   });
 
-  /* Éventail de smartphones (carte Smartphones de l'accueil) : cinq cartes photo sur un socle lumineux. */
-  function fan() {
-    var h = '<span class="hx-fan"><span class="hx-fan-base"></span>';
-    for (var i = 1; i <= 5; i++) h += '<span class="hx-fan-card f' + i + '"><img src="assets/phones/fan-' + i + '.webp" alt="" width="300" height="400" decoding="async"></span>';
-    return h + "</span>";
+  /* Accueil : un bouton par guide ouvert (le contenu de départ sert de repli sans JavaScript). */
+  var liveLinks = document.getElementById("hx-live-links");
+  if (liveLinks) {
+    liveLinks.innerHTML = C.live().map(function (c) { return '<a class="hm-btn" href="' + c.href + '">' + esc(c.label) + " →</a>"; }).join("");
   }
 
-  /* Éventail photo PC : même logique de profondeur que la carte smartphone, avec les visuels fournis. */
-  function pcFan() {
-    var ids = ["laptop-01.jpeg", "laptop-02.jpeg", "laptop-03.jpeg", "laptop-04.jpeg", "laptop-05.jpeg"];
-    var h = '<span class="hx-fan hx-fan-pc"><span class="hx-fan-base"></span>';
-    ids.forEach(function (name, i) { h += '<span class="hx-fan-card f' + (i + 1) + '"><img src="assets/pc-photo/' + name + '" alt="" width="340" height="340" loading="lazy" decoding="async"></span>'; });
-    return h + '</span>';
-  }
-
-  /* Cartes de catégories (accueil) : une grille sobre, une illustration par carte, pas de pastilles flottantes. */
+  /* Cartes de catégories (accueil) : numéro, nom, résumé et dessin. Les guides ouverts sont des liens, les autres restent en attente. */
   var cards = document.getElementById("hx-cards");
   if (cards) {
-    cards.classList.add("ct-grid");
-    cards.innerHTML = LIST.map(function (c) {
-      var live = !!c.live, wide = c.id === "projecteurs";
-      var badge = '<span class="ct-badge' + (live ? "" : " is-soon") + '">' + (live ? "Guide disponible" : "Bientôt") + "</span>";
-      var body = '<div class="ct-body">' + badge + "<h3>" + esc(c.label) + "</h3><p>" + esc(c.blurb) + "</p>" +
-        (live ? '<span class="ct-go">Lire le guide <i aria-hidden="true">→</i></span>' : "") + "</div>";
-      var art = live ? '<div class="ct-art" aria-hidden="true">' + (c.id === "smartphones" ? fan() : (c.id === "pc" ? pcFan() : '<span class="ct-hero-ico">' + C.icon(c) + "</span>")) + "</div>"
-        : '<div class="ct-ico" aria-hidden="true">' + (wide ? '<span class="ct-lava"><i></i><i></i><i></i></span>' : "") + C.icon(c) + "</div>";
-      var cls = "ct hx-reveal " + (live ? "ct-live" : "ct-soon") + (wide ? " ct-wide" : "");
+    cards.innerHTML = LIST.map(function (c, i) {
+      var live = !!c.live, no = (i < 9 ? "0" : "") + (i + 1);
+      var inner = '<span class="hm-card-no">' + no + '</span>' +
+        '<span class="hm-card-tag' + (live ? "" : " is-soon") + '">' + (live ? "Guide disponible" : "Bientôt") + "</span>" +
+        '<span class="hm-card-art" aria-hidden="true">' + C.icon(c) + "</span>" +
+        '<span class="hm-card-body"><h3>' + esc(c.label) + "</h3><p>" + esc(c.blurb) + "</p></span>" +
+        (live ? '<span class="hm-card-go">Lire le guide <i aria-hidden="true">→</i></span>' : "");
+      var cls = "hm-card hx-reveal " + (live ? "is-live" : "is-soon");
       return live
-        ? '<a class="' + cls + '" data-cat="' + c.id + '" data-tone="' + c.tone + '" href="' + c.href + '">' + body + art + "</a>"
-        : '<div class="' + cls + '" data-cat="' + c.id + '" data-tone="' + c.tone + '">' + body + art + "</div>";
+        ? '<a class="' + cls + '" data-cat="' + c.id + '" href="' + c.href + '">' + inner + "</a>"
+        : '<div class="' + cls + '" data-cat="' + c.id + '">' + inner + "</div>";
     }).join("");
   }
 
   /* Bandeau de mots : termes seuls, toutes catégories mélangées, sans définition. */
   var marquee = document.getElementById("hx-marquee");
   if (marquee) {
-    var cols = LIST.map(function (c) { return (c.pairs || []).map(function (p) { return { t: p[0], tone: c.tone }; }); });
+    var cols = LIST.map(function (c) { return (c.pairs || []).map(function (p) { return p[0]; }); });
     var mixed = [], n = 0, more = true;
     while (more) { more = false; cols.forEach(function (col) { if (col[n]) { mixed.push(col[n]); more = true; } }); n++; }
     function row(list, rev) {
-      var html = list.map(function (x) { return '<span class="hx-word-chip" data-tone="' + x.tone + '">' + esc(x.t) + "</span>"; }).join("");
+      var html = list.map(function (t) { return '<span class="hx-word-chip">' + esc(t) + "</span>"; }).join("");
       return '<div class="hx-word-row' + (rev ? " is-rev" : "") + '"><div class="hx-word-track"><div class="hx-word-set">' + html + '</div><div class="hx-word-set is-dup" aria-hidden="true">' + html + "</div></div></div>";
     }
     var half = Math.ceil(mixed.length / 2);

@@ -226,6 +226,65 @@
 .pl-next { margin: 14px 0 0; max-width: 78ch; font-size: 15px; color: var(--ink-soft); }
 .pl-next .hx-link { margin-right: 6px; }
 
+/* ---------- accroche : décor « téléphone » animé (rempli par theme.js ; smartphones et accueil) ---------- */
+.pg-stage {
+  position: relative;
+  min-height: clamp(340px, 42vw, 440px);
+  border: 1px solid var(--ink);
+  background-color: var(--paper-2);
+  background-image: linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 28px 28px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.hx-phone {
+  position: absolute; left: 50%; top: 50%;
+  width: min(46%, 190px); aspect-ratio: 9 / 18;
+  transform: translate(-50%, -50%) rotate(-4deg);
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 26px 16px 16px;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+  box-shadow: 8px 8px 0 var(--accent), 8px 8px 0 1px var(--ink);
+  animation: spFloat 6s ease-in-out infinite;
+}
+@keyframes spFloat { 0%, 100% { transform: translate(-50%, -50%) rotate(-4deg); } 50% { transform: translate(-50%, calc(-50% - 8px)) rotate(-4deg); } }
+.hx-phone-notch { position: absolute; top: 8px; left: 50%; width: 44px; height: 7px; transform: translateX(-50%); background: var(--ink); }
+.hx-phone-title { font: 700 11px/1.2 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-mute); }
+.hx-phone-bar { display: block; height: 10px; background: var(--paper-3); overflow: hidden; }
+.hx-phone-bar i { display: block; height: 100%; width: calc(var(--w, 60) * 1%); background: var(--ink); animation: spGrow 1.4s var(--ease) both; }
+@keyframes spGrow { from { width: 0; } }
+.hx-phone-score { margin-top: auto; display: flex; align-items: baseline; gap: 4px; font-family: var(--head); }
+.hx-phone-score b { font-size: clamp(44px, 6vw, 64px); line-height: .9; font-weight: 800; letter-spacing: -.04em; background: var(--accent); color: #0f1115; padding: 0 .08em; }
+.hx-phone-score small { font: 700 14px var(--mono); color: var(--ink-mute); }
+.hx-chip {
+  position: absolute; z-index: 2;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--ink); background: var(--paper-2); color: var(--ink);
+  font: 700 12px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase;
+  box-shadow: 3px 3px 0 var(--ink);
+  animation: spBob 5s ease-in-out infinite;
+}
+.hx-chip-a { left: 6%; top: 10%; }
+.hx-chip-b { right: 6%; top: 24%; animation-delay: -1.2s; }
+.hx-chip-c { left: 6%; bottom: 22%; animation-delay: -2.4s; }
+.hx-chip-d { right: 8%; bottom: 8%; animation-delay: -3.6s; }
+@keyframes spBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.hx-glossaire-term { border-bottom: 1px dotted currentColor; cursor: help; }
+.hx-g { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.hx-g b { display: block; background: var(--ink); }
+.hx-g-hz b { width: 3px; height: 14px; }
+.hx-g-hz b:nth-child(2) { height: 10px; } .hx-g-hz b:nth-child(3) { height: 6px; }
+.hx-g-battery b { width: 20px; height: 10px; background: var(--accent); border: 2px solid var(--ink); }
+.hx-g-drop b { width: 10px; height: 10px; background: var(--accent); border: 2px solid var(--ink); border-radius: 0 50% 50% 50%; transform: rotate(45deg); }
+.hx-g-pixels { display: inline-grid; grid-template-columns: repeat(2, 6px); gap: 2px; height: auto; }
+.hx-g-pixels b { width: 6px; height: 6px; }
+.fx-lite .hx-phone, .fx-lite .hx-chip, .pg[data-motion="off"] .hx-phone, .pg[data-motion="off"] .hx-chip { animation: none; }
+@media (prefers-reduced-motion: reduce) { .hx-phone, .hx-chip, .hx-phone-bar i { animation: none; } }
+@media (max-width: 900px) { .pg-stage { min-height: 360px; } }
+@media (max-width: 420px) { .hx-chip { font-size: 10.5px; padding: 6px 8px; } .hx-chip-a, .hx-chip-c { left: 3%; } .hx-chip-b, .hx-chip-d { right: 3%; } }
+
 /* ---------- adaptations communes ---------- */
 @media (max-width: 900px) {
   .pg-hero { grid-template-columns: 1fr; }
