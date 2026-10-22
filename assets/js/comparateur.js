@@ -165,8 +165,9 @@
 
   fetch(dataUrl).then(function (r) { if (!r.ok) throw new Error("Réponse HTTP " + r.status); return r.json(); }).then(function (data) {
     produits = data.produits || [];
-    comparables = produits.filter(function (p) { return p.ready_for_recommendation && p.compatibilite; });
+    comparables = produits.filter(function (p) { return p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== "specs_a_verifier" && p.compatibilite; });
     var initial = readSelection().filter(function (id) { return comparables.some(function (p) { return p.id === id; }); });
     construirePicker(initial); afficherComparatif(initial);
   }).catch(function (err) { picker.innerHTML = ""; var e = document.createElement("p"); e.className = "hint"; e.textContent = "Le comparateur n'a pas pu charger les données produits (" + err.message + ")."; picker.appendChild(e); });
 })();
+

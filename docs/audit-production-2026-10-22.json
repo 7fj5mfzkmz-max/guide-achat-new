@@ -1,0 +1,647 @@
+[
+  {
+    "case": "smartphone catalogue",
+    "status": 200,
+    "seconds": 0.7,
+    "response": {
+      "ok": true,
+      "kind": "product",
+      "strategy": "catalogue",
+      "product": {
+        "name": "Samsung Galaxy A56",
+        "source": "Guide·Achat catalogue",
+        "evidence": "galaxy-a56",
+        "id": "galaxy-a56"
+      },
+      "specs": {
+        "ecran": "6,7\" Super AMOLED, FHD+, 120 Hz",
+        "processeur": "Exynos 1580 (4 nm)",
+        "ram": "8 Go",
+        "stockage": "128 ou 256 Go",
+        "batterie": "5 000 mAh, charge 45 W",
+        "photo": "50 Mpx principal + 12 Mpx ultra grand-angle + 5 Mpx macro",
+        "etancheite": "IP67",
+        "os": "Android, One UI"
+      },
+      "specSources": {
+        "ecran": "catalogue",
+        "processeur": "catalogue",
+        "ram": "catalogue",
+        "stockage": "catalogue",
+        "batterie": "catalogue",
+        "photo": "catalogue",
+        "etancheite": "catalogue",
+        "os": "catalogue"
+      },
+      "identity": {
+        "status": "identified",
+        "name": "Samsung Galaxy A56",
+        "basis": [
+          "correspondance exacte du catalogue"
+        ]
+      },
+      "trace": [
+        {
+          "step": "model-query",
+          "original": "Samsung Galaxy A56",
+          "normalized": "Samsung Galaxy A56"
+        },
+        {
+          "step": "catalogue",
+          "outcome": "exact",
+          "name": "Samsung Galaxy A56"
+        }
+      ],
+      "references": {},
+      "sourceScores": {}
+    }
+  },
+  {
+    "case": "PC catalogue",
+    "status": 200,
+    "seconds": 0.8,
+    "response": {
+      "ok": true,
+      "kind": "product",
+      "strategy": "catalogue",
+      "product": {
+        "name": "Apple MacBook Air 13 (M5)",
+        "source": "Guide·Achat catalogue",
+        "evidence": "macbook-air-13-m5",
+        "id": "macbook-air-13-m5"
+      },
+      "specs": {
+        "processeur": "Apple M5",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "13,6\", IPS, Liquid Retina, 500 nits",
+        "gpu": "GPU intégré Apple M5",
+        "poids": "1,24 kg",
+        "autonomie": "jusqu’à 18 h annoncées (vidéo ou constructeur)",
+        "os": "macOS"
+      },
+      "specSources": {
+        "processeur": "catalogue",
+        "ram": "catalogue",
+        "stockage": "catalogue",
+        "ecran": "catalogue",
+        "gpu": "catalogue",
+        "poids": "catalogue",
+        "autonomie": "catalogue",
+        "os": "catalogue"
+      },
+      "identity": {
+        "status": "identified",
+        "name": "Apple MacBook Air 13 (M5)",
+        "basis": [
+          "correspondance exacte du catalogue"
+        ]
+      },
+      "trace": [
+        {
+          "step": "model-query",
+          "original": "Apple MacBook Air 13 (M5)",
+          "normalized": "Apple MacBook Air 13 M5"
+        },
+        {
+          "step": "catalogue",
+          "outcome": "exact",
+          "name": "Apple MacBook Air 13 (M5)"
+        }
+      ],
+      "references": {},
+      "sourceScores": {}
+    }
+  },
+  {
+    "case": "smartphone hors catalogue",
+    "status": 200,
+    "seconds": 2.1,
+    "response": {
+      "ok": true,
+      "kind": "product",
+      "strategy": "phonesdata+crosscheck",
+      "product": {
+        "name": "Samsung Galaxy A16",
+        "source": "phonesdata",
+        "evidence": "https://phonesdata.com/fr/smartphones/samsung/galaxy-a16-5465360/"
+      },
+      "specs": {
+        "batterie": "5000 mAh",
+        "ecran": "6.7 pouces",
+        "technologie_ecran": "Super AMOLED",
+        "refresh": "90 Hz",
+        "processeur": "- Mediatek Helio G99 (6 nm)",
+        "ram": "4 Go",
+        "stockage": "128 Go",
+        "photo": "50 MP",
+        "os": "Android 14",
+        "poids": "200 g",
+        "dimensions": "164.4 Х 77.9 Х 7.9 mm",
+        "charge": "25 W",
+        "etancheite": "IP54"
+      },
+      "specSources": {
+        "batterie": "phonesdata",
+        "ecran": "phonesdata",
+        "technologie_ecran": "phonesdata",
+        "refresh": "phonesdata",
+        "processeur": "phonesdata",
+        "ram": "phonesdata",
+        "stockage": "phonesdata",
+        "photo": "phonesdata",
+        "os": "phonesdata",
+        "poids": "phonesdata",
+        "dimensions": "phonesdata",
+        "charge": "phonesdata",
+        "etancheite": "phonesdata"
+      },
+      "specsConfidence": 0.99,
+      "sources": {
+        "phonesdata": true,
+        "kimovil": false,
+        "gsmarena": false
+      },
+      "identity": {
+        "status": "identified",
+        "name": "Samsung Galaxy A16",
+        "basis": [
+          "PhonesData confirmé contre le modèle demandé"
+        ],
+        "confidence": 0.99
+      },
+      "evidence": [
+        "fiche technique publique PhonesData"
+      ],
+      "trace": [
+        {
+          "step": "model-query",
+          "original": "Samsung Galaxy A16",
+          "normalized": "Samsung Galaxy A16"
+        },
+        {
+          "step": "kimovil",
+          "outcome": "rien"
+        },
+        {
+          "step": "gsmarena",
+          "outcome": "rien"
+        },
+        {
+          "step": "phonesdata-identity",
+          "outcome": "same",
+          "name": "Samsung Galaxy A16",
+          "reason": "même nom de modèle"
+        }
+      ],
+      "references": {},
+      "sourceScores": {}
+    }
+  },
+  {
+    "case": "lien Fnac smartphone",
+    "status": 502,
+    "seconds": 2.7,
+    "response": {
+      "ok": false,
+      "kind": "product",
+      "pageLabel": null,
+      "merchantHost": "www.fnac.com",
+      "needsCapture": true,
+      "clues": {
+        "title": null,
+        "name": null,
+        "brand": null,
+        "ean": null,
+        "mpn": null,
+        "asin": null,
+        "fnacId": "a21318597",
+        "urlHint": null,
+        "year": null
+      },
+      "trace": [
+        {
+          "step": "url",
+          "asin": null,
+          "ean": null,
+          "hint": null
+        },
+        {
+          "step": "fetch",
+          "url": "https://www.fnac.com/a21318597/w-4",
+          "status": 403,
+          "outcome": "challenge",
+          "source": "title"
+        },
+        {
+          "step": "search",
+          "outcome": "rien",
+          "n": 0
+        }
+      ],
+      "blocked": true,
+      "reason": "challenge",
+      "vendor": null,
+      "status": 403,
+      "finalUrl": "https://www.fnac.com/a21318597/w-4",
+      "error": "Le site demande une vérification anti-robot."
+    }
+  },
+  {
+    "case": "lien LDLC PC",
+    "status": 200,
+    "seconds": 10.3,
+    "response": {
+      "ok": true,
+      "kind": "product",
+      "pageLabel": null,
+      "finalUrl": "https://www.ldlc.com/fiche/PB00698153.html",
+      "merchantHost": "www.ldlc.com",
+      "strategy": "fetch",
+      "category": "pc-portables",
+      "clues": {
+        "title": "Acer Aspire Go 15 AG15-71P-5730",
+        "name": "Acer Aspire Go 15 AG15-71P-5730",
+        "brand": "Acer",
+        "ean": "4711474670793",
+        "mpn": "NX.JD9EF.00C",
+        "asin": null,
+        "fnacId": null,
+        "urlHint": null,
+        "year": null
+      },
+      "trace": [
+        {
+          "step": "url",
+          "asin": null,
+          "ean": null,
+          "hint": null
+        },
+        {
+          "step": "fetch",
+          "url": "https://www.ldlc.com/fiche/PB00698153.html",
+          "status": 200,
+          "outcome": "lu",
+          "source": "JSON-LD Product"
+        },
+        {
+          "step": "icecat",
+          "outcome": "non configuré"
+        },
+        {
+          "step": "notebookcheck-crosscheck",
+          "outcome": "aucun résultat"
+        },
+        {
+          "step": "reviews",
+          "outcome": "trouvé",
+          "evidence": 4,
+          "scores": {
+            "performance": 6.5,
+            "ecran": 6.5
+          },
+          "confidence": 0.5
+        }
+      ],
+      "product": {
+        "name": "Acer Aspire Go 15 AG15-71P-5730",
+        "brand": "Acer",
+        "model": "",
+        "sku": "AR202505140095",
+        "mpn": "NX.JD9EF.00C",
+        "asin": null,
+        "gtin": "4711474670793",
+        "description": "Achat PC portable Acer Aspire Go 15 AG15-71P-5730 (NX.JD9EF.00C) sur LDLC, n°1 du high-tech. Intel Core i5-1334U 8 Go SSD 512 Go 15.6\" LED Full HD Wi-Fi 6/Bluetooth Webcam Windows 11 Famille.",
+        "image": "https://media.ldlc.com/r1600/ld/products/00/06/24/53/LD0006245325_0006266808.jpg",
+        "additionalProperty": [],
+        "price": "679",
+        "priceSource": "ldlc-price-selector",
+        "currency": "EUR",
+        "availability": "https://schema.org/OutOfStock",
+        "source": "url",
+        "evidence": "JSON-LD Product"
+      },
+      "specs": {
+        "processeur": "Intel Core i5-1334U",
+        "ram": "mémoire 8 Go",
+        "stockage": "SSD 512 Go",
+        "ecran": "15.6\"",
+        "poids": "1.8 kg",
+        "autonomie": "10 heures",
+        "os": "Windows 11"
+      },
+      "specSources": {
+        "processeur": "merchant-page-text",
+        "ram": "merchant-page-text",
+        "stockage": "merchant-page-text",
+        "ecran": "merchant-page-text",
+        "poids": "merchant-page-text",
+        "autonomie": "merchant-page-text",
+        "os": "merchant-page-text"
+      },
+      "specsUnknown": [
+        "gpu"
+      ],
+      "reviews": {
+        "name": "Acer Aspire Go 15 AG15-71P-5730",
+        "results": [
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=2f928e252aedef6f0cbb75a8330a2a504d1497f5a7f3e7129fc0d61040a88365JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vdXMtZW4&amp;ntb=1",
+            "title": "acer.com https://www.acer.com",
+            "snippet": "Shop the latest Acer products, from Chromebooks, laptops, monitors, desktop PCs, and projectors for office, home, and … Lire la suite"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=0a0630f6756677446ec2377d3d2faf31741271bed44dbf4e6d8f55b279566b8fJmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy8&amp;ntb=1",
+            "title": "acer.com https://store.acer.com",
+            "snippet": "Acer Store - US | Save now on the latest Acer products - Laptops, Chromebooks, Desktops, Monitors and so much more. Shop Now."
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=90071c32fea739e4e3e78c8443d0bebfe34c612897bc505c6c20b7826cf45c99JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vdXMtZW4vbGFwdG9wcw&amp;ntb=1",
+            "title": "acer.com https://www.acer.com › us-en › laptops",
+            "snippet": "Visit the official Acer site and learn more about our range of classic laptop computers, convertible laptops, ultra light and slim laptops …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=d40203e19badf2bc62fba65d20d2b8d367f38fe3a4d586939f0ae37252b029f8JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9pbmRleC5odG1s&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › index.html",
+            "snippet": "Middle East / Africa South Africa"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=2e6cd4069079e9bbb03adfeda9d765658b543723a5979d5cf8f28cd1bc322a76JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQWNlcl9JbmMu&amp;ntb=1",
+            "title": "wikipedia.org https://en.wikipedia.org › wiki › Acer_Inc.",
+            "snippet": "Acer Inc. (/ ˈeɪsər / AY-sər) is a New Taipei City -based Taiwanese multinational company that produces computer hardware and …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=a3cda1170cce8f8f4acb0ee679187f11696aa94b447ee1f433c83873e7480977JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9jb21tdW5pdHkuYWNlci5jb20vZW4va2IvYXJ0aWNsZXMvMTE3LWRvd25sb2FkaW5nLWFuZC1pbnN0YWxsaW5nLWRyaXZlcnMtZm9yLWFjZXItcHJvZHVjdHM&amp;ntb=1",
+            "title": "acer.com https://community.acer.com › en › kb › articles",
+            "snippet": "9 oct. 2025 &nbsp;&#0183;&#32;In your Internet browser, navigate to our Acer Drivers and Manuals page. Search for your system using the Serial …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=a9adcbf6740a2ee6bb50f089cf829e5d71f3526baef5cb5fdded10a7186c9f93JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vdXMtZW4vc3VwcG9ydA&amp;ntb=1",
+            "title": "acer.com https://www.acer.com › us-en › support",
+            "snippet": "Find service & support for your Acer products, search for BIOS updates, manuals, drivers and patches."
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=e20fd63a24ea4e5463ae984bced121634fd908dafa269fc9afddbdcdfb5c2dd9JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vc3VwcG9ydC8&amp;ntb=1",
+            "title": "acer.com https://www.acer.com › support",
+            "snippet": "Find service & support for your Acer products, search for BIOS updates, manuals, drivers and patches."
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=fc06d4ed79e1ac8b19cef81100f169fbf9479b23b3b93ac668ae3e719fc929edJmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9sYXB0b3Bz&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › laptops",
+            "snippet": "When shopping for laptops there are so many choices. From everyday multi tasking to everyday gaming - Acer has you covered. …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=33c5b2e9a672a07519f6dec1af12789bc9af7fc3cc7c81074dc416f04edac9b2JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9zYWxlL2xhcHRvcC1zYWxl&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › sale › laptop-sale",
+            "snippet": "Save big on Acer laptops! We offer deals and free shipping on great selection of touchscreen, gaming, ultra-portable laptops in all …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=f5b951624dbbc0bd08ba0fe3d64365fccb8e5546339ddfe730b9e2d8a1f4b5d7JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vdXMtZW4&amp;ntb=1",
+            "title": "acer.com https://www.acer.com",
+            "snippet": "Shop the latest Acer products, from Chromebooks, laptops, monitors, desktop PCs, and projectors for office, home, and …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=98aa7341b4719d319f089456c0afa988cae85245b43499df4d612e371622ab4dJmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy8&amp;ntb=1",
+            "title": "acer.com https://store.acer.com",
+            "snippet": "Acer Store - US | Save now on the latest Acer products - Laptops, Chromebooks, Desktops, Monitors and so much more. Shop Now."
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=4e64543c829192603b01a73f08d0dedb88f83f0dda018c4ed23a6a438771c6fcJmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vdXMtZW4vbGFwdG9wcw&amp;ntb=1",
+            "title": "acer.com https://www.acer.com › us-en › laptops",
+            "snippet": "Visit the official Acer site and learn more about our range of classic laptop computers, convertible laptops, ultra light and slim laptops …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=e1ecb1e1d5fac7b5f8e0f917ca566d8d610e55d09a524fcd562898206327c065JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9pbmRleC5odG1s&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › index.html",
+            "snippet": "Middle East / Africa South Africa"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=d32e328cfd8c152f6ea84cc0fef6cd991da4fe05de61c203fd8225fd82614a52JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvQWNlcl9JbmMu&amp;ntb=1",
+            "title": "wikipedia.org https://en.wikipedia.org › wiki › Acer_Inc.",
+            "snippet": "Acer Inc. (/ ˈeɪsər / AY-sər) is a New Taipei City -based Taiwanese multinational company that produces computer hardware and …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=c1bfefef49366b610360c313f5219ede200373afe0522d8946926547f10638a8JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9jb21tdW5pdHkuYWNlci5jb20vZW4va2IvYXJ0aWNsZXMvMTE3LWRvd25sb2FkaW5nLWFuZC1pbnN0YWxsaW5nLWRyaXZlcnMtZm9yLWFjZXItcHJvZHVjdHM&amp;ntb=1",
+            "title": "acer.com https://community.acer.com › en › kb › articles",
+            "snippet": "9 oct. 2025 &nbsp;&#0183;&#32;In your Internet browser, navigate to our Acer Drivers and Manuals page. Search for your system using the Serial …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=92733eb66baf178b96f2f707add8883a221226195b0963955851e06165a1c43fJmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vdXMtZW4vc3VwcG9ydA&amp;ntb=1",
+            "title": "acer.com https://www.acer.com › us-en › support",
+            "snippet": "Find service & support for your Acer products, search for BIOS updates, manuals, drivers and patches."
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=21b0f692f8362cbfccff5f8aad1668a6ef845e77b4f6946016f1e5dfba007830JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly93d3cuYWNlci5jb20vc3VwcG9ydC8&amp;ntb=1",
+            "title": "acer.com https://www.acer.com › support",
+            "snippet": "Find service & support for your Acer products, search for BIOS updates, manuals, drivers and patches."
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=714f9b4a0a5db43112af1f4c1d453e1a2357ce425f806ef9d6959b23adb590d3JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9sYXB0b3Bz&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › laptops",
+            "snippet": "When shopping for laptops there are so many choices. From everyday multi tasking to everyday gaming - Acer has you covered. …"
+          },
+          {
+            "url": "https://www.bing.com/ck/a?!&amp;&amp;p=8e90ae38754e6d7f1ed1dc669da100b270f7dda7e93d6bfd1d98f2f53e6fe5f3JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9zYWxlL2xhcHRvcC1zYWxl&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › sale › laptop-sale",
+            "snippet": "Save big on Acer laptops! We offer deals and free shipping on great selection of touchscreen, gaming, ultra-portable laptops in all …"
+          }
+        ],
+        "evidence": [
+          {
+            "source": "https://www.bing.com/ck/a?!&amp;&amp;p=fc06d4ed79e1ac8b19cef81100f169fbf9479b23b3b93ac668ae3e719fc929edJmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9sYXB0b3Bz&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › laptops",
+            "snippet": "When shopping for laptops there are so many choices. From everyday multi tasking to everyday gaming - Acer has you covered. …",
+            "categories": [
+              "performance"
+            ],
+            "sentiment": 0,
+            "numericScore": null
+          },
+          {
+            "source": "https://www.bing.com/ck/a?!&amp;&amp;p=33c5b2e9a672a07519f6dec1af12789bc9af7fc3cc7c81074dc416f04edac9b2JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=2376a42b-ea5b-6ad1-0031-b3d1ebb06b81&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9zYWxlL2xhcHRvcC1zYWxl&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › sale › laptop-sale",
+            "snippet": "Save big on Acer laptops! We offer deals and free shipping on great selection of touchscreen, gaming, ultra-portable laptops in all …",
+            "categories": [
+              "performance",
+              "ecran"
+            ],
+            "sentiment": 1,
+            "numericScore": null
+          },
+          {
+            "source": "https://www.bing.com/ck/a?!&amp;&amp;p=714f9b4a0a5db43112af1f4c1d453e1a2357ce425f806ef9d6959b23adb590d3JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9sYXB0b3Bz&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › laptops",
+            "snippet": "When shopping for laptops there are so many choices. From everyday multi tasking to everyday gaming - Acer has you covered. …",
+            "categories": [
+              "performance"
+            ],
+            "sentiment": 0,
+            "numericScore": null
+          },
+          {
+            "source": "https://www.bing.com/ck/a?!&amp;&amp;p=8e90ae38754e6d7f1ed1dc669da100b270f7dda7e93d6bfd1d98f2f53e6fe5f3JmltdHM9MTc5MjYyNzIwMA&amp;ptn=3&amp;ver=2&amp;hsh=4&amp;fclid=0f1392bf-e513-612d-1601-8545e44e60b9&amp;u=a1aHR0cHM6Ly9zdG9yZS5hY2VyLmNvbS9lbi11cy9zYWxlL2xhcHRvcC1zYWxl&amp;ntb=1",
+            "title": "acer.com https://store.acer.com › en-us › sale › laptop-sale",
+            "snippet": "Save big on Acer laptops! We offer deals and free shipping on great selection of touchscreen, gaming, ultra-portable laptops in all …",
+            "categories": [
+              "performance",
+              "ecran"
+            ],
+            "sentiment": 1,
+            "numericScore": null
+          }
+        ],
+        "reviewScores": {
+          "performance": 6.5,
+          "ecran": 6.5
+        },
+        "confidence": 0.5
+      },
+      "kimovilScores": null,
+      "identity": {
+        "status": "partial",
+        "name": "Acer Aspire Go 15 AG15-71P-5730",
+        "brand": "Acer",
+        "gtin": "4711474670793",
+        "mpn": "NX.JD9EF.00C",
+        "basis": [
+          "page du marchand"
+        ]
+      },
+      "evidence": [
+        "JSON-LD Product"
+      ],
+      "warning": null
+    }
+  },
+  {
+    "case": "modèle inexistant",
+    "status": 502,
+    "seconds": 2.8,
+    "response": {
+      "ok": false,
+      "kind": "product",
+      "reason": "model-not-found",
+      "error": "Modèle non retrouvé dans les sources techniques publiques.",
+      "trace": [
+        {
+          "step": "model-query",
+          "original": "Modele Imaginaire XYZ987654",
+          "normalized": "Modele Imaginaire XYZ987654"
+        },
+        {
+          "step": "kimovil",
+          "outcome": "rien"
+        },
+        {
+          "step": "gsmarena",
+          "outcome": "rien"
+        }
+      ]
+    }
+  },
+  {
+    "case": "Fnac adresse complète",
+    "status": 200,
+    "seconds": 0.4,
+    "response": {
+      "ok": true,
+      "kind": "product",
+      "strategy": "url-hint+catalogue",
+      "product": {
+        "name": "Samsung Galaxy A56",
+        "source": "Guide·Achat catalogue",
+        "evidence": "galaxy-a56",
+        "id": "galaxy-a56"
+      },
+      "specs": {
+        "ecran": "6,7\" Super AMOLED, FHD+, 120 Hz",
+        "processeur": "Exynos 1580 (4 nm)",
+        "ram": "8 Go",
+        "stockage": "128 ou 256 Go",
+        "batterie": "5 000 mAh, charge 45 W",
+        "photo": "50 Mpx principal + 12 Mpx ultra grand-angle + 5 Mpx macro",
+        "etancheite": "IP67",
+        "os": "Android, One UI"
+      },
+      "specSources": {
+        "ecran": "catalogue",
+        "processeur": "catalogue",
+        "ram": "catalogue",
+        "stockage": "catalogue",
+        "batterie": "catalogue",
+        "photo": "catalogue",
+        "etancheite": "catalogue",
+        "os": "catalogue"
+      },
+      "identity": {
+        "status": "identified",
+        "name": "Samsung Galaxy A56",
+        "basis": [
+          "correspondance exacte du catalogue"
+        ]
+      },
+      "trace": [
+        {
+          "step": "model-query",
+          "original": "Samsung Galaxy A56 6 7 5G Nano SIM 128 Go Graphite",
+          "normalized": "Samsung Galaxy A56 6 7 5G Nano SIM"
+        },
+        {
+          "step": "catalogue",
+          "outcome": "exact",
+          "name": "Samsung Galaxy A56"
+        },
+        {
+          "step": "url-hint",
+          "outcome": "résolu",
+          "hint": "Samsung Galaxy A56 6 7 5G Nano SIM 128 Go Graphite"
+        }
+      ],
+      "references": {},
+      "sourceScores": {},
+      "category": "smartphones",
+      "merchantHost": "www.fnac.com",
+      "finalUrl": "https://www.fnac.com/Smartphone-Samsung-Galaxy-A56-6-7-5G-Nano-SIM-128-Go-Graphite/a21318597/w-4",
+      "clues": {
+        "title": "Samsung Galaxy A56",
+        "name": "Samsung Galaxy A56",
+        "brand": null,
+        "ean": null,
+        "mpn": null,
+        "asin": null,
+        "fnacId": "a21318597",
+        "urlHint": "Smartphone Samsung Galaxy A56 6 7 5G Nano SIM 128 Go Graphite",
+        "year": null
+      },
+      "warning": "Le marchand a demandé une vérification anti-robot : sa page n’a pas été lue (aucun contournement). le modèle a été identifié à partir de la référence présente dans le lien et vérifié dans des sources techniques publiques."
+    }
+  },
+  {
+    "case": "PC dans smartphone",
+    "status": 409,
+    "seconds": 0.3,
+    "response": {
+      "ok": false,
+      "kind": "product",
+      "reason": "wrong-category",
+      "category": "smartphones",
+      "detectedCategory": "pc-portables",
+      "error": "Ce produit semble être un PC portable (« Apple MacBook Air 13 (M5) ») : il relève de l’autre analyseur.",
+      "trace": [
+        {
+          "step": "category",
+          "outcome": "refusé : le nom décrit pc-portables"
+        }
+      ]
+    }
+  },
+  {
+    "case": "adresse invalide",
+    "status": 502,
+    "seconds": 0.3,
+    "response": {
+      "ok": false,
+      "error": "URL invalide."
+    }
+  }
+]

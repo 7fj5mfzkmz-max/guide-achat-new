@@ -413,7 +413,7 @@
       return r.json();
     })
     .then(function (data) {
-      products = (data.produits || []).filter(function (p) { return p.ready_for_recommendation && !p.exclu_reco && p.compatibilite; });
+      products = (data.produits || []).filter(function (p) { return p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== "specs_a_verifier" && p.compatibilite; });
       renderResults(window.GuideAuditState || {}, false);
     })
     .catch(function () {
@@ -421,3 +421,4 @@
       if (status) status.textContent = "Les recommandations ne peuvent pas être chargées pour le moment.";
     });
 })();
+
