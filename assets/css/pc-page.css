@@ -62,7 +62,6 @@
   display: grid;
   animation: pcFoldIn .3s var(--ease);
 }
-@keyframes pcFoldIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 .pc-audit-body { padding: 16px clamp(14px, 3vw, 22px) 20px; display: grid; gap: 14px; background: var(--paper); }
 .pc-options { display: grid; gap: 8px; }
 .pc-options[data-lay="rows"] { grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); }
