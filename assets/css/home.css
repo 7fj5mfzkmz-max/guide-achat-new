@@ -205,7 +205,7 @@
 
 
 /* Édition photographique 2026 — contraste, relief et lisibilité */
-.home{--h-bg:#f0eee9;--h-card:#fffefa;--h-dark:#19252b;--h-dark-2:#263840;--h-ink:#17242a;--h-soft:#52616a;--h-accent:#ff8855;--h-photo:#e5e8e5}
+.home{--h-bg:#f0eee9;--h-card:#fffefa;--h-dark:#19252b;--h-dark-2:#263840;--h-ink:#17242a;--h-soft:#52616a;--h-accent:#e9703a;--h-photo:#e5e8e5}
 .dark-theme .home{--h-bg:#111a20;--h-card:#1c2930;--h-dark:#0b1419;--h-dark-2:#23343d;--h-ink:#f3f5f3;--h-soft:#c0cbd0;--h-photo:#23343d}
 .hm-hero{background:radial-gradient(ellipse at 75% 20%,rgba(255,136,85,.17),transparent 48%)}
 .hm-hero h1{max-width:13ch;letter-spacing:-.045em}
