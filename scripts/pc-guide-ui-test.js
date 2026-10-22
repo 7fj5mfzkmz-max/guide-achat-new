@@ -72,6 +72,25 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
       const t = await page.locator('.pc-audit-card[data-family="usage"] .pc-audit-state').innerText();
       if (!/choisi|jouer/i.test(t) && await page.locator('.pc-audit-card[data-family="usage"].is-done').count() !== 1) throw new Error('question non répondue : ' + t);
     });
+    await check(name + ' : ordre des sections (recommandation d’abord) et ancres', async () => {
+      const ids = await page.evaluate(() => [...document.querySelectorAll('main .section[id]')].map(s => s.id));
+      const want = ['audit', 'profils', 'essentiel', 'criteres', 'piege', 'modeles', 'faq', 'lexique', 'suite'];
+      if (JSON.stringify(ids) !== JSON.stringify(want)) throw new Error(ids.join(','));
+      const hrefs = await page.evaluate(() => [...document.querySelectorAll('a[href^="#"]')].map(a => a.getAttribute('href').slice(1)).filter(h => h && !document.getElementById(h) && !/^critere-/.test(h)));
+      if (hrefs.length) throw new Error('ancres cassées : ' + hrefs.join(','));
+    });
+    await check(name + ' : menu Sections collant (aria-expanded, navigation)', async () => {
+      const btn = page.locator('#pl-sections-btn'), nav = page.locator('#pl-sections');
+      if (name === 'mobile') {
+        if (await btn.getAttribute('aria-expanded') !== 'false') throw new Error('état initial');
+        await btn.click();
+        if (await btn.getAttribute('aria-expanded') !== 'true') throw new Error('non déplié');
+        await page.locator('#pl-sections-list a[href="#faq"]').click();
+        await page.waitForTimeout(700);
+        if (await btn.getAttribute('aria-expanded') !== 'false') throw new Error('non replié après choix');
+      } else if (!await page.locator('#pl-sections-list a[href="#faq"]').isVisible()) throw new Error('liens invisibles sur bureau');
+      if (await nav.evaluate(n => getComputedStyle(n).position) !== 'sticky') throw new Error('menu non collant');
+    });
     await check(name + ' : pause des animations (bouton, WCAG 2.2.2)', async () => {
       const b = page.locator('#pg-motion'), root = page.locator('.pg');
       await b.scrollIntoViewIfNeeded(); const before = await root.getAttribute('data-motion');
@@ -80,7 +99,7 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
       if (await b.getAttribute('aria-pressed') !== String(after === 'off')) throw new Error('aria-pressed');
     });
     await check(name + ' : questionnaire et catalogue toujours présents', async () => {
-      if (await page.locator('.pc-audit-card').count() !== 6) throw new Error('questions');
+      if (await page.locator('.pc-audit-card').count() !== 4) throw new Error('questions');
       if (!await page.locator('#pc-cat-top').count()) throw new Error('catalogue');
     });
     await check(name + ' : aucune erreur JavaScript', async () => { if (errs.length) throw new Error(errs.join(' | ')); });

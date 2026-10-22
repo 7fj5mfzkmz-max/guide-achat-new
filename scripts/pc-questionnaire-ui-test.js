@@ -62,16 +62,26 @@ function parsePrices(texts) {
   page.on('pageerror', e => errors.push(String(e)));
   await page.goto(SITE + '/pc-portables.html', { waitUntil: 'networkidle' });
 
-  await check(page, 'Questionnaire : 6 questions, première ouverte, phrases explicatives', async () => {
+  await check(page, 'Questionnaire : 4 questions, première ouverte, phrases explicatives', async () => {
     const cards = await page.locator('.pc-audit-card').count();
-    if (cards !== 6) throw new Error(cards + ' cartes au lieu de 6');
+    if (cards !== 4) throw new Error(cards + ' cartes au lieu de 4');
     if (await page.locator('.pc-audit-card.is-open').count() !== 1) throw new Error('première carte non ouverte');
     const notes = await page.locator('.pc-audit-card[data-family="usage"] .ao-say').count();
     if (notes < 4) throw new Error(notes + ' phrases explicatives sur la question d’usage');
   });
 
-  await check(page, 'Jouer + transportable + 13-14″ reste un profil Gamer (l’usage domine)', async () => {
-    for (const [fam, val] of [['usage', 'jeu'], ['memoire', '16'], ['mobilite', 'ultra'], ['ecran', '13']]) await answer(page, fam, val);
+  await check(page, '« Pourquoi cette question ? » : texte masqué, révélé au clic (aria-expanded)', async () => {
+    const card = page.locator('.pc-audit-card[data-family="usage"]');
+    const btn = card.locator('.pc-why-btn'), txt = card.locator('.pc-audit-help');
+    if (!await txt.isHidden()) throw new Error('texte visible d’emblée');
+    await btn.click();
+    if (await btn.getAttribute('aria-expanded') !== 'true' || !await txt.isVisible()) throw new Error('texte non révélé');
+    await btn.click();
+    if (!await txt.isHidden()) throw new Error('texte non replié');
+  });
+
+  await check(page, 'Jouer + transportable reste un profil Gamer (l’usage domine)', async () => {
+    for (const [fam, val] of [['usage', 'jeu'], ['mobilite', 'ultra'], ['puissance', 'jeu']]) await answer(page, fam, val);
     await page.waitForTimeout(300);
     const t = await page.locator('#pc-audit-result h3').innerText();
     if (!/Gamer/.test(t)) throw new Error('profil obtenu : ' + t);
@@ -87,6 +97,15 @@ function parsePrices(texts) {
     }
   });
 
+  await check(page, 'Dès la première réponse : une recommandation, marquée provisoire', async () => {
+    await page.click('#pc-audit-reset');
+    await answer(page, 'usage', 'cours');
+    await page.waitForTimeout(300);
+    if (await page.locator('#pc-reco .pc-reco-main').count() !== 1) throw new Error('pas de conseil principal');
+    if (await page.locator('#pc-prov:not([hidden])').count() !== 1) throw new Error('mention provisoire absente');
+    if (!(await page.locator('#pc-because').innerText()).includes('On vous conseille ce modèle parce que')) throw new Error('phrase d’explication absente');
+  });
+
   await check(page, '« Recommencer » réinitialise résultat, filtre et accordéon', async () => {
     await answer(page, 'usage', 'jeu');
     await page.waitForTimeout(200);
@@ -95,58 +114,73 @@ function parsePrices(texts) {
     const t = await page.locator('#pc-audit-result h3').innerText();
     if (!/Choisissez une première réponse/.test(t)) throw new Error('résultat non réinitialisé : ' + t);
     if (await page.locator('.pc-audit-card.is-open').count() !== 1) throw new Error('première carte non rouverte');
-    if (!(await page.locator('#pc-cat-top').innerText()).includes('proposer')) throw new Error('catalogue non réinitialisé');
+    if (await page.locator('#pc-reco .pc-reco-card').count() !== 0) throw new Error('recommandations non effacées');
   });
 
-  await check(page, 'Budget : les tranches du catalogue respectent leurs bornes', async () => {
-    await page.locator('.pc-budget').scrollIntoViewIfNeeded();
-    await page.click('.pc-budget summary');
-    const bands = [[0, 800], [800, 1200], [1200, 1800], [1800, 1e9]];
-    try {
-      for (let i = 0; i < bands.length; i++) {
-        await page.click(`[data-band="${i}"]`);
-        await page.waitForTimeout(250);
-        const metas = await page.locator('#pcd-grid .pc-product .meta').allInnerTexts();
-        const prices = parsePrices(metas);
-        if (!prices.length) throw new Error('tranche ' + i + ' : aucun modèle affiché');
-        const [a, b] = bands[i];
-        for (const pr of prices) {
-          if (pr < a || pr >= b) throw new Error('prix ' + pr + ' hors tranche [' + a + ',' + b + '[');
-        }
-        await page.click('.pcd-close');
-        await page.waitForTimeout(150);
-      }
-    } finally {
-      // Tiroir refermé quoi qu'il arrive (dialog modal).
-      const open = await page.evaluate(() => { const d = document.getElementById('pc-drawer'); return !!(d && d.open); });
-      if (open) await page.evaluate(() => { const d = document.getElementById('pc-drawer'); if (d && d.close) d.close(); });
-    }
-  });
-
-  await check(page, 'Parcours complet : étudiant + 800-1 200 € recommande des modèles dans le budget', async () => {
-    for (const [fam, val] of [['usage', 'cours'], ['memoire', '16'], ['mobilite', 'ultra'], ['ecran', '13'], ['budget', '800-1200']]) await answer(page, fam, val);
+  await check(page, 'Résultat : 1 conseil dans le budget, option moins chère réellement moins chère, trois couches', async () => {
+    for (const [fam, val] of [['usage', 'cours'], ['budget', '1200-1800'], ['mobilite', 'ultra'], ['puissance', 'non']]) await answer(page, fam, val);
     await page.waitForTimeout(400);
-    const metas = await page.locator('#pc-cat-top .pc-product .meta').allInnerTexts();
+    if (await page.locator('#pc-prov:not([hidden])').count() !== 0) throw new Error('encore provisoire après 4 réponses');
+    const metas = await page.locator('#pc-reco .pc-reco-card .meta').allInnerTexts();
     const prices = parsePrices(metas);
     if (!prices.length) throw new Error('aucune recommandation');
-    for (const pr of prices) if (pr < 800 || pr >= 1200) throw new Error('recommandation hors budget : ' + pr);
+    for (const pr of prices) if (pr < 1200 || pr >= 1800) throw new Error('recommandation hors budget : ' + pr);
+    if (await page.locator('#pc-reco .pc-reco-main').count() !== 1) throw new Error('conseil principal');
+    if (await page.locator('#pc-reco .pc-reco-card').count() > 3) throw new Error('plus de 3 résultats');
+    const main = parsePrices([await page.locator('#pc-reco .pc-reco-main .meta').innerText()])[0];
+    if (await page.locator('#pc-reco .pc-reco-alt').count()) {
+      const alt = parsePrices([await page.locator('#pc-reco .pc-reco-alt .meta').innerText()])[0];
+      if (!(alt < main)) throw new Error('l’option « moins cher » (' + alt + ') ne coûte pas moins que le conseil (' + main + ')');
+    }
+    // couche 1 : promesses ; couche 2 : specs simplifiées ; couche 3 : analyse dépliable
+    if (!await page.locator('#pc-reco .pc-reco-main .pc-promise li').count()) throw new Error('phrases d’usage');
+    if (await page.locator('#pc-reco .pc-reco-main .pc-specs li').count() !== 3) throw new Error('3 specs simplifiées');
+    const more = page.locator('#pc-reco .pc-reco-main .pc-more');
+    if (await more.getAttribute('open') !== null) throw new Error('analyse détaillée dépliée d’emblée');
+    await more.locator('summary').click();
+    if (!await more.locator('.pc-dl').isVisible()) throw new Error('analyse détaillée non visible');
   });
 
-  await check(page, 'Bornes du formulaire : chaque tranche est testée dans le questionnaire', async () => {
-    // Scénario étudiant (recommandations présentes dans les quatre tranches) : on vérifie
-    // que les prix affichés respectent les bornes partagées avec le catalogue [a, b[.
+  await check(page, 'Lien « pourquoi ? » : ouvre le critère correspondant de la boussole', async () => {
+    await page.locator('#pc-reco .pc-reco-main .pc-why-link[data-why="ram"]').first().click();
+    await page.waitForTimeout(600);
+    if (await page.locator('#pg-p-ram:not([hidden])').count() !== 1) throw new Error('critère mémoire non ouvert');
+  });
+
+  await check(page, 'Filtre système : Windows ne recommande que du Windows', async () => {
+    await page.locator('[data-os="windows"]').click();
+    await page.waitForTimeout(300);
+    const txt = (await page.locator('#pc-reco').innerText());
+    if (/macOS/.test(txt)) throw new Error('un modèle macOS apparaît');
+  });
+
+  await check(page, 'Catalogue : filtres profil et budget respectent les bornes', async () => {
+    await page.locator('#modeles').scrollIntoViewIfNeeded();
+    await page.click('[data-cprof="all"]');
+    const bands = [[0, 800], [800, 1200], [1200, 1800], [1800, 1e9]];
+    for (let i = 0; i < bands.length; i++) {
+      await page.click(`[data-cband="${i}"]`);
+      await page.waitForTimeout(200);
+      const prices = parsePrices(await page.locator('#pc-cat-top .pc-product .meta').allInnerTexts());
+      if (!prices.length) throw new Error('tranche ' + i + ' : aucun modèle affiché');
+      const [a, b] = bands[i];
+      for (const pr of prices) if (pr < a || pr >= b) throw new Error('prix ' + pr + ' hors tranche [' + a + ',' + b + '[');
+    }
+    await page.click('[data-cband="all"]');
+    await page.click('[data-cprof="gamer"]');
+    if (await page.locator('[data-cprof="gamer"]').getAttribute('aria-pressed') !== 'true') throw new Error('filtre profil non actif');
+  });
+
+  await check(page, 'Bornes du budget : chaque tranche est testée dans le questionnaire', async () => {
     const bands = [['under800', 0, 800], ['800-1200', 800, 1200], ['1200-1800', 1200, 1800], ['over1800', 1800, 1e9]];
     for (const [val, a, b] of bands) {
       await page.click('#pc-audit-reset');
       await page.waitForTimeout(200);
-      for (const [fam, v] of [['usage', 'cours'], ['memoire', '16'], ['mobilite', 'polyvalent'], ['ecran', '13'], ['budget', val]]) await answer(page, fam, v);
+      for (const [fam, v] of [['usage', 'cours'], ['budget', val], ['mobilite', 'polyvalent'], ['puissance', 'non']]) await answer(page, fam, v);
       await page.waitForTimeout(350);
-      const metas = await page.locator('#pc-cat-top .pc-product .meta').allInnerTexts();
-      const prices = parsePrices(metas);
+      const prices = parsePrices(await page.locator('#pc-reco .pc-reco-card .meta').allInnerTexts());
       if (!prices.length) throw new Error('tranche ' + val + ' : aucune recommandation pour tester les bornes');
-      for (const pr of prices) {
-        if (pr < a || pr >= b) throw new Error('prix ' + pr + ' hors tranche [' + a + ', ' + b + '[ dans le formulaire');
-      }
+      for (const pr of prices) if (pr < a || pr >= b) throw new Error('prix ' + pr + ' hors tranche [' + a + ', ' + b + '[ dans le résultat');
     }
   });
 
