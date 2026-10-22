@@ -102,7 +102,13 @@ function parsePrices(texts) {
     await answer(page, 'usage', 'cours');
     await page.waitForTimeout(300);
     if (await page.locator('#pc-reco .pc-reco-main').count() !== 1) throw new Error('pas de conseil principal');
-    if (await page.locator('#pc-prov:not([hidden])').count() !== 1) throw new Error('mention provisoire absente');
+    if (!(await page.locator('#pc-prov').innerText()).includes('provisoire')) throw new Error('mention provisoire absente');
+    const avant = await page.locator('#pc-reco .pc-reco-main h4').innerText();
+    for (const [fam, val] of [['budget', 'under800'], ['mobilite', 'station'], ['puissance', 'jeu']]) await answer(page, fam, val);
+    await page.waitForTimeout(300);
+    const t = await page.locator('#pc-prov').innerText();
+    if (!/4 réponses|affinée/i.test(t)) throw new Error('indicateur non mis à jour : ' + t);
+    await page.click('#pc-audit-reset'); await answer(page, 'usage', 'cours'); await page.waitForTimeout(300);
     if (!(await page.locator('#pc-because').innerText()).includes('On vous conseille ce modèle parce que')) throw new Error('phrase d’explication absente');
   });
 
@@ -120,7 +126,7 @@ function parsePrices(texts) {
   await check(page, 'Résultat : 1 conseil dans le budget, option moins chère réellement moins chère, trois couches', async () => {
     for (const [fam, val] of [['usage', 'cours'], ['budget', '1200-1800'], ['mobilite', 'ultra'], ['puissance', 'non']]) await answer(page, fam, val);
     await page.waitForTimeout(400);
-    if (await page.locator('#pc-prov:not([hidden])').count() !== 0) throw new Error('encore provisoire après 4 réponses');
+    if (!(await page.locator('#pc-prov').innerText()).includes('affinée avec vos 4 réponses')) throw new Error('indicateur final absent');
     const metas = await page.locator('#pc-reco .pc-reco-card .meta').allInnerTexts();
     const prices = parsePrices(metas);
     if (!prices.length) throw new Error('aucune recommandation');

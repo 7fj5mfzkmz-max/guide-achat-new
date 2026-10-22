@@ -369,3 +369,48 @@
   .pc-fgroup button { flex: 0 0 auto; }
 }
 @media (prefers-reduced-motion: reduce) { .pc-reco-card { animation: none; } .pl-sections.is-open #pl-sections-list { animation: none; } }
+
+/* ============================================================
+   SECTION CRITÈRES : facultative, compacte, reliée au résultat
+   ============================================================ */
+.pl-next { margin: 14px 0 0; max-width: 78ch; font-size: 15px; color: var(--ink-soft); }
+.pl-next .hx-link { margin-right: 6px; }
+#criteres.section { padding-block: clamp(36px, 5vw, 64px); }
+#criteres .section-lead { margin-bottom: 0; }
+#criteres .pg-tools { margin: 10px 0 14px; }
+#criteres .pg-wrap { grid-template-columns: minmax(260px, 340px) minmax(0, 1fr); margin-top: 0; }
+#criteres .pg-hint { margin-top: 8px; }
+.pg-prog { margin-bottom: 14px; padding: 10px 14px; }
+.pg-prog-next { font-size: 13px; min-height: 28px; }
+.pg-prog.is-done .pg-prog-next { display: none; }
+
+/* « Important pour vous » : critères mis en avant selon le profil */
+.pg-imp { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 8px; margin: 0 0 12px; padding: 10px 14px; border: 1px solid var(--ink); background: var(--accent-soft); }
+.pg-imp[hidden] { display: none; }
+.pg-imp-l { font: 700 11.5px/1.4 var(--mono); letter-spacing: .05em; text-transform: uppercase; color: var(--ink); margin-right: 4px; }
+.pg-imp-chip { min-height: 38px; padding: 7px 12px; border: 1px solid #0f1115; background: var(--accent); color: #0f1115; font: 700 12px/1.2 var(--mono); letter-spacing: .04em; text-transform: uppercase; box-shadow: 2px 2px 0 var(--ink); transition: transform .12s var(--ease), box-shadow .12s var(--ease); }
+.pg-imp-chip:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+.pg-imp-chip:active { transform: none; box-shadow: none; }
+.pg-node.is-imp, .pg-hubbtn.is-imp { box-shadow: 3px 3px 0 var(--accent), 3px 3px 0 1px #0f1115; }
+.pg-node.is-imp::before, .pg-hubbtn.is-imp::before { content: '★'; position: absolute; top: -9px; left: -9px; right: auto; width: 20px; height: 20px; display: grid; place-items: center; background: var(--accent); color: #0f1115; border: 1px solid #0f1115; font: 700 11px/1 var(--mono); animation: none; }
+.pg-row.is-imp .pg-row-t small::after { content: ' · Important pour vous'; font-weight: 700; color: var(--ink); background: var(--accent); padding: 1px 6px; margin-left: 4px; white-space: nowrap; }
+.pg-li.is-open .pg-row.is-imp .pg-row-t small::after { background: #0f1115; color: #ffd400; }
+.pg-imp-tag { display: none; margin-left: 10px; padding: 3px 8px; background: var(--accent); color: #0f1115; border: 1px solid #0f1115; font: 700 10.5px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; vertical-align: middle; }
+.pg-panel.is-imp .pg-imp-tag { display: inline-block; }
+
+/* résultat : rappel visuel quand la recommandation se met à jour */
+.pc-prov b { color: var(--ink); }
+.pc-prov.is-final { border-style: solid; border-color: var(--ink); background: var(--accent-soft); }
+.pc-reco.is-updated .pc-reco-card { animation: pcFoldIn .35s var(--ease), plFlash .9s ease-out; }
+@keyframes plFlash { 0% { box-shadow: 0 0 0 4px var(--accent); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.pc-reco.is-updated .pc-reco-main { animation: pcFoldIn .35s var(--ease), plFlashM .9s ease-out; }
+@keyframes plFlashM { 0% { box-shadow: 5px 5px 0 var(--accent), 0 0 0 4px var(--accent); } 100% { box-shadow: 5px 5px 0 var(--accent), 0 0 0 0 transparent; } }
+@media (prefers-reduced-motion: reduce) { .pc-reco.is-updated .pc-reco-card { animation: none; } }
+.fx-lite .pc-reco.is-updated .pc-reco-card { animation: none; }
+@media (max-width: 900px) {
+  .pg-imp { margin-bottom: 10px; }
+  .pg-li > .pg-panel .pg-ph { position: static; width: auto; height: auto; overflow: visible; clip: auto; }
+  .pg-li > .pg-panel .pg-ph .pg-kick, .pg-li > .pg-panel .pg-ph h3 { display: none; }
+  .pg-li > .pg-panel .pg-ph .pg-imp-tag { margin: 0 0 10px; }
+  .pg-li > .pg-panel .pg-ph h3 { display: block; position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+}
