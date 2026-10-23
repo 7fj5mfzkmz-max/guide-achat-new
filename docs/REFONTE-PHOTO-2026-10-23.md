@@ -25,3 +25,12 @@ Les images de début de page ont des dimensions explicites et sont prioritaires.
 - Comparaison des identifiants HTML avant/après : tous les identifiants existants conservés. Dépendances locales des trois pages présentes.
 
 Les parcours déterministes utilisent Chromium système et bloquent les ressources externes ; les images d’ambiance sont effectivement chargées depuis le serveur local. Les mesures, les données du catalogue, les calculs de scores et les règles de résolution des produits ne sont pas modifiés.
+
+## Révision v2 : retour au style de référence
+
+La première version recolorait et réorganisait l'accueil et les pages catégorie (héros sombre plein écran, titres en minuscules, en-tête recoloré), ce qui s'éloignait des références (Crox pour l'accueil, accessibilitychecking pour les catégories). Cette révision :
+
+- restaure les titres, textes d'accroche, couleurs, grille et en-tête d'origine ;
+- garde les photos d'ambiance, mais à l'intérieur des composants existants (carte du héros, cartes de guides, cartes de profils, visuel de la page PC) ;
+- ajoute des notes manuscrites avec flèche (police Caveat, déjà chargée) : accueil, au-dessus des cartes de guides ; page PC, au-dessus des profils ;
+- réduit `photo-editorial.css` au cadrage des photos et aux notes (aucune variable de couleur redéfinie).
