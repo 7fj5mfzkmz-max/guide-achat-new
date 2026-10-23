@@ -73,7 +73,8 @@
   var fr = function (n) { return Number(n).toLocaleString('fr-FR'); };
   var usd = function (n) { return n == null ? 'prix non relevé' : fr(n) + ' $'; };
   var score = function (n) { return n.toFixed(1).replace('.', ','); };
-  var byRank = function () { return DATA.produits.slice().sort(function (a, b) { return a.rang_source - b.rang_source; }); };
+  var byRank = function () { return DATA.produits.filter(function (p) { return p.fiche === 'detaillee'; }).sort(function (a, b) { return a.rang_source - b.rang_source; }); };
+  var M = {}, nom = function (id) { return M[id] ? M[id].nom : id; };
 
   function infos(p) {
     var c = p.caracteristiques, rows = [];
@@ -94,7 +95,7 @@
       DATA.criteres.forEach(function (c) { names[c.id] = c.titre; });
       var notes = Object.keys(p.notes).map(function (k) {
         var n = p.notes[k], v = n.note10 != null ? score(n.note10) + '/10' : '1ʳᵉ place'.replace('1ʳᵉ', n.rang === 1 ? '1ʳᵉ' : n.rang + 'ᵉ');
-        return '<li><div><strong>' + esc(names[k] || k) + '</strong> <span class="pj-badge is-lab">' + esc(v) + '</span> <span class="eb-min">' + esc(n.minute) + '</span></div><p>' + esc(n.texte) + (n.rang_note ? ' <em>(' + esc(n.rang_note) + ')</em>' : '') + '</p></li>';
+        return '<li><div><strong>' + esc(names[k] || k) + '</strong> <span class="pj-badge is-lab">' + esc(v) + '</span> <span class="eb-min">' + esc(n.minute || '') + '</span></div><p>' + esc(n.texte) + (n.rang_note ? ' <em>(' + esc(n.rang_note) + ')</em>' : '') + '</p></li>';
       }).join('');
       var li = function (a) { return a.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join(''); };
       return '<article class="pj-card eb-model"><header><div><h3>' + esc(p.nom) + '</h3><p class="eb-tag">' + esc(p.titre_source) + '</p></div><span class="pj-price">' + usd(p.prix_usd) + '</span></header>' +
@@ -119,11 +120,45 @@
     }).join('');
   }
 
+  /* ——— Classements de la source ——— */
+  var badge = function (t) { return t ? ' <span class="pj-badge is-lab">' + esc(t) + '</span>' : ''; };
+  function renderRank(id) {
+    var c = DATA.classements.filter(function (x) { return x.id === id; })[0], rows;
+    if (id === 'appels') {
+      rows = '<div class="eb-rt-row eb-rt-head eb-rt-appels"><span>Catégorie</span><span>Gagnant absolu</span><span>Challenger</span><span>Point clé d’isolation de la voix</span></div>' +
+        c.lignes.map(function (l) { return '<div class="eb-rt-row eb-rt-appels"><span><strong>' + esc(l.categorie) + '</strong></span><span><b>' + esc(nom(l.gagnant)) + '</b></span><span>' + esc(nom(l.challenger)) + '</span><span>' + esc(l.cle) + '</span></div>'; }).join('');
+    } else {
+      var budget = id === 'budget';
+      rows = '<div class="eb-rt-row eb-rt-head ' + (budget ? 'is-budget' : '') + '"><span>Rang</span><span>Modèle</span>' + (budget ? '<span>Prix approx.</span>' : '') + '<span>Points forts</span>' + (budget ? '<span>Recommandation</span>' : '<span>Limite</span><span>Verdict / segment</span>') + '</div>' +
+        c.lignes.map(function (l) {
+          return '<div class="eb-rt-row ' + (budget ? 'is-budget' : '') + (l.rang === 1 ? ' is-first' : '') + '"><b class="pj-n">' + l.rang + (l.rang === 1 ? 'ᵉʳ' : 'ᵉ').replace('ᵉʳ', 'ᵉʳ') + '</b><span><strong>' + esc(nom(l.modele)) + '</strong></span>' +
+            (budget ? '<span class="eb-mono">~' + l.prix_usd + ' $</span>' : '') + '<span>' + esc(l.points_forts) + '</span>' + (budget ? '<span>' + esc(l.segment) + badge(l.badge && l.badge !== l.segment.toUpperCase() ? l.badge : '') + '</span>' : '<span>' + esc(l.point_faible) + '</span><span>' + esc(l.segment) + badge(l.badge) + '</span>') + '</div>';
+        }).join('');
+    }
+    $('eb-rank').innerHTML = '<p class="pj-lead-note">Vidéo ' + c.video + ' · ' + esc(c.intro) + '</p><div class="eb-rt" role="table" aria-label="' + esc(c.titre) + '">' + rows + '</div>';
+    $('eb-rank-verdict').innerHTML = '<strong>Analyse de la source</strong><span>' + esc(c.verdict) + '</span>';
+  }
+  function renderRankSection() {
+    var tabs = $('eb-rank-tabs');
+    tabs.innerHTML = DATA.classements.map(function (c, i) { return '<button class="pj-tab" type="button" data-k="' + c.id + '" aria-pressed="' + (i === 0) + '">' + esc(c.titre) + '</button>'; }).join('');
+    tabs.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(tabs.children, function (x) { x.setAttribute('aria-pressed', x === b); }); renderRank(b.getAttribute('data-k')); });
+    renderRank(DATA.classements[0].id);
+    var sy = DATA.syntheses;
+    $('eb-trio').innerHTML = ['top_overall', 'top_budget', 'top_appels'].map(function (k) { return '<article class="eb-trio-card is-' + k + '"><small>' + esc(sy[k].libelle) + '</small><b>' + esc(nom(sy[k].modele)) + '</b><span>' + esc(sy[k].ligne) + '</span></article>'; }).join('');
+    $('eb-trio-note').innerHTML = '<strong>Note d’achat finale de la source :</strong> ' + esc(sy.note);
+    $('eb-techs').innerHTML = DATA.technologies.map(function (t) { return '<article class="eb-tech"><span class="pj-badge">' + esc(t.ref) + '</span><h4>' + esc(t.titre) + '</h4><p>' + esc(t.texte) + '</p></article>'; }).join('');
+  }
+
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   function profile(key) {
     var p = DATA.profils[key], names = {};
     Object.keys(S.CRITERES).forEach(function (k) { names[k] = S.CRITERES[k]; });
     DATA.criteres.forEach(function (c) { names[c.id] = c.titre; });
+    var ch = (DATA.choix_par_usage || {})[key] || [];
+    $('eb-choix').innerHTML = ch.map(function (x, i) {
+      var m = M[x.modele];
+      return '<article class="eb-choix-item"><b class="pj-n">' + (i + 1) + '</b><div><h4>' + esc(m ? m.nom : x.modele) + ' <span class="pj-badge' + (m && m.format === 'casque' ? ' is-no' : '') + '">' + esc(m ? m.format : '') + '</span></h4><p>' + esc(x.raison) + '</p></div><span class="eb-ref">' + esc(x.ref) + '</span></article>';
+    }).join('') || '<p class="pj-lead-note">Aucun choix de la source pour cet usage.</p>';
     var ranking = DATA.produits.map(function (m) { return { m: m, r: S.estimate(m).profils[key] }; }).filter(function (x) { return x.r; }).sort(function (a, b) { return b.r.score - a.r.score; });
     $('eb-top').innerHTML = ranking.map(function (x, i) {
       var e = S.estimate(x.m), w = p.poids;
@@ -144,8 +179,8 @@
   }
 
   function setup(data) {
-    DATA = data;
-    renderModels(); renderMatrix();
+    DATA = data; data.produits.forEach(function (m) { M[m.id] = m; });
+    renderRankSection(); renderModels(); renderMatrix();
     var tabs = $('eb-tabs'), keys = Object.keys(data.profils);
     tabs.innerHTML = keys.map(function (k, i) { return '<button class="pj-tab" type="button" data-k="' + k + '" aria-pressed="' + (i === 0) + '">' + esc(data.profils[k].titre) + '</button>'; }).join('');
     tabs.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(tabs.children, function (x) { x.setAttribute('aria-pressed', x === b); }); profile(b.getAttribute('data-k')); });

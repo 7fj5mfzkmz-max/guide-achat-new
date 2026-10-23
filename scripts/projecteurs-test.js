@@ -81,9 +81,10 @@ check('notes : un prix bas ne porte pas seul une note (Fidoni à 99 $, couvertur
 });
 const escoring = require('../assets/js/ecouteurs-scoring.js');
 const E = id => eb.produits.find(p => p.id === id);
-check('écouteurs : 3 modèles de la source Picky Audio, identifiants uniques', () => {
-  assert.equal(eb.produits.length, 3); assert.equal(new Set(eb.produits.map(p => p.id)).size, 3);
-  assert.equal(eb.source.chaine, 'Picky Audio');
+check('écouteurs : 24 modèles cités dont 3 détaillés, identifiants uniques, deux sources Picky Audio', () => {
+  assert.equal(eb.produits.length, 24); assert.equal(new Set(eb.produits.map(p => p.id)).size, 24);
+  assert.equal(eb.produits.filter(p => p.fiche === 'detaillee').length, 3);
+  assert.equal(eb.source.chaine, 'Picky Audio'); assert.equal(eb.sources.length, 2);
   assert.equal(eb.criteres.length, 10); assert.equal(Object.keys(eb.profils).length, 5); assert.equal(eb.checklist.length, 8);
 });
 check('écouteurs : prix, rangs et scores identiques à la retranscription', () => {
@@ -121,6 +122,43 @@ check('écouteurs : couverture faible = note provisoire plafonnée (Anker)', () 
 check('écouteurs : petit budget → Roseselsa ; le son → Nothing', () => {
   const top = k => eb.produits.slice().sort((x, y) => (y.profil_scores[k] || 0) - (x.profil_scores[k] || 0))[0].id;
   assert.equal(top('budget'), 'roseselsa-ceramics-ultra'); assert.equal(top('son'), 'nothing-headphone-1-pro'); assert.equal(top('transport'), 'nothing-headphone-1-pro');
+});
+const byName = n => eb.produits.find(p => p.nom === n);
+check('écouteurs : Top 10 identique à la synthèse (rangs, points forts, limites, verdicts)', () => {
+  const t = eb.classements.find(c => c.id === 'top10');
+  assert.deepEqual(t.lignes.map(l => eb.produits.find(p => p.id === l.modele).nom), ['HUAWEI FreeBuds Pro 5', 'Apple AirPods Pro 3', 'Sony WF-1000XM6', 'Samsung Galaxy Buds4 Pro', 'Technics EAH-AZ100', 'Sennheiser Momentum TW4', 'Bose QuietComfort Ultra', 'Nothing Ear (3)', 'OnePlus Buds 4', 'Soundcore Liberty 5 Pro']);
+  assert.deepEqual(t.lignes.map(l => l.rang), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  assert.equal(t.lignes[0].points_forts, 'ANC numéro 1, micros ultra-nettoyés'); assert.equal(t.lignes[0].point_faible, 'Disponibilité limitée US'); assert.equal(t.lignes[0].badge, 'VAINQUEUR ABSOLU');
+  assert.equal(t.lignes[6].segment, 'Voyage / Confort');
+  assert.ok(/détrônant Apple et Sony/.test(t.verdict));
+});
+check('écouteurs : classement sous 50 $ identique (rangs et prix approximatifs)', () => {
+  const b = eb.classements.find(c => c.id === 'budget');
+  assert.deepEqual(b.lignes.map(l => [eb.produits.find(p => p.id === l.modele).nom, l.prix_usd]), [['CMF Buds Pro 2', 49], ['SoundPEATS Capsule3 Pro+', 48], ['Moondrop Space Travel 2', 35], ['Tozo NC7 (2026 Edition)', 39], ['QCY HT05 Melobuds', 28], ['Anker Soundcore P40i', 45], ['Baseus Bowie MA10', 25]]);
+  assert.equal(byName('CMF Buds Pro 2').prix_usd, 49); assert.equal(byName('Baseus Bowie MA10').prix_usd, 25);
+  assert.equal(byName('HUAWEI FreeBuds Pro 5').prix_usd, null);
+});
+check('écouteurs : test des micros (gagnants, challengers, point clé) identique', () => {
+  const a = eb.classements.find(c => c.id === 'appels'), nom = id => eb.produits.find(p => p.id === id).nom;
+  assert.deepEqual(a.lignes.map(l => [nom(l.gagnant), nom(l.challenger)]), [['Technics EAH-A800 / A1000', 'Sony WH-1000XM5'], ['HUAWEI FreeBuds Pro 5', 'Apple AirPods Pro 3'], ['Anker Soundcore Space One Pro', 'Edifier WH950NB'], ['QCY HT05 Melobuds', 'CMF Buds Pro 2']]);
+  assert.ok(/JustMyVoice/.test(a.lignes[0].cle));
+  assert.equal(byName('Technics EAH-A800 / A1000').format, 'casque'); assert.equal(byName('QCY HT05 Melobuds').format, 'intra-auriculaire');
+  assert.equal(eb.syntheses.top_overall.modele, 'huawei-freebuds-pro-5'); assert.equal(eb.syntheses.top_budget.modele, 'cmf-buds-pro-2'); assert.equal(eb.syntheses.top_appels.modele, 'technics-eah-a800-a1000');
+});
+check('écouteurs : modèles issus des seuls classements = aucune note ni note par usage inventée', () => {
+  eb.produits.filter(p => p.fiche !== 'detaillee').forEach(p => {
+    assert.deepEqual(Object.keys(p.notes), [], p.id);
+    Object.entries(p.scores).forEach(([k, v]) => { if (k !== 'prix') assert.equal(v, null, p.id + ' ' + k); });
+    assert.deepEqual(p.profil_scores, {}, p.id);
+    assert.ok(p.classements.length >= 1, p.id);
+  });
+});
+check('écouteurs : tous les renvois (classements, synthèses, choix par usage) pointent vers un modèle existant', () => {
+  const ids = new Set(eb.produits.map(p => p.id));
+  eb.classements.forEach(c => c.lignes.forEach(l => ['modele', 'gagnant', 'challenger'].forEach(k => { if (l[k]) assert.ok(ids.has(l[k]), l[k]); })));
+  Object.entries(eb.choix_par_usage).forEach(([u, l]) => { assert.ok(eb.profils[u], u); l.forEach(x => { assert.ok(ids.has(x.modele), x.modele); assert.ok(x.raison && x.ref); }); });
+  ['top_overall', 'top_budget', 'top_appels'].forEach(k => assert.ok(ids.has(eb.syntheses[k].modele), k));
+  assert.equal(eb.technologies.length, 3);
 });
 check('écouteurs : limites explicites (casque, rangs, dollars)', () => {
   const t = eb.limites.join(' ');

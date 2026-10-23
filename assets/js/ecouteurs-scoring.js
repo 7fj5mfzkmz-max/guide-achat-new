@@ -67,7 +67,9 @@
 
   function estimate(p) {
     var crit = criteres(p), profils = {};
-    Object.keys(PROFILS).forEach(function (k) { var r = noteProfil(crit, k); if (r) profils[k] = r; });
+    /* Sans au moins deux critères documentés hors prix, aucune note par usage : un prix seul ne dit rien du produit. */
+    var documentes = Object.keys(crit).filter(function (k) { return k !== 'prix' && crit[k] != null; }).length;
+    if (documentes >= 2) Object.keys(PROFILS).forEach(function (k) { var r = noteProfil(crit, k); if (r) profils[k] = r; });
     var forts = [], faibles = [];
     Object.keys(CRITERES).forEach(function (k) {
       if (crit[k] == null) return;

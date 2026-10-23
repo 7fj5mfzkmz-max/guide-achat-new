@@ -8,8 +8,26 @@
     "support": "Tests approfondis en laboratoire et mesures d’écouteurs et de casques, lus via leur retranscription fournie au projet (3 pages, horodatages)",
     "portee": "Trois modèles de la sélection de la chaîne : un écouteur à moins de 50 $, un casque haut de gamme et un écouteur de sport. Ce n’est pas un classement du marché."
   },
+  "sources": [
+    {
+      "id": "picky-audio-2026",
+      "titre": "Banc d’Essai Audio : Sélection Picky Audio (2026)",
+      "chaine": "Picky Audio",
+      "support": "Retranscription de 3 pages avec horodatages (Tests_Audio_Picky_Audio_2026.pdf)",
+      "portee": "Trois modèles testés en détail : notes sur 10 par critère, mesures, passages cités."
+    },
+    {
+      "id": "picky-synthese-2026",
+      "titre": "Guide Comparatif & Rankings Écouteurs / Casques 2026",
+      "chaine": "Picky Audio",
+      "support": "Synthèse de 3 pages sur trois vidéos de la chaîne (Analyse_Et_Classements_Audio_PickyAudio_2026.html.pdf) : Top 10 des écouteurs premium, comparatif sous 50 $, test des micros en environnement bruyant",
+      "portee": "Trois classements sans notes chiffrées. La synthèse décrit la grille de la chaîne : qualité sonore et scène sonore, performance de l’ANC, clarté du micro et des appels, confort et maintien, autonomie, rapport qualité/prix."
+    }
+  ],
   "produits": [
     {
+      "fiche": "detaillee",
+      "classements": [],
       "id": "nothing-headphone-1-pro",
       "nom": "Nothing Headphone (1) Pro",
       "marque": "Nothing",
@@ -120,6 +138,8 @@
       "date_verification": "2026-10"
     },
     {
+      "fiche": "detaillee",
+      "classements": [],
       "id": "anker-soundcore-liberty-buds-2",
       "nom": "Anker Soundcore Liberty Buds 2",
       "marque": "Anker",
@@ -197,6 +217,8 @@
       "date_verification": "2026-10"
     },
     {
+      "fiche": "detaillee",
+      "classements": [],
       "id": "roseselsa-ceramics-ultra",
       "nom": "Roseselsa Ceramics Ultra",
       "marque": "Roseselsa",
@@ -303,8 +325,1258 @@
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Roseselsa%20Ceramics%20Ultra",
       "source": "picky-audio-2026",
       "date_verification": "2026-10"
+    },
+    {
+      "id": "huawei-freebuds-pro-5",
+      "nom": "HUAWEI FreeBuds Pro 5",
+      "marque": "HUAWEI",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 1,
+          "sur": 10,
+          "segment": "Vainqueur absolu",
+          "badge": "VAINQUEUR ABSOLU"
+        },
+        {
+          "liste": "appels",
+          "rang": 1,
+          "categorie": "Écouteurs premium (in-ear)",
+          "segment": "Gagnant absolu des appels : Écouteurs premium (in-ear)"
+        }
+      ],
+      "points_forts": [
+        "ANC numéro 1",
+        "micros ultra-nettoyés"
+      ],
+      "points_faibles": [
+        "Disponibilité limitée US"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HUAWEI%20FreeBuds%20Pro%205",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "apple-airpods-pro-3",
+      "nom": "Apple AirPods Pro 3",
+      "marque": "Apple",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 2,
+          "sur": 10,
+          "segment": "Top iOS",
+          "badge": "TOP IOS"
+        },
+        {
+          "liste": "appels",
+          "rang": 2,
+          "categorie": "Écouteurs premium (in-ear)",
+          "segment": "Challenger des appels : Écouteurs premium (in-ear)"
+        }
+      ],
+      "points_forts": [
+        "Intégration iOS",
+        "Transparence native"
+      ],
+      "points_faibles": [
+        "Autonomie moyenne sur Android"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple%20AirPods%20Pro%203",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "sony-wf-1000xm6",
+      "nom": "Sony WF-1000XM6",
+      "marque": "Sony",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 3,
+          "sur": 10,
+          "segment": "Top audiophile",
+          "badge": "TOP AUDIOPHILE"
+        }
+      ],
+      "points_forts": [
+        "Signature sonore audiophile",
+        "LDAC"
+      ],
+      "points_faibles": [
+        "Boîtier plus imposant"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Sony%20WF-1000XM6",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "samsung-galaxy-buds4-pro",
+      "nom": "Samsung Galaxy Buds4 Pro",
+      "marque": "Samsung",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 4,
+          "sur": 10,
+          "segment": "Top écosystème Android",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Design ergonomique",
+        "micro AI voice"
+      ],
+      "points_faibles": [
+        "Fonctions bridées hors Samsung"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung%20Galaxy%20Buds4%20Pro",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "technics-eah-az100",
+      "nom": "Technics EAH-AZ100",
+      "marque": "Technics",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 5,
+          "sur": 10,
+          "segment": "Excellence musicale",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Rendu naturel",
+        "multipoint 3 appareils"
+      ],
+      "points_faibles": [
+        "ANC légèrement en retrait / Sony"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Technics%20EAH-AZ100",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "sennheiser-momentum-tw4",
+      "nom": "Sennheiser Momentum TW4",
+      "marque": "Sennheiser",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 6,
+          "sur": 10,
+          "segment": "Rendu Hi-Fi",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Dynamique des basses",
+        "aptX Lossless"
+      ],
+      "points_faibles": [
+        "Microphone sensible au vent"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Sennheiser%20Momentum%20TW4",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "bose-quietcomfort-ultra",
+      "nom": "Bose QuietComfort Ultra",
+      "marque": "Bose",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 7,
+          "sur": 10,
+          "segment": "Voyage / Confort",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Isolation passive & ANC imbattable"
+      ],
+      "points_faibles": [
+        "Qualité micro en appel moyenne"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Bose%20QuietComfort%20Ultra",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "nothing-ear-3",
+      "nom": "Nothing Ear (3)",
+      "marque": "Nothing",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 8,
+          "sur": 10,
+          "segment": "Design & customization",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Design transparent",
+        "Égaliseur avancé"
+      ],
+      "points_faibles": [
+        "Autonomie avec ANC activé"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nothing%20Ear%20(3)",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "oneplus-buds-4",
+      "nom": "OnePlus Buds 4",
+      "marque": "OnePlus",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 9,
+          "sur": 10,
+          "segment": "Challenger flagship",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Rapport Q/P",
+        "charge ultra-rapide"
+      ],
+      "points_faibles": [
+        "Commandes tactiles parfois sensibles"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus%20Buds%204",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "soundcore-liberty-5-pro",
+      "nom": "Soundcore Liberty 5 Pro",
+      "marque": "Anker",
+      "format": "intra-auriculaire",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "top10",
+          "rang": 10,
+          "sur": 10,
+          "segment": "Rapport performance/prix",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Prix accessible",
+        "boîtier à écran tactile"
+      ],
+      "points_faibles": [
+        "Finition plastique"
+      ],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Soundcore%20Liberty%205%20Pro",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "cmf-buds-pro-2",
+      "nom": "CMF Buds Pro 2",
+      "marque": "Nothing (CMF)",
+      "format": "intra-auriculaire",
+      "prix_usd": 49,
+      "prix_note": "Prix approximatif relevé dans la synthèse (~49 $, marché américain). Prix et disponibilité en France non vérifiés.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "budget",
+          "rang": 1,
+          "sur": 7,
+          "segment": "Meilleure recommandation",
+          "badge": "MEILLEURE RECOMMANDATION"
+        },
+        {
+          "liste": "appels",
+          "rang": 2,
+          "categorie": "Écouteurs budget (< 50 $)",
+          "segment": "Challenger des appels : Écouteurs budget (< 50 $)"
+        }
+      ],
+      "points_forts": [
+        "Molette sur le boîtier",
+        "Basses profondes",
+        "ANC efficace"
+      ],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=CMF%20Buds%20Pro%202",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "soundpeats-capsule3-pro",
+      "nom": "SoundPEATS Capsule3 Pro+",
+      "marque": "SoundPEATS",
+      "format": "intra-auriculaire",
+      "prix_usd": 48,
+      "prix_note": "Prix approximatif relevé dans la synthèse (~48 $, marché américain). Prix et disponibilité en France non vérifiés.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "budget",
+          "rang": 2,
+          "sur": 7,
+          "segment": "Meilleur son audiophile",
+          "badge": "MEILLEUR SON AUDIOPHILE"
+        }
+      ],
+      "points_forts": [
+        "Driver MEMS",
+        "Son Hi-Res LDAC",
+        "Clarté des aigus"
+      ],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=SoundPEATS%20Capsule3%20Pro%2B",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "moondrop-space-travel-2",
+      "nom": "Moondrop Space Travel 2",
+      "marque": "Moondrop",
+      "format": "intra-auriculaire",
+      "prix_usd": 35,
+      "prix_note": "Prix approximatif relevé dans la synthèse (~35 $, marché américain). Prix et disponibilité en France non vérifiés.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "budget",
+          "rang": 3,
+          "sur": 7,
+          "segment": "Rapport qualité/prix",
+          "badge": "RAPPORT QUALITÉ/PRIX"
+        }
+      ],
+      "points_forts": [
+        "Acoustique neutre",
+        "Style Anime/Cyber",
+        "Mode Latence Faible"
+      ],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Moondrop%20Space%20Travel%202",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "tozo-nc7-2026-edition",
+      "nom": "Tozo NC7 (2026 Edition)",
+      "marque": "Tozo",
+      "format": "intra-auriculaire",
+      "prix_usd": 39,
+      "prix_note": "Prix approximatif relevé dans la synthèse (~39 $, marché américain). Prix et disponibilité en France non vérifiés.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "budget",
+          "rang": 4,
+          "sur": 7,
+          "segment": "Polyvalence / Endurance",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Autonomie massive",
+        "Application complète",
+        "Solide construction"
+      ],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Tozo%20NC7%20(2026%20Edition)",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "qcy-ht05-melobuds",
+      "nom": "QCY HT05 Melobuds",
+      "marque": "QCY",
+      "format": "intra-auriculaire",
+      "prix_usd": 28,
+      "prix_note": "Prix approximatif relevé dans la synthèse (~28 $, marché américain). Prix et disponibilité en France non vérifiés.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "budget",
+          "rang": 5,
+          "sur": 7,
+          "segment": "Ultra-petit budget",
+          "badge": null
+        },
+        {
+          "liste": "appels",
+          "rang": 1,
+          "categorie": "Écouteurs budget (< 50 $)",
+          "segment": "Gagnant absolu des appels : Écouteurs budget (< 50 $)"
+        }
+      ],
+      "points_forts": [
+        "Prix imbattable",
+        "Réduction de bruit correcte",
+        "6 micros"
+      ],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=QCY%20HT05%20Melobuds",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "anker-soundcore-p40i",
+      "nom": "Anker Soundcore P40i",
+      "marque": "Anker",
+      "format": "intra-auriculaire",
+      "prix_usd": 45,
+      "prix_note": "Prix approximatif relevé dans la synthèse (~45 $, marché américain). Prix et disponibilité en France non vérifiés.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "budget",
+          "rang": 6,
+          "sur": 7,
+          "segment": "Usage média / Transport",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Boîtier support de téléphone",
+        "BASSUP puissant"
+      ],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Anker%20Soundcore%20P40i",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "baseus-bowie-ma10",
+      "nom": "Baseus Bowie MA10",
+      "marque": "Baseus",
+      "format": "intra-auriculaire",
+      "prix_usd": 25,
+      "prix_note": "Prix approximatif relevé dans la synthèse (~25 $, marché américain). Prix et disponibilité en France non vérifiés.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "budget",
+          "rang": 7,
+          "sur": 7,
+          "segment": "Sport & entraînement",
+          "badge": null
+        }
+      ],
+      "points_forts": [
+        "Pression ANC extrême",
+        "Résistance à l’eau IPX6"
+      ],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Baseus%20Bowie%20MA10",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "technics-eah-a800-a1000",
+      "nom": "Technics EAH-A800 / A1000",
+      "marque": "Technics",
+      "format": "casque",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "appels",
+          "rang": 1,
+          "categorie": "Casques premium (over-ear)",
+          "segment": "Gagnant absolu des appels : Casques premium (over-ear)"
+        }
+      ],
+      "points_forts": [],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Technics%20EAH-A800%20%2F%20A1000",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "sony-wh-1000xm5",
+      "nom": "Sony WH-1000XM5",
+      "marque": "Sony",
+      "format": "casque",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "appels",
+          "rang": 2,
+          "categorie": "Casques premium (over-ear)",
+          "segment": "Challenger des appels : Casques premium (over-ear)"
+        }
+      ],
+      "points_forts": [],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Sony%20WH-1000XM5",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "anker-soundcore-space-one-pro",
+      "nom": "Anker Soundcore Space One Pro",
+      "marque": "Anker",
+      "format": "casque",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "appels",
+          "rang": 1,
+          "categorie": "Casques budget (< 100 $)",
+          "segment": "Gagnant absolu des appels : Casques budget (< 100 $)"
+        }
+      ],
+      "points_forts": [],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Anker%20Soundcore%20Space%20One%20Pro",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "edifier-wh950nb",
+      "nom": "Edifier WH950NB",
+      "marque": "Edifier",
+      "format": "casque",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "fiche": "classement",
+      "classements": [
+        {
+          "liste": "appels",
+          "rang": 2,
+          "categorie": "Casques budget (< 100 $)",
+          "segment": "Challenger des appels : Casques budget (< 100 $)"
+        }
+      ],
+      "points_forts": [],
+      "points_faibles": [],
+      "caracteristiques": {},
+      "notes": {},
+      "source": "picky-synthese-2026",
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": null,
+        "micro": null,
+        "ip": null,
+        "ergonomie": null,
+        "prix": null
+      },
+      "profil_scores": {},
+      "profil_couverture": {},
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Edifier%20WH950NB",
+      "date_verification": "2026-10"
     }
   ],
+  "classements": [
+    {
+      "id": "top10",
+      "titre": "Top 10 des écouteurs premium",
+      "video": 1,
+      "intro": "Marché des écouteurs True Wireless premium, avec le système de score personnalisé de la chaîne.",
+      "lignes": [
+        {
+          "rang": 1,
+          "modele": "huawei-freebuds-pro-5",
+          "points_forts": "ANC numéro 1, micros ultra-nettoyés",
+          "point_faible": "Disponibilité limitée US",
+          "segment": "Vainqueur absolu",
+          "badge": "VAINQUEUR ABSOLU"
+        },
+        {
+          "rang": 2,
+          "modele": "apple-airpods-pro-3",
+          "points_forts": "Intégration iOS, Transparence native",
+          "point_faible": "Autonomie moyenne sur Android",
+          "segment": "Top iOS",
+          "badge": "TOP IOS"
+        },
+        {
+          "rang": 3,
+          "modele": "sony-wf-1000xm6",
+          "points_forts": "Signature sonore audiophile, LDAC",
+          "point_faible": "Boîtier plus imposant",
+          "segment": "Top audiophile",
+          "badge": "TOP AUDIOPHILE"
+        },
+        {
+          "rang": 4,
+          "modele": "samsung-galaxy-buds4-pro",
+          "points_forts": "Design ergonomique, micro AI voice",
+          "point_faible": "Fonctions bridées hors Samsung",
+          "segment": "Top écosystème Android",
+          "badge": null
+        },
+        {
+          "rang": 5,
+          "modele": "technics-eah-az100",
+          "points_forts": "Rendu naturel, multipoint 3 appareils",
+          "point_faible": "ANC légèrement en retrait / Sony",
+          "segment": "Excellence musicale",
+          "badge": null
+        },
+        {
+          "rang": 6,
+          "modele": "sennheiser-momentum-tw4",
+          "points_forts": "Dynamique des basses, aptX Lossless",
+          "point_faible": "Microphone sensible au vent",
+          "segment": "Rendu Hi-Fi",
+          "badge": null
+        },
+        {
+          "rang": 7,
+          "modele": "bose-quietcomfort-ultra",
+          "points_forts": "Isolation passive & ANC imbattable",
+          "point_faible": "Qualité micro en appel moyenne",
+          "segment": "Voyage / Confort",
+          "badge": null
+        },
+        {
+          "rang": 8,
+          "modele": "nothing-ear-3",
+          "points_forts": "Design transparent, Égaliseur avancé",
+          "point_faible": "Autonomie avec ANC activé",
+          "segment": "Design & customization",
+          "badge": null
+        },
+        {
+          "rang": 9,
+          "modele": "oneplus-buds-4",
+          "points_forts": "Rapport Q/P, charge ultra-rapide",
+          "point_faible": "Commandes tactiles parfois sensibles",
+          "segment": "Challenger flagship",
+          "badge": null
+        },
+        {
+          "rang": 10,
+          "modele": "soundcore-liberty-5-pro",
+          "points_forts": "Prix accessible, boîtier à écran tactile",
+          "point_faible": "Finition plastique",
+          "segment": "Rapport performance/prix",
+          "badge": null
+        }
+      ],
+      "verdict": "Le HUAWEI FreeBuds Pro 5 crée la surprise en détrônant Apple et Sony sur le score global grâce à une réduction de bruit inégalée et à un traitement algorithmique des voix qui élimine tout bruit ambiant en appel."
+    },
+    {
+      "id": "budget",
+      "titre": "Écouteurs sous 50 $",
+      "video": 2,
+      "intro": "Sélection et classement des meilleurs écouteurs True Wireless abordables sous le seuil de 50 $.",
+      "lignes": [
+        {
+          "rang": 1,
+          "modele": "cmf-buds-pro-2",
+          "prix_usd": 49,
+          "points_forts": "Molette sur le boîtier, Basses profondes, ANC efficace",
+          "segment": "Meilleure recommandation",
+          "badge": "MEILLEURE RECOMMANDATION"
+        },
+        {
+          "rang": 2,
+          "modele": "soundpeats-capsule3-pro",
+          "prix_usd": 48,
+          "points_forts": "Driver MEMS, Son Hi-Res LDAC, Clarté des aigus",
+          "segment": "Meilleur son audiophile",
+          "badge": "MEILLEUR SON AUDIOPHILE"
+        },
+        {
+          "rang": 3,
+          "modele": "moondrop-space-travel-2",
+          "prix_usd": 35,
+          "points_forts": "Acoustique neutre, Style Anime/Cyber, Mode Latence Faible",
+          "segment": "Rapport qualité/prix",
+          "badge": "RAPPORT QUALITÉ/PRIX"
+        },
+        {
+          "rang": 4,
+          "modele": "tozo-nc7-2026-edition",
+          "prix_usd": 39,
+          "points_forts": "Autonomie massive, Application complète, Solide construction",
+          "segment": "Polyvalence / Endurance",
+          "badge": null
+        },
+        {
+          "rang": 5,
+          "modele": "qcy-ht05-melobuds",
+          "prix_usd": 28,
+          "points_forts": "Prix imbattable, Réduction de bruit correcte, 6 micros",
+          "segment": "Ultra-petit budget",
+          "badge": null
+        },
+        {
+          "rang": 6,
+          "modele": "anker-soundcore-p40i",
+          "prix_usd": 45,
+          "points_forts": "Boîtier support de téléphone, BASSUP puissant",
+          "segment": "Usage média / Transport",
+          "badge": null
+        },
+        {
+          "rang": 7,
+          "modele": "baseus-bowie-ma10",
+          "prix_usd": 25,
+          "points_forts": "Pression ANC extrême, Résistance à l’eau IPX6",
+          "segment": "Sport & entraînement",
+          "badge": null
+        }
+      ],
+      "verdict": "Le CMF Buds Pro 2 (Nothing) redéfinit le segment sous 50 $ : molette rotative physique personnalisable sur le boîtier (Smart Dial) et double driver dynamique (11 mm + 6 mm planar) pour une clarté et un punch rares à ce prix."
+    },
+    {
+      "id": "appels",
+      "titre": "Appels et microphones",
+      "video": 3,
+      "intro": "Test comparatif des microphones en environnement bruyant (vent, trafic, café) pour casques et écouteurs.",
+      "lignes": [
+        {
+          "categorie": "Casques premium (over-ear)",
+          "gagnant": "technics-eah-a800-a1000",
+          "challenger": "sony-wh-1000xm5",
+          "cle": "Technologie JustMyVoice™ (8 micros + suppression de bruit ambiant)"
+        },
+        {
+          "categorie": "Écouteurs premium (in-ear)",
+          "gagnant": "huawei-freebuds-pro-5",
+          "challenger": "apple-airpods-pro-3",
+          "cle": "Capteur de conduction osseuse + AI DNN voice pickup"
+        },
+        {
+          "categorie": "Casques budget (< 100 $)",
+          "gagnant": "anker-soundcore-space-one-pro",
+          "challenger": "edifier-wh950nb",
+          "cle": "Algorithme d’élimination des bruits constants (moteur, trafic)"
+        },
+        {
+          "categorie": "Écouteurs budget (< 50 $)",
+          "gagnant": "qcy-ht05-melobuds",
+          "challenger": "cmf-buds-pro-2",
+          "cle": "Disposition des micros dirigée vers la bouche avec rejet du vent"
+        }
+      ],
+      "verdict": "Pour des appels clairs en extérieur, la taille du haut-parleur importe peu : c’est la combinaison d’un capteur de conduction osseuse (VPU) et d’un réseau de microphones à formation de faisceau (beamforming), couplé à un traitement IA, qui sépare une voix étouffée d’une voix limpide."
+    }
+  ],
+  "syntheses": {
+    "top_overall": {
+      "modele": "huawei-freebuds-pro-5",
+      "libelle": "Top Overall",
+      "ligne": "Meilleur écouteur polyvalent"
+    },
+    "top_budget": {
+      "modele": "cmf-buds-pro-2",
+      "libelle": "Top Budget",
+      "ligne": "Roi du sub-50 $"
+    },
+    "top_appels": {
+      "modele": "technics-eah-a800-a1000",
+      "libelle": "Top Appels",
+      "ligne": "Casque clarté voix"
+    },
+    "note": "Sur iOS, l’intégration des AirPods Pro 3 reste insurpassable. Pour les utilisateurs Android ou multi-plateformes qui cherchent la performance brute (ANC, son, micro), le trio HUAWEI FreeBuds Pro 5 (haut de gamme), Technics EAH-A800 (casque) et CMF Buds Pro 2 (petit budget) offre le meilleur rapport qualité-prix en 2026."
+  },
+  "technologies": [
+    {
+      "titre": "Les drivers MEMS se démocratisent",
+      "texte": "Les haut-parleurs à semi-conducteurs (MEMS), comme sur le SoundPEATS Capsule3 Pro+, apportent une précision dans les hautes fréquences autrefois réservée aux écouteurs de plus de 200 $.",
+      "ref": "Vidéo 2"
+    },
+    {
+      "titre": "ANC sous 50 $",
+      "texte": "D’après la synthèse, la réduction active de bruit atteint désormais -45 dB sur cette tranche de prix ; la gestion du bruit de vent reste perfectible face aux modèles haut de gamme. Chiffre rapporté par la source, non mesuré par le guide.",
+      "ref": "Vidéo 2"
+    },
+    {
+      "titre": "Micros : conduction osseuse + beamforming",
+      "texte": "Pour des appels clairs dehors, ce qui compte est le capteur de conduction osseuse (VPU), le réseau de micros à formation de faisceau et le traitement IA, pas la taille du haut-parleur.",
+      "ref": "Vidéo 3"
+    }
+  ],
+  "choix_par_usage": {
+    "transport": [
+      {
+        "modele": "bose-quietcomfort-ultra",
+        "raison": "Voyage / Confort : isolation passive et ANC imbattable",
+        "ref": "Top 10 · 7ᵉ"
+      },
+      {
+        "modele": "huawei-freebuds-pro-5",
+        "raison": "ANC numéro 1",
+        "ref": "Top 10 · 1ᵉʳ"
+      },
+      {
+        "modele": "anker-soundcore-p40i",
+        "raison": "Usage média / Transport",
+        "ref": "Sous 50 $ · 6ᵉ"
+      }
+    ],
+    "sport": [
+      {
+        "modele": "baseus-bowie-ma10",
+        "raison": "Sport & entraînement : pression ANC extrême, IPX6",
+        "ref": "Sous 50 $ · 7ᵉ"
+      },
+      {
+        "modele": "anker-soundcore-liberty-buds-2",
+        "raison": "Maintien sport, 1ʳᵉ place du comparatif confort et maintien",
+        "ref": "Banc d’essai"
+      },
+      {
+        "modele": "roseselsa-ceramics-ultra",
+        "raison": "Excellente tenue à la course, IP64",
+        "ref": "Banc d’essai"
+      }
+    ],
+    "bureau": [
+      {
+        "modele": "technics-eah-a800-a1000",
+        "raison": "Casques premium : gagnant des appels (JustMyVoice™)",
+        "ref": "Appels"
+      },
+      {
+        "modele": "huawei-freebuds-pro-5",
+        "raison": "Écouteurs premium : gagnant des appels",
+        "ref": "Appels"
+      },
+      {
+        "modele": "anker-soundcore-space-one-pro",
+        "raison": "Casques budget : gagnant des appels",
+        "ref": "Appels"
+      },
+      {
+        "modele": "qcy-ht05-melobuds",
+        "raison": "Écouteurs budget : gagnant des appels",
+        "ref": "Appels"
+      }
+    ],
+    "son": [
+      {
+        "modele": "sony-wf-1000xm6",
+        "raison": "Top audiophile : signature sonore audiophile, LDAC",
+        "ref": "Top 10 · 3ᵉ"
+      },
+      {
+        "modele": "soundpeats-capsule3-pro",
+        "raison": "Meilleur son audiophile sous 50 $ : driver MEMS, LDAC",
+        "ref": "Sous 50 $ · 2ᵉ"
+      },
+      {
+        "modele": "technics-eah-az100",
+        "raison": "Excellence musicale : rendu naturel",
+        "ref": "Top 10 · 5ᵉ"
+      },
+      {
+        "modele": "sennheiser-momentum-tw4",
+        "raison": "Rendu Hi-Fi : aptX Lossless",
+        "ref": "Top 10 · 6ᵉ"
+      },
+      {
+        "modele": "nothing-headphone-1-pro",
+        "raison": "Ambiance audiophile high-tech",
+        "ref": "Banc d’essai"
+      }
+    ],
+    "budget": [
+      {
+        "modele": "cmf-buds-pro-2",
+        "raison": "Meilleure recommandation sous 50 $",
+        "ref": "Sous 50 $ · 1ᵉʳ"
+      },
+      {
+        "modele": "moondrop-space-travel-2",
+        "raison": "Rapport qualité/prix",
+        "ref": "Sous 50 $ · 3ᵉ"
+      },
+      {
+        "modele": "tozo-nc7-2026-edition",
+        "raison": "Polyvalence et endurance",
+        "ref": "Sous 50 $ · 4ᵉ"
+      },
+      {
+        "modele": "qcy-ht05-melobuds",
+        "raison": "Ultra-petit budget",
+        "ref": "Sous 50 $ · 5ᵉ"
+      },
+      {
+        "modele": "roseselsa-ceramics-ultra",
+        "raison": "Champion à moins de 50 $ (banc d’essai)",
+        "ref": "Banc d’essai"
+      }
+    ]
+  },
   "criteres": [
     {
       "id": "anc",

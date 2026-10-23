@@ -45,7 +45,9 @@ Le podium affiché est celui de la vidéo ; les notes par usage combinent mesure
 
 Le testeur n'applique pas les mêmes critères à chaque modèle : un critère sans note ni mesure reste `null` (non noté), la couverture baisse, la note par usage est plafonnée et marquée provisoire. Cas notable : l'Anker n'a que deux critères rattachés à un rang (confort 1ᵉʳ, micro « juste derrière les Galaxy Buds 4 Pro » = 2ᵉ, rang déduit et signalé comme tel).
 
-**Limites** : une source, trois modèles, une sélection et non un classement du marché ; rangs « 4ᵉ/100 » et « 67ᵉ/100 » cités sans effectif ; prix en dollars non vérifiés en France.
+**Deuxième source (23 octobre 2026)** : « Guide Comparatif & Rankings Écouteurs / Casques 2026 » (synthèse de 3 pages sur trois vidéos de la chaîne) apporte trois classements **sans note chiffrée** : Top 10 des écouteurs premium, comparatif sous 50 $ (prix approximatifs), test des micros en environnement bruyant (gagnants et challengers par catégorie), plus une note d'achat et trois points techniques. Ils sont repris tels qu'écrits (rangs, points forts, limites, libellés). Les 21 modèles qui n'y figurent que par un rang n'ont **ni note par critère ni note par usage** : le moteur exige au moins deux critères documentés hors prix. Les « choix de la source par usage » viennent des libellés de segment (ex. « Voyage / Confort », « Sport & entraînement », « Meilleur son audiophile »), cités avec leur rang. Les identifiants de vidéo présents dans la synthèse n'ont pas été vérifiés et ne sont pas reproduits.
+
+**Limites** : deux documents d'une même chaîne ; trois modèles notés en détail, 21 autres cités par leur rang ; les trois classements ne sont pas comparables entre eux ; rangs « 4ᵉ/100 » et « 67ᵉ/100 » cités sans effectif ; la valeur « -45 dB d'ANC sous 50 $ » est rapportée par la source, non mesurée ; prix en dollars non vérifiés en France.
 
 ## Pages
 
