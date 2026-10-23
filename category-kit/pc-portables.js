@@ -27,6 +27,7 @@
       "neuf reconditionne occasion garantie ans de du des le la les un une et avec pour en version francaise edition " +
       "pc portable ordinateur laptop notebook windows azerty clavier pouces pouce inch go gb to tb ssd ram").split(" "),
     softPatterns: [],
+    modelCode: /\b([a-z]{1,3}\d{3,5}(?:-\d{2,3})?)([a-z]{0,4})\b/,
     aliasMerges: [[/\bmac\s+book\b/g, "macbook"]],
     bareNumberNoise: /^(?:8|16|24|32|36|48|64|128|256|512|1024|2048)$/,
     comboPattern: /\b\d{1,2}\s?(?:go|gb)?\s*[+\/]\s*\d{2,4}\s?(?:go|gb|to|tb)?\b/g,

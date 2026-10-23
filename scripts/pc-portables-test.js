@@ -334,6 +334,17 @@ function check(label, fn) {
     assert.ok(!calls.includes('gsmarena') && !calls.includes('phonesdata') && !calls.includes('kimovil'), 'sources smartphone appelées : ' + calls.join(','));
   });
 
+  await check('Vivobook série M : une fiche série X est refusée, la référence M1502NAQ ≈ M1502NA', async () => {
+    const pc = kit.get('pc-portables');
+    const asked = 'ASUS Vivobook M1502NAQ BQ047W 15 6 inch processeur';
+    assert.equal(identity.compare('Asus Vivobook 15 X1504ZA', asked, pc).verdict, 'different');
+    assert.equal(identity.compare('Asus Vivobook 15 M1502YA', asked, pc).verdict, 'different');
+    assert.equal(identity.compare('Asus Vivobook 15 M1502NA', asked, pc).verdict, 'same');
+    assert.equal(identity.compare('Acer Aspire A315-58', 'Acer Aspire A315-59', pc).verdict, 'different');
+    const qs = notebookcheck.searchQueries(asked, pc);
+    assert.deepEqual(qs, ['ASUS Vivobook m1502naq', 'ASUS Vivobook m1502na']);
+  });
+
   console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
   if (failures) process.exitCode = 1;
 })();

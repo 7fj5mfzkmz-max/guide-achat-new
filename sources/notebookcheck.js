@@ -153,6 +153,25 @@ function normalizeQuery(s) {
   return String(s || '').replace(/\s+/g, ' ').trim();
 }
 
+/* Requête de recherche épurée. Un titre ou un slug marchand mêle au modèle un code
+   de coloris/région (« -BQ047W »), la diagonale et du jargon (« 15.6 inch processeur ») :
+   ce bruit fait dériver le moteur vers une série voisine (Vivobook X au lieu de M).
+   On garde « marque + famille + référence » et on essaie aussi la référence sans
+   son suffixe de marché (M1502NAQ → M1502NA), que NotebookCheck indexe parfois ainsi. */
+function searchQueries(query, profile) {
+  const clean = normalizeQuery(query);
+  const codes = identity.codesOf(clean, profile || undefined);
+  if (!codes.length) return [clean];
+  const code = codes[0];
+  const full = code.root + code.suffix;
+  const m = clean.toLowerCase().indexOf(full);
+  const head = (m > 0 ? clean.slice(0, m) : clean).replace(/\b\d+(?:[.,]\d+)?\s?(?:"|pouces?|po|inch)\b/gi, ' ');
+  const base = normalizeQuery(head).replace(/\b(?:pc|portable|ordinateur|laptop|notebook)\b/gi, ' ').replace(/\s+/g, ' ').trim();
+  const out = [normalizeQuery(base + ' ' + full)];
+  if (code.suffix.length > 1) out.push(normalizeQuery(base + ' ' + code.root + code.suffix.slice(0, -1)));
+  return out;
+}
+
 /* Résout un nom de modèle en fiche NotebookCheck vérifiée.
    Renvoie { found, name, specs, specSources, url, confidence } ou { found: false, error }.
    Le nom de la fiche doit être identique au nom demandé (identity.compare 'same') :
@@ -195,11 +214,15 @@ async function resolve(raw, options) {
   const query = normalizeQuery(raw);
   if (query.length < 3) return { found: false, error: 'nom trop court' };
 
-  const candidates = await searchCandidates('site:notebookcheck.biz ' + query, timeout);
-  const pages = candidates.map((c) => c.url).filter(isProductPage).slice(0, 3);
+  const profile = opts.profile || null;
+  const pages = [];
+  for (const q of searchQueries(query, profile)) {
+    const candidates = await searchCandidates('site:notebookcheck.biz ' + q, timeout);
+    candidates.map((c) => c.url).filter(isProductPage).forEach((u) => { if (pages.indexOf(u) < 0 && pages.length < 4) pages.push(u); });
+    if (pages.length >= 3) break;
+  }
   if (!pages.length) return { found: false, error: 'aucune fiche NotebookCheck trouvée' };
 
-  const profile = opts.profile || null;
   for (const url of pages) {
     let r;
     try { r = await net.fetchHtml(url, { timeout }); } catch (_) { continue; }
@@ -238,6 +261,7 @@ async function resolve(raw, options) {
 module.exports = {
   resolve: resolve,
   searchCandidates: searchCandidates,
+  searchQueries: searchQueries,
   parseSpecsTable: parseSpecsTable,
   parseDdgResults: parseDdgResults,
   parseBingResults: parseBingResults,

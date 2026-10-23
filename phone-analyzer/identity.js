@@ -80,12 +80,35 @@
   }
   function isNum(t) { return /^\d+$/.test(t); }
 
+  /* Références constructeur (M1502NA, X1504ZA, UX3402…) : propres aux profils qui déclarent
+     modelCode. « M1502NAQ » et « M1502NA » désignent le même modèle (suffixe de marché),
+     « M1502 » et « X1504 » jamais. Un titre marchand colle souvent un code de coloris/région
+     (« -BQ047W ») : il n'est pas lu comme une référence. */
+  var NOT_CODE = /^(?:rtx|gtx|rx|gt|gts|mx|arc|ddr|lpddr|ssd|usb|wifi|ips|oled|hdmi|uhd|fhd|wuxga|qhd|hd|wh|mah)\d/;
+  function codesOf(text, profile) {
+    if (!profile.modelCode) return [];
+    var re = new RegExp(profile.modelCode.source, "g"), t = strip(text), out = [], m;
+    while ((m = re.exec(t))) { if (!NOT_CODE.test(m[0])) out.push({ root: m[1], suffix: m[2] || "" }); }
+    return out;
+  }
+  function codeVerdict(label, text, profile) {
+    var cl = codesOf(label, profile), ct = codesOf(text, profile);
+    if (!cl.length || !ct.length) return null;
+    var ok = cl.some(function (a) { return ct.some(function (b) {
+      return a.root === b.root && (a.suffix.indexOf(b.suffix) === 0 || b.suffix.indexOf(a.suffix) === 0);
+    }); });
+    return ok ? { verdict: "same", reason: "même référence constructeur" }
+              : { verdict: "different", reason: "référence constructeur différente (" + cl[0].root + cl[0].suffix + " / " + ct[0].root + ct[0].suffix + ")" };
+  }
+
   /* compare(label, text) : label = nom propre (catalogue, référentiel) ; text = libellé à vérifier (peut être bruyant). */
   function compare(label, text, profileOpt) {
     var profile = profileOf(profileOpt);
     var bl = brandOf(label, profile), bt = brandOf(text, profile);
     if (!bl || !bt) return { verdict: "unknown", reason: "fabricant absent ou ambigu" };
     if (bl !== bt) return { verdict: "different", reason: "fabricants différents (" + bl + " / " + bt + ")" };
+    var byCode = codeVerdict(label, text, profile);
+    if (byCode) return byCode;
     var L = tokens(label, profile), T = tokens(text, profile);
     if (!L.words.length || !T.words.length) return { verdict: "unknown", reason: "aucun élément de modèle exploitable" };
     if (L.soft.length && T.soft.length && !L.soft.some(function (s) { return T.soft.indexOf(s) >= 0; })) return { verdict: "different", reason: "connectivité différente" };
@@ -157,7 +180,7 @@
     return out.slice(0, 5);
   }
 
-  var api = { brandOf: brandOf, tokens: tokens, compare: compare, compareHint: compare, verifyReference: verifyReference, isValidGtin: isValidGtin, cleanGtin: cleanGtin, gtinsInHtml: gtinsInHtml };
+  var api = { brandOf: brandOf, codesOf: codesOf, tokens: tokens, compare: compare, compareHint: compare, verifyReference: verifyReference, isValidGtin: isValidGtin, cleanGtin: cleanGtin, gtinsInHtml: gtinsInHtml };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.PhoneAnalyzerIdentity = api;
 })(typeof window !== "undefined" ? window : globalThis);
