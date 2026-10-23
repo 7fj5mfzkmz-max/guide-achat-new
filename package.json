@@ -23,7 +23,8 @@
     "pc:catalogue-test": "node scripts/pc-catalogue-test.js",
     "pc:ui-test": "node scripts/pc-questionnaire-ui-test.js && node scripts/pc-guide-ui-test.js",
     "pc:amazon-test": "node scripts/pc-amazon-extraction-test.js",
-    "projecteurs:test": "node scripts/projecteurs-test.js"
+    "projecteurs:test": "node scripts/projecteurs-test.js",
+    "ecouteurs:build": "node tools/ecouteurs/construire.js && python3 tools/categories/pages.py"
   },
   "engines": {
     "node": ">=20"

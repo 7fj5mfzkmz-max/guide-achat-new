@@ -1,7 +1,310 @@
 {
   "categorie": "ecouteurs",
-  "statut": "guide",
-  "produits": [],
+  "statut": "catalogue",
+  "source": {
+    "id": "picky-audio-2026",
+    "titre": "Banc d’Essai Audio : Sélection Picky Audio (2026)",
+    "chaine": "Picky Audio",
+    "support": "Tests approfondis en laboratoire et mesures d’écouteurs et de casques, lus via leur retranscription fournie au projet (3 pages, horodatages)",
+    "portee": "Trois modèles de la sélection de la chaîne : un écouteur à moins de 50 $, un casque haut de gamme et un écouteur de sport. Ce n’est pas un classement du marché."
+  },
+  "produits": [
+    {
+      "id": "nothing-headphone-1-pro",
+      "nom": "Nothing Headphone (1) Pro",
+      "marque": "Nothing",
+      "format": "casque",
+      "prix_usd": 299,
+      "prix_note": "Prix indicatif d’environ 299 $ dans la source (marché américain). Prix et disponibilité en France non vérifiés.",
+      "score_source": 90.3,
+      "rang_source": 4,
+      "rang_source_note": "La source écrit « 4ᵉ/100 » sans préciser le nombre de modèles classés.",
+      "titre_source": "L’ambiance audiophile high-tech",
+      "caracteristiques": {
+        "ip": "IP52",
+        "poids_g": 328,
+        "autonomie_anc_h": 30,
+        "autonomie_note": "Valeur donnée par le test, avec ANC ; en baisse face à la génération précédente à cause du système à trois voies.",
+        "charge_rapide": "5 min de charge = 4 h d’écoute",
+        "bluetooth": "6.1",
+        "codecs": [
+          "LDAC",
+          "LC3 (LE Audio)"
+        ],
+        "extras": [
+          "Mode Broadcast",
+          "Écoute USB-C 24 bits / 192 kHz",
+          "Prise jack 3,5 mm"
+        ],
+        "transducteurs": "3 voies : 40 mm + médiums + xMEMS dédié aux aigus",
+        "egaliseur": "Paramétrique 8 bandes ou interrupteur « Flat »",
+        "materiaux": "Aluminium, verre Gorilla Glass 9H, coussinets ultra-doubles",
+        "commandes": "Molette haptique, palettes physiques, bouton personnalisable (ChatGPT), capteur de port"
+      },
+      "notes": {
+        "son": {
+          "note10": 9.25,
+          "minute": "00:12:22",
+          "texte": "Profil en V d’origine, modifiable via l’égaliseur paramétrique 8 bandes ou l’interrupteur « Flat »."
+        },
+        "anc": {
+          "note10": 9.1,
+          "minute": "00:12:59",
+          "texte": "Bond en isolation : suppression efficace des bruits de cabine et des voix, zéro souffle."
+        },
+        "transparence": {
+          "note10": 9.5,
+          "minute": "00:14:14",
+          "texte": "Restitution très naturelle, presque sans effet d’occlusion ni de distorsion."
+        },
+        "autonomie": {
+          "note10": 7.5,
+          "minute": "00:07:43",
+          "texte": "30 h avec ANC, en baisse face à la génération précédente ; charge rapide : 5 min = 4 h."
+        },
+        "codec": {
+          "note10": 9.5,
+          "minute": "00:09:21",
+          "texte": "Bluetooth 6.1, LDAC, LC3 LE Audio, mode Broadcast, écoute USB-C 24 bits / 192 kHz et prise jack 3,5 mm."
+        },
+        "ergonomie": {
+          "note10": 9.63,
+          "minute": "00:08:19",
+          "texte": "Commandes : molette haptique, palettes physiques, bouton personnalisable (10/10). Fabrication et design : aluminium, Gorilla Glass 9H, coussinets ultra-doubles, IP52 (9,25/10, 00:06:12).",
+          "detail10": [
+            10,
+            9.25
+          ]
+        }
+      },
+      "points_forts": [
+        "Réduction de bruit et transparence parmi les meilleures de la sélection (9,1 et 9,5 sur 10)",
+        "Commandes physiques et finition haut de gamme",
+        "Connectique la plus complète : LDAC, LE Audio, USB audio, jack",
+        "Rendu spatial à trois voies"
+      ],
+      "points_faibles": [
+        "Poids de 328 g",
+        "Autonomie de 30 h, en baisse face à la génération précédente",
+        "Résistance limitée (IP52)",
+        "299 $ environ"
+      ],
+      "scores": {
+        "son": 8.3,
+        "anc": 8.2,
+        "transparence": 8.6,
+        "autonomie": 6.8,
+        "codec": 8.6,
+        "confort": null,
+        "micro": null,
+        "ip": 4.5,
+        "ergonomie": 8.7,
+        "prix": 5
+      },
+      "profil_scores": {
+        "transport": 7.5,
+        "sport": 6,
+        "bureau": 6,
+        "son": 8,
+        "budget": 6.3
+      },
+      "profil_couverture": {
+        "transport": 0.74,
+        "sport": 0.67,
+        "bureau": 0.52,
+        "son": 0.82,
+        "budget": 0.72
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nothing%20Headphone%20(1)%20Pro",
+      "source": "picky-audio-2026",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "anker-soundcore-liberty-buds-2",
+      "nom": "Anker Soundcore Liberty Buds 2",
+      "marque": "Anker",
+      "format": "intra-auriculaire",
+      "prix_usd": 129,
+      "prix_note": "Prix indicatif d’environ 129 $ dans la source (marché américain). Prix et disponibilité en France non vérifiés.",
+      "score_source": null,
+      "rang_source": 7,
+      "rang_source_note": "Classement global : 7ᵉ place, mention « Top value » dans la synthèse de la source.",
+      "titre_source": "Le challenger flagship",
+      "caracteristiques": {
+        "ip": null,
+        "poids_g": 4.7,
+        "poids_note": "par écouteur",
+        "micros": "8 micros + IA",
+        "reduction_annoncee_db": 100,
+        "reduction_note": "Puce Anker AI « jusqu’à 100 dB de bruit ambiant » (valeur présentée par le test, non mesurée dans la source).",
+        "extras": [
+          "Ailettes optionnelles",
+          "Santé auditive : décibels reçus en temps réel et historique d’exposition"
+        ],
+        "egaliseur": "Disponible dans l’application (meilleur rendu audio d’Anker après réglage)",
+        "vent": "Réaction au vent avec 10 s de délai"
+      },
+      "notes": {
+        "confort": {
+          "rang": 1,
+          "minute": "00:02:00",
+          "texte": "1ʳᵉ place du comparatif confort et maintien : design ultraléger avec ailettes optionnelles, tenue parfaite pour le sport sans pression."
+        },
+        "micro": {
+          "rang": 2,
+          "minute": "00:05:27",
+          "rang_note": "Rang déduit de « classement juste derrière les Galaxy Buds 4 Pro ».",
+          "texte": "Puce Anker AI : jusqu’à 100 dB de bruit ambiant éliminé, classement juste derrière les Galaxy Buds 4 Pro."
+        }
+      },
+      "points_forts": [
+        "1ʳᵉ place du comparatif confort et maintien",
+        "Ultraléger : 4,7 g par écouteur",
+        "Isolation par IA et 8 micros",
+        "Suivi de la santé auditive"
+      ],
+      "points_faibles": [
+        "Réaction au vent lente (10 s de délai)"
+      ],
+      "scores": {
+        "son": null,
+        "anc": null,
+        "transparence": null,
+        "autonomie": null,
+        "codec": null,
+        "confort": 9,
+        "micro": 8.5,
+        "ip": null,
+        "ergonomie": null,
+        "prix": 7
+      },
+      "profil_scores": {
+        "transport": 6,
+        "sport": 6,
+        "bureau": 7.2,
+        "son": 6,
+        "budget": 7.2
+      },
+      "profil_couverture": {
+        "transport": 0.32,
+        "sport": 0.4,
+        "bureau": 0.54,
+        "son": 0.24,
+        "budget": 0.52
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Anker%20Soundcore%20Liberty%20Buds%202",
+      "source": "picky-audio-2026",
+      "date_verification": "2026-10"
+    },
+    {
+      "id": "roseselsa-ceramics-ultra",
+      "nom": "Roseselsa Ceramics Ultra",
+      "marque": "Roseselsa",
+      "format": "intra-auriculaire",
+      "prix_usd": 49,
+      "prix_note": "Moins de 50 $ (environ 49 $) dans la source (marché américain). Prix et disponibilité en France non vérifiés.",
+      "score_source": 77.8,
+      "rang_source": 67,
+      "rang_source_note": "La source écrit « 67ᵉ/100 » sans préciser le nombre de modèles classés ; présenté comme le champion à moins de 50 $.",
+      "titre_source": "Le champion à moins de 50 $",
+      "caracteristiques": {
+        "ip": "IP64",
+        "volume_max_db": 124.8,
+        "autonomie_anc_h": 7.37,
+        "autonomie_note": "7 h 22 mesurées avec ANC.",
+        "bluetooth": "6.0",
+        "codecs": [
+          "SBC",
+          "AAC",
+          "LDAC",
+          "LHDC 5.0"
+        ],
+        "multipoint": true,
+        "mode_jeu": "Mode jeu à bas débit (latence non chiffrée)",
+        "egaliseur": "10 bandes",
+        "charge_sans_fil": false,
+        "charge_rapide": false,
+        "embouts": "Silicone et mousse",
+        "finition": "Plastique simple"
+      },
+      "notes": {
+        "son": {
+          "note10": 8,
+          "minute": "00:01:17",
+          "texte": "Son d’origine très dynamique, certifié Metal ; égaliseur 10 bandes efficace pour adoucir les aigus durs."
+        },
+        "confort": {
+          "note10": 8,
+          "minute": "00:05:06",
+          "texte": "Très légers, ajustement profond avec une légère sensation de succion (8/10) ; excellente tenue à la course (8/10, 00:05:23).",
+          "detail10": [
+            8,
+            8
+          ]
+        },
+        "autonomie": {
+          "note10": 8,
+          "minute": "00:06:20",
+          "texte": "7 h 22 réelles avec ANC ; ni charge sans fil ni charge rapide. Note « boîtier et batterie » du testeur."
+        },
+        "codec": {
+          "note10": 8.5,
+          "minute": "00:07:39",
+          "texte": "Bluetooth 6.0, SBC, AAC, LDAC, LHDC 5.0, multipoint rapide et mode jeu à bas débit."
+        },
+        "anc": {
+          "note10": 7.3,
+          "minute": "00:10:16",
+          "texte": "Basses fréquences bien isolées ; limite sur les voix et les bruits aigus ; sensible au vent. Note « ANC et transparence » du testeur."
+        },
+        "micro": {
+          "note10": 7.5,
+          "minute": "00:08:26",
+          "texte": "Intelligible en intérieur calme ; peine face au vent et aux bruits urbains soutenus."
+        }
+      },
+      "points_forts": [
+        "Puissance sonore : 124,8 dB au maximum",
+        "Codecs rares à ce prix : LDAC et LHDC 5.0",
+        "Excellente tenue à la course, IP64",
+        "Moins de 50 $"
+      ],
+      "points_faibles": [
+        "ANC moyenne sur les voix et les bruits aigus",
+        "Micro en difficulté face au vent et à la rue",
+        "Pas de charge sans fil ni rapide ; finition plastique simple"
+      ],
+      "scores": {
+        "son": 7.2,
+        "anc": 6.6,
+        "transparence": null,
+        "autonomie": 7.2,
+        "codec": 7.7,
+        "confort": 7.2,
+        "micro": 6.8,
+        "ip": 7,
+        "ergonomie": null,
+        "prix": 9
+      },
+      "profil_scores": {
+        "transport": 7.1,
+        "sport": 7.3,
+        "bureau": 7.1,
+        "son": 7.3,
+        "budget": 7.6
+      },
+      "profil_couverture": {
+        "transport": 0.91,
+        "sport": 0.88,
+        "bureau": 0.93,
+        "son": 0.94,
+        "budget": 1
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Roseselsa%20Ceramics%20Ultra",
+      "source": "picky-audio-2026",
+      "date_verification": "2026-10"
+    }
+  ],
   "criteres": [
     {
       "id": "anc",
@@ -14,6 +317,12 @@
       "titre": "Autonomie",
       "texte": "Deux chiffres : celle des écouteurs seuls, et celle avec les recharges du boîtier. La réduction de bruit active consomme : l’autonomie réelle est plus courte que celle annoncée sans ANC.",
       "verifier": "Repérez la valeur annoncée avec l’ANC allumée, au volume d’écoute normal."
+    },
+    {
+      "id": "transparence",
+      "titre": "Mode transparence",
+      "texte": "Les micros extérieurs laissent passer les bruits ambiants et les voix : utile pour traverser une rue, parler à quelqu’un ou entendre une annonce. Un bon mode transparence reste naturel, sans effet de bouchon ni souffle.",
+      "verifier": "Une restitution naturelle des voix, sans effet d’occlusion ni distorsion."
     },
     {
       "id": "codec",
@@ -50,39 +359,40 @@
       "titre": "Signature sonore",
       "texte": "Le réglage du son : basses appuyées, voix en avant ou neutre. C’est un goût autant qu’une mesure, et un égaliseur dans l’application permet souvent de corriger.",
       "verifier": "Application avec égaliseur ; courbe de réponse mesurée plutôt qu’un adjectif."
+    },
+    {
+      "id": "ergonomie",
+      "titre": "Commandes et finition",
+      "texte": "Molette, boutons physiques ou commandes tactiles : la manière de piloter le volume et les pistes change le quotidien. La finition (métal, verre, plastique) pèse sur la solidité, le poids et l’impression d’ensemble.",
+      "verifier": "Des commandes que l’on retrouve sans regarder, et la mention du poids par écouteur ou du casque."
     }
   ],
   "profils": {
     "transport": {
       "titre": "Transports et avion",
-      "poids": {
-        "anc": 1.7,
-        "confort": 1.0,
-        "autonomie": 0.9,
-        "micro": 0.4,
-        "codec": 0.3,
-        "ip": 0.2
-      },
       "priorites": [
         "Réduction de bruit mesurée sur les graves",
         "Embouts qui ferment bien : sans étanchéité, l’ANC perd l’essentiel",
-        "Autonomie avec l’ANC allumée"
+        "Autonomie avec l’ANC allumée",
+        "Mode transparence naturel pour entendre l’extérieur"
       ],
       "pieges": [
         "Un « jusqu’à 50 dB » sans bande de fréquence",
         "Autonomie annoncée sans ANC"
-      ]
+      ],
+      "poids": {
+        "anc": 1.7,
+        "confort": 1,
+        "autonomie": 0.9,
+        "transparence": 0.5,
+        "micro": 0.4,
+        "prix": 0.3,
+        "codec": 0.3,
+        "ip": 0.2
+      }
     },
     "sport": {
       "titre": "Sport",
-      "poids": {
-        "ip": 1.5,
-        "confort": 1.4,
-        "autonomie": 0.7,
-        "micro": 0.3,
-        "son": 0.3,
-        "latence": 0.1
-      },
       "priorites": [
         "Tenue en place (ailettes, embouts adaptés)",
         "Indice IP pour la sueur et la pluie",
@@ -91,17 +401,19 @@
       "pieges": [
         "Un indice IP valable seulement pour le boîtier ou pour un modèle voisin",
         "Un écouteur lourd qui glisse en courant"
-      ]
+      ],
+      "poids": {
+        "ip": 1.5,
+        "confort": 1.4,
+        "autonomie": 0.7,
+        "transparence": 0.6,
+        "prix": 0.4,
+        "micro": 0.3,
+        "son": 0.3
+      }
     },
     "bureau": {
       "titre": "Bureau et visio",
-      "poids": {
-        "micro": 1.6,
-        "confort": 1.1,
-        "autonomie": 0.9,
-        "anc": 0.8,
-        "codec": 0.5
-      },
       "priorites": [
         "Qualité du micro, jugée sur un enregistrement réel",
         "Confort sur de longues journées",
@@ -110,17 +422,19 @@
       "pieges": [
         "Micros annoncés « IA » sans enregistrement de test",
         "ANC très forte mais voix qui sonne étouffée pour vos interlocuteurs"
-      ]
+      ],
+      "poids": {
+        "micro": 1.6,
+        "confort": 1.1,
+        "autonomie": 0.9,
+        "anc": 0.8,
+        "codec": 0.5,
+        "ergonomie": 0.4,
+        "prix": 0.3
+      }
     },
     "son": {
       "titre": "Le son avant tout",
-      "poids": {
-        "son": 1.5,
-        "codec": 1.0,
-        "confort": 0.9,
-        "anc": 0.6,
-        "autonomie": 0.4
-      },
       "priorites": [
         "Courbe de réponse mesurée et égaliseur dans l’application",
         "Codec géré par votre téléphone (AAC, LDAC, aptX)",
@@ -129,18 +443,19 @@
       "pieges": [
         "Un codec « haute résolution » que votre téléphone ne gère pas",
         "Juger sur les adjectifs de la fiche plutôt que sur la courbe"
-      ]
+      ],
+      "poids": {
+        "son": 1.5,
+        "codec": 1,
+        "confort": 0.9,
+        "anc": 0.6,
+        "autonomie": 0.4,
+        "ergonomie": 0.3,
+        "prix": 0.3
+      }
     },
     "budget": {
       "titre": "Petit budget",
-      "poids": {
-        "autonomie": 1.2,
-        "confort": 1.0,
-        "micro": 0.6,
-        "ip": 0.5,
-        "codec": 0.3,
-        "anc": 0.3
-      },
       "priorites": [
         "Autonomie réelle et connexion stable",
         "Confort : on le porte tous les jours",
@@ -149,21 +464,31 @@
       "pieges": [
         "« ANC » à très bas prix : l’efficacité est souvent limitée",
         "Marque inconnue sans garantie claire en France"
-      ]
+      ],
+      "poids": {
+        "prix": 1.4,
+        "autonomie": 1.2,
+        "confort": 1,
+        "micro": 0.6,
+        "son": 0.5,
+        "ip": 0.5,
+        "codec": 0.3,
+        "anc": 0.3
+      }
     }
   },
   "methode": [
     {
-      "etape": "1 · Mesures",
-      "texte": "Atténuation du bruit par bande de fréquence, autonomie mesurée avec l’ANC allumée, latence en millisecondes, enregistrement du micro à l’intérieur et à l’extérieur."
+      "etape": "1 · Relevés",
+      "texte": "Le test source donne, par modèle, des notes sur 10 par critère, des mesures (autonomie réelle avec ANC, volume maximal) et des horodatages renvoyant au passage de la vidéo."
     },
     {
-      "etape": "2 · Duels à l’aveugle",
-      "texte": "Comparaison côte à côte, mêmes conditions, format « roi de la colline » : le vainqueur reste en piste, comme dans le tournoi des projecteurs. Chaque duel note le facteur décisif."
+      "etape": "2 · Ramenés aux critères du guide",
+      "texte": "Chaque note du testeur est ramenée sur l’échelle 0-9 du guide (×0,9) et rattachée à l’un de nos 10 critères. Un critère sans note ni mesure dans la source reste vide."
     },
     {
       "etape": "3 · Notes par usage",
-      "texte": "Chaque critère mesuré est noté de 0 à 9 ; un usage pèse les critères différemment. Une donnée inconnue reste vide : pas de moyenne, couverture signalée, note plafonnée."
+      "texte": "Chaque usage pèse les critères différemment. Une donnée inconnue n’entre pas dans la moyenne : la couverture est signalée et la note plafonnée. Un prix bas ne porte pas seul une note."
     }
   ],
   "checklist": [
@@ -176,8 +501,16 @@
     "La garantie et le retour sont clairs en France",
     "Je peux régler le son dans une application (égaliseur)"
   ],
+  "limites": [
+    "Une seule source et trois modèles : ce n’est pas un classement du marché, c’est une sélection testée.",
+    "Un des trois modèles est un casque (Nothing Headphone (1) Pro, 328 g), pas un écouteur intra-auriculaire.",
+    "Les notes du testeur n’utilisent pas les mêmes critères pour chaque modèle : un critère sans note reste vide et réduit la couverture.",
+    "La source ne précise pas le nombre de modèles derrière les rangs « 4ᵉ/100 » et « 67ᵉ/100 ».",
+    "Prix en dollars, relevés aux États-Unis ; disponibilité et garantie en France non vérifiées."
+  ],
   "catalogue_meta": {
     "derniere_verification": "2026-10-23",
-    "detail": "Aucun modèle n’est classé : aucune mesure indépendante vérifiable n’a pu être intégrée. Les données seront ajoutées avec leur source, leur protocole et leurs valeurs mesurées ; une valeur absente reste à null."
+    "devise": "USD",
+    "detail": "3 modèles issus d’une seule source (Picky Audio). Les valeurs absentes de la source restent à null et ne sont jamais complétées ; un test indépendant complémentaire est nécessaire avant d’acheter en France."
   }
 }

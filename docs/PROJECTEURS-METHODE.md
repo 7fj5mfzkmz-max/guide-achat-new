@@ -29,9 +29,23 @@ Le podium affiché est celui de la vidéo ; les notes par usage combinent mesure
 
 **Limites** : une seule source ; la retranscription contient les duels R1–R13 ; prix et disponibilité en France non vérifiés ; une mesure de latence unique.
 
-## Écouteurs
+## Écouteurs et casques
 
-Guide illustré (8 critères, 5 usages, checklist de 8 points) et méthode de test annoncée (mesures, duels à l'aveugle, notes par usage). **Le catalogue est volontairement vide** : aucune mesure indépendante vérifiable n'a pu être intégrée (les pages marchandes et comparatifs affiliés consultés se contredisent). `data/ecouteurs.json` est prêt à recevoir des modèles avec leur source et leurs valeurs mesurées.
+**Source** : « Banc d'Essai Audio : Sélection Picky Audio (2026) » (retranscription de 3 pages avec horodatages, fournie au projet). Trois modèles : Roseselsa Ceramics Ultra (< 50 $), Anker Soundcore Liberty Buds 2 (~129 $), Nothing Headphone (1) Pro (~299 $, **casque** de 328 g). Fabrication : `node tools/ecouteurs/construire.js` (textes du guide dans `tools/ecouteurs/textes.json`) écrit `data/ecouteurs.json`, puis `python3 tools/categories/pages.py` régénère la page.
+
+**Du relevé aux notes (`assets/js/ecouteurs-scoring.js`)**
+
+| Critère du guide | Provenance |
+|---|---|
+| Son, ANC, transparence, autonomie, codecs, micro | note du testeur sur 10, ramenée à 0-9 (× 0,9) |
+| Confort et maintien | note du testeur, ou rang explicite (1ʳᵉ place = 9, 2ᵉ = 8,5, 3ᵉ = 7,5) |
+| Commandes et finition | moyenne des notes « commandes » et « fabrication » du testeur |
+| Résistance | indice IP : IPX7+ 9 · IPX5-6 8 · IPX4/IP64 7 · IP52 4,5 |
+| Prix (USD) | ≤50 : 9 · ≤100 : 8 · ≤150 : 7 · ≤200 : 6 · ≤300 : 5 · sinon 4 |
+
+Le testeur n'applique pas les mêmes critères à chaque modèle : un critère sans note ni mesure reste `null` (non noté), la couverture baisse, la note par usage est plafonnée et marquée provisoire. Cas notable : l'Anker n'a que deux critères rattachés à un rang (confort 1ᵉʳ, micro « juste derrière les Galaxy Buds 4 Pro » = 2ᵉ, rang déduit et signalé comme tel).
+
+**Limites** : une source, trois modèles, une sélection et non un classement du marché ; rangs « 4ᵉ/100 » et « 67ᵉ/100 » cités sans effectif ; prix en dollars non vérifiés en France.
 
 ## Pages
 

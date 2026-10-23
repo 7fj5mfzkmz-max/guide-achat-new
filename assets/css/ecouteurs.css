@@ -36,3 +36,24 @@
 @media (prefers-reduced-motion: reduce) { .eb-art *, .eb-rings circle { animation: none !important; } .eb-rings circle { opacity: .3; } }
 
 .eb-stage .pj-chip-c { bottom: 26%; }
+
+/* Modèles testés, vue d'ensemble, transparence et commandes */
+.eb-models { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; align-items: start; }
+.eb-model .eb-tag { margin: 2px 0 0; font: 600 12px var(--mono); letter-spacing: .04em; color: var(--ink-mute); }
+.eb-note-rank { margin: 0; font-size: 12.5px; color: var(--ink-mute); }
+.eb-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; } .eb-info div { padding: 8px; background: var(--paper-3); } .eb-info dt { font: 600 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-mute); } .eb-info dd { margin: 3px 0 0; font: 700 14px/1.25 var(--head); overflow-wrap: anywhere; }
+.eb-notes { border: 1px solid var(--line-soft); } .eb-notes summary { cursor: pointer; padding: 10px 12px; font: 700 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; } .eb-notes ul { list-style: none; margin: 0; padding: 0 12px 10px; } .eb-notes li { padding: 10px 0; border-top: 1px dashed var(--line-soft); } .eb-notes li p { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; } .eb-min { font: 600 11px var(--mono); color: var(--ink-mute); }
+.eb-model footer { flex-direction: column; align-items: flex-start; } .eb-model footer span { font-size: 12px; color: var(--ink-mute); }
+.eb-sub { margin: 26px 0 10px; font: 800 19px var(--head); text-transform: none; }
+.eb-matrix-wrap { overflow-x: auto; border: 1px solid var(--ink); background: var(--paper-2); }
+.eb-matrix { min-width: 560px; }
+.eb-mrow { display: grid; grid-template-columns: minmax(150px, 1.3fr) repeat(3, minmax(110px, 1fr)); gap: 8px; align-items: center; padding: 9px 14px; border-top: 1px solid var(--line-soft); font-size: 14px; } .eb-mrow:first-child { border-top: 0; }
+.eb-mhead { font: 700 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; background: var(--paper-3); } .eb-mlabel { font-weight: 700; }
+.eb-cell { display: inline-block; min-width: 54px; padding: 4px 8px; text-align: center; font: 800 14px var(--head); background: var(--paper-3); } .eb-cell.is-hi { background: var(--pj-good, #2f8f5b); color: #fff; } .eb-cell.is-lo { background: var(--pj-bad, #c8452f); color: #fff; } .eb-cell.is-na { font: 600 11px var(--mono); color: var(--ink-mute); border: 1px dashed var(--ink-mute); background: transparent; }
+.eb-pass path { stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 6 6; animation: pjDash 1.2s linear infinite; }
+.eb-knob { fill: var(--paper-2); stroke: var(--ink); stroke-width: 3; } .eb-knob-mark { stroke: var(--ink); stroke-width: 4; stroke-linecap: round; transform-origin: 70px 62px; animation: ebKnob 4s ease-in-out infinite alternate; } .eb-knob-dot { fill: var(--accent); stroke: var(--ink); stroke-width: 2; }
+@keyframes ebKnob { from { transform: rotate(-50deg); } to { transform: rotate(60deg); } }
+.eb-btn { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2.5; } .eb-btn.is-on { fill: var(--accent); animation: ebLed 1.6s infinite; }
+@media (max-width: 620px) { .eb-mrow { grid-template-columns: 130px repeat(3, 100px); } }
+
+.pj-price { white-space: nowrap; }

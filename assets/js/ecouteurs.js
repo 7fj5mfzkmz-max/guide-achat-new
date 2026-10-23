@@ -51,6 +51,12 @@
     latence: function () {
       return svg('0 0 240 140', '<rect class="eb-screen" x="20" y="22" width="200" height="50" rx="6"/><rect class="eb-img" x="20" y="22" width="40" height="50" rx="4"/><path class="eb-snd" d="M20 100h200"/><rect class="eb-snd-dot" x="20" y="92" width="40" height="16" rx="8"/><text class="pj-t-s" x="120" y="124" text-anchor="middle">le son arrive après l’image</text>', 'L’image avance et le son la suit avec un léger retard');
     },
+    transparence: function () {
+      return svg('0 0 240 140', '<path class="eb-ear" d="M60 24c26-10 58 6 58 40 0 26-12 38-12 60"/><rect class="eb-tip sealed" x="98" y="56" width="20" height="18" rx="7"/><g class="eb-pass"><path d="M16 64h70"/><path d="M16 80h70"/><path d="M16 48h70"/></g><path class="eb-voice" d="M26 104c10-8 20 8 30 0"/><text class="pj-t-s" x="52" y="124" text-anchor="middle">sons extérieurs</text><text class="pj-t-s" x="200" y="60" text-anchor="middle">laissés passer</text><path class="pj-axis2" d="M124 64h30"/>', 'Les sons extérieurs sont laissés passer vers l’oreille');
+    },
+    ergonomie: function () {
+      return svg('0 0 240 140', '<circle class="eb-knob" cx="70" cy="62" r="32"/><path class="eb-knob-mark" d="M70 36v14"/><circle class="eb-knob-dot" cx="70" cy="62" r="6"/><rect class="eb-btn" x="128" y="38" width="76" height="16" rx="8"/><rect class="eb-btn" x="128" y="62" width="76" height="16" rx="8"/><rect class="eb-btn is-on" x="128" y="86" width="76" height="16" rx="8"/><text class="pj-t-s" x="70" y="116" text-anchor="middle">molette</text><text class="pj-t-s" x="166" y="122" text-anchor="middle">boutons</text>', 'Une molette et des boutons physiques de commande');
+    },
     son: function () {
       return svg('0 0 240 140', '<path class="eb-grid" d="M20 110h200M20 70h200M20 30h200"/><path class="eb-curve flat" d="M20 72c40 0 80 0 120 0s60 0 80 0"/><path class="eb-curve bass" d="M20 40c30 0 40 20 70 32s70 6 130 0"/><text class="pj-t-s" x="22" y="124">graves</text><text class="pj-t-s" x="200" y="124" text-anchor="end">aigus</text>', 'Courbe de réponse avec des basses accentuées contre une courbe neutre');
     }
@@ -61,36 +67,99 @@
     if (h) h.innerHTML = ART.hero() +
       '<span class="pj-chip pj-chip-a">Réduction de bruit</span><span class="pj-chip pj-chip-b">Codec</span><span class="pj-chip pj-chip-c">Ajustement</span>';
     Object.keys(ART).forEach(function (k) { var el = $('eb-art-' + k); if (el) el.innerHTML = ART[k](); });
-    var e = $('eb-empty-art');
-    if (e) e.innerHTML = svg('0 0 160 120', bud(56, 10, .9, 'is-sm') + '<g opacity=".45" transform="translate(88 4)">' + bud(0, 6, .7, 'is-sm') + '</g><text class="pj-t-s" x="80" y="112" text-anchor="middle">en attente de mesures</text>', 'Écouteurs en attente de mesures');
   }
 
-  function profile(data, key) {
-    var p = data.profils[key], names = {};
-    data.criteres.forEach(function (c) { names[c.id] = c.titre; });
+  var S = window.EcouteursScoring, DATA = null;
+  var fr = function (n) { return Number(n).toLocaleString('fr-FR'); };
+  var usd = function (n) { return n == null ? 'prix non relevé' : fr(n) + ' $'; };
+  var score = function (n) { return n.toFixed(1).replace('.', ','); };
+  var byRank = function () { return DATA.produits.slice().sort(function (a, b) { return a.rang_source - b.rang_source; }); };
+
+  function infos(p) {
+    var c = p.caracteristiques, rows = [];
+    if (c.poids_g != null) rows.push(['Poids', fr(c.poids_g).replace(',', ',') + ' g' + (c.poids_note ? ' ' + c.poids_note : '')]);
+    if (c.autonomie_anc_h != null) rows.push(['Autonomie (ANC)', String(c.autonomie_anc_h).replace('.', ',') + ' h']);
+    if (c.volume_max_db != null) rows.push(['Volume max mesuré', String(c.volume_max_db).replace('.', ',') + ' dB']);
+    if (c.ip) rows.push(['Résistance', c.ip]);
+    if (c.bluetooth) rows.push(['Bluetooth', c.bluetooth]);
+    if (c.codecs) rows.push(['Codecs', c.codecs.join(', ')]);
+    if (c.micros) rows.push(['Micros', c.micros]);
+    if (c.reduction_annoncee_db != null) rows.push(['Réduction annoncée', 'jusqu’à ' + c.reduction_annoncee_db + ' dB']);
+    if (c.charge_rapide && typeof c.charge_rapide === 'string') rows.push(['Charge rapide', c.charge_rapide]);
+    return rows.map(function (r) { return '<div><dt>' + esc(r[0]) + '</dt><dd>' + esc(r[1]) + '</dd></div>'; }).join('');
+  }
+  function renderModels() {
+    $('eb-models').innerHTML = byRank().map(function (p) {
+      var crit = Object.keys(DATA.produits[0].scores), names = {};
+      DATA.criteres.forEach(function (c) { names[c.id] = c.titre; });
+      var notes = Object.keys(p.notes).map(function (k) {
+        var n = p.notes[k], v = n.note10 != null ? score(n.note10) + '/10' : '1ʳᵉ place'.replace('1ʳᵉ', n.rang === 1 ? '1ʳᵉ' : n.rang + 'ᵉ');
+        return '<li><div><strong>' + esc(names[k] || k) + '</strong> <span class="pj-badge is-lab">' + esc(v) + '</span> <span class="eb-min">' + esc(n.minute) + '</span></div><p>' + esc(n.texte) + (n.rang_note ? ' <em>(' + esc(n.rang_note) + ')</em>' : '') + '</p></li>';
+      }).join('');
+      var li = function (a) { return a.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join(''); };
+      return '<article class="pj-card eb-model"><header><div><h3>' + esc(p.nom) + '</h3><p class="eb-tag">' + esc(p.titre_source) + '</p></div><span class="pj-price">' + usd(p.prix_usd) + '</span></header>' +
+        '<div><span class="pj-badge is-lab">' + p.rang_source + 'ᵉ du classement source</span> ' + (p.score_source != null ? '<span class="pj-badge">Score source ' + score(p.score_source) + ' / 100</span> ' : '') + '<span class="pj-badge' + (p.format === 'casque' ? ' is-no' : '') + '">' + esc(p.format) + '</span></div>' +
+        '<p class="eb-note-rank">' + esc(p.rang_source_note) + '</p>' +
+        '<dl class="eb-info">' + infos(p) + '</dl>' +
+        '<ul class="pj-pro">' + li(p.points_forts) + '</ul><ul class="pj-con">' + li(p.points_faibles) + '</ul>' +
+        '<details class="eb-notes"><summary>Notes du testeur et passages (' + Object.keys(p.notes).length + ')</summary><ul>' + notes + '</ul></details>' +
+        '<footer><span>' + esc(p.prix_note) + '</span><a class="hx-link" href="' + esc(p.idealo_url) + '" target="_blank" rel="noopener noreferrer">Chercher en France (Idealo) ↗</a></footer></article>';
+    }).join('');
+  }
+  function cell(v) {
+    if (v == null) return '<span class="eb-cell is-na">non noté</span>';
+    var cls = v >= 7.5 ? ' is-hi' : v <= 4.5 ? ' is-lo' : '';
+    return '<span class="eb-cell' + cls + '">' + score(v) + '</span>';
+  }
+  function renderMatrix() {
+    var models = byRank(), keys = Object.keys(S.CRITERES);
+    var head = '<div class="eb-mrow eb-mhead"><span>Critère</span>' + models.map(function (p) { return '<span>' + esc(p.nom) + '</span>'; }).join('') + '</div>';
+    $('eb-matrix').innerHTML = head + keys.map(function (k) {
+      return '<div class="eb-mrow"><span class="eb-mlabel">' + esc(S.CRITERES[k]) + '</span>' + models.map(function (p) { return cell(p.scores[k]); }).join('') + '</div>';
+    }).join('');
+  }
+
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function profile(key) {
+    var p = DATA.profils[key], names = {};
+    Object.keys(S.CRITERES).forEach(function (k) { names[k] = S.CRITERES[k]; });
+    DATA.criteres.forEach(function (c) { names[c.id] = c.titre; });
+    var ranking = DATA.produits.map(function (m) { return { m: m, r: S.estimate(m).profils[key] }; }).filter(function (x) { return x.r; }).sort(function (a, b) { return b.r.score - a.r.score; });
+    $('eb-top').innerHTML = ranking.map(function (x, i) {
+      var e = S.estimate(x.m), w = p.poids;
+      var fort = Object.keys(w).filter(function (k) { return e.criteres[k] != null && e.criteres[k] >= 7.5; }).sort(function (a, b) { return w[b] * e.criteres[b] - w[a] * e.criteres[a]; }).slice(0, 2).map(function (k) { return S.CRITERES[k].toLowerCase(); });
+      var inc = Object.keys(w).filter(function (k) { return e.criteres[k] == null; }).map(function (k) { return S.CRITERES[k].toLowerCase(); });
+      return '<article class="pj-prof-item"><b class="pj-n">' + (i + 1) + '</b><div><h3>' + esc(x.m.nom) + ' <span class="pj-badge' + (x.r.provisional ? ' is-no' : ' is-lab') + '">' + (x.r.provisional ? 'Provisoire' : 'Couverture solide') + '</span></h3><p>' +
+        (fort.length ? 'Points d’appui : ' + esc(fort.join(', ')) + '. ' : '') + (inc.length ? 'Non noté dans la source : ' + esc(inc.slice(0, 3).join(', ')) + (inc.length > 3 ? '…' : '') + '.' : '') + ' <em>(' + usd(x.m.prix_usd) + ')</em></p></div>' +
+        '<div class="pj-score">' + score(x.r.score) + '<small> /10</small><span class="pj-score-bar"><i style="width:' + (x.r.score / 9 * 100) + '%"></i></span></div></article>';
+    }).join('');
     var keys = Object.keys(p.poids).sort(function (a, b) { return p.poids[b] - p.poids[a]; }), max = p.poids[keys[0]];
     $('eb-profile').innerHTML = '<div class="eb-weights"><h3>Poids des critères</h3>' + keys.map(function (k) {
-      return '<div class="eb-w"><span>' + esc(names[k]) + '</span><span class="pj-track"><span class="pj-real" style="width:0" data-w="' + (p.poids[k] / max * 100) + '"></span></span><b>×' + p.poids[k] + '</b></div>';
+      return '<div class="eb-w"><span>' + esc(names[k] || k) + '</span><span class="pj-track"><span class="pj-real" style="width:0" data-w="' + (p.poids[k] / max * 100) + '"></span></span><b>×' + p.poids[k] + '</b></div>';
     }).join('') + '</div>' +
       '<div><h3>À regarder en priorité</h3><ol class="eb-prio">' + p.priorites.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ol></div>' +
       '<div><h3>Pièges fréquents</h3><ul class="eb-trap">' + p.pieges.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul></div>';
-    requestAnimationFrame(function () { requestAnimationFrame(function () { [].forEach.call($('eb-profile').querySelectorAll('[data-w]'), function (e) { e.style.width = e.getAttribute('data-w') + '%'; }); }); });
+    var go = function () { [].forEach.call($('eb-profile').querySelectorAll('[data-w]'), function (e) { e.style.width = e.getAttribute('data-w') + '%'; }); };
+    if (reduced) go(); else requestAnimationFrame(function () { requestAnimationFrame(go); });
   }
 
   function setup(data) {
+    DATA = data;
+    renderModels(); renderMatrix();
     var tabs = $('eb-tabs'), keys = Object.keys(data.profils);
     tabs.innerHTML = keys.map(function (k, i) { return '<button class="pj-tab" type="button" data-k="' + k + '" aria-pressed="' + (i === 0) + '">' + esc(data.profils[k].titre) + '</button>'; }).join('');
-    tabs.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(tabs.children, function (x) { x.setAttribute('aria-pressed', x === b); }); profile(data, b.getAttribute('data-k')); });
-    profile(data, keys[0]);
+    tabs.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(tabs.children, function (x) { x.setAttribute('aria-pressed', x === b); }); profile(b.getAttribute('data-k')); });
+    profile(keys[0]);
     var list = $('eb-list'), total = data.checklist.length;
     list.innerHTML = data.checklist.map(function (t, i) { return '<li><label><input type="checkbox" data-i="' + i + '"><span>' + esc(t) + '</span></label></li>'; }).join('');
     var upd = function () { var n = list.querySelectorAll('input:checked').length; $('eb-progress').textContent = n + ' point' + (n > 1 ? 's' : '') + ' sur ' + total + ' vérifié' + (n > 1 ? 's' : '') + (n === total ? ' : vous pouvez acheter sereinement.' : '.'); };
     list.addEventListener('change', upd); upd();
     $('eb-meta').textContent = data.catalogue_meta.detail;
+    document.documentElement.setAttribute('data-eb-ready', '1');
   }
 
   fillArt();
   fetch('data/ecouteurs.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(setup).catch(function (e) {
-    var m = $('eb-meta'); if (m) m.textContent = 'Les données n’ont pas pu être chargées (' + e.message + ').';
+    var m = $('eb-error'); if (m) { m.hidden = false; m.textContent = 'Les données n’ont pas pu être chargées (' + e.message + '). Rechargez la page.'; }
   });
 })();

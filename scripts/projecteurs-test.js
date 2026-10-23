@@ -79,11 +79,52 @@ check('notes : un prix bas ne porte pas seul une note (Fidoni à 99 $, couvertur
   assert.ok(P('fidoni-gc888a').profil_scores.budget < 8);
   assert.ok(P('fidoni-gc888a').profil_couverture.budget < 0.62);
 });
-check('écouteurs : catalogue vide assumé, aucune note ni mesure inventée', () => {
-  assert.deepEqual(eb.produits, []);
-  assert.equal(eb.criteres.length, 8); assert.equal(Object.keys(eb.profils).length, 5); assert.equal(eb.checklist.length, 8);
-  Object.values(eb.profils).forEach(p => Object.values(p.poids).forEach(w => assert.ok(w > 0 && w < 3)));
-  assert.ok(/Aucun modèle/.test(eb.catalogue_meta.detail));
+const escoring = require('../assets/js/ecouteurs-scoring.js');
+const E = id => eb.produits.find(p => p.id === id);
+check('écouteurs : 3 modèles de la source Picky Audio, identifiants uniques', () => {
+  assert.equal(eb.produits.length, 3); assert.equal(new Set(eb.produits.map(p => p.id)).size, 3);
+  assert.equal(eb.source.chaine, 'Picky Audio');
+  assert.equal(eb.criteres.length, 10); assert.equal(Object.keys(eb.profils).length, 5); assert.equal(eb.checklist.length, 8);
+});
+check('écouteurs : prix, rangs et scores identiques à la retranscription', () => {
+  assert.deepEqual([E('roseselsa-ceramics-ultra').prix_usd, E('nothing-headphone-1-pro').prix_usd, E('anker-soundcore-liberty-buds-2').prix_usd], [49, 299, 129]);
+  assert.deepEqual([E('roseselsa-ceramics-ultra').rang_source, E('nothing-headphone-1-pro').rang_source, E('anker-soundcore-liberty-buds-2').rang_source], [67, 4, 7]);
+  assert.equal(E('roseselsa-ceramics-ultra').score_source, 77.8); assert.equal(E('nothing-headphone-1-pro').score_source, 90.3);
+  assert.equal(E('anker-soundcore-liberty-buds-2').score_source, null);
+  assert.equal(E('nothing-headphone-1-pro').format, 'casque');
+});
+check('écouteurs : mesures et notes du testeur reprises sans changement', () => {
+  const r = E('roseselsa-ceramics-ultra'), n = E('nothing-headphone-1-pro'), a = E('anker-soundcore-liberty-buds-2');
+  assert.equal(r.caracteristiques.volume_max_db, 124.8); assert.equal(r.caracteristiques.ip, 'IP64'); assert.ok(r.caracteristiques.codecs.includes('LHDC 5.0'));
+  assert.deepEqual([r.notes.son.note10, r.notes.codec.note10, r.notes.anc.note10, r.notes.micro.note10, r.notes.autonomie.note10], [8, 8.5, 7.3, 7.5, 8]);
+  assert.deepEqual([n.notes.son.note10, n.notes.anc.note10, n.notes.transparence.note10, n.notes.autonomie.note10, n.notes.codec.note10], [9.25, 9.1, 9.5, 7.5, 9.5]);
+  assert.equal(n.caracteristiques.poids_g, 328); assert.equal(n.caracteristiques.ip, 'IP52'); assert.equal(n.caracteristiques.autonomie_anc_h, 30);
+  assert.equal(a.caracteristiques.poids_g, 4.7); assert.equal(a.notes.confort.rang, 1);
+  Object.values(eb.produits).forEach(p => Object.values(p.notes).forEach(x => assert.match(x.minute, /^\d\d:\d\d:\d\d$/)));
+});
+check('écouteurs : aucune note inventée (critères absents de la source = null)', () => {
+  const a = E('anker-soundcore-liberty-buds-2').scores, n = E('nothing-headphone-1-pro').scores, r = E('roseselsa-ceramics-ultra').scores;
+  ['son', 'anc', 'transparence', 'autonomie', 'codec', 'ip', 'ergonomie'].forEach(k => assert.equal(a[k], null, 'Anker ' + k));
+  assert.equal(n.confort, null); assert.equal(n.micro, null); assert.equal(r.transparence, null); assert.equal(r.ergonomie, null);
+  const e = escoring.estimate({ notes: {}, caracteristiques: {} }); assert.ok(Object.entries(e.criteres).every(([, v]) => v == null));
+});
+check('écouteurs : barème (note ×0,9, rangs, IP) et enregistrement = recalcul', () => {
+  assert.equal(escoring.surDix(10), 9); assert.equal(escoring.surDix(7.3), 6.6);
+  assert.deepEqual([escoring.ip('IP64'), escoring.ip('IP52'), escoring.ip('IPX4'), escoring.ip('IP57')], [7, 4.5, 7, 9]);
+  eb.produits.forEach(p => { const e = escoring.estimate(p); assert.deepEqual(p.scores, e.criteres, p.id); Object.values(e.profils).forEach(r => assert.ok(r.score >= 0 && r.score <= 9)); });
+});
+check('écouteurs : couverture faible = note provisoire plafonnée (Anker)', () => {
+  const a = E('anker-soundcore-liberty-buds-2');
+  Object.entries(a.profil_scores).forEach(([k, v]) => { assert.ok(v <= 7.2, k + ' ' + v); assert.ok(a.profil_couverture[k] < 0.62, k); });
+  assert.equal(a.profil_scores.transport, 6);
+});
+check('écouteurs : petit budget → Roseselsa ; le son → Nothing', () => {
+  const top = k => eb.produits.slice().sort((x, y) => (y.profil_scores[k] || 0) - (x.profil_scores[k] || 0))[0].id;
+  assert.equal(top('budget'), 'roseselsa-ceramics-ultra'); assert.equal(top('son'), 'nothing-headphone-1-pro'); assert.equal(top('transport'), 'nothing-headphone-1-pro');
+});
+check('écouteurs : limites explicites (casque, rangs, dollars)', () => {
+  const t = eb.limites.join(' ');
+  assert.ok(/casque/.test(t) && /4ᵉ\/100/.test(t) && /dollars/.test(t)); assert.equal(eb.catalogue_meta.devise, 'USD');
 });
 check('pages : dépendances locales présentes, catégories ouvertes, un seul h1', () => {
   ['projecteurs.html', 'ecouteurs.html'].forEach(page => {
