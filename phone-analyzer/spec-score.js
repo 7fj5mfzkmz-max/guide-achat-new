@@ -295,10 +295,10 @@
      absolue. Une caractéristique inconnue reste inconnue : elle n'entre pas
      dans la moyenne et la couverture est signalée. */
   var PC_WEIGHTS = {
-    etudiant: { prix: 1.15, autonomie: 0.8, mobilite: 0.6, memoire: 0.55, performance: 0.35, ecran: 0.25, gaming: 0.05 },
-    professionnel: { performance: 0.9, autonomie: 0.8, memoire: 0.7, ecran: 0.65, mobilite: 0.55, prix: 0.35, gaming: 0.1 },
+    etudiant: { prix: 1.15, autonomie: 0.8, mobilite: 0.6, memoire: 0.55, performance: 0.35, ecran: 0.25, longevite: 0.5, systeme: 0.3, gaming: 0.05 },
+    professionnel: { performance: 0.9, autonomie: 0.8, memoire: 0.7, ecran: 0.65, mobilite: 0.55, longevite: 0.6, systeme: 0.4, prix: 0.35, gaming: 0.1 },
     gamer: { gaming: 1.7, performance: 0.55, ecran: 0.35, memoire: 0.3, prix: 0.2, autonomie: 0.1, mobilite: 0.05 },
-    createur: { ecran: 1.0, memoire: 0.9, performance: 0.8, gaming: 0.45, autonomie: 0.35, mobilite: 0.3, prix: 0.2 }
+    createur: { ecran: 1.0, memoire: 0.9, performance: 0.8, gaming: 0.45, longevite: 0.4, systeme: 0.5, autonomie: 0.35, mobilite: 0.3, prix: 0.2 }
   };
   var PC_REFERENCE = { method: 'pondération par profil PC portable, seuils des relevés documentés du projet ; aucune valeur inconnue transformée en défaut' };
 
@@ -357,25 +357,79 @@
     }
     return clamp(base);
   }
+  /* Écran : définition, dalle et fluidité. La diagonale seule ne dit rien de la
+     qualité : sans définition ni dalle documentées, l'écran reste inconnu (null). */
   function pcEcranScore(specs) {
     var v = String(specs.ecran || '');
     if (!v) return null;
     var hz = firstNumber([v], /(\d{2,3})\s*hz/i, 24, 500);
-    var diag = firstNumber([v], /(1[0-9](?:[.,]\d)?|2[0-2](?:[.,]\d)?)\s*(?:pouces|po|")/i, 9, 23);
+    var diag = firstNumber([v], /(1[0-9](?:[.,]\d)?|2[0-2](?:[.,]\d)?)\s*(?:pouces|po|inch|")/i, 9, 23);
     if (/mini-?led/i.test(v)) return 9;
     if (/oled/i.test(v)) return (hz != null && hz >= 120) || /2880|3k/i.test(v) ? 9 : 8;
-    if (/ips/i.test(v)) {
-      if (hz != null && hz >= 144) return 7;
-      if (diag != null && diag <= 14) return 6;
-      return 5;
+    var res = null;
+    if (/\b4k\b|3840/i.test(v)) res = 8;
+    else if (/2\.?8k|2880|3k|qhd\+?|2k|2560|1440/i.test(v)) res = 7;
+    else if (/wuxga|1920\s*[x×]\s*1200/i.test(v)) res = 5.5;
+    else if (/f(?:ull)?\s*hd|1920\s*[x×]\s*1080|1080p/i.test(v)) res = 4.5;
+    else if (/\bhd\b|1366|1280\s*[x×]\s*(?:720|800)|720p/i.test(v)) res = 2.5;
+    var ips = /\bips\b/i.test(v), tn = /\btn\b|\bva\b/i.test(v);
+    if (res == null) {
+      if (ips) res = hz != null && hz >= 144 ? 7 : (diag != null && diag <= 14 ? 6 : 5);
+      else if (hz != null && hz >= 144) res = 6.5;
+      else return null;
+    } else {
+      if (ips) res += 1; else if (tn) res -= 1;
+      if (hz != null && hz >= 120) res += 1;
     }
-    if (hz != null && hz >= 144) return 6.5;
+    return clamp(Math.min(res, 8));
+  }
+  /* Mémoire vive seule (0-9), pour l'interprétation ligne par ligne et la longévité. */
+  function pcRamScore(ram) {
+    var n = firstNumber([ram], /(\d{1,3})\s*(?:go|gb)/i, 2, 192);
+    if (n == null) return null;
+    return n <= 4 ? 1.5 : n <= 6 ? 2.5 : n <= 8 ? 4 : n <= 12 ? 5.5 : n <= 16 ? 7 : n <= 24 ? 8 : 9;
+  }
+  /* Stockage seul : capacité et technologie. L'eMMC (puce soudée, lente) est
+     pénalisé : il limite la fluidité et la durée de vie utile de la machine. */
+  function pcStorageScore(stockage) {
+    var s = String(stockage || ''), n = firstNumber([s], /(\d{1,4}(?:[.,]\d)?)\s*(?:go|gb|to|tb)/i, 16, 8192);
+    if (n == null) return null;
+    if (/to|tb/i.test(s)) n = n * 1024;
+    var base = n <= 64 ? 1.5 : n <= 128 ? 3 : n <= 256 ? 4.5 : n <= 512 ? 6.5 : n <= 1024 ? 8 : 9;
+    if (/emmc|ufs/i.test(s)) base -= 1;
+    return clamp(base);
+  }
+  /* Système : seul un système réellement limité ou absent est signalé ; Windows
+     et macOS ne sont pas « récompensés ». */
+  function pcOsScore(os) {
+    var s = String(os || '').trim();
+    if (!s) return null;
+    if (/chrome\s*os/i.test(s)) return 3;
+    if (/sans\s*syst|free\s*dos|\bdos\b|sans\s*os|linux/i.test(s)) return 3.5;
+    if (/windows\s*11\s*s\b|mode\s*s\b/i.test(s)) return 5;
+    if (/windows|macos/i.test(s)) return 7;
     return null;
+  }
+  /* Longévité : ce qui limite la durée d'utilité d'un PC — mémoire non extensible,
+     puissance brute, stockage. Au moins deux éléments sont nécessaires. */
+  function pcLongeviteScore(specs) {
+    var parts = [[pcRamScore(specs.ram), 0.5], [pcCpuScore(specs.processeur), 0.3], [pcStorageScore(specs.stockage), 0.2]]
+      .filter(function (x) { return x[0] != null; });
+    if (parts.length < 2) return null;
+    var w = 0, t = 0;
+    parts.forEach(function (x) { t += x[0] * x[1]; w += x[1]; });
+    return clamp(t / w);
   }
   /* Puissance processeur (0-9). Table issue des niveaux documentés du projet
      (construire.py), interpolée avec parcimonie ; un CPU inconnu vaut null,
      jamais un mauvais score. */
   var PC_CPU_RULES = [
+    /* Entrée de gamme : testée AVANT les règles génériques (un « Core i3-N305 »
+       est un Alder Lake-N, pas un Core i3 de bureau). */
+    [/\bi3[- ]?n\d{3}\b|\bintel\s+n\d{2,3}\b|\bn(?:95|97|100|150|200|250|305|355)\b|processeur\s+n\d{3}/i, 3.5],
+    [/celeron|pentium|athlon|\bn[45]\d{3}\b/i, 3],
+    [/snapdragon\s*(?:7c|8c)|kompanio|mediatek|mt81\d\d|rockchip|cortex/i, 3.5],
+    [/core\s*i3|ryzen\s*3|core\s*3\b/i, 4.5],
     [/apple\s+m\d\s*(max|ultra)/i, 9],
     [/apple\s+m\d\s*pro/i, 8.5],
     [/apple\s+m5/i, 8],
@@ -390,8 +444,7 @@
     [/core\s*ultra\s*7\s*2\d\dv|ryzen\s*ai\s*7\s*3\d\d|ryzen\s*[79]\s*2\d\d(?![\d\d]hx)/i, 7],
     [/core\s*ultra\s*5\s*2\d\dv|ryzen\s*ai\s*5/i, 6],
     [/ryzen\s*7\s*\d\d\d|core\s*i7(?![- ]\d{3,4}hx)/i, 6.5],
-    [/ryzen\s*5|core\s*i5|core\s*[35]\b/i, 5.5],
-    [/celeron|pentium|athlon/i, 3]
+    [/ryzen\s*5|core\s*i5|core\s*5\b/i, 5.5]
   ];
   function pcCpuScore(cpu) {
     var s = String(cpu || '').trim();
@@ -416,7 +469,7 @@
     [/arc\s*b\d\d\d/i, 5.5],
     [/arc\s*1\d\dv|arc\s*graphics/i, 5.5],
     [/gpu\s*apple\s*m\d/i, 5],
-    [/adreno|iris\s*xe|uhd\s*graphics|graphics\s*intégré|radeon\s*intégrée/i, 4]
+    [/adreno|iris\s*xe|\buhd\b|intel\s*graphics|graphics\s*int[ée]gr|radeon\s*int[ée]gr|int[ée]gr[ée]e?|mali|powervr/i, 4]
   ];
   function pcGpuScore(gpu) {
     var s = String(gpu || '').trim();
@@ -430,6 +483,8 @@
       performance: pcCpuScore(specs.processeur),
       gaming: null,
       ecran: pcEcranScore(specs),
+      longevite: pcLongeviteScore(specs),
+      systeme: pcOsScore(specs.os),
       memoire: pcMemoireScore(specs),
       mobilite: pcMobiliteScore(specs),
       autonomie: pcAutonomieScore(specs)
@@ -465,7 +520,13 @@
         else if (profile === 'createur') score = Math.min(score, 4);
         else if (profile === 'professionnel') score = Math.min(score, 6);
       }
+      if (/chromeos|chrome os/i.test(os) && profile === 'etudiant') score = Math.min(score, 6.5);
       if (/sans syst|dos\b|sans os/i.test(os) && profile === 'etudiant') score = Math.max(1, score - 1);
+      /* Un prix bas ne porte pas seul une note : si tout le reste est faible,
+         la note ne dépasse pas la moyenne du reste de plus de 1,5 point. */
+      var restSum = 0, restW = 0;
+      Object.keys(weights).forEach(function (k) { if (k !== 'prix' && crit[k] != null) { restSum += crit[k] * weights[k]; restW += weights[k]; } });
+      if (restW > 0 && crit.prix != null) score = Math.min(score, restSum / restW + 1.5);
       /* Forte lacune d'information => note plafonnée et marquée provisoire. */
       if (coverage < 0.38) score = Math.min(score, 6.0);
       else if (coverage < 0.62) score = Math.min(score, 7.2);
@@ -475,7 +536,20 @@
         provisional: coverage < 0.78 || (profile === 'gamer' && crit.gaming == null) || (profile === 'createur' && crit.performance == null)
       };
     });
-    return { evidence: {}, criteria: crit, documented: Object.keys(crit).filter(function (k) { return crit[k] != null; }), profiles: profiles, reference: PC_REFERENCE };
+    return { evidence: {}, summary: pcSummary(crit), criteria: crit, documented: Object.keys(crit).filter(function (k) { return crit[k] != null; }), profiles: profiles, reference: PC_REFERENCE };
+  }
+  var PC_CRIT_LABELS = { prix: 'Prix', performance: 'Puissance', memoire: 'Mémoire et stockage', ecran: 'Écran', longevite: 'Longévité', systeme: 'Système', autonomie: 'Autonomie', mobilite: 'Mobilité', gaming: 'Jeu' };
+  /* Points forts / faibles lisibles : seuls les critères documentés comptent. */
+  function pcSummary(crit) {
+    var strengths = [], weaknesses = [];
+    Object.keys(PC_CRIT_LABELS).forEach(function (k) {
+      if (crit[k] == null) return;
+      if (crit[k] >= 7) strengths.push({ key: k, label: PC_CRIT_LABELS[k], score: crit[k] });
+      else if (crit[k] <= 4.5) weaknesses.push({ key: k, label: PC_CRIT_LABELS[k], score: crit[k] });
+    });
+    strengths.sort(function (a, b) { return b.score - a.score; });
+    weaknesses.sort(function (a, b) { return a.score - b.score; });
+    return { strengths: strengths, weaknesses: weaknesses };
   }
   function estimate(input) {
     input=input||{};
@@ -511,6 +585,6 @@
     });
     return {evidence:evidence,criteria:crit,documented:Object.keys(crit).filter(function(k){return crit[k]!=null;}),profiles:profiles,reference:REFERENCE};
   }
-  var api={estimate:estimate,criteria:criteria,weights:PROFILES,WEIGHTS:PROFILES,REFERENCE:REFERENCE,estimatePc:estimatePc,pcCriteria:pcCriteria,PC_WEIGHTS:PC_WEIGHTS,helpers:{numericPrice:numericPrice,chipTier:chipTier,pcCpuScore:pcCpuScore,pcGpuScore:pcGpuScore}};
+  var api={estimate:estimate,criteria:criteria,weights:PROFILES,WEIGHTS:PROFILES,REFERENCE:REFERENCE,estimatePc:estimatePc,pcCriteria:pcCriteria,pcSummary:pcSummary,PC_CRIT_LABELS:PC_CRIT_LABELS,PC_WEIGHTS:PC_WEIGHTS,helpers:{pcRamScore:pcRamScore,pcStorageScore:pcStorageScore,pcOsScore:pcOsScore,pcEcranScore:pcEcranScore,pcLongeviteScore:pcLongeviteScore,numericPrice:numericPrice,chipTier:chipTier,pcCpuScore:pcCpuScore,pcGpuScore:pcGpuScore}};
   if(typeof module!=='undefined'&&module.exports) module.exports=api; else root.PhoneAnalyzerSpecScore=api;
 })(typeof window!=='undefined'?window:globalThis);

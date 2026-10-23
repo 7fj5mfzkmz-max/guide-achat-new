@@ -54,6 +54,45 @@ function extractYear(...texts) {
   return m ? Number(m[1]) : null;
 }
 
+/* Paires « libellé : valeur » d'une fiche marchande → clés du kit, par règles de
+   libellé (kit.pairRules). Une valeur lue dans la fiche prime toujours sur une
+   détection par texte libre. Les unités sont normalisées (128.0 GB → 128 Go). */
+function normalizeLabel(label) {
+  return String(label || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z]+/g, '');
+}
+function normalizeSpecValue(value) {
+  return ex.clean(String(value || '')).replace(/(\d+)[.,]0+\b/g, '$1').replace(/\b(\d+(?:[.,]\d+)?)\s*GB\b/gi, '$1 Go')
+    .replace(/\b(\d+(?:[.,]\d+)?)\s*TB\b/gi, '$1 To').replace(/(i[3579])\s*-\s*/gi, '$1-').replace(/\s+/g, ' ').trim();
+}
+function pairSpecs(pairs, profile) {
+  const rules = (profile && profile.pairRules) || [];
+  const raw = {};
+  (pairs || []).forEach(p => {
+    const label = normalizeLabel(p && p.name), value = normalizeSpecValue(p && p.value);
+    if (!label || !value) return;
+    for (const rule of rules) {
+      if (raw[rule.key] || !rule.label.test(label) || (rule.skip && rule.skip.test(label))) continue;
+      raw[rule.key] = value; break;
+    }
+  });
+  const out = {};
+  const ramMax = (profile && profile.ramMaxGb) || 24;
+  if (raw.ram) { const n = Number((raw.ram.match(/(\d+(?:[.,]\d+)?)\s*Go/i) || [])[1]); if (n > 0 && n <= ramMax) out.ram = n + ' Go'; }
+  if (raw.stockage && /\d\s*(?:Go|To)/i.test(raw.stockage)) {
+    const type = /emmc|ufs|ssd|nvme|hdd/i.exec(raw.stockage_type || raw.stockage);
+    out.stockage = raw.stockage.replace(/\s*(?:emmc|ufs|ssd|nvme|hdd)\b/i, '') + (type ? ' ' + (/emmc/i.test(type[0]) ? 'eMMC' : type[0].toUpperCase()) : '');
+  }
+  if (raw.processeur && raw.processeur.length >= 3) out.processeur = raw.processeur;
+  const screen = [raw.ecran_taille, raw.ecran_definition, raw.ecran_type].filter(Boolean);
+  if (screen.length) out.ecran = screen.join(' · ');
+  if (raw.gpu && raw.gpu.length >= 3) out.gpu = raw.gpu;
+  if (raw.os && /windows|macos|chrome|linux|dos|sans/i.test(raw.os)) out.os = raw.os;
+  if (raw.poids && /\d/.test(raw.poids)) out.poids = raw.poids;
+  if (raw.autonomie && /\d/.test(raw.autonomie)) out.autonomie = raw.autonomie;
+  if (raw.batterie && /\d/.test(raw.batterie)) out.batterie = raw.batterie;
+  return out;
+}
+
 function candidateFromText(text, product, profile, structuredPairs) {
   profile = profile || kit.get();
   const structured = (structuredPairs || []).map(p => (p.name || '') + ': ' + (p.value || '')).join(' ');
@@ -66,24 +105,53 @@ function candidateFromText(text, product, profile, structuredPairs) {
     product && product.model
   ].filter(Boolean).join(' ');
   const specs = {};
+  if (profile && profile.pairRules) {
+    const props = product && (product.additionalProperty || []).map(p => ({ name: p.name, value: p.value })) || [];
+    Object.assign(specs, pairSpecs((structuredPairs || []).concat(props), profile));
+  }
   // Les combinaisons vendeur « 4GB RAM 256GB ROM » sont traitées avant les règles génériques.
   // Une valeur > ramMax ne peut jamais devenir de la RAM (24 Go sur un smartphone grand
   // public ; le kit pc-portables monte à 128) : le stockage de la paire reste exploité,
   // la RAM non — même discipline que les règles génériques ci-dessous.
   const ramMax = (profile && profile.ramMaxGb) || 24;
   const ramOk = (gb) => { const n = Number(String(gb || '').replace(',', '.')); return n > 0 && n <= ramMax; };
+  /* PC : plusieurs capacités de RAM citées dans le texte libre (menu des variantes) = on ne sait pas laquelle est vendue. */
+  const ramVariants = new Set();
+  if (profile && profile.id === 'pc-portables') { let vm; const vr = /\b(\d{1,2})\s*(?:GB|Go)\s*(?:de\s+)?RAM\b/gi; while ((vm = vr.exec(source))) ramVariants.add(vm[1]); }
+  const ramAmbiguous = ramVariants.size > 1;
   const pair = source.match(/\b(\d{1,2})\s*(?:GB|Go)\s*RAM\s*[+\/,-]?\s*(\d{2,4})\s*(?:GB|Go)\s*(?:ROM|storage|stockage|mémoire interne)?\b/i);
-  if (pair) { specs.stockage = pair[2] + ' Go'; if (ramOk(pair[1])) specs.ram = pair[1] + ' Go'; }
+  if (pair) { if (!specs.stockage) specs.stockage = pair[2] + ' Go'; if (!specs.ram && !ramAmbiguous && ramOk(pair[1])) specs.ram = pair[1] + ' Go'; }
   const romFirst = source.match(/\b(\d{2,4})\s*(?:GB|Go)\s*(?:ROM|storage|stockage)\s*[+,\/,-]?\s*(\d{1,2})\s*(?:GB|Go)\s*RAM\b/i);
-  if (romFirst) { specs.stockage = romFirst[1] + ' Go'; if (ramOk(romFirst[2])) specs.ram = romFirst[2] + ' Go'; }
+  if (romFirst) { if (!specs.stockage) specs.stockage = romFirst[1] + ' Go'; if (!specs.ram && !ramAmbiguous && ramOk(romFirst[2])) specs.ram = romFirst[2] + ' Go'; }
   (profile.textSpecRules || []).forEach(rule => {
     if (specs[rule.key]) return;
     for (const re of rule.patterns) { const m = source.match(re); if (m) {
       const value = ex.clean(m[0]);
-      if (rule.key === 'ram') { const n = Number(String(m[1] || '').replace(',', '.')); if (!n || n > ramMax) continue; }
+      if (rule.key === 'ram') {
+        const n = Number(String(m[1] || '').replace(',', '.')); if (!n || n > ramMax) continue;
+        /* PC : un texte libre qui cite plusieurs capacités (variantes « 4 Go / 8 Go » d'un menu
+           de choix) ne dit pas laquelle est vendue : inconnu plutôt qu'une valeur fausse. */
+        if (profile && profile.id === 'pc-portables') {
+          const all = new Set(); const g = new RegExp(re.source, re.flags.replace('g', '') + 'g'); let mm;
+          while ((mm = g.exec(source))) { const x = Number(String(mm[1] || '').replace(',', '.')); if (x > 0 && x <= ramMax) all.add(x); }
+          if (all.size > 1) break;
+        }
+      }
       specs[rule.key] = value; break;
     } }
   });
+  if (profile && profile.id === 'pc-portables' && specs.ecran) {
+    /* Définition et dalle annoncées dans le titre du produit (« 14'' FHD … ») : seul le titre est lu, jamais le texte entier de la page. */
+    const have = specs.ecran.toLowerCase();
+    const extras = [];
+    const t = [product && product.name, product && product.model].filter(Boolean).join(' ');
+    const res = t.match(/\b(FHD|Full ?HD|WUXGA|QHD\+?|2\.?8K|2K|4K)\b/i);
+    if (res && !/fhd|full ?hd|wuxga|qhd|2k|4k|1920|2560|3840|2880/.test(have)) extras.push(res[1].toUpperCase().replace(/FULL ?HD/, 'Full HD'));
+    const pan = t.match(/\b(OLED|IPS)\b/i);
+    if (pan && !/oled|ips/.test(have)) extras.push(pan[1].toUpperCase());
+    if (extras.length) specs.ecran = specs.ecran + ' · ' + extras.join(' · ');
+  }
+  if (profile && profile.id === 'pc-portables' && !specs.os && /chromebook/i.test([product && product.name, product && product.model, structured].filter(Boolean).join(' '))) specs.os = 'ChromeOS';
   // Le champ photo brut reste une caractéristique, jamais une preuve de qualité.
   return specs;
 }
@@ -867,7 +935,8 @@ async function resolve(target, options) {
   return fail({ reason: 'network', error: 'Impossible de récupérer la page.' });
 }
 
-module.exports = { apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, looksLikeLaptop, categoryOfName, categoryOfPage, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
+module.exports = {
+  pairSpecs, candidateFromText, apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, looksLikeLaptop, categoryOfName, categoryOfPage, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
 
 async function resolveModel(model, options) {
   if (options && options.strict) {

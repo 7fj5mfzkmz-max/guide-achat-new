@@ -137,6 +137,12 @@
   }
   function scoreBar(v) { var n = Math.max(0, Math.min(10, v)); return '<span class="model-analyzer-bar" aria-hidden="true"><i style="width:' + Math.round(n / 10 * 100) + '%"></i></span>'; }
 
+  function formatPrice(p) {
+    var n = Number(String(p).replace(/\s/g, '').replace(',', '.'));
+    if (!isFinite(n)) return String(p) + ' €';
+    return n.toLocaleString('fr-FR', { minimumFractionDigits: n % 1 ? 2 : 0, maximumFractionDigits: 2 }) + ' €';
+  }
+
   /* Analyse finale, toujours avec un score quand au moins un critère est documenté.
      c = fiche du catalogue (ou null), page = résultat du serveur (ou null). */
   function showAnalysis(c, page) {
@@ -161,6 +167,19 @@
     // Le catalogue conserve ses caractéristiques, mais ne peut plus écraser une mesure/revue plus récente.
     var est = window.PhoneAnalyzerSpecScore.estimate({ specs: merged, price: price, modelName: cat.nom || title, modelId: cat.id, reviews: null, sourceScores: calibratedScores, category: state.category });
     scores = est.profiles; documented = est.documented; chemistry = est.chemistry; estimated = true;
+    /* PC portables : lecture synthétique, la même pour tous les modèles — points forts et
+       faibles (critères documentés uniquement), puis verdict d'ensemble. */
+    var pcBlock = '';
+    if (state.category === 'pc-portables' && est.summary) {
+      var best = Object.keys(scores).reduce(function (m, k) { return scores[k] && scores[k].score > m ? scores[k].score : m; }, 0);
+      var sLi = function (arr, cls) { return arr.map(function (x) { return '<li class="' + cls + '"><span>' + esc(x.label) + '</span><b>' + x.score + '/10</b></li>'; }).join(''); };
+      var verdictLine = !Object.keys(scores).length ? '' : best < 5
+        ? '<p class="model-analyzer-note"><strong>Verdict :</strong> ce modèle n’est bien adapté à aucun des profils d’usage ; seul son prix peut justifier l’achat.</p>'
+        : best < 6.5 ? '<p class="model-analyzer-note"><strong>Verdict :</strong> un modèle correct pour un usage simple, sans marge pour les usages exigeants.</p>' : '';
+      pcBlock = verdictLine + ((est.summary.strengths.length || est.summary.weaknesses.length)
+        ? '<div class="pc-readout"><div><h4>Points forts</h4>' + (est.summary.strengths.length ? '<ul class="pc-readout-list">' + sLi(est.summary.strengths, 'is-good') + '</ul>' : '<p class="model-analyzer-note">Aucun critère documenté ne se démarque.</p>') +
+          '</div><div><h4>Points faibles</h4>' + (est.summary.weaknesses.length ? '<ul class="pc-readout-list">' + sLi(est.summary.weaknesses, 'is-bad') + '</ul>' : '<p class="model-analyzer-note">Aucun point faible marqué parmi les critères documentés.</p>') + '</div></div>' : '');
+    }
     var decisionDomains = {};
     var confidence = 'source référencée';
     var mine = myProfile();
@@ -284,11 +303,11 @@
     var auditHint = state.category === "pc-portables" ? "4 questions simples : usage, budget, transport et besoin de jeux ou de montage." : "5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.";
     var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>' + auditHint + '</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';
     show('<div class="model-analyzer-card"><span class="eyebrow">ANALYSE DU MODÈLE</span><h3>' + esc(title) + "</h3>" + imageBlock + notes +
-      (price ? "<p><strong>" + (cat.prix_indicatif ? "Prix indicatif" : "Prix trouvé sur la page") + " :</strong> " + esc(price) + " €</p>" : "") +
+      (price ? "<p><strong>" + (cat.prix_indicatif ? "Prix indicatif" : "Prix trouvé sur la page") + " :</strong> " + esc(formatPrice(price)) + "</p>" : "") +
       (rows ? '<div class="model-analyzer-specs" aria-label="Caractéristiques et interprétation">' + rows + "</div>" : "") +
       (fromRef.length ? '<p class="model-analyzer-note">Issu du référentiel produit (code-barres) : ' + esc(fromRef.join(", ")) + ".</p>" : "") +
       (unknownKeys.length ? '<p class="model-analyzer-note"><strong>Inconnu (non trouvé) :</strong> ' + esc(unknownKeys.join(", ")) + ". Une information inconnue n’est jamais comptée comme un défaut." + (/apple|iphone/i.test(title) && unknownKeys.some(function (k) { return /ram|mémoire|batterie/i.test(k); }) ? " Apple ne publie ni la RAM ni la capacité de la batterie en mAh : ce n’est pas un oubli du guide." : "") + "</p>" : "") +
-      (profs ? '<h4>Compatibilité par profil</h4><ul class="model-analyzer-profiles">' + profs + "</ul>" : "") + sourceBlock + scoreNote +
+      (profs ? '<h4>Compatibilité par profil</h4><ul class="model-analyzer-profiles">' + profs + "</ul>" : "") + pcBlock + sourceBlock + scoreNote +
       ((cat.points_forts && cat.points_forts.length) ? "<h4>Points forts</h4><ul>" + list(cat.points_forts) + "</ul>" : "") +
       ((cat.points_faibles && cat.points_faibles.length) ? "<h4>Points de vigilance</h4><ul>" + list(cat.points_faibles) + "</ul>" : "") +
       auditLink + retryButton("Analyser un autre modèle") + "</div>");
