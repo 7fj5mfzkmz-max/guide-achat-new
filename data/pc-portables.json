@@ -5126,6 +5126,991 @@
         "autonomie": "annoncee",
         "prix": "indicatif_octobre_2026"
       }
+    },
+    {
+      "id": "hp-15-fd0154nf",
+      "nom": "HP Laptop 15-fd0154nf",
+      "marque": "HP",
+      "prix_indicatif": 699.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 699,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "Intel Core i3-1315U",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "15,6\", IPS, 1920 × 1080, 60 Hz, 250 nits",
+        "gpu": "Intel UHD Graphics",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Famille",
+        "chargeur": "Inclus",
+        "batterie": "41 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 4,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 7,
+        "gaming": 3,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HP+Laptop+15-fd0154nf",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 5,
+        "gamer": 4,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1080",
+          "luminosite_nits": 250
+        },
+        "performance": {
+          "cpu": "Intel Core i3-1315U",
+          "niveau": 2,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel UHD Graphics",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00717214.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00717214.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "msi-modern-13-f1mog-090fr",
+      "nom": "MSI Modern 13 F1MOG-090FR",
+      "marque": "MSI",
+      "prix_indicatif": 799.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 799,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "Intel Core 5 120U",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "13,3\", IPS, 1920 × 1080, 60 Hz, 400 nits",
+        "gpu": "Intel Iris Xe Graphics",
+        "poids": "1,19 kg",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Famille",
+        "chargeur": "Inclus",
+        "batterie": "46,8 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 7,
+        "ecran": 6,
+        "prix": 7,
+        "gaming": 5,
+        "mobilite": 9,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=MSI+Modern+13+F1MOG-090FR",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 13.3,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1080",
+          "luminosite_nits": 400
+        },
+        "performance": {
+          "cpu": "Intel Core 5 120U",
+          "niveau": 3,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Iris Xe Graphics",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": 1.19
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00747913.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00747913.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "samsung-galaxy-book4-np750xgj-kg4fr",
+      "nom": "Samsung Galaxy Book4 NP750XGJ-KG4FR",
+      "marque": "Samsung",
+      "prix_indicatif": 799.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 799,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "Intel Core i5-1335U",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "15,6\", 1920 × 1080, 60 Hz, 300 nits",
+        "gpu": "Intel UHD Graphics",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Famille",
+        "chargeur": "Inclus",
+        "batterie": "54 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 5,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 7,
+        "gaming": 3,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+Book4+NP750XGJ-KG4FR",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 5,
+        "gamer": 4,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1080",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "Intel Core i5-1335U",
+          "niveau": 3,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel UHD Graphics",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00684317.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00684317.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "msi-modern-14-c7m-428fr",
+      "nom": "MSI Modern 14 C7M-428FR",
+      "marque": "MSI",
+      "prix_indicatif": 849.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 849,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "AMD Ryzen 7 7730U",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "14\", IPS, 1920 × 1080",
+        "gpu": "AMD Radeon Graphics",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Famille",
+        "chargeur": "Inclus",
+        "batterie": "capacité non relevée"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 7,
+        "ecran": 6,
+        "prix": 7,
+        "gaming": 4,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=MSI+Modern+14+C7M-428FR",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 14,
+          "frequence_max_hz": null,
+          "definition": "1920 × 1080",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "AMD Ryzen 7 7730U",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "AMD Radeon Graphics",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00725344.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00725344.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "hp-15-fd1019nf",
+      "nom": "HP Laptop 15-fd1019nf",
+      "marque": "HP",
+      "prix_indicatif": 849.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 849,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 5 125H",
+        "ram": "32 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "15,6\", IPS, 1920 × 1080, 60 Hz, 300 nits",
+        "gpu": "Intel Arc Graphics",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Famille",
+        "chargeur": "Inclus",
+        "batterie": "41 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "32 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 7,
+        "gaming": 5,
+        "mobilite": 5,
+        "memoire": 8
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=HP+Laptop+15-fd1019nf",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 6,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1080",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 5 125H",
+          "niveau": 4,
+          "ram_go": 32,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Arc Graphics",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00711577.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00711577.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "asus-expertbook-b1-b1503cva-s77270x",
+      "nom": "ASUS ExpertBook B1 B1503CVA-S77270X",
+      "marque": "ASUS",
+      "prix_indicatif": 999.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 999,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "Intel Core 5 210H",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "15,6\", IPS, 1920 × 1080, 60 Hz, 300 nits",
+        "gpu": "Intel Graphics",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Professionnel",
+        "chargeur": "Inclus",
+        "batterie": "50 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 6,
+        "gaming": 4,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+ExpertBook+B1+B1503CVA-S77270X",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 5
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 15.6,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1080",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "Intel Core 5 210H",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Graphics",
+          "niveau": 0,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00726216.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00726216.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "lenovo-thinkbook-16-g8-21sk00eefr",
+      "nom": "Lenovo ThinkBook 16 G8 IAL 21SK00EEFR",
+      "marque": "Lenovo",
+      "prix_indicatif": 1099.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 1099,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "Intel Core Ultra 5 135H",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "16\", IPS, 1920 × 1200, 60 Hz, 300 nits",
+        "gpu": "Intel Arc Graphics",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Professionnel",
+        "chargeur": "Inclus",
+        "batterie": "45 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 6,
+        "ecran": 5,
+        "prix": 6,
+        "gaming": 5,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Lenovo+ThinkBook+16+G8+IAL+21SK00EEFR",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1200",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "Intel Core Ultra 5 135H",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "Intel Arc Graphics",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00749591.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00749591.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "acer-aspire-go-16-ag16-71p-91zt",
+      "nom": "Acer Aspire Go 16 AG16-71P-91ZT",
+      "marque": "Acer",
+      "prix_indicatif": 1199.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 1199,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "Intel Core i9-13900H",
+        "ram": "32 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\", IPS, 1920 × 1200, 60 Hz, 300 nits",
+        "gpu": "Intel Iris Xe Graphics",
+        "poids": "non cité dans le relevé",
+        "autonomie": "jusqu’à 6 h annoncées (vidéo ou constructeur)",
+        "os": "Windows 11 Famille",
+        "chargeur": "Inclus",
+        "batterie": "53 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "32 Go de RAM et 1 To de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "professionnel",
+        "gamer"
+      ],
+      "scores": {
+        "performance": 7,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 5,
+        "gaming": 5,
+        "mobilite": 5,
+        "memoire": 8
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Acer+Aspire+Go+16+AG16-71P-91ZT",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 6,
+        "gamer": 6,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1200",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "Intel Core i9-13900H",
+          "niveau": 5,
+          "ram_go": 32,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "Intel Iris Xe Graphics",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": 6,
+          "autonomie_source": "annoncee"
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00724970.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00724970.html"
+        ],
+        "autonomie": "annoncee",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5"
+      }
+    },
+    {
+      "id": "thinkpad-e14-gen7-21t00072fr",
+      "nom": "Lenovo ThinkPad E14 Gen 7 21T00072FR",
+      "marque": "Lenovo",
+      "prix_indicatif": 1299.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 1299,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "AMD Ryzen 5 230",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "14\", IPS, 1920 × 1200, 60 Hz, 300 nits",
+        "gpu": "AMD Radeon 760M",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Professionnel",
+        "chargeur": "Inclus",
+        "batterie": "64 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.",
+        "Autonomie réelle non mesurée dans ce relevé.",
+        "Écran limité à 60 Hz."
+      ],
+      "profil_adapte": [
+        "etudiant",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 7,
+        "ecran": 6,
+        "prix": 5,
+        "gaming": 5,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Lenovo+ThinkPad+E14+Gen+7+21T00072FR",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6,
+        "gamer": 5,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": "IPS",
+          "diagonale_pouces": 14,
+          "frequence_max_hz": 60,
+          "definition": "1920 × 1200",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "AMD Ryzen 5 230",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "AMD Radeon 760M",
+          "niveau": 2,
+          "dedie": false
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00749632.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00749632.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "asus-v16-v3607nmq-tk036",
+      "nom": "ASUS V16 V3607NMQ-TK036",
+      "marque": "ASUS",
+      "prix_indicatif": 1299.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 1299,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables. Sans OS : le prix ne comprend pas de licence Windows.",
+      "caracteristiques": {
+        "processeur": "AMD Ryzen 7 170",
+        "ram": "16 Go",
+        "stockage": "512 Go SSD",
+        "ecran": "16\", 1920 × 1200, 144 Hz, 300 nits",
+        "gpu": "NVIDIA GeForce RTX 5060 8 Go",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Sans système d’exploitation (Windows non fourni)",
+        "chargeur": "Inclus",
+        "batterie": "63 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 512 Go de SSD"
+      ],
+      "points_faibles": [
+        "Sans système d’exploitation : installation nécessaire ; licence Windows à prévoir si souhaitée.",
+        "Autonomie réelle non mesurée dans ce relevé."
+      ],
+      "profil_adapte": [
+        "gamer",
+        "createur"
+      ],
+      "scores": {
+        "performance": 6,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 5,
+        "gaming": 7,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+V16+V3607NMQ-TK036",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 4,
+        "professionnel": 5,
+        "gamer": 6,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 144,
+          "definition": "1920 × 1200",
+          "luminosite_nits": 300
+        },
+        "performance": {
+          "cpu": "AMD Ryzen 7 170",
+          "niveau": 4,
+          "ram_go": 16,
+          "stockage_go": 512
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5060 8 Go",
+          "niveau": 4,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "sans",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00754899.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00754899.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
+    },
+    {
+      "id": "asus-rog-strix-g16-g614fr-ts292w",
+      "nom": "ASUS ROG Strix G16 G614FR-TS292W",
+      "marque": "ASUS",
+      "prix_indicatif": 2499.95,
+      "prix_note": "LDLC, relevé du 23 octobre 2026 : 2499,95 € TTC hors livraison pour cette référence exacte. Chargeur inclus confirmé dans la rubrique Alimentation. Prix et disponibilité variables.",
+      "caracteristiques": {
+        "processeur": "AMD Ryzen 9 9955HX",
+        "ram": "16 Go",
+        "stockage": "1 To SSD",
+        "ecran": "16\", 2560 × 1600, 300 Hz",
+        "gpu": "NVIDIA GeForce RTX 5070 Ti 12 Go",
+        "poids": "non cité dans le relevé",
+        "autonomie": "non chiffrée dans le relevé",
+        "os": "Windows 11 Famille",
+        "chargeur": "Inclus",
+        "batterie": "90 Wh"
+      },
+      "points_forts": [
+        "Chargeur inclus dans cette référence",
+        "16 Go de RAM et 1 To de SSD"
+      ],
+      "points_faibles": [
+        "16 Go : prévoir davantage pour les gros projets.",
+        "Autonomie réelle non mesurée dans ce relevé."
+      ],
+      "profil_adapte": [
+        "gamer",
+        "professionnel"
+      ],
+      "scores": {
+        "performance": 9,
+        "autonomie": 4,
+        "ecran": 5,
+        "prix": 3,
+        "gaming": 8,
+        "mobilite": 5,
+        "memoire": 6
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+ROG+Strix+G16+G614FR-TS292W",
+      "fabricant_url": null,
+      "date_verification": "2026-10-23",
+      "profil_scores": {
+        "etudiant": 5,
+        "professionnel": 6,
+        "gamer": 7,
+        "createur": 6
+      },
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "diagonale_pouces": 16,
+          "frequence_max_hz": 300,
+          "definition": "2560 × 1600",
+          "luminosite_nits": null
+        },
+        "performance": {
+          "cpu": "AMD Ryzen 9 9955HX",
+          "niveau": 7,
+          "ram_go": 16,
+          "stockage_go": 1024
+        },
+        "graphique": {
+          "gpu": "NVIDIA GeForce RTX 5070 Ti 12 Go",
+          "niveau": 5,
+          "dedie": true
+        },
+        "batterie": {
+          "autonomie_heures": null,
+          "autonomie_source": null
+        },
+        "mobilite": {
+          "poids_kg": null
+        }
+      },
+      "os": "windows",
+      "ready_for_recommendation": true,
+      "marchand_url": "https://www.ldlc.com/fiche/PB00754912.html",
+      "chargeur_inclus": true,
+      "spec_provenance": {
+        "sources": [
+          "https://www.ldlc.com/fiche/PB00754912.html"
+        ],
+        "autonomie": "estimation_de_categorie",
+        "prix": "indicatif_octobre_2026",
+        "mobilite": "poids_absent_score_neutre_5",
+        "autonomie_detail": "Pas d’heure sourcée : le score d’autonomie suit la catégorie (Arm, ultraportable, polyvalent, gamer), à remplacer par une mesure."
+      }
     }
   ],
   "profils": {
@@ -5236,11 +6221,12 @@
     }
   ],
   "catalogue_meta": {
-    "derniere_verification": "2026-10-20",
-    "detail_verification": "Mise à jour du 20 oct. 2026 : 16 modèles ajoutés (4 par tranche), prix Omen 16 actualisé (1 671 → 1 300 €), 4 fiches réintégrées au générateur. Les prix des fiches antérieures conservent leur relevé d'origine (sept.-oct. 2026).",
-    "count": 60,
+    "derniere_verification": "2026-10-23",
+    "detail_verification": "Ajout le 23 octobre 2026 de 11 références LDLC sous 2 600 €, chargeur inclus confirmé. Quatre références sans chargeur exclues de la sélection initiale. Les 60 fiches antérieures conservent leurs relevés et leurs caractéristiques.",
+    "count": 71,
     "note": "Les scores classent une compatibilité avec un profil. Ils sont plafonnés à 9. Ce ne sont pas des notes de laboratoire.",
     "sources": [
+      "LDLC (références exactes, 23 octobre 2026)",
       "Les Numériques",
       "JVTECH",
       "FranceMetrics",
@@ -5268,6 +6254,6 @@
     "note_fiabilite": "Chaque fiche a ses sources et dit si l’autonomie est annoncée, mesurée ou seulement estimée par catégorie. Les prix bougent. Les configurations (8/256 contre 16/512) changent le produit."
   },
   "meta": {
-    "prix_releves": "nouveaux modèles et prix Omen relevés le 20 oct. 2026 ; les autres fiches conservent leur relevé d'origine (sept.-oct. 2026)"
+    "prix_releves": "11 nouvelles références LDLC relevées le 23 octobre 2026 ; les 60 fiches antérieures conservent leur relevé d'origine (sept.-oct. 2026)"
   }
 }

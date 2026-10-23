@@ -47,8 +47,8 @@ function parsePrices(texts) {
   // Ne garde que le premier segment « X € » de chaque ligne (le prix, avant les specs).
   const out = [];
   for (const t of texts) {
-    const m = t.split('·')[0].match(/[\d\u00a0\s]+\s*€/);
-    if (m) { const n = Number(m[0].replace(/[^\d]/g, '')); if (n > 0) out.push(n); }
+    const m = t.split('·')[0].match(/[\d\u00a0\u202f\s]+(?:,\d+)?\s*€/);
+    if (m) { const n = Number(m[0].replace(/[^\d,]/g, '').replace(',', '.')); if (n > 0) out.push(n); }
   }
   return out;
 }
@@ -199,3 +199,4 @@ function parsePrices(texts) {
   console.log(passed + ' réussi(s), ' + failures + ' échec(s), ' + (passed + failures) + ' parcours.');
   if (failures) process.exit(1);
 })();
+

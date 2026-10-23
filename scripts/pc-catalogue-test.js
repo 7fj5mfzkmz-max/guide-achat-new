@@ -19,14 +19,14 @@ function check(label, fn) {
 
 function inBand(p, a, b) { const x = Number(p.prix_indicatif); return x >= a && x < b; }
 
-check('60 produits, ids uniques, méta cohérente', () => {
-  assert.equal(produits.length, 60, 'produits : ' + produits.length);
-  assert.equal(new Set(produits.map(p => p.id)).size, 60, 'ids en double');
-  assert.equal(data.catalogue_meta.count, 60);
+check('71 produits, ids uniques, méta cohérente', () => {
+  assert.equal(produits.length, 71, 'produits : ' + produits.length);
+  assert.equal(new Set(produits.map(p => p.id)).size, 71, 'ids en double');
+  assert.equal(data.catalogue_meta.count, 71);
 });
 
-check('Effectifs par tranche : 14 / 15 / 19 / 12', () => {
-  const bands = [[0, 800, 14], [800, 1200, 15], [1200, 1800, 19], [1800, 1e9, 12]];
+check('Effectifs par tranche : 17 / 20 / 21 / 13', () => {
+  const bands = [[0, 800, 17], [800, 1200, 20], [1200, 1800, 21], [1800, 1e9, 13]];
   for (const [a, b, n] of bands) {
     const c = produits.filter(p => inBand(p, a, b)).length;
     assert.equal(c, n, 'tranche [' + a + ',' + b + '[ : ' + c + ' au lieu de ' + n);
@@ -86,5 +86,37 @@ check('Chaque fiche est sourcée et affiche ses inconnus', () => {
   }
 });
 
+check('Ajouts du 23 octobre : 11 références sous 2 600 €, chargeur et source confirmés', () => {
+  const added = produits.filter(p => p.date_verification === '2026-10-23');
+  assert.equal(added.length, 11);
+  for (const p of added) {
+    assert.ok(p.prix_indicatif > 0 && p.prix_indicatif < 2600, p.id);
+    assert.equal(p.chargeur_inclus, true, p.id);
+    assert.equal(p.caracteristiques.chargeur, 'Inclus', p.id);
+    assert.match(p.marchand_url, /^https:\/\/www\.ldlc\.com\/fiche\/PB\d+\.html$/);
+    assert.ok(p.spec_provenance.sources.includes(p.marchand_url));
+    for (const score of Object.values(p.scores)) assert.ok(score >= 1 && score <= 9);
+  }
+  const excluded = ['83K800BYFR', 'UX3405CA-QD010W', 'X1607CA-MB235W', 'M3607GA-SH202W'];
+  for (const ref of excluded) assert.ok(!added.some(p => p.nom.includes(ref)), ref);
+  const v16 = byId.get('asus-v16-v3607nmq-tk036');
+  assert.equal(v16.os, 'sans');
+  assert.match(v16.caracteristiques.os, /^Sans système/);
+  assert.match(v16.points_faibles[0], /licence Windows/);
+});
+
+check('Prix avec centimes et système sans OS respectés dans les filtres', () => {
+  const source = fs.readFileSync(path.join(__dirname, '..', 'assets/js/pc-visuals.js'), 'utf8');
+  const vm = require('node:vm');
+  const context = { Intl };
+  vm.createContext(context);
+  vm.runInContext(source.match(/function osOf\(p\)\{[^\n]+/)[0] + '\n' + source.match(/function euro\(n\)\{[^\n]+/)[0], context);
+  assert.equal(context.osOf(byId.get('asus-v16-v3607nmq-tk036')), 'sans');
+  assert.equal(context.osOf(byId.get('hp-15-fd0154nf')), 'windows');
+  assert.match(context.euro(799.95), /799,95/);
+  assert.match(context.euro(800), /800/);
+});
+
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
 if (failures) process.exitCode = 1;
+
