@@ -2,9 +2,30 @@
    Aucune couleur, police ni mise en page du système de design n’est redéfinie ici :
    l’accueil reste celui de la référence Crox, les catégories celles d’accessibilitychecking.
    Cette feuille ne fait que (1) cadrer les photos, (2) styler les notes manuscrites. */
-.photo-editorial .hm-photo { aspect-ratio: 4 / 3; }
-.photo-editorial .hm-photo picture, .photo-editorial .hm-photo img { display: block; width: 100%; height: 100%; }
-.photo-editorial .hm-photo img { object-fit: cover; object-position: 62% center; }
+/* Accueil : photo plein cadre derrière le héros. Seules la couleur du texte et un voile
+   sombre (teinte d’origine --h-dark) sont ajoutés : fond de page, polices, majuscules,
+   grille, pastille ronde et bloc de chiffres restent ceux de la référence. */
+.photo-editorial .hm-hero.photo-home-hero { position: relative; isolation: isolate; overflow: hidden; color: #fff; background: var(--h-dark); }
+.photo-editorial .photo-home-backdrop { display: block; position: absolute; inset: 0; z-index: -2; }
+.photo-editorial .photo-home-backdrop img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 70% center; }
+.photo-editorial .hm-hero.photo-home-hero::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(20,22,26,.94) 0%, rgba(20,22,26,.84) 30%, rgba(20,22,26,.45) 58%, rgba(20,22,26,.08) 85%);
+}
+.photo-editorial .photo-home-hero .hm-hero-grid { align-items: end; min-height: 560px; }
+.photo-editorial .photo-home-hero .hm-hero-copy, .photo-editorial .photo-home-hero h1 { color: #fff; }
+.photo-editorial .photo-home-hero .hm-meta, .photo-editorial .photo-home-hero .hm-lead { color: rgba(255,255,255,.86); }
+.photo-editorial .photo-home-hero .hm-link { color: #fff; border-color: rgba(255,255,255,.5); }
+.photo-editorial .photo-home-hero .hm-badge { background: rgba(39,43,48,.9); border: 1px solid rgba(255,255,255,.18); }
+.photo-editorial .photo-home-hero .hm-hero-visual { align-self: end; background: transparent; box-shadow: none; overflow: visible; margin-top: 160px; }
+.photo-editorial .photo-home-hero .hm-stats { border-radius: 14px; overflow: hidden; box-shadow: 0 24px 65px rgba(0,0,0,.35); }
+.photo-editorial .photo-home-hero .hm-hero-visual .hm-note-hand { top: -64px; left: auto; right: 8px; color: #fff; background: transparent; border: 0; transform: rotate(-4deg); }
+@media (max-width: 700px) {
+  .photo-editorial .photo-home-hero .hm-hero-grid { min-height: 0; }
+  .photo-editorial .photo-home-hero .hm-hero-visual { margin-top: 24px; }
+  .photo-editorial .photo-home-hero .hm-hero-visual .hm-note-hand { display: none; }
+  .photo-editorial .hm-hero.photo-home-hero::after { background: linear-gradient(180deg, rgba(20,22,26,.9), rgba(20,22,26,.78)); }
+}
 .photo-editorial .hm-card.is-live .hm-card-photo img { object-position: 62% center; }
 .photo-editorial .photo-shot { padding: 0; overflow: hidden; align-self: center; }
 .photo-editorial .photo-shot picture, .photo-editorial .photo-shot img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 62% center; animation: none; }

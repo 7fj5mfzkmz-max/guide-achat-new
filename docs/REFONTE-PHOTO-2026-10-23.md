@@ -34,3 +34,7 @@ La première version recolorait et réorganisait l'accueil et les pages catégor
 - garde les photos d'ambiance, mais à l'intérieur des composants existants (carte du héros, cartes de guides, cartes de profils, visuel de la page PC) ;
 - ajoute des notes manuscrites avec flèche (police Caveat, déjà chargée) : accueil, au-dessus des cartes de guides ; page PC, au-dessus des profils ;
 - réduit `photo-editorial.css` au cadrage des photos et aux notes (aucune variable de couleur redéfinie).
+
+## Révision v3 : héros photo plein cadre, style de référence conservé
+
+Le héros de l'accueil retrouve la photo plein cadre de la première version (bien intégrée), mais sans les changements de style : fond de page d'origine (`#e3e7eb`), titres en majuscules, grille, pastille ronde, bloc de chiffres, en-tête et couleurs d'origine. Seul un voile sombre à la teinte d'origine (`--h-dark`) assure la lisibilité du texte. La note manuscrite du héros est de retour.
