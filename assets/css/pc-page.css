@@ -496,3 +496,15 @@ input[type="range"].pcx-slider { cursor: pointer; }
   .pc-audit-ico svg { width: 29px; height: 29px; }
   .pc-audit-no { min-width: 20px; }
 }
+
+
+/* Lien d’achat : visible aussi sans survol sur écran tactile. */
+.pc-links .idealo-buy-link {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; max-width: 100%; box-sizing: border-box;
+  padding: 9px 12px; margin: 4px 0; border: 1px solid var(--ink);
+  background: var(--ink); color: var(--paper); text-decoration: none;
+  font-weight: 700; text-align: center;
+}
+.pc-links .idealo-buy-link:hover { background: var(--paper); color: var(--ink); }
+.pc-links .idealo-buy-link:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }

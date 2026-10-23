@@ -217,7 +217,7 @@ function recoCard(x,role,profile,mainPrice){
   var car=p.caracteristiques||{}, L=[['processeur','Processeur'],['ram','Mémoire'],['stockage','Stockage'],['ecran','Écran'],['gpu','Carte graphique'],['poids','Poids'],['autonomie','Autonomie'],['os','Système'],['chargeur','Chargeur'],['batterie','Capacité batterie']];
   var dl=L.filter(a=>car[a[0]]).map(a=>'<div><dt>'+a[1]+'</dt><dd>'+car[a[0]]+'</dd></div>').join('');
   var st=(p.points_forts||[]).slice(0,3).map(t=>'<li>'+t+'</li>').join(''), wk=(p.points_faibles||[]).slice(0,2).map(t=>'<li>'+t+'</li>').join('');
-  var links=[];if(p.idealo_url)links.push('<a href="'+p.idealo_url+'" target="_blank" rel="noopener">Comparer le prix</a>');if(p.marchand_url)links.push('<a href="'+p.marchand_url+'" target="_blank" rel="noopener">Voir la configuration chez le marchand</a>');if(p.fabricant_url)links.push('<a href="'+p.fabricant_url+'" target="_blank" rel="noopener">Fiche fabricant</a>');
+  var links=[];if(p.idealo_url)links.push('<a class="idealo-buy-link" href="'+p.idealo_url+'" target="_blank" rel="noopener" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand.">Acheter au meilleur prix · Idealo ↗</a>');if(p.marchand_url)links.push('<a href="'+p.marchand_url+'" target="_blank" rel="noopener">Voir la configuration chez le marchand</a>');if(p.fabricant_url)links.push('<a href="'+p.fabricant_url+'" target="_blank" rel="noopener">Fiche fabricant</a>');
   return '<article class="pc-reco-card pc-reco-'+role+'" data-id="'+(p.id||'')+'"><span class="pc-reco-tag">'+tag+'</span><h4>'+productTitle(p)+'</h4><p class="meta">'+metaLine(p)+'</p>'+delta+
     (pr?'<ul class="pc-promise">'+pr+'</ul>':'')+'<ul class="pc-specs">'+specChips(p,profile)+'</ul>'+(role==='main'?whyLinks(p,false):'')+
     '<details class="pc-more"><summary>Voir l’analyse détaillée</summary><div class="pc-more-in">'+(dl?'<dl class="pc-dl">'+dl+'</dl>':'')+(st?'<p><strong>Points forts</strong></p><ul>'+st+'</ul>':'')+(wk?'<p><strong>Limites</strong></p><ul>'+wk+'</ul>':'')+whyLinks(p,true)+(links.length?'<p class="pc-links">'+links.join(' · ')+'</p>':'')+(p.prix_note?'<p class="pc-note">'+p.prix_note+'</p>':'')+'</div></details></article>';
@@ -287,7 +287,7 @@ function card(p){
   var strengths=(p.points_forts||p.forts||[]).slice(0,2).map(x=>'<li>'+x+'</li>').join('');
   var weaknesses=(p.points_faibles||[]).slice(0,2).map(x=>'<li>'+x+'</li>').join('');
   var links=[];
-  if(p.idealo_url)links.push('<a href="'+p.idealo_url+'" target="_blank" rel="noopener">Comparer le prix</a>');
+  if(p.idealo_url)links.push('<a class="idealo-buy-link" href="'+p.idealo_url+'" target="_blank" rel="noopener" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand.">Acheter au meilleur prix · Idealo ↗</a>');
   if(p.marchand_url)links.push('<a href="'+p.marchand_url+'" target="_blank" rel="noopener">Voir la configuration chez le marchand</a>');if(p.fabricant_url)links.push('<a href="'+p.fabricant_url+'" target="_blank" rel="noopener">Fiche fabricant</a>');
   var brand=p.marque||'', nom=p.nom||'';
   var title=(brand&&nom.toLowerCase().indexOf(brand.toLowerCase())===0)?nom:(brand?brand+' ':'')+nom;

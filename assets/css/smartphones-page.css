@@ -475,3 +475,7 @@
 .picks-note { margin: 20px 0 0; font-size: 15px; color: var(--ink-soft); }
 .picks-note a { color: var(--ink); }
 @media (max-width: 760px) { .picks { grid-template-columns: 1fr; gap: 10px; } .pick, .pick:nth-child(n+4), .pick:last-child { grid-column: auto; padding: 16px; } }
+
+
+.criteria-recommendation-link.idealo-buy-link { min-height: 44px; max-width: 100%; box-sizing: border-box; }
+.idealo-buy-link:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }

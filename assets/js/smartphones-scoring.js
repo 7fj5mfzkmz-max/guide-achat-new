@@ -324,7 +324,7 @@
         container.innerHTML = "";
         fallback.forEach(function (p) {
           var card = document.createElement("article"); card.className = "criteria-recommendation-card";
-          card.innerHTML = '<div class="criteria-recommendation-top"><span class="criteria-recommendation-brand">' + esc(p.marque || "") + '</span><span class="criteria-recommendation-score">À vérifier</span></div><h4>' + esc(p.nom) + '</h4><p class="criteria-recommendation-meta">' + (p.prix_indicatif ? '≈ ' + esc(p.prix_indicatif) + ' € · ' : '') + 'Correspondance non calculée</p><a class="criteria-recommendation-link" target="_blank" rel="noopener noreferrer" href="' + esc(idealoUrl(p)) + '">Comparer les offres →</a>';
+          card.innerHTML = '<div class="criteria-recommendation-top"><span class="criteria-recommendation-brand">' + esc(p.marque || "") + '</span><span class="criteria-recommendation-score">À vérifier</span></div><h4>' + esc(p.nom) + '</h4><p class="criteria-recommendation-meta">' + (p.prix_indicatif ? '≈ ' + esc(p.prix_indicatif) + ' € · ' : '') + 'Correspondance non calculée</p><a class="criteria-recommendation-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." target="_blank" rel="noopener noreferrer" href="' + esc(idealoUrl(p)) + '">Acheter au meilleur prix · Idealo ↗</a>';
           container.appendChild(card);
         });
       });
@@ -365,7 +365,7 @@
         '<p class="criteria-recommendation-meta">' + meta + '</p>' +
         '<ul class="match-chips">' + chips + '</ul>' + why +
         '<div class="criteria-recommendation-foot">' +
-          (x.p.nom ? '<a class="criteria-recommendation-link" href="' + esc(idealoUrl(x.p)) + '" target="_blank" rel="noopener noreferrer">Idealo →</a>' : '') +
+          (x.p.nom ? '<a class="criteria-recommendation-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="' + esc(idealoUrl(x.p)) + '" target="_blank" rel="noopener noreferrer">Acheter au meilleur prix · Idealo ↗</a>' : '') +
           (x.p.fiche_statut === "specs_a_verifier" ? '<span class="criteria-recommendation-warn" title="Caractéristiques non confirmées par une source : à vérifier avant d’acheter.">fiche à vérifier</span>' : '') +
         '</div>';
       container.appendChild(article);
@@ -421,4 +421,5 @@
       if (status) status.textContent = "Les recommandations ne peuvent pas être chargées pour le moment.";
     });
 })();
+
 
