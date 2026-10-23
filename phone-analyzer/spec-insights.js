@@ -5,7 +5,7 @@ function level(v){return v==='good'?'good':v==='warn'?'warn':v==='bad'?'bad':'ne
 function verdict(profile,key,value,ctx){
  ctx=ctx||{};var v=String(value==null?'':value),out={level:'neutral',label:'À interpréter',why:''};
  function set(l,label,why){out={level:level(l),label:label,why:why};}
- if(ctx.pc)return verdictPc(profile,key,v,set,out);
+ if(ctx.pc){verdictPc(profile,key,v,set);return out;}
  if(key==='ram'){var n=num(v,/(\d+(?:[.,]\d+)?)\s*(?:go|gb)/i);if(n==null)return out;
   if(profile==='gamer'&&!ctx.apple){set(n>=12?'good':n>=8?'warn':'bad',n>=12?'Très confortable pour jouer':n>=8?'Correct, mais limite pour les jeux récents':'Insuffisant pour jouer confortablement','Pour les jeux lourds, 12 Go offrent plus de marge ; 8 Go restent corrects pour beaucoup de jeux.');}
   else if(profile==='professionnel'){set(n>=8?'good':n>=6?'warn':'bad',n>=8?'Confortable pour applications et fichiers lourds':'Correct pour un usage professionnel courant','8 Go permettent de garder plusieurs applications ouvertes ; les grands fichiers, plans et tableurs demandent aussi une puce efficace.');}
@@ -48,33 +48,60 @@ function verdict(profile,key,value,ctx){
   return out;}
  return out;
 }
-/* Verdicts « PC portables » : seuils et vocabulaire propres aux ordinateurs
-   portables (RAM 16/32 Go, GPU dédié ou intégré, poids, Wh). Un GPU intégré
-   n'est pas un défaut absolu : le verdict dépend du profil demandé. */
-function verdictPc(profile,key,v,set,out){
- var n;
- if(key==='ram'){n=num(v,/(\d+(?:[.,]\d+)?)\s*(?:go|gb)/i);if(n==null)return out;
-  if(profile==='gamer'){set(n>=32?'good':n>=16?'warn':'bad',n>=32?'Confortable pour les jeux récents':n>=16?'16 Go justes pour les jeux lourds':'Insuffisant pour jouer confortablement','16 Go font tourner la plupart des jeux ; 32 Go gardent de la marge pour les jeux récents et le multitâche.');}
-  else if(profile==='createur'){set(n>=32?'good':n>=16?'warn':'bad',n>=32?'Confortable pour le montage':'16 Go limite pour les gros projets','Le montage et les maquettes profitent de 32 Go ; 16 Go restent corrects pour des projets moyens.');}
-  else{set(n>=16?'good':n>=8?'warn':'bad',n>=16?'Confortable pour le multitâche':n>=8?'Correct pour un usage courant':'Juste pour un usage confortable','16 Go sont devenus le standard confortable ; 8 Go demandent des compromis dès qu\'on multiplie les onglets.');}
-  return out;}
- if(key==='gpu'){var rtx=num(v,/rtx\s*(\d{4})/i),igpu=/intégré|iris|uhd|adreno|radeon intégr|graphics intégr|arc intégré/i.test(v);
-  if(profile==='gamer'){var g=rtx!=null?((rtx%1000)>=70?9:(rtx%1000)>=60?7.5:6):(igpu?3:5);
-   set(g>=7.5?'good':g>=5?'warn':'bad',rtx!=null&&(rtx%1000>=70)?'Carte haut de gamme, idéale en jeu':igpu?'Pas de carte dédiée':'Carte d\'entrée de gamme gaming',igpu?'Sans carte dédiée, seuls les jeux légers tournent bien ; le niveau de détail reste bas.':'Le nom de la carte ne dit pas tout : les watts (TGP) et le refroidissement changent les FPS réels.');return out;}
-  if(profile==='createur'){set(igpu?'warn':'good',igpu?'Correct pour la retouche légère':'Carte dédiée, utile en montage',igpu?'Un GPU intégré suffit pour la photo ; le montage 4K profitera d\'une carte dédiée.':'L\'accélération matérielle accélère le rendu et l\'export.');return out;}
-  set(igpu?'good':'neutral',igpu?'Suffisant pour la bureautique et les cours':'Carte dédiée (consommation à considérer)',igpu?'Pour écrire, naviguer et visio, le GPU intégré suffit largement.':'Une carte dédiée consomme plus : autonomie et poids en pâtissent si vous n\'en avez pas l\'usage.');return out;}
- if(key==='poids'){n=num(v,/(\d(?:[.,]\d{1,2})?)\s*kg/i);if(n==null)return out;
+/* Verdicts « PC portables » : un même barème pour tous les modèles, lu selon le
+   profil. Chaque caractéristique reçoit une note 0-9 (celle du score global,
+   phone-analyzer/spec-score.js) ; le verdict compare cette note au niveau
+   RÉELLEMENT utile pour le profil : bon = marge confortable, moyen = suffisant
+   sans marge, faible = en dessous du besoin. Une valeur illisible ne donne
+   aucun verdict (jamais un défaut). */
+var NEED={ /* niveau minimal utile (0-9) par profil et par caractéristique */
+ etudiant:{processeur:3.5,ram:4,stockage:3,ecran:4,gpu:0,os:5,longevite:4},
+ professionnel:{processeur:5,ram:5.5,stockage:4.5,ecran:5,gpu:0,os:6,longevite:5},
+ gamer:{processeur:6,ram:7,stockage:6.5,ecran:5.5,gpu:6.5,os:6.5,longevite:5},
+ createur:{processeur:6,ram:7,stockage:6.5,ecran:6.5,gpu:4,os:6.5,longevite:5}
+};
+var PROFILE_NAME={etudiant:'étudiant',professionnel:'professionnel',gamer:'joueur',createur:'créateur'};
+function scorer(){
+ var S=root.PhoneAnalyzerSpecScore;
+ if(!S&&typeof require==='function'){try{S=require('./spec-score.js');}catch(e){S=null;}}
+ return S;
+}
+function lvl(score,need){return score>=need+1.5?'good':score>=need?'warn':'bad';}
+function verdictPc(profile,key,v,set){
+ var S=scorer();if(!S||!S.helpers)return;
+ var H=S.helpers,need=(NEED[profile]||NEED.etudiant),who=PROFILE_NAME[profile]||'étudiant',sc=null,n;
+ if(key==='ram'){sc=H.pcRamScore(v);if(sc==null)return;n=num(v,/(\d+(?:[.,]\d+)?)\s*(?:go|gb)/i);
+  var l=lvl(sc,need.ram);
+  set(l,l==='good'?'Confortable pour ce profil':l==='warn'?'Juste suffisante, sans marge':'Insuffisante pour ce profil',
+   n+' Go : '+(n<=8?'la mémoire est souvent soudée et ne pourra pas être augmentée ; dès que les onglets et logiciels s\'accumulent, la machine ralentit.':n<16?'correct aujourd\'hui, mais la marge se réduit avec les années.':'confortable et durable.')+' Profil '+who+' : il faut au moins '+(need.ram>=7?'16':need.ram>=5.5?'16':'8')+' Go pour être serein.');return;}
+ if(key==='stockage'){sc=H.pcStorageScore(v);if(sc==null)return;
+  var l2=lvl(sc,need.stockage),emmc=/emmc|ufs/i.test(v);
+  set(l2,l2==='good'?'Espace confortable':l2==='warn'?'Correct, à surveiller':'Trop juste',
+   (emmc?'Le stockage eMMC est plus lent qu\'un SSD et non remplaçable. ':'')+'Windows, les applications et les mises à jour occupent vite 60 à 100 Go ; 256 Go sont le minimum confortable, 512 Go évitent de gérer l\'espace.');return;}
+ if(key==='processeur'){sc=H.pcCpuScore(v);if(sc==null)return;
+  var l3=lvl(sc,need.processeur);
+  set(l3,l3==='good'?'Puissance confortable':l3==='warn'?'Suffisant pour l\'essentiel':'Trop limité pour ce profil',
+   sc<=4?'Processeur d\'entrée de gamme : correct pour naviguer et écrire, mais il peine avec plusieurs applications, la visio chargée ou le montage.':sc<=6?'Processeur milieu de gamme : fluide pour la bureautique et le multitâche courant.':'Processeur puissant : garde la machine réactive plusieurs années.');return;}
+ if(key==='gpu'){var rtx=num(v,/rtx\s*(\d{4})/i),sg=H.pcGpuScore?H.pcGpuScore(v):null;
+  if(profile==='gamer'||profile==='createur'){if(sg==null)return;var l4=lvl(sg,need.gpu);
+   set(l4,l4==='good'?'Carte adaptée':l4==='warn'?'Correcte, sans marge':(sg<=4?'Pas de carte dédiée':'Carte limitée'),sg<=4?'Sans carte graphique dédiée, seuls les jeux légers tournent bien et le montage lourd sera lent.':'Le nom de la carte ne dit pas tout : la puissance électrique (TGP) et le refroidissement changent les performances réelles.');return;}
+  set(sg!=null&&sg<=4?'good':'neutral',sg!=null&&sg<=4?'Suffisant pour votre usage':'Carte dédiée (consommation à considérer)',sg!=null&&sg<=4?'Pour écrire, naviguer et suivre des cours, le GPU intégré suffit largement.':'Une carte dédiée consomme plus : autonomie et poids en pâtissent si vous n\'en avez pas l\'usage.');return;}
+ if(key==='ecran'){sc=H.pcEcranScore({ecran:v});
+  if(sc==null){return;}
+  var l5=lvl(sc,need.ecran);
+  set(l5,l5==='good'?'Écran de bonne qualité':l5==='warn'?'Écran correct':'Écran d\'entrée de gamme',
+   sc<=4.5?'Définition ou dalle basique : textes moins fins, couleurs et angles de vue limités. Acceptable pour un budget serré, fatigant sur de longues journées.':sc<=6.5?'Bon compromis : lisible et net pour le travail et les vidéos.':'Écran soigné : contraste et finesse apportent un vrai confort.');return;}
+ if(key==='os'){sc=H.pcOsScore(v);if(sc==null)return;
+  var chrome=/chrome\s*os/i.test(v);
+  var l6=chrome?(profile==='etudiant'?'warn':'bad'):lvl(sc,need.os);
+  set(l6,chrome?'Système limité (ChromeOS)':l6==='bad'?'Système à installer ou limité':'Système complet',
+   chrome?'ChromeOS fait tourner le web et les applications Android/Google, mais pas les logiciels Windows ou Mac (suite Office complète, jeux PC, logiciels de montage ou de CAO) : à réserver à un usage simple, en ligne.':l6==='bad'?'Sans système fourni, il faut acheter et installer une licence ; certains logiciels ne fonctionnent pas sous Linux.':'Compatible avec la quasi-totalité des logiciels courants.');return;}
+ if(key==='poids'){n=num(v,/(\d(?:[.,]\d{1,2})?)\s*kg/i);if(n==null)return;
   if(profile==='etudiant'||profile==='professionnel'){set(n<=1.5?'good':n<=2.2?'warn':'bad',n<=1.5?'Facile à transporter toute la journée':n<=2.2?'Transportable, un peu lourd':'Peu adapté au transport quotidien','1,5 kg ou moins se transportent sans y penser ; au-delà de 2,2 kg, le transport quotidien se ressent.');}
   else{set(n<=2.5?'good':'neutral',n<=2.5?'Poids raisonnable pour sa catégorie':'Machine orientée bureau de jeu','Les PC de jeu dépassent souvent 2,5 kg : c\'est un choix d\'usage, pas un défaut.');}
-  return out;}
- if(key==='batterie'){n=num(v,/(\d{2,3})\s*wh/i);if(n==null)return out;
-  set(n>=80?'good':n>=60?'warn':'bad',n>=80?'Grande batterie':'Batterie standard','La capacité (Wh) est un indicateur : l\'autonomie réelle dépend de la puce, de l\'écran et des tests.');return out;}
- if(key==='ecran'){var oled=/oled/i.test(v),hz=num(v,/(\d{2,3})\s*hz/i);
-  if(profile==='gamer'||profile==='createur'){set(hz>=120?'good':oled?'warn':'neutral',hz>=120?'Écran fluide'+(oled?', de qualité':''):oled?'Belle image, mais 60 Hz':'Écran standard','120 Hz rendent le jeu et le défilement plus fluides ; l\'OLED ajoute contraste et couleurs.');return out;}
-  set(oled||hz>=120?'good':'neutral',oled?'Écran de qualité':'Écran correct','La technologie et la fluidité comptent plus que la diagonale.');return out;}
- if(key==='processeur'){var strong=/apple m\d|ryzen ai|core ultra|ryzen [79]|i[79]-\d/i.test(v);
-  set(strong?'good':'neutral',strong?'Processeur récent et véloce':'Processeur à évaluer selon l\'usage','Un processeur récent garde la machine fluide plusieurs années ; le modèle exact détermine le niveau.');return out;}
- return out;
+  return;}
+ if(key==='batterie'){n=num(v,/(\d{2,3})\s*wh/i);if(n==null)return;
+  set(n>=80?'good':n>=50?'warn':'bad',n>=80?'Grande batterie':n>=50?'Batterie standard':'Petite batterie','La capacité (Wh) est un indicateur : l\'autonomie réelle dépend du processeur, de l\'écran et des tests.');return;}
 }
 var api={verdict:verdict};
 if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.PhoneSpecInsights=api;

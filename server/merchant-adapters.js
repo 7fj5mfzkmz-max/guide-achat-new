@@ -143,7 +143,7 @@ function specPairs(html, merchant) {
   while ((table = tableRe.exec(source))) {
     const tableAttrs = attrs(table[1]);
     const signature = (String(tableAttrs.id || '') + ' ' + String(tableAttrs.class || '')).toLowerCase();
-    if (!/(spec|technical|character|detail|fiche|caracteristique)/i.test(signature)) continue;
+    if (!/(spec|technical|character|detail|fiche|caracteristique|prodDetTable|a-keyvalue)/i.test(signature)) continue;
     const rowRe = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
     let row;
     while ((row = rowRe.exec(table[2]))) {
@@ -157,7 +157,7 @@ function specPairs(html, merchant) {
       if (cells.length < 2) continue;
       const name = cells[0];
       const value = cells.slice(1).join(' ');
-      const usefulLabel = /(?:écran|screen|display|batter|autonom|processor|processeur|chipset|ram|memory|mémoire|stockage|storage|charge|charging|camera|caméra|photo|refresh|fréquence|refresh rate|os|système|poids|weight|protection|ip\d|résolution|resolution|nits|gpu|sim|wifi|bluetooth)/i;
+      const usefulLabel = /(?:écran|ecran|screen|display|batter|autonom|processor|processeur|chipset|ram|memory|mémoire|memoire|stockage|storage|disque|taille|charge|charging|camera|caméra|photo|refresh|fréquence|refresh rate|os|système|systeme|poids|weight|protection|ip\d|résolution|resolution|nits|gpu|graphi|sim|wifi|bluetooth)/i;
       if (usefulLabel.test(name)) pairs.push({ name, value });
     }
   }
@@ -218,6 +218,58 @@ function firstMatch(values) {
   return values.find(value => value) || null;
 }
 
+/* Prix Amazon : le prix payé est celui du bloc d'achat, jamais un montant cité
+   ailleurs sur la page (reprise « Économisez jusqu'à 1 421,00 € », ancien prix
+   barré, prix le plus bas sur 30 jours, paiement en plusieurs fois, produits
+   suggérés). Ordre : champ caché du formulaire d'achat → blocs de prix
+   non barrés du bloc d'achat → identifiants historiques → premier prix non
+   barré de la page. Un texte qui parle d'économie ou de reprise est rejeté. */
+const NOT_A_PRICE = /[ée]conomis|jusqu.?[àa]|reprise|trade-?in|ancien prix|prix (?:le plus bas|conseill|de r[ée]f)|par mois|\/\s*mois|mensualit|plusieurs fois|[0-9]\s*x\s*[0-9]|livraison|coupon|remise|[-−]\s*\d+\s*%/i;
+function amazonPriceBlocks(fragment) {
+  const out = [];
+  const re = /<span\b([^>]*\bclass\s*=\s*"[^"]*\ba-price\b[^"]*"[^>]*)>/gi;
+  let m;
+  while ((m = re.exec(fragment))) {
+    const cls = String(attrs(m[1]).class || '');
+    if (/a-text-price|basisPrice|a-color-secondary|a-text-strike/.test(cls) || /data-a-strike\s*=\s*"true"/i.test(m[1])) continue;
+    const inner = innerHtml(fragment, 'span', m.index + m[0].length);
+    const off = readClass(inner, ['a-offscreen']);
+    if (off && !NOT_A_PRICE.test(off)) { const v = firstPrice([off]); if (v) { out.push(v); continue; } }
+    const whole = readClass(inner, ['a-price-whole']), frac = readClass(inner, ['a-price-fraction']);
+    if (whole) { const v = firstPrice([String(whole).replace(/[^\d,\s.]/g, '') + (frac ? ',' + String(frac).replace(/\D/g, '') : '') + ' €']); if (v) out.push(v); }
+  }
+  return out;
+}
+function amazonPrice(source) {
+  const hidden = /name\s*=\s*"[^"]*customerVisiblePrice\]\[amount\]"[^>]*value\s*=\s*"(\d+(?:\.\d+)?)"|value\s*=\s*"(\d+(?:\.\d+)?)"[^>]*name\s*=\s*"[^"]*customerVisiblePrice\]\[amount\]"/i.exec(source);
+  if (hidden) return { price: hidden[1] || hidden[2], via: 'amazon-buybox-form' };
+  const roots = ['corePriceDisplay_desktop_feature_div', 'corePriceDisplay_mobile_feature_div', 'corePrice_feature_div', 'corePrice_desktop', 'apex_desktop', 'apex_mobile', 'apex_desktop_newAccordionRow', 'buybox', 'ppd'];
+  for (const id of roots) {
+    const root = readIdHtml(source, id);
+    if (!root) continue;
+    const found = amazonPriceBlocks(root);
+    if (found.length) return { price: found[0], via: 'amazon-price-selector' };
+  }
+  for (const id of ['priceblock_ourprice', 'priceblock_dealprice', 'price_inside_buybox']) {
+    const text = readId(source, id);
+    if (text && !NOT_A_PRICE.test(text)) { const v = firstPrice([text]); if (v) return { price: v, via: 'amazon-price-selector' }; }
+  }
+  const any = amazonPriceBlocks(source);
+  if (any.length) return { price: any[0], via: 'amazon-price-selector' };
+  /* Dernier recours : un montant « a-offscreen » isolé, hors prix barré et hors texte d'économie. */
+  const re = /<span\b[^>]*\bclass\s*=\s*"[^"]*\ba-offscreen\b[^"]*"[^>]*>([^<]*)<\/span>/gi;
+  let m;
+  while ((m = re.exec(source))) {
+    const before = source.slice(Math.max(0, m.index - 160), m.index);
+    if (/a-text-price|data-a-strike|a-text-strike/.test(before)) continue;
+    const text = clean(m[1]);
+    if (!text || NOT_A_PRICE.test(text)) continue;
+    const v = firstPrice([text]);
+    if (v) return { price: v, via: 'amazon-price-selector' };
+  }
+  return null;
+}
+
 function extract(html, rawUrl) {
   let host = '';
   try { host = new URL(rawUrl).hostname; } catch (_) { host = String(rawUrl || ''); }
@@ -229,12 +281,17 @@ function extract(html, rawUrl) {
     || readClass(source, selectors.titleClasses)
     || readH1(source);
 
-  let priceText = firstMatch(selectors.priceIds.map(id => readId(source, id)));
-  if (!priceText && selectors.priceRootIds.length) {
-    const root = firstMatch(selectors.priceRootIds.map(id => readIdHtml(source, id)));
-    if (root) priceText = readClass(root, selectors.priceClasses);
+  const amazon = merchant === 'amazon' ? amazonPrice(source) : null;
+  let priceText = amazon ? amazon.price + ' €' : null;
+  if (!priceText && merchant !== 'amazon') {
+    priceText = firstMatch(selectors.priceIds.map(id => readId(source, id)));
+    if (!priceText && selectors.priceRootIds.length) {
+      const root = firstMatch(selectors.priceRootIds.map(id => readIdHtml(source, id)));
+      if (root) priceText = readClass(root, selectors.priceClasses);
+    }
+    if (!priceText) priceText = readClass(source, selectors.priceClasses);
+    if (priceText && NOT_A_PRICE.test(priceText)) priceText = null;
   }
-  if (!priceText) priceText = readClass(source, selectors.priceClasses);
 
   const structuredPrice = readMeta(source, values => String(values.itemprop || '').toLowerCase() === 'price'
     || String(values.property || '').toLowerCase() === 'product:price:amount' || String(values.name || '').toLowerCase() === 'price');
@@ -248,7 +305,7 @@ function extract(html, rawUrl) {
     merchant,
     title: title || null,
     price,
-    priceSource: priceText && firstPrice([priceText]) ? merchant + '-price-selector'
+    priceSource: priceText && firstPrice([priceText]) ? (amazon ? amazon.via : merchant + '-price-selector')
       : (structuredPrice ? 'page-price-metadata' : null),
     currency: structuredCurrency || (/€/.test(String(priceText || structuredPrice || '')) ? 'EUR' : null),
     gtin: readMeta(source, values => /^gtin(?:8|12|13|14)?$/.test(String(values.itemprop || '').toLowerCase())

@@ -63,6 +63,24 @@
       { key: "poids", name: /^weight$|poids/i, accept: { re: /\d/ } },
       { key: "os", name: /operating system|syst[eè]me d.exploitation/i, accept: { re: /Windows|macOS|Chrome/i } }
     ],
+    /* Lecture des paires « libellé : valeur » des fiches marchandes (Amazon, Fnac…) :
+       le libellé est normalisé (minuscules, sans accents ni espaces, car les pages
+       mobiles collent parfois les mots : « Tailledudisquedur ») puis rapproché d'une
+       règle. `skip` écarte les libellés voisins qui ne donnent pas la valeur voulue. */
+    pairRules: [
+      { key: "ram", label: /memoirevive|tailledelamemoire|memoireram|^ram|ramsize|memorysize|capacitedelamemoire|memoireinstallee/, skip: /vitesse|type|technolog|maximum|max|extensible|emplacement|cache|flash|video|speed/ },
+      { key: "stockage", label: /tailledudisque|disquedur|capacitedestockage|capacitedudisque|^stockage|^ssd|harddisksize|storagecapacity|capacitedelamemoireflash|tailledelamemoireflash/, skip: /type|interface|vitesse|technolog|lecteur|rpm|description|marque/ },
+      { key: "stockage_type", label: /typededisque|typedestockage|typedememoire(flash|de stockage)|harddisktype|flashmemorytype|technologiedestockage|descriptiondudisque/ },
+      { key: "processeur", label: /^(descriptionduprocesseur|processeur|modeleduprocesseur|typeduprocesseur|processor|processordescription|processortype|processormodel|cpu)$/, skip: /marque|vitesse|nombre|fabricant|coeur|cache|speed|count|brand/ },
+      { key: "ecran_taille", label: /taillede(l)?ecran|tailleecran|diagonale|screensize|tailledelaffichage|taille d.ecran/ },
+      { key: "ecran_definition", label: /resolution|definitionde(l)?ecran|screenresolution|resolutiondecran/, skip: /photo|camera|webcam|video|maximale?de?la?webcam/ },
+      { key: "ecran_type", label: /typed(e)?ecran|technologiedaffichage|paneltype|displaytype|typedaffichage|typededalle|technologiedelecran/ },
+      { key: "gpu", label: /descriptiondelacartegraphique|cartegraphique|graphicscoprocessor|graphicscard|graphiquesdelordinateur|processeurgraphique|gpu/, skip: /marque|interface|ram|memoire|brand|fabricant/ },
+      { key: "os", label: /systemedexploitation|operatingsystem|^os$|systeme$/, skip: /version/ },
+      { key: "poids", label: /^(poids|poidsdelarticle|itemweight|weight)$/ },
+      { key: "autonomie", label: /autonomiedelabatterie|dureedevie|batterylife|autonomie/ },
+      { key: "batterie", label: /capacitedelabatterie|capacitebatterie|batterycapacity|puissancedelabatterie|wattheures?/ }
+    ],
     ramFallbackName: null,
     ramMaxGb: 128
   };
