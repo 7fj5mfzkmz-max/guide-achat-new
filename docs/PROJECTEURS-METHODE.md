@@ -49,6 +49,14 @@ Le testeur n'applique pas les mêmes critères à chaque modèle : un critère s
 
 **Limites** : deux documents d'une même chaîne ; trois modèles notés en détail, 21 autres cités par leur rang ; les trois classements ne sont pas comparables entre eux ; rangs « 4ᵉ/100 » et « 67ᵉ/100 » cités sans effectif ; la valeur « -45 dB d'ANC sous 50 $ » est rapportée par la source, non mesurée ; prix en dollars non vérifiés en France.
 
+## Smartphones : section « Les tests 2026 »
+
+**Source** : « Résumé détaillé des 6 vidéos Smartphones 2026 » (dossier de 3 pages : Android Police, The Tech Chap, Versus, Tech Spurt). `node tools/smartphones/construire-tests.js` écrit `data/smartphones-tests.json` (12 modèles, 6 vidéos) ; la section est insérée dans `smartphones.html` (n° 04, les suivantes passent de 04-08 à 05-09) et rendue par `assets/js/smartphones-tests.js`. L'analyseur, l'audit « sur mesure » et les autres sections ne sont pas modifiés.
+
+**Contenu** : duel Pixel 11 Pro / iPhone 18 Pro (lignes avec avantage uniquement quand la source en désigne un), records de batterie (OnePlus 16 9 000 mAh, Vivo V80 7 200, OPPO Find X10 Pro Max 7 150 en Europe / 8 000 en Asie), autonomie en jeu (RedMagic 11S Pro 11 h 30, S26 Ultra 10 h 17, iPhone 17 Pro Max 12 h 54), gamme Samsung A17 / A27 / A37 / A57 avec les verdicts de la vidéo, rétrospective de dix ans de Pixel, deux tendances, choix de la source par profil (étudiant, professionnel, gamer, photographe) cités avec leur vidéo.
+
+**Aucune note** : le dossier ne contient aucune note chiffrée ; le guide n'en invente pas et ne calcule pas de score par profil pour ces modèles. Prix en dollars (prix de sortie américain, ou reconditionné pour le S26 Ultra) non vérifiés en France ; chaque verdict vaut dans sa vidéo.
+
 ## Pages
 
 `python3 tools/categories/pages.py` régénère `projecteurs.html` et `ecouteurs.html` à partir de l'en-tête et du pied de `pc-portables.html`. Ces deux catégories n'ont pas d'analyseur de lien (réservé aux smartphones et aux PC portables).

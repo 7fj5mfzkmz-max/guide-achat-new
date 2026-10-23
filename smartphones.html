@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="assets/css/analyzer.css">
 <link rel="stylesheet" href="assets/css/smartphones-page.css">
 <link rel="stylesheet" href="assets/css/sp-illustrations.css">
+<link rel="stylesheet" href="assets/css/smartphones-tests.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
@@ -46,11 +47,12 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <li><a href="#analyser-modele"><small>01</small>Analyseur</a></li>
 <li><a href="#audit"><small>02</small>Sur mesure</a></li>
 <li><a href="#nos-choix"><small>03</small>Nos choix</a></li>
-<li><a href="#essentiel"><small>04</small>Essentiel</a></li>
-<li><a href="#choisir-profil"><small>05</small>Profils</a></li>
-<li><a href="#checklist"><small>06</small>Checklist</a></li>
-<li><a href="#aller-plus-loin"><small>07</small>Guides</a></li>
-<li><a href="#sources"><small>08</small>Sources</a></li>
+<li><a href="#tests-2026"><small>04</small>Tests 2026</a></li>
+<li><a href="#essentiel"><small>05</small>Essentiel</a></li>
+<li><a href="#choisir-profil"><small>06</small>Profils</a></li>
+<li><a href="#checklist"><small>07</small>Checklist</a></li>
+<li><a href="#aller-plus-loin"><small>08</small>Guides</a></li>
+<li><a href="#sources"><small>09</small>Sources</a></li>
 </ul>
 </div>
 </nav>
@@ -141,8 +143,25 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <p class="picks-note">Aucun n’est le meilleur pour tout le monde. Si votre priorité est ailleurs, passez par <a href="#audit">le sur mesure</a> ou <a href="#analyser-modele">l’analyseur</a>.</p>
 </section>
 
+<section class="section st-section" data-tone="orchid" id="tests-2026">
+<h2 class="section-heading"><span class="eyebrow">04 · Les tests 2026</span>Ce que disent six vidéos de tests</h2>
+<p class="section-lead">Duel haut de gamme, records de batterie, jeu, gamme Samsung, nouveautés : le dossier de six vidéos (Android Police, The Tech Chap, Versus, Tech Spurt), repris avec les chiffres que rapportent les testeurs. Aucune note n’est inventée.</p>
+<p class="st-error" id="st-error" hidden></p>
+<div class="pj-tabs" id="st-tabs" role="group" aria-label="Choisir un test"></div>
+<div class="st-panel" id="st-panel" aria-live="polite"></div>
+<h3 class="st-sub st-sub-gap">Ce que les tests retiennent</h3>
+<div class="st-trends" id="st-trends"></div>
+<h3 class="st-sub st-sub-gap">Choix de la source selon votre profil</h3>
+<div class="pj-tabs" id="st-prof-tabs" role="group" aria-label="Choisir un profil"></div>
+<div class="st-prof" id="st-prof" aria-live="polite"></div>
+<div class="st-method">
+<div><h3>Les six vidéos</h3><ul id="st-videos"></ul></div>
+<div><h3>Limites</h3><ul id="st-limites"></ul></div>
+</div>
+</section>
+
 <section class="section" data-tone="blue" id="essentiel">
-<h2 class="section-heading"><span class="eyebrow">04 · L’essentiel</span>Trois notions à connaître avant de comparer</h2>
+<h2 class="section-heading"><span class="eyebrow">05 · L’essentiel</span>Trois notions à connaître avant de comparer</h2>
 <p class="section-lead">Deux modèles au même prix peuvent n’avoir ni le même système, ni le même avenir. Ces trois notions expliquent la plupart des écarts.</p>
 <div class="pl-rules">
 <article class="pl-rule hx-reveal"><span class="pl-num" aria-hidden="true">1</span><h3>Android et <em>iOS</em></h3><p>Les deux principaux systèmes mobiles. Ils déterminent vos applications, vos habitudes et la compatibilité avec vos autres appareils.</p></article>
@@ -153,7 +172,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 
 
 <section class="section profile-picker" data-tone="blue" id="choisir-profil">
-<h2 class="section-heading"><span class="eyebrow">05 · Votre profil</span>Choisissez un profil pour concentrer votre attention</h2>
+<h2 class="section-heading"><span class="eyebrow">06 · Votre profil</span>Choisissez un profil pour concentrer votre attention</h2>
 <div aria-label="Choisir un profil" class="profile-picker-tabs" role="tablist">
 <a class="profile-picker-tab" data-profile="etudiant" data-tone="teal" href="#etudiant">01 · Étudiant</a>
 <a class="profile-picker-tab" data-profile="professionnel" data-tone="blue" href="#professionnel">02 · Professionnel</a>
@@ -264,7 +283,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </section>
 
 <section class="section recap-section" data-tone="peach" id="checklist">
-<h2 class="section-heading"><span class="eyebrow">06 · Checklist</span>Avant de passer commande</h2>
+<h2 class="section-heading"><span class="eyebrow">07 · Checklist</span>Avant de passer commande</h2>
 <div class="recap-grid">
 <div class="recap-card"><div class="recap-num">1</div><strong>Mon usage</strong><p>Mon usage tient en une phrase.</p></div>
 <div class="recap-card"><div class="recap-num">2</div><strong>La fiche</strong><p>J’ai relevé les lignes utiles de la fiche.</p></div>
@@ -275,7 +294,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </section>
 <div class="falc-more"><a class="falc-more-link" href="lexique.html">Comprendre chaque terme de la fiche produit <span aria-hidden="true">→</span></a><p class="hint">Un mot technique vous bloque ? Le lexique l’explique avec un exemple, puis en détail.</p></div>
 
-<section class="section deep-group" id="aller-plus-loin"><h2 class="section-heading"><span class="eyebrow">07 · Pour aller plus loin</span>Les explications détaillées</h2><p class="section-lead deep-intro">2 guides détaillés, facultatifs. Touchez un guide pour l’ouvrir ; vous pouvez l’ignorer si vous avez déjà votre réponse.</p><details class="deep-dive" id="plus-fiche-produit"><summary><span class="deep-num">Guide 1</span><span class="deep-title">Où trouver les caractéristiques sur une fiche produit</span><span class="deep-sub">Captures Amazon commentées · ≈ 4 min</span><span class="deep-cta" aria-hidden="true"></span></summary><section class="section fiche-produit-section" data-tone="coral" id="fiche-produit">
+<section class="section deep-group" id="aller-plus-loin"><h2 class="section-heading"><span class="eyebrow">08 · Pour aller plus loin</span>Les explications détaillées</h2><p class="section-lead deep-intro">2 guides détaillés, facultatifs. Touchez un guide pour l’ouvrir ; vous pouvez l’ignorer si vous avez déjà votre réponse.</p><details class="deep-dive" id="plus-fiche-produit"><summary><span class="deep-num">Guide 1</span><span class="deep-title">Où trouver les caractéristiques sur une fiche produit</span><span class="deep-sub">Captures Amazon commentées · ≈ 4 min</span><span class="deep-cta" aria-hidden="true"></span></summary><section class="section fiche-produit-section" data-tone="coral" id="fiche-produit">
 <div class="section-heading">
 <span class="eyebrow">SECTION · RETROUVER L’INFORMATION</span>
 <h2>Où retrouver les caractéristiques sur une fiche produit</h2>
@@ -339,7 +358,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <div class="hx-debunk-container" data-debunk-container=""></div>
 <p class="deep-next"><a href="#plus-fiche-produit">Autre guide : où trouver les caractéristiques sur une fiche produit →</a></p></section></details></section>
 
-<section class="section sources-list" data-tone="orchid" id="sources"><h2 class="section-heading"><span class="eyebrow">08 · Sources</span>Sources utiles</h2><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></section>
+<section class="section sources-list" data-tone="orchid" id="sources"><h2 class="section-heading"><span class="eyebrow">09 · Sources</span>Sources utiles</h2><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li>Résumé de six vidéos smartphones 2026 : Android Police, The Tech Chap, Versus, Tech Spurt (dossier de synthèse, section « Les tests 2026 »)</li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></section>
 
 <section class="section pl-endwrap" id="suite">
 <div class="pl-end hx-reveal">
@@ -387,6 +406,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/site-extras.js"></script>
 <script src="assets/js/category-menu.js"></script>
 <script src="assets/js/amazon-guide.js"></script>
+<script src="assets/js/smartphones-tests.js" defer></script>
 <script src="assets/js/v88-platform.js" defer></script>
 <script src="assets/js/category-page.js" defer></script>
 </body>
