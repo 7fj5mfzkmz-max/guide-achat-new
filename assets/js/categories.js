@@ -6,7 +6,7 @@
   "use strict";
   var LIST = [
     { id: "smartphones", label: "Smartphones", live: true, href: "smartphones.html", tone: "orchid", icon: "phone",
-      photo: "https://images.pexels.com/photos/9434650/pexels-photo-9434650.jpeg?auto=compress&cs=tinysrgb&w=1000", photoAlt: "Smartphone contemporain posé sur une table bleue",
+      photo: "assets/editorial/phone-small.webp", photoAlt: "Deux smartphones dans une mise en scène aux tons chauds",
       blurb: "Écran, autonomie, photo et performances : les points qui changent réellement l’usage.",
       terms: ["Écran", "Batterie", "Photo", "Puce", "Autonomie", "Charge", "Étanchéité", "Mises à jour", "Stockage", "Prix"],
       chips: [["Écran fluide", "hz"], ["Longue autonomie", "battery"], ["Résiste à l’eau", "drop"], ["Écran net", "pixels"]],
@@ -25,7 +25,7 @@
       example: { name: "Samsung Galaxy A56", note: "300 € indicatif", scores: [["Étudiant", 8], ["Professionnel", 8], ["Photographe", 7], ["Gamer", 6]] },
       stage: { title: "Adapté à votre usage", bars: [89, 78, 67], score: 8 } },
     { id: "pc", label: "PC portables", live: true, href: "pc-portables.html", tone: "teal", icon: "laptop",
-      photo: "assets/pc-photo/laptop-04.jpeg", photoAlt: "Ordinateur portable ouvert, vu de face",
+      photo: "assets/editorial/hero-desk-small.webp", photoAlt: "PC portable sur un bureau à la lumière du soir",
       blurb: "Choisir un PC selon les logiciels, la mobilité et le budget.", terms: ["Processeur", "RAM", "Stockage", "Écran", "Poids", "Autonomie"],
       chips: [["16 Go de RAM", "ram"], ["SSD 512 Go", "storage"], ["OLED", "pixels"]], weights: "pc-portables", example: { name: "PC portable polyvalent", note: "Catalogue 2026", scores: [["Étudiant", 8], ["Professionnel", 8], ["Créateur", 7], ["Gamer", 6]] }, stage: { title: "Compatibilité", bars: [86, 78, 70], score: 8 }, pairs: [["Processeur","Le cerveau de l’ordinateur : il décide si le PC reste fluide quand vous ouvrez beaucoup d’onglets ou un logiciel lourd."],["16 Go de RAM","La mémoire de travail. Pour le web et la bureautique 8 Go suffisent souvent ; 16 Go laissent de la marge quand on garde beaucoup de choses ouvertes."],["SSD 512 Go","Le stockage, sur mémoire flash. Il rend le démarrage et l’ouverture des logiciels rapides ; la capacité dit combien de fichiers vous gardez."],["Carte graphique dédiée","Un composant séparé pour les jeux, le montage vidéo et la 3D. Pour le web et la bureautique, la partie graphique intégrée au processeur suffit."],["Écran IPS","Un type de dalle aux angles de vision larges et aux couleurs stables. Regardez aussi la luminosité : un écran terne se lit mal près d’une fenêtre."],["1,3 kg","Un PC léger se transporte tous les jours sans y penser ; plus lourd, on le sent dans le sac au bout de quelques semaines."],["Autonomie annoncée","La durée donnée par le constructeur est mesurée dans des conditions favorables : en usage réel, comptez nettement moins."]] },
     { id: "batteries", label: "Batteries externes", live: false, tone: "peach", icon: "battery",
@@ -125,3 +125,4 @@
     marquee.setAttribute("aria-label", "Quelques notions abordées dans le guide");
   }
 })();
+

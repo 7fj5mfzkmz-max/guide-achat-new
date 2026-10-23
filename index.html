@@ -25,8 +25,9 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"Guide·Achat","url":"https://guide-achat-new.vercel.app/","description":"Guide d'achat indépendant pour comprendre les caractéristiques techniques, comparer les produits et choisir selon son usage.","inLanguage":"fr-FR"}
 </script>
+<link rel="stylesheet" href="assets/css/photo-editorial.css">
 </head>
-<body class="site-redesign home">
+<body class="photo-editorial site-redesign home">
 <header class="site-header">
 <div class="header-inner">
 <a aria-label="Guide d’achat : accueil" class="brand-logo" href="index.html"><span aria-hidden="true" class="brand-mark"><svg focusable="false" viewbox="0 0 56 56"><path class="bag" d="M13 20h30l-2.4 27H15.4L13 20Z"></path><path class="handle" d="M20 20v-5.2a8 8 0 0 1 16 0V20"></path></svg></span><span class="brand-name"><b>Guide</b><strong>d’achat</strong><small>Bien choisir, c’est mieux consommer</small></span></a>
@@ -39,21 +40,22 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <main id="main">
 <div class="hx hm" data-motion="on">
 
-<section class="hm-hero">
+<section class="hm-hero photo-home-hero">
+<picture class="photo-home-backdrop" aria-hidden="true"><source media="(max-width: 700px)" srcset="assets/editorial/hero-desk-small.webp"><img src="assets/editorial/hero-desk.webp" alt="" fetchpriority="high" width="1600" height="900"></picture>
 <div class="hm-wrap">
 <div class="hm-hero-grid">
 <div class="hm-hero-copy">
 <p class="hm-meta hx-reveal">Guide indépendant <i></i> Édition 2026 <i></i> Prix en euros</p>
-<h1 class="hx-reveal">Choisir le bon produit, sans jargon</h1>
+<h1 class="hx-reveal">Le bon produit.<br><span>Pour votre vraie vie.</span></h1>
 <p class="hm-lead hx-reveal">On explique les caractéristiques qui comptent, leur effet réel à l’usage et les pièges à éviter. Vous commencez par un produit, on s’occupe du reste.</p>
 <div class="hm-cta hx-reveal">
 <span class="hm-live" id="hx-live-links"><a class="hm-btn" href="smartphones.html">Smartphones<i aria-hidden="true">→</i></a><a class="hm-btn" href="pc-portables.html">PC portables<i aria-hidden="true">→</i></a></span>
 <a class="hm-link" href="#analyser">J’ai déjà repéré un modèle<i aria-hidden="true">↓</i></a>
 </div>
-<div class="hm-badge hx-reveal" aria-label="60 modèles de PC portables repérés"><b>60</b><span>modèles de PC<br/>repérés</span></div>
+<div class="hm-badge hx-reveal" aria-label="71 modèles de PC portables repérés"><b>71</b><span>modèles de PC<br/>repérés</span></div>
 </div>
 <div class="hm-hero-visual hx-reveal">
-<figure class="hm-photo"><img src="assets/pc-photo/laptop-04.jpeg" alt="Ordinateur portable ouvert, vu de face" fetchpriority="high" width="1280" height="960"></figure>
+
 <p class="hm-note-hand" aria-hidden="true"><span>On t’explique avec des mots simples&nbsp;!</span><svg viewBox="0 0 60 40" focusable="false"><path d="M4 4c18 2 34 10 48 30M52 34l-12-2M52 34l-3-12"/></svg></p>
 <dl class="hm-stats">
 <div><dt>Critères expliqués (PC)</dt><dd>7</dd></div>
@@ -72,7 +74,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <div class="hm-wrap">
 <div class="hm-head hx-reveal">
 <p class="hm-label">Les guides</p>
-<h2>Un guide par produit</h2>
+<h2>Un objet. Votre quotidien.<br>Le bon guide.</h2>
 <p>Les critères utiles et les chiffres à savoir lire avant de comparer, expliqués avec des dessins, des photos et des démos.</p>
 </div>
 <div class="hm-cards" id="hx-cards"></div>
@@ -175,4 +177,5 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/category-menu.js" defer></script>
 </body>
 </html>
+
 
