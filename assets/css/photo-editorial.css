@@ -58,3 +58,13 @@
   .photo-editorial .pl-profile-photo img { transition: none; }
   .photo-editorial .pl-profile:hover .pl-profile-photo img { transform: none; }
 }
+
+/* Group portraits and the real projector photo stay entirely visible, including on hover. */
+.photo-editorial .hm-card[data-cat="pc"] .hm-card-photo,
+.photo-editorial .hm-card[data-cat="batteries"] .hm-card-photo,
+.photo-editorial .hm-card[data-cat="ecouteurs"] .hm-card-photo,
+.photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo { background: #aeb5bf; }
+.photo-editorial .hm-card[data-cat="pc"] .hm-card-photo img,
+.photo-editorial .hm-card[data-cat="batteries"] .hm-card-photo img,
+.photo-editorial .hm-card[data-cat="ecouteurs"] .hm-card-photo img,
+.photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo img { object-fit: contain; object-position: center; transform: none; }
