@@ -1,0 +1,38 @@
+/* Écouteurs : illustrations et composants propres à la catégorie (le reste vient de projecteurs.css / category-page.css). */
+.eb-stage { background-color: var(--paper-2); }
+.eb-art text { font-family: var(--mono, monospace); }
+.eb-bud path { fill: var(--paper-2); stroke: var(--ink); stroke-width: 3; stroke-linejoin: round; }
+.eb-bud .eb-mesh { fill: var(--paper-3); stroke: var(--ink); stroke-width: 2.5; } .eb-bud .eb-led { fill: var(--accent); stroke: var(--ink); stroke-width: 1.5; animation: ebLed 2.4s ease-in-out infinite; }
+@keyframes ebLed { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+.eb-bud.is-l, .eb-bud.is-r { animation: ebBob 5s ease-in-out infinite; } .eb-bud.is-r { animation-delay: -2s; } @keyframes ebBob { 0%, 100% { transform: translate(112px, 118px) scale(1.15); } 50% { transform: translate(112px, 110px) scale(1.15); } }
+.eb-case { fill: var(--paper-2); stroke: var(--ink); stroke-width: 3; } .eb-case-line { stroke: var(--ink-mute); stroke-width: 2; } .eb-case-led { fill: var(--accent); stroke: var(--ink); stroke-width: 1.5; animation: ebLed 2s infinite; }
+.eb-rings circle { fill: none; stroke: var(--accent); stroke-width: 3; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ebRing 3.6s ease-out infinite; }
+.eb-rings circle:nth-child(2), .eb-rings circle:nth-child(5) { animation-delay: 1.2s; } .eb-rings circle:nth-child(3), .eb-rings circle:nth-child(6) { animation-delay: 2.4s; }
+@keyframes ebRing { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(4.2); opacity: 0; } }
+.eb-noise, .eb-anti, .eb-flat { fill: none; stroke-width: 3; stroke-linecap: round; } .eb-noise { stroke: var(--ink-mute); } .eb-anti { stroke: var(--ink); stroke-dasharray: 6 5; } .eb-flat { stroke: var(--accent); stroke-width: 4; }
+.eb-noise, .eb-anti { animation: ebWave 2.8s linear infinite; } @keyframes ebWave { from { transform: translateX(0); } to { transform: translateX(-40px); } }
+.eb-batt { fill: none; stroke: var(--ink); stroke-width: 2.5; } .eb-fill { fill: var(--accent); transform-box: fill-box; transform-origin: left; animation: ebFill 3s ease-in-out infinite alternate; } @keyframes ebFill { from { transform: scaleX(.25); } to { transform: scaleX(1); } }
+.eb-pip { fill: var(--accent); stroke: var(--ink); stroke-width: 1.5; animation: ebLed 1.8s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.eb-phone, .eb-bud-box { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2.5; }
+.eb-pipe { fill: none; stroke: var(--ink); stroke-linecap: round; opacity: .35; } .eb-pipe.thin { stroke-width: 3; } .eb-pipe.wide { stroke-width: 12; }
+.eb-flow circle { fill: var(--accent); stroke: var(--ink); stroke-width: 1.5; animation: ebFlow 2.2s linear infinite; } .eb-flow circle:nth-child(2) { animation-delay: -.55s; } .eb-flow circle:nth-child(3) { animation-delay: -1.1s; } .eb-flow circle:nth-child(4) { animation-delay: -1.65s; } @keyframes ebFlow { from { transform: translateX(0); opacity: 1; } to { transform: translateX(126px); opacity: .1; } }
+.eb-flow.thin circle { animation-duration: 3.4s; }
+.eb-ear { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; } .eb-tip { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2.5; } .eb-tip.sealed { fill: var(--accent); } .eb-seal { stroke: var(--pj-good, #2f8f5b); stroke-width: 4; stroke-linecap: round; }
+.eb-leak circle { fill: var(--pj-bad, #c8452f); animation: ebLeak 1.8s ease-out infinite; } .eb-leak circle:nth-child(2) { animation-delay: -.9s; } @keyframes ebLeak { from { transform: translate(0, 0); opacity: 1; } to { transform: translate(-22px, -18px); opacity: 0; } }
+.eb-head { fill: var(--paper-3); stroke: var(--ink); stroke-width: 2.5; } .eb-voice { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; animation: ebLed 1.6s infinite; } .eb-mic { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2.5; } .eb-wind { fill: none; stroke: var(--ink-mute); stroke-width: 2.5; stroke-dasharray: 4 5; animation: ebWave 2.4s linear infinite; }
+.eb-ip { fill: var(--paper-2); stroke: var(--ink); stroke-width: 2.5; } .eb-ip.is-a { stroke: var(--pj-good, #2f8f5b); } .eb-ip.is-b { stroke: var(--pj-good, #2f8f5b); } .eb-ip.is-c { stroke-dasharray: 5 4; stroke: var(--pj-warn, #e0a82e); } .eb-ip-g { font: 800 26px var(--head); fill: var(--ink); }
+.eb-screen { fill: var(--pj-screen, #0f1115); stroke: var(--ink); stroke-width: 2.5; } .eb-img { fill: var(--accent); animation: ebImg 3s linear infinite; } .eb-snd { stroke: var(--ink-mute); stroke-width: 2; stroke-dasharray: 4 4; } .eb-snd-dot { fill: var(--ink); animation: ebSnd 3s linear infinite; }
+@keyframes ebImg { from { transform: translateX(0); } to { transform: translateX(160px); } } @keyframes ebSnd { 0%, 12% { transform: translateX(0); } 100% { transform: translateX(160px); } }
+.eb-grid { stroke: var(--line-soft); stroke-width: 1.5; } .eb-curve { fill: none; stroke-width: 4; stroke-linecap: round; } .eb-curve.flat { stroke: var(--ink-mute); } .eb-curve.bass { stroke: var(--accent); stroke-dasharray: 400; animation: ebDraw 3s ease-in-out infinite alternate; } @keyframes ebDraw { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
+.eb-check { margin-top: 8px !important; font-size: 13px !important; color: var(--ink) !important; padding-top: 8px; border-top: 1px dashed var(--line-soft); }
+.eb-profile { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 16px; } .eb-profile > div { padding: 16px; border: 1px solid var(--ink); background: var(--paper-2); } .eb-profile h3 { margin: 0 0 10px; font: 800 17px var(--head); text-transform: none; }
+.eb-w { display: grid; grid-template-columns: minmax(110px, 1fr) minmax(0, 1.2fr) 40px; gap: 10px; align-items: center; margin-bottom: 8px; font-size: 13.5px; } .eb-w b { font: 700 12px var(--mono); text-align: right; }
+.eb-prio, .eb-trap { margin: 0; padding-left: 1.2em; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); } .eb-prio li, .eb-trap li { margin-bottom: 8px; } .eb-trap li::marker { color: var(--pj-bad, #c8452f); }
+.eb-list { list-style: none; margin: 18px 0 8px; padding: 0; border: 1px solid var(--ink); background: var(--paper-2); } .eb-list li { border-top: 1px solid var(--line-soft); } .eb-list li:first-child { border-top: 0; }
+.eb-list label { display: flex; gap: 12px; align-items: flex-start; padding: 13px 16px; cursor: pointer; font-size: 15px; } .eb-list input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--ink); flex: none; } .eb-list input:checked + span { color: var(--ink-mute); text-decoration: line-through; }
+.eb-progress { font: 700 13px var(--mono); letter-spacing: .04em; }
+.eb-empty { display: grid; grid-template-columns: 180px 1fr; gap: 20px; align-items: center; padding: 20px; border: 1px dashed var(--ink); background: var(--paper-2); } .eb-empty h3 { margin: 0 0 6px; font: 800 20px var(--head); text-transform: none; } .eb-empty p { margin: 0 0 8px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.5; }
+@media (max-width: 860px) { .eb-profile { grid-template-columns: 1fr; } .eb-empty { grid-template-columns: 1fr; } .eb-empty-art { max-width: 160px; } }
+@media (prefers-reduced-motion: reduce) { .eb-art *, .eb-rings circle { animation: none !important; } .eb-rings circle { opacity: .3; } }
+
+.eb-stage .pj-chip-c { bottom: 26%; }

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-label="Projecteur sur une étagère projetant un paysage de montagne dans une pièce sombre">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#171a24"/><stop offset="1" stop-color="#0b0d14"/></linearGradient>
+<linearGradient id="beam" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd25a" stop-opacity=".8"/><stop offset="1" stop-color="#ffd25a" stop-opacity=".06"/></linearGradient>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9a3c"/><stop offset=".55" stop-color="#d9498a"/><stop offset="1" stop-color="#4b2a8a"/></linearGradient>
+<clipPath id="scr"><rect x="350" y="120" width="250" height="160" rx="8"/></clipPath>
+</defs>
+<rect width="640" height="480" fill="url(#bg)"/>
+<g opacity=".5" stroke="#2a2f40" stroke-width="1"><path d="M0 400h640M0 440h640"/></g>
+<polygon points="150,300 350,120 350,280 150,324" fill="url(#beam)"/>
+<g clip-path="url(#scr)"><rect x="350" y="120" width="250" height="160" fill="url(#sky)"/><circle cx="545" cy="168" r="20" fill="#ffe28a"/><path d="M350 280L395 214 428 244 478 176 530 250 560 222 600 280Z" fill="#2b1b4a"/><path d="M350 280L420 244 480 266 540 238 600 280Z" fill="#1a1030"/></g>
+<rect x="344" y="114" width="262" height="172" rx="11" fill="none" stroke="#f3f3ee" stroke-width="3" opacity=".85"/>
+<rect x="40" y="318" width="190" height="12" rx="3" fill="#2a2f40"/>
+<rect x="60" y="270" width="130" height="50" rx="14" fill="#e9e6dc" stroke="#0b0d14" stroke-width="3"/>
+<path d="M78 286h44M78 296h44M78 306h44" stroke="#8d8b83" stroke-width="3" stroke-linecap="round"/>
+<circle cx="160" cy="294" r="21" fill="#cfcbbe" stroke="#0b0d14" stroke-width="3"/><circle cx="160" cy="294" r="13" fill="#1c2a4a" stroke="#0b0d14" stroke-width="2"/><circle cx="155" cy="289" r="4" fill="#fff" opacity=".8"/>
+<g fill="#fff" opacity=".6"><circle cx="230" cy="250" r="2"/><circle cx="270" cy="222" r="1.6"/><circle cx="300" cy="260" r="1.8"/></g>
+</svg>

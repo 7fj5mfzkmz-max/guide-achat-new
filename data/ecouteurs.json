@@ -1,0 +1,183 @@
+{
+  "categorie": "ecouteurs",
+  "statut": "guide",
+  "produits": [],
+  "criteres": [
+    {
+      "id": "anc",
+      "titre": "Réduction de bruit (ANC)",
+      "texte": "Des micros écoutent le bruit ambiant et l’écouteur émet le son inverse. C’est efficace sur les bruits graves et réguliers (train, avion, ventilation), beaucoup moins sur les voix et les bruits soudains.",
+      "verifier": "Le gain en décibels dépend de la fréquence : cherchez une mesure par bande, pas un « jusqu’à » unique."
+    },
+    {
+      "id": "autonomie",
+      "titre": "Autonomie",
+      "texte": "Deux chiffres : celle des écouteurs seuls, et celle avec les recharges du boîtier. La réduction de bruit active consomme : l’autonomie réelle est plus courte que celle annoncée sans ANC.",
+      "verifier": "Repérez la valeur annoncée avec l’ANC allumée, au volume d’écoute normal."
+    },
+    {
+      "id": "codec",
+      "titre": "Codec et Bluetooth",
+      "texte": "Le codec est le format du son envoyé par Bluetooth. Le SBC marche partout ; l’AAC est celui d’un iPhone ; LDAC ou aptX existent côté Android. Écouteurs et téléphone doivent gérer le même.",
+      "verifier": "La version Bluetooth (5.3…) parle de connexion et de consommation, pas de qualité sonore."
+    },
+    {
+      "id": "confort",
+      "titre": "Confort et ajustement",
+      "texte": "Un embout qui ferme bien le conduit isole du bruit et donne des basses ; un embout mal ajusté laisse fuir le son et l’ANC perd en efficacité. Poids et forme décident du confort sur plusieurs heures.",
+      "verifier": "Plusieurs tailles d’embouts fournies ; possibilité de tester ou de retourner."
+    },
+    {
+      "id": "micro",
+      "titre": "Micro et appels",
+      "texte": "Plusieurs micros isolent la voix du vent et de la rue. C’est un critère à part entière si vous téléphonez ou faites de la visio beaucoup.",
+      "verifier": "Un enregistrement de test en extérieur vaut mieux qu’un argument marketing."
+    },
+    {
+      "id": "ip",
+      "titre": "Résistance à l’eau",
+      "texte": "L’indice IP (IPX4, IP57…) dit ce que l’écouteur supporte : sueur, pluie, poussière. Le boîtier de recharge n’a souvent pas de certification.",
+      "verifier": "Vérifiez si l’indice concerne les écouteurs seuls ou aussi le boîtier."
+    },
+    {
+      "id": "latence",
+      "titre": "Latence",
+      "texte": "Le délai entre l’image et le son. Invisible pour la musique, gênant pour les jeux et parfois pour la vidéo : un mode « jeu » ou un codec à faible latence aide.",
+      "verifier": "Une latence mesurée en millisecondes, pas seulement la mention « faible latence »."
+    },
+    {
+      "id": "son",
+      "titre": "Signature sonore",
+      "texte": "Le réglage du son : basses appuyées, voix en avant ou neutre. C’est un goût autant qu’une mesure, et un égaliseur dans l’application permet souvent de corriger.",
+      "verifier": "Application avec égaliseur ; courbe de réponse mesurée plutôt qu’un adjectif."
+    }
+  ],
+  "profils": {
+    "transport": {
+      "titre": "Transports et avion",
+      "poids": {
+        "anc": 1.7,
+        "confort": 1.0,
+        "autonomie": 0.9,
+        "micro": 0.4,
+        "codec": 0.3,
+        "ip": 0.2
+      },
+      "priorites": [
+        "Réduction de bruit mesurée sur les graves",
+        "Embouts qui ferment bien : sans étanchéité, l’ANC perd l’essentiel",
+        "Autonomie avec l’ANC allumée"
+      ],
+      "pieges": [
+        "Un « jusqu’à 50 dB » sans bande de fréquence",
+        "Autonomie annoncée sans ANC"
+      ]
+    },
+    "sport": {
+      "titre": "Sport",
+      "poids": {
+        "ip": 1.5,
+        "confort": 1.4,
+        "autonomie": 0.7,
+        "micro": 0.3,
+        "son": 0.3,
+        "latence": 0.1
+      },
+      "priorites": [
+        "Tenue en place (ailettes, embouts adaptés)",
+        "Indice IP pour la sueur et la pluie",
+        "Mode transparence pour entendre l’extérieur"
+      ],
+      "pieges": [
+        "Un indice IP valable seulement pour le boîtier ou pour un modèle voisin",
+        "Un écouteur lourd qui glisse en courant"
+      ]
+    },
+    "bureau": {
+      "titre": "Bureau et visio",
+      "poids": {
+        "micro": 1.6,
+        "confort": 1.1,
+        "autonomie": 0.9,
+        "anc": 0.8,
+        "codec": 0.5
+      },
+      "priorites": [
+        "Qualité du micro, jugée sur un enregistrement réel",
+        "Confort sur de longues journées",
+        "Connexion à deux appareils en même temps (multipoint)"
+      ],
+      "pieges": [
+        "Micros annoncés « IA » sans enregistrement de test",
+        "ANC très forte mais voix qui sonne étouffée pour vos interlocuteurs"
+      ]
+    },
+    "son": {
+      "titre": "Le son avant tout",
+      "poids": {
+        "son": 1.5,
+        "codec": 1.0,
+        "confort": 0.9,
+        "anc": 0.6,
+        "autonomie": 0.4
+      },
+      "priorites": [
+        "Courbe de réponse mesurée et égaliseur dans l’application",
+        "Codec géré par votre téléphone (AAC, LDAC, aptX)",
+        "Ajustement des embouts : il change les basses"
+      ],
+      "pieges": [
+        "Un codec « haute résolution » que votre téléphone ne gère pas",
+        "Juger sur les adjectifs de la fiche plutôt que sur la courbe"
+      ]
+    },
+    "budget": {
+      "titre": "Petit budget",
+      "poids": {
+        "autonomie": 1.2,
+        "confort": 1.0,
+        "micro": 0.6,
+        "ip": 0.5,
+        "codec": 0.3,
+        "anc": 0.3
+      },
+      "priorites": [
+        "Autonomie réelle et connexion stable",
+        "Confort : on le porte tous les jours",
+        "Une résistance IPX4 minimum pour la sueur"
+      ],
+      "pieges": [
+        "« ANC » à très bas prix : l’efficacité est souvent limitée",
+        "Marque inconnue sans garantie claire en France"
+      ]
+    }
+  },
+  "methode": [
+    {
+      "etape": "1 · Mesures",
+      "texte": "Atténuation du bruit par bande de fréquence, autonomie mesurée avec l’ANC allumée, latence en millisecondes, enregistrement du micro à l’intérieur et à l’extérieur."
+    },
+    {
+      "etape": "2 · Duels à l’aveugle",
+      "texte": "Comparaison côte à côte, mêmes conditions, format « roi de la colline » : le vainqueur reste en piste, comme dans le tournoi des projecteurs. Chaque duel note le facteur décisif."
+    },
+    {
+      "etape": "3 · Notes par usage",
+      "texte": "Chaque critère mesuré est noté de 0 à 9 ; un usage pèse les critères différemment. Une donnée inconnue reste vide : pas de moyenne, couverture signalée, note plafonnée."
+    }
+  ],
+  "checklist": [
+    "Les embouts ferment bien le conduit (test d’étanchéité dans l’application, si elle en propose un)",
+    "L’autonomie annoncée est donnée avec l’ANC allumée",
+    "Mon téléphone gère le codec principal des écouteurs",
+    "L’indice IP concerne les écouteurs, pas seulement le boîtier",
+    "Un enregistrement de test du micro existe (voix + extérieur)",
+    "Le prix est comparé sur plusieurs marchands",
+    "La garantie et le retour sont clairs en France",
+    "Je peux régler le son dans une application (égaliseur)"
+  ],
+  "catalogue_meta": {
+    "derniere_verification": "2026-10-23",
+    "detail": "Aucun modèle n’est classé : aucune mesure indépendante vérifiable n’a pu être intégrée. Les données seront ajoutées avec leur source, leur protocole et leurs valeurs mesurées ; une valeur absente reste à null."
+  }
+}

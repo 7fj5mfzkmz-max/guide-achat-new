@@ -1,0 +1,1160 @@
+{
+  "categorie": "projecteurs",
+  "source": {
+    "id": "hookup-2026",
+    "titre": "I Tested the Best $100–$500 Projectors of 2026: One Clear Winner",
+    "chaine": "The Hook Up",
+    "support": "Vidéo YouTube (youtu.be/SKW2IIaLp_4), lue via sa retranscription structurée fournie au projet",
+    "portee": "Plus de 14 projecteurs LCD à panneau unique et DLP sous 500 $ ; mesures en laboratoire puis tournoi côte à côte à l’aveugle, deux écrans de 100 pouces, pièce totalement noire."
+  },
+  "produits": [
+    {
+      "id": "nexigo-pj40-pro",
+      "nom": "NexiGo PJ40 Pro",
+      "marque": "NexiGo",
+      "prix_usd": 280,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": 800,
+        "luminosite_mesuree_ansi": 818,
+        "contraste_natif": 4400,
+        "uniformite_pct": 68,
+        "systeme": "Google TV certifié (Netflix et Prime Video HD natifs)",
+        "input_lag_ms": 10.1,
+        "input_lag_haut_ms": 3.3,
+        "bruit_db_max": 55,
+        "bruit_db_reduit": 44,
+        "lumens_reduits_ansi": 475,
+        "optique_scellee": false,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 2,
+        "defaites": 0,
+        "duels": [
+          "R12",
+          "R13"
+        ],
+        "rang_final": 1,
+        "titre": "Grand vainqueur"
+      },
+      "points_forts": [
+        "Seul modèle mesuré au-dessus de 800 lumens ANSI, fiche honnête (818 pour 800 annoncés)",
+        "Meilleur contraste natif du test (4 400 : 1)",
+        "Latence de 10,1 ms au centre : le seul recommandé pour les jeux réactifs",
+        "Google TV certifié"
+      ],
+      "points_faibles": [
+        "55 dB à pleine puissance (44 dB en réglant la ventilation à 4/10, pour 475 lumens ANSI)",
+        "Optique non scellée : nettoyage régulier du filtre et de la dalle"
+      ],
+      "mesure_en_labo": true,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": 9,
+        "fidelite": 9,
+        "contraste": 9,
+        "uniformite": 7,
+        "image": 9,
+        "reactivite": 9,
+        "silence": 4.5,
+        "systeme": 9,
+        "entretien": 5,
+        "prix": 5
+      },
+      "profil_scores": {
+        "cinema": 8.1,
+        "salon": 8.5,
+        "jeu": 8.7,
+        "budget": 7.8,
+        "silence": 6
+      },
+      "profil_couverture": {
+        "cinema": 1,
+        "salon": 1,
+        "jeu": 1,
+        "budget": 1,
+        "silence": 1
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=NexiGo%20PJ40%20Pro%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "vocals-g3-pro",
+      "nom": "Vocals G3 Pro",
+      "marque": "Vocals",
+      "prix_usd": 228,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": 800,
+        "luminosite_mesuree_ansi": 305,
+        "contraste_natif": 2800,
+        "uniformite_pct": 62,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 3,
+        "defaites": 1,
+        "duels": [
+          "R9",
+          "R10",
+          "R11",
+          "R12"
+        ],
+        "rang_final": 2,
+        "titre": "Meilleure qualité d’image"
+      },
+      "points_forts": [
+        "Calibrage couleur et tone mapping cinéma remarqués en duel",
+        "Battu seulement par le NexiGo après trois victoires"
+      ],
+      "points_faibles": [
+        "305 lumens ANSI mesurés pour 800 annoncés",
+        "Contraste natif moyen (2 800 : 1)"
+      ],
+      "mesure_en_labo": true,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": 4.5,
+        "fidelite": 3,
+        "contraste": 6,
+        "uniformite": 5,
+        "image": 8.5,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 6
+      },
+      "profil_scores": {
+        "cinema": 6.9,
+        "salon": 5.4,
+        "jeu": 6,
+        "budget": 5.6,
+        "silence": 6
+      },
+      "profil_couverture": {
+        "cinema": 0.83,
+        "salon": 0.94,
+        "jeu": 0.55,
+        "budget": 0.93,
+        "silence": 0.38
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vocals%20G3%20Pro%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "elephas-w1k",
+      "nom": "Elephas W1K",
+      "marque": "Elephas",
+      "prix_usd": 222,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": 1200,
+        "luminosite_mesuree_ansi": 612,
+        "contraste_natif": 3100,
+        "uniformite_pct": 64,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 2,
+        "defaites": 1,
+        "duels": [
+          "R7",
+          "R8",
+          "R9"
+        ],
+        "rang_final": 3,
+        "titre": "Meilleur rapport qualité/prix"
+      },
+      "points_forts": [
+        "612 lumens ANSI mesurés : trois fois plus lumineux que le TCL C1",
+        "Contraste natif de 3 100 : 1",
+        "Meilleur rapport qualité/prix du test"
+      ],
+      "points_faibles": [
+        "612 lumens ANSI mesurés pour 1 200 annoncés",
+        "Battu par le Vocals G3 Pro sur le réglage des couleurs"
+      ],
+      "mesure_en_labo": true,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": 8,
+        "fidelite": 5,
+        "contraste": 7.5,
+        "uniformite": 6,
+        "image": 7.5,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 6
+      },
+      "profil_scores": {
+        "cinema": 7.3,
+        "salon": 7.1,
+        "jeu": 6,
+        "budget": 6.6,
+        "silence": 6
+      },
+      "profil_couverture": {
+        "cinema": 0.83,
+        "salon": 0.94,
+        "jeu": 0.55,
+        "budget": 0.93,
+        "silence": 0.38
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Elephas%20W1K%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "fidoni-gc888a",
+      "nom": "Fidoni GC888A",
+      "marque": "Fidoni",
+      "prix_usd": 99,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 6,
+        "defaites": 1,
+        "duels": [
+          "R1",
+          "R2",
+          "R3",
+          "R4",
+          "R5",
+          "R6",
+          "R7"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [
+        "À 99 $, il a gagné six duels d’affilée",
+        "Meilleur contraste et +70 lumens réels face au GooDee"
+      ],
+      "points_faibles": [
+        "Écrasé par l’Elephas W1K sur les couleurs et les noirs"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 6.5,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 9
+      },
+      "profil_scores": {
+        "cinema": 6.8,
+        "salon": 6,
+        "jeu": 6,
+        "budget": 7.2,
+        "silence": 6
+      },
+      "profil_couverture": {
+        "cinema": 0.46,
+        "salon": 0.26,
+        "jeu": 0.24,
+        "budget": 0.49,
+        "silence": 0.26
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Fidoni%20GC888A%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "onoyo-o5-pro",
+      "nom": "Onoyo O5 Pro",
+      "marque": "Onoyo",
+      "prix_usd": 310,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": 1000,
+        "luminosite_mesuree_ansi": 540,
+        "contraste_natif": 2200,
+        "uniformite_pct": 58,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R13"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [
+        "Image correcte face au NexiGo"
+      ],
+      "points_faibles": [
+        "540 lumens ANSI mesurés pour 1 000 annoncés",
+        "Uniformité la plus faible des modèles mesurés (58 %)",
+        "En retrait sur la clarté face au NexiGo"
+      ],
+      "mesure_en_labo": true,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": 6.5,
+        "fidelite": 5,
+        "contraste": 4.5,
+        "uniformite": 4,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 4
+      },
+      "profil_scores": {
+        "cinema": 4.4,
+        "salon": 5.1,
+        "jeu": 5,
+        "budget": 4.7,
+        "silence": 4.8
+      },
+      "profil_couverture": {
+        "cinema": 0.83,
+        "salon": 0.94,
+        "jeu": 0.55,
+        "budget": 0.93,
+        "silence": 0.38
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Onoyo%20O5%20Pro%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "tcl-c1",
+      "nom": "TCL C1",
+      "marque": "TCL",
+      "prix_usd": 225,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": 500,
+        "luminosite_mesuree_ansi": 210,
+        "contraste_natif": 1900,
+        "uniformite_pct": 61,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": 38,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": true,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R8"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [
+        "Le plus silencieux du test (38 dB)",
+        "Seul moteur optique 100 % scellé : pas de nettoyage de la dalle"
+      ],
+      "points_faibles": [
+        "210 lumens ANSI mesurés pour 500 annoncés",
+        "Contraste natif le plus faible mesuré (1 900 : 1)",
+        "Trois fois moins lumineux que l’Elephas W1K"
+      ],
+      "mesure_en_labo": true,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": 3,
+        "fidelite": 3,
+        "contraste": 3,
+        "uniformite": 5,
+        "image": 4,
+        "reactivite": null,
+        "silence": 9,
+        "systeme": null,
+        "entretien": 8,
+        "prix": 6
+      },
+      "profil_scores": {
+        "cinema": 4.4,
+        "salon": 3.6,
+        "jeu": 3.7,
+        "budget": 4.2,
+        "silence": 7
+      },
+      "profil_couverture": {
+        "cinema": 0.94,
+        "salon": 0.94,
+        "jeu": 0.55,
+        "budget": 0.93,
+        "silence": 1
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=TCL%20C1%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "arzen-d1r",
+      "nom": "Arzen D1R",
+      "marque": "Arzen",
+      "prix_usd": 123,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": 300,
+        "luminosite_mesuree_ansi": 322,
+        "contraste_natif": 3800,
+        "uniformite_pct": 69,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R3"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [
+        "Fiche honnête : 322 lumens ANSI pour 300 annoncés",
+        "Contraste natif de 3 800 : 1 et uniformité de 69 % (la meilleure mesurée)"
+      ],
+      "points_faibles": [
+        "Courbe gamma défaillante, battu en duel par le Fidoni"
+      ],
+      "mesure_en_labo": true,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": 4.5,
+        "fidelite": 9,
+        "contraste": 7.5,
+        "uniformite": 7,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 8
+      },
+      "profil_scores": {
+        "cinema": 5.5,
+        "salon": 6,
+        "jeu": 5.6,
+        "budget": 6.7,
+        "silence": 5.1
+      },
+      "profil_couverture": {
+        "cinema": 0.83,
+        "salon": 0.94,
+        "jeu": 0.55,
+        "budget": 0.93,
+        "silence": 0.38
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Arzen%20D1R%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "arzen-d1r-cube",
+      "nom": "Arzen D1R Cube",
+      "marque": "Arzen",
+      "prix_usd": null,
+      "prix_note": "Prix non relevé dans la source.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R5"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Traitement d’image moins dynamique que le Fidoni"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": null
+      },
+      "profil_scores": {
+        "cinema": 4,
+        "salon": 4,
+        "jeu": 4,
+        "budget": 4,
+        "silence": 4
+      },
+      "profil_couverture": {
+        "cinema": 0.4,
+        "salon": 0.17,
+        "jeu": 0.16,
+        "budget": 0.18,
+        "silence": 0.18
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Arzen%20D1R%20Cube%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "goodee-yg600m",
+      "nom": "GooDee YG600M",
+      "marque": "GooDee",
+      "prix_usd": 180,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R1"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Environ 70 lumens de moins et un contraste inférieur au Fidoni"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 7
+      },
+      "profil_scores": {
+        "cinema": 4.4,
+        "salon": 5,
+        "jeu": 5,
+        "budget": 5.5,
+        "silence": 5
+      },
+      "profil_couverture": {
+        "cinema": 0.46,
+        "salon": 0.26,
+        "jeu": 0.24,
+        "budget": 0.49,
+        "silence": 0.26
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=GooDee%20YG600M%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "vocopals-k3",
+      "nom": "Vocopals K3",
+      "marque": "Vocopals",
+      "prix_usd": 180,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R2"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Bloqué à 150 lumens : image plate"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 7
+      },
+      "profil_scores": {
+        "cinema": 4.4,
+        "salon": 5,
+        "jeu": 5,
+        "budget": 5.5,
+        "silence": 5
+      },
+      "profil_couverture": {
+        "cinema": 0.46,
+        "salon": 0.26,
+        "jeu": 0.24,
+        "budget": 0.49,
+        "silence": 0.26
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vocopals%20K3%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "magic-hy350gt",
+      "nom": "Magic HY350GT",
+      "marque": "Magic",
+      "prix_usd": 144,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R4"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Reflets internes bleutés visibles à l’image"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 8
+      },
+      "profil_scores": {
+        "cinema": 4.5,
+        "salon": 5.3,
+        "jeu": 5.3,
+        "budget": 5.5,
+        "silence": 5.3
+      },
+      "profil_couverture": {
+        "cinema": 0.46,
+        "salon": 0.26,
+        "jeu": 0.24,
+        "budget": 0.49,
+        "silence": 0.26
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Magic%20HY350GT%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "lingcast-x7",
+      "nom": "Lingcast X7",
+      "marque": "Lingcast",
+      "prix_usd": 220,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": "Android 14 Mobile",
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R6"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Image trop bleue, fuites optiques",
+        "Android 14 Mobile : failles de sécurité majeures et applications mal optimisées (à éviter)"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": 3,
+        "entretien": null,
+        "prix": 6
+      },
+      "profil_scores": {
+        "cinema": 4.1,
+        "salon": 4.3,
+        "jeu": 4.4,
+        "budget": 5,
+        "silence": 4.7
+      },
+      "profil_couverture": {
+        "cinema": 0.52,
+        "salon": 0.32,
+        "jeu": 0.29,
+        "budget": 0.56,
+        "silence": 0.26
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Lingcast%20X7%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "haprun-j7-pro",
+      "nom": "Haprun J7 Pro",
+      "marque": "Haprun",
+      "prix_usd": 251,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R10"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Noirs trop grisés"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 5
+      },
+      "profil_scores": {
+        "cinema": 4.1,
+        "salon": 4.3,
+        "jeu": 4.3,
+        "budget": 4.6,
+        "silence": 4.3
+      },
+      "profil_couverture": {
+        "cinema": 0.46,
+        "salon": 0.26,
+        "jeu": 0.24,
+        "budget": 0.49,
+        "silence": 0.26
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Haprun%20J7%20Pro%20vid%C3%A9oprojecteur"
+    },
+    {
+      "id": "giaiy-go2",
+      "nom": "Giaiy GO2",
+      "marque": "Giaiy",
+      "prix_usd": 260,
+      "prix_note": "Prix en dollars relevé dans la vidéo (marché américain). Disponibilité et prix en France non vérifiés.",
+      "caracteristiques": {
+        "luminosite_annoncee_lm": null,
+        "luminosite_mesuree_ansi": null,
+        "contraste_natif": null,
+        "uniformite_pct": null,
+        "systeme": null,
+        "input_lag_ms": null,
+        "input_lag_haut_ms": null,
+        "bruit_db_max": null,
+        "bruit_db_reduit": null,
+        "lumens_reduits_ansi": null,
+        "optique_scellee": null,
+        "offset_vertical_pct": 0
+      },
+      "tournoi": {
+        "victoires": 0,
+        "defaites": 1,
+        "duels": [
+          "R11"
+        ],
+        "rang_final": null,
+        "titre": null
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Dérive chromatique violette impossible à corriger"
+      ],
+      "mesure_en_labo": false,
+      "source": "hookup-2026",
+      "date_verification": "2026-10",
+      "scores": {
+        "luminosite": null,
+        "fidelite": null,
+        "contraste": null,
+        "uniformite": null,
+        "image": 4,
+        "reactivite": null,
+        "silence": null,
+        "systeme": null,
+        "entretien": null,
+        "prix": 5
+      },
+      "profil_scores": {
+        "cinema": 4.1,
+        "salon": 4.3,
+        "jeu": 4.3,
+        "budget": 4.6,
+        "silence": 4.3
+      },
+      "profil_couverture": {
+        "cinema": 0.46,
+        "salon": 0.26,
+        "jeu": 0.24,
+        "budget": 0.49,
+        "silence": 0.26
+      },
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Giaiy%20GO2%20vid%C3%A9oprojecteur"
+    }
+  ],
+  "tournoi": {
+    "format": "Roi de la colline : le vainqueur d’un duel reste en piste et affronte un nouveau projecteur. Image comparée en simultané sur deux écrans de 100 pouces dans une pièce totalement noire.",
+    "duels": [
+      {
+        "id": "R1",
+        "a": "fidoni-gc888a",
+        "b": "goodee-yg600m",
+        "gagnant": "fidoni-gc888a",
+        "facteur": "+70 lm réels, meilleur contraste",
+        "minute": "00:02:12"
+      },
+      {
+        "id": "R2",
+        "a": "fidoni-gc888a",
+        "b": "vocopals-k3",
+        "gagnant": "fidoni-gc888a",
+        "facteur": "Vocopals bloqué à 150 lm : image plate",
+        "minute": "00:02:39"
+      },
+      {
+        "id": "R3",
+        "a": "fidoni-gc888a",
+        "b": "arzen-d1r",
+        "gagnant": "fidoni-gc888a",
+        "facteur": "Courbe gamma défaillante sur l’Arzen",
+        "minute": "00:03:02"
+      },
+      {
+        "id": "R4",
+        "a": "fidoni-gc888a",
+        "b": "magic-hy350gt",
+        "gagnant": "fidoni-gc888a",
+        "facteur": "Reflets internes bleutés qui gâchent l’image du Magic",
+        "minute": "00:03:32"
+      },
+      {
+        "id": "R5",
+        "a": "fidoni-gc888a",
+        "b": "arzen-d1r-cube",
+        "gagnant": "fidoni-gc888a",
+        "facteur": "Traitement d’image plus dynamique sur le Fidoni",
+        "minute": "00:03:55"
+      },
+      {
+        "id": "R6",
+        "a": "fidoni-gc888a",
+        "b": "lingcast-x7",
+        "gagnant": "fidoni-gc888a",
+        "facteur": "Lingcast trop bleu, avec des fuites optiques",
+        "minute": "00:04:32"
+      },
+      {
+        "id": "R7",
+        "a": "fidoni-gc888a",
+        "b": "elephas-w1k",
+        "gagnant": "elephas-w1k",
+        "facteur": "Écrasement du Fidoni : couleurs et noirs somptueux",
+        "minute": "00:05:26"
+      },
+      {
+        "id": "R8",
+        "a": "tcl-c1",
+        "b": "elephas-w1k",
+        "gagnant": "elephas-w1k",
+        "facteur": "L’Elephas est trois fois plus lumineux que le TCL",
+        "minute": "00:06:00"
+      },
+      {
+        "id": "R9",
+        "a": "vocals-g3-pro",
+        "b": "elephas-w1k",
+        "gagnant": "vocals-g3-pro",
+        "facteur": "Calibrage couleur et tone mapping idéaux pour le cinéma",
+        "minute": "00:06:23"
+      },
+      {
+        "id": "R10",
+        "a": "vocals-g3-pro",
+        "b": "haprun-j7-pro",
+        "gagnant": "vocals-g3-pro",
+        "facteur": "Le Haprun peine : noirs trop grisés",
+        "minute": "00:07:06"
+      },
+      {
+        "id": "R11",
+        "a": "vocals-g3-pro",
+        "b": "giaiy-go2",
+        "gagnant": "vocals-g3-pro",
+        "facteur": "Dérive chromatique violette irrécupérable sur le GO2",
+        "minute": "00:07:28"
+      },
+      {
+        "id": "R12",
+        "a": "vocals-g3-pro",
+        "b": "nexigo-pj40-pro",
+        "gagnant": "nexigo-pj40-pro",
+        "facteur": "Victoire nette : dynamique et piqué hors norme",
+        "minute": "00:07:58"
+      },
+      {
+        "id": "R13",
+        "a": "onoyo-o5-pro",
+        "b": "nexigo-pj40-pro",
+        "gagnant": "nexigo-pj40-pro",
+        "facteur": "L’Onoyo est correct mais en retrait sur la clarté",
+        "minute": "00:08:32"
+      }
+    ],
+    "rounds_releves": 13,
+    "podium": {
+      "nexigo-pj40-pro": 1,
+      "vocals-g3-pro": 2,
+      "elephas-w1k": 3
+    },
+    "limite": "La retranscription fournie contient les duels R1 à R13 ; le classement final (podium) est celui annoncé dans la vidéo."
+  },
+  "mesures": {
+    "protocole": "Lumens ISO/ANSI sur une grille de 9 points d’échantillonnage ; contraste natif relevé en chambre noire stricte ; uniformité = rapport entre zones de l’image.",
+    "constat_marche": "À l’exception de NexiGo et d’Arzen, tous les fabricants testés affichent des spécifications largement surestimées ; la majorité des modèles sous 200 $ produisent moins de la moitié de la luminosité promise.",
+    "modeles_mesures": 6
+  },
+  "ergonomie": {
+    "input_lag": "NexiGo PJ40 Pro : 10,1 ms au centre et 3,3 ms en haut de l’image à 1080p 60 Hz ; seul modèle recommandé pour les jeux réactifs.",
+    "systemes": [
+      {
+        "nom": "Google TV certifié",
+        "avis": "Excellent",
+        "detail": "Netflix et Prime Video HD natifs (vu sur le NexiGo PJ40 Pro)."
+      },
+      {
+        "nom": "Roku TV",
+        "avis": "Très bon",
+        "detail": "Ergonomique et respectueux de la vie privée."
+      },
+      {
+        "nom": "Android 14 Mobile",
+        "avis": "À éviter",
+        "detail": "Failles de sécurité majeures et applications mal optimisées (exemple : Lingcast X7)."
+      }
+    ],
+    "acoustique": "TCL C1 : le plus silencieux (38 dB). NexiGo PJ40 Pro : 55 dB à pleine puissance, mais 44 dB pour 475 lumens ANSI en réglant manuellement la ventilation à 4/10.",
+    "optique": "TCL C1 : seul moteur optique 100 % scellé. Tous les autres demandent un nettoyage régulier du filtre et de la dalle LCD (coton-tige).",
+    "placement": "Tous les projecteurs testés ont un décalage vertical (offset) de 0 % : l’axe de l’objectif doit faire face au centre de l’écran (étagère arrière ou support plafond)."
+  },
+  "verdict": "Le NexiGo PJ40 Pro est présenté comme la nouvelle référence sous 300 $ : luminosité et contraste autrefois réservés à des modèles à plus de 1 500 $. Pour les petits budgets ou les espaces très calmes, l’Elephas W1K et le TCL C1 restent d’excellentes alternatives.",
+  "profils": {
+    "cinema": {
+      "titre": "Cinéma dans le noir",
+      "poids": {
+        "image": 1.9,
+        "contraste": 0.9,
+        "luminosite": 0.5,
+        "uniformite": 0.4,
+        "silence": 0.4,
+        "systeme": 0.3,
+        "prix": 0.3,
+        "entretien": 0.1
+      }
+    },
+    "salon": {
+      "titre": "Salon et sport",
+      "poids": {
+        "luminosite": 1.6,
+        "image": 0.8,
+        "fidelite": 0.6,
+        "contraste": 0.6,
+        "uniformite": 0.4,
+        "prix": 0.4,
+        "systeme": 0.3
+      }
+    },
+    "jeu": {
+      "titre": "Jeux vidéo",
+      "poids": {
+        "reactivite": 1.5,
+        "luminosite": 0.7,
+        "image": 0.6,
+        "contraste": 0.5,
+        "prix": 0.3,
+        "systeme": 0.2
+      }
+    },
+    "budget": {
+      "titre": "Petit budget",
+      "poids": {
+        "prix": 1.4,
+        "image": 0.8,
+        "luminosite": 0.8,
+        "fidelite": 0.8,
+        "contraste": 0.4,
+        "systeme": 0.3
+      }
+    },
+    "silence": {
+      "titre": "Chambre silencieuse",
+      "poids": {
+        "silence": 1.5,
+        "image": 0.6,
+        "entretien": 0.6,
+        "luminosite": 0.4,
+        "prix": 0.3
+      }
+    }
+  },
+  "catalogue_meta": {
+    "derniere_verification": "2026-10-23",
+    "devise": "USD",
+    "detail": "14 modèles issus d’une seule source (vidéo The Hook Up). Les valeurs absentes de la source restent à null et ne sont jamais complétées. Un test indépendant complémentaire est nécessaire avant d’acheter en France."
+  }
+}
