@@ -12,6 +12,9 @@
   content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background: linear-gradient(90deg, rgba(20,22,26,.94) 0%, rgba(20,22,26,.84) 30%, rgba(20,22,26,.45) 58%, rgba(20,22,26,.08) 85%);
 }
+.photo-editorial .photo-home-hero { --h-line: rgba(255,255,255,.2); }
+/* Lignes verticales de la référence Crox : toujours visibles sur la photo, en clair comme en sombre. */
+.photo-editorial .photo-home-hero .hm-wrap::before { z-index: 0; inset: -64px 0 -80px; background: linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px) 0 0 / 25% 100%; border-right: 1px solid rgba(255,255,255,.2); }
 .photo-editorial .photo-home-hero .hm-hero-grid { align-items: end; min-height: 560px; }
 .photo-editorial .photo-home-hero .hm-hero-copy, .photo-editorial .photo-home-hero h1 { color: #fff; }
 .photo-editorial .photo-home-hero .hm-meta, .photo-editorial .photo-home-hero .hm-lead { color: rgba(255,255,255,.86); }
@@ -24,7 +27,12 @@
   .photo-editorial .photo-home-hero .hm-hero-grid { min-height: 0; }
   .photo-editorial .photo-home-hero .hm-hero-visual { margin-top: 24px; }
   .photo-editorial .photo-home-hero .hm-hero-visual .hm-note-hand { display: none; }
-  .photo-editorial .hm-hero.photo-home-hero::after { background: linear-gradient(180deg, rgba(20,22,26,.9), rgba(20,22,26,.78)); }
+  .photo-editorial .hm-hero.photo-home-hero { padding-bottom: 290px; }
+  .photo-editorial .photo-home-hero .hm-wrap::before { inset: -64px 0 -290px; }
+  .photo-editorial .photo-home-backdrop { top: auto; bottom: 0; height: 330px; }
+  .photo-editorial .photo-home-backdrop img { object-position: 66% center; }
+  .photo-editorial .hm-hero.photo-home-hero::after { background: linear-gradient(180deg, var(--h-dark) 0%, var(--h-dark) calc(100% - 330px), rgba(20,22,26,0) calc(100% - 230px), rgba(20,22,26,0) 100%); }
+}
 }
 .photo-editorial .hm-card.is-live .hm-card-photo img { object-position: 62% center; }
 .photo-editorial .photo-shot { padding: 0; overflow: hidden; align-self: center; }
