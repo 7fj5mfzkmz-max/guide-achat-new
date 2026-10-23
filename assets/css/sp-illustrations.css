@@ -1,0 +1,109 @@
+/* Smartphones : illustrations et animations reprises proprement.
+   1. héros : maquette de téléphone + pastilles (rempli par theme.js)
+   2. schéma « capteur » : gros pixels contre pixels minuscules
+   3. tuiles de l'audit : animations figées à leur première image → image finale lisible */
+
+/* ——— 1. Héros ——— */
+.sp .pg-stage { display: block; min-height: clamp(380px, 40vw, 460px); isolation: isolate; }
+.hx-js .pg-stage .hx-phone, .hx-js.hx-ready .pg-stage .hx-phone {
+  position: absolute; inset: 0; margin: auto; z-index: 1;
+  width: 184px; height: 352px; aspect-ratio: auto;
+  padding: 38px 18px 18px; gap: 12px;
+  display: flex; flex-direction: column;
+  border: 3px solid var(--ink); border-radius: 30px; background: var(--paper);
+  box-shadow: 9px 9px 0 var(--accent), 9px 9px 0 1px var(--ink);
+  opacity: 1; transition: none; transform: rotate(-3deg);
+  animation: spFloat2 6s ease-in-out infinite;
+  overflow: visible;
+}
+@keyframes spFloat2 { 0%, 100% { transform: translateY(0) rotate(-3deg); } 50% { transform: translateY(-9px) rotate(-3deg); } }
+.pg-stage .hx-phone-notch { position: absolute; top: 12px; left: 50%; width: 52px; height: 9px; margin: 0 0 0 -26px; border-radius: 6px; background: var(--ink); }
+.pg-stage .hx-phone-title { font: 700 10.5px/1.25 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); overflow-wrap: anywhere; }
+.pg-stage .hx-phone-row { display: grid; gap: 4px; }
+.pg-stage .hx-phone-row em { font: 600 10.5px/1 var(--mono); font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+.pg-stage .hx-phone-bar { display: block; height: 10px; border-radius: 6px; background: var(--paper-3); overflow: hidden; }
+.pg-stage .hx-phone-bar i { display: block; height: 100%; width: calc(var(--w, 60) * 1%); border-radius: 6px; background: var(--ink); transform-origin: left center; animation: spGrow2 1.3s cubic-bezier(.2, .7, .2, 1) both; }
+.pg-stage .hx-phone-row:nth-of-type(2) i { animation-delay: .15s; }
+.pg-stage .hx-phone-row:nth-of-type(3) i { animation-delay: .3s; }
+@keyframes spGrow2 { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.pg-stage .hx-phone-score { margin-top: auto; display: flex; align-items: baseline; gap: 4px; }
+.pg-stage .hx-phone-score b { font: 800 clamp(46px, 5vw, 58px)/.95 var(--head); letter-spacing: -.04em; padding: 2px 8px; background: var(--accent); color: #0f1115; }
+.pg-stage .hx-phone-score small { font: 700 14px var(--mono); color: var(--ink-mute); }
+.pg-stage .hx-halo { position: absolute; left: 50%; top: 50%; width: 300px; height: 300px; margin: -150px 0 0 -150px; z-index: 0; border-radius: 50%; border: 2px dashed var(--line-soft); animation: spHalo 7s linear infinite; }
+.pg-stage .hx-halo::after { content: ''; position: absolute; inset: -46px; border-radius: 50%; border: 1px solid var(--line-soft); }
+@keyframes spHalo { to { transform: rotate(360deg); } }
+.pg-stage .hx-chip { z-index: 2; font: 700 11px/1 var(--mono); padding: 8px 11px; white-space: nowrap; animation: spBob 5s ease-in-out infinite; }
+.pg-stage .hx-chip-a { left: 4%; top: 10%; }
+.pg-stage .hx-chip-b { right: 4%; top: 25%; }
+.pg-stage .hx-chip-c { left: 4%; bottom: 20%; }
+.pg-stage .hx-chip-d { right: 5%; bottom: 8%; }
+
+/* ——— 2. Capteur ——— */
+.sensor-demo { padding: clamp(10px, 2vw, 22px); }
+.sensor-demo svg { max-width: 760px; margin-inline: auto; }
+.sensor-demo .sd-title { font: 800 22px var(--head); fill: var(--ink); paint-order: normal; stroke: none; }
+.sensor-demo .sd-sub { font: 500 13.5px var(--mono); letter-spacing: .04em; fill: var(--ink-mute); }
+.sensor-demo .sd-cap { font: 500 15px var(--sans); fill: var(--ink-soft); }
+.sensor-demo .sd-cap-strong { font-weight: 800; fill: var(--ink); }
+.sensor-demo .sd-sensor { stroke: #b9770e; stroke-width: 3; }
+.sensor-demo .sd-px { fill: #fffdf0; }
+.sensor-demo .sd-px.is-big { opacity: .94; animation: sdGlowBig 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * .13s); }
+.sensor-demo .sd-px.is-small { opacity: .55; animation: sdGlowSmall 1.6s ease-in-out infinite; animation-delay: calc(var(--i) * .03s); }
+.sensor-demo .sd-ph { fill: #f6b73c; opacity: 0; --fall: 34px; animation: sdFall 2.4s ease-in infinite; animation-delay: var(--d); }
+.sensor-demo .sd-panel + .sd-panel .sd-ph { --fall: 72px; fill: #f2c85b; }
+.sensor-demo .sd-divider { stroke: var(--line-soft); stroke-width: 2; stroke-dasharray: 4 6; }
+@keyframes sdFall { 0% { transform: translateY(-6px); opacity: 0; } 18% { opacity: 1; } 80% { opacity: 1; } 100% { transform: translateY(var(--fall)); opacity: 0; } }
+@keyframes sdGlowBig { 0%, 100% { opacity: .82; } 50% { opacity: 1; } }
+@keyframes sdGlowSmall { 0%, 100% { opacity: .38; } 50% { opacity: .62; } }
+@media (prefers-reduced-motion: reduce) {
+  .sensor-demo .sd-ph, .sensor-demo .sd-px { animation: none; }
+  .sensor-demo .sd-ph { opacity: .85; }
+  .pg-stage .hx-phone, .pg-stage .hx-halo, .pg-stage .hx-chip, .pg-stage .hx-phone-bar i { animation: none !important; }
+}
+@media (max-width: 560px) {
+  /* Petit écran : seuls le titre et la conclusion restent dans le schéma (le détail est dans les trois cartes en dessous). */
+  .sensor-demo .sd-title { font-size: 28px; } .sensor-demo .sd-cap-strong { font-size: 27px; } .sensor-demo .sd-sub, .sensor-demo .sd-cap:not(.sd-cap-strong) { display: none; }
+}
+
+/* ——— 3. Tuiles de l'audit ——— */
+/* Une tuile non survolée mettait ses animations « en pause » sur la 1re image
+   (batteries vides, jauges à 15 %) : on affiche l'image finale à la place. */
+.sp .audit-board .audit-pill:not(.is-selected):not(:hover):not(:focus-visible) .av * { animation: none !important; }
+/* L'illustration garde ses proportions : plus d'étirement avec la largeur de la tuile. */
+.sp .audit-board .audit-pill .av svg { width: 100%; height: 126px; aspect-ratio: auto; overflow: visible; }
+.sp .audit-board .audit-pill .av { display: grid; place-items: center; padding: 6px 4px; }
+
+/* ——— 4. Simulation « fiche Amazon » (guide 1) ———
+   Textes lisibles (≥ 9,5 px au lieu de 6,8 px), téléphone dans sa colonne, et repère orange
+   posé sur l'élément à regarder (contour) plutôt qu'à des coordonnées fixes qui débordaient. */
+.amazon-guide { grid-template-columns: minmax(320px, 360px) minmax(0, 1fr); }
+.amazon-device-wrap { min-height: 600px; padding: 24px 0; }
+.amazon-device { box-sizing: border-box; width: 292px; aspect-ratio: 9 / 18.5; padding: 6px; border-width: 6px; }
+.amazon-device::before { width: 76px; height: 20px; }
+.amazon-top { height: 56px; padding: 24px 10px 7px; font-size: 12px; }
+.amazon-search { height: 28px; padding: 8px 8px; font-size: 10px; }
+.amazon-subnav { height: 26px; font-size: 9px; gap: 10px; }
+.amazon-page { inset: 82px 0 0; }
+.amazon-step { padding: 14px 12px 16px; }
+.amazon-breadcrumb { font-size: 9.5px; margin-bottom: 10px; }
+.amazon-result { grid-template-columns: 72px 1fr; gap: 10px; padding: 9px 8px 12px; }
+.amazon-thumb { height: 92px; }
+.amazon-title { font-size: 11.5px; line-height: 1.35; margin-bottom: 6px; }
+.amazon-stars { font-size: 12px; } .amazon-reviews { font-size: 9.5px; margin-left: 4px; }
+.amazon-price { font-size: 18px; margin-top: 8px; } .amazon-delivery { font-size: 9.5px; margin-top: 4px; }
+.amazon-btn { font-size: 10.5px; padding: 7px 13px; margin-top: 9px; }
+.amazon-product-hero { grid-template-columns: 82px 1fr; gap: 10px; }
+.amazon-product-image { height: 150px; }
+.amazon-bullets { font-size: 10.5px; line-height: 1.4; margin: 8px 0; padding: 7px 7px 7px 20px; }
+.amazon-bullets li { margin-bottom: 5px; }
+.amazon-specs { margin-top: 10px; }
+.amazon-specs-head { font-size: 11px; padding: 8px; }
+.amazon-spec-row { font-size: 10.5px; grid-template-columns: 40% 60%; }
+.amazon-spec-row b, .amazon-spec-row span { padding: 8px; }
+.amazon-highlight { display: none; }
+.amazon-step.is-active .amazon-result, .amazon-step.is-active .amazon-bullets, .amazon-step.is-active .amazon-specs {
+  outline: 3px solid #ff9900; outline-offset: 3px; border-radius: 6px; animation: spAmazonPulse 1.4s ease-in-out infinite;
+}
+@keyframes spAmazonPulse { 0%, 100% { outline-color: #ff9900; box-shadow: 0 0 0 0 rgba(255, 153, 0, .35); } 50% { outline-color: #ffbf47; box-shadow: 0 0 0 8px rgba(255, 153, 0, 0); } }
+@media (max-width: 760px) { .amazon-guide { grid-template-columns: 1fr; } .amazon-device-wrap { min-height: 0; } }
+@media (prefers-reduced-motion: reduce) { .amazon-step.is-active .amazon-result, .amazon-step.is-active .amazon-bullets, .amazon-step.is-active .amazon-specs { animation: none; } }

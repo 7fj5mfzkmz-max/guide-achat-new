@@ -2,7 +2,12 @@
 (function () {
   'use strict';
   var T = 'var(--teal)', O = 'var(--orchid)', L = 'var(--lime)', C = 'var(--coral,#e8745a)', K = 'var(--ink)', B = 'var(--blue,#3b82f6)', uid = 0;
-  var tx = function (x, y, s, t, f, a) { return '<text x="' + x + '" y="' + y + '" font-size="' + s + '" font-weight="800" text-anchor="' + (a || 'middle') + '" fill="' + (f || K) + '" stroke="none">' + t + '</text>'; };
+  /* Les libellés sont comprimés (textLength) au lieu de déborder de la tuile de 96 unités. */
+  var tx = function (x, y, s, t, f, a) {
+    var plain = String(t).replace(/<[^>]+>/g, ''), est = plain.length * s * .58, anchor = a || 'middle', max = anchor === 'middle' ? 90 : 72;
+    var fit = est > max ? ' textLength="' + max + '" lengthAdjust="spacingAndGlyphs"' : '';
+    return '<text x="' + x + '" y="' + y + '" font-size="' + s + '" font-weight="800" text-anchor="' + anchor + '" fill="' + (f || K) + '" stroke="none"' + fit + '>' + t + '</text>';
+  };
   var rc = function (x, y, w, h, r, fill, st, extra) { return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="' + (r || 0) + '" fill="' + (fill || 'none') + '" ' + (st ? 'stroke="' + st + '" ' : 'stroke="none" ') + (extra || '') + '/>'; };
   var bar = function (n, on, x0, y, w, gap, col) { var s = ''; for (var i = 0; i < n; i++) s += rc(x0 + i * (w + gap), y, w, 5, 2.5, i < on ? col : K, '', i < on ? '' : 'opacity=".15"'); return s; };
 

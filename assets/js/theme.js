@@ -38,8 +38,9 @@
       if (!box || !c) return;
       var st = c.stage || { title: c.label, bars: [82, 70, 58], score: 8 };
       var chips = (c.chips || c.terms.slice(0, 4).map(function (t) { return [t, ""]; }));
-      box.innerHTML = '<div class="hx-phone"><span class="hx-phone-notch"></span><span class="hx-phone-title">' + esc(st.title) + "</span>" +
-        st.bars.map(function (w) { return '<span class="hx-phone-bar"><i style="--w:' + w + '"></i></span>'; }).join("") +
+      var labels = st.labels || [];
+      box.innerHTML = '<span class="hx-halo" aria-hidden="true"></span><div class="hx-phone"><span class="hx-phone-notch"></span><span class="hx-phone-title">' + esc(st.title) + "</span>" +
+        st.bars.map(function (w, i) { return '<span class="hx-phone-row">' + (labels[i] ? "<em>" + esc(labels[i]) + "</em>" : "") + '<span class="hx-phone-bar"><i style="--w:' + w + '"></i></span></span>'; }).join("") +
         '<span class="hx-phone-score"><b data-count="' + st.score + '">' + st.score + "</b><small>/10</small></span></div>" +
         chips.slice(0, 4).map(function (t, i) { return '<span class="hx-chip hx-chip-' + "abcd".charAt(i) + '">' + glyph(t[1]) + esc(t[0]) + "</span>"; }).join("");
       if (swap && !reduced) { box.classList.remove("hx-stage-swap"); void box.offsetWidth; box.classList.add("hx-stage-swap"); }
