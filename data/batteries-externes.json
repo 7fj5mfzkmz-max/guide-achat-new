@@ -1,0 +1,52 @@
+{
+  "verified": "2026-10-23",
+  "method": "Spécifications constructeur, sans mesures indépendantes ni classement de qualité. Prix et stock non suivis.",
+  "products": [
+    {
+      "id": "samsung-p4520",
+      "name": "Samsung EB-P4520",
+      "mah": 20000,
+      "watts": 45,
+      "total": 45,
+      "ports": "3 USB-C",
+      "use": "Téléphone et tablette",
+      "note": "PD / PPS annoncé. Pour un Galaxy compatible, vérifier le câble et le mode de charge. La puissance se partage entre appareils.",
+      "source": "https://www.samsung.com/fr/support/model/EB-P4520XUEGEU/"
+    },
+    {
+      "id": "anker-a1383",
+      "name": "Anker A1383 · 20K 87W",
+      "mah": 20000,
+      "watts": 65,
+      "total": 87,
+      "ports": "USB-C intégré + USB-C + USB-A",
+      "use": "Téléphone et PC USB-C",
+      "note": "65 W maximum sur une sortie ; 87 W désigne le total partagé. Le câble intégré évite un accessoire à transporter.",
+      "source": "https://www.anker.com/products/a1383"
+    },
+    {
+      "id": "ugreen-12000",
+      "name": "UGREEN Nexode · 12K 100W",
+      "mah": 12000,
+      "wh": 44.4,
+      "watts": 100,
+      "total": 100,
+      "ports": "1 USB-C + 1 USB-A",
+      "use": "PC en dépannage",
+      "note": "100 W sur USB-C, mais une réserve de 44,4 Wh : puissance élevée et capacité sont deux choses différentes.",
+      "source": "https://eu.ugreen.com/products/ugreen-nexode-power-bank-100w-12000mah"
+    },
+    {
+      "id": "ugreen-20000",
+      "name": "UGREEN Nexode · 20K 130W",
+      "mah": 20000,
+      "wh": 72,
+      "watts": 100,
+      "total": 130,
+      "ports": "2 USB-C + 1 USB-A",
+      "use": "PC et plusieurs appareils",
+      "note": "100 W sur USB-C1, jusqu’à 130 W au total. Énergie déclarée : 72 Wh. Vérifier la répartition lorsque plusieurs ports sont occupés.",
+      "source": "https://eu.ugreen.com/products/ugreen-nexode-power-bank-130w-20000mah"
+    }
+  ]
+}

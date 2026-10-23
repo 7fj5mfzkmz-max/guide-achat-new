@@ -177,6 +177,7 @@
     var index = [];
     var pages = [
       { url: "index.html", label: "Accueil" },
+      { url: "batteries-externes.html", label: "Batteries externes" },
       { url: "smartphones.html", label: "Smartphones" },
       { url: "lexique.html", label: "Lexique" },
       { url: "comparateur.html", label: "Comparateur" },
