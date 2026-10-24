@@ -21,6 +21,11 @@ a{color:var(--accent)} p.muted{color:var(--muted)}
 <script id="ga-early">try{if(localStorage.getItem("guide-achat-theme")!=="light")document.documentElement.classList.add("dark-theme")}catch(e){document.documentElement.classList.add("dark-theme")}</script>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
+<script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
+function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
+l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
+<style>html.i18n-wait body{opacity:0}</style>
+<link rel="stylesheet" href="assets/css/i18n.css">
 </head>
 <body class="tool-page">
 <h1>Capture depuis votre navigateur</h1>
@@ -71,5 +76,6 @@ a{color:var(--accent)} p.muted{color:var(--muted)}
 })();
 </script>
 <script src="assets/js/site-extras.js"></script>
+<script src="assets/js/i18n.js" defer></script>
 </body>
 </html>

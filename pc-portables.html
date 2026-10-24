@@ -29,6 +29,11 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/category-menu.js" defer></script>
 <link rel="stylesheet" href="assets/css/photo-editorial.css">
 <link rel="stylesheet" href="assets/css/actualites.css">
+<script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
+function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
+l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
+<style>html.i18n-wait body{opacity:0}</style>
+<link rel="stylesheet" href="assets/css/i18n.css">
 </head>
 <body class="photo-editorial site-redesign">
 <header class="site-header">
@@ -193,6 +198,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/pc-guide.js" defer></script>
 <script src="assets/js/category-page.js" defer></script>
 <script src="assets/js/actualites.js" defer></script>
+<script src="assets/js/i18n.js" defer></script>
 </body>
 </html>
 

@@ -60,7 +60,7 @@ async function main() {
 
   /* mode : "real" (vrai backend, autre origine) | "stub" (réponse simulée, même origine) | "down" (réseau coupé) */
   async function open(pathname, mode, handler) {
-    const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const context = await browser.newContext({ locale: 'fr-FR', viewport: { width: 1280, height: 900 } });
     const page = await context.newPage();
     page.errors = []; page.calls = []; page.backendCalls = 0; page.backendResponses = [];
     page.on('pageerror', e => page.errors.push(e.message));

@@ -1,0 +1,20 @@
+/* Sélecteur de langue (barre du haut) ; le contenu reste masqué le temps de charger le dictionnaire. */
+html.i18n-wait body { opacity: 0; }
+html.i18n-ready body { animation: i18nIn .2s ease-out; }
+@keyframes i18nIn { from { opacity: 0; } to { opacity: 1; } }
+.lang-switch { position: relative; display: inline-flex; }
+.lang-switch.is-floating { position: fixed; top: 12px; right: 12px; z-index: 60; }
+.header-tool-lang { display: inline-flex; align-items: center; justify-content: center; gap: 7px; width: auto; min-width: 44px; padding: 0 12px; cursor: pointer; font: 700 13px/1 var(--mono, var(--sans, sans-serif)); letter-spacing: .04em; }
+.header-tool-lang svg { flex: none; }
+.home .header-tool-lang { padding: 0 16px; font: 600 15px/1 var(--sans); letter-spacing: 0; }
+.lang-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 70; list-style: none; margin: 0; padding: 6px; min-width: 250px; border: 1px solid var(--ink, #20221e); border-radius: 14px; background: var(--paper, var(--h-bg, #f0eee6)); color: var(--ink, var(--h-ink, #20221e)); box-shadow: 0 14px 40px rgba(0, 0, 0, .18); }
+.lang-menu[hidden] { display: none; }
+.lang-menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 12px; border: 0; border-radius: 9px; background: none; color: inherit; font: 600 15px/1.2 var(--sans, sans-serif); text-align: left; cursor: pointer; }
+.lang-menu button:hover, .lang-menu button:focus-visible { background: var(--accent, #ff651b); color: #20221e; outline: none; }
+.lang-menu small { font-weight: 500; opacity: .7; }
+.lang-tick { width: 16px; visibility: hidden; font-weight: 800; }
+.lang-menu [aria-checked="true"] .lang-tick { visibility: visible; }
+@media (max-width: 560px) { .lang-menu { position: fixed; top: 76px; right: 12px; left: 12px; min-width: 0; } .header-tool-lang { padding: 0 10px; } .home .header-tool-lang { padding: 0 12px; } }
+@media (prefers-reduced-motion: reduce) { html.i18n-ready body { animation: none; } }
+@media (max-width: 560px) { .header-tool-lang svg { display: none; } .header-tool-lang, .home .header-tool-lang { min-width: 48px; padding: 0 10px; } }
+@media (max-width: 440px) { .home .brand-menu-label { display: none; } .home .brand-menu-toggle { padding: 0 14px; } }

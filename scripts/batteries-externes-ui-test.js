@@ -10,7 +10,7 @@ const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+new 
   await new Promise(r=>server.listen(0,'127.0.0.1',r));
   browser=await chromium.launch(process.env.BROWSER_PATH?{executablePath:process.env.BROWSER_PATH}:{});
   for(const width of [390,1280]){
-   const page=await browser.newPage({viewport:{width,height:900}}),errors=[];
+   const page=await browser.newPage({locale:'fr-FR',viewport:{width,height:900}}),errors=[];
    page.on('pageerror',e=>errors.push(e.message));
    await page.goto('http://127.0.0.1:'+server.address().port+'/batteries-externes.html');
    await page.locator('#be-estimate').filter({hasText:'1,4'}).waitFor();
