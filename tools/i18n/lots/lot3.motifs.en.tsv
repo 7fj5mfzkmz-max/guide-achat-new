@@ -1,0 +1,5 @@
+^Non noté dans la source : (.+?)(…)?\.$	Not scored in the source: $1$2.
+^À surveiller : (.+?)\.$	To watch: $1.
+^Profil : (.+)$	Profile: $1
+^Budget : (.+)$	Budget: $1
+^Système : (.+)$	System: $1

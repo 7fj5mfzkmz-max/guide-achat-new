@@ -21,16 +21,15 @@ for lang in ('en','es'):
         for x,y in zip(a,b):
             if x!=y:
                 for k in variants(dec(x)): s[k]=y
-    for p in ('extra',):
-        f=os.path.join(root,'tools/i18n/%s.%s.tsv'%(p,lang))
-        if os.path.exists(f):
+    for f in [os.path.join(root,'tools/i18n/extra.%s.tsv'%lang)]+sorted(glob.glob(os.path.join(root,'tools/i18n/lots/*.%s.tsv'%lang))):
+        if os.path.exists(f) and '.motifs.' not in f:
             for line in open(f,encoding='utf-8').read().split('\n'):
                 if '\t' in line and not line.startswith('#'):
                     k,v=line.split('\t',1)
                     for kk in variants(k): s[kk]=v
     pats=[]
-    f=os.path.join(root,'tools/i18n/motifs.%s.tsv'%lang)
-    if os.path.exists(f):
+    for f in [os.path.join(root,'tools/i18n/motifs.%s.tsv'%lang)]+sorted(glob.glob(os.path.join(root,'tools/i18n/lots/*.motifs.%s.tsv'%lang))):
+      if os.path.exists(f):
         for line in open(f,encoding='utf-8').read().split('\n'):
             if '\t' in line and not line.startswith('#'):
                 a,b=line.split('\t',1); pats.append([a,b])

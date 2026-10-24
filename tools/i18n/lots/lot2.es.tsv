@@ -1,0 +1,249 @@
+pro	profesional
+joueur	jugador
+Joueur	Jugador
+créer	crear
+travailler	trabajar
+jouer	jugar
+étudier	estudiar
+Créateur	Creador
+Créateur / montage	Creador / edición
+qualité sonore	calidad de sonido
+connectivité et codecs	conectividad y códecs
+confort et maintien	comodidad y sujeción
+micro et appels	micrófono y llamadas
+réduction de bruit	reducción de ruido
+autonomie	autonomía
+commandes et finition	controles y acabado
+prix	precio
+résistance	resistencia
+luminosité mesurée	brillo medido
+image en duel	imagen en duelo
+fiche honnête	ficha honesta
+réactivité (jeu)	capacidad de respuesta (juegos)
+contraste natif	contraste nativo
+Repère de départ : {0} mAh et au moins {1} W sur une sortie.	Punto de partida: {0} mAh y al menos {1} W en una salida.
+{0} modèles correspondant aux repères de capacité et de puissance ; compatibilité finale à vérifier.	{0} modelos que cumplen las referencias de capacidad y potencia; hay que comprobar la compatibilidad final.
+1 modèle correspondant aux repères de capacité et de puissance ; compatibilité finale à vérifier.	1 modelo que cumple las referencias de capacidad y potencia; hay que comprobar la compatibilidad final.
+0 modèle correspondant aux repères de capacité et de puissance ; compatibilité finale à vérifier.	0 modelos que cumplen las referencias de capacidad y potencia; hay que comprobar la compatibilidad final.
+{0} points sur {1} vérifiés.	{0} de {1} puntos comprobados.
+1 point sur 8 vérifié.	1 de 8 puntos comprobado.
+0 point sur 8 vérifié.	0 de 8 puntos comprobados.
+Code du signet	Código del marcador
+Octa-core, modèle exact à vérifier selon version · jusqu'à {0} GB de RAM	Octa-core, modelo exacto por comprobar según la versión · hasta {0} GB de RAM
+Non précisée dans la fiche officielle consultée	No indicada en la ficha oficial consultada
+Non précisée	No especificada
+Non documentée	No documentada
+Li-ion polymère	Li-ion polímero
+Casques premium : gagnant des appels (JustMyVoice™)	Auriculares de diadema premium: ganador en llamadas (JustMyVoice™)
+Écouteurs premium : gagnant des appels	Auriculares de botón premium: ganador en llamadas
+Casques budget : gagnant des appels	Auriculares de diadema económicos: ganador en llamadas
+Écouteurs budget : gagnant des appels	Auriculares de botón económicos: ganador en llamadas
+Qualité du micro, jugée sur un enregistrement réel	Calidad del micrófono, juzgada sobre una grabación real
+Confort sur de longues journées	Comodidad durante jornadas largas
+Connexion à deux appareils en même temps (multipoint)	Conexión a dos dispositivos a la vez (multipunto)
+ANC très forte mais voix qui sonne étouffée pour vos interlocuteurs	ANC muy potente, pero la voz suena apagada para tus interlocutores
++ recharges du boîtier	+ recargas del estuche
+Boîtier	Estuche
+sueur · pluie · poussière	sudor · lluvia · polvo
+le son arrive après l’image	el sonido llega después de la imagen
+Deux écouteurs et leur boîtier : le bruit ambiant et son inverse s’annulent	Dos auriculares y su estuche: el ruido ambiente y su inverso se anulan
+Une onde de bruit et son inverse donnent une ligne plate	Una onda de ruido y su inversa dan una línea plana
+Un écouteur, sa batterie et le boîtier de recharge	Un auricular, su batería y el estuche de carga
+Les sons extérieurs sont laissés passer vers l’oreille	Los sonidos exteriores llegan al oído
+Deux tuyaux de largeurs différentes entre un téléphone et un écouteur	Dos tuberías de distinto ancho entre un teléfono y un auricular
+La voix atteint le micro tandis que le vent est filtré	La voz llega al micrófono mientras se filtra el viento
+Trois indices de protection : IPX4, IP57 et le boîtier souvent sans certification	Tres índices de protección: IPX4, IP57 y el estuche, a menudo sin certificación
+L’image avance et le son la suit avec un léger retard	La imagen avanza y el sonido la sigue con un ligero retraso
+Courbe de réponse avec des basses accentuées contre une courbe neutre	Curva de respuesta con graves acentuados frente a una curva neutra
+Une molette et des boutons physiques de commande	Una rueda y botones físicos de control
+Un embout mal ajusté laisse fuir le son, un embout scellé isole	Una almohadilla mal ajustada deja escapar el sonido; una sellada aísla
+Banc d’essai	Banco de pruebas
+Courbe de réponse mesurée et égaliseur dans l’application	Curva de respuesta medida y ecualizador en la aplicación
+Codec géré par votre téléphone (AAC, LDAC, aptX)	Códec compatible con tu teléfono (AAC, LDAC, aptX)
+Ajustement des embouts : il change les basses	Ajuste de las almohadillas: cambia los graves
+Un codec « haute résolution » que votre téléphone ne gère pas	Un códec «de alta resolución» que tu teléfono no admite
+Juger sur les adjectifs de la fiche plutôt que sur la courbe	Juzgar por los adjetivos de la ficha en vez de por la curva
+Vidéo {0} · Test comparatif des microphones en environnement bruyant (vent, trafic, café) pour casques et écouteurs.	Vídeo {0} · Prueba comparativa de micrófonos en entornos ruidosos (viento, tráfico, cafetería) para auriculares de diadema y de botón.
+Vidéo {0} · Sélection et classement des meilleurs écouteurs True Wireless abordables sous le seuil de {1} $.	Vídeo {0} · Selección y clasificación de los mejores auriculares True Wireless asequibles por menos de {1} $.
+Point clé d’isolation de la voix	Punto clave del aislamiento de la voz
+Algorithme d’élimination des bruits constants (moteur, trafic)	Algoritmo que elimina los ruidos constantes (motor, tráfico)
+Disposition des micros dirigée vers la bouche avec rejet du vent	Disposición de los micrófonos orientada a la boca con rechazo del viento
+Pour des appels clairs en extérieur, la taille du haut-parleur importe peu : c’est la combinaison d’un capteur de conduction osseuse (VPU) et d’un réseau de microphones à formation de faisceau (beamforming), couplé à un traitement IA, qui sépare une voix étouffée d’une voix limpide.	Para llamadas claras en exteriores, el tamaño del altavoz importa poco: es la combinación de un sensor de conducción ósea (VPU) y una red de micrófonos con formación de haz (beamforming), junto con un procesamiento de IA, lo que separa una voz apagada de una voz nítida.
+Polyvalence et endurance	Versatilidad y resistencia
+Champion à moins de {0} $ (banc d’essai)	Campeón por menos de {0} $ (banco de pruebas)
+Autonomie réelle et connexion stable	Autonomía real y conexión estable
+Confort : on le porte tous les jours	Comodidad: se lleva todos los días
+Une résistance IPX4 minimum pour la sueur	Al menos resistencia IPX4 al sudor
+« ANC » à très bas prix : l’efficacité est souvent limitée	«ANC» a muy bajo precio: la eficacia suele ser limitada
+Molette sur le boîtier, Basses profondes, ANC efficace	Rueda en el estuche, graves profundos, ANC eficaz
+Driver MEMS, Son Hi-Res LDAC, Clarté des aigus	Controlador MEMS, sonido Hi-Res LDAC, claridad de agudos
+Autonomie massive, Application complète, Solide construction	Autonomía enorme, aplicación completa, construcción sólida
+Boîtier support de téléphone, BASSUP puissant	Estuche que sirve de soporte para el teléfono, BASSUP potente
+Pression ANC extrême, Résistance à l’eau IPX6	ANC extremo, resistencia al agua IPX6
+Sport & entraînement	Deporte y entrenamiento
+Le CMF Buds Pro {0} (Nothing) redéfinit le segment sous {1} $ : molette rotative physique personnalisable sur le boîtier (Smart Dial) et double driver dynamique ({2} mm + {3} mm planar) pour une clarté et un punch rares à ce prix.	Los CMF Buds Pro {0} (Nothing) redefinen el segmento por debajo de {1} $: una rueda giratoria física personalizable en el estuche (Smart Dial) y doble controlador dinámico ({2} mm + {3} mm planar) para una claridad y una pegada poco habituales a este precio.
+Loin d’une prise	Lejos de un enchufe
+Tout en photo	Todo en fotos
+Sur le vif	Al momento
+Basse lumière	Poca luz
+avec vos {0} réponses.	con tus {0} respuestas.
+Pourquoi {0} GB et pas {1} ?	¿Por qué {0} GB y no {1}?
+Voir l’analyse détaillée	Ver el análisis detallado
+Quel écran choisir ?	¿Qué pantalla elegir?
+Un cran au-dessus	Un escalón por encima
+−{0} € par rapport au conseil	−{0} € respecto al consejo
++{0} € par rapport au conseil	+{0} € respecto al consejo
+Bravo, vous avez fait le tour !	¡Bien hecho, lo has visto todo!
+Voir la configuration chez le marchand	Ver la configuración en la tienda
+affichée plus bas ↓	se muestra más abajo ↓
+À quoi sert la carte graphique ?	¿Para qué sirve la tarjeta gráfica?
+Pourquoi le poids compte ?	¿Por qué importa el peso?
+non cité dans le relevé	no citado en el registro
+non chiffrée dans le relevé	sin cifra en el registro
+très audible	muy audible
+Processeur : neuf cœurs qui s’activent à tour de rôle, signaux circulant sur les pistes	Procesador: nueve núcleos que se activan por turnos, con señales que circulan por las pistas
+Écran : image nocturne, étoiles qui scintillent et reflet qui balaie la dalle	Pantalla: imagen nocturna, estrellas que titilan y un reflejo que barre el panel
+Carte graphique : une carte avec deux ventilateurs en rotation	Tarjeta gráfica: una tarjeta con dos ventiladores girando
+Mémoire vive : puces actives et données alimentant des fenêtres d’applications	Memoria RAM: chips activos y datos que alimentan ventanas de aplicaciones
+Stockage : un SSD qui reçoit des blocs de données et se remplit	Almacenamiento: un SSD que recibe bloques de datos y se llena
+Batterie : cellules qui se chargent une à une et énergie circulant dans le câble	Batería: celdas que se cargan una a una y energía que circula por el cable
+Poids : une balance oscille, portable d’un côté, masses de l’autre	Peso: una balanza oscila, con un portátil a un lado y masas al otro
+Encombrement relatif d’un PC fermé et de son chargeur	Tamaño relativo de un portátil cerrado y su cargador
+Un même ordinateur portable analysé par un scanner	El mismo portátil analizado por un escáner
+scène calculée par le GPU · illustration pédagogique	escena calculada por la GPU · ilustración didáctica
+finesse illustrée — dépend du jeu, du modèle et des réglages	nivel de detalle ilustrado: depende del juego, del modelo y de los ajustes
+Système, photos, jeux, projet vidéo	Sistema, fotos, juegos, proyecto de vídeo
+Aucun modèle du catalogue ne correspond à ce budget et à ce système. Élargissez le budget ou choisissez « Peu importe » pour le système.	Ningún modelo del catálogo se ajusta a este presupuesto y a este sistema. Amplía el presupuesto o elige «Me da igual» para el sistema.
+Aucun modèle du catalogue ne correspond à ce budget et ce système. Élargissez le budget ou choisissez « Peu importe » pour le système.	Ningún modelo del catálogo se ajusta a este presupuesto y a este sistema. Amplía el presupuesto o elige «Me da igual» para el sistema.
+— Une journée légère.	— Una jornada ligera.
+— Tout reste en mémoire : utile pour le montage, les machines virtuelles, les années à venir.	— Todo se queda en memoria: útil para la edición, las máquinas virtuales y los años venideros.
+— Surtout fait pour rester sur un bureau, chargeur en plus.	— Pensado sobre todo para quedarse en un escritorio, con el cargador además.
+— Polyvalent : on le sent après une journée de transport.	— Versátil: se nota después de un día de transporte.
+— Seize cœurs : le gain existe surtout si le logiciel sait s’en servir.	— Dieciséis núcleos: la ganancia existe sobre todo si el software sabe aprovecharlos.
+— Des milliers de petites LED, regroupées en zones, s’éteignent là où l’image est noire : le halo se réduit à quelques zones.	— Miles de pequeños LED, agrupados en zonas, se apagan donde la imagen es negra: el halo se reduce a unas pocas zonas.
+— Davantage de cœurs graphiques et un refroidissement renforcé : détails fins, reflets et effets, au prix du poids et de la chaleur.	— Más núcleos gráficos y una refrigeración reforzada: detalles finos, reflejos y efectos, a costa del peso y del calor.
+Avantage : création et calcul lourds	Ventaja: creación y cálculo pesado
+Avantage : très lumineux, bon contraste	Ventaja: muy luminoso, buen contraste
+CPU · {0} CŒURS	CPU · {0} NÚCLEOS
+Se glisse dans un sac sans peser ({0} kg)	Cabe en una mochila sin pesar ({0} kg)
+Autonomie annoncée de {0} h : de quoi tenir la journée	Autonomía anunciada de {0} h: suficiente para aguantar el día
+jusqu’à {0} h annoncées (vidéo ou constructeur)	hasta {0} h anunciadas (vídeo o fabricante)
+Autonomie annoncée très longue	Autonomía anunciada muy larga
+{0} GB ne tiennent pas	{0} GB no caben
+Il manque {0} GB : il faudra choisir un SSD plus grand ou déporter des fichiers sur un disque externe.	Faltan {0} GB: habrá que elegir un SSD más grande o pasar archivos a un disco externo.
+Prix d’une station fixe	Precio de una estación fija
+Prix et format de remplacement de tour	Precio y formato de sustituto de una torre
+Ce n’est pas un portable de train.	No es un portátil para el tren.
+Station de montage dans {0} kg	Estación de edición en {0} kg
+Moins d’un kilo	Menos de un kilo
+OLED et Ryzen AI dans {0} kg	OLED y Ryzen AI en {0} kg
+OLED dans {0} kg	OLED en {0} kg
+{0} pouces OLED dans {1} kg	OLED de {0} pulgadas en {1} kg
+OLED {0} pouces sous {1} € dans ce relevé	OLED de {0} pulgadas por menos de {1} € en este registro
+{0} GB et {1} TB sous {2} kg	{0} GB y {1} TB por menos de {2} kg
+{0} GB et {1} TB	{0} GB y {1} TB
+{0} GB de RAM et SSD {1} GB à prix contenu	{0} GB de RAM y SSD de {1} GB a un precio contenido
+{0} GB de RAM et {1} GB de SSD	{0} GB de RAM y {1} GB de SSD
+{0} GB de RAM et {1} TB de SSD	{0} GB de RAM y {1} TB de SSD
+{0} GB : prévoir davantage pour les gros projets.	{0} GB: conviene prever más para proyectos grandes.
+{0} GB soudés sur cette fiche	{0} GB soldados en esta ficha
+{0} GB en UFS, pas un gros SSD	{0} GB en UFS, no un SSD grande
+{0} h {1} mesurées en test, pas une annonce marketing	{0} h {1} medidas en pruebas, no un anuncio de marketing
+{0} h mesurées en test, pas une annonce marketing	{0} h medidas en pruebas, no un anuncio de marketing
+JVTECH a mesuré plutôt {0} h que {1} h	JVTECH midió más bien {0} h que {1} h
+{0} GB / {1} GB à {2} € depuis juin {3} ({4} € au lancement). {5} GB avec Touch ID vers {6} €. Batterie {7} Wh. Jusqu’à {8} h vidéo, {9} h web, tests Apple.	{0} GB / {1} GB a {2} € desde junio de {3} ({4} € en el lanzamiento). {5} GB con Touch ID por unos {6} €. Batería de {7} Wh. Hasta {8} h de vídeo, {9} h de web, pruebas de Apple.
+Les Numériques : à partir de {0} €. Fiche testée PCMag : {1} GB, {2} GB UFS, OLED {3} Hz, {4} h {5} mesurées, NPU {6} TOPS. Vérifier que l’offre à {7} € est bien cette config.	Les Numériques: desde {0} €. Ficha probada por PCMag: {1} GB, {2} GB UFS, OLED de {3} Hz, {4} h {5} medidas, NPU de {6} TOPS. Comprueba que la oferta de {7} € es esta configuración.
+Config {0} GB / {1} GB relevée à {2} € (PcComponentes, nov. {3}) ; base Dell dès {4} € ; variantes relevées entre {5} € et {6} € (123comparer, {7}-{8}).	Configuración de {0} GB / {1} GB a {2} € (PcComponentes, nov. de {3}); base de Dell desde {4} €; variantes entre {5} € y {6} € (123comparer, {7}-{8}).
+Apple A18 Pro ({0} cœurs, {1} performance)	Apple A18 Pro ({0} núcleos, {1} de rendimiento)
+GPU intégré {0} cœurs	GPU integrada de {0} núcleos
+{0} kg, {1} nits, une journée en vidéo annoncée	{0} kg, {1} nits, una jornada de vídeo anunciada
+Un des deux USB-C est limité à l’USB {0}	Uno de los dos USB-C está limitado a USB {0}
+Dalle IPS, pas OLED	Panel IPS, no OLED
+iGPU insuffisant pour jouer	GPU integrada insuficiente para jugar
+Plus cher que le A14 X Elite {0} GB	Más caro que el A14 X Elite de {0} GB
+Heures d’autonomie non citées sur ce relevé	Horas de autonomía no citadas en este registro
+Pas de carte graphique dédiée	Sin tarjeta gráfica dedicada
+Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.	Sin tarjeta gráfica dedicada para juegos exigentes o 3D.
+Ports limités à l’USB-C	Puertos limitados a USB-C
+Encore très endurant et silencieux	Todavía muy duradero y silencioso
+Assez de puissance pour un montage léger	Potencia suficiente para una edición ligera
+Souvent {0} GB en entrée : juste pour les photos et les projets	A menudo {0} GB en la gama de entrada: justo para fotos y proyectos
+{0} GB / {1} GB au prix d’un Air M5 mieux doté en stockage	{0} GB / {1} GB al precio de un Air M5 con más almacenamiento
+OLED très couvert ({0} % sRGB annoncés)	OLED con una cobertura muy amplia ({0} % sRGB anunciado)
+Génération précédente face au Laptop {0}	Generación anterior frente al Laptop {0}
+Windows sur Arm : vérifier chaque logiciel	Windows en Arm: comprueba cada programa
+Génération X, pas X2	Generación X, no X2
+Autonomie non chiffrée dans le relevé	Autonomía sin cifrar en el registro
+Autonomie réelle non mesurée dans ce relevé.	Autonomía real no medida en este registro.
+Clavier complet avec pavé numérique	Teclado completo con teclado numérico
+Pas de pavé numérique	Sin teclado numérico
+Chargeur inclus dans cette référence	Cargador incluido en esta referencia
+GPU intégré (pas de dédiée NVIDIA)	GPU integrada (sin NVIDIA dedicada)
+iGPU Arc B390 au-dessus d’un intégré courant	GPU integrada Arc B390 por encima de una integrada habitual
+La config {0} GB / {1} TB n’est pas le prix d’entrée	La configuración de {0} GB / {1} TB no es el precio de entrada
+Le GPU Apple ne remplace pas une RTX pour tous les jeux Windows	La GPU de Apple no sustituye a una RTX para todos los juegos de Windows
+Prix élevé pour une RTX {0}	Precio elevado para una RTX {0}
+Carte graphique datée pour les jeux lourds	Tarjeta gráfica anticuada para juegos pesados
+{0} € relevés sur la boutique HP France (oct. {1}) ; prix de lancement {2} € (juillet {3}, comparez-malin).	{0} € en la tienda de HP Francia (oct. de {1}); precio de lanzamiento de {2} € (julio de {3}, comparez-malin).
+Config JVTECH à partir de {0} €. Ce n’est pas un portable de train.	Configuración de JVTECH desde {0} €. No es un portátil para el tren.
+axe de l’objectif face au centre	eje del objetivo frente al centro
+l’objectif vise le centre de l’écran	el objetivo apunta al centro de la pantalla
+L’axe de l’objectif pointe vers le centre de l’écran : décalage vertical nul	El eje del objetivo apunta al centro de la pantalla: desplazamiento vertical nulo
+entre la manette et l’image (1080p, {0} Hz)	entre el mando y la imagen (1080p, {0} Hz)
+Très bon	Muy bueno
+Un projecteur posé sur une étagère envoie un faisceau lumineux vers un écran de {0} pouces	Un proyector colocado en una estantería envía un haz de luz hacia una pantalla de {0} pulgadas
+Barres comparant les lumens annoncés et mesurés de quatre projecteurs	Barras que comparan los lúmenes anunciados y medidos de cuatro proyectores
+Grille de neuf points de mesure de la luminosité de l’image	Cuadrícula de nueve puntos de medición del brillo de la imagen
+Une manette envoie un signal vers l’écran : la latence mesurée est de {0} millisecondes	Un mando envía una señal a la pantalla: la latencia medida es de {0} milisegundos
+Trois systèmes : Google TV excellent, Roku TV très bon, Android {0} Mobile à éviter	Tres sistemas: Google TV excelente, Roku TV muy bueno, Android {0} Mobile a evitar
+Cadran de bruit entre {0} et {1} décibels	Indicador de ruido entre {0} y {1} decibelios
+Optique ouverte avec de la poussière contre optique scellée	Óptica abierta con polvo frente a óptica sellada
+Courbe gamma défaillante sur l’Arzen	Curva gamma defectuosa en el Arzen
+Le Haprun peine : noirs trop grisés	El Haprun sufre: negros demasiado grisáceos
+Calibrage couleur et tone mapping idéaux pour le cinéma	Calibrado de color y tone mapping ideales para el cine
+L’Onoyo est correct mais en retrait sur la clarté	El Onoyo es correcto pero se queda atrás en claridad
+Écrasement du Fidoni : couleurs et noirs somptueux	El Fidoni aplasta a la competencia: colores y negros magníficos
+Traitement d’image plus dynamique sur le Fidoni	Procesamiento de imagen más dinámico en el Fidoni
+noir = lumière allumée	negro = luz encendida
+plus d’un jour	más de un día
+images / seconde dans un jeu 3D	imágenes / segundo en un juego 3D
+Jeux et montage	Juegos y edición
+Jeux très lourds	Juegos muy exigentes
+ensuite : plus de correctifs	después: sin más correcciones
+Pièces limitées	Piezas limitadas
+Pièces disponibles	Piezas disponibles
+pas d’eau	sin agua
+Pixels larges : beaucoup de lumière chacun	Píxeles grandes: mucha luz cada uno
+→ nuit plus propre	→ noche más limpia
+Pixels minuscules : peu de lumière chacun	Píxeles minúsculos: poca luz cada uno
+→ la nuit dépend du logiciel	→ la noche depende del software
+Repères :	Referencias:
+Cher mais puissant	Caro pero potente
+Pas de gâchettes / tarif très fort	Sin gatillos / precio muy alto
+Ventilateur 24k RPM + gâchettes	Ventilador de 24k RPM + gatillos
+Intelligence logicielle, tarif plus doux, régularité photographique	Inteligencia de software, precio más suave, regularidad fotográfica
+Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement	Teleobjetivo 5x en un sensor grande, Video Boost, sujetos en movimiento
+Ouverture variable et téléobjectif 4x très polyvalent	Apertura variable y un teleobjetivo 4x muy versátil
+Triple capteur {0} MP Hasselblad et convertisseur télé magnétique 10x/20x/40x	Triple sensor Hasselblad de {0} MP y convertidor de teleobjetivo magnético 10x/20x/40x
+Optiques Zeiss {0} MP, principal et téléobjectif	Ópticas Zeiss de {0} MP, principal y teleobjetivo
+très longue protection	protección muy larga
+recharge avant le soir	recarga antes de la noche
+Affiner la batterie	Afinar la batería
+Affiner la puissance	Afinar la potencia
+Aluminium, IP68, meilleure autonomie globale de la gamme ({0} h {1})	Aluminio, IP68, mejor autonomía global de la gama ({0} h {1})
+une note du testeur	una nota del analista
+Non noté dans la source :	No puntuado en la fuente:
+non noté	no puntuado
+vous l’utiliserez surtout pour des cours, des notes et du web	lo usarás sobre todo para clases, apuntes y web
+vous l’utiliserez surtout pour du travail de bureau	lo usarás sobre todo para trabajo de oficina
+vous l’utiliserez surtout pour de la photo ou du montage	lo usarás sobre todo para foto o edición
+vous l’utiliserez surtout pour du jeu	lo usarás sobre todo para jugar
+vous le transporterez presque tous les jours	lo llevarás casi todos los días
+vous le transporterez de temps en temps	lo llevarás de vez en cuando
+il restera posé sur un bureau	se quedará sobre un escritorio
+vous voulez jouer à des jeux récents	quieres jugar a juegos recientes
+vous ferez du montage ou de la 3D	harás edición o 3D
+vous n’avez besoin ni de jeux ni de montage	no necesitas ni juegos ni edición
+votre budget est inférieur à {0} €	tu presupuesto es inferior a {0} €
+votre budget se situe entre {0} et {1} €	tu presupuesto está entre {0} y {1} €
+votre budget dépasse {0} €	tu presupuesto supera los {0} €

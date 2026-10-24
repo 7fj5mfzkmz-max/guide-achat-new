@@ -1,0 +1,249 @@
+pro	pro
+joueur	gamer
+Joueur	Gamer
+créer	create
+travailler	work
+jouer	play
+étudier	study
+Créateur	Creator
+Créateur / montage	Creator / editing
+qualité sonore	sound quality
+connectivité et codecs	connectivity and codecs
+confort et maintien	comfort and fit
+micro et appels	mic and calls
+réduction de bruit	noise reduction
+autonomie	battery life
+commandes et finition	controls and finish
+prix	price
+résistance	durability
+luminosité mesurée	measured brightness
+image en duel	head-to-head image
+fiche honnête	honest spec sheet
+réactivité (jeu)	responsiveness (gaming)
+contraste natif	native contrast
+Repère de départ : {0} mAh et au moins {1} W sur une sortie.	Starting point: {0} mAh and at least {1} W on one output.
+{0} modèles correspondant aux repères de capacité et de puissance ; compatibilité finale à vérifier.	{0} models matching the capacity and power benchmarks; final compatibility to be checked.
+1 modèle correspondant aux repères de capacité et de puissance ; compatibilité finale à vérifier.	1 model matching the capacity and power benchmarks; final compatibility to be checked.
+0 modèle correspondant aux repères de capacité et de puissance ; compatibilité finale à vérifier.	0 models matching the capacity and power benchmarks; final compatibility to be checked.
+{0} points sur {1} vérifiés.	{0} of {1} points checked.
+1 point sur 8 vérifié.	1 of 8 points checked.
+0 point sur 8 vérifié.	0 of 8 points checked.
+Code du signet	Bookmarklet code
+Octa-core, modèle exact à vérifier selon version · jusqu'à {0} GB de RAM	Octa-core, exact model to check by version · up to {0} GB of RAM
+Non précisée dans la fiche officielle consultée	Not stated in the official spec sheet consulted
+Non précisée	Not specified
+Non documentée	Not documented
+Li-ion polymère	Li-ion polymer
+Casques premium : gagnant des appels (JustMyVoice™)	Premium headphones: calls winner (JustMyVoice™)
+Écouteurs premium : gagnant des appels	Premium earbuds: calls winner
+Casques budget : gagnant des appels	Budget headphones: calls winner
+Écouteurs budget : gagnant des appels	Budget earbuds: calls winner
+Qualité du micro, jugée sur un enregistrement réel	Mic quality, judged on a real recording
+Confort sur de longues journées	Comfort over long days
+Connexion à deux appareils en même temps (multipoint)	Connection to two devices at once (multipoint)
+ANC très forte mais voix qui sonne étouffée pour vos interlocuteurs	Very strong ANC but a voice that sounds muffled to the people you talk to
++ recharges du boîtier	+ case recharges
+Boîtier	Case
+sueur · pluie · poussière	sweat · rain · dust
+le son arrive après l’image	the sound arrives after the picture
+Deux écouteurs et leur boîtier : le bruit ambiant et son inverse s’annulent	Two earbuds and their case: ambient noise and its inverse cancel out
+Une onde de bruit et son inverse donnent une ligne plate	A noise wave and its inverse give a flat line
+Un écouteur, sa batterie et le boîtier de recharge	An earbud, its battery and the charging case
+Les sons extérieurs sont laissés passer vers l’oreille	Outside sounds are let through to the ear
+Deux tuyaux de largeurs différentes entre un téléphone et un écouteur	Two pipes of different widths between a phone and an earbud
+La voix atteint le micro tandis que le vent est filtré	The voice reaches the mic while the wind is filtered out
+Trois indices de protection : IPX4, IP57 et le boîtier souvent sans certification	Three protection ratings: IPX4, IP57 and the case, often uncertified
+L’image avance et le son la suit avec un léger retard	The picture moves on and the sound follows with a slight delay
+Courbe de réponse avec des basses accentuées contre une courbe neutre	Response curve with boosted bass versus a neutral curve
+Une molette et des boutons physiques de commande	A dial and physical control buttons
+Un embout mal ajusté laisse fuir le son, un embout scellé isole	A poorly fitted tip lets sound leak, a sealed tip isolates
+Banc d’essai	Test bench
+Courbe de réponse mesurée et égaliseur dans l’application	Measured response curve and an equalizer in the app
+Codec géré par votre téléphone (AAC, LDAC, aptX)	Codec supported by your phone (AAC, LDAC, aptX)
+Ajustement des embouts : il change les basses	Tip fit: it changes the bass
+Un codec « haute résolution » que votre téléphone ne gère pas	A “high-resolution” codec your phone doesn’t support
+Juger sur les adjectifs de la fiche plutôt que sur la courbe	Judging by the spec sheet’s adjectives rather than the curve
+Vidéo {0} · Test comparatif des microphones en environnement bruyant (vent, trafic, café) pour casques et écouteurs.	Video {0} · Comparative mic test in noisy environments (wind, traffic, café) for headphones and earbuds.
+Vidéo {0} · Sélection et classement des meilleurs écouteurs True Wireless abordables sous le seuil de {1} $.	Video {0} · Selection and ranking of the best affordable true wireless earbuds under ${1}.
+Point clé d’isolation de la voix	Key point for voice isolation
+Algorithme d’élimination des bruits constants (moteur, trafic)	Algorithm that removes constant noise (engine, traffic)
+Disposition des micros dirigée vers la bouche avec rejet du vent	Mic layout aimed at the mouth with wind rejection
+Pour des appels clairs en extérieur, la taille du haut-parleur importe peu : c’est la combinaison d’un capteur de conduction osseuse (VPU) et d’un réseau de microphones à formation de faisceau (beamforming), couplé à un traitement IA, qui sépare une voix étouffée d’une voix limpide.	For clear calls outdoors, speaker size matters little: it is the combination of a bone-conduction sensor (VPU) and a beamforming microphone array, paired with AI processing, that separates a muffled voice from a crystal-clear one.
+Polyvalence et endurance	Versatility and endurance
+Champion à moins de {0} $ (banc d’essai)	Champion under ${0} (test bench)
+Autonomie réelle et connexion stable	Real battery life and a stable connection
+Confort : on le porte tous les jours	Comfort: you wear it every day
+Une résistance IPX4 minimum pour la sueur	At least IPX4 resistance for sweat
+« ANC » à très bas prix : l’efficacité est souvent limitée	“ANC” at a very low price: effectiveness is often limited
+Molette sur le boîtier, Basses profondes, ANC efficace	Dial on the case, deep bass, effective ANC
+Driver MEMS, Son Hi-Res LDAC, Clarté des aigus	MEMS driver, Hi-Res LDAC sound, treble clarity
+Autonomie massive, Application complète, Solide construction	Massive battery life, full-featured app, solid build
+Boîtier support de téléphone, BASSUP puissant	Case that doubles as a phone stand, powerful BASSUP
+Pression ANC extrême, Résistance à l’eau IPX6	Extreme ANC pressure, IPX6 water resistance
+Sport & entraînement	Sports & training
+Le CMF Buds Pro {0} (Nothing) redéfinit le segment sous {1} $ : molette rotative physique personnalisable sur le boîtier (Smart Dial) et double driver dynamique ({2} mm + {3} mm planar) pour une clarté et un punch rares à ce prix.	The CMF Buds Pro {0} (Nothing) redefines the under-${1} segment: a customizable physical rotary dial on the case (Smart Dial) and a dual dynamic driver ({2} mm + {3} mm planar) for clarity and punch rare at this price.
+Loin d’une prise	Far from an outlet
+Tout en photo	All about photos
+Sur le vif	In the moment
+Basse lumière	Low light
+avec vos {0} réponses.	with your {0} answers.
+Pourquoi {0} GB et pas {1} ?	Why {0} GB and not {1}?
+Voir l’analyse détaillée	See the detailed analysis
+Quel écran choisir ?	Which screen to choose?
+Un cran au-dessus	A step up
+−{0} € par rapport au conseil	−€{0} versus the recommendation
++{0} € par rapport au conseil	+€{0} versus the recommendation
+Bravo, vous avez fait le tour !	Well done, you’ve covered everything!
+Voir la configuration chez le marchand	See the configuration at the retailer
+affichée plus bas ↓	shown below ↓
+À quoi sert la carte graphique ?	What is the graphics card for?
+Pourquoi le poids compte ?	Why does weight matter?
+non cité dans le relevé	not cited in the survey
+non chiffrée dans le relevé	no figure in the survey
+très audible	very audible
+Processeur : neuf cœurs qui s’activent à tour de rôle, signaux circulant sur les pistes	Processor: nine cores that switch on in turn, signals travelling along the tracks
+Écran : image nocturne, étoiles qui scintillent et reflet qui balaie la dalle	Screen: a night image, twinkling stars and a reflection sweeping across the panel
+Carte graphique : une carte avec deux ventilateurs en rotation	Graphics card: a card with two spinning fans
+Mémoire vive : puces actives et données alimentant des fenêtres d’applications	RAM: active chips and data feeding application windows
+Stockage : un SSD qui reçoit des blocs de données et se remplit	Storage: an SSD receiving blocks of data and filling up
+Batterie : cellules qui se chargent une à une et énergie circulant dans le câble	Battery: cells charging one by one and energy flowing through the cable
+Poids : une balance oscille, portable d’un côté, masses de l’autre	Weight: a scale tips, a laptop on one side, weights on the other
+Encombrement relatif d’un PC fermé et de son chargeur	Relative size of a closed laptop and its charger
+Un même ordinateur portable analysé par un scanner	The same laptop analyzed by a scanner
+scène calculée par le GPU · illustration pédagogique	scene computed by the GPU · educational illustration
+finesse illustrée — dépend du jeu, du modèle et des réglages	illustrated level of detail — depends on the game, the model and the settings
+Système, photos, jeux, projet vidéo	System, photos, games, video project
+Aucun modèle du catalogue ne correspond à ce budget et à ce système. Élargissez le budget ou choisissez « Peu importe » pour le système.	No model in the catalog matches this budget and this system. Widen the budget or choose “Doesn’t matter” for the system.
+Aucun modèle du catalogue ne correspond à ce budget et ce système. Élargissez le budget ou choisissez « Peu importe » pour le système.	No model in the catalog matches this budget and this system. Widen the budget or choose “Doesn’t matter” for the system.
+— Une journée légère.	— A light day.
+— Tout reste en mémoire : utile pour le montage, les machines virtuelles, les années à venir.	— Everything stays in memory: useful for editing, virtual machines and the years ahead.
+— Surtout fait pour rester sur un bureau, chargeur en plus.	— Mostly made to stay on a desk, charger included in the bulk.
+— Polyvalent : on le sent après une journée de transport.	— Versatile: you feel it after a day of carrying.
+— Seize cœurs : le gain existe surtout si le logiciel sait s’en servir.	— Sixteen cores: the gain is real mainly if the software can use them.
+— Des milliers de petites LED, regroupées en zones, s’éteignent là où l’image est noire : le halo se réduit à quelques zones.	— Thousands of tiny LEDs, grouped into zones, switch off where the image is black: the halo shrinks to a few zones.
+— Davantage de cœurs graphiques et un refroidissement renforcé : détails fins, reflets et effets, au prix du poids et de la chaleur.	— More graphics cores and stronger cooling: finer detail, reflections and effects, at the cost of weight and heat.
+Avantage : création et calcul lourds	Advantage: creation and heavy computing
+Avantage : très lumineux, bon contraste	Advantage: very bright, good contrast
+CPU · {0} CŒURS	CPU · {0} CORES
+Se glisse dans un sac sans peser ({0} kg)	Slips into a bag without weighing it down ({0} kg)
+Autonomie annoncée de {0} h : de quoi tenir la journée	Claimed battery life of {0} h: enough to last the day
+jusqu’à {0} h annoncées (vidéo ou constructeur)	up to {0} h claimed (video or manufacturer)
+Autonomie annoncée très longue	Very long claimed battery life
+{0} GB ne tiennent pas	{0} GB won’t fit
+Il manque {0} GB : il faudra choisir un SSD plus grand ou déporter des fichiers sur un disque externe.	{0} GB are missing: you’ll need a bigger SSD or to move files to an external drive.
+Prix d’une station fixe	Price of a fixed workstation
+Prix et format de remplacement de tour	Price and size of a desktop tower replacement
+Ce n’est pas un portable de train.	This is not a laptop for the train.
+Station de montage dans {0} kg	Editing workstation in {0} kg
+Moins d’un kilo	Under a kilo
+OLED et Ryzen AI dans {0} kg	OLED and Ryzen AI in {0} kg
+OLED dans {0} kg	OLED in {0} kg
+{0} pouces OLED dans {1} kg	{0}-inch OLED in {1} kg
+OLED {0} pouces sous {1} € dans ce relevé	{0}-inch OLED under €{1} in this survey
+{0} GB et {1} TB sous {2} kg	{0} GB and {1} TB under {2} kg
+{0} GB et {1} TB	{0} GB and {1} TB
+{0} GB de RAM et SSD {1} GB à prix contenu	{0} GB of RAM and a {1} GB SSD at a moderate price
+{0} GB de RAM et {1} GB de SSD	{0} GB of RAM and {1} GB of SSD
+{0} GB de RAM et {1} TB de SSD	{0} GB of RAM and {1} TB of SSD
+{0} GB : prévoir davantage pour les gros projets.	{0} GB: plan for more for big projects.
+{0} GB soudés sur cette fiche	{0} GB soldered on this listing
+{0} GB en UFS, pas un gros SSD	{0} GB of UFS, not a big SSD
+{0} h {1} mesurées en test, pas une annonce marketing	{0} h {1} measured in testing, not a marketing claim
+{0} h mesurées en test, pas une annonce marketing	{0} h measured in testing, not a marketing claim
+JVTECH a mesuré plutôt {0} h que {1} h	JVTECH measured closer to {0} h than {1} h
+{0} GB / {1} GB à {2} € depuis juin {3} ({4} € au lancement). {5} GB avec Touch ID vers {6} €. Batterie {7} Wh. Jusqu’à {8} h vidéo, {9} h web, tests Apple.	{0} GB / {1} GB at €{2} since June {3} (€{4} at launch). {5} GB with Touch ID around €{6}. {7} Wh battery. Up to {8} h video, {9} h web, Apple tests.
+Les Numériques : à partir de {0} €. Fiche testée PCMag : {1} GB, {2} GB UFS, OLED {3} Hz, {4} h {5} mesurées, NPU {6} TOPS. Vérifier que l’offre à {7} € est bien cette config.	Les Numériques: from €{0}. Spec sheet tested by PCMag: {1} GB, {2} GB UFS, {3} Hz OLED, {4} h {5} measured, {6} TOPS NPU. Check that the €{7} offer is this exact configuration.
+Config {0} GB / {1} GB relevée à {2} € (PcComponentes, nov. {3}) ; base Dell dès {4} € ; variantes relevées entre {5} € et {6} € (123comparer, {7}-{8}).	{0} GB / {1} GB config listed at €{2} (PcComponentes, Nov. {3}); Dell base from €{4}; variants listed between €{5} and €{6} (123comparer, {7}-{8}).
+Apple A18 Pro ({0} cœurs, {1} performance)	Apple A18 Pro ({0} cores, {1} performance)
+GPU intégré {0} cœurs	{0}-core integrated GPU
+{0} kg, {1} nits, une journée en vidéo annoncée	{0} kg, {1} nits, a claimed full day of video
+Un des deux USB-C est limité à l’USB {0}	One of the two USB-C ports is limited to USB {0}
+Dalle IPS, pas OLED	IPS panel, not OLED
+iGPU insuffisant pour jouer	Integrated GPU too weak for gaming
+Plus cher que le A14 X Elite {0} GB	Pricier than the A14 X Elite {0} GB
+Heures d’autonomie non citées sur ce relevé	Battery hours not cited in this survey
+Pas de carte graphique dédiée	No dedicated graphics card
+Pas de carte graphique dédiée pour les jeux exigeants ou la 3D.	No dedicated graphics card for demanding games or 3D.
+Ports limités à l’USB-C	Ports limited to USB-C
+Encore très endurant et silencieux	Still very long-lasting and quiet
+Assez de puissance pour un montage léger	Enough power for light editing
+Souvent {0} GB en entrée : juste pour les photos et les projets	Often {0} GB at entry level: tight for photos and projects
+{0} GB / {1} GB au prix d’un Air M5 mieux doté en stockage	{0} GB / {1} GB at the price of an Air M5 with more storage
+OLED très couvert ({0} % sRGB annoncés)	OLED with very wide coverage ({0}% sRGB claimed)
+Génération précédente face au Laptop {0}	Previous generation facing the Laptop {0}
+Windows sur Arm : vérifier chaque logiciel	Windows on Arm: check each program
+Génération X, pas X2	X generation, not X2
+Autonomie non chiffrée dans le relevé	Battery life not quantified in the survey
+Autonomie réelle non mesurée dans ce relevé.	Real battery life not measured in this survey.
+Clavier complet avec pavé numérique	Full keyboard with numeric keypad
+Pas de pavé numérique	No numeric keypad
+Chargeur inclus dans cette référence	Charger included with this model
+GPU intégré (pas de dédiée NVIDIA)	Integrated GPU (no dedicated NVIDIA)
+iGPU Arc B390 au-dessus d’un intégré courant	Arc B390 integrated GPU above a typical integrated one
+La config {0} GB / {1} TB n’est pas le prix d’entrée	The {0} GB / {1} TB config is not the entry price
+Le GPU Apple ne remplace pas une RTX pour tous les jeux Windows	Apple’s GPU doesn’t replace an RTX for every Windows game
+Prix élevé pour une RTX {0}	High price for an RTX {0}
+Carte graphique datée pour les jeux lourds	Dated graphics card for heavy games
+{0} € relevés sur la boutique HP France (oct. {1}) ; prix de lancement {2} € (juillet {3}, comparez-malin).	€{0} listed on the HP France store (Oct. {1}); launch price €{2} (July {3}, comparez-malin).
+Config JVTECH à partir de {0} €. Ce n’est pas un portable de train.	JVTECH config from €{0}. This is not a laptop for the train.
+axe de l’objectif face au centre	lens axis facing the center
+l’objectif vise le centre de l’écran	the lens aims at the center of the screen
+L’axe de l’objectif pointe vers le centre de l’écran : décalage vertical nul	The lens axis points at the center of the screen: no vertical offset
+entre la manette et l’image (1080p, {0} Hz)	between the controller and the picture (1080p, {0} Hz)
+Très bon	Very good
+Un projecteur posé sur une étagère envoie un faisceau lumineux vers un écran de {0} pouces	A projector on a shelf sends a beam of light to a {0}-inch screen
+Barres comparant les lumens annoncés et mesurés de quatre projecteurs	Bars comparing the claimed and measured lumens of four projectors
+Grille de neuf points de mesure de la luminosité de l’image	Grid of nine brightness measurement points across the image
+Une manette envoie un signal vers l’écran : la latence mesurée est de {0} millisecondes	A controller sends a signal to the screen: the measured latency is {0} milliseconds
+Trois systèmes : Google TV excellent, Roku TV très bon, Android {0} Mobile à éviter	Three systems: Google TV excellent, Roku TV very good, Android {0} Mobile to avoid
+Cadran de bruit entre {0} et {1} décibels	Noise dial between {0} and {1} decibels
+Optique ouverte avec de la poussière contre optique scellée	Open optics with dust versus sealed optics
+Courbe gamma défaillante sur l’Arzen	Faulty gamma curve on the Arzen
+Le Haprun peine : noirs trop grisés	The Haprun struggles: blacks too washed out
+Calibrage couleur et tone mapping idéaux pour le cinéma	Color calibration and tone mapping ideal for cinema
+L’Onoyo est correct mais en retrait sur la clarté	The Onoyo is decent but falls behind on clarity
+Écrasement du Fidoni : couleurs et noirs somptueux	The Fidoni crushes the competition: sumptuous colors and blacks
+Traitement d’image plus dynamique sur le Fidoni	More dynamic image processing on the Fidoni
+noir = lumière allumée	black = light on
+plus d’un jour	more than a day
+images / seconde dans un jeu 3D	frames / second in a 3D game
+Jeux et montage	Games and editing
+Jeux très lourds	Very demanding games
+ensuite : plus de correctifs	after that: no more fixes
+Pièces limitées	Limited parts
+Pièces disponibles	Parts available
+pas d’eau	no water
+Pixels larges : beaucoup de lumière chacun	Large pixels: lots of light each
+→ nuit plus propre	→ cleaner night shots
+Pixels minuscules : peu de lumière chacun	Tiny pixels: little light each
+→ la nuit dépend du logiciel	→ night shots depend on the software
+Repères :	Benchmarks:
+Cher mais puissant	Pricey but powerful
+Pas de gâchettes / tarif très fort	No triggers / very steep price
+Ventilateur 24k RPM + gâchettes	24k RPM fan + triggers
+Intelligence logicielle, tarif plus doux, régularité photographique	Software smarts, gentler price, photographic consistency
+Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement	5x telephoto on a large sensor, Video Boost, moving subjects
+Ouverture variable et téléobjectif 4x très polyvalent	Variable aperture and a very versatile 4x telephoto
+Triple capteur {0} MP Hasselblad et convertisseur télé magnétique 10x/20x/40x	Triple {0} MP Hasselblad sensor and a magnetic tele converter 10x/20x/40x
+Optiques Zeiss {0} MP, principal et téléobjectif	Zeiss {0} MP optics, main and telephoto
+très longue protection	very long protection
+recharge avant le soir	recharge before evening
+Affiner la batterie	Refine the battery
+Affiner la puissance	Refine the power
+Aluminium, IP68, meilleure autonomie globale de la gamme ({0} h {1})	Aluminum, IP68, best overall battery life in the range ({0} h {1})
+une note du testeur	a reviewer score
+Non noté dans la source :	Not scored in the source:
+non noté	not scored
+vous l’utiliserez surtout pour des cours, des notes et du web	you’ll mostly use it for classes, notes and the web
+vous l’utiliserez surtout pour du travail de bureau	you’ll mostly use it for office work
+vous l’utiliserez surtout pour de la photo ou du montage	you’ll mostly use it for photo or video editing
+vous l’utiliserez surtout pour du jeu	you’ll mostly use it for gaming
+vous le transporterez presque tous les jours	you’ll carry it almost every day
+vous le transporterez de temps en temps	you’ll carry it from time to time
+il restera posé sur un bureau	it will stay on a desk
+vous voulez jouer à des jeux récents	you want to play recent games
+vous ferez du montage ou de la 3D	you’ll do editing or 3D
+vous n’avez besoin ni de jeux ni de montage	you need neither games nor editing
+votre budget est inférieur à {0} €	your budget is under €{0}
+votre budget se situe entre {0} et {1} €	your budget is between €{0} and €{1}
+votre budget dépasse {0} €	your budget is over €{0}

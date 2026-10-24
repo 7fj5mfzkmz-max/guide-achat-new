@@ -1,4 +1,5 @@
 # motifs : expression régulière (sur le texte français normalisé) puis modèle avec $1…
+^<1>(.+) :</1> (.+)$	<1>$1:</1> $2
 ^Au catalogue : (.+) et (\d+) autres\.$	En el catálogo: $1 y $2 más.
 ^Au catalogue : (.+) et 1 autre\.$	En el catálogo: $1 y 1 más.
 ^Au catalogue : (.+)\.$	En el catálogo: $1.
@@ -22,3 +23,15 @@
 ^Il y a (\d+) jours$	Hace $1 días
 ^Aujourd’hui$	Hoy
 ^Hier$	Ayer
+^\(votre choix : (.+)\)$	(tu elección: $1)
+^(.+), (un peu en dessous|bien en dessous|au-dessus|comme votre choix|différent) \(votre choix : (.+)\)$	$1, $2 (tu elección: $3)
+^(.+), (un peu en dessous|bien en dessous|au-dessus|comme votre choix|différent)$	$1, $2
+^puce niveau (\d+)/7$	chip de nivel $1/7
+^jeu niveau (\d+)/7$	nivel de juego $1/7
+^réparabilité (\d+)/10$	reparabilidad $1/10
+^(.+) · sortie (\d+)$	$1 · lanzado en $2
+^Vous avez précisé : (.+)\.$	Has indicado: $1.
+^Aucun modèle du catalogue n’est exactement à (.+) : les plus proches sont à (.+)\.$	Ningún modelo del catálogo está exactamente a $1: los más cercanos están a $2.
+^Critère\(s\) choisi\(s\) mais non documenté\(s\) dans le catalogue : (.+)\.$	Criterios elegidos pero no documentados en el catálogo: $1.
+^Classement du plus proche de vos choix au moins proche \(profil « (.+) » en départage\)\.$	Clasificación del más cercano al menos cercano a tus elecciones (perfil «$1» como desempate).
+^(.+) et à (.+)$	$1 y $2
