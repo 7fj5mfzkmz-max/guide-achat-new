@@ -16,3 +16,29 @@
   to = "/.netlify/functions/resolve"
   status = 200
   force = true
+
+# Pages retirées : redirections permanentes (mêmes règles que vercel.json)
+[[redirects]]
+  from = "/comparateur.html"
+  to = "/smartphones.html#nos-choix"
+  status = 301
+
+[[redirects]]
+  from = "/lexique.html"
+  to = "/smartphones-approfondir.html"
+  status = 301
+
+[[redirects]]
+  from = "/lexique-pc-portables.html"
+  to = "/pc-portables.html#lexique"
+  status = 301
+
+[[redirects]]
+  from = "/capture.html"
+  to = "/analyseur.html"
+  status = 301
+
+[[redirects]]
+  from = "/diagnostic.html"
+  to = "/analyseur.html"
+  status = 301

@@ -68,7 +68,7 @@ PJ_TITLE = 'Bien choisir un projecteur à petit prix : mesures et duels : Guide�
 PJ_DESC = 'Projecteurs sous 500 $ : lumens réellement mesurés, contraste, bruit, système et tournoi côte à côte de 14 modèles. Classement, lecture par usage et fiches sans promesses gonflées.'
 
 def projecteurs():
-    sec = sections_nav([('classement', 'Classement'), ('mesures', 'Mesures'), ('tournoi', 'Tournoi'), ('profils', 'Usages'), ('essentiel', 'Essentiel'), ('catalogue', 'Catalogue'), ('methode', 'Méthode'), ('faq', 'FAQ')])
+    sec = sections_nav([('classement', 'Classement'), ('mesures', 'Tests'), ('tournoi', 'Tournoi'), ('profils', 'Usages'), ('essentiel', 'Comprendre'), ('catalogue', 'Modèles'), ('methode', 'Méthode'), ('faq', 'FAQ')])
     art = lambda id_, title, text: f'<article class="pj-lcard hx-reveal"><figure id="{id_}"></figure><h3>{title}</h3><p>{text}</p></article>'
     main = f'''<main id="main">
 {sec}<div class="hx hx-page pg pj" data-cat="projecteurs" data-tone="amber" data-motion="on">
@@ -192,4 +192,7 @@ if __name__ == '__main__':
         mod.build(globals())
     except FileNotFoundError:
         pass
+    # Balises de tête, en-tête et pied de page communs (tools/site/gabarit.py).
+    import subprocess, sys
+    subprocess.run([sys.executable, str(ROOT / 'tools/site/gabarit.py')], check=True)
     print('pages générées')

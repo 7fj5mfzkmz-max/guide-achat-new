@@ -124,7 +124,7 @@
     stage.querySelector('[data-act="no"]').addEventListener("click", onNo);
   }
   function viewManual(note, withCapture) {
-    var capture = withCapture ? '<div class="model-analyzer-capture"><strong>Le site bloque la lecture automatique.</strong><p>Sur Safari, vous pouvez lire la fiche telle que vous la voyez et la transmettre au guide.</p><a class="btn" href="capture.html">Lire la page avec Safari</a></div>' : '';
+    var capture = withCapture ? '<div class="model-analyzer-capture"><strong>Le site bloque la lecture automatique.</strong><p>Saisissez la marque et la référence affichées sur la fiche : le guide retrouve ensuite ses caractéristiques.</p></div>' : '';
     show('<div class="model-analyzer-card"><h3>Quel modèle recherchez-vous ?</h3><p>' + esc(note || "Le lien ne permet pas d’identifier le modèle avec certitude.") + " Saisissez sa marque et sa référence complète.</p>" + capture +
       '<form class="model-analyzer-input-row" data-manual><input type="text" data-autofocus required placeholder="' + (state.category === "pc-portables" ? "Ex. Asus Vivobook 15" : "Ex. Nokia G10") + '" aria-label="Marque et modèle" autocomplete="off"><button class="btn" type="submit">Utiliser ce modèle</button></form>' + retryButton() + "</div>");
     stage.querySelector("[data-manual]").addEventListener("submit", function (e) {
@@ -296,9 +296,8 @@
     var imageCandidate = (page && page.product && page.product.image) || cat.image || cat.image_url || null;
     var productImage = /^https?:\/\//i.test(String(imageCandidate || '')) ? String(imageCandidate) : null;
     var imageBlock = productImage ? '<div class="model-analyzer-product-visual"><img src="' + esc(productImage) + '" alt="Illustration du ' + esc(title) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.hidden=true"><span>Illustration issue de la fiche produit</span></div>' : '';
-    var compareId = cat.id || (page && page.product && page.product.id) || null;
-    var compareHref = compareId ? "comparateur.html?selection=" + encodeURIComponent(compareId) : "comparateur.html";
-    var compareText = compareId ? "Comparer →" : "Ouvrir le comparateur →";
+    var compareHref = state.category === "pc-portables" ? "pc-portables.html#modeles" : "smartphones.html#nos-choix";
+    var compareText = "Comparer à nos choix →";
     var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : (state.category === "pc-portables" ? "pc-portables.html#audit" : "smartphones.html#purchase-audit");
     var auditHint = state.category === "pc-portables" ? "4 questions simples : usage, budget, transport et besoin de jeux ou de montage." : "5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.";
     var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>' + auditHint + '</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';

@@ -6,11 +6,14 @@ Site statique (HTML/CSS/JS) + petit backend Node pour l'analyse de liens marchan
 
 ```
 /                      Pages du site (les URL ne changent pas)
-  index.html  smartphones.html  smartphones-approfondir.html
-  pc-portables.html  lexique.html  lexique-pc-portables.html
-  comparateur.html  analyseur.html  capture.html  diagnostic.html  a-propos.html
+  index.html  actualites.html  smartphones.html  smartphones-approfondir.html
+  pc-portables.html  batteries-externes.html  ecouteurs.html  projecteurs.html
+  analyseur.html  a-propos.html
+  (comparateur, lexique, lexique-pc-portables, capture et diagnostic sont retirés :
+   redirections permanentes dans vercel.json et netlify.toml)
 
 assets/
+  brand/               Logo, favicon et règles de la marque (voir assets/brand/LISEZMOI.md)
   css/                 Toutes les feuilles de style (voir assets/css/README.md)
   js/                  Tout le JavaScript du site (interface, quiz, comparateur, visuels PC…)
   deco/  phones/  pc-photo/   Images
@@ -28,8 +31,13 @@ tools/                 Outils de génération (non déployés)
 docs/                  Déploiement, notes de refonte, historique
 ```
 
+## Gabarit commun (en-tête, recherche, pied de page)
+Source unique : `tools/site/gabarit.py`. Après modification : `python3 tools/site/gabarit.py` (ou `npm run gabarit`).
+`npm test` échoue si une page s’en écarte (`npm run gabarit:test`). Une nouvelle page s’ajoute dans `PAGES` (avec la cible
+de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, dans `CATEGORIES`.
+
 ## Générer les données PC portables
-`python3 tools/pc-portables/construire.py` → écrit `data/pc-portables.json`, `data/lexique-pc-portables.json` et `lexique-pc-portables.html`.
+`python3 tools/pc-portables/construire.py` → écrit `data/pc-portables.json` et `data/lexique-pc-portables.json` (lexique affiché dans `pc-portables.html#lexique`).
 
 ## Déployer
 Voir `docs/DEPLOIEMENT-VERCEL-GITHUB.md` et `docs/DEPLOIEMENT.md`.

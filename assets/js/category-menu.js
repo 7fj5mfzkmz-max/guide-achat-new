@@ -13,7 +13,7 @@
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-controls", "category-menu");
     toggle.setAttribute("aria-label", "Ouvrir les catégories");
-    toggle.innerHTML = '<span aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-menu-label">Catégories</span>';
+    toggle.innerHTML = '<svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="brand-menu-label">Catégories</span>';
     var tools = inner.querySelector(".header-tools");
     if (tools) tools.insertAdjacentElement("afterend", toggle); else inner.appendChild(toggle);
   }
@@ -21,6 +21,7 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[m]; }); }
 
   /* Le contenu vient du registre des catégories (source unique) : le menu est identique sur toutes les pages. */
+  var current = location.pathname.split("/").pop() || "index.html";
   function items() {
     var C = window.GuideCategories;
     if (!C) return '<a class="category-menu-item is-live" href="smartphones.html"><span class="cm-txt"><strong>Smartphones</strong><small>Guide disponible</small></span></a>';
@@ -29,7 +30,7 @@
         '<span class="cm-txt"><strong>' + esc(c.label) + '</strong><small>' + (c.live ? "Guide disponible" : "Bientôt disponible") + '</small></span>' +
         (c.live ? '<i class="cm-go" aria-hidden="true">→</i>' : "");
       return c.live
-        ? '<a class="category-menu-item is-live" data-tone="' + c.tone + '" href="' + c.href + '">' + inside + '</a>'
+        ? '<a class="category-menu-item is-live" data-tone="' + c.tone + '" href="' + c.href + '"' + (c.href === current ? ' aria-current="page"' : '') + '>' + inside + '</a>'
         : '<div class="category-menu-item is-soon" data-tone="' + c.tone + '" aria-disabled="true">' + inside + '</div>';
     }).join("");
   }

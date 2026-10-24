@@ -116,7 +116,7 @@ async function main() {
   });
 
   for (const pageName of [A, S]) {
-    await run('Saisie principale + vrai backend (autre origine) + comparateur [' + pageName + ']', async () => {
+    await run('Saisie principale + vrai backend (autre origine) + lien vers nos choix [' + pageName + ']', async () => {
       const page = await open(pageName, 'real');
       const deps = await page.evaluate(() => ({ refs: typeof window.PhoneReferences, ins: typeof window.PhoneSpecInsights }));
       assert(deps.refs === 'object' && deps.ins === 'object', 'PhoneReferences et PhoneSpecInsights doivent être chargés (obtenu ' + JSON.stringify(deps) + ')');
@@ -125,17 +125,15 @@ async function main() {
       assert(/Samsung Galaxy A56/.test(await page.locator('#phone-analyzer-result h3').first().innerText()), 'titre attendu : Samsung Galaxy A56');
       assert((await page.locator('#phone-analyzer-result .spec-badge').count()) > 0, 'des verdicts techniques (badges) doivent s’afficher');
       const link = page.locator('#phone-analyzer-result [data-compare-link]');
-      assert((await link.getAttribute('href')) === 'comparateur.html?selection=galaxy-a56', 'lien Comparer attendu avec l’identifiant, obtenu ' + (await link.getAttribute('href')));
+      assert((await link.getAttribute('href')) === 'smartphones.html#nos-choix', 'lien Comparer à nos choix attendu, obtenu ' + (await link.getAttribute('href')));
       assert(page.backendResponses.length >= 1, 'le backend doit avoir réellement répondu (secours local non utilisé)');
       const resp = page.backendResponses.find(r => r.body && r.body.ok === true);
       assert(resp, 'au moins une réponse réussie du backend (ok:true) doit être observée, obtenu : ' + JSON.stringify(page.backendResponses));
       assert(resp.body.product && resp.body.product.id === 'galaxy-a56', 'la réponse du backend doit porter l’identifiant galaxy-a56 (stratégie : ' + resp.body.strategy + ')');
       assert(!/indisponible/i.test(await stageText(page)), 'la note d’indisponibilité du secours local ne doit pas apparaître : le vrai backend a été utilisé');
       await link.click();
-      await page.waitForURL(/comparateur\.html\?selection=galaxy-a56/);
-      await page.waitForSelector('#compare-count', { timeout: 15000 });
-      assert(/^1 \//.test((await page.locator('#compare-count').innerText()).trim()), 'le comparateur doit afficher 1 modèle sélectionné');
-      assert((await page.locator('input[value="galaxy-a56"]:checked').count()) === 1, 'le Galaxy A56 doit être coché dans le comparateur');
+      await page.waitForURL(/smartphones\.html#nos-choix/);
+      assert((await page.locator('#nos-choix').count()) === 1, 'la section « nos choix » doit exister');
       assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
       await close(page);
     });
@@ -221,7 +219,7 @@ async function main() {
     await submitMain(page, 'Samsung Galaxy A56');
     await waitAnalysis(page);
     assert(/indisponible/i.test(await stageText(page)), 'l’indisponibilité du service doit être signalée');
-    assert((await page.locator('#phone-analyzer-result [data-compare-link]').getAttribute('href')) === 'comparateur.html?selection=galaxy-a56', 'le lien Comparer doit aussi fonctionner en secours');
+    assert((await page.locator('#phone-analyzer-result [data-compare-link]').getAttribute('href')) === 'smartphones.html#nos-choix', 'le lien Comparer doit aussi fonctionner en secours');
     await close(page);
     page = await open(A, 'down');
     await submitMain(page, 'ModeleIntrouvableXYZ999');
@@ -237,13 +235,13 @@ async function main() {
     await close(page);
   });
 
-  await run('Hors catalogue : sans identifiant, le lien devient « Ouvrir le comparateur »', async () => {
+  await run('Hors catalogue : le lien mène aussi à nos choix', async () => {
     const page = await open(A, 'stub', () => okResult('Samsung Galaxy A16'));
     await submitMain(page, 'Samsung Galaxy A16');
     await waitAnalysis(page);
     const link = page.locator('#phone-analyzer-result [data-compare-link]');
-    assert((await link.getAttribute('href')) === 'comparateur.html', 'href attendu : comparateur.html, obtenu ' + (await link.getAttribute('href')));
-    assert(/Ouvrir le comparateur/.test(await link.innerText()), 'libellé « Ouvrir le comparateur » attendu');
+    assert((await link.getAttribute('href')) === 'smartphones.html#nos-choix', 'href attendu : smartphones.html#nos-choix, obtenu ' + (await link.getAttribute('href')));
+    assert(/Comparer à nos choix/i.test(await link.innerText()), 'libellé « Comparer à nos choix » attendu');
     await close(page);
   });
 
@@ -263,7 +261,7 @@ async function main() {
     const t = await stageText(page);
     assert(/Créateur/.test(t), 'les profils PC doivent être affichés (Créateur)');
     assert(!/Photographe/.test(t), 'le profil Photographe (smartphones) ne doit pas apparaître');
-    assert(/Carte graphique/.test(t), 'les libellés du kit PC doivent être utilisés (Carte graphique)');
+    assert(/Carte graphique/i.test(t), 'les libellés du kit PC doivent être utilisés (Carte graphique)');
     assert(/NotebookCheck/.test(t), 'la provenance NotebookCheck doit être affichée');
     assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
     await close(page);

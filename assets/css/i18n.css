@@ -18,3 +18,7 @@ html.i18n-ready body { animation: i18nIn .2s ease-out; }
 @media (prefers-reduced-motion: reduce) { html.i18n-ready body { animation: none; } }
 @media (max-width: 560px) { .header-tool-lang svg { display: none; } .header-tool-lang, .home .header-tool-lang { min-width: 48px; padding: 0 10px; } }
 @media (max-width: 440px) { .home .brand-menu-label { display: none; } .home .brand-menu-toggle { padding: 0 14px; } }
+
+/* Guides : menu de langue à angles droits, comme les autres tiroirs de l’expression éditoriale. */
+body:not(.home) .lang-menu, body:not(.home) .lang-menu button { border-radius: 0; }
+body:not(.home) .lang-menu { box-shadow: var(--shadow); }

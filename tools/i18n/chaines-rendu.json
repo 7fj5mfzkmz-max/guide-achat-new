@@ -1,7 +1,4 @@
 {
- "« 120 Hz » répond à la question de la fluidité. « 5 000 mAh » répond à la capacité de la batterie. « OIS » répond à une partie du problème de bougé. Le chiffre arrive ensuite, comme un outil de comparaison, pas comme une fin en soi.": [
-  "lexique.html"
- ],
  "« Gardera-t-il ses FPS après une longue partie, ou va-t-il chauffer et ralentir ? »": [
   "smartphones.html"
  ],
@@ -10,9 +7,6 @@
  ],
  "« Les photos de nuit, les portraits et le zoom restent-ils propres ? »": [
   "smartphones.html"
- ],
- "« RTX » sans numéro, ou un numéro sans watts, ne suffit pas à classer.": [
-  "lexique-pc-portables.html"
  ],
  "« Tiendra-t-il mes appels et mes déplacements, sans ramer avec mes fichiers ? »": [
   "smartphones.html"
@@ -64,21 +58,12 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "← Retour à l’analyse": [
-  "capture.html"
- ],
- "← Retour au guide PC portables": [
-  "lexique-pc-portables.html"
  ],
  "← Stockage": [
   "pc-portables.html"
@@ -179,15 +164,6 @@
  "<1><2>Écran 120 <3>Hz</3> ou plus</2></1> : déplacements plus fluides.": [
   "smartphones.html"
  ],
- "<1>⏱</1> Parcours complet : ≈ 1 min": [
-  "comparateur.html"
- ],
- "<1>⏱</1> Parcours complet : ≈ 14 min": [
-  "lexique-pc-portables.html"
- ],
- "<1>⏱</1> Parcours complet : ≈ 27 min": [
-  "lexique.html"
- ],
  "<1>0</1> / 4 questions <2>Environ 45 secondes.</2>": [
   "pc-portables.html"
  ],
@@ -210,6 +186,7 @@
   "smartphones.html"
  ],
  "<1>01</1>Sur mesure": [
+  "pc-portables.html",
   "smartphones.html"
  ],
  "<1>02 · Détail</1>Trois modèles testés en détail": [
@@ -227,8 +204,8 @@
  "<1>02 · Votre usage</1>Quel format vous correspond ?": [
   "batteries-externes.html"
  ],
- "<1>02</1>Nos choix": [
-  "smartphones.html"
+ "<1>02</1>Sur mesure": [
+  "batteries-externes.html"
  ],
  "<1>03 · Estimer</1>Combien de recharges ?": [
   "batteries-externes.html"
@@ -276,7 +253,11 @@
   "batteries-externes.html"
  ],
  "<1>05</1>Avant d’acheter": [
+  "ecouteurs.html",
   "smartphones.html"
+ ],
+ "<1>05</1>En avion": [
+  "batteries-externes.html"
  ],
  "<1>06 · Avant l’achat</1>Huit points à vérifier": [
   "batteries-externes.html"
@@ -293,8 +274,8 @@
  "<1>06 · Méthode</1>D’où viennent ces notes": [
   "ecouteurs.html"
  ],
- "<1>06</1>Tests 2026": [
-  "smartphones.html"
+ "<1>06</1>Avant d’acheter": [
+  "batteries-externes.html"
  ],
  "<1>07 · Méthode</1>D’où viennent ces chiffres": [
   "projecteurs.html"
@@ -347,9 +328,6 @@
  "<1>818</1> lumens ANSI": [
   "projecteurs.html"
  ],
- "<1>À retenir sur l’eau et les chocs :</1> une fiche technique décrit une résistance dans des conditions données. Elle ne supprime ni le risque de casse ni les limites de garantie et de réparation.": [
-  "lexique.html"
- ],
  "<1>À retenir.</1> Ne comparez jamais deux PC sur leur seul nom commercial : repérez la référence complète (souvent en bas de la fiche produit), puis regardez les composants qu’elle désigne.": [
   "pc-portables.html"
  ],
@@ -383,17 +361,17 @@
  "<1>À vérifier :</1> Vérifiez si l’indice concerne les écouteurs seuls ou aussi le boîtier.": [
   "ecouteurs.html"
  ],
- "<1>Accueil</1> / <2>PC portables</2> / Lexique": [
-  "lexique-pc-portables.html"
- ],
  "<1>Accueil</1> / <2>Smartphones</2> / Détails techniques": [
   "smartphones-approfondir.html"
  ],
+ "<1>Accueil</1> / À propos": [
+  "a-propos.html"
+ ],
+ "<1>Accueil</1> / Analyseur": [
+  "analyseur.html"
+ ],
  "<1>Accueil</1> / Batteries externes": [
   "batteries-externes.html"
- ],
- "<1>Accueil</1> / Comparer": [
-  "comparateur.html"
  ],
  "<1>Accueil</1> / Écouteurs Bluetooth": [
   "ecouteurs.html"
@@ -407,9 +385,6 @@
  "<1>Accueil</1> / Smartphones": [
   "smartphones.html"
  ],
- "<1>Accueil</1> / Smartphones / Lexique": [
-  "lexique.html"
- ],
  "<1>AMOLED :</1> une architecture OLED à matrice active, qui pilote chaque sous-pixel individuellement pour un contrôle plus précis de la luminosité.": [
   "smartphones-approfondir.html"
  ],
@@ -422,8 +397,8 @@
  "<1>Ce que vous regardez à chaque seconde.</1> Trois choses comptent : la technologie de la dalle, la fréquence de rafraîchissement (la fluidité) et la fidélité des couleurs.": [
   "pc-portables.html"
  ],
- "<1>Comment utiliser cette page :</1> trouvez le mot que vous venez de voir dans une fiche Amazon, Cdiscount, chez un constructeur ou en magasin. Lisez le niveau simple. Passez au mode détails lorsque vous devez départager deux modèles proches.": [
-  "lexique.html"
+ "<1>Choisir</1> : une recommandation selon vos besoins, grâce au questionnaire du guide.": [
+  "a-propos.html"
  ],
  "<1>Comparer la dalle.</1> Faites glisser : la scène et la couche de lumière en dessous changent.": [
   "pc-portables.html"
@@ -446,6 +421,12 @@
  "<1>Comparer.</1> Faites glisser pour changer le nombre de cœurs.": [
   "pc-portables.html"
  ],
+ "<1>Comparer</1> : les modèles côte à côte, sur les critères qui comptent pour vous.": [
+  "a-propos.html"
+ ],
+ "<1>Comprendre</1> : les caractéristiques qui changent réellement l’usage, expliquées sans jargon.": [
+  "a-propos.html"
+ ],
  "<1>CPU</1>Core i5-12450H": [
   "pc-portables.html"
  ],
@@ -454,9 +435,6 @@
  ],
  "<1>Écran lumineux</1> : rester lisible en extérieur ou sur un chantier.": [
   "smartphones.html"
- ],
- "<1>Étape 1.</1> Touchez « Copier le signet ».": [
-  "capture.html"
  ],
  "<1>GPU</1>GTX 1650": [
   "pc-portables.html"
@@ -572,9 +550,6 @@
  "<1>Refroidissement documenté</1> : moins de perte de performances après 20–30 minutes.": [
   "smartphones.html"
  ],
- "<1>Retour vers la fiche produit :</1> lorsque vous voyez un terme que vous ne connaissez pas, revenez à la ligne qui l’emploie. Le contexte compte. « 120 Hz » n’a pas le même intérêt pour un joueur que pour quelqu’un qui lit deux messages par jour. Une bonne fiche se lit avec un besoin précis en tête.": [
-  "lexique.html"
- ],
  "<1>Secondaire</1> pour « étudier »": [
   "pc-portables.html"
  ],
@@ -592,6 +567,9 @@
  ],
  "<1>The Hook Up</1> — « I Tested the Best $100–$500 Projectors of 2026: One Clear Winner ». Données lues dans la retranscription structurée de la vidéo (3 pages), avec les horodatages.": [
   "projecteurs.html"
+ ],
+ "<1>Vérifier</1> : les mesures et tests publiés, quand ils existent, avec leur source.": [
+  "a-propos.html"
  ],
  "<1>Vidéo 1</1> <2>Android Police</2> — « The Pixel 11 Pro is in another league from the iPhone 18 Pro » <3>(Haut de gamme)</3>": [
   "smartphones.html"
@@ -629,9 +607,6 @@
  "0 / 5 familles renseignées": [
   "smartphones.html"
  ],
- "0 / 5 modèle sélectionné": [
-  "comparateur.html"
- ],
  "0 point sur 8 vérifié.": [
   "batteries-externes.html",
   "ecouteurs.html"
@@ -660,17 +635,11 @@
  "1 · Relevés": [
   "ecouteurs.html"
  ],
- "1 / 5 modèle sélectionné": [
-  "comparateur.html"
- ],
  "1 000 nits": [
   "smartphones.html"
  ],
  "1 600 nits": [
   "smartphones.html"
- ],
- "1 600 nits sur un MacBook Pro est un pic mini-LED, pas la luminosité de toute la page blanche.": [
-  "lexique-pc-portables.html"
  ],
  "1 800 € et plus": [
   "pc-portables.html"
@@ -690,9 +659,6 @@
  "10 Hz": [
   "smartphones-approfondir.html"
  ],
- "100 % sRGB est le plancher correct. 100 % DCI-P3 est le cran créatif. « couleurs vives » sans pourcentage ne veut rien dire.": [
-  "lexique-pc-portables.html"
- ],
  "100 W filaire, 50 W sans fil": [
   "smartphones.html"
  ],
@@ -702,8 +668,8 @@
  "100 W sur USB-C1, jusqu’à 130 W au total. Énergie déclarée : 72 Wh. Vérifier la répartition lorsque plusieurs ports sont occupés.": [
   "batteries-externes.html"
  ],
- "108 Mpx · stabilisation optique (OIS)": [
-  "comparateur.html"
+ "102 Hz": [
+  "smartphones-approfondir.html"
  ],
  "11 nouveaux PC portables": [
   "actualites.html",
@@ -731,6 +697,9 @@
  ],
  "128–256 Go": [
   "smartphones.html"
+ ],
+ "13 Hz": [
+  "smartphones-approfondir.html"
  ],
  "14 modèles · Édition 2026": [
   "projecteurs.html"
@@ -772,9 +741,6 @@
  "16 Go de mémoire, écran lisible": [
   "pc-portables.html"
  ],
- "16 Go est le plancher en 2026 pour Windows et pour un Mac utilisé vraiment. 32 Go sert au montage, aux machines virtuelles, aux gros fichiers. 48 Go et plus, c’est un métier.": [
-  "lexique-pc-portables.html"
- ],
  "165 Go sur 256 : au moins 20 % restent libres, ce qui laisse la place aux mises à jour.": [
   "pc-portables.html"
  ],
@@ -798,9 +764,6 @@
  ],
  "2 500+ nits": [
   "smartphones.html"
- ],
- "2 min": [
-  "lexique-pc-portables.html"
  ],
  "2 To": [
   "pc-portables.html"
@@ -857,9 +820,6 @@
  "256 Go+": [
   "smartphones.html"
  ],
- "28 Hz": [
-  "smartphones-approfondir.html"
- ],
  "299 $ environ": [
   "ecouteurs.html"
  ],
@@ -874,10 +834,6 @@
  ],
  "3 étapes": [
   "smartphones.html"
- ],
- "3 min": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "3 modèles · Édition 2026": [
   "ecouteurs.html"
@@ -906,9 +862,6 @@
  "32 Go": [
   "pc-portables.html"
  ],
- "32 Go ne rendent pas un vieux processeur rapide. Ils évitent seulement qu’il étouffe.": [
-  "lexique-pc-portables.html"
- ],
  "322 lm": [
   "projecteurs.html"
  ],
@@ -923,9 +876,6 @@
  ],
  "4 cœurs": [
   "pc-portables.html"
- ],
- "4 min": [
-  "lexique.html"
  ],
  "4 modèles documentés.": [
   "batteries-externes.html"
@@ -943,20 +893,11 @@
  "4,7 g par écouteur": [
   "ecouteurs.html"
  ],
- "40 TOPS est le seuil marketing Copilot+. Un NPU sert aux fonctions d’IA locales. Il ne remplace ni la RAM ni la carte graphique.": [
-  "lexique-pc-portables.html"
- ],
  "40 Wh": [
   "pc-portables.html"
  ],
- "4250 mAh · 40 W": [
-  "comparateur.html"
- ],
  "45 secondes pour trouver votre PC": [
   "pc-portables.html"
- ],
- "48 Mpx · sans stabilisation optique": [
-  "comparateur.html"
  ],
  "492 € · 15.6″ · 16 Go · 512 Go · —": [
   "pc-portables.html"
@@ -964,24 +905,11 @@
  "4ᵉ du classement source": [
   "ecouteurs.html"
  ],
- "4K sur un 14 pouces n’ajoute presque rien au quotidien et coûte de la batterie.": [
-  "lexique-pc-portables.html"
- ],
- "5 / 5 modèles sélectionnés": [
-  "comparateur.html"
- ],
  "5 000 à 10 000 mAh conviennent au dépannage et à la poche. Pour plusieurs jours ou plusieurs appareils, 20 000 mAh offrent davantage de réserve, au prix du volume et du poids.": [
   "batteries-externes.html"
  ],
  "5 000 mAh indiquent une capacité électrique, pas une durée d’utilisation. La consommation dépend notamment de l’écran, de la puce, du modem, du GPS, du Wi‑Fi et des applications.": [
   "smartphones-approfondir.html"
- ],
- "5 000 mAh ressemble à une durée de vie. Ce n’est pas le cas. Les mAh décrivent une capacité électrique nominale, autrement dit la taille du réservoir d’énergie dans des conditions données.": [
-  "lexique.html"
- ],
- "5 min": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "5 min de charge = 4 h d’écoute": [
   "ecouteurs.html"
@@ -989,20 +917,11 @@
  "5 vidéos · batteries, jeu, Samsung": [
   "smartphones.html"
  ],
- "50 Mpx · sans stabilisation optique": [
-  "comparateur.html"
- ],
- "5000 mAh": [
-  "comparateur.html"
- ],
  "512 Go": [
   "pc-portables.html"
  ],
  "512 Go : 256 Go devient serré après les mises à jour et un semestre de fichiers.": [
   "pc-portables.html"
- ],
- "512 Go est le confort. 256 Go oblige à trier. 1 To devient utile avec les jeux ou la vidéo. eMMC et UFS, sur certains Chromebook, sont plus lents qu’un SSD NVMe.": [
-  "lexique-pc-portables.html"
  ],
  "540 lm": [
   "projecteurs.html"
@@ -1021,12 +940,6 @@
  ],
  "550 € · 16″ · 16 Go · 512 Go · —": [
   "pc-portables.html"
- ],
- "5500 mAh · 67 W": [
-  "comparateur.html"
- ],
- "5520 mAh · 45 W · Lithium": [
-  "comparateur.html"
  ],
  "5G · Wi-Fi · NFC": [
   "smartphones.html"
@@ -1095,9 +1008,6 @@
  "7 h 22 réelles avec ANC ; ni charge sans fil ni charge rapide. Note « boîtier et batterie » du testeur.": [
   "ecouteurs.html"
  ],
- "7 min": [
-  "lexique.html"
- ],
  "71 modèles · Édition 2026": [
   "pc-portables.html"
  ],
@@ -1152,11 +1062,7 @@
  "91 Go libres": [
   "pc-portables.html"
  ],
- "92 Hz": [
-  "smartphones-approfondir.html"
- ],
  "À 8 Go, le portable écrit sur le SSD dès que Chrome et Teams sont ouverts. L’interface accroche.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "À 99 $, il a gagné six duels d’affilée": [
@@ -1165,37 +1071,26 @@
  "À choisir": [
   "pc-portables.html"
  ],
- "À documenter": [
-  "comparateur.html"
- ],
  "À l’exception de NexiGo et d’Arzen, tous les fabricants testés affichent des spécifications largement surestimées ; la majorité des modèles sous 200 $ produisent moins de la moitié de la luminosité promise.": [
   "projecteurs.html"
  ],
- "À propos": [
+ "À propos : Guide·Achat": [
+  "a-propos.html"
+ ],
+ "À propos et méthode": [
   "a-propos.html",
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
- "À PROPOS": [
-  "a-propos.html"
- ],
- "À propos — Guide d’achat": [
-  "a-propos.html"
- ],
  "À regarder en priorité": [
-  "ecouteurs.html",
-  "lexique-pc-portables.html",
-  "lexique.html"
+  "ecouteurs.html"
  ],
  "À renseigner": [
   "smartphones.html"
@@ -1205,9 +1100,6 @@
  ],
  "À technologie comparable, une surface sensible plus importante peut recevoir davantage de lumière. Cela aide notamment lorsque la scène est sombre, mais la conception complète compte.": [
   "smartphones-approfondir.html"
- ],
- "À vérifier selon version/région": [
-  "comparateur.html"
  ],
  "À vous de choisir.": [
   "index.html"
@@ -1235,19 +1127,10 @@
   "pc-portables.html",
   "smartphones.html"
  ],
- "Activer le mode détails": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "Activer le thème clair": [
-  "a-propos.html",
-  "analyseur.html",
-  "comparateur.html",
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Activer le thème sombre": [
+  "a-propos.html",
   "actualites.html",
+  "analyseur.html",
   "batteries-externes.html",
   "ecouteurs.html",
   "index.html",
@@ -1290,15 +1173,6 @@
  "AMOLED · 120 <1>Hz</1>": [
   "smartphones.html"
  ],
- "AMOLED · 120 Hz": [
-  "comparateur.html"
- ],
- "AMOLED · 120 Hz · 3200 nits": [
-  "comparateur.html"
- ],
- "AMOLED · 90 Hz · 1100 nits": [
-  "comparateur.html"
- ],
  "Analyse de la source": [
   "ecouteurs.html"
  ],
@@ -1306,9 +1180,6 @@
   "analyseur.html",
   "pc-portables.html",
   "smartphones.html"
- ],
- "Analyser le modèle": [
-  "analyseur.html"
  ],
  "Analyser mon PC": [
   "index.html"
@@ -1323,30 +1194,27 @@
   "smartphones.html"
  ],
  "Analyseur": [
+  "smartphones.html"
+ ],
+ "analyseur de lien": [
+  "smartphones.html"
+ ],
+ "Analyseur de lien": [
   "a-propos.html",
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
- "ANALYSEUR": [
+ "Analyseur de lien : Guide·Achat": [
   "analyseur.html"
  ],
- "Analyseur — Guide d’achat": [
-  "analyseur.html"
- ],
- "analyseur de lien": [
-  "smartphones.html"
- ],
- "Analysez un produit en collant son lien": [
+ "Analysez un produit <1>en collant son lien</1>": [
   "analyseur.html"
  ],
  "ANC légèrement en retrait / Sony": [
@@ -1404,17 +1272,7 @@
   "smartphones.html"
  ],
  "Apple iPhone 17 Pro": [
-  "comparateur.html",
   "smartphones.html"
- ],
- "Apple iPhone 17 Pro : ≈ 1329 €": [
-  "comparateur.html"
- ],
- "Apple iPhone 17 Pro Max : ≈ 1479 €": [
-  "comparateur.html"
- ],
- "Apple M, Arc B390, Radeon 880M/890M et Adreno des Snapdragon X dépassent largement l’UHD d’un ancien Intel. Ils tiennent le montage 1080p et les jeux légers.": [
-  "lexique-pc-portables.html"
  ],
  "Arzen D1R": [
   "projecteurs.html"
@@ -1529,10 +1387,7 @@
  "Autre vie.": [
   "index.html"
  ],
- "Avant de comparer": [
-  "lexique.html"
- ],
- "Avant l’achat": [
+ "Avant d’acheter": [
   "batteries-externes.html"
  ],
  "Avantage : écran clair, pas cher": [
@@ -1551,11 +1406,6 @@
   "batteries-externes.html"
  ],
  "Bas de page": [
-  "a-propos.html",
-  "analyseur.html",
-  "comparateur.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
@@ -1563,13 +1413,9 @@
   "ecouteurs.html"
  ],
  "Batterie": [
-  "lexique.html",
   "pc-portables.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "BATTERIE": [
-  "lexique.html"
  ],
  "Batterie : passer des mAh à l’autonomie réelle": [
   "smartphones-approfondir.html"
@@ -1583,19 +1429,13 @@
  "Batterie 41 Wh modeste": [
   "pc-portables.html"
  ],
- "Batterie et recharge": [
-  "comparateur.html"
- ],
  "Batteries externes": [
   "a-propos.html",
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -1628,14 +1468,16 @@
  "Bien choisir un smartphone à partir de votre usage : Guide·Achat": [
   "smartphones.html"
  ],
- "Bien choisir, c’est mieux consommer": [
+ "Bien pour tout le monde ? <1>On préfère bien pour vous.</1>": [
+  "a-propos.html"
+ ],
+ "Bien pour tout le monde ? On préfère bien pour vous.": [
   "a-propos.html",
+  "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
+  "index.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -1649,11 +1491,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -1662,15 +1501,11 @@
  "Bilan de la vidéo": [
   "projecteurs.html"
  ],
- "Blackview Shark 8 : ≈ 140 €": [
-  "comparateur.html"
- ],
  "Bloqué à 150 lumens : image plate": [
   "projecteurs.html"
  ],
  "Bluetooth": [
-  "ecouteurs.html",
-  "lexique.html"
+  "ecouteurs.html"
  ],
  "Bluetooth 6.0 ou 6.1 : cela change-t-il le son ?": [
   "ecouteurs.html"
@@ -1680,12 +1515,6 @@
  ],
  "Bluetooth 6.1, LDAC, LC3 LE Audio, mode Broadcast, écoute USB-C 24 bits / 192 kHz et prise jack 3,5 mm.": [
   "ecouteurs.html"
- ],
- "Bluetooth est une famille de communications radio courte portée. Les usages passent par des profils et des fonctions spécifiques.": [
-  "lexique.html"
- ],
- "Bluetooth sert à connecter des écouteurs, une voiture, une montre, une manette ou un clavier sans câble. C’est un terme de famille, pas une garantie de qualité audio ou de portée.": [
-  "lexique.html"
  ],
  "Boîtier plus imposant": [
   "ecouteurs.html"
@@ -1730,9 +1559,6 @@
  "C’est ici que vous relevez les cinq familles de caractéristiques utiles.": [
   "smartphones.html"
  ],
- "C’est une masse, pas une qualité de fabrication.": [
-  "lexique-pc-portables.html"
- ],
  "Calibrage couleur et tone mapping cinéma remarqués en duel": [
   "projecteurs.html"
  ],
@@ -1763,12 +1589,6 @@
  "Capteur": [
   "smartphones.html"
  ],
- "Capture depuis votre navigateur": [
-  "capture.html"
- ],
- "Capture depuis votre navigateur — Guide d’achat": [
-  "capture.html"
- ],
  "Caractéristiques annoncées par les fabricants, consultées le 23 octobre 2026. Cette sélection n’est ni exhaustive ni un classement de tests. Prix, disponibilité, rendement et endurance ne sont pas mesurés ici.": [
   "batteries-externes.html"
  ],
@@ -1785,7 +1605,6 @@
   "pc-portables.html"
  ],
  "Carte graphique et watts": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "casque": [
@@ -1793,10 +1612,6 @@
  ],
  "Casque clarté voix": [
   "ecouteurs.html"
- ],
- "Catalogue": [
-  "pc-portables.html",
-  "projecteurs.html"
  ],
  "Catégorie la plus proche : <1>Étudiant</1> · <2>Voir les modèles</2>": [
   "pc-portables.html"
@@ -1806,11 +1621,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -1821,11 +1633,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -1834,22 +1643,11 @@
  "Ce PC vaut-il": [
   "index.html"
  ],
- "Ce point mérite votre attention si votre usage en dépend directement. Sinon, retenez simplement le principe et passez au terme suivant.": [
-  "lexique.html"
- ],
  "Ce produit est-il fait pour vous ? Guide·Achat analyse les smartphones et PC portables selon votre profil, vos usages et vos priorités.": [
   "index.html"
  ],
- "Ce que cela change": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Ce que la RAM ajoute": [
   "smartphones-approfondir.html"
- ],
- "Ce que le chiffre ne dit pas": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Ce que les tests retiennent": [
   "ecouteurs.html",
@@ -1860,13 +1658,6 @@
  ],
  "Ce que vous regardez à chaque seconde": [
   "pc-portables.html"
- ],
- "Ce que vous voyez": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "Ce que vous voyez, ce que cela change, ce qu’il faut lire sur la fiche : chaque terme part de la situation concrète avant de remonter vers la technique.": [
-  "lexique-pc-portables.html"
  ],
  "Ce qui compte pour ce profil": [
   "pc-portables.html"
@@ -1880,17 +1671,11 @@
  "Ce qui se cache derrière les chiffres d’une fiche <1>→</1>": [
   "smartphones.html"
  ],
- "Ce sont des espaces : la taille de la palette que la dalle peut afficher.": [
-  "lexique-pc-portables.html"
- ],
  "Ce sont des fonctions très pratiques mais dépendantes du service utilisé. Vérifiez le couple téléphone, opérateur et pays plutôt que de conclure à partir du simple pictogramme.": [
   "smartphones-approfondir.html"
  ],
  "Ce téléphone": [
   "index.html"
- ],
- "Cela compte surtout pour la vidéo, les photos et l’usage fréquent du mode sombre. Mais OLED ne signifie pas automatiquement meilleur écran. Deux écrans OLED peuvent avoir une luminosité, une calibration et une gestion de la consommation très différentes.": [
-  "lexique.html"
  ],
  "Certaines versions diffèrent selon les marchés (OPPO : 7 150 mAh en Europe, 8 000 mAh en Asie).": [
   "smartphones.html"
@@ -1928,6 +1713,9 @@
  "Chaque gramme compte.": [
   "index.html"
  ],
+ "Chaque guide réunit, sur une même page, ce qu’il faut pour décider :": [
+  "a-propos.html"
+ ],
  "Chaque note du testeur est ramenée sur l’échelle 0-9 du guide (×0,9) et rattachée à l’un de nos 10 critères. Un critère sans note ni mesure dans la source reste vide.": [
   "ecouteurs.html"
  ],
@@ -1961,30 +1749,9 @@
  "Chargeur": [
   "pc-portables.html"
  ],
- "Checklist": [
-  "ecouteurs.html"
- ],
  "Chercher en France (Idealo) ↗": [
   "ecouteurs.html",
   "projecteurs.html"
- ],
- "Cherchez 60, 90, 120, 144 ou 240 Hz à côté de la diagonale. Un 240 Hz en Full HD peut être moins net qu’un 120 Hz en QHD.": [
-  "lexique-pc-portables.html"
- ],
- "Cherchez la puissance maximale sans fil et le standard utilisé. Pour une utilisation quotidienne, le confort peut compter davantage que la vitesse absolue.": [
-  "lexique.html"
- ],
- "Cherchez OIS ou une formulation équivalente pour le capteur principal et les téléobjectifs. La stabilisation numérique n’est pas exactement la même chose.": [
-  "lexique.html"
- ],
- "Cherchez SSD ou NVMe, et la capacité. « 1 To » peut être en option, pas dans le prix affiché.": [
-  "lexique-pc-portables.html"
- ],
- "chiffres": [
-  "lexique.html"
- ],
- "chiffres.": [
-  "comparateur.html"
  ],
  "Choisir la technologie d’écran": [
   "smartphones-approfondir.html"
@@ -2027,9 +1794,6 @@
  "Choisir une mesure": [
   "projecteurs.html"
  ],
- "Choisissez 2 à 5 modèles. Le tableau privilégie les critères qui peuvent changer votre usage. Les chiffres secondaires restent disponibles dans les fiches détaillées.": [
-  "comparateur.html"
- ],
  "Choisissez ce qui compte pour vous — une famille peut rester sans réponse.": [
   "smartphones.html"
  ],
@@ -2054,9 +1818,6 @@
  "ChromeOS": [
   "pc-portables.html"
  ],
- "ChromeOS peut faire tourner certaines applis Linux ou Android. Ce n’est pas un Windows de secours.": [
-  "lexique-pc-portables.html"
- ],
  "ChromeOS seulement": [
   "pc-portables.html"
  ],
@@ -2067,6 +1828,7 @@
   "smartphones.html"
  ],
  "Classement": [
+  "ecouteurs.html",
   "projecteurs.html"
  ],
  "Classement complet des 14 modèles": [
@@ -2076,9 +1838,6 @@
   "ecouteurs.html"
  ],
  "classements": [
-  "ecouteurs.html"
- ],
- "Classements": [
   "ecouteurs.html"
  ],
  "Clique sur ton profil pour voir nos conseils": [
@@ -2114,17 +1873,17 @@
  "Coller mon lien": [
   "index.html"
  ],
- "Collez jusqu’à 20 liens produit (un par ligne). Chaque lien passe par le même moteur que l’analyse et indique la méthode qui a fonctionné.": [
-  "diagnostic.html"
- ],
- "Collez le lien d’une fiche produit, smartphone ou PC portable : le guide identifie le modèle et évalue s’il correspond à votre usage.": [
-  "analyseur.html"
- ],
  "Collez le lien de la fiche dans <1>l’analyseur</1> : il identifie le modèle exact et vous dit s’il convient à votre usage.": [
   "pc-portables.html"
  ],
  "Collez le lien de sa fiche ou saisissez son nom, par exemple « Lenovo Legion 5 ». Cet analyseur ne traite que les PC portables : il cherche dans le catalogue PC et sur NotebookCheck, et vous dit s’il convient à votre usage.": [
   "pc-portables.html"
+ ],
+ "Collez le lien ou le nom d’un smartphone ou d’un PC portable : le guide retrouve ses caractéristiques, les explique et dit à quels usages il convient.": [
+  "analyseur.html"
+ ],
+ "Collez le lien ou le nom du modèle": [
+  "analyseur.html"
  ],
  "Collez sa fiche dans l’analyseur, ou dites ce qui compte pour vous et la liste se construit.": [
   "smartphones.html"
@@ -2157,14 +1916,6 @@
  "Commencez par votre volume de photos, de vidéos et de jeux. Ajoutez la durée pendant laquelle vous comptez garder le téléphone. La bonne capacité dépend de ce cumul, pas d’une valeur universelle.": [
   "smartphones-approfondir.html"
  ],
- "Comment ça fonctionne": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "Comment comparer": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Comment comparer sans laboratoire": [
   "smartphones-approfondir.html"
  ],
@@ -2180,86 +1931,23 @@
  "Comparaison animée entre un grand capteur avec peu de gros pixels et un petit capteur avec beaucoup de pixels minuscules : chaque gros pixel reçoit bien plus de lumière": [
   "smartphones.html"
  ],
- "Comparateur smartphones": [
-  "comparateur.html"
- ],
- "Comparateur smartphones : Guide·Achat": [
-  "comparateur.html"
- ],
- "Comparer": [
-  "comparateur.html"
- ],
- "COMPARER": [
-  "comparateur.html"
- ],
  "Comparer les options": [
   "pc-portables.html"
- ],
- "Comparer sans se perdre dans les chiffres.": [
-  "comparateur.html"
- ],
- "Comparez des tests du même portable, pas le seul badge. Et séparez toujours le processeur de la carte graphique.": [
-  "lexique-pc-portables.html"
- ],
- "Comparez la capacité, la norme de stockage si elle est indiquée, la possibilité d’extension et le poids réel de vos fichiers. Ne payez pas une capacité très élevée sans usage correspondant.": [
-  "lexique.html"
- ],
- "Comparez la capacité, puis des mesures d’endurance obtenues avec des protocoles connus. Des valeurs en mAh identiques ne signifient pas une autonomie identique.": [
-  "lexique.html"
  ],
  "Comparez la luminosité mesurée, la plage de rafraîchissement, le fonctionnement adaptatif, le HDR et, lorsqu’elles existent, les mesures de calibration. Pour un usage extérieur, la lisibilité réelle compte davantage que le seul nom de la technologie.": [
   "smartphones-approfondir.html"
  ],
- "Comparez la norme lorsque la différence entre deux modèles est significative. Ne confondez jamais UFS avec la capacité exprimée en Go.": [
-  "lexique.html"
- ],
- "Comparez la norme, les bandes supportées et la qualité de la connexion dans votre environnement plutôt que la valeur théorique maximale.": [
-  "lexique.html"
- ],
- "Comparez la plage de fonctionnement, la fréquence maximale, les modes utilisés dans les jeux et le comportement automatique, plutôt que la seule valeur maximale.": [
-  "lexique.html"
- ],
- "Comparez la protection du verre, la disponibilité des pièces, le coût de réparation et votre environnement d’usage. Un matériau plus résistant ne supprime pas le risque de casse.": [
-  "lexique.html"
- ],
- "Comparez la puissance réelle, le standard, la compatibilité avec vos accessoires et le comportement thermique.": [
-  "lexique.html"
- ],
- "Comparez la RAM avec la puce, le stockage et le logiciel. Pour un téléphone Android ou iOS, le comportement mémoire peut être différent malgré des chiffres similaires.": [
-  "lexique.html"
- ],
- "Comparez le code exact et les conditions du fabricant. Ne transformez pas IP68 en autorisation d’utiliser le téléphone sous l’eau sans précaution.": [
-  "lexique.html"
- ],
  "Comparez le poids indiqué et les dimensions. Un câble intégré est pratique mais s’use aussi. Pour des écouteurs ou une montre, cherchez un mode faible courant.": [
   "batteries-externes.html"
  ],
- "Comparez les focales équivalentes, la taille des capteurs, la stabilisation et la qualité à différents niveaux de zoom.": [
-  "lexique.html"
- ],
- "Comparez les fonctions réellement prises en charge par le téléphone et vos accessoires. Le numéro de version ne suffit pas.": [
-  "lexique.html"
- ],
- "Comparez les formats compatibles, la luminance et des mesures indépendantes plutôt que d’utiliser HDR comme un simple indicateur binaire.": [
-  "lexique.html"
- ],
- "Comparez les méthodes de mesure, la luminosité typique et la lisibilité extérieure réelle. Le plus gros chiffre annoncé n’est pas nécessairement le plus confortable en plein soleil.": [
-  "lexique.html"
- ],
- "Comparez les temps de charge mesurés, le protocole utilisé, le chargeur compatible et les limites thermiques, pas seulement la valeur maximale inscrite sur la boîte.": [
-  "lexique.html"
- ],
- "Comparez ouverture, capteur, stabilisation et exemples réels ensemble. Un seul nombre f ne permet pas de prédire la qualité nocturne.": [
-  "lexique.html"
- ],
- "Comparez quels capteurs bénéficient réellement de l’OIS et observez des exemples de nuit. La présence du sigle ne prédit pas tout le comportement vidéo.": [
-  "lexique.html"
- ],
- "Comparez surtout la compatibilité avec votre service de paiement, d’accès ou d’identification.": [
-  "lexique.html"
- ],
  "Compatibilité opérateur et bandes réseau": [
   "smartphones-approfondir.html"
+ ],
+ "Comprendre": [
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "pc-portables.html",
+  "projecteurs.html"
  ],
  "Comprendre chaque terme de la fiche produit <1>→</1>": [
   "smartphones.html"
@@ -2270,20 +1958,8 @@
  "Comprendre les critères ↓": [
   "batteries-externes.html"
  ],
- "Comprendre les grandes différences entre les smartphones, puis choisir le modèle adapté à son budget et à ses priorités.": [
-  "a-propos.html"
- ],
- "Comprenez-le pour ne pas payer un PC gamer dont vous n’avez pas besoin, ni l’inverse.": [
-  "lexique-pc-portables.html"
- ],
  "Compte": [
   "smartphones.html"
- ],
- "Comptez les ports, pas l’adjectif « connectique complète ». USB 2 sur un des ports du MacBook Neo n’est pas un Thunderbolt.": [
-  "lexique-pc-portables.html"
- ],
- "Concentrez-vous sur ce critère lorsque votre manière d’utiliser le téléphone le rend déterminant. Dans les autres cas, il peut rester secondaire.": [
-  "lexique.html"
  ],
  "Confort et ajustement": [
   "ecouteurs.html"
@@ -2301,11 +1977,7 @@
   "ecouteurs.html"
  ],
  "Connexions": [
-  "batteries-externes.html",
-  "lexique.html"
- ],
- "CONNEXIONS": [
-  "lexique.html"
+  "batteries-externes.html"
  ],
  "Connexions : vérifier ce qui fonctionnera réellement": [
   "smartphones-approfondir.html"
@@ -2343,9 +2015,6 @@
  "Convertisseur télé-optique magnétique pour 10x, 20x et 40x": [
   "smartphones.html"
  ],
- "Copier le signet": [
-  "capture.html"
- ],
  "Couleur, stockage et export rapide": [
   "pc-portables.html"
  ],
@@ -2360,9 +2029,6 @@
  ],
  "Couverture : 100 % sRGB ; DCI-P3 pour la création": [
   "pc-portables.html"
- ],
- "Couvrir une palette ne veut pas dire être juste. Sans calibration, un 100 % DCI-P3 peut être trop saturé.": [
-  "lexique-pc-portables.html"
  ],
  "CPU": [
   "smartphones-approfondir.html"
@@ -2386,7 +2052,16 @@
   "pc-portables.html"
  ],
  "Crédits des visuels": [
-  "a-propos.html"
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
  ],
  "Créer": [
   "pc-portables.html"
@@ -2395,7 +2070,6 @@
   "index.html"
  ],
  "Critère": [
-  "comparateur.html",
   "ecouteurs.html",
   "pc-portables.html"
  ],
@@ -2433,31 +2107,6 @@
   "ecouteurs.html",
   "pc-portables.html"
  ],
- "d'achat": [
-  "actualites.html",
-  "batteries-externes.html",
-  "ecouteurs.html",
-  "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
-  "pc-portables.html",
-  "projecteurs.html",
-  "smartphones-approfondir.html",
-  "smartphones.html"
- ],
- "d’achat": [
-  "a-propos.html",
-  "actualites.html",
-  "analyseur.html",
-  "batteries-externes.html",
-  "comparateur.html",
-  "ecouteurs.html",
-  "index.html",
-  "pc-portables.html",
-  "projecteurs.html",
-  "smartphones-approfondir.html",
-  "smartphones.html"
- ],
  "D’après la synthèse, la réduction active de bruit atteint désormais -45 dB sur cette tranche de prix ; la gestion du bruit de vent reste perfectible face aux modèles haut de gamme. Chiffre rapporté par la source, non mesuré par le guide.": [
   "ecouteurs.html"
  ],
@@ -2467,20 +2116,8 @@
  "Dalle FHD IPS basique": [
   "pc-portables.html"
  ],
- "dans": [
-  "comparateur.html"
- ],
- "Dans ce catalogue, chaque fiche dit si l’heure est annoncée, mesurée, ou absente. N’inventez pas la troisième.": [
-  "lexique-pc-portables.html"
- ],
- "Dans ce guide": [
-  "batteries-externes.html"
- ],
  "Dans la réalité, ce déplacement dure une demi-seconde : l’animation est ralentie six fois pour que la différence soit visible, même sur un écran 60 Hz.": [
   "pc-portables.html"
- ],
- "Dans le champ adresse (URL), effacez tout et <1>collez</1> le signet copié. Validez.": [
-  "capture.html"
  ],
  "Dans le noir seulement : toutes les mesures ont été faites pièce totalement obscure. Avec de la lumière ambiante, l’image se délave.": [
   "projecteurs.html"
@@ -2488,20 +2125,8 @@
  "Dans le test repris ici, seuls NexiGo et Arzen affichent une luminosité honnête. La plupart des modèles sous 200 $ produisent moins de la moitié de la luminosité promise : l’Elephas W1K annonce 1 200 lumens et en mesure 612, le Vocals G3 Pro en annonce 800 pour 305 mesurés.": [
   "projecteurs.html"
  ],
- "Dans quel cas le vérifier": [
-  "lexique.html"
- ],
- "Dans une fiche produit, regardez la quantité de RAM, mais évitez de conclure qu’un téléphone est deux fois plus rapide parce qu’il a deux fois plus de mémoire vive.": [
-  "lexique.html"
- ],
- "Dans une fiche, cherchez les Mpx, puis cherchez immédiatement la taille du capteur, l’ouverture, la stabilisation et les focales disponibles.": [
-  "lexique.html"
- ],
  "Dans une pièce sombre, le contraste devient très visible. Dehors, la luminosité et les reflets prennent le dessus. En défilement rapide, le rafraîchissement et la réactivité deviennent perceptibles. « OLED 120 Hz » décrit donc un écran ; cela ne suffit pas à conclure sur son confort.": [
   "smartphones-approfondir.html"
- ],
- "de": [
-  "lexique-pc-portables.html"
  ],
  "De l’énergie en plus.<br><1>Le bon format pour vous.</1>": [
   "batteries-externes.html"
@@ -2530,12 +2155,7 @@
  "Dédiée milieu de gamme": [
   "pc-portables.html"
  ],
- "Définition": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Dehors ou face à une baie vitrée, une dalle à 300 nits devient un miroir. Vers 500 nits, le texte reste lisible.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "dehors, nuageux": [
@@ -2547,11 +2167,7 @@
  "Dell Inspiron 15 3535": [
   "pc-portables.html"
  ],
- "Demandez sRGB ou DCI-P3, et si possible un delta E publié par un test, pas par la boîte.": [
-  "lexique-pc-portables.html"
- ],
  "Déplacez une fenêtre vite. À 60 Hz le mouvement saccade un peu. À 120 Hz et plus, il file.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Dérive chromatique violette impossible à corriger": [
@@ -2559,9 +2175,6 @@
  ],
  "Dernières mises à jour": [
   "index.html"
- ],
- "Des capteurs à très haute résolution peuvent utiliser le regroupement de pixels afin d’augmenter la sensibilité effective et réduire le bruit.": [
-  "lexique.html"
  ],
  "Des cours, des notes, du web": [
   "pc-portables.html"
@@ -2590,37 +2203,11 @@
  "Design transparent, Égaliseur avancé": [
   "ecouteurs.html"
  ],
- "Détail": [
-  "ecouteurs.html"
- ],
- "Deux annonces « 18 h » ne sont pas comparables si l’une est de la vidéo et l’autre du web.": [
-  "lexique-pc-portables.html"
- ],
- "Deux appareils peuvent avoir le même numéro de version Bluetooth tout en offrant des fonctions différentes, parce que les profils et codecs utilisés ne sont pas identiques.": [
-  "lexique.html"
- ],
  "Deux chiffres : celle des écouteurs seuls, et celle avec les recharges du boîtier. La réduction de bruit active consomme : l’autonomie réelle est plus courte que celle annoncée sans ANC.": [
   "ecouteurs.html"
  ],
- "Deux façons de lire la même information": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Deux photos du même fichier n’ont pas le même rouge si une dalle est étroite et l’autre large.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Deux téléphones de 5 000 mAh peuvent finir la journée à des niveaux différents. L’écran, le modem, la puce, la luminosité, le réseau et les applications ne consomment pas la même quantité d’énergie.": [
-  "lexique.html"
- ],
- "Deux USB-C dont un seul vraiment rapide, c’est courant sur les fins. HDMI et USB-A évitent l’adaptateur. Le chargeur USB-C partagé avec le téléphone est un vrai plus.": [
-  "lexique-pc-portables.html"
- ],
- "Diagnostic des liens": [
-  "diagnostic.html"
- ],
- "Diagnostic des liens — Guide d’achat": [
-  "diagnostic.html"
  ],
  "Difficile": [
   "pc-portables.html"
@@ -2710,9 +2297,6 @@
  "Dynamique des basses, aptX Lossless": [
   "ecouteurs.html"
  ],
- "Écartez 8 Go sur Windows. Sur Mac, 8 Go ne conviennent qu’au Neo pour un usage léger, pas au montage.": [
-  "lexique-pc-portables.html"
- ],
  "Écosystème": [
   "smartphones.html"
  ],
@@ -2731,11 +2315,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -2751,16 +2332,9 @@
   "ecouteurs.html"
  ],
  "Écran": [
-  "comparateur.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "ÉCRAN": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Écran : relier la dalle à la situation d’usage": [
   "smartphones-approfondir.html"
@@ -2808,20 +2382,11 @@
  "Écrire, naviguer, des visios : le poids, l’autonomie et le prix passent avant la puissance.": [
   "pc-portables.html"
  ],
- "Effacer la sélection": [
-  "comparateur.html"
- ],
  "Elephas W1K": [
   "projecteurs.html"
  ],
  "Elephas W1K <1>Couverture solide</1>": [
   "projecteurs.html"
- ],
- "Elle est particulièrement utile en faible lumière, lorsque le téléphone a besoin d’un temps d’exposition plus long. En vidéo, elle peut aussi rendre les mouvements plus stables, selon le système utilisé.": [
-  "lexique.html"
- ],
- "Elle n’améliore pas systématiquement tous les usages. Votre expérience dépend aussi de la couverture locale, de la bande utilisée, du forfait et de la charge du réseau.": [
-  "lexique.html"
  ],
  "Embouts qui ferment bien : sans étanchéité, l’ANC perd l’essentiel": [
   "ecouteurs.html"
@@ -2833,11 +2398,7 @@
   "index.html"
  ],
  "En Full HD (1920 × 1080, ou 1920 × 1200), le texte est un peu plus grossier sur un 16 pouces. En QHD ou 2,8K, il est plus fin.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "En jeu, 144 ou 240 Hz servent si la carte tient ce rythme. En bureautique, passer de 60 à 120 est visible, au-delà beaucoup moins.": [
-  "lexique-pc-portables.html"
  ],
  "En pièce lumineuse, les reflets réduisent l’écart visible entre les deux technologies.": [
   "pc-portables.html"
@@ -2869,28 +2430,17 @@
  "Épaisseur et refroidissement : ils déterminent la puissance soutenue": [
   "pc-portables.html"
  ],
- "eSIM": [
-  "lexique.html"
- ],
  "Espace créatif avec ordinateur, appareil photo et tablette graphique": [
   "pc-portables.html"
  ],
  "Espace de travail étudiant, avec ordinateur, carnet et sac": [
   "pc-portables.html"
  ],
- "Essentiel": [
-  "ecouteurs.html",
-  "pc-portables.html",
-  "projecteurs.html"
- ],
  "est-il pour moi ?": [
   "index.html"
  ],
  "Étape suivante →": [
   "smartphones.html"
- ],
- "Éteindre un pixel donne un contraste fort. Le rétroéclairage d’un IPS ne s’éteint pas localement, sauf mini-LED.": [
-  "lexique-pc-portables.html"
  ],
  "Études": [
   "pc-portables.html"
@@ -2908,27 +2458,17 @@
  "Étudier": [
   "pc-portables.html"
  ],
- "Ex. Samsung Galaxy A56 5G": [
-  "analyseur.html"
- ],
  "Excellence musicale": [
   "ecouteurs.html"
  ],
  "Excellente tenue à la course, IP64": [
   "ecouteurs.html"
  ],
- "Explication approfondie": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Exports, effets et fichiers lourds : processeur, mémoire, stockage et un écran fidèle en couleurs.": [
   "pc-portables.html"
  ],
  "Extensibilité : un second emplacement M.2 permet d’ajouter un disque": [
   "pc-portables.html"
- ],
- "Exynos 1330 (5 nm) · jusqu'à 8 Go de RAM": [
-  "comparateur.html"
  ],
  "Facteur décisif · 00:02:12": [
   "projecteurs.html"
@@ -2939,16 +2479,11 @@
  "Faire glisser pour comparer l’IPS (à gauche) et l’OLED (à droite)": [
   "pc-portables.html"
  ],
- "Faites défiler rapidement une page. À 120 Hz, l’écran peut afficher davantage de positions intermédiaires chaque seconde qu’à 60 Hz. Le mouvement paraît plus continu.": [
-  "lexique.html"
- ],
  "Faites glisser le scan, utilisez les flèches ou le clavier (← →). Modèle et références fictifs, inspirés des conventions de nommage des constructeurs.": [
   "pc-portables.html"
  ],
- "Faites-en un critère de comparaison lorsque deux modèles proches se distinguent sur ce point. Sinon, ne lui donnez pas plus de poids qu’il n’en mérite.": [
-  "lexique.html"
- ],
  "FAQ": [
+  "batteries-externes.html",
   "ecouteurs.html",
   "pc-portables.html",
   "projecteurs.html"
@@ -2961,11 +2496,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -2976,11 +2508,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -2991,19 +2520,12 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "fiche": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Fiche fabricant": [
   "pc-portables.html"
@@ -3030,6 +2552,8 @@
   "projecteurs.html"
  ],
  "Fil d’Ariane": [
+  "a-propos.html",
+  "analyseur.html",
   "batteries-externes.html",
   "ecouteurs.html",
   "pc-portables.html",
@@ -3052,17 +2576,25 @@
  "Fluidité": [
   "pc-portables.html"
  ],
+ "Flux Atom": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
+ ],
  "Fonctions bridées hors Samsung": [
   "ecouteurs.html"
  ],
  "Fréquence : 60 Hz pour le bureau, 120 Hz et plus pour le jeu": [
   "pc-portables.html"
  ],
- "Fréquence de rafraîchissement : Hz": [
-  "lexique.html"
- ],
  "Full HD, QHD, 3K": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Gain annoncé": [
@@ -3124,57 +2656,15 @@
   "projecteurs.html"
  ],
  "Graphique intégré": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Guide": [
-  "a-propos.html",
-  "actualites.html",
-  "analyseur.html",
-  "batteries-externes.html",
-  "comparateur.html",
-  "ecouteurs.html",
-  "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
-  "pc-portables.html",
-  "projecteurs.html",
-  "smartphones-approfondir.html",
-  "smartphones.html"
- ],
- "Guide d’achat : accueil": [
-  "a-propos.html",
-  "actualites.html",
-  "analyseur.html",
-  "batteries-externes.html",
-  "comparateur.html",
-  "ecouteurs.html",
-  "index.html",
-  "pc-portables.html",
-  "projecteurs.html",
-  "smartphones-approfondir.html",
-  "smartphones.html"
- ],
- "Guide d’achat est un guide indépendant : il explique les caractéristiques techniques des produits, aide à choisir selon l’usage et renvoie vers les comparateurs et fiches officielles. Il ne vend rien et n’est pas rémunéré pour classer un modèle.": [
-  "a-propos.html"
- ],
- "Guide d'achat smartphones : comprendre le processeur, la RAM, l'écran, la photo et la batterie en langage simple, puis comparer et choisir selon son budget.": [
-  "comparateur.html"
- ],
- "Guide d'achat, accueil": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Guide disponible": [
   "a-propos.html",
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -3183,20 +2673,17 @@
  "Guide indépendant": [
   "pc-portables.html"
  ],
- "Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l'achat.": [
+ "Guide indépendant : nous expliquons, comparons et renvoyons vers les sources utiles. Nous ne vendons rien et ne sommes pas rémunérés pour classer un modèle. Les fiches indiquent leur date de dernière vérification.": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
+  "index.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "Guide indépendant : nous expliquons, comparons et renvoyons vers les sources et comparateurs utiles pour l’achat.": [
-  "a-propos.html",
-  "analyseur.html"
  ],
  "Guide pratique · à lire avant d’acheter": [
   "smartphones.html"
@@ -3208,30 +2695,11 @@
   "actualites.html",
   "index.html"
  ],
- "GUIDE·ACHAT": [
-  "a-propos.html",
-  "actualites.html",
-  "analyseur.html",
-  "batteries-externes.html",
-  "comparateur.html",
-  "ecouteurs.html",
-  "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
-  "pc-portables.html",
-  "projecteurs.html",
-  "smartphones-approfondir.html",
-  "smartphones.html"
- ],
  "Guide·Achat : ce produit est-il fait pour vous ?": [
   "index.html"
  ],
- "guider": [
-  "lexique.html"
- ],
- "Guides": [
-  "actualites.html",
-  "index.html"
+ "Guide·Achat est un guide indépendant. Il explique les caractéristiques techniques, compare les modèles et vous aide à choisir selon votre usage. Il ne vend rien et n’est pas rémunéré pour classer un modèle.": [
+  "a-propos.html"
  ],
  "Haprun J7 Pro": [
   "projecteurs.html"
@@ -3240,35 +2708,15 @@
   "smartphones.html"
  ],
  "Haut de page": [
-  "a-propos.html",
-  "analyseur.html",
-  "comparateur.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
- "HDR": [
-  "lexique.html"
- ],
- "HDR a besoin d’un pic élevé et d’un noir profond. Un IPS à 300 nits affiche un logo HDR sans pouvoir le tenir.": [
-  "lexique-pc-portables.html"
- ],
- "HDR apparaît souvent dans une fiche vidéo ou écran. Son objectif est de conserver davantage de nuances entre les zones très sombres et très lumineuses, avec une image plus riche lorsque le contenu est réellement HDR.": [
-  "lexique.html"
- ],
- "HDR compte surtout pour les personnes qui regardent beaucoup de contenus vidéo et disposent de sources HDR. La présence du mot HDR ne donne pas, à elle seule, une idée du rendu final.": [
-  "lexique.html"
- ],
- "HDR désigne une plage dynamique étendue. Dans la chaîne d’affichage, cela implique des métadonnées, une capacité de luminance et un traitement adaptés au contenu.": [
-  "lexique.html"
- ],
  "Hertz de l’écran": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
- "HONOR 400 Lite : ≈ 250 €": [
-  "comparateur.html"
+ "Hier": [
+  "actualites.html",
+  "index.html"
  ],
  "Horodatages cités": [
   "ecouteurs.html"
@@ -3291,31 +2739,16 @@
  "identique": [
   "pc-portables.html"
  ],
- "Ignorez le badge tant que 16 Go, l’écran et le poids ne sont pas réglés.": [
-  "lexique-pc-portables.html"
- ],
- "Il est efficace sur des modèles prévus pour lui. Un export Premiere continue de dépendre du CPU et du GPU.": [
-  "lexique-pc-portables.html"
- ],
- "Il lit les données structurées de la page (JSON-LD Product), le titre produit, la marque et l’EAN s’ils existent, puis ouvre": [
-  "capture.html"
- ],
- "Il manque une prise HDMI le jour de la soutenance, ou un USB-A pour la clé qu’on vous tend.": [
-  "lexique-pc-portables.html"
- ],
  "Il n’existe pas de « meilleur PC » en général. Un PC de jeu est lourd et vide vite sa batterie ; un PC ultra-léger peine en montage vidéo. Partez de ce que vous en faites, pas de la fiche technique.": [
   "pc-portables.html"
  ],
  "Il n’y a pas de mauvaise réponse. Touchez une carte : la question suivante s’ouvre toute seule, et votre recommandation s’affiche dès la première réponse.": [
   "pc-portables.html"
  ],
- "Il partage la RAM. 16 Go deviennent 12 Go utiles si le graphique en prend.": [
-  "lexique-pc-portables.html"
- ],
  "Il tient en une phrase.": [
   "smartphones.html"
  ],
- "Il y a 2 jours": [
+ "Il y a 3 jours": [
   "actualites.html"
  ],
  "Ils regroupent justement les facteurs que le nombre de mAh ignore. Ils restent dépendants du protocole, mais donnent une meilleure idée du comportement relatif entre modèles testés de la même manière.": [
@@ -3342,23 +2775,14 @@
  "Important pour vous": [
   "pc-portables.html"
  ],
- "Indice IP : IP67 et IP68": [
-  "lexique.html"
- ],
  "Informations sur le produit": [
   "smartphones.html"
  ],
  "Installation de jeu avec ordinateur portable, casque et manette": [
   "pc-portables.html"
  ],
- "Installer sur iPhone (Safari)": [
-  "capture.html"
- ],
  "Intégration iOS, Transparence native": [
   "ecouteurs.html"
- ],
- "Intégré n’est pas nul. Dédié n’est pas obligatoire pour Lightroom.": [
-  "lexique-pc-portables.html"
  ],
  "Intégrée": [
   "pc-portables.html"
@@ -3366,32 +2790,20 @@
  "Intégrée ou dédiée, et le modèle exact": [
   "pc-portables.html"
  ],
- "Intel Core Ultra, AMD Ryzen AI, Apple M et Snapdragon X ne se classent pas par leur numéro marketing. La lettre compte : U économise, H et HX poussent et chauffent.": [
-  "lexique-pc-portables.html"
- ],
  "Intelligible en intérieur calme ; peine face au vent et aux bruits urbains soutenus.": [
   "ecouteurs.html"
  ],
  "intra-auriculaire": [
   "ecouteurs.html"
  ],
- "IP signifie Ingress Protection. Le premier chiffre classe la protection contre les corps solides et la poussière. Le second classe la protection contre l’eau.": [
-  "lexique.html"
- ],
  "IP52": [
   "ecouteurs.html"
- ],
- "IP54 · Android 16 à la sortie": [
-  "comparateur.html"
  ],
  "IP64": [
   "ecouteurs.html"
  ],
  "IP67": [
   "smartphones.html"
- ],
- "IP68": [
-  "comparateur.html"
  ],
  "iPhone / iOS": [
   "smartphones.html"
@@ -3425,9 +2837,6 @@
  ],
  "Jamais, il reste posé sur un bureau": [
   "pc-portables.html"
- ],
- "jargon": [
-  "lexique-pc-portables.html"
  ],
  "Je compare ce qui change mon usage.": [
   "smartphones.html"
@@ -3514,36 +2923,14 @@
  "L’OIS compense une partie du mouvement du téléphone. Elle aide surtout lorsque la vitesse d’obturation doit rester relativement longue. Elle ne fige pas un sujet qui court.": [
   "smartphones-approfondir.html"
  ],
- "L’OIS ne fige pas un sujet qui bouge rapidement. Le mouvement du sujet demande une vitesse d’obturation suffisante.": [
-  "lexique.html"
- ],
- "L’OLED allume chaque pixel seul. L’IPS est un LCD : une lampe éclaire toute la dalle, les cristaux liquides la masquent.": [
-  "lexique-pc-portables.html"
- ],
- "L’OLED est plus agréable pour les films et le mode sombre. L’IPS mat fatigue souvent moins en open space, et il n’a pas de marquage si une barre de tâches reste affichée des heures.": [
-  "lexique-pc-portables.html"
- ],
  "L’ordinateur reste fin, silencieux, et tient la journée. Les jeux lourds et Blender non.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "La 5G est une génération de réseau mobile. Elle peut apporter plus de débit, une meilleure capacité dans les zones chargées et, selon le réseau, une latence réduite.": [
-  "lexique.html"
- ],
- "La 5G regroupe plusieurs bandes de fréquences, architectures et modes de déploiement. Les performances varient fortement selon la couverture et la bande utilisée.": [
-  "lexique.html"
  ],
  "La bonne unité de comparaison": [
   "smartphones-approfondir.html"
  ],
- "La capacité ne dit pas le débit. Un petit SSD rapide vaut mieux qu’un gros eMMC pour ouvrir un projet.": [
-  "lexique-pc-portables.html"
- ],
  "La capacité répond à une question simple : combien de données puis-je conserver ? La technologie et l’interface répondent à une autre : à quelle vitesse le téléphone peut-il les lire et les écrire ?": [
   "smartphones-approfondir.html"
- ],
- "La carte dédiée a sa mémoire. L’iGPU emprunte la RAM et chauffe moins.": [
-  "lexique-pc-portables.html"
  ],
  "La carte graphique dédiée": [
   "pc-portables.html"
@@ -3557,29 +2944,8 @@
  "La comparaison": [
   "smartphones.html"
  ],
- "La compensation permet d’utiliser des temps d’exposition plus longs sans déplacer autant l’image sur le capteur.": [
-  "lexique.html"
- ],
  "La connectivité passe souvent inaperçue jusqu’au jour où une fonction manque. La compatibilité avec votre opérateur, votre routeur ou vos accessoires doit donc être vérifiée à partir du modèle exact.": [
   "smartphones-approfondir.html"
- ],
- "La consommation dépend aussi de la dalle, de la luminosité, du contrôleur, du logiciel et du contenu.": [
-  "lexique.html"
- ],
- "La consommation du téléphone varie selon la puissance demandée par le SoC, la luminosité, la radio mobile, le Wi Fi, le GPS et les tâches exécutées.": [
-  "lexique.html"
- ],
- "La dalle ne crée pas les images. Si le jeu tourne à 50 images/s, un écran 240 Hz ne les invente pas.": [
-  "lexique-pc-portables.html"
- ],
- "La définition compte les pixels en largeur et en hauteur. La densité (ppp) dit s’ils sont serrés.": [
-  "lexique-pc-portables.html"
- ],
- "La définition est une paire de nombres, pas le mot HD. 1920 × 1200 est du WUXGA, pas du 4K. 2880 × 1800 est un 3K / 2,8K.": [
-  "lexique-pc-portables.html"
- ],
- "La distance, les murs, les interférences et le routeur réel limitent le débit observé.": [
-  "lexique.html"
  ],
  "La durée prévue": [
   "smartphones.html"
@@ -3590,24 +2956,14 @@
  "La fiche indique clairement la référence du modèle et son énergie en Wh.": [
   "batteries-externes.html"
  ],
- "La fréquence de rafraîchissement indique combien de renouvellements d’image l’écran peut effectuer par seconde. 120 Hz signifie jusqu’à 120 renouvellements par seconde.": [
-  "lexique.html"
- ],
  "La garantie et le retour sont clairs en France": [
   "ecouteurs.html"
  ],
  "La journée de cours se joue à la prise ou non. Le chiffre « jusqu’à 22 h » est presque toujours une lecture vidéo, luminosité basse.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "La ligne système. « Sans OS » veut dire ajouter Windows, environ 100 à 150 €, ou une licence déjà possédée.": [
-  "lexique-pc-portables.html"
  ],
  "La lumière traverse l’objectif, atteint le capteur, puis les données sont traitées pour produire l’image finale. Une faiblesse à l’une de ces étapes peut limiter le résultat, même si un autre chiffre paraît impressionnant.": [
   "smartphones-approfondir.html"
- ],
- "LA MÉTHODE": [
-  "lexique.html"
  ],
  "La note « image » vient du résultat des duels : c’est une lecture qualitative, pas une mesure.": [
   "projecteurs.html"
@@ -3618,26 +2974,11 @@
  "La photo assistée par l’IA": [
   "smartphones.html"
  ],
- "La portée et la consommation dépendent de la classe radio, de l’antenne, du codec et de l’environnement.": [
-  "lexique.html"
- ],
- "La présence d’une eSIM ne garantit pas toutes les fonctions de double ligne ni la compatibilité avec tous les opérateurs.": [
-  "lexique.html"
- ],
  "La puce calcule, la <1>RAM</1> sert d’espace de travail, le stockage conserve.": [
   "smartphones.html"
  ],
- "La puissance annoncée dépend souvent du téléphone et du chargeur utilisés ensemble.": [
-  "lexique.html"
- ],
  "La puissance d’entrée peut être inférieure à la sortie. Un chargeur secteur et un câble adaptés sont nécessaires ; ils ne sont pas toujours fournis.": [
   "batteries-externes.html"
- ],
- "La puissance électrique est le produit de la tension par le courant. Un chargeur annoncé à 67 W peut fournir cette puissance à un point précis de la courbe et non de manière constante.": [
-  "lexique.html"
- ],
- "La puissance est surtout utile lorsque vous disposez de peu de temps. Le téléphone peut prendre beaucoup de watts au début puis réduire progressivement pour limiter la chaleur et protéger la batterie.": [
-  "lexique.html"
  ],
  "La puissance graphique": [
   "pc-portables.html"
@@ -3645,35 +2986,11 @@
  "La puissance ne mesure pas l’autonomie. Pour un téléphone, 20 à 30 W sont un point de départ courant ; pour un PC, vérifiez la puissance USB-C requise, souvent 45 à 100 W ou davantage.": [
   "batteries-externes.html"
  ],
- "La qualité HDR dépend aussi du format pris en charge, de la luminosité, du mappage des tons et du service utilisé.": [
-  "lexique.html"
- ],
- "La quantité de lumière reçue dépend de l’ouverture et du temps d’exposition, tandis que le capteur détermine comment cette lumière est convertie en signal.": [
-  "lexique.html"
- ],
  "La question décisive": [
   "smartphones.html"
  ],
- "La RAM est l’espace de travail temporaire du téléphone. Plus il y en a, plus le système peut garder de données et d’applications prêtes à servir sans tout recharger.": [
-  "lexique.html"
- ],
- "La RAM est le plan de travail. Le SSD est l’armoire. Remplir le plan de travail oblige à tout ranger sans cesse.": [
-  "lexique-pc-portables.html"
- ],
- "La RAM est une mémoire volatile utilisée pour les données et les processus actifs. Sa quantité influence le nombre et la taille des tâches que le système peut garder en mémoire.": [
-  "lexique.html"
- ],
  "La RAM sert principalement d’espace de travail temporaire. Elle peut permettre au système de conserver davantage d’applications en mémoire, mais elle ne transforme pas à elle seule un téléphone en appareil plus rapide.": [
   "smartphones-approfondir.html"
- ],
- "La recharge sans fil est intéressante sur un bureau, une table de nuit ou dans une voiture. Elle peut en revanche chauffer davantage selon le chargeur, la coque et l’alignement.": [
-  "lexique.html"
- ],
- "La recharge sans fil repose sur un couplage inductif entre une bobine d’émission et une bobine de réception.": [
-  "lexique.html"
- ],
- "La résistance à la rayure et la résistance à la fracture répondent à des mécanismes différents.": [
-  "lexique.html"
  ],
  "La retranscription fournie contient les duels R1 à R13 ; le classement final (podium) est celui annoncé dans la vidéo.": [
   "projecteurs.html"
@@ -3696,20 +3013,8 @@
  "La vidéo le classe « à éviter » : failles de sécurité majeures et applications mal optimisées (exemple : Lingcast X7). Google TV certifié est jugé excellent, Roku TV très bon.": [
   "projecteurs.html"
  ],
- "La vitesse de lecture et d’écriture influence les installations, transferts et certains chargements, tandis que la capacité détermine combien de données peuvent être conservées.": [
-  "lexique.html"
- ],
- "La vitesse réelle dépend également de la bande passante mémoire, de la gestion du système, de la compression éventuelle et du comportement des applications.": [
-  "lexique.html"
- ],
  "Labo + duels": [
   "projecteurs.html"
- ],
- "laisser": [
-  "lexique.html"
- ],
- "Lancer le diagnostic": [
-  "diagnostic.html"
  ],
  "Latence": [
   "ecouteurs.html"
@@ -3730,15 +3035,6 @@
  ],
  "LDAC, LC3 (LE Audio)": [
   "ecouteurs.html"
- ],
- "le": [
-  "lexique-pc-portables.html"
- ],
- "Le 6 concerne la poussière. Le 8 concerne certaines conditions d’immersion définies par le fabricant et la norme applicable. Ce n’est pas une promesse « étanche à tout ».": [
-  "lexique.html"
- ],
- "Le bénéfice visible dépend du contenu affiché. Pour obtenir une animation réellement plus fluide, le système et l’application doivent aussi fournir de nouvelles images à un rythme suffisant.": [
-  "lexique.html"
  ],
  "Le bon choix dépend de ce que vous en faites.": [
   "index.html"
@@ -3779,9 +3075,6 @@
  "Le classement final annoncé par la vidéo, puis tous les modèles dans l’ordre du bilan : podium, puis victoires en duel.": [
   "projecteurs.html"
  ],
- "Le code IP décrit une protection contre l’intrusion de solides et d’eau. Dans IP68, le premier chiffre et le second ne parlent pas de la même chose.": [
-  "lexique.html"
- ],
  "Le codec est le format du son envoyé par Bluetooth. Le SBC marche partout ; l’AAC est celui d’un iPhone ; LDAC ou aptX existent côté Android. Écouteurs et téléphone doivent gérer le même.": [
   "ecouteurs.html"
  ],
@@ -3791,23 +3084,11 @@
  "Le compromis le plus courant : écran confortable, puissance suffisante pour la plupart des usages, transport possible au quotidien.": [
   "pc-portables.html"
  ],
- "Le contraste dépend du fait que les pixels noirs peuvent être pratiquement éteints. Un LCD utilise un rétroéclairage qui reste actif, puis module la lumière avec une couche de cristaux liquides.": [
-  "lexique.html"
- ],
- "Le contrôle de charge adapte la puissance selon l’état de la batterie, la température et les limites du système.": [
-  "lexique.html"
- ],
  "le coup pour moi ?": [
   "index.html"
  ],
  "Le CPU prend en charge une grande partie des calculs généraux. Son architecture influence à la fois le travail réalisé par cycle et l’énergie nécessaire pour l’effectuer.": [
   "smartphones-approfondir.html"
- ],
- "Le débit dépend du spectre disponible, de la modulation, du nombre d’utilisateurs et de l’agrégation de bandes.": [
-  "lexique.html"
- ],
- "Le débit théorique est réparti selon les conditions radio, la largeur de canal, la modulation et le nombre de flux spatiaux.": [
-  "lexique.html"
  ],
  "Le délai entre l’image et le son. Invisible pour la musique, gênant pour les jeux et parfois pour la vidéo : un mode « jeu » ou un codec à faible latence aide.": [
   "ecouteurs.html"
@@ -3821,80 +3102,53 @@
  "Le dossier ne contient aucune note chiffrée : le guide n’en invente pas et ne calcule pas de score par profil pour ces modèles.": [
   "smartphones.html"
  ],
- "Le gain est très visible dans les défilements et certaines interfaces. Il devient intéressant pour les joueurs lorsque le jeu produit lui aussi assez d’images par seconde. Un écran 120 Hz n’oblige pas chaque application à fonctionner à 120 images par seconde.": [
-  "lexique.html"
- ],
  "Le GPU intervient surtout dans les jeux, la 3D et certains traitements graphiques. Deux puces proches sur les tâches générales peuvent donc diverger nettement dans un jeu.": [
   "smartphones-approfondir.html"
  ],
- "Le graphique intégré est dans la même puce que le processeur.": [
-  "lexique-pc-portables.html"
+ "Le guide": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
  ],
- "Le hertz est le nombre d’images différentes que la dalle peut afficher en une seconde.": [
-  "lexique-pc-portables.html"
+ "Le guide · méthode et contact": [
+  "a-propos.html"
+ ],
+ "Le guide lit le nom et la référence du modèle, retrouve ses caractéristiques techniques, les explique et indique à quels usages il convient. Chaque type de produit a sa propre base de données : choisissez-le d’abord.": [
+  "analyseur.html"
  ],
  "Le HUAWEI FreeBuds Pro 5 crée la surprise en détrônant Apple et Sony sur le score global grâce à une réduction de bruit inégalée et à un traitement algorithmique des voix qui élimine tout bruit ambiant en appel.": [
   "ecouteurs.html"
- ],
- "LE LEXIQUE DE LA FICHE PRODUIT": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Le lexique en clair": [
   "pc-portables.html"
  ],
  "Le logiciel dont vous avez besoin s’installe, ou il s’ouvre dans le navigateur, ou il ne s’installe pas.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Le mAh, milliampère heure, exprime une capacité électrique. L’énergie totale dépend aussi de la tension nominale et s’exprime plus directement en watt heures.": [
-  "lexique.html"
  ],
  "Le meilleur choix de la gamme Samsung": [
   "smartphones.html"
  ],
- "Le mot OLED ou IPS est le premier. Ensuite : brillant ou antireflet, et les nits. Un OLED à 300 nits reste fade près d’une fenêtre.": [
-  "lexique-pc-portables.html"
- ],
  "Le NexiGo PJ40 Pro est présenté comme la nouvelle référence sous 300 $ : luminosité et contraste autrefois réservés à des modèles à plus de 1 500 $. Pour les petits budgets ou les espaces très calmes, l’Elephas W1K et le TCL C1 restent d’excellentes alternatives.": [
   "projecteurs.html"
- ],
- "Le nit correspond à une unité de luminance, exprimée en candela par mètre carré. Une valeur de 2 000 nits signifie une luminance de 2 000 cd/m² dans les conditions considérées.": [
-  "lexique.html"
- ],
- "Le nom exact de la puce est plus utile que la formule « octa core ». Le nombre de cœurs n’est pas une mesure suffisante de la performance.": [
-  "lexique.html"
- ],
- "Le nombre f est le rapport entre la focale et le diamètre d’ouverture effectif. Une valeur f plus petite correspond à une ouverture relative plus grande.": [
-  "lexique.html"
- ],
- "Le NPU est un bloc de la puce spécialisé dans certains calculs d’inférence.": [
-  "lexique-pc-portables.html"
  ],
  "Le plus silencieux du test (38 dB)": [
   "projecteurs.html"
  ],
- "Le poids est en kilogrammes, châssis seul. Ajoutez le chargeur de tête.": [
-  "lexique-pc-portables.html"
- ],
  "Le poids et l’autonomie": [
   "pc-portables.html"
- ],
- "Le poids publié oublie souvent le chargeur. Un 65 W compact change la donne. Un chargeur de PC gamer pèse plusieurs centaines de grammes.": [
-  "lexique-pc-portables.html"
  ],
  "Le point de départ confortable pour la plupart des gens. En dessous, le PC ralentit vite ; au-dessus, on paie souvent pour rien, sauf en création ou en jeu.": [
   "pc-portables.html"
  ],
- "Le port est le tuyau. Sa version (USB 2, 10 Gbit/s, Thunderbolt, HDMI 2.1) dit le débit et l’image.": [
-  "lexique-pc-portables.html"
- ],
  "Le portable démarre vite avec un SSD. Un petit stockage se voit le jour où un jeu ou un rush vidéo ne rentre plus.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Le pourcentage marketing est parfois un pic, pas une moyenne mesurée.": [
-  "lexique-pc-portables.html"
  ],
  "Le prix cité est une offre étudiante, pas le tarif public": [
   "pc-portables.html"
@@ -3909,14 +3163,7 @@
   "batteries-externes.html"
  ],
  "Le processeur": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Le processeur exécute les logiciels. Le NPU à côté accélère certains calculs d’IA, pas Word.": [
-  "lexique-pc-portables.html"
- ],
- "Le processeur prépare l’image, la carte la dessine. Un i5 avec une bonne RTX joue mieux qu’un i9 sans carte.": [
-  "lexique-pc-portables.html"
  ],
  "LE PRODUIT": [
   "index.html"
@@ -3933,29 +3180,8 @@
  "Le son avant tout": [
   "ecouteurs.html"
  ],
- "Le stockage est l’armoire du téléphone. Photos, vidéos, applications, téléchargements et fichiers y restent même lorsque le téléphone est éteint.": [
-  "lexique.html"
- ],
- "Le stockage garde les fichiers éteints. Ce n’est pas de la mémoire vive.": [
-  "lexique-pc-portables.html"
- ],
- "Le stockage interne est généralement de la mémoire flash, souvent organisée selon une norme comme UFS.": [
-  "lexique.html"
- ],
- "Le stockage peut être rapide sur une courte séquence puis devenir plus lent selon la température, l’état de remplissage et la gestion interne.": [
-  "lexique.html"
- ],
  "Le suivi logiciel": [
   "smartphones.html"
- ],
- "Le support matériel ne garantit pas qu’un service particulier sera disponible dans tous les pays ou toutes les applications.": [
-  "lexique.html"
- ],
- "Le système agrandit l’interface. Un 3K réglé à 150 % n’affiche pas plus de colonnes Excel qu’un Full HD à 100 %, il les dessine plus nettement.": [
-  "lexique-pc-portables.html"
- ],
- "Le système est la couche sur laquelle les applications tournent.": [
-  "lexique-pc-portables.html"
  ],
  "Le système fixe vos applications, vos habitudes et la compatibilité avec vos autres appareils.": [
   "smartphones.html"
@@ -3963,20 +3189,11 @@
  "Le système limite progressivement la puissance lorsque la batterie se remplit et lorsque la température augmente. Cela protège la cellule et évite de maintenir un niveau de contrainte élevé inutilement.": [
   "smartphones-approfondir.html"
  ],
- "Le système utilise des champs radio et des modes d’échange conçus pour des interactions rapides et courtes.": [
-  "lexique.html"
- ],
  "Le TCL C1 est le plus silencieux (38 dB). Le NexiGo monte à 55 dB, mais 44 dB en réglant la ventilation à 4/10, pour 475 lumens ANSI.": [
   "projecteurs.html"
  ],
- "Le téléchargement et l’activation du profil dépendent d’une procédure fournie par l’opérateur.": [
-  "lexique.html"
- ],
  "Le téléphone combine souvent plusieurs expositions pour réduire le bruit et récupérer des détails dans les ombres et les hautes lumières. C’est une raison majeure pour laquelle deux capteurs proches peuvent produire des images différentes.": [
   "smartphones-approfondir.html"
- ],
- "Le téléphone doit être proche du terminal ou du tag. La technologie sert aussi à certaines fonctions d’accès, d’identification ou d’appairage.": [
-  "lexique.html"
  ],
  "Le téléphone doit prendre en charge les bandes utilisées par votre opérateur dans les lieux où vous vivez et travaillez. « 5G » sans liste de bandes reste une information incomplète.": [
   "smartphones-approfondir.html"
@@ -3984,44 +3201,20 @@
  "Le téléphone exécute simultanément des tâches très différentes : système, applications, vidéo, photo, graphismes et communications. Une puce regroupe donc plusieurs unités spécialisées, avec des compromis différents selon les usages.": [
   "smartphones-approfondir.html"
  ],
- "Le téléphone sans jargon : Guide·Achat": [
-  "lexique.html"
- ],
  "Le test source donne, par modèle, des notes sur 10 par critère, des mesures (autonomie réelle avec ANC, volume maximal) et des horodatages renvoyant au passage de la vidéo.": [
   "ecouteurs.html"
  ],
  "Le test source mêle écouteurs et casques, et le Nothing Headphone (1) Pro y tient une place de choix. Il est signalé « casque » partout, et son poids (328 g) figure parmi ses points faibles.": [
   "ecouteurs.html"
  ],
- "Le texte simple est remplacé par les mécanismes, limites et critères techniques.": [
-  "lexique-pc-portables.html"
- ],
  "Le Top 10 des écouteurs premium, le comparatif sous 50 $ et le test des micros d’une chaîne indépendante, plus trois modèles notés en détail. Chaque critère est expliqué en animation, puis lu selon cinq usages : réduction de bruit, autonomie, codec, ajustement…": [
   "ecouteurs.html"
- ],
- "Le traitement informatique peut compléter le zoom optique par du calcul et de la reconstruction d’image.": [
-  "lexique.html"
  ],
  "Le traitement logiciel de la photo, assisté par l’IA, domine : c’est lui qui fait la régularité d’un smartphone.": [
   "smartphones.html"
  ],
- "Le traitement multi image peut modifier fortement le rendu final des scènes sombres.": [
-  "lexique.html"
- ],
  "Le transporterez-vous <1>souvent</1> ?": [
   "pc-portables.html"
- ],
- "Le type de verre peut améliorer la résistance, mais la conception du téléphone, l’épaisseur du verre et la coque jouent aussi. La réparation reste possible et parfois coûteuse.": [
-  "lexique.html"
- ],
- "Le verre renforcé réduit certains risques de rayure et de casse, mais aucun écran de smartphone n’est invulnérable. Une chute sur une arête reste un cas très défavorable.": [
-  "lexique.html"
- ],
- "Le Wi Fi relie votre téléphone à une box, un routeur ou un autre réseau local. Pour regarder une vidéo ou télécharger un fichier, sa rapidité dépend de toute la chaîne.": [
-  "lexique.html"
- ],
- "Le zoom optique provient d’une modification de la focale ou d’un objectif distinct. Un téléobjectif offre une autre géométrie de prise de vue que le recadrage d’un grand angle.": [
-  "lexique.html"
  ],
  "Lecture": [
   "projecteurs.html"
@@ -4029,18 +3222,11 @@
  "Léger et autonome, mais souvent limité pour les gros rendus et les jeux.": [
   "pc-portables.html"
  ],
- "Léger n’est pas fragile, lourd n’est pas solide. Regardez le matériau à part.": [
-  "lexique-pc-portables.html"
- ],
  "Léger. Endurant.": [
   "index.html"
  ],
  "Lenovo IdeaPad Slim 3x": [
   "pc-portables.html"
- ],
- "les": [
-  "comparateur.html",
-  "lexique.html"
  ],
  "Les années de mises à jour décident combien de temps il restera sûr et agréable.": [
   "smartphones.html"
@@ -4066,9 +3252,6 @@
  "Les consignes IATA 2026 limitent les batteries externes à deux par passager, chacune ne dépassant pas 100 Wh. Elles voyagent en cabine, avec leurs contacts protégés, et ne doivent pas être rechargées en vol. Une compagnie peut imposer des restrictions supplémentaires.": [
   "batteries-externes.html"
  ],
- "Les critères": [
-  "batteries-externes.html"
- ],
  "Les critères du test, expliqués avec les chiffres réellement mesurés.": [
   "projecteurs.html"
  ],
@@ -4081,18 +3264,8 @@
  "Les embouts ferment bien le conduit (test d’étanchéité dans l’application, si elle en propose un)": [
   "ecouteurs.html"
  ],
- "Les fabricants distinguent souvent une luminosité typique et une luminosité maximale de pointe. Le mode automatique peut aussi déclencher une valeur plus élevée en forte lumière ambiante.": [
-  "lexique.html"
- ],
- "Les fiches du catalogue indiquent leur date de vérification. Une caractéristique non confirmée par une source est signalée « à vérifier », jamais présentée comme acquise. Les prix sont des repères indicatifs et peuvent différer des prix en vigueur chez les marchands.": [
+ "Les fiches du catalogue indiquent leur date de vérification. Une caractéristique non confirmée par une source est signalée « à vérifier », jamais présentée comme acquise. Une information inconnue n’est jamais comptée comme un défaut. Les prix sont des repères indicatifs et peuvent différer des prix en vigueur chez les marchands.": [
   "a-propos.html"
- ],
- "Les fiches indiquent leur date de dernière vérification.": [
-  "a-propos.html",
-  "analyseur.html",
-  "comparateur.html",
-  "smartphones-approfondir.html",
-  "smartphones.html"
  ],
  "Les haut-parleurs à semi-conducteurs (MEMS), comme sur le SoundPEATS Capsule3 Pro+, apportent une précision dans les hautes fréquences autrefois réservée aux écouteurs de plus de 200 $.": [
   "ecouteurs.html"
@@ -4100,23 +3273,11 @@
  "Les jeux récents et le montage vidéo demandent une carte graphique dédiée, plus chère et plus lourde. Si vous n’en avez pas besoin, autant ne pas la payer.": [
   "pc-portables.html"
  ],
- "Les joints peuvent vieillir et un choc peut compromettre l’étanchéité. L’eau de mer, les produits chimiques et certains usages ne sont pas toujours couverts.": [
-  "lexique.html"
- ],
- "Les lignes surlignées signalent un critère où les modèles comparés diffèrent réellement.": [
-  "comparateur.html"
- ],
- "Les limites se déplacent vers d’autres paramètres : luminosité, gestion thermique, calibration, consommation et comportement des matériaux à long terme.": [
-  "lexique.html"
- ],
  "Les mAh décrivent la réserve ; le téléphone détermine la dépense": [
   "smartphones-approfondir.html"
  ],
  "Les marques vendent un même modèle sous plusieurs références cryptiques (« 15IA11 », « 15IRX11 »…). Le nom affiché ne change pas, mais le processeur, la mémoire ou la carte graphique, si. Faites glisser le scan : le dessin reste identique, la référence change, et les composants avec elle.": [
   "pc-portables.html"
- ],
- "Les mégapixels indiquent combien de pixels composent l’image. Plus de pixels peut aider à recadrer ou conserver des détails, mais ne dit presque rien à lui seul sur la qualité de la photo.": [
-  "lexique.html"
  ],
  "Les mesures de la vidéo ont été faites dans une pièce totalement noire, sur un écran de 100 pouces : les valeurs mesurées vont de 210 à 818 lumens ANSI. Dès qu’une lampe est allumée, il en faut davantage ; la source ne chiffre pas ce seuil, donc ce guide ne l’invente pas.": [
   "projecteurs.html"
@@ -4127,29 +3288,11 @@
  "Les mises à jour, la batterie qu'on peut remplacer, la possibilité de le réparer — voilà ce qui fixe sa vraie durée de vie.": [
   "smartphones.html"
  ],
- "Les modèles": [
-  "batteries-externes.html"
- ],
  "Les modèles qui correspondent à vos réponses": [
   "smartphones.html"
  ],
- "Les nits mesurent la luminosité. Le traitement mat diffuse les reflets. Une dalle brillante a plus de pep mais renvoie les lampes.": [
-  "lexique-pc-portables.html"
- ],
- "Les niveaux correspondent à des essais normalisés réalisés dans des conditions définies.": [
-  "lexique.html"
- ],
- "Les normes Wi Fi définissent des capacités radio, bandes, canaux et fonctions de gestion des transmissions.": [
-  "lexique.html"
- ],
  "Les notes du testeur n’utilisent pas les mêmes critères pour chaque modèle : un critère sans note reste vide et réduit la couverture.": [
   "ecouteurs.html"
- ],
- "Les performances dépendent de l’architecture, des fréquences, du procédé de fabrication, du logiciel et des limites thermiques.": [
-  "lexique.html"
- ],
- "Les performances dépendent de la version UFS, de la mémoire utilisée, du contrôleur, de l’accès parallèle et du logiciel.": [
-  "lexique.html"
  ],
  "Les points à mettre côte à côte": [
   "smartphones-approfondir.html"
@@ -4166,24 +3309,11 @@
  "Les termes qui reviennent le plus souvent sur une fiche produit, expliqués simplement.": [
   "pc-portables.html"
  ],
- "Les termes techniques des smartphones expliqués concrètement : ce que c'est, ce que cela change et si vous devez vous en soucier.": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Les trois classements sont-ils comparables entre eux ?": [
   "ecouteurs.html"
  ],
- "Les verres renforcés utilisent des traitements chimiques ou thermiques qui modifient leurs contraintes internes et leur résistance mécanique.": [
-  "lexique.html"
- ],
- "Les wattheures (Wh) sont la taille du réservoir. Les heures dépendent de l’écran, de la luminosité et du logiciel. OLED et jeu vident plus vite.": [
-  "lexique-pc-portables.html"
- ],
  "Lexique": [
   "pc-portables.html"
- ],
- "Lexique PC portables : lire une fiche sans le jargon — Guide·Achat": [
-  "lexique-pc-portables.html"
  ],
  "Lien d’une boutique ou nom du téléphone : l’analyseur retrouve ses caractéristiques, les explique et signale ce qui manque ou ce qui est survendu.": [
   "smartphones.html"
@@ -4211,30 +3341,23 @@
  "Lingcast X7": [
   "projecteurs.html"
  ],
- "Lire": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "Lire une fiche de PC portable sans le jargon": [
-  "lexique-pc-portables.html"
- ],
- "Lire une fiche technique sans se laisser guider par les chiffres": [
-  "lexique.html"
- ],
- "Lisez « soudée » ou « un emplacement libre ». Soudée : vous ne rajouterez rien. DDR5 en barrette : vous pourrez.": [
-  "lexique-pc-portables.html"
+ "Lire une fiche technique": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
  ],
  "Lisez l’énergie marquée sur le boîtier ; une estimation en mAh ne remplace pas cette indication. Vérifiez les règles de toutes les compagnies de votre itinéraire avant le départ, notamment l’utilisation à bord et le rangement.": [
   "batteries-externes.html"
  ],
  "Lisible en plein jour": [
   "smartphones.html"
- ],
- "Listez ce que vous branchez vraiment. Ajoutez le prix d’un hub si la fiche est trop nue.": [
-  "lexique-pc-portables.html"
- ],
- "Listez deux logiciels obligatoires. S’ils n’existent que sur Windows x86, écartez ChromeOS et vérifiez Arm.": [
-  "lexique-pc-portables.html"
  ],
  "Livraison à votre adresse": [
   "smartphones.html"
@@ -4249,15 +3372,8 @@
   "smartphones-approfondir.html"
  ],
  "LTPO": [
-  "lexique.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "LTPO devient surtout intéressant dans un téléphone qui propose une grande fréquence maximale et qui sait réellement varier cette fréquence. Le terme seul ne garantit pas l’autonomie.": [
-  "lexique.html"
- ],
- "LTPO est une famille de technologies de fond de panier utilisant des transistors à oxyde qui facilitent certaines conceptions de faible fuite et de contrôle variable du rafraîchissement.": [
-  "lexique.html"
  ],
  "Lumens ANSI": [
   "projecteurs.html"
@@ -4284,11 +3400,20 @@
  "Luminosité : 300 nits minimum, 400 et plus si la pièce est lumineuse": [
   "pc-portables.html"
  ],
- "Luminosité : nits": [
-  "lexique.html"
- ],
  "Luminosité mesurée <1>×0.5</1>": [
   "projecteurs.html"
+ ],
+ "Ma recommandation": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
  ],
  "Ma recommandation →": [
   "pc-portables.html"
@@ -4301,9 +3426,6 @@
  ],
  "mAh": [
   "smartphones.html"
- ],
- "mAh : capacité de batterie": [
-  "lexique.html"
  ],
  "mAh : la taille du réservoir": [
   "batteries-externes.html"
@@ -4320,26 +3442,11 @@
  "Mails, tableaux, visioconférences, vingt onglets ouverts. Il doit rester fluide toute la journée.": [
   "pc-portables.html"
  ],
- "Maintenir une fréquence élevée en permanence peut augmenter la consommation. Les écrans à fréquence variable adaptent le rythme au contenu.": [
-  "lexique.html"
- ],
  "Marginal": [
   "pc-portables.html"
  ],
- "Marque et modèle": [
-  "analyseur.html"
- ],
- "MediaTek Dimensity 8400-Ultra (4 nm) · jusqu'à 12 Go de RAM": [
-  "comparateur.html"
- ],
  "MediaTek Dimensity 9600 Pro (gravure 2 nm)": [
   "smartphones.html"
- ],
- "Méfiez-vous du pic HDR tenu une seconde. Le chiffre utile est la luminosité soutenue, souvent 300, 400 ou 500 nits.": [
-  "lexique-pc-portables.html"
- ],
- "Mégapixels : Mpx": [
-  "lexique.html"
  ],
  "Meilleur compact": [
   "smartphones.html"
@@ -4374,14 +3481,8 @@
  "Meilleure qualité d’image": [
   "projecteurs.html"
  ],
- "Même diagonale, puis le poids, puis les ports. Un 13 pouces à 1,5 kg n’a pas d’excuse.": [
-  "lexique-pc-portables.html"
- ],
  "Même produit.": [
   "index.html"
- ],
- "Même puce, même watts, même définition d’écran. Le reste est du marketing.": [
-  "lexique-pc-portables.html"
  ],
  "Mémoire vidéo (VRAM) : 8 Go minimum pour les jeux récents": [
   "pc-portables.html"
@@ -4390,7 +3491,6 @@
   "pc-portables.html"
  ],
  "Mémoire vive : 8, 16, 32 Go": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Mémoire vive (RAM)": [
@@ -4400,9 +3500,6 @@
   "pc-portables.html"
  ],
  "Mesuré en labo": [
-  "projecteurs.html"
- ],
- "Mesures": [
   "projecteurs.html"
  ],
  "Mesures d’autonomie, d’écran, de photo et de performance provenant de protocoles identifiables": [
@@ -4423,12 +3520,6 @@
  ],
  "Méthode de lecture : partez de la ligne que vous avez sous les yeux. Demandez d’abord ce qu’elle mesure, ensuite ce qu’elle peut changer à l’usage, puis quelles informations manquent pour la comparer correctement.": [
   "smartphones-approfondir.html"
- ],
- "Mettez côte à côte la techno, les nits, mat ou brillant, et la fréquence. Ignorez « superbe dalle » sans ces trois lignes.": [
-  "lexique-pc-portables.html"
- ],
- "Mettez quelques modèles côte à côte pour voir rapidement ce qui change vraiment entre eux. Comparez d’abord les critères liés à votre usage, puis les chiffres.": [
-  "comparateur.html"
  ],
  "Mettre en pause": [
   "pc-portables.html"
@@ -4461,9 +3552,16 @@
   "pc-portables.html"
  ],
  "Mises à jour": [
+  "a-propos.html",
   "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
   "index.html",
-  "smartphones-approfondir.html"
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
  ],
  "Mises à jour du site : Guide·Achat": [
   "actualites.html"
@@ -4472,11 +3570,7 @@
   "smartphones-approfondir.html"
  ],
  "Mobilité": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "MOBILITÉ": [
-  "lexique-pc-portables.html"
  ],
  "mobilité maximale": [
   "pc-portables.html"
@@ -4485,18 +3579,10 @@
   "pc-portables.html"
  ],
  "Mode détails": [
-  "lexique-pc-portables.html",
   "smartphones-approfondir.html"
  ],
  "Mode détails · pour aller plus loin": [
   "smartphones-approfondir.html"
- ],
- "Mode détails activé": [
-  "lexique-pc-portables.html"
- ],
- "Mode simple": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Mode transparence": [
   "ecouteurs.html"
@@ -4507,6 +3593,13 @@
  "Modèle": [
   "ecouteurs.html",
   "projecteurs.html"
+ ],
+ "Modèles": [
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones.html"
  ],
  "modèles cités": [
   "ecouteurs.html"
@@ -4534,9 +3627,6 @@
  ],
  "Molette, boutons physiques ou commandes tactiles : la manière de piloter le volume et les pistes change le quotidien. La finition (métal, verre, plastique) pèse sur la solidité, le poids et l’impression d’ensemble.": [
   "ecouteurs.html"
- ],
- "Mon besoin": [
-  "batteries-externes.html"
  ],
  "Mon câble accepte la puissance visée ; au-delà de 60 W, je vérifie sa capacité 5 A.": [
   "batteries-externes.html"
@@ -4570,30 +3660,15 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
- "Motorola Moto G06 : ≈ 110 €": [
-  "comparateur.html"
- ],
- "Motorola Moto G06 Power : ≈ 130 €": [
-  "comparateur.html"
- ],
- "Motorola Moto G55 5G : ≈ 200 €": [
-  "comparateur.html"
- ],
  "Musique et documents : 30 Go": [
   "pc-portables.html"
- ],
- "Ne comparez pas deux valeurs f sans regarder la taille du capteur et l’objectif complet. Une petite différence d’ouverture peut être moins importante qu’un changement de capteur.": [
-  "lexique.html"
  ],
  "Ne comparez pas uniquement le prix du jour d’achat. Comparez ce que vous devrez supporter pendant la durée prévue : stockage, batterie, réparations, accessoires, mises à jour et éventuel remplacement.": [
   "smartphones-approfondir.html"
@@ -4607,25 +3682,11 @@
  "NexiGo PJ40 Pro <1>Couverture solide</1>": [
   "projecteurs.html"
  ],
- "NFC": [
-  "lexique.html"
- ],
  "NFC et eSIM": [
   "smartphones-approfondir.html"
  ],
- "NFC permet un échange radio à très courte distance. Le cas que vous connaissez peut-être déjà est le paiement sans contact.": [
-  "lexique.html"
- ],
- "NFC signifie Near Field Communication. La communication fonctionne à très courte portée, généralement avec des appareils placés à quelques centimètres.": [
-  "lexique.html"
- ],
  "Nits, brillant et mat": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Niveau d'explication": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Niveau de GPU": [
   "pc-portables.html"
@@ -4641,9 +3702,6 @@
  ],
  "Noirs, fluidité, couleurs": [
   "pc-portables.html"
- ],
- "Nokia G10 : ≈ prix à vérifier": [
-  "comparateur.html"
  ],
  "NOM AFFICHÉ": [
   "pc-portables.html"
@@ -4665,9 +3723,6 @@
  ],
  "Non, ni l’un ni l’autre": [
   "pc-portables.html"
- ],
- "Non, sauf besoin précis. Ne payez pas un surcoût seulement pour le badge.": [
-  "lexique-pc-portables.html"
  ],
  "Non. Elle atténue surtout les bruits graves et réguliers. Un bon ajustement des embouts fait déjà une grande partie du travail d’isolation : sans lui, l’ANC ne peut pas compenser les fuites.": [
   "ecouteurs.html"
@@ -4713,15 +3768,6 @@
  "Notes sur 10 par critère, mesures et passages cités. Un critère sans note dans la source est écrit « non noté », jamais complété.": [
   "ecouteurs.html"
  ],
- "Notez le nom complet, par exemple Core Ultra 7 256V ou Ryzen AI 7 350 ou M5. « Core i7 » seul mélange cinq années.": [
-  "lexique-pc-portables.html"
- ],
- "Notez le nom exact et le TGP en watts. Sans watts, deux RTX 5070 ne se valent pas.": [
-  "lexique-pc-portables.html"
- ],
- "Notez nits soutenus, mat ou brillant, et OLED ou IPS. Les trois ensemble.": [
-  "lexique-pc-portables.html"
- ],
  "Nothing Ear (3)": [
   "ecouteurs.html"
  ],
@@ -4741,23 +3787,13 @@
   "actualites.html"
  ],
  "NPU, Copilot+ et TOPS": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "NPU, TOPS, ou « PC Copilot+ ». Sans ces mots, l’IA se fait dans le cloud, avec un compte et du réseau.": [
-  "lexique-pc-portables.html"
  ],
  "Occupation du SSD": [
   "pc-portables.html"
  ],
  "OIS": [
   "smartphones.html"
- ],
- "OIS : stabilisation optique": [
-  "lexique.html"
- ],
- "OIS, Optical Image Stabilization, compense certains mouvements du système optique ou du capteur pendant la capture.": [
-  "lexique.html"
  ],
  "OLED": [
   "pc-portables.html",
@@ -4773,18 +3809,8 @@
  "OLED 6,78\" plat, 144 Hz, bordures de 1,15 mm, pic mesuré à 3 600 nits": [
   "smartphones.html"
  ],
- "OLED et AMOLED": [
-  "lexique.html"
- ],
  "OLED et IPS": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "OLED n’est pas une promesse de luminosité, ni de fidélité des couleurs, ni de 120 Hz.": [
-  "lexique-pc-portables.html"
- ],
- "OLED signifie Organic Light Emitting Diode. AMOLED désigne une architecture OLED à matrice active. Chaque sous pixel peut émettre sa propre lumière et peut donc être éteint pour produire un noir très profond.": [
-  "lexique.html"
  ],
  "OLED, luminosité, HDR et fréquence variable.": [
   "smartphones-approfondir.html"
@@ -4831,39 +3857,6 @@
  "Où vivent vos fichiers": [
   "pc-portables.html"
  ],
- "Oui au-dessus de 15 pouces. Sur un 13 pouces, le Full HD reste lisible.": [
-  "lexique-pc-portables.html"
- ],
- "Oui avant le processeur si un logiciel de cours ou de métier est imposé.": [
-  "lexique-pc-portables.html"
- ],
- "Oui dès que le chargeur ne peut pas suivre.": [
-  "lexique-pc-portables.html"
- ],
- "Oui pour jouer ou pour la 3D. Non pour Office, le web et la visio.": [
-  "lexique-pc-portables.html"
- ],
- "Oui pour la photo et la vidéo. Non pour les cours et les mails.": [
-  "lexique-pc-portables.html"
- ],
- "Oui si vous bougez, ou si l’écran est brillant. Moins si le PC reste dans une pièce tamisée.": [
-  "lexique-pc-portables.html"
- ],
- "Oui si vous branchez un écran ou une clé chaque semaine.": [
-  "lexique-pc-portables.html"
- ],
- "Oui si vous gardez les fichiers en local. Moins si tout est en ligne et que le réseau suit.": [
-  "lexique-pc-portables.html"
- ],
- "Oui si vous marchez. Non si le PC reste sur un bureau.": [
-  "lexique-pc-portables.html"
- ],
- "Oui si vous montez, regardez des films ou travaillez longtemps. Non si le budget doit d’abord payer 16 Go de mémoire.": [
-  "lexique-pc-portables.html"
- ],
- "Oui, avant le disque et avant l’écran si vous hésitez.": [
-  "lexique-pc-portables.html"
- ],
  "Oui, des jeux récents": [
   "pc-portables.html"
  ],
@@ -4873,49 +3866,43 @@
  "Oui, presque tous les jours": [
   "pc-portables.html"
  ],
- "Oui. C’est le premier critère après l’usage réel.": [
-  "lexique-pc-portables.html"
+ "Outil · vous avez déjà un modèle en tête": [
+  "analyseur.html"
+ ],
+ "Outils": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
  ],
  "Outils du guide": [
   "a-propos.html",
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
- "Ouverture : nombre f": [
-  "lexique.html"
- ],
  "Ouvrez la fiche": [
   "smartphones.html"
- ],
- "Ouvrez la fiche du téléphone sur Amazon, Fnac, Darty… (dans Safari, pas dans l’application du marchand).": [
-  "capture.html"
- ],
- "Ouvrez n’importe quelle page, touchez <1>Partager</1> puis <2>Ajouter aux favoris</2>. Nommez-le « Analyser ce modèle » et enregistrez.": [
-  "capture.html"
- ],
- "Ouvrez vos favoris, touchez <1>Modifier</1>, puis le favori « Analyser ce modèle ».": [
-  "capture.html"
  ],
  "Ouvrir la recherche": [
   "a-propos.html",
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -4932,18 +3919,12 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "par": [
-  "lexique.html"
  ],
  "Parce que seuls trois modèles viennent avec des notes par critère, des mesures et des passages cités (banc d’essai). Les 21 autres sont repris des classements de la chaîne, sans note chiffrée : le guide cite leur rang et leur libellé, et n’invente aucune note.": [
   "ecouteurs.html"
@@ -4981,9 +3962,6 @@
  "Passer de 128 à 256 Go double surtout l’espace disponible. La vitesse dépend de la mémoire flash, du contrôleur et de la norme d’interface. Le numéro UFS concerne cette partie.": [
   "smartphones-approfondir.html"
  ],
- "PC": [
-  "lexique-pc-portables.html"
- ],
  "PC avec charge USB-C PD": [
   "batteries-externes.html"
  ],
@@ -5001,11 +3979,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -5017,24 +3992,12 @@
  "PD / PPS annoncé. Pour un Galaxy compatible, vérifier le câble et le mode de charge. La puissance se partage entre appareils.": [
   "batteries-externes.html"
  ],
- "perdre": [
-  "comparateur.html"
- ],
  "Performance": [
-  "comparateur.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
  "Performance soutenue": [
   "smartphones-approfondir.html"
- ],
- "Performances": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "PERFORMANCES": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Performances : dépasser le simple benchmark": [
   "smartphones-approfondir.html"
@@ -5054,15 +4017,11 @@
   "batteries-externes.html"
  ],
  "Photo": [
-  "comparateur.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
  "Photo : comprendre la chaîne de prise de vue": [
   "smartphones-approfondir.html"
- ],
- "Photo & vidéo": [
-  "lexique.html"
  ],
  "Photo correcte sans plus, pas d’indice d’étanchéité annoncé": [
   "smartphones.html"
@@ -5072,12 +4031,6 @@
  ],
  "Photo de la catégorie Projecteurs : <1>RTINGS.com, « The Best Projectors »</1>. Photographie réelle d’un projecteur XGIMI en fonctionnement dans leur salle de test, convertie en WebP. Crédit : RTINGS.com.": [
   "a-propos.html"
- ],
- "Photo et vidéo": [
-  "lexique.html"
- ],
- "PHOTO ET VIDÉO": [
-  "lexique.html"
  ],
  "Photo, montage vidéo, 3D. Les gros fichiers et les exports ne doivent pas vous faire attendre.": [
   "pc-portables.html"
@@ -5103,23 +4056,23 @@
  "Plafond avant frais": [
   "pc-portables.html"
  ],
+ "Plan du site": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
+ ],
  "plein jour": [
   "smartphones.html"
  ],
  "plein soleil": [
   "smartphones.html"
- ],
- "Plus de cœurs aident le montage et la compilation. Un cœur rapide aide la réactivité. Les deux ne sont pas le même besoin.": [
-  "lexique-pc-portables.html"
- ],
- "Plus de pixels fatiguent moins les yeux de près et aident le montage. Ils demandent aussi plus à la carte graphique en jeu.": [
-  "lexique-pc-portables.html"
- ],
- "Plus de TOPS n’est pas une note globale du portable.": [
-  "lexique-pc-portables.html"
- ],
- "Plus la luminance maximale est élevée, plus l’écran a de marge pour lutter contre une forte lumière ambiante. Mais les reflets, la gestion automatique et la surface de l’écran comptent aussi.": [
-  "lexique.html"
  ],
  "Plus le capteur est grand, plus chaque pixel reçoit de lumière : un capteur de 1/1,3″ à 50 MP peut battre un 1/2,76″ à 200 MP de nuit.": [
   "smartphones.html"
@@ -5133,14 +4086,8 @@
  "Plusieurs ports, une réserve partagée": [
   "batteries-externes.html"
  ],
- "POCO C85 : ≈ 150 €": [
-  "comparateur.html"
- ],
  "POCO X8 Pro": [
   "smartphones.html"
- ],
- "POCO X8 Pro : ≈ 349 €": [
-  "comparateur.html"
  ],
  "Podium": [
   "projecteurs.html"
@@ -5148,7 +4095,6 @@
  "Poids": [
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Poids →": [
@@ -5205,15 +4151,6 @@
  "Polyvalent": [
   "pc-portables.html"
  ],
- "portable": [
-  "lexique-pc-portables.html"
- ],
- "Ports": [
-  "lexique-pc-portables.html"
- ],
- "Posez le téléphone sur un support et il se recharge sans câble branché directement au téléphone. C’est pratique, mais la transmission d’énergie est moins directe qu’avec un câble.": [
-  "lexique.html"
- ],
  "Pour « étudier »": [
   "pc-portables.html"
  ],
@@ -5225,21 +4162,6 @@
  ],
  "Pour comparer": [
   "smartphones-approfondir.html"
- ],
- "Pour comparer, cherchez la plage de fréquence réellement utilisée et les mesures d’autonomie. Ne déduisez pas une durée de batterie à partir du seul mot LTPO.": [
-  "lexique.html"
- ],
- "Pour comparer, lisez l’ensemble de la fiche et privilégiez aussi des mesures indépendantes. Un mot de technologie ne permet pas à lui seul de prévoir la qualité d’affichage.": [
-  "lexique.html"
- ],
- "Pour comparer, observez des photos réelles et les caractéristiques du capteur et de l’objectif. Le nombre de Mpx est un indicateur de résolution, pas une note de qualité.": [
-  "lexique.html"
- ],
- "Pour comparer, regardez le modèle exact de la puce et des tests soutenus. Les benchmarks instantanés décrivent mal une charge longue comme le jeu ou le montage vidéo.": [
-  "lexique.html"
- ],
- "Pour comparer, vérifiez le nombre de profils, les lignes utilisables simultanément et les conditions de votre opérateur.": [
-  "lexique.html"
  ],
  "Pour comprendre pourquoi on vous recommande ce qu’on vous recommande, voici l’essentiel en trois idées. Le reste de la page détaille chaque critère.": [
   "pc-portables.html"
@@ -5256,15 +4178,8 @@
  "Pour finir": [
   "smartphones.html"
  ],
- "Pour l’audio, le codec influence la manière dont les données sont compressées et transmises.": [
-  "lexique.html"
- ],
  "Pour l’instant : flou d’arrière-plan, sous-titres, génération d’images locales. Pas un ordinateur plus rapide dans Excel.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Pour la création légère, un M5 ou un Arc récent suffit. Pour le jeu AAA, il faut une RTX et ses watts.": [
-  "lexique-pc-portables.html"
  ],
  "Pour les accessoires Bluetooth": [
   "smartphones-approfondir.html"
@@ -5286,15 +4201,6 @@
  ],
  "Pour photographier et créer, jugez la chaîne complète : capteur, optique, stabilisation, téléobjectif et traitement logiciel.": [
   "smartphones.html"
- ],
- "Pour un achat, vérifiez les bandes supportées par le modèle exact et la compatibilité opérateur. Un numéro de génération ne suffit pas.": [
-  "lexique.html"
- ],
- "Pour un PC gamer, lisez Hz et définition ensemble, puis la carte graphique. Pour un ultraportable, 60 Hz OLED vaut souvent mieux qu’un 120 Hz terne.": [
-  "lexique-pc-portables.html"
- ],
- "Pour un portrait ou un sujet distant, une vraie focale plus longue peut produire un résultat plus propre qu’un recadrage numérique extrême. La qualité dépend toutefois du capteur associé et de la stabilisation.": [
-  "lexique.html"
  ],
  "Pour un vol, j’ai relu les règles de chaque compagnie de mon trajet.": [
   "batteries-externes.html"
@@ -5338,12 +4244,6 @@
  "Pourquoi un casque dans un guide d’écouteurs ?": [
   "ecouteurs.html"
  ],
- "Préférez les Wh quand ils existent (36,5 Wh sur le MacBook Neo, souvent 60 à 80 Wh sur un 14–16 pouces, 99 Wh max en avion). Traitez les heures comme un plafond.": [
-  "lexique-pc-portables.html"
- ],
- "Prioritaire pour jouer. Secondaire pour écrire.": [
-  "lexique-pc-portables.html"
- ],
  "Priorité": [
   "pc-portables.html"
  ],
@@ -5375,9 +4275,6 @@
  "Prix en dollars, relevés aux États-Unis ; disponibilité et garantie en France non vérifiées.": [
   "ecouteurs.html"
  ],
- "Prix indicatif": [
-  "comparateur.html"
- ],
  "Prix indicatif d’environ 129 $ dans la source (marché américain). Prix et disponibilité en France non vérifiés.": [
   "ecouteurs.html"
  ],
@@ -5389,9 +4286,6 @@
  ],
  "prix non relevé": [
   "projecteurs.html"
- ],
- "Prix pour 512 Go minimum en Windows, 256 Go seulement si vous savez pourquoi. Vérifiez l’emplacement libre.": [
-  "lexique-pc-portables.html"
  ],
  "Prix relevés en octobre 2026": [
   "pc-portables.html"
@@ -5417,9 +4311,6 @@
  ],
  "Processeur ARM : vérifiez la compatibilité de vos logiciels": [
   "pc-portables.html"
- ],
- "Processeur et puce": [
-  "lexique.html"
  ],
  "Processeur, mémoire et carte graphique comptent : ils réduisent les temps d’attente.": [
   "pc-portables.html"
@@ -5467,10 +4358,6 @@
  "Profil en V d’origine, modifiable via l’égaliseur paramétrique 8 bandes ou l’interrupteur « Flat ».": [
   "ecouteurs.html"
  ],
- "Profils": [
-  "pc-portables.html",
-  "smartphones.html"
- ],
  "profils d’usage": [
   "smartphones.html"
  ],
@@ -5479,11 +4366,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -5499,19 +4383,11 @@
   "pc-portables.html"
  ],
  "Protection": [
-  "comparateur.html",
-  "lexique.html",
   "smartphones-approfondir.html",
   "smartphones.html"
  ],
- "PROTECTION": [
-  "lexique.html"
- ],
  "Puce": [
   "smartphones.html"
- ],
- "Puce A19 Pro · jusqu'à 12 Go de RAM": [
-  "comparateur.html"
  ],
  "Puce Anker AI : jusqu’à 100 dB de bruit ambiant éliminé, classement juste derrière les Galaxy Buds 4 Pro. <1>(Rang déduit de « classement juste derrière les Galaxy Buds 4 Pro ».)</1>": [
   "ecouteurs.html"
@@ -5551,30 +4427,6 @@
  ],
  "Qualité sonore": [
   "ecouteurs.html"
- ],
- "Quand ce point devient important": [
-  "lexique.html"
- ],
- "Quand un site bloque la lecture automatique, votre propre navigateur, lui, voit la page. Ce signet lit le nom du modèle sur la page ouverte et le transmet au guide. Rien n’est envoyé à un autre site : le guide s’ouvre avec le résultat.": [
-  "capture.html"
- ],
- "Quand une fiche affiche « OLED, 6,7 pouces, 120 Hz », vous n’avez pas besoin d’en connaître immédiatement toute la technologie. Commencez par comprendre ce que ces informations peuvent changer dans votre usage. Le lexique part de la situation concrète, puis remonte vers la technique lorsque celle-ci permet réellement de comparer.": [
-  "lexique.html"
- ],
- "Quand une fiche annonce 67 W ou 120 W, elle parle de la puissance de recharge maximale dans certaines conditions. Elle ne signifie pas que le téléphone reçoit cette puissance pendant toute la charge.": [
-  "lexique.html"
- ],
- "Quand une fiche parle de Snapdragon, Dimensity, Tensor, A ou d’une autre famille de puces, elle désigne le cœur informatique du téléphone. C’est lui qui coordonne une grande partie des calculs.": [
-  "lexique.html"
- ],
- "Quand vous lisez une page presque immobile, il n’est pas nécessaire de rafraîchir l’écran à 120 Hz. Lors d’un défilement, la fréquence peut remonter. Cette adaptation peut améliorer le compromis entre fluidité et autonomie.": [
-  "lexique.html"
- ],
- "Quand vous sortez au soleil, la question n’est plus « l’écran est il beau ? », mais « est ce que je lis encore ce qu’il affiche ? ». La luminosité mesure une partie de cette capacité.": [
-  "lexique.html"
- ],
- "Quand vous voyez IP67 ou IP68 dans une fiche, cherchez les conditions annoncées par le constructeur : profondeur, durée, type d’eau et exclusions de garantie.": [
-  "lexique.html"
  ],
  "Quatre façons d’utiliser un PC portable. Touchez la vôtre : on pré-remplit le questionnaire et on affiche tout de suite une recommandation.": [
   "pc-portables.html"
@@ -5618,14 +4470,11 @@
  "questions simples": [
   "pc-portables.html"
  ],
- "Qui sommes-nous ?": [
+ "Qui fait Guide·Achat, comment le guide est construit et vérifié, comment signaler une erreur, et le crédit des visuels.": [
   "a-propos.html"
  ],
  "RAM": [
   "smartphones.html"
- ],
- "RAM : mémoire vive": [
-  "lexique.html"
  ],
  "RAM du système": [
   "pc-portables.html"
@@ -5648,28 +4497,13 @@
  "Réactivité et confort de travail": [
   "pc-portables.html"
  ],
- "realme C67 : ≈ 150 €": [
-  "comparateur.html"
- ],
- "realme C75 : ≈ 169 €": [
-  "comparateur.html"
- ],
- "realme P3 5G : ≈ 230 €": [
-  "comparateur.html"
- ],
  "Recharge par USB-C : pratique en déplacement si elle est prise en charge": [
   "pc-portables.html"
- ],
- "Recharge rapide : watts": [
-  "lexique.html"
- ],
- "Recharge sans fil": [
-  "lexique.html"
  ],
  "Recharger la batterie elle-même": [
   "batteries-externes.html"
  ],
- "Recharges estimées": [
+ "Recharges": [
   "batteries-externes.html"
  ],
  "Recherche": [
@@ -5677,11 +4511,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -5692,11 +4523,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -5710,11 +4538,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -5725,18 +4550,12 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "Recommandation": [
-  "pc-portables.html"
  ],
  "Recommandation en 45 secondes · zéro jargon": [
   "pc-portables.html"
@@ -5804,17 +4623,8 @@
  "Regardez d’abord vos logiciels et vos autres appareils. Windows offre le plus large choix de machines et de jeux. macOS s’accorde avec l’iPhone et l’iPad. ChromeOS est simple et léger, mais très centré sur le web.": [
   "pc-portables.html"
  ],
- "Regardez définition + diagonale. Un 18 pouces en 2560 × 1600 est cohérent. Un 16 pouces en 1920 × 1080 est juste.": [
-  "lexique-pc-portables.html"
- ],
- "Regardez la norme Wi Fi annoncée, puis vérifiez que votre routeur la supporte réellement.": [
-  "lexique.html"
- ],
  "Regardez séparément les mises à jour majeures du système et les correctifs de sécurité. Une promesse de durée est utile seulement si elle commence à la date réelle de prise en charge du modèle.": [
   "smartphones-approfondir.html"
- ],
- "Regardez si le chargeur est fourni, la puissance réellement supportée et, surtout, le temps nécessaire pour atteindre 50 %, 80 % ou 100 % selon votre usage.": [
-  "lexique.html"
  ],
  "Regardez trois scènes : un visage en intérieur, une scène nocturne et un contre jour. Puis regardez une photo avec un sujet en mouvement. Ces situations révèlent rapidement les limites du système photo.": [
   "smartphones-approfondir.html"
@@ -5833,10 +4643,6 @@
  ],
  "Réparation": [
   "smartphones-approfondir.html"
- ],
- "Réponses courtes affichées par défaut.": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Réseau": [
   "smartphones-approfondir.html",
@@ -5860,9 +4666,6 @@
  "Résumé de vidéos smartphones 2026 : Android Police, The Tech Chap, Versus, Tech Spurt (dossier de synthèse : <1>Les tests 2026</1>)": [
   "smartphones.html"
  ],
- "Revenir au mode simple": [
-  "lexique-pc-portables.html"
- ],
  "Roi de la colline : le vainqueur d’un duel reste en piste et affronte un nouveau projecteur. Image comparée en simultané sur deux écrans de 100 pouces dans une pièce totalement noire.": [
   "projecteurs.html"
  ],
@@ -5874,13 +4677,6 @@
  ],
  "Roseselsa Ceramics Ultra <1>Couverture solide</1>": [
   "ecouteurs.html"
- ],
- "RTX 5060 : jeu en 1080p élevé. RTX 5070 : cran au-dessus, surtout en QHD. RTX 5090 portable : remplacement de tour, si les watts suivent. 100 W et 175 W ne sont pas la même carte, même nom.": [
-  "lexique-pc-portables.html"
- ],
- "Rubriques du lexique": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Salon et sport": [
   "projecteurs.html"
@@ -5894,20 +4690,11 @@
  "Samsung Galaxy A17 <1>199 $</1>": [
   "smartphones.html"
  ],
- "Samsung Galaxy A17 5G": [
-  "comparateur.html"
- ],
- "Samsung Galaxy A17 5G : ≈ 199 €": [
-  "comparateur.html"
- ],
  "Samsung Galaxy A37 <1>449 $</1>": [
   "smartphones.html"
  ],
  "Samsung Galaxy A56": [
   "smartphones.html"
- ],
- "Samsung Galaxy A56 : ≈ 300 €": [
-  "comparateur.html"
  ],
  "Samsung Galaxy A57 <1>549 $</1>": [
   "smartphones.html"
@@ -5921,19 +4708,11 @@
  "Samsung Galaxy S25 5G": [
   "smartphones.html"
  ],
- "sans": [
-  "comparateur.html",
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
  "Sans fil : vérifier la compatibilité": [
   "batteries-externes.html"
  ],
  "Sans jargon": [
   "pc-portables.html"
- ],
- "sans stabilisation optique": [
-  "comparateur.html"
  ],
  "SBC, AAC, LDAC, LHDC 5.0": [
   "ecouteurs.html"
@@ -5947,10 +4726,6 @@
  "Score source 90,3 / 100": [
   "ecouteurs.html"
  ],
- "se": [
-  "comparateur.html",
-  "lexique.html"
- ],
  "se remplit vite": [
   "pc-portables.html"
  ],
@@ -5958,6 +4733,7 @@
   "pc-portables.html"
  ],
  "Sections": [
+  "batteries-externes.html",
   "ecouteurs.html",
   "pc-portables.html",
   "projecteurs.html",
@@ -5965,17 +4741,12 @@
   "smartphones.html"
  ],
  "Sections de la page": [
+  "batteries-externes.html",
   "ecouteurs.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
   "smartphones.html"
- ],
- "Sélectionné : touchez « Copier » dans le menu qui s’affiche.": [
-  "capture.html"
- ],
- "Sélectionnez au moins 2 modèles pour afficher la comparaison. Vous pouvez en sélectionner jusqu'à 5.": [
-  "comparateur.html"
  ],
  "Sennheiser Momentum TW4": [
   "ecouteurs.html"
@@ -5998,17 +4769,17 @@
  "Seulement si le fabricant confirme la charge traversante (« passthrough ») sur cette référence. Elle ne remplace pas automatiquement une alimentation de secours sans interruption.": [
   "batteries-externes.html"
  ],
- "Si la ligne carte graphique répète le nom du processeur, ou dit Intel Arc / Radeon / Apple, c’est intégré.": [
-  "lexique-pc-portables.html"
- ],
- "Si vos accessoires sont importants, vérifiez les profils et codecs pris en charge plutôt que la seule version Bluetooth.": [
-  "lexique.html"
- ],
- "Si vos mains bougent légèrement pendant la photo, la stabilisation optique déplace physiquement une partie du système optique ou du capteur pour compenser ce mouvement.": [
-  "lexique.html"
- ],
- "Si vous utilisez le paiement mobile, vérifiez la présence du NFC et la compatibilité avec le service que vous utilisez.": [
-  "lexique.html"
+ "Signaler une erreur": [
+  "a-propos.html",
+  "actualites.html",
+  "analyseur.html",
+  "batteries-externes.html",
+  "ecouteurs.html",
+  "index.html",
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones-approfondir.html",
+  "smartphones.html"
  ],
  "Signature sonore": [
   "ecouteurs.html"
@@ -6045,11 +4816,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -6067,15 +4835,8 @@
  "Snapdragon": [
   "smartphones.html"
  ],
- "Snapdragon 6 Gen 3 · jusqu'à 12 Go de RAM": [
-  "comparateur.html"
- ],
  "Snapdragon 8 Elite Extreme Gen 6": [
   "smartphones.html"
- ],
- "Sommaire": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Son d’origine très dynamique, certifié Metal ; égaliseur 10 bandes efficace pour adoucir les aigus durs.": [
   "ecouteurs.html"
@@ -6100,7 +4861,6 @@
   "ecouteurs.html"
  ],
  "Sous 1,3 kg, on l’oublie dans le sac. Vers 1,6 kg, on le sent. Au-delà de 2,2 kg, c’est un poste fixe qu’on déplace parfois.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Sous 150 € : le Moto G06 Power (7 000 <1>mAh</1>, mais charge 18 W).": [
@@ -6125,14 +4885,9 @@
   "ecouteurs.html"
  ],
  "sRGB et DCI-P3": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
- "sRGB suffit pour le web et Office. DCI-P3, plus large, sert au montage et à l’impression si l’écran est calibré.": [
-  "lexique-pc-portables.html"
- ],
  "SSD, eMMC, UFS": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Stabilisation": [
@@ -6140,7 +4895,6 @@
   "smartphones.html"
  ],
  "Stockage": [
-  "lexique.html",
   "pc-portables.html",
   "smartphones-approfondir.html",
   "smartphones.html"
@@ -6175,49 +4929,17 @@
  "Suivi logiciel très long": [
   "smartphones.html"
  ],
- "Sur Apple, la mémoire est unifiée : processeur et graphique la partagent. 8 Go sur le MacBook Neo sont donc partagés, pas réservés au système.": [
-  "lexique-pc-portables.html"
- ],
  "Sur la fiche produit": [
   "pc-portables.html"
- ],
- "Sur la fiche produit, cherchez la valeur annoncée en nits. Pour une comparaison sérieuse, vérifiez si elle correspond à une mesure durable ou à un pic atteint dans une zone limitée de l’écran.": [
-  "lexique.html"
- ],
- "Sur la fiche produit, notez OLED ou AMOLED, puis cherchez la luminosité maximale, la fréquence de rafraîchissement et la prise en charge HDR. Le nom de la dalle ne suffit pas pour comparer deux téléphones.": [
-  "lexique.html"
- ],
- "Sur la fiche, cherchez la fréquence maximale et surtout la gestion adaptative. Un écran peut passer de 120 Hz à une fréquence plus basse lorsque la scène est statique pour économiser de l’énergie.": [
-  "lexique.html"
- ],
- "Sur la fiche, cherchez la génération de verre annoncée puis regardez le prix de remplacement de l’écran si cette information est disponible.": [
-  "lexique.html"
- ],
- "Sur la fiche, cherchez le nombre de caméras, leurs focales et les niveaux de zoom annoncés. Un téléphone peut annoncer un zoom élevé tout en utilisant du recadrage numérique au delà de son téléobjectif réel.": [
-  "lexique.html"
- ],
- "Sur la fiche, regardez la capacité disponible et la possibilité ou non d’ajouter une carte mémoire. Cette dernière information peut changer complètement le choix.": [
-  "lexique.html"
- ],
- "Sur la fiche, utilisez les mAh pour comparer des appareils proches, puis regardez surtout des tests d’autonomie réelle. Le chiffre seul ne permet pas de dire « tient deux jours ».": [
-  "lexique.html"
  ],
  "Sur Mac, la mémoire est unifiée et non extensible : choisissez la bonne quantité à l’achat": [
   "pc-portables.html"
  ],
- "Sur un OLED, le noir d’une lettre est vraiment éteint. Sur un IPS, le noir tire vers le gris, surtout dans le noir complet.": [
-  "lexique-pc-portables.html",
+ "Sur mesure": [
   "pc-portables.html"
  ],
- "Sur une fiche produit": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "Sur une fiche produit, vérifiez surtout les bandes 5G utiles dans votre pays et la compatibilité avec votre opérateur.": [
-  "lexique.html"
- ],
- "Sur une vidéo compatible, vous pouvez voir plus de détails dans une lampe très brillante tout en conservant des informations dans une ombre. Il faut que le téléphone, l’écran et le contenu soient tous compatibles.": [
-  "lexique.html"
+ "Sur un OLED, le noir d’une lettre est vraiment éteint. Sur un IPS, le noir tire vers le gris, surtout dans le noir complet.": [
+  "pc-portables.html"
  ],
  "Synthèse de cinq vidéos de quatre chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.": [
   "smartphones.html"
@@ -6257,9 +4979,6 @@
  "Technics EAH-AZ100": [
   "ecouteurs.html"
  ],
- "technique": [
-  "lexique.html"
- ],
  "Technologie": [
   "pc-portables.html"
  ],
@@ -6281,30 +5000,14 @@
  "Téléphone et tablette": [
   "batteries-externes.html"
  ],
- "Temps de lecture estimé : 2 minutes": [
-  "lexique-pc-portables.html"
- ],
- "Temps de lecture estimé : 3 minutes": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "Temps de lecture estimé : 4 minutes": [
-  "lexique.html"
- ],
- "Temps de lecture estimé : 5 minutes": [
-  "lexique-pc-portables.html",
-  "lexique.html"
- ],
- "Temps de lecture estimé : 7 minutes": [
-  "lexique.html"
- ],
  "Temps loin d’une prise": [
   "batteries-externes.html"
  ],
  "Test thermique favorable": [
   "smartphones.html"
  ],
- "Tests 2026": [
+ "Tests": [
+  "projecteurs.html",
   "smartphones.html"
  ],
  "Tests 2026 : 12 modèles ajoutés au dossier": [
@@ -6346,9 +5049,6 @@
  ],
  "Total annoncé": [
   "batteries-externes.html"
- ],
- "Touchez la barre d’adresse, puis votre favori « Analyser ce modèle » : le guide s’ouvre et analyse le modèle lu.": [
-  "capture.html"
  ],
  "Touchez un choix : le schéma bouge, et deux lignes disent ce que vous gagnez et ce que vous acceptez.": [
   "smartphones.html"
@@ -6397,11 +5097,8 @@
   "actualites.html",
   "analyseur.html",
   "batteries-externes.html",
-  "comparateur.html",
   "ecouteurs.html",
   "index.html",
-  "lexique-pc-portables.html",
-  "lexique.html",
   "pc-portables.html",
   "projecteurs.html",
   "smartphones-approfondir.html",
@@ -6467,15 +5164,6 @@
  "Type de produit": [
   "analyseur.html"
  ],
- "UFS : technologie de stockage": [
-  "lexique.html"
- ],
- "UFS devient intéressant surtout pour les téléphones puissants, le jeu et les transferts fréquents. Pour un usage simple, la différence peut rester peu visible.": [
-  "lexique.html"
- ],
- "UFS signifie Universal Flash Storage. La norme définit une interface et des mécanismes de fonctionnement pour la mémoire flash interne.": [
-  "lexique.html"
- ],
  "UGREEN Nexode · 12K 100W": [
   "batteries-externes.html"
  ],
@@ -6493,9 +5181,6 @@
  ],
  "Un « jusqu’à 50 dB » sans bande de fréquence": [
   "ecouteurs.html"
- ],
- "Un 16 pouces léger (Zenbook A16 à 1,2 kg) sacrifie parfois les ports et la réparation. Un 16 pouces à 2,7 kg assume les watts.": [
-  "lexique-pc-portables.html"
  ],
  "Un aperçu des priorités. L’analyse d’un modèle précis se fait dans le guide.": [
   "index.html"
@@ -6518,9 +5203,6 @@
  "Un disque externe reste pratique pour les archives volumineuses": [
   "pc-portables.html"
  ],
- "Un écran doit pouvoir représenter des niveaux de luminance et de couleur suffisants pour rendre l’écart entre ombres et hautes lumières.": [
-  "lexique.html"
- ],
  "Un écran ne se juge pas dans l’absolu": [
   "smartphones-approfondir.html"
  ],
@@ -6533,34 +5215,14 @@
  "Un fabricant peut écrire « 1 200 lumens » sur la boîte. Mesuré à la norme ANSI sur 9 points, l’Elephas W1K en donne 612. Seuls NexiGo et Arzen disent vrai.": [
   "projecteurs.html"
  ],
- "Un grand nombre de pixels sur une petite surface peut aussi réduire la taille individuelle des photosites.": [
-  "lexique.html"
- ],
- "Un grand nombre ne dit pas si l’image est lumineuse, ni si le temps de réponse est vraiment bas.": [
-  "lexique-pc-portables.html"
- ],
- "Un guide indépendant pour comprendre si un produit correspond à votre quotidien.": [
-  "actualites.html",
-  "index.html"
- ],
- "Un impact localisé sur une arête concentre fortement les contraintes et peut provoquer une rupture malgré un verre renforcé.": [
-  "lexique.html"
- ],
  "Un indice IP renseigne sur des conditions de protection définies. Il n’empêche ni les chocs ni le vieillissement des joints. La protection est un élément de risque, pas une promesse d’invulnérabilité.": [
   "smartphones-approfondir.html"
  ],
  "Un jeu récent saccade, ou un export 3D dure une éternité, quand il n’y a pas de carte dédiée ou qu’elle est bridée.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Un mégapixel correspond à un million de pixels. La résolution ne doit pas être confondue avec la quantité de lumière captée.": [
-  "lexique.html"
  ],
  "Un modèle en tête, ou pas encore ?": [
   "smartphones.html"
- ],
- "Un modèle est sélectionné. Choisissez-en un deuxième pour afficher les différences.": [
-  "comparateur.html"
  ],
  "Un mot vous échappe ?": [
   "pc-portables.html"
@@ -6568,14 +5230,14 @@
  "Un mot vous échappe ? Le <1>lexique</1> l’explique pas à pas.": [
   "smartphones.html"
  ],
- "Un nit est une candela par mètre carré. C’est une luminosité, pas une qualité d’image.": [
-  "lexique-pc-portables.html"
- ],
  "Un OLED produit la lumière au niveau de chaque pixel, ce qui permet d’éteindre les pixels noirs. Un LCD utilise un rétroéclairage commun derrière la dalle. Le contraste dans les scènes sombres peut donc être très différent, mais d’autres paramètres comptent également.": [
   "smartphones-approfondir.html"
  ],
  "Un pack 8 Go / 512 Go existe au même prix : lisez la fiche avant de commander": [
   "pc-portables.html"
+ ],
+ "Un parcours par catégorie": [
+  "a-propos.html"
  ],
  "Un PC n’est pas bon « en général » : l’usage décide de ce qui compte (poids, puissance, écran). C’est la réponse qui pèse le plus dans notre recommandation.": [
   "pc-portables.html"
@@ -6592,25 +5254,11 @@
  "Un PC vous tente déjà ?": [
   "pc-portables.html"
  ],
- "Un petit capteur de téléobjectif peut devenir limité en faible lumière, même si la focale est intéressante.": [
-  "lexique.html"
- ],
  "Un prix bas ne peut pas, seul, porter une note.": [
   "projecteurs.html"
  ],
  "Un projecteur à petit prix, <1>sans promesses gonflées</1>": [
   "projecteurs.html"
- ],
- "Un second emplacement M.2 permet d’ajouter un SSD. Beaucoup d’ultraportables n’en ont qu’un, parfois soudé.": [
-  "lexique-pc-portables.html"
- ],
- "Un seul port peut servir à charger et à l’écran. Il n’en reste alors plus pour la souris, sauf hub.": [
-  "lexique-pc-portables.html"
- ],
- "Un site bloque la lecture ? Capturez la fiche depuis votre navigateur.": [
-  "analyseur.html",
-  "pc-portables.html",
-  "smartphones.html"
  ],
  "Un smartphone": [
   "index.html"
@@ -6618,26 +5266,11 @@
  "Un smartphone sur une table claire": [
   "index.html"
  ],
- "Un Snapdragon récent n’est pas un Intel. Le nom Windows 11 ne garantit pas chaque jeu ou chaque driver.": [
-  "lexique-pc-portables.html"
- ],
  "Un système en particulier ?": [
   "pc-portables.html"
  ],
- "Un téléobjectif permet de cadrer un sujet éloigné sans simplement agrandir les pixels de l’image principale. C’est très différent d’un zoom numérique.": [
-  "lexique.html"
- ],
- "Un téléphone à 200 Mpx peut regrouper plusieurs pixels en un seul cliché dans des conditions normales. La qualité finale dépend aussi du capteur, de l’objectif et du traitement logiciel.": [
-  "lexique.html"
- ],
  "Un téléphone à tenir jusqu’au soir, un week-end sans prise ou un PC à alimenter : choisissez la réserve et la puissance utiles à vos appareils.": [
   "batteries-externes.html"
- ],
- "Un téléphone compatible 5G ne garantit pas qu’il exploitera toutes les bandes d’un opérateur.": [
-  "lexique.html"
- ],
- "Un téléphone de 128 Go peut convenir pendant plusieurs années à un usage modéré. Si vous filmez beaucoup en haute résolution ou gardez beaucoup de jeux, l’espace peut disparaître bien plus vite.": [
-  "lexique.html"
  ],
  "Un téléphone peut rester utilisable tout en devenant moins intéressant : fin du suivi logiciel, batterie dégradée, stockage insuffisant ou réparation trop coûteuse peuvent écourter sa durée pratique.": [
   "smartphones-approfondir.html"
@@ -6645,33 +5278,17 @@
  "Un téléphone presque plein doit gérer davantage de fichiers et peut avoir moins de marge pour certaines opérations temporaires. Cela ne signifie pas qu’un téléphone plein devient automatiquement lent, mais la marge confortable diminue.": [
   "smartphones-approfondir.html"
  ],
- "Un téléphone presque plein peut aussi perdre du confort lors des mises à jour et de la gestion des fichiers.": [
-  "lexique.html"
- ],
  "Un téléphone qui vous accompagne": [
   "smartphones.html"
  ],
- "Un téléphone très rapide sur le papier ne fera pas disparaître un routeur ancien ou un réseau saturé. Pour le jeu, la stabilité et la latence peuvent compter davantage que le débit maximal.": [
-  "lexique.html"
- ],
- "Un terme technique devient utile lorsqu’il répond à une question concrète.": [
-  "lexique.html"
- ],
  "Un total de 130 W ne signifie pas 130 W par port. Consultez le tableau de répartition : brancher un deuxième appareil peut réduire la puissance du premier.": [
   "batteries-externes.html"
- ],
- "Un Ultra 9 dans un châssis fin peut être bridé par la chaleur. Le nom ne dit pas la puissance tenue.": [
-  "lexique-pc-portables.html"
  ],
  "Un vidéoprojecteur en fonctionnement dans une salle de test": [
   "index.html"
  ],
  "Un week-end ou plusieurs appareils": [
   "batteries-externes.html"
- ],
- "une": [
-  "lexique-pc-portables.html",
-  "lexique.html"
  ],
  "Une batterie de 100 W risque-t-elle de surcharger mon téléphone ?": [
   "batteries-externes.html"
@@ -6682,9 +5299,6 @@
  "Une batterie remplaçable, des pièces disponibles et un écran réparable prolongent la valeur pratique de l’appareil. Quand une information de réparation existe, elle mérite sa place dans la comparaison.": [
   "smartphones-approfondir.html"
  ],
- "Une capacité plus élevée augmente souvent le potentiel d’autonomie mais aussi le volume et la masse possibles de la batterie.": [
-  "lexique.html"
- ],
  "Une carte graphique dédiée devient nécessaire, avec un bon refroidissement.": [
   "pc-portables.html"
  ],
@@ -6694,53 +5308,14 @@
  "Une erreur ou une suggestion ? <1>Signalez-la sur GitHub</1> (un compte GitHub est nécessaire).": [
   "a-propos.html"
  ],
- "Une eSIM est un élément sécurisé intégré à l’appareil qui stocke et gère un profil opérateur.": [
-  "lexique.html"
- ],
- "Une eSIM remplace la petite carte SIM physique par un profil opérateur chargé directement dans le téléphone. Pour certaines personnes, cela simplifie un voyage ou l’utilisation de deux lignes.": [
-  "lexique.html"
- ],
- "Une forte luminance augmente généralement la consommation lorsqu’elle est maintenue. Les mesures dépendent aussi de la surface blanche affichée et du contrôle thermique.": [
-  "lexique.html"
- ],
- "Une fréquence variable permet de réduire les renouvellements lorsque l’image change peu et de remonter lorsque le contenu devient dynamique.": [
-  "lexique.html"
- ],
- "Une grande quantité de RAM peut ne rien apporter à un usage léger si le système n’en a pas besoin.": [
-  "lexique.html"
- ],
- "Une grosse batterie dans un PC gamer n’offre pas une journée de jeu. Elle offre un trajet.": [
-  "lexique-pc-portables.html"
- ],
  "Une journée": [
   "batteries-externes.html"
- ],
- "Une mémoire plus rapide peut réduire certains temps de copie, d’installation et de chargement. Ce n’est pas le même sujet que passer de 128 à 256 Go.": [
-  "lexique.html"
- ],
- "Une ouverture plus grande laisse généralement entrer davantage de lumière et peut aider en faible luminosité. Elle influence aussi la profondeur de champ, même si le traitement logiciel des smartphones joue un rôle important.": [
-  "lexique.html"
- ],
- "Une partie de l’énergie se perd sous forme de chaleur et l’électronique contrôle la puissance en fonction de l’alignement, de la température et de l’état de charge.": [
-  "lexique.html"
  ],
  "Une photo est le résultat de plusieurs étapes": [
   "smartphones-approfondir.html"
  ],
  "Une prise USB-C ne garantit pas la charge rapide. Batterie, appareil et câble doivent partager le bon protocole. PPS permet un ajustement fin de la tension sur les appareils compatibles.": [
   "batteries-externes.html"
- ],
- "Une puce mobile regroupe généralement des cœurs CPU, un GPU, des blocs spécialisés, un contrôleur mémoire, des fonctions multimédias et des interfaces de communication.": [
-  "lexique.html"
- ],
- "Une puce peut obtenir un score élevé pendant une courte période puis réduire sa fréquence lorsqu’elle chauffe.": [
-  "lexique.html"
- ],
- "Une puce rapide réduit les temps d’attente pour les applications lourdes, le traitement photo et certaines fonctions d’intelligence artificielle. Pour le jeu, sa partie graphique compte également.": [
-  "lexique.html"
- ],
- "Une recharge très puissante génère davantage de chaleur et doit être gérée pour préserver la batterie.": [
-  "lexique.html"
  ],
  "Une seule source et trois modèles : ce n’est pas un classement du marché, c’est une sélection testée.": [
   "ecouteurs.html"
@@ -6754,30 +5329,20 @@
  "Uniformité la plus faible des modèles mesurés (58 %)": [
   "projecteurs.html"
  ],
- "Usage": [
-  "lexique-pc-portables.html"
- ],
- "USAGE": [
-  "lexique-pc-portables.html"
- ],
  "Usage média / Transport": [
   "ecouteurs.html"
  ],
  "Usages": [
   "ecouteurs.html",
-  "projecteurs.html"
+  "pc-portables.html",
+  "projecteurs.html",
+  "smartphones.html"
  ],
  "USB-C intégré + USB-C + USB-A": [
   "batteries-externes.html"
  ],
- "USB-C n’implique pas le même débit ni la charge.": [
-  "lexique-pc-portables.html"
- ],
  "USB-C PD et PPS": [
   "batteries-externes.html"
- ],
- "Utiliser": [
-  "capture.html"
  ],
  "Utilisez cette page lorsque deux modèles se ressemblent et que la fiche technique ne suffit plus. Pour la méthode d’achat, revenez au <1>guide pratique</1>. Pour décoder un terme précis, utilisez le <2>lexique</2>.": [
   "smartphones-approfondir.html"
@@ -6797,17 +5362,8 @@
  "Verdict de la vidéo": [
   "projecteurs.html"
  ],
- "Vérifiez cette caractéristique surtout si elle répond à un besoin précis : extérieur, jeu, photo, autonomie, accessoires ou durée de vie.": [
-  "lexique.html"
- ],
  "Vérifiez les profils et codecs lorsqu’ils sont importants pour votre usage. La version Bluetooth seule ne décrit pas toute l’expérience audio.": [
   "smartphones-approfondir.html"
- ],
- "Vérifiez toujours la compatibilité entre le modèle exact, votre opérateur et le pays dans lequel vous utiliserez la ligne.": [
-  "lexique.html"
- ],
- "Verre renforcé": [
-  "lexique.html"
  ],
  "Version Asie : 8 000 mAh": [
   "smartphones.html"
@@ -6849,17 +5405,11 @@
  "Voir le classement →": [
   "projecteurs.html"
  ],
- "Voir le code du signet": [
-  "capture.html"
- ],
  "Voir le produit": [
   "smartphones.html"
  ],
  "Voir les 65 autres modèles →": [
   "pc-portables.html"
- ],
- "Voir les caractéristiques ↓": [
-  "smartphones.html"
  ],
  "Voir les classements →": [
   "ecouteurs.html"
@@ -6918,39 +5468,17 @@
  "VOUS": [
   "index.html"
  ],
- "Vous avez déjà repéré un modèle": [
-  "analyseur.html"
- ],
  "Vous cherchez quoi ?": [
   "index.html"
  ],
  "Vous le voyez quand dix onglets, un appel vidéo et un tableur sont ouverts en même temps, ou quand un export rame.": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Vous pouvez laisser cette question sans réponse.": [
   "smartphones.html"
  ],
- "Vous pouvez parfois activer une ligne à distance ou ajouter un forfait temporaire sans ouvrir le téléphone. Les possibilités dépendent de l’appareil et de l’opérateur.": [
-  "lexique.html"
- ],
- "Vous pouvez voir f/1.8, f/1.6 ou f/2.4 dans les caractéristiques photo. Le nombre f décrit l’ouverture relative de l’objectif.": [
-  "lexique.html"
- ],
- "Vous quittez votre navigateur, ouvrez une messagerie puis revenez à votre document. Une gestion mémoire efficace peut conserver l’état des applications. Plus de RAM n’annule toutefois pas les limites du logiciel.": [
-  "lexique.html"
- ],
- "Vous verrez parfois UFS 3.1 ou UFS 4.0 dans les caractéristiques. Ce terme décrit la technologie utilisée pour le stockage interne, pas la quantité de stockage.": [
-  "lexique.html"
- ],
  "Vous voulez comprendre pourquoi on vous recommande ce PC ? Explorez les critères : c’est facultatif. Un critère est déjà ouvert pour vous montrer comment ça marche ; touchez les autres au besoin. Les démos comparent des cas types ; les valeurs affichées sont indicatives.": [
   "pc-portables.html"
- ],
- "Vous voyez souvent LTPO à côté de 1 à 120 Hz ou d’une autre plage variable. L’idée importante est simple : l’écran peut adapter sa fréquence au contenu au lieu de rester bloqué sur une seule valeur.": [
-  "lexique.html"
- ],
- "Vous voyez un noir très profond, des zones lumineuses qui ressortent fortement et souvent un contraste marqué. C’est l’effet le plus facile à observer d’un écran OLED : chaque pixel produit sa propre lumière, au lieu de laisser une lumière derrière toute l’image.": [
-  "lexique.html"
  ],
  "Vous, c’est plutôt…": [
   "index.html"
@@ -6982,15 +5510,8 @@
  "Wh : comparer l’énergie": [
   "batteries-externes.html"
  ],
- "Wh = capacité. Heures = résultat d’un scénario, pas une propriété de la batterie.": [
-  "lexique-pc-portables.html"
- ],
  "Wh et heures annoncées": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
- ],
- "Wi Fi": [
-  "lexique.html"
  ],
  "Wi-Fi 5 seulement": [
   "pc-portables.html"
@@ -6998,51 +5519,22 @@
  "Windows": [
   "pc-portables.html"
  ],
- "Windows fait tout, y compris le jeu. macOS tient longtemps et verrouille la réparation. ChromeOS suffit aux cours en ligne et bloque la plupart des logiciels lourds. Windows sur Arm (Snapdragon) exige encore de vérifier les applications.": [
-  "lexique-pc-portables.html"
- ],
  "Windows, macOS ou ChromeOS ?": [
   "pc-portables.html"
  ],
  "Windows, macOS, ChromeOS": [
-  "lexique-pc-portables.html",
   "pc-portables.html"
  ],
  "Xiaomi : fiches techniques officielles": [
   "smartphones.html"
  ],
  "Xiaomi 15T": [
-  "comparateur.html",
   "smartphones.html"
- ],
- "Xiaomi 15T : ≈ 430 €": [
-  "comparateur.html"
- ],
- "Xiaomi Redmi Note 14 5G : ≈ 250 €": [
-  "comparateur.html"
- ],
- "Xiaomi Redmi Note 15 4G": [
-  "comparateur.html"
- ],
- "Xiaomi Redmi Note 15 4G : ≈ 199 €": [
-  "comparateur.html"
- ],
- "Xiaomi Redmi Note 15 5G": [
-  "comparateur.html"
- ],
- "Xiaomi Redmi Note 15 5G : ≈ 250 €": [
-  "comparateur.html"
  ],
  "Zone raisonnable pour un PC polyvalent avec 16 Go de RAM et 512 Go de SSD.": [
   "pc-portables.html"
  ],
  "Zoom": [
   "smartphones.html"
- ],
- "Zoom optique et téléobjectif": [
-  "lexique.html"
- ],
- "ZTE Blade V70 Vita : ≈ 92 €": [
-  "comparateur.html"
  ]
 }

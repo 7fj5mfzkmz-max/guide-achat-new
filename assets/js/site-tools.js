@@ -121,9 +121,9 @@
 
     var savedTheme = null;
     try { savedTheme = localStorage.getItem("guide-achat-theme"); } catch (e) {}
-    var isHome = (document.body && document.body.classList.contains("home")) || root.classList.contains("dual");
-    var fallback = isHome ? ((window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light") : "dark";
-    applyTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : (isHome ? fallback : "dark"));
+    /* Même règle sur toutes les pages : le choix mémorisé, sinon celui du système. */
+    var systemTheme = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    applyTheme(savedTheme === "light" || savedTheme === "dark" ? savedTheme : systemTheme);
 
     if (themeButton) {
       themeButton.addEventListener("click", function (event) {
@@ -131,7 +131,8 @@
         event.stopPropagation();
         var next = root.classList.contains("dark-theme") ? "light" : "dark";
         applyTheme(next);
-        var mt = document.querySelector('meta[name="theme-color"]'); if (mt) mt.setAttribute("content", next === "dark" ? "#060908" : "#f5ead8");
+        var bg = getComputedStyle(document.body).backgroundColor;
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute("content", bg); });
         try { localStorage.setItem("guide-achat-theme", next); } catch (e) {}
       }, false);
     }
@@ -179,8 +180,9 @@
       { url: "index.html", label: "Accueil" },
       { url: "batteries-externes.html", label: "Batteries externes" },
       { url: "smartphones.html", label: "Smartphones" },
-      { url: "lexique.html", label: "Lexique" },
-      { url: "comparateur.html", label: "Comparateur" },
+      { url: "pc-portables.html", label: "PC portables" },
+      { url: "ecouteurs.html", label: "Écouteurs Bluetooth" },
+      { url: "projecteurs.html", label: "Projecteurs" },
       { url: "smartphones-approfondir.html", label: "Smartphones · détails techniques" },
       { url: "actualites.html", label: "Mises à jour du site : nouveaux produits, tests et guides" }
     ];
