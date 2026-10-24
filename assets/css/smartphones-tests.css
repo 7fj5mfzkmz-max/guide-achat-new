@@ -1,4 +1,4 @@
-/* Section « Les tests 2026 » (page Smartphones) : duel, records, jeu, gamme Samsung, Pixel, choix par profil.
+/* Section « Les tests 2026 » (page Smartphones) : records, jeu, gamme Samsung, choix par profil.
    Variables du design-system (clair / sombre) ; aucune couleur de fond de page n'est redéfinie. */
 #tests-2026 { --st-good: #2f8f5b; --st-bad: #c8452f; --st-dark: #0f1115; }
 .dark-theme #tests-2026 { --st-good: #46b57a; --st-bad: #ec6a53; }
@@ -13,17 +13,6 @@
 .st-src { margin: 16px 0 0; font-size: 13px; color: var(--ink-mute); }
 .st-panel { padding: clamp(14px, 2.4vw, 24px); border: 1px solid var(--ink); background: var(--paper-2); box-shadow: var(--shadow); }
 .st-price { margin: 4px 0 8px; font: 700 14px var(--mono); } .st-price-inline { font: 600 12px var(--mono); color: var(--ink-mute); white-space: nowrap; }
-/* Silhouette */
-.st-phone { width: 78px; height: auto; display: block; margin: 0 auto 8px; animation: stFloat 5s ease-in-out infinite; }
-.st-body { fill: var(--paper-2); stroke: var(--ink); stroke-width: 4; } .st-screen { fill: var(--st-dark); } .st-cam { fill: var(--ink-mute); } .st-bar { stroke: #fff; stroke-width: 3; stroke-linecap: round; opacity: .5; }
-.st-glow { fill: var(--accent); opacity: .5; animation: stGlow 3s ease-in-out infinite alternate; } .st-phone.is-b { animation-delay: -2.4s; } .st-phone.is-b .st-glow { fill: #8fb4ff; }
-@keyframes stFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } } @keyframes stGlow { from { opacity: .25; } to { opacity: .7; } }
-/* Duel */
-.st-duel-head { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: end; text-align: center; margin-bottom: 14px; } .st-side h3 { margin: 0; font: 800 clamp(16px, 2vw, 21px)/1.15 var(--head); text-transform: none; } .st-vs { font: 800 18px var(--head); color: var(--ink-mute); padding-bottom: 18px; }
-.st-duel-rows { border: 1px solid var(--ink); } .st-row { display: grid; grid-template-columns: 150px 1fr 1fr; gap: 0; border-top: 1px solid var(--line-soft); } .st-row:first-child { border-top: 0; } .st-row > strong { padding: 12px 14px; background: var(--paper-3); font-size: 14px; }
-.st-cell { position: relative; padding: 12px 14px; font-size: 14px; line-height: 1.45; border-left: 1px solid var(--line-soft); } .st-cell.is-na { color: var(--ink-mute); font-style: italic; } .st-cell.is-win { background: color-mix(in srgb, var(--accent) 24%, var(--paper-2)); box-shadow: inset 4px 0 0 var(--accent); }
-.st-win { display: inline-block; margin-left: 8px; padding: 2px 6px; border: 1px solid var(--ink); background: var(--accent); color: #0f1115; font: 800 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; vertical-align: middle; }
-.st-ribbon { display: flex; gap: 14px; align-items: center; margin-top: 16px; padding: 14px 16px; background: var(--accent); color: #0f1115; border: 1px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); } .st-ribbon b { font: 800 19px var(--head); } .st-ribbon p { margin: 2px 0 0; font-size: 14px; } .st-trophy { font-size: 30px; animation: stSpin 4s ease-in-out infinite; } @keyframes stSpin { 0%, 100% { transform: rotate(-12deg) scale(1); } 50% { transform: rotate(12deg) scale(1.15); } }
 /* Records */
 .st-batts { display: grid; gap: 14px; } .st-batt-row { display: grid; grid-template-columns: minmax(140px, 220px) minmax(0, 1fr) 140px; gap: 14px; align-items: center; }
 .st-batt-name { font-weight: 700; } .st-batt { position: relative; height: 38px; border: 3px solid var(--ink); border-radius: 8px; background: var(--paper-3); margin-right: 10px; } .st-batt::after { content: ''; position: absolute; right: -11px; top: 9px; width: 8px; height: 14px; background: var(--ink); border-radius: 0 3px 3px 0; }
@@ -39,21 +28,15 @@
 .st-step h3 { margin: 6px 0 0; font: 800 20px var(--head); text-transform: none; } .st-step ul { margin: 0; padding-left: 1.1em; font-size: 13.5px; line-height: 1.45; color: var(--ink-soft); }
 .st-step.is-best { background: var(--accent); color: #0f1115; box-shadow: 4px 4px 0 var(--ink); } .st-step.is-best ul { color: #1c1f26; } .st-step.is-bad { border-style: dashed; border-color: var(--st-bad); } .st-step.is-bad h3 { text-decoration: line-through; text-decoration-color: var(--st-bad); }
 @keyframes stRise { from { transform: scaleY(.2); opacity: 0; } to { transform: scaleY(1); opacity: 1; } }
-/* Pixel */
-.st-timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; display: grid; gap: 18px; } .st-timeline::before { content: ''; position: absolute; left: 17px; top: 8px; bottom: 8px; width: 3px; background: var(--ink); transform-origin: top; animation: stLine 1.4s ease-out both; }
-.st-timeline li { position: relative; display: grid; grid-template-columns: 38px 1fr; gap: 14px; animation: stFade .6s ease-out both; animation-delay: calc(var(--i) * .22s); } .st-dot { z-index: 1; width: 34px; height: 34px; display: grid; place-items: center; background: var(--accent); border: 2px solid var(--ink); border-radius: 50%; font: 800 15px var(--head); color: #0f1115; }
-.st-timeline h4 { margin: 4px 0 4px; font: 800 17px var(--head); text-transform: none; } .st-timeline p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
-@keyframes stLine { from { transform: scaleY(0); } to { transform: scaleY(1); } } @keyframes stFade { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
 /* Profils, tendances, méthode */
 .st-prof { display: grid; gap: 10px; margin-top: 4px; } .st-pick { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 13px 14px; border: 1px solid var(--ink); background: var(--paper-2); } .st-pick h3 { margin: 0; font: 800 17px var(--head); text-transform: none; } .st-pick p { margin: 3px 0 0; font-size: 13.5px; color: var(--ink-soft); } .st-ref { font: 700 11px var(--mono); color: var(--ink-mute); }
 .st-trends { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 8px; } .st-trend { padding: 16px; border-left: 4px solid var(--accent); background: var(--paper-2); } .st-trend h3 { margin: 0 0 6px; font: 800 17px var(--head); text-transform: none; } .st-trend p { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
 .st-method { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 18px; } .st-method > div { padding: 16px; border: 1px solid var(--ink); background: var(--paper-2); } .st-method h3 { margin: 0 0 8px; font: 800 17px var(--head); text-transform: none; } .st-method ul { margin: 0; padding-left: 1.2em; font-size: 14px; line-height: 1.5; color: var(--ink-soft); } .st-method li { margin-bottom: 6px; }
 .st-error { margin-top: 12px; padding: 12px 14px; border-left: 4px solid var(--st-bad); background: var(--paper-2); }
 @media (max-width: 860px) {
-  .st-row { grid-template-columns: 1fr; } .st-cell { border-left: 0; border-top: 1px dashed var(--line-soft); }
   .st-batt-row { grid-template-columns: 1fr 120px; } .st-batt-name { grid-column: 1 / -1; } .st-gaming { grid-template-columns: 1fr; } .st-stairs { grid-template-columns: 1fr 1fr; } .st-step { min-height: 0; }
 }
-@media (max-width: 560px) { .st-stairs { grid-template-columns: 1fr; } .st-pick { grid-template-columns: 28px 1fr; } .st-ref { grid-column: 2; } .st-duel-head { grid-template-columns: 1fr; } .st-vs { padding: 0; } }
+@media (max-width: 560px) { .st-stairs { grid-template-columns: 1fr; } .st-pick { grid-template-columns: 28px 1fr; } .st-ref { grid-column: 2; } }
 @media (prefers-reduced-motion: reduce) { #tests-2026 *, #tests-2026 *::before { animation: none !important; transition: none !important; } }
 
 .st-sub-gap { margin-top: 34px; }

@@ -21,7 +21,6 @@
 .sp #purchase-audit .sq-option-dot{width:12px;height:12px;border:1px solid currentColor;border-radius:50%;flex-shrink:0}
 .sp #purchase-audit .is-selected .sq-option-dot{background:#ff651b;border-color:#ff651b;box-shadow:inset 0 0 0 2px var(--ink)}
 .sp #purchase-audit .sq-explanation{font:400 17px/1.5 var(--sans);color:var(--ink-soft);margin:18px 0 0;min-height:3em}
-.sp #purchase-audit .sq-note{font:400 14px/1.45 var(--sans);color:var(--ink-mute);margin:10px 0 0}
 .sp #purchase-audit .audit-advanced{border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .sp #purchase-audit .audit-advanced>summary{display:flex;justify-content:space-between;gap:14px;padding:16px 18px;font:600 16px/1.3 var(--sans);text-transform:none;letter-spacing:0;cursor:pointer;list-style:none}
 .sp #purchase-audit .audit-advanced>summary::-webkit-details-marker{display:none}
@@ -35,10 +34,6 @@
 .sp #purchase-audit .sq-footer>span{font:400 14px/1.4 var(--sans);color:var(--ink-mute)}
 .sp #purchase-audit .sq-next{display:inline-flex;justify-content:space-between;align-items:center;gap:22px;min-height:48px;padding:13px 20px;background:#ff651b;color:#20221e;border-radius:30px;font:700 16px/1.3 var(--sans)}
 .sp #purchase-audit .sq-next:hover{background:#ff853e}
-@keyframes sqFill{from{opacity:.3;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
-@keyframes sqShift{from{transform:translateY(8px);opacity:.5}to{transform:translateY(0);opacity:1}}
-.sp #purchase-audit .sq-fill{transform-box:fill-box;transform-origin:center;animation:sqFill .4s ease-out both}
-.sp #purchase-audit .sq-shift{animation:sqShift .4s ease-out both}
 @media(max-width:650px){.sp #purchase-audit .audit-card-trigger{padding:16px;gap:10px}.sp #purchase-audit .audit-card-copy strong{font-size:21px}.sp #purchase-audit .audit-card-copy small{font-size:14px}.sp #purchase-audit .audit-status{display:none}.sp #purchase-audit .audit-panel{padding:18px;gap:20px}.sp #purchase-audit .sq-primary{grid-template-columns:1fr;gap:20px}.sp #purchase-audit .sq-illustration{padding:8px}.sp #purchase-audit .sq-illustration svg{height:120px}.sp #purchase-audit .sq-question h3{font-size:25px}.sp #purchase-audit .audit-pill{padding:12px 14px;min-height:46px}.sp #purchase-audit .audit-pill .pill-copy strong{font-size:16px}.sp #purchase-audit .sq-explanation{font-size:16px;min-height:0}.sp #purchase-audit .sq-footer{flex-direction:column;align-items:stretch;gap:12px}.sp #purchase-audit .sq-next{width:100%}.sp #purchase-audit .sq-details{padding-inline:14px}.sp #purchase-audit .audit-advanced>summary{padding:16px 14px}}
 @media(prefers-reduced-motion:reduce){.sp #purchase-audit *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 /* Photos en ouverture des familles, compromis visibles avant de répondre. */

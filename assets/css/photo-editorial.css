@@ -1,38 +1,4 @@
-/* Guide·Achat : photographies d’ambiance DANS les composants d’origine.
-   Aucune couleur, police ni mise en page du système de design n’est redéfinie ici :
-   l’accueil reste celui de la référence Crox, les catégories celles d’accessibilitychecking.
-   Cette feuille ne fait que (1) cadrer les photos, (2) styler les notes manuscrites. */
-/* Accueil : photo plein cadre derrière le héros. Seules la couleur du texte et un voile
-   sombre (teinte d’origine --h-dark) sont ajoutés : fond de page, polices, majuscules,
-   grille, pastille ronde et bloc de chiffres restent ceux de la référence. */
-.photo-editorial .hm-hero.photo-home-hero { position: relative; isolation: isolate; overflow: hidden; color: #fff; background: var(--h-dark); }
-.photo-editorial .photo-home-backdrop { display: block; position: absolute; inset: 0; z-index: -2; }
-.photo-editorial .photo-home-backdrop img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 70% center; }
-.photo-editorial .hm-hero.photo-home-hero::after {
-  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(90deg, rgba(20,22,26,.94) 0%, rgba(20,22,26,.84) 30%, rgba(20,22,26,.45) 58%, rgba(20,22,26,.08) 85%);
-}
-.photo-editorial .photo-home-hero { --h-line: rgba(255,255,255,.2); }
-/* Lignes verticales de la référence Crox : toujours visibles sur la photo, en clair comme en sombre. */
-.photo-editorial .photo-home-hero .hm-wrap::before { z-index: 0; inset: -64px 0 -80px; background: linear-gradient(90deg, rgba(255,255,255,.2) 1px, transparent 1px) 0 0 / 25% 100%; border-right: 1px solid rgba(255,255,255,.2); }
-.photo-editorial .photo-home-hero .hm-hero-grid { align-items: end; min-height: 560px; }
-.photo-editorial .photo-home-hero .hm-hero-copy, .photo-editorial .photo-home-hero h1 { color: #fff; }
-.photo-editorial .photo-home-hero .hm-meta, .photo-editorial .photo-home-hero .hm-lead { color: rgba(255,255,255,.86); }
-.photo-editorial .photo-home-hero .hm-link { color: #fff; border-color: rgba(255,255,255,.5); }
-.photo-editorial .photo-home-hero .hm-badge { background: rgba(39,43,48,.9); border: 1px solid rgba(255,255,255,.18); }
-.photo-editorial .photo-home-hero .hm-hero-visual { align-self: end; background: transparent; box-shadow: none; overflow: visible; margin-top: 160px; }
-.photo-editorial .photo-home-hero .hm-stats { border-radius: 14px; overflow: hidden; box-shadow: 0 24px 65px rgba(0,0,0,.35); }
-.photo-editorial .photo-home-hero .hm-hero-visual .hm-note-hand { top: -64px; left: auto; right: 8px; color: #fff; background: transparent; border: 0; transform: rotate(-4deg); }
-@media (max-width: 700px) {
-  .photo-editorial .photo-home-hero .hm-hero-grid { min-height: 0; }
-  .photo-editorial .photo-home-hero .hm-hero-visual { margin-top: 24px; }
-  .photo-editorial .photo-home-hero .hm-hero-visual .hm-note-hand { display: none; }
-  .photo-editorial .hm-hero.photo-home-hero { padding-bottom: 290px; }
-  .photo-editorial .photo-home-hero .hm-wrap::before { inset: -64px 0 -290px; }
-  .photo-editorial .photo-home-backdrop { top: auto; bottom: 0; height: 330px; }
-  .photo-editorial .photo-home-backdrop img { object-position: 66% center; }
-  .photo-editorial .hm-hero.photo-home-hero::after { background: linear-gradient(180deg, var(--h-dark) 0%, var(--h-dark) calc(100% - 330px), rgba(20,22,26,0) calc(100% - 230px), rgba(20,22,26,0) 100%); }
-}
+
 }
 .photo-editorial .hm-card.is-live .hm-card-photo img { object-position: 62% center; }
 .photo-editorial .photo-shot { padding: 0; overflow: hidden; align-self: center; }
@@ -41,18 +7,17 @@
 .photo-editorial .pl-profile:hover .pl-profile-photo img { transform: scale(1.04); }
 .photo-editorial .pl-profile-photo img { transition: transform .5s ease; }
 
-/* Notes manuscrites (même police Caveat que celle déjà chargée par l’accueil) */
-.photo-editorial .pl-note-hand, .photo-editorial .hm-note-section {
+.photo-editorial .pl-note-hand {
   display: inline-flex; align-items: flex-start; gap: 6px; margin: 0 0 14px;
   font: 600 clamp(20px, 2vw, 26px)/1.1 'Caveat', 'Segoe Script', cursive;
   color: var(--ink-soft, var(--h-soft)); transform: rotate(-2deg);
 }
-.photo-editorial .pl-note-hand svg, .photo-editorial .hm-note-section svg {
+.photo-editorial .pl-note-hand svg {
   width: 44px; height: 30px; margin-top: 12px; fill: none; stroke: currentColor;
   stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
 }
 @media (max-width: 700px) {
-  .photo-editorial .pl-note-hand, .photo-editorial .hm-note-section { font-size: 20px; }
+  .photo-editorial .pl-note-hand { font-size: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .photo-editorial .pl-profile-photo img { transition: none; }
@@ -72,8 +37,6 @@
 /* Match the actual photo proportions: no side bars or artificial zoom. */
 .photo-editorial .hm-card[data-cat="pc"] .hm-card-photo { aspect-ratio: 1000 / 562; }
 .photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo { aspect-ratio: 1000 / 667; }
-.hm-photo-credit { margin: 14px 0 0; font-size: .75rem; color: var(--h-muted, #747b83); }
-.hm-photo-credit a { color: inherit; text-underline-offset: 3px; }
 /* Lifestyle scenes keep their native framing, without the former gray side strips. */
 .photo-editorial .hm-card[data-cat="batteries"] .hm-card-photo,
 .photo-editorial .hm-card[data-cat="ecouteurs"] .hm-card-photo { aspect-ratio: 3 / 2; }

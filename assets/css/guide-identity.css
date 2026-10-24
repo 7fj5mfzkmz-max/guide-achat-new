@@ -305,20 +305,6 @@ body.tool-page textarea{background:#151312!important;color:var(--ink)!important;
 .ct-live:hover .hx-fan-pc .f5{transform:translate(96px,13px) rotate(26deg) scale(.84)}
 .pc-hero-stage{isolation:isolate;min-height:clamp(300px,36vw,470px);position:relative;display:grid;place-items:center;overflow:hidden}
 .pc-hero-stage::after{content:"CHOISIR SELON L’USAGE";display:block;position:absolute;right:0;bottom:0;z-index:5;padding:.5rem .65rem;background:var(--coral);color:#151009;font:600 .65rem var(--font-mono);letter-spacing:.14em}
-.pc-photo-stage{position:relative;width:100%;height:100%;min-height:inherit;display:grid;place-items:center;perspective:1100px}
-.pc-photo-orbit{position:absolute;width:74%;aspect-ratio:1;border:1px solid rgba(240,160,132,.18);border-radius:50%}
-.pc-photo-card{position:absolute;width:clamp(150px,22vw,260px);aspect-ratio:1;margin:0;overflow:hidden;border:1px solid rgba(255,255,255,.25);border-radius:2px;background:#efe8da;box-shadow:0 25px 65px rgba(0,0,0,.5);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
-.pc-photo-card img{width:100%;height:100%;object-fit:contain;display:block}
-.pc-photo-card-1{transform:translate(-52%,-6%) rotate(-14deg) scale(.78)}
-.pc-photo-card-2{transform:translate(-32%,4%) rotate(-7deg) scale(.9)}
-.pc-photo-card-3{z-index:3;transform:translate(0,-8%) scale(1.02)}
-.pc-photo-card-4{transform:translate(32%,4%) rotate(7deg) scale(.9)}
-.pc-photo-card-5{transform:translate(52%,-6%) rotate(14deg) scale(.78)}
-.pc-hero-stage:hover .pc-photo-card-1{transform:translate(-75%,-2%) rotate(-21deg) scale(.78)}
-.pc-hero-stage:hover .pc-photo-card-2{transform:translate(-42%,1%) rotate(-10deg) scale(.9)}
-.pc-hero-stage:hover .pc-photo-card-3{transform:translate(0,-12%) scale(1.05)}
-.pc-hero-stage:hover .pc-photo-card-4{transform:translate(42%,1%) rotate(10deg) scale(.9)}
-.pc-hero-stage:hover .pc-photo-card-5{transform:translate(75%,-2%) rotate(21deg) scale(.78)}
 
 /* ---------- 13. Révélation au défilement (court, fonctionnel) ---------- */
 .hx-js .hx-reveal:not(.is-in){opacity:0;transform:translateY(14px)}
@@ -332,11 +318,6 @@ body.tool-page textarea{background:#151312!important;color:var(--ink)!important;
   .hx-hero--page .hx-cta,.pc-hero-links,.hx-hero .hx-cta{margin-bottom:3.4rem}
   .hx-fan-pc{height:10rem;--fan-width:clamp(94px,27vw,130px)}
   .pc-hero-stage{min-height:280px}
-  .pc-photo-card{width:clamp(125px,37vw,180px)}
-  .pc-photo-card-1{transform:translate(-43%,-6%) rotate(-13deg) scale(.75)}
-  .pc-photo-card-2{transform:translate(-25%,2%) rotate(-6deg) scale(.88)}
-  .pc-photo-card-4{transform:translate(25%,2%) rotate(6deg) scale(.88)}
-  .pc-photo-card-5{transform:translate(43%,-6%) rotate(13deg) scale(.75)}
 }
 
 /* ---------- 15. Accessibilité : mouvement réduit ---------- */

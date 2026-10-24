@@ -185,52 +185,16 @@
 .demo-caption { margin: 0; font: 700 clamp(16px, 1.7vw, 19px)/1.4 var(--head); color: var(--ink); }
 @media (max-width: 1000px) { .profile-grid { grid-template-columns: 1fr 1fr; } .profile-card-signal { grid-column: 1 / -1; } }
 @media (max-width: 620px) { .profile-grid { grid-template-columns: 1fr; } .profile-picker-tab { flex: 1 1 calc(50% - 8px); justify-content: center; } }
-
-/* ---------- photographe : le capteur plutôt que les mégapixels ---------- */
-.photographer-warning { padding-block: clamp(36px, 5vw, 64px); }
-.warning-panel { display: grid; gap: 18px; padding: clamp(18px, 3vw, 32px); border: 1px solid var(--ink); border-left: 8px solid var(--accent); background: var(--paper-2); box-shadow: var(--shadow); }
-.warning-panel > p { margin: 0; max-width: 72ch; color: var(--ink-soft); }
-.warning-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-.warning-head h2 { margin: 0; font-size: clamp(20px, 2.6vw, 32px); max-width: 30ch; }
-.warning-badge { font: 700 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; background: var(--accent); color: #0f1115; border: 1px solid #0f1115; padding: 7px 10px; }
 .sensor-demo { padding: 14px; border: 1px solid var(--line-soft); background: var(--paper); }
 .sensor-demo svg { width: 100%; height: auto; display: block; }
-.svg-title { font: 800 20px var(--head); fill: var(--ink); paint-order: stroke; stroke: var(--paper); stroke-width: 7px; stroke-linejoin: round; }
-.svg-caption { font: 400 15px var(--sans); fill: var(--ink-soft); }
-.light-rays { opacity: .35; animation: lightPulse 2.4s ease-in-out infinite; }
-.small-rays { animation-delay: .6s; }
 .pixel-grid rect { animation: pixelGlow 3s ease-in-out infinite; }
-.small-grid rect { animation-duration: 2.2s; }
 @keyframes lightPulse { 0%, 100% { opacity: .2; transform: translateY(0); } 50% { opacity: .75; transform: translateY(4px); } }
 @keyframes pixelGlow { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .light-rays, .pixel-grid rect { animation: none; } }
-.warning-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--ink); background: var(--paper); }
-.warning-points > div { display: grid; gap: 6px; align-content: start; padding: 16px; border-right: 1px solid var(--line-soft); }
-.warning-points > div:last-child { border-right: 0; }
-.warning-points strong { font: 800 15px var(--head); text-transform: uppercase; }
-.warning-points span { font-size: 14.5px; color: var(--ink-soft); }
-.warning-note { padding-left: 14px; border-left: 3px solid var(--accent); font-size: 15px; }
-@media (max-width: 820px) { .warning-points { grid-template-columns: 1fr; } .warning-points > div { border-right: 0; border-bottom: 1px solid var(--line-soft); } .warning-points > div:last-child { border-bottom: 0; } }
-
-/* ============================================================
-   05 · CHECKLIST, LEXIQUE
-   ============================================================ */
-.recap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 28px; }
-.recap-card { display: grid; gap: 8px; align-content: start; padding: 18px; border: 1px solid var(--ink); background: var(--paper-2); transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
-.recap-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
-.recap-num { display: grid; place-items: center; width: 40px; height: 40px; background: var(--accent); color: #0f1115; border: 1px solid #0f1115; box-shadow: 3px 3px 0 var(--ink); font: 800 20px/1 var(--head); }
-.recap-card strong { font: 800 15px/1.25 var(--head); text-transform: uppercase; }
-.recap-card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) { .pixel-grid rect { animation: none; } }
 .falc-more { display: grid; gap: 6px; margin-top: 22px; padding: 16px 18px; border: 1px solid var(--ink); background: var(--paper-2); }
 .falc-more-link { font: 800 16px var(--head); text-transform: uppercase; text-decoration-color: var(--accent); }
 .falc-more .hint { margin: 0; font-size: 14px; color: var(--ink-mute); }
-
-/* ============================================================
-   06 · GUIDES DÉTAILLÉS (facultatifs)
-   ============================================================ */
-.deep-group > .section-lead { margin-bottom: 0; }
 .deep-dive { margin-top: 10px; border: 1px solid var(--ink); background: var(--paper-2); overflow: hidden; }
-.deep-group > .section-lead + .deep-dive { margin-top: 24px; }
 .deep-dive[open] { box-shadow: var(--shadow); }
 .deep-dive > summary { display: grid; grid-template-columns: auto 1fr auto; grid-template-areas: "num title cta" "num sub cta"; column-gap: 16px; align-items: center; padding: 16px clamp(14px, 3vw, 22px); list-style: none; transition: background .2s, color .2s; }
 .deep-dive > summary::-webkit-details-marker { display: none; }
@@ -246,8 +210,6 @@
 .deep-dive[open] .deep-cta::before { content: '−'; }
 .deep-dive > .section { padding: clamp(18px, 3vw, 30px); background: var(--paper); border-top: 0; }
 .deep-dive > .section > .section-heading { font-size: clamp(20px, 2.6vw, 30px); max-width: none; }
-.deep-next { margin: 20px 0 0; }
-.deep-next a { font-weight: 700; }
 
 /* lecture d'une fiche produit : simulation d'une page marchande (illustration, couleurs propres au site simulé) */
 .fiche-layout { display: grid; gap: 24px; margin-top: 8px; }
@@ -444,14 +406,6 @@
 
   /* Illustration du capteur : textes lisibles à petite largeur */
   .sensor-demo { padding: 8px; }
-  .svg-title { font-size: 27px; }
-  .svg-caption { display: none; }
-
-  /* Checklist en liste compacte */
-  .recap-grid { grid-template-columns: 1fr; gap: 8px; margin-top: 18px; }
-  .recap-card { grid-template-columns: 40px 1fr; column-gap: 12px; row-gap: 2px; padding: 12px 14px; align-items: center; }
-  .recap-card:hover { transform: none; box-shadow: none; }
-  .recap-num { grid-row: span 2; }
 }
 
 /* ---------- Nos choix de l’année ---------- */
