@@ -27,6 +27,7 @@ if(t==="dark")r.classList.add("dark-theme");
 var n=navigator,c=n.connection||{};
 if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
 <link rel="stylesheet" href="assets/css/photo-editorial.css">
+<link rel="stylesheet" href="assets/css/smartphone-quiz.css">
 </head>
 <body class="photo-editorial site-redesign">
 <header class="site-header">
@@ -90,14 +91,14 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 </section>
 
 <section class="section smartphone-audit-section" data-tone="peach" id="audit">
-<h2 class="section-heading"><span class="eyebrow">02 · Sur mesure</span>Votre smartphone, selon vos critères</h2>
-<p class="section-lead">Écran, batterie, performance, photo, durée de vie : répondez seulement aux familles qui comptent pour vous. La liste de modèles se met à jour à chaque réponse.</p>
+<h2 class="section-heading"><span class="eyebrow">02 · Sur mesure</span>Qu’est-ce qui compte pour vous ?</h2>
+<p class="section-lead">Cinq questions, sans jargon. Répondez à celles qui vous parlent : votre sélection s’affine à chaque choix.</p>
 <div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
-<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Netteté, fluidité, lisibilité au soleil</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>Combien de temps il tient, vitesse de recharge</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Rapidité, jeux, fluidité dans le temps</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Photos de jour, de nuit, zoom, vidéo</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" class="audit-card-trigger" type="button"><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Combien d’années il restera utilisable</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" aria-controls="quiz-screen" class="audit-card-trigger" type="button"><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Un défilement agréable</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-screen" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" aria-controls="quiz-battery" class="audit-card-trigger" type="button"><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>De la réserve pour votre journée</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-battery" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" aria-controls="quiz-performance" class="audit-card-trigger" type="button"><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Vos applis, vos jeux</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-performance" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" aria-controls="quiz-photo" class="audit-card-trigger" type="button"><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Vos souvenirs, de jour comme de nuit</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-photo" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" aria-controls="quiz-longevity" class="audit-card-trigger" type="button"><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Un téléphone qui vous accompagne</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-longevity" class="audit-panel" hidden=""></div></article>
 </div>
 <div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 / 5 familles renseignées</strong><span id="audit-message">Choisissez ce qui compte pour vous — une famille peut rester sans réponse.</span><button type="button" class="btn audit-see-btn" id="audit-see-results" hidden>Voir ma sélection →</button><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button></div>
 <div class="audit-next-step"><p>Pour acheter : trouvez le meilleur prix sur <strong>Idealo</strong>, puis choisissez votre marchand.</p><p class="audit-learn">Un mot vous échappe ? Le <a href="lexique.html">lexique</a> et les <a href="#aller-plus-loin">explications détaillées</a> le décrivent pas à pas.</p></div>
@@ -390,6 +391,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="phone-analyzer/ui.js"></script>
 <script src="assets/js/audit-visuals.js"></script>
 <script src="assets/js/visuals-extra.js"></script>
+<script src="assets/js/smartphone-quiz.js"></script>
 <script src="assets/js/site-tools.js"></script>
 <script src="assets/js/scoring-engine.js"></script>
 <script src="assets/js/profiles.js"></script>

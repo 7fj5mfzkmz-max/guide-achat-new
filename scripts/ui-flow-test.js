@@ -297,16 +297,16 @@ async function main() {
     /* Premier choix : recommandations affichées sans quitter l'audit, pas de saut de page,
        focus clavier rendu à l'option choisie. Le défilement du test est instantané
        (behavior:'instant') : le CSS html{scroll-behavior:smooth} animerait sinon la mesure. */
-    await page.evaluate(() => document.querySelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="oled"]').scrollIntoView({ block: 'center', behavior: 'instant' }));
+    await page.evaluate(() => document.querySelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]').scrollIntoView({ block: 'center', behavior: 'instant' }));
     await page.waitForTimeout(150);
     const y0 = await page.evaluate(() => window.scrollY);
-    await page.click('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="oled"]');
+    await page.click('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]');
     await page.waitForSelector('#scoring-results .criteria-recommendation-card', { timeout: 10000 });
     const y1 = await page.evaluate(() => window.scrollY);
     assert(Math.abs(y1 - y0) < 60, 'le premier choix ne doit pas faire sauter la page (écart : ' + Math.round(Math.abs(y1 - y0)) + 'px)');
     assert(!(await page.locator('#audit-see-results').isHidden()), 'le bouton « Voir mes recommandations » doit apparaître dès le premier choix');
     assert(/1 \/ 5/.test(await page.locator('#audit-count').innerText()), 'compteur attendu après le premier choix : 1 / 5');
-    assert(await page.evaluate(() => { const a = document.activeElement; return !!a && a.classList.contains('audit-pill') && a.getAttribute('data-value') === 'oled'; }), 'le focus clavier doit revenir sur l\u2019option choisie après le re-rendu');
+    assert(await page.evaluate(() => { const a = document.activeElement; return !!a && a.classList.contains('audit-pill') && a.getAttribute('data-value') === '120'; }), 'le focus clavier doit revenir sur l\u2019option choisie après le re-rendu');
     /* Batterie : les critères avancés restent repliés dans leur <details> après un choix. */
     await page.click('#purchase-audit .audit-card[data-audit-card="battery"] .audit-card-trigger');
     await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="battery"] .audit-pill', { timeout: 10000 });

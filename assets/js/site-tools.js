@@ -494,6 +494,7 @@
       }
       function panelHtml(key){
         var cfg=configs[key];
+        if(window.SmartphoneQuizUI) return window.SmartphoneQuizUI.renderPanel(key,cfg,state[key]||{});
         var basic=cfg.groups.filter(function(g){return !g.advanced;}), advanced=cfg.groups.filter(function(g){return g.advanced;});
         var html=basic.map(function(g){return renderGroup(g,state[key][g.key]);}).join('');
         if(advanced.length){
@@ -555,15 +556,17 @@
           var panel=card.querySelector('.audit-panel');
           /* Re-render complet du panneau via panelHtml : les critères avancés
              restent repliés dans leur <details>, comme à l'ouverture. */
+          var advanced=panel.querySelector(".audit-advanced"), advancedOpen=advanced&&advanced.open;
           panel.innerHTML=panelHtml(key);
+          if(window.SmartphoneQuizUI&&advancedOpen) panel.querySelector(".audit-advanced").open=true;
           updateCard(card,key);
           if (window.dispatchEvent) window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state, user: true } }));
           var active=panel.querySelector('.audit-control[data-group="'+group+'"]').querySelector('.audit-pill[data-value="'+CSS.escape(state[key][group])+'"]');
           if(active){
             /* Le re-render remplace le bouton focus : rendre le focus à l'option
                choisie pour que la navigation clavier continue sans saut. */
-            active.focus();
-            active.animate([{transform:'translateY(3px) scale(.97)'},{transform:'translateY(0) scale(1)'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
+            active.focus({preventScroll:true});
+            if(!window.SmartphoneQuizUI&&!matchMedia('(prefers-reduced-motion: reduce)').matches) active.animate([{transform:'translateY(3px) scale(.97)'},{transform:'translateY(0) scale(1)'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
           }
         });
       });

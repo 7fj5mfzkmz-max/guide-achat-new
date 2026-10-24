@@ -1,0 +1,44 @@
+/* Quiz smartphone : une question et un schéma par famille. */
+.sp #purchase-audit{gap:12px}
+.sp #purchase-audit .audit-card{border:1px solid var(--line);border-radius:20px;box-shadow:none;scroll-margin-top:140px}
+.sp #purchase-audit .audit-card-trigger{padding:20px;gap:14px;min-height:84px}
+.sp #purchase-audit .audit-card-copy strong{font:800 22px/1.1 var(--head);letter-spacing:-.04em;text-transform:none}
+.sp #purchase-audit .audit-card-copy small{font:400 15px/1.4 var(--sans);margin-top:5px}
+.sp #purchase-audit .audit-no{font:700 15px var(--sans)}
+.sp #purchase-audit .audit-status{font:600 12px var(--sans);text-transform:none;letter-spacing:0;border-radius:30px;padding:6px 10px}
+.sp #purchase-audit .audit-panel{padding:26px;gap:22px;animation:none}
+.sp #purchase-audit .audit-control{border:0;padding:0;gap:24px;display:block}
+.sp #purchase-audit .sq-primary{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(0,1.5fr);align-items:center;gap:32px}
+.sp #purchase-audit .sq-illustration{background:#e6e5d9;border-radius:20px;padding:20px;color:#20221e}
+.sp #purchase-audit .sq-illustration svg{display:block;width:100%;height:auto;max-height:220px}
+.sp #purchase-audit .sq-question h3{font:800 clamp(24px,3vw,32px)/1.12 var(--head);letter-spacing:-.04em;color:var(--ink);margin:0 0 18px;text-transform:none}
+.sp #purchase-audit .audit-pills{display:flex;gap:10px;flex-wrap:wrap}
+.sp #purchase-audit .audit-pill{display:flex;grid-template-columns:none;gap:10px;align-items:center;position:relative;min-height:48px;padding:12px 16px;border:1px solid var(--ink);border-radius:30px;background:transparent;color:var(--ink);box-shadow:none;transform:none;animation:none}
+.sp #purchase-audit .audit-pill .pill-copy{padding:0;display:block}
+.sp #purchase-audit .audit-pill .pill-copy strong{font:600 17px/1.3 var(--sans);text-transform:none;letter-spacing:-.015em}
+.sp #purchase-audit .audit-pill::after{display:none!important}
+.sp #purchase-audit .audit-pill:hover{background:var(--paper-3)}
+.sp #purchase-audit .audit-pill.is-selected{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.sp #purchase-audit .sq-option-dot{width:12px;height:12px;border:1px solid currentColor;border-radius:50%;flex-shrink:0}
+.sp #purchase-audit .is-selected .sq-option-dot{background:#ff651b;border-color:#ff651b;box-shadow:inset 0 0 0 2px var(--ink)}
+.sp #purchase-audit .sq-explanation{font:400 17px/1.5 var(--sans);color:var(--ink-soft);margin:18px 0 0;min-height:3em}
+.sp #purchase-audit .sq-note{font:400 14px/1.45 var(--sans);color:var(--ink-mute);margin:10px 0 0}
+.sp #purchase-audit .audit-advanced{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.sp #purchase-audit .audit-advanced>summary{display:flex;justify-content:space-between;gap:14px;padding:16px 18px;font:600 16px/1.3 var(--sans);text-transform:none;letter-spacing:0;cursor:pointer;list-style:none}
+.sp #purchase-audit .audit-advanced>summary::-webkit-details-marker{display:none}
+.sp #purchase-audit .audit-advanced>summary>span{font-size:13px;color:var(--ink-mute);margin-left:auto}
+.sp #purchase-audit .audit-advanced>summary::after{content:'+';font-size:22px;line-height:1}
+.sp #purchase-audit .audit-advanced[open]>summary::after{content:'−'}
+.sp #purchase-audit .sq-details{padding:0 18px 20px;display:grid;gap:24px}
+.sp #purchase-audit .sq-details .audit-control{padding-top:20px;border-top:1px solid var(--line)}
+.sp #purchase-audit .sq-details h3{font-size:22px}
+.sp #purchase-audit .sq-footer{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.sp #purchase-audit .sq-footer>span{font:400 14px/1.4 var(--sans);color:var(--ink-mute)}
+.sp #purchase-audit .sq-next{display:inline-flex;justify-content:space-between;align-items:center;gap:22px;min-height:48px;padding:13px 20px;background:#ff651b;color:#20221e;border-radius:30px;font:700 16px/1.3 var(--sans)}
+.sp #purchase-audit .sq-next:hover{background:#ff853e}
+@keyframes sqFill{from{opacity:.3;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes sqShift{from{transform:translateY(8px);opacity:.5}to{transform:translateY(0);opacity:1}}
+.sp #purchase-audit .sq-fill{transform-box:fill-box;transform-origin:center;animation:sqFill .4s ease-out both}
+.sp #purchase-audit .sq-shift{animation:sqShift .4s ease-out both}
+@media(max-width:650px){.sp #purchase-audit .audit-card-trigger{padding:16px;gap:10px}.sp #purchase-audit .audit-card-copy strong{font-size:21px}.sp #purchase-audit .audit-card-copy small{font-size:14px}.sp #purchase-audit .audit-status{display:none}.sp #purchase-audit .audit-panel{padding:18px;gap:20px}.sp #purchase-audit .sq-primary{grid-template-columns:1fr;gap:20px}.sp #purchase-audit .sq-illustration{padding:8px}.sp #purchase-audit .sq-illustration svg{height:120px}.sp #purchase-audit .sq-question h3{font-size:25px}.sp #purchase-audit .audit-pill{padding:12px 14px;min-height:46px}.sp #purchase-audit .audit-pill .pill-copy strong{font-size:16px}.sp #purchase-audit .sq-explanation{font-size:16px;min-height:0}.sp #purchase-audit .sq-footer{flex-direction:column;align-items:stretch;gap:12px}.sp #purchase-audit .sq-next{width:100%}.sp #purchase-audit .sq-details{padding-inline:14px}.sp #purchase-audit .audit-advanced>summary{padding:16px 14px}}
+@media(prefers-reduced-motion:reduce){.sp #purchase-audit *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
