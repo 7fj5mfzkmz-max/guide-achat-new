@@ -30,7 +30,18 @@ const server = http.createServer((req, res) => {
         assert((await page.locator('#audit-count').textContent()).startsWith(String(i+1)));
         assert.equal(await page.evaluate(() => document.activeElement.dataset.value), value);
         assert.equal(await card.locator('.sq-illustration svg').count(), 1);
-        assert(await card.locator('.sq-explanation').first().textContent());
+        assert(await card.locator('.sq-benefit p').textContent());
+        assert(await card.locator('.sq-caution p').textContent());
+        assert.equal(await card.locator('.sq-primary .audit-pill small').count(), await card.locator('.sq-primary .audit-pill').count());
+        await card.locator('.sq-family-photo img').waitFor();
+        await page.waitForFunction(family=>{const img=document.querySelector('[data-audit-card="'+family+'"] .sq-family-photo img');return img.complete&&img.naturalWidth>0;},family);
+        for(const option of await card.locator('.sq-primary .audit-pill').all()){
+          await option.click();
+          assert(await card.locator('.sq-benefit p').textContent());
+          assert(await card.locator('.sq-caution p').textContent());
+          assert.equal(await card.locator('.sq-tradeoffs>div').first().evaluate(el=>getComputedStyle(el).animationName),'none');
+        }
+        await card.locator('.audit-control[data-group="'+group+'"] [data-value="'+value+'"]').click();
         assert.equal(await card.locator('.sq-fill, .sq-shift').first().evaluate(el => getComputedStyle(el).animationName), 'none');
         const overflow = await card.evaluate(el => el.scrollWidth > el.clientWidth+1);
         assert(!overflow, 'débordement du critère '+family);
@@ -52,7 +63,7 @@ const server = http.createServer((req, res) => {
       assert((await page.locator('#audit-count').textContent()).startsWith('0'));
       assert.equal(await page.locator('#scoring-results .criteria-recommendation-card').count(),0);
       await page.locator('[data-audit-card="screen"]').scrollIntoViewIfNeeded();
-      if(process.env.QUIZ_SCREENSHOTS) await page.screenshot({path:`/tmp/smartphone-quiz-${width}.png`});
+      if(process.env.QUIZ_SCREENSHOTS){await page.locator('[data-group="refresh"] [data-value="120"]').click();await page.locator('[data-audit-card="screen"]').screenshot({path:`/tmp/smartphone-quiz-${width}.png`});}
       console.log(`OK ${width}px : cinq familles, sélection, Affiner, focus, persistance, remise à zéro, mouvement réduit`);
       await context.close();
     }
@@ -64,6 +75,8 @@ const server = http.createServer((req, res) => {
     const animation = await screen.locator('.sq-shift').evaluate(el=>({duration:getComputedStyle(el).animationDuration,iterations:getComputedStyle(el).animationIterationCount}));
     assert.equal(animation.iterations,'1');
     assert.equal(animation.duration,'0.4s');
+    const feedbackAnimation=await screen.locator('.sq-benefit').evaluate(el=>getComputedStyle(el).animationIterationCount);
+    assert.equal(feedbackAnimation,'1');
     await motionPage.locator('#theme-toggle').click();
     assert.equal(await motionPage.evaluate(()=>document.documentElement.classList.contains('dark-theme')),true);
     await motionPage.close();

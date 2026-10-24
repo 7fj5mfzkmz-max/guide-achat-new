@@ -42,3 +42,33 @@
 .sp #purchase-audit .sq-shift{animation:sqShift .4s ease-out both}
 @media(max-width:650px){.sp #purchase-audit .audit-card-trigger{padding:16px;gap:10px}.sp #purchase-audit .audit-card-copy strong{font-size:21px}.sp #purchase-audit .audit-card-copy small{font-size:14px}.sp #purchase-audit .audit-status{display:none}.sp #purchase-audit .audit-panel{padding:18px;gap:20px}.sp #purchase-audit .sq-primary{grid-template-columns:1fr;gap:20px}.sp #purchase-audit .sq-illustration{padding:8px}.sp #purchase-audit .sq-illustration svg{height:120px}.sp #purchase-audit .sq-question h3{font-size:25px}.sp #purchase-audit .audit-pill{padding:12px 14px;min-height:46px}.sp #purchase-audit .audit-pill .pill-copy strong{font-size:16px}.sp #purchase-audit .sq-explanation{font-size:16px;min-height:0}.sp #purchase-audit .sq-footer{flex-direction:column;align-items:stretch;gap:12px}.sp #purchase-audit .sq-next{width:100%}.sp #purchase-audit .sq-details{padding-inline:14px}.sp #purchase-audit .audit-advanced>summary{padding:16px 14px}}
 @media(prefers-reduced-motion:reduce){.sp #purchase-audit *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* Photos en ouverture des familles, compromis visibles avant de répondre. */
+.sp #purchase-audit .audit-card-trigger{position:relative;isolation:isolate;overflow:hidden;min-height:132px;padding:28px;color:#fff;background:#20221e;align-items:flex-end}
+.sp #purchase-audit .sq-family-photo{position:absolute;inset:0;z-index:-2;display:block}
+.sp #purchase-audit .sq-family-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.8)}
+.sp #purchase-audit .audit-card-trigger::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(0,0,0,.85),rgba(0,0,0,.25)),linear-gradient(0deg,rgba(0,0,0,.55),transparent)}
+.sp #purchase-audit [data-audit-card="photo"] .sq-family-photo img{object-position:center 45%}
+.sp #purchase-audit [data-audit-card="longevity"] .sq-family-photo img{object-position:center 40%}
+.sp #purchase-audit .audit-card-trigger .audit-card-copy strong{color:#fff;font-size:28px}
+.sp #purchase-audit .audit-card-trigger .audit-card-copy small,.sp #purchase-audit .audit-card-trigger .audit-no{color:#fff;opacity:.9}
+.sp #purchase-audit .audit-status{color:#fff;background:#0005;border-color:#fff6;letter-spacing:0}
+.sp #purchase-audit .is-complete .audit-status{color:#20221e;background:#ffb38c;border-color:transparent}
+.sp #purchase-audit .sq-primary .audit-pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.sp #purchase-audit .sq-primary .audit-pill{border-radius:16px;align-items:start;text-align:left;padding:15px;min-width:0}
+.sp #purchase-audit .sq-primary .sq-option-dot{display:none}
+.sp #purchase-audit .sq-primary .audit-pill .pill-copy{display:grid;gap:7px;min-width:0}
+.sp #purchase-audit .sq-primary .audit-pill .pill-copy small{display:block;font:400 14px/1.4 var(--sans);color:inherit;opacity:.85}
+.sp #purchase-audit .sq-primary{grid-template-columns:minmax(180px,.7fr) minmax(0,1.5fr);gap:22px 30px}
+.sp #purchase-audit .sq-feedback{grid-column:1/-1}
+.sp #purchase-audit .sq-feedback>.sq-explanation{min-height:0;margin:0}
+.sp #purchase-audit .sq-tradeoffs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sp #purchase-audit .sq-tradeoffs>div{display:flex;gap:12px;padding:20px;border-radius:16px;background:var(--paper-2);border:1px solid var(--line);animation:sqTradeoff .4s ease-out both}
+.sp #purchase-audit .sq-tradeoffs>.sq-caution{animation-delay:.08s}
+.sp #purchase-audit .sq-tradeoffs h4{font:800 19px/1.2 var(--head);letter-spacing:-.03em;text-transform:none;color:var(--ink);margin:0 0 8px}
+.sp #purchase-audit .sq-tradeoffs p{font:400 16px/1.5 var(--sans);color:var(--ink-soft);margin:0}
+.sp #purchase-audit .sq-tradeoff-icon{width:28px;height:28px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:#dce6a0;color:#20221e;font:600 21px/1 var(--sans);animation:sqBalance .5s ease-out both}
+.sp #purchase-audit .sq-caution .sq-tradeoff-icon{background:#ffd0b5;animation-delay:.08s}
+@keyframes sqTradeoff{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sqBalance{0%{transform:rotate(-18deg) scale(.8)}70%{transform:rotate(5deg)}100%{transform:rotate(0) scale(1)}}
+@media(max-width:650px){.sp #purchase-audit .audit-card-trigger{min-height:118px;padding:20px 16px;gap:10px}.sp #purchase-audit .audit-card-trigger .audit-card-copy strong{font-size:24px}.sp #purchase-audit .sq-primary{grid-template-columns:1fr;gap:18px}.sp #purchase-audit .sq-illustration svg{height:100px}.sp #purchase-audit .sq-primary .audit-pill{padding:12px}.sp #purchase-audit .sq-primary .audit-pill .pill-copy strong{font-size:16px}.sp #purchase-audit .sq-primary .audit-pill .pill-copy small{font-size:13px}.sp #purchase-audit .sq-tradeoffs{grid-template-columns:1fr;gap:10px}.sp #purchase-audit .sq-tradeoffs>div{padding:16px}.sp #purchase-audit .sq-tradeoffs p{font-size:16px}.sp #purchase-audit .sq-tradeoffs h4{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.sp #purchase-audit .sq-tradeoffs>div,.sp #purchase-audit .sq-tradeoff-icon{animation:none!important}}

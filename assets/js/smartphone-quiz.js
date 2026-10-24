@@ -3,11 +3,41 @@
   'use strict';
   var primary = {screen:'refresh',battery:'capacity',performance:'gaming',photo:'sensor',longevity:'updates'};
   var questions = {
-    refresh:['Quand vous faites défiler…',['L’essentiel me suffit','Un peu plus fluide','J’aime quand tout glisse','Je privilégie le jeu'],['60 Hz : suffisant pour les usages courants.','90 Hz : un défilement plus doux.','120 Hz : des mouvements très fluides.','144 Hz : surtout utile si vos jeux et la puce suivent.']],
-    capacity:['Vous avez besoin de quelle réserve ?',['Je recharge souvent','Une réserve modérée','Un peu plus de marge','Le maximum de réserve'],['3 000 mAh : une petite réserve.','4 000 mAh : une capacité intermédiaire.','5 000 mAh : davantage de réserve.','6 000 mAh et plus : une grande réserve, parfois plus de poids.']],
-    gaming:['Votre téléphone sert surtout à…',['Messages, web et vidéos','Jouer et faire du montage','Jouer longtemps à des jeux exigeants'],['Une puissance courante convient à ces usages.','La puissance et la mémoire prennent plus d’importance.','Les tests de chauffe et la stabilité en jeu deviennent essentiels.']],
-    sensor:['Vos photos, c’est plutôt…',['Des souvenirs en journée','Aussi le soir et en intérieur','Une priorité, même en faible lumière'],['Un petit capteur peut suffire en bonne lumière.','Un capteur plus grand aide à capter la lumière.','Un très grand capteur aide de nuit, mais le traitement photo compte aussi.']],
-    updates:['Vous comptez le garder…',['2 à 3 ans','4 à 5 ans','6 ans ou plus'],['Vérifiez les années de mises à jour restantes à l’achat.','Visez un suivi suffisamment long et une batterie remplaçable.','Un long suivi, des pièces disponibles et une batterie remplaçable sont essentiels.']]
+    refresh:['Quel confort d’écran vous suffit ?',['Simple et économe','Le juste milieu','Très fluide au quotidien','Pour les jeux compatibles']],
+    capacity:['Quel compromis dans votre poche ?',['La légèreté d’abord','Des prises à proximité','Des journées bien remplies','Longtemps loin d’une prise']],
+    gaming:['De la puissance, pour quoi faire ?',['Messages, web et vidéos','Jeux et montage occasionnels','Jeux exigeants, longues sessions']],
+    sensor:['Qu’aimez-vous photographier ?',['Les souvenirs en journée','Aussi les soirées','La photo, même quand il fait sombre']],
+    updates:['Combien de temps comptez-vous le garder ?',['2 à 3 ans','4 à 5 ans','6 ans ou plus']]
+  };
+  // Un avantage ET une contrepartie visibles avant le choix ; le détail reste court.
+  var tradeoffs = {
+    refresh:[
+      ['Économe · moins de fluidité','60 Hz : suffisant pour lire, discuter et regarder des vidéos, avec moins de rafraîchissements à alimenter.','Le défilement paraît moins doux qu’à 90 ou 120 Hz.'],
+      ['Plus doux · gain modéré','90 Hz : un défilement plus agréable, sans viser la fréquence maximale.','Moins fluide que 120 Hz ; l’autonomie dépend aussi de la façon dont l’écran s’adapte.'],
+      ['Très doux · consommation à surveiller','120 Hz : les mouvements et le défilement sont très fluides.','La consommation peut augmenter si la fréquence reste élevée. Un écran adaptatif peut limiter cet effet.'],
+      ['Jeu ciblé · intérêt limité hors jeu','144 Hz : un gain possible sur les jeux compatibles, si la puce suit.','Face à 120 Hz, le gain est discret au quotidien. Ne payez pas plus pour ce seul chiffre.']
+    ],
+    capacity:[
+      ['Réserve réduite · poids parfois contenu','3 000 mAh : une petite batterie peut aider à contenir le poids et l’encombrement.','Moins de réserve : gardez une possibilité de recharge à proximité. Le poids réel reste à vérifier.'],
+      ['Réserve intermédiaire · recharge à prévoir','4 000 mAh : un compromis possible pour un usage modéré avec une prise accessible.','Moins de marge pour les jeux, le GPS et les longues journées.'],
+      ['Plus de marge · poids à vérifier','5 000 mAh : davantage de réserve pour une journée chargée.','La batterie peut alourdir le téléphone ; le résultat dépend de sa conception.'],
+      ['Grande réserve · encombrement possible','6 000 mAh et plus : une réserve appréciable quand vous rechargez peu souvent.','Un téléphone parfois plus lourd ou épais. Comparez le poids et les tests d’autonomie réels.']
+    ],
+    gaming:[
+      ['Budget préservé · jeux limités','Une puissance courante suffit aux messages, au web et aux vidéos. Inutile de payer une puce de jeu pour cela.','Les jeux 3D exigeants et les gros montages peuvent ralentir.'],
+      ['Polyvalent · limites en usage prolongé','Plus de marge pour jouer, monter de petites vidéos et passer d’une application à l’autre.','Une longue session exigeante peut demander de réduire les réglages.'],
+      ['Jeux exigeants · coût et chauffe','Une plateforme puissante peut mieux tenir les jeux et les travaux lourds.','Un prix souvent plus élevé, avec consommation et chauffe à vérifier dans les tests.']
+    ],
+    sensor:[
+      ['Budget contenu · nuit plus difficile','En bonne lumière, un capteur modeste peut suffire aux souvenirs et au partage.','Le soir et en intérieur, le bruit et le flou deviennent plus difficiles à éviter.'],
+      ['Plus de lumière · prix à comparer','Un capteur plus grand peut aider le soir et en intérieur.','Le traitement logiciel reste décisif : comparez les tests avant de payer plus.'],
+      ['Faible lumière · bloc photo plus imposant','Un très grand capteur capte davantage de lumière à technologie comparable.','Un bloc photo souvent plus encombrant et un prix potentiellement plus élevé. Il ne garantit pas à lui seul une meilleure photo.']
+    ],
+    updates:[
+      ['Suivi court · vigilance sur la sécurité','Un modèle au suivi court peut être moins cher si vous prévoyez de le remplacer bientôt.','Vérifiez les années restantes : après la fin des correctifs, le risque de sécurité augmente.'],
+      ['Un suivi durable · date de fin à vérifier','Un suivi d’environ cinq ans peut couvrir plusieurs années sans changer de téléphone.','Le compteur démarre souvent à la sortie du modèle. Un ancien stock peut avoir déjà consommé une partie du suivi.'],
+      ['Long suivi · entretien à anticiper','Un long suivi permet de conserver les correctifs de sécurité plus longtemps.','Le choix de modèles est plus restreint. Prévoyez aussi la réparabilité et un éventuel remplacement de batterie.']
+    ]
   };
   function esc(v) { return String(v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];}); }
   function illustration(key,index,chosen) {
@@ -23,11 +53,13 @@
   function renderGroup(group,selected,isPrimary) {
     var question=isPrimary?questions[group.key]:null;
     var selectedIndex=group.options.findIndex(function(o){return o[0]===selected;}), chosen=selectedIndex>=0;
-    var options=group.options.map(function(o,i){return '<button type="button" class="audit-pill'+(selected===o[0]?' is-selected':'')+'" data-value="'+esc(o[0])+'" aria-pressed="'+(selected===o[0])+'"><span class="sq-option-dot" aria-hidden="true"></span><span class="pill-copy"><strong>'+esc(question?question[1][i]:o[1])+'</strong></span></button>';}).join('');
-    var explanation=chosen?(question?question[2][selectedIndex]:group.options[selectedIndex][2]):'Vous pouvez laisser cette question sans réponse.';
-    var note=group.key==='capacity'?'La capacité ne garantit pas l’autonomie : l’écran, la puce et votre usage comptent aussi.':group.key==='updates'?'Les durées annoncées commencent souvent à la sortie du modèle.':'';
-    return '<div class="audit-control'+(isPrimary?' sq-primary':'')+'" data-group="'+group.key+'">'+(isPrimary?illustration(group.key,Math.max(0,selectedIndex),chosen):'')+'<div class="sq-question"><h3>'+esc(question?question[0]:group.label)+'</h3><div class="audit-pills" role="group" aria-label="'+esc(question?question[0]:group.label)+'">'+options+'</div><p class="sq-explanation" aria-live="polite">'+esc(explanation)+'</p>'+(note?'<p class="sq-note">'+esc(note)+'</p>':'')+'</div></div>';
+    var options=group.options.map(function(o,i){return '<button type="button" class="audit-pill'+(selected===o[0]?' is-selected':'')+'" data-value="'+esc(o[0])+'" aria-pressed="'+(selected===o[0])+'"><span class="sq-option-dot" aria-hidden="true"></span><span class="pill-copy"><strong>'+esc(question?question[1][i]:o[1])+'</strong>'+(question?'<small>'+esc(tradeoffs[group.key][i][0])+'</small>':'')+'</span></button>';}).join('');
+    var explanation=chosen&&!question?group.options[selectedIndex][2]:'Choisissez le compromis qui vous ressemble.';
+    var note=group.key==='capacity'?'Les mAh indiquent une réserve, pas une durée : l’écran, la puce et votre usage comptent aussi.':group.key==='updates'?'À prix et usage équivalents, privilégiez le suivi le plus long.':'';
+    var balance=question&&chosen?'<div class="sq-tradeoffs" aria-live="polite" aria-atomic="true"><div class="sq-benefit"><span class="sq-tradeoff-icon" aria-hidden="true">+</span><div><h4>Vous y gagnez</h4><p>'+esc(tradeoffs[group.key][selectedIndex][1])+'</p></div></div><div class="sq-caution"><span class="sq-tradeoff-icon" aria-hidden="true">↔</span><div><h4>À accepter</h4><p>'+esc(tradeoffs[group.key][selectedIndex][2])+'</p></div></div></div>':'<p class="sq-explanation" aria-live="polite">'+esc(explanation)+'</p>';
+    return '<div class="audit-control'+(isPrimary?' sq-primary':'')+'" data-group="'+group.key+'">'+(isPrimary?illustration(group.key,Math.max(0,selectedIndex),chosen):'')+'<div class="sq-question"><h3>'+esc(question?question[0]:group.label)+'</h3><div class="audit-pills" role="group" aria-label="'+esc(question?question[0]:group.label)+'">'+options+'</div></div><div class="sq-feedback">'+balance+(note?'<p class="sq-note">'+esc(note)+'</p>':'')+'</div></div>';
   }
+
   window.SmartphoneQuizUI={renderPanel:function(key,cfg,state){
     var main=cfg.groups.find(function(g){return g.key===primary[key];});
     var rest=cfg.groups.filter(function(g){return g!==main;});
