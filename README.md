@@ -49,8 +49,8 @@ Le français reste la source. `assets/js/i18n.js` traduit la page à l’afficha
 
 Ajouter ou corriger une traduction :
 1. `node tools/i18n/extraire.js` relève les chaînes françaises de toutes les pages (`chaines.json`).
-2. Ajouter la paire dans `tools/i18n/extra.en.tsv` / `extra.es.tsv` (français⇥traduction), ou un motif dans `motifs.*.tsv`.
+2. Ajouter la paire dans `tools/i18n/extra.en.tsv` / `extra.es.tsv` (français⇥traduction), ou un motif dans `motifs.*.tsv` ; les textes construits à l’exécution (résultats des guides, fiches du catalogue) sont dans `tools/i18n/lots/` (générés par `lot2.py`, `lot3.py`). Les nombres isolés d’une clé s’écrivent `{0}`, `{1}`… ; un nombre collé à une lettre (`M5`, `24k`) reste littéral.
 3. `python3 tools/i18n/construire.py` régénère les dictionnaires ; `node tools/i18n/extraire.js --lang=es` puis `python3 tools/i18n/residuel.py es` liste ce qui reste en français.
 4. `npm run i18n:test` vérifie la cohérence des dictionnaires et la détection de langue.
 
-Limite : traduction faite dans le navigateur, donc non indexée par les moteurs de recherche dans ces langues.
+Limites : traduction faite dans le navigateur, donc non indexée par les moteurs de recherche dans ces langues ; les notes propres à chaque fiche du catalogue (PC, projecteurs, écouteurs) sont traduites au fil des relevés et peuvent encore apparaître en français.

@@ -1,0 +1,15 @@
+^Votre profil : (.+)$	Your profile: $1
+^Important pour votre profil « (.+) » :$	Important for your “$1” profile:
+^Pour « (.+) »$	For “$1”
+^pour « (.+) »$	for “$1”
+^(\d+) modèles classés pour le profil « (.+) »\.$	$1 models ranked for the “$2” profile.
+^Modèles adaptés à votre profil « (.+) »$	Models suited to your “$1” profile
+^LDLC, relevé du (.+) : (.+) € TTC hors livraison pour cette référence exacte\. Chargeur inclus confirmé dans la rubrique Alimentation\. Prix et disponibilité variables\.$	LDLC, survey of $1: €$2 incl. tax, excluding delivery, for this exact model. Charger included, confirmed in the Power section. Price and availability vary.
+^À partir de (.+) € \((.+)\)\. Ne pas confondre avec le Zenbook A14 Snapdragon X Plus, plus cher\.$	From €$1 ($2). Not to be confused with the Zenbook A14 Snapdragon X Plus, which costs more.
+^Config (.+) à partir de (.+) €\. Ce n’est pas un portable de train\.$	$1 config from €$2. This is not a laptop for the train.
+^(.+) · Android (\d+) à la sortie$	$1 · Android $2 at launch
+^Points d’appui : (.+?)\. Non noté dans la source : (.+?)(…)?\.$	Strengths: $1. Not scored in the source: $2$3.
+^Points d’appui : (.+?)\. À surveiller : (.+?)\.$	Strengths: $1. To watch: $2.
+^Points d’appui : (.+?)\.$	Strengths: $1.
+^Duel (R\d+) : (.+) l’emporte\.$	Head-to-head $1: $2 wins.
+^On vous conseille ce modèle parce que (.+)\.$	We recommend this model because $1.

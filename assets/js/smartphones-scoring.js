@@ -283,6 +283,7 @@
     else { tone = far ? "far" : "low"; icon = "▼"; verdict = far ? "Bien en dessous" : "Un peu en dessous"; }
     var have = c.text;
     if (c.key === "photo.sensor") have = (CHOIX["photo.sensor"][String(c.text).replace("capteur ", "")] || c.text);
+    if (c.key === "battery.chemistry") have = (CHOIX["battery.chemistry"][c.text] || c.text);
     return { tone: tone, icon: icon, name: NOMS[c.key] || c.key, have: have, verdict: verdict, want: c.delta === "pile" ? "" : wantText(c.key, state) };
   }
 

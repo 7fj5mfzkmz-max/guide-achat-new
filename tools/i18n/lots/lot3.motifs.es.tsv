@@ -1,0 +1,5 @@
+^Non noté dans la source : (.+?)(…)?\.$	No puntuado en la fuente: $1$2.
+^À surveiller : (.+?)\.$	A vigilar: $1.
+^Profil : (.+)$	Perfil: $1
+^Budget : (.+)$	Presupuesto: $1
+^Système : (.+)$	Sistema: $1

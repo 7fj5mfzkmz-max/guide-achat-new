@@ -1,0 +1,15 @@
+^Votre profil : (.+)$	Tu perfil: $1
+^Important pour votre profil « (.+) » :$	Importante para tu perfil «$1»:
+^Pour « (.+) »$	Para «$1»
+^pour « (.+) »$	para «$1»
+^(\d+) modèles classés pour le profil « (.+) »\.$	$1 modelos clasificados para el perfil «$2».
+^Modèles adaptés à votre profil « (.+) »$	Modelos adecuados para tu perfil «$1»
+^LDLC, relevé du (.+) : (.+) € TTC hors livraison pour cette référence exacte\. Chargeur inclus confirmé dans la rubrique Alimentation\. Prix et disponibilité variables\.$	LDLC, registro del $1: $2 € con impuestos, sin envío, para esta referencia exacta. Cargador incluido, confirmado en el apartado Alimentación. Precio y disponibilidad variables.
+^À partir de (.+) € \((.+)\)\. Ne pas confondre avec le Zenbook A14 Snapdragon X Plus, plus cher\.$	Desde $1 € ($2). No confundir con el Zenbook A14 Snapdragon X Plus, que es más caro.
+^Config (.+) à partir de (.+) €\. Ce n’est pas un portable de train\.$	Configuración $1 desde $2 €. No es un portátil para el tren.
+^(.+) · Android (\d+) à la sortie$	$1 · Android $2 en el lanzamiento
+^Points d’appui : (.+?)\. Non noté dans la source : (.+?)(…)?\.$	Puntos fuertes: $1. No puntuado en la fuente: $2$3.
+^Points d’appui : (.+?)\. À surveiller : (.+?)\.$	Puntos fuertes: $1. A vigilar: $2.
+^Points d’appui : (.+?)\.$	Puntos fuertes: $1.
+^Duel (R\d+) : (.+) l’emporte\.$	Duelo $1: gana $2.
+^On vous conseille ce modèle parce que (.+)\.$	Te recomendamos este modelo porque $1.
