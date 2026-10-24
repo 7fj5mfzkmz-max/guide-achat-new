@@ -43,12 +43,12 @@
 .news-list{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;gap:12px;margin-inline:-16px;padding:2px 16px 12px;border-top:0;scrollbar-width:none;overscroll-behavior-x:contain}
 .news-list::-webkit-scrollbar{display:none}
 .news-item{flex:0 0 82%;max-width:340px;scroll-snap-align:start;border:0}
-.news-item a,.news-item a:hover{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:10px;height:100%;padding:20px;border-radius:18px;background:#20221e;color:#f0eee6}
+.news-item a,.news-item a:hover{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:10px;height:100%;padding:20px;border:2px solid var(--h-ink);border-radius:22px;background:transparent;color:var(--h-ink)}
 .news-meta{flex-direction:row;align-items:center;flex-wrap:wrap}
-.news-cat,.news-item a:hover .news-cat{background:var(--h-orange);color:#20221e}
-.news-item time,.news-item p,.news-item a:hover p,.news-item a:hover time{color:#c9cabd}
+.news-cat,.news-item a:hover .news-cat{background:var(--h-ink);color:var(--h-bg)}
+.news-item time,.news-item p,.news-item a:hover p,.news-item a:hover time{color:var(--h-soft)}
 .news-go{display:block;margin-top:auto;padding-top:4px;color:var(--h-orange)}
-.news-item.is-new a{box-shadow:inset 0 0 0 2px var(--h-orange)}
+.news-item.is-new a{border-color:var(--h-orange)}
 .news-page .news-list{display:grid;grid-template-columns:1fr;overflow:visible;margin-inline:0;padding:0}
 .news-page .news-item{max-width:none}
 .news-page-head{padding-top:28px}

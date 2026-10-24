@@ -277,10 +277,10 @@
   }
   function describe(c, state) {
     var tone, icon, verdict, far = /nettement/.test(c.delta) || c.out;
-    if (c.delta === "different") { tone = "diff"; icon = "≠"; verdict = "Autre que votre choix"; }
+    if (c.delta === "different") { tone = "diff"; icon = "≠"; verdict = "Différent"; }
     else if (c.delta === "pile") { tone = "ok"; icon = "✓"; verdict = "Comme votre choix"; }
-    else if (c.d > 0) { tone = "up"; icon = "▲"; verdict = "Au-dessus de votre choix"; }
-    else { tone = far ? "far" : "low"; icon = "▼"; verdict = far ? "Bien en dessous de votre choix" : "Un peu en dessous de votre choix"; }
+    else if (c.d > 0) { tone = "up"; icon = "▲"; verdict = "Au-dessus"; }
+    else { tone = far ? "far" : "low"; icon = "▼"; verdict = far ? "Bien en dessous" : "Un peu en dessous"; }
     var have = c.text;
     if (c.key === "photo.sensor") have = (CHOIX["photo.sensor"][String(c.text).replace("capteur ", "")] || c.text);
     return { tone: tone, icon: icon, name: NOMS[c.key] || c.key, have: have, verdict: verdict, want: c.delta === "pile" ? "" : wantText(c.key, state) };
@@ -385,11 +385,11 @@
       article.style.animationDelay = (i * .05) + "s";
       var rows = x.m.checks.map(function (c) { return describe(c, state); });
       var chips = rows.map(function (r) {
-        return '<li class="mchip is-' + r.tone + '"><span class="mchip-ic" aria-hidden="true">' + r.icon + '</span><span class="mchip-txt"><span class="mchip-name">' + esc(r.name) + '</span><b>' + esc(r.have) + '</b><span class="mchip-v">' + esc(r.verdict) + (r.want ? ' <em>(votre choix : ' + esc(r.want) + ')</em>' : '') + '</span></span></li>';
+        return '<li class="mchip is-' + r.tone + '"><span class="mchip-txt"><span class="mchip-name">' + esc(r.name) + '</span><b>' + esc(r.have) + '</b><span class="mchip-v"><span class="mchip-ic" aria-hidden="true">' + r.icon + '</span>' + esc(r.verdict) + (r.want ? ' <em>(votre choix : ' + esc(r.want) + ')</em>' : '') + '</span></span></li>';
       }).join("");
       var pct = Math.round(x.m.score * 100);
       var verdict = pct >= 85 ? ['is-good','Très proche de votre sélection'] : pct >= 70 ? ['is-warn','Proche, avec des compromis'] : ['is-bad','Correspondance partielle'];
-      var why = '<details class="criteria-why"><summary>Pourquoi ce résultat ?</summary><ul>' + rows.map(function(r){return '<li><b>'+esc(r.name)+' :</b> '+esc(r.have)+', '+esc(r.verdict.toLowerCase())+(r.want?' ('+esc(r.want)+')':'')+'</li>';}).join('') + '</ul></details>';
+      var why = '<details class="criteria-why"><summary>Pourquoi ce résultat ?</summary><ul>' + rows.map(function(r){return '<li><b>'+esc(r.name)+' :</b> '+esc(r.have)+', '+esc(r.verdict.toLowerCase())+(r.want?' (votre choix : '+esc(r.want)+')':'')+'</li>';}).join('') + '</ul></details>';
       var meta = [x.p.prix_indicatif ? "≈ " + esc(x.p.prix_indicatif) + " €" : "prix à vérifier", x.p.annee_sortie ? "sortie " + esc(x.p.annee_sortie) : ""].filter(Boolean).join(" · ");
       article.innerHTML =
         '<div class="criteria-recommendation-top"><span class="criteria-recommendation-brand">' + esc(x.p.marque || "") + '</span><span class="criteria-recommendation-score">' + pct + ' %</span></div>' +
