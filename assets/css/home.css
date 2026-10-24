@@ -24,3 +24,25 @@
 @media(max-width:720px){.guide-section{padding:0 0 40px}.photo-guides{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.photo-guide,.photo-guide:nth-child(-n+2){grid-column:span 1;aspect-ratio:4/5;border-radius:16px}.guide-card-copy{padding:18px 12px}.hx-home .guide-card-copy h3{font-size:clamp(20px,5.3vw,32px)}.photo-guide:last-child{grid-column:1/-1;aspect-ratio:2/1}.photo-guide:last-child .guide-card-copy{padding:20px}.photo-guide:last-child .guide-card-copy h3{font-size:28px}}
 .photo-guide[href="smartphones.html"] .guide-photo img{object-position:75% center}
 @media(max-width:374px){.hx-home .guide-card-copy h3{font-size:18px}}
+/* Navigation de l’accueil : mêmes aplats et pastilles que le contenu. */
+.home .header-inner{width:calc(100% - 80px);max-width:1360px;padding:0;height:96px;gap:12px}
+.home .site-header{border-bottom:1px solid var(--h-line)}
+.home .site-nav{display:none}
+.home .brand-logo{color:var(--h-ink);gap:12px;margin-right:auto}
+.home-brand-dot{width:16px;height:16px;border-radius:50%;background:var(--h-orange)}
+.home-wordmark{font:900 24px/.95 var(--head);letter-spacing:-.06em;text-transform:uppercase}.home-wordmark>span{display:block}
+.home .brand-menu-toggle,.home .header-tool{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;height:48px;width:auto;padding:0 20px;border-radius:50px;border:1px solid var(--h-ink);font:600 15px/1 var(--sans);letter-spacing:0;text-transform:none;color:var(--h-ink);background:transparent}
+.home .brand-menu-toggle{background:var(--h-ink);color:var(--h-bg)}
+.home .brand-menu-label{display:inline;font:inherit}
+.home .header-inner svg{width:20px;height:20px;flex-shrink:0}
+.home .header-tools{gap:10px}.home .header-tool-theme{width:48px;padding:0}
+.home .header-tool-theme .home-sun{display:none}.home .header-tool-theme[aria-pressed=true] .home-sun{display:block}.home .header-tool-theme[aria-pressed=true] .home-moon{display:none}
+.home .brand-menu-toggle:hover,.home .header-tool:hover,.home .brand-menu-toggle[aria-expanded=true],.home .header-tool-search[aria-expanded=true]{background:var(--h-orange);color:#20221e;border-color:var(--h-orange)}
+.home .header-inner button:focus-visible{outline:3px solid var(--h-orange);outline-offset:4px}
+.home .search-panel-sheet,.home .category-menu-panel{border-radius:24px}.home .drawer-search-field{border-radius:50px}.home .drawer-close{border-radius:50%}
+.home .search-panel-head h2,.home .category-menu-head h2{font-family:var(--head);font-weight:800;letter-spacing:-.04em}
+.category-arrow{position:absolute;right:18px;top:18px;z-index:2;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--h-paper);color:#20221e;box-shadow:0 1px 12px #0002;transition:background .2s,transform .2s}
+.hx-home .category-arrow .arrow-icon{width:21px;height:21px}.photo-guide:hover .category-arrow{background:var(--h-orange);transform:rotate(5deg)}
+.photo-guide[href="smartphones.html"] .guide-photo img{object-position:50% 55%}
+@media(max-width:720px){.home .header-inner{width:calc(100% - 32px);height:80px;gap:8px}.home .header-tools{gap:8px}.home .home-wordmark{font-size:20px}.home-brand-dot{width:10px;height:10px}.home .brand-logo{gap:7px}.home .brand-menu-toggle,.home .header-tool{min-height:44px;height:44px;padding:0 14px;gap:8px}.home .header-tool-search,.home .header-tool-theme{width:44px;padding:0}.home .header-tool-search>span{display:none}.home .brand-menu-label{display:inline}.category-arrow{right:12px;top:12px;width:34px;height:34px}.hx-home .category-arrow .arrow-icon{width:18px;height:18px}}
+@media(max-width:359px){.home .home-wordmark{font-size:18px}.home .brand-menu-toggle{padding:0 11px;gap:6px}.home .header-inner{gap:6px}.home .header-tools{gap:6px}.home .brand-logo{gap:5px}}
