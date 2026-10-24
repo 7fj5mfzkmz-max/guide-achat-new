@@ -70,7 +70,7 @@
 .photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo img { object-fit: contain; object-position: center; transform: none; }
 
 /* Match the actual photo proportions: no side bars or artificial zoom. */
-.photo-editorial .hm-card[data-cat="pc"] .hm-card-photo { aspect-ratio: 4 / 3; }
+.photo-editorial .hm-card[data-cat="pc"] .hm-card-photo { aspect-ratio: 1000 / 562; }
 .photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo { aspect-ratio: 1000 / 563; }
 .hm-photo-credit { margin: 14px 0 0; font-size: .75rem; color: var(--h-muted, #747b83); }
 .hm-photo-credit a { color: inherit; text-underline-offset: 3px; }
