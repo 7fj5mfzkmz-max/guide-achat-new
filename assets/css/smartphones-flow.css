@@ -148,3 +148,30 @@
   .sp .profile-toggle .profile-card, .sp .profile-picker-tab.is-current, .sp .ck-bar i, .sp .ck-box { animation: none !important; transition: none !important; }
   .sp .notion-sup i { height: 30px; }
 }
+
+/* ——— Lisibilité : aucune étiquette sous 12,5 px, boutons à 13,5 px, interlignage confortable ——— */
+.sp .eyebrow, .sp .pick-for, .sp .pg-kick, .sp .pg-skip, .sp .deep-num, .sp .deep-sub, .sp .pj-badge, .sp .st-ref,
+.sp .st-price-inline, .sp .st-gdl dt, .sp .st-batt-val small, .sp .hx-chip, .sp .pg-strip span, .sp .audit-reset-btn,
+.sp .buy-spec-grid span, .sp .signal-table small { font-size: 12.5px; letter-spacing: .05em; }
+.sp .picks-note, .sp .model-analyzer-help { font-size: 14.5px; }
+.sp .pg-btn, .sp .pick-link, .sp .pl-btn, .sp .profile-picker-tab, .sp .pj-tab, .sp .btn, .sp .st-fold > summary small { font-size: 13.5px; }
+.sp .st-gdl dd, .sp .st-step ul, .sp .st-spec dd, .sp .st-trend p, .sp .st-method li, .sp .pick-pm, .sp .pick-alt, .sp .signal-row p, .sp .buy-spec-grid strong, .sp .sources-list li { font-size: 15.5px; line-height: 1.55; }
+.sp .section-lead, .sp .profile-situation, .sp .pick-why, .sp .demo-caption { line-height: 1.6; }
+.sp .st-src { font-size: 14px; line-height: 1.5; }
+.sp .st-panel { padding: clamp(12px, 3vw, 24px); }
+.sp .st-fold .pj-tabs { gap: 8px; }
+@media (max-width: 760px) {
+  .sp .st-fold .pj-tabs { flex-wrap: nowrap; overflow-x: auto; margin-inline: -4px; padding: 2px 4px 8px; scrollbar-width: none; }
+  .sp .st-fold .pj-tabs::-webkit-scrollbar { display: none; }
+  .sp .st-fold .pj-tab { flex: 0 0 auto; padding: 12px 14px; white-space: nowrap; }
+  .sp .st-batt-row { grid-template-columns: 1fr auto; row-gap: 6px; }
+  .sp .st-specs { grid-template-columns: 1fr; }
+  .sp .st-method { grid-template-columns: 1fr; }
+  .sp .sources-list li { padding-block: 10px; }
+}
+#tests-2026 .pj-tab, #tests-2026 .pj-badge, #tests-2026 .st-gdl dt, #tests-2026 .st-spec dt, #tests-2026 .st-ref { font-size: 12.5px; }
+#tests-2026 .pj-tab { font-size: 13.5px; }
+.sp .pl-sections .pl-sections-btn span, .sp #purchase-audit .sq-mini small, .sp .sq-mini small, .sp .profile-card > h3, .sp .v88-platform-choice span, .sp .v88-platform-choice button, .sp .amazon-guide-hint span { font-size: 12.5px; }
+.sp .v88-platform-choice button { font-size: 13px; padding-block: 9px; }
+.sp .recap-section .falc-more { display: grid; gap: 10px; max-width: 640px; }
+.sp .falc-more-link { display: block; }

@@ -9,17 +9,16 @@ const path = require('node:path');
 const SOURCE = {
   id: 'tech-2026',
   titre: 'Résumé détaillé des 6 vidéos Smartphones 2026',
-  support: 'Dossier de synthèse de 3 pages (Resume_Complet_Videos_Tech_2026.html.pdf) sur six vidéos de quatre chaînes',
+  support: 'Dossier de synthèse de 3 pages (Resume_Complet_Videos_Tech_2026.html.pdf) sur six vidéos de quatre chaînes (cinq sont reprises ici)',
   chaines: ['Android Police', 'The Tech Chap', 'Versus', 'Tech Spurt']
 };
 
 const VIDEOS = [
-  { id: 'duel', n: 1, chaine: 'Android Police', titre: 'The Pixel 11 Pro is in another league from the iPhone 18 Pro', theme: 'Duel haut de gamme', resume: 'Un duel entre les deux visions de référence de l’écosystème smartphone.' },
-  { id: 'pixel10', n: 2, chaine: 'Android Police', titre: 'Google actually pulled it off', theme: '10 ans de Pixel', resume: 'Rétrospective du parcours de Google sur le marché du matériel.' },
-  { id: 'records', n: 3, chaine: 'The Tech Chap', titre: 'OPPO Find X10 Pro Max - Phone of the Year?', theme: 'Records matériels', resume: 'Démonstration complète du flagship le plus ambitieux sur le plan matériel.' },
-  { id: 'gaming', n: 4, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Test comparatif ciblé sur le jeu vidéo intensif, l’autonomie et le refroidissement.' },
-  { id: 'samsung', n: 5, chaine: 'Versus', titre: 'Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!', theme: 'Gamme Samsung', resume: 'Guide d’achat pour éviter les erreurs de positionnement dans le milieu de gamme Samsung.' },
-  { id: 'nouveautes', n: 6, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Revue de presse technique sur les derniers lancements Asie et internationaux.' }
+  { id: 'duel', n: 1, chaine: 'Android Police', titre: 'The Pixel 11 Pro is in another league from the iPhone 18 Pro', theme: 'Haut de gamme', resume: 'Un duel entre les deux visions de référence de l’écosystème smartphone.' },
+  { id: 'records', n: 2, chaine: 'The Tech Chap', titre: 'OPPO Find X10 Pro Max - Phone of the Year?', theme: 'Records matériels', resume: 'Démonstration complète du flagship le plus ambitieux sur le plan matériel.' },
+  { id: 'gaming', n: 3, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Test comparatif ciblé sur le jeu vidéo intensif, l’autonomie et le refroidissement.' },
+  { id: 'samsung', n: 4, chaine: 'Versus', titre: 'Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!', theme: 'Gamme Samsung', resume: 'Guide d’achat pour éviter les erreurs de positionnement dans le milieu de gamme Samsung.' },
+  { id: 'nouveautes', n: 5, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Revue de presse technique sur les derniers lancements Asie et internationaux.' }
 ];
 
 const MODELES = [
@@ -47,24 +46,6 @@ const MODELES = [
     specs: { ecran: '90 Hz', ram: '4 Go', usage: 'Lenteurs occasionnelles mais suffisant pour les tâches basiques' } }
 ];
 
-const DUEL = {
-  a: 'pixel-11-pro', b: 'iphone-18-pro',
-  lignes: [
-    { critere: 'Prix et valeur', a: 'Proposé à 100 $ de moins que l’iPhone 18 Pro à sa sortie : un rapport prestations/prix plus agressif.', b: null, gagnant: 'a' },
-    { critere: 'Logiciel et IA', a: 'Android 17 avec la suite Pixel/Gemini proactive.', b: 'iOS 27, perçu comme plus rigide et moins contextuel.', gagnant: 'a' },
-    { critere: 'Photo et vidéo', a: 'Téléobjectif 5x sur grand capteur, meilleur traitement instantané des sujets en mouvement, intégration du Video Boost.', b: 'Ouverture variable sur l’objectif principal et téléobjectif 4x très polyvalent.', gagnant: null },
-    { critere: 'Performances brutes', a: 'Google Tensor G6.', b: 'La puce Apple A20 Pro conserve la tête sur les benchmarks, mais l’écart d’usage au quotidien est imperceptible.', gagnant: 'b' }
-  ],
-  verdict: { etiquette: 'Victoire Pixel 11 Pro', texte: 'Pour son intelligence logicielle, son tarif plus doux et sa régularité photographique.' }
-};
-
-const PIXEL = [
-  { etape: 'Pixel 1 à 3', texte: 'Lancement axé sur le haut de gamme direct face à Apple, imposant la photographie computationnelle comme nouveau standard.' },
-  { etape: 'Pixel 3a et 5', texte: 'Recentrage milieu de gamme pour valider que l’expérience logicielle prime sur l’accumulation de puissance processeur.' },
-  { etape: 'Pixel 6 à 11', texte: 'Passage stratégique à la puce propriétaire Tensor, dédiée à l’intelligence artificielle et au traitement d’image local.' },
-  { etape: 'Bilan 2026', texte: 'Un écosystème complet (smartphones, Fold, Watches, Buds, Gemini) parfaitement consolidé et crédible.' }
-];
-
 const GAMING = {
   lignes: [
     { modele: 'apple-iphone-17-pro-max', verdict: 'Cher mais puissant', etiquette: 'TOP autonomie' },
@@ -81,15 +62,15 @@ const SAMSUNG = [
 ];
 
 const CHOIX = {
-  etudiant: [['samsung-galaxy-a37', 'Le choix économique : l’essentiel de l’A57 pour 100 $ de moins', 'Vidéo 5'], ['samsung-galaxy-a17', 'Le budget strict : écran 90 Hz, 4 Go de RAM, suffisant pour les tâches basiques', 'Vidéo 5'], ['samsung-galaxy-a57', 'Le meilleur choix de la gamme Samsung', 'Vidéo 5']],
-  professionnel: [['pixel-11-pro', 'Intelligence logicielle, tarif plus doux, régularité photographique', 'Vidéo 1'], ['samsung-galaxy-a57', 'Aluminium, IP68, meilleure autonomie globale de la gamme (10 h 35)', 'Vidéo 5'], ['oppo-find-x10-pro-max', 'Autonomie record : 7 150 mAh en Europe', 'Vidéo 3']],
-  gamer: [['redmagic-11s-pro', 'Rapport qualité/prix pur : ventilateur 24k RPM et gâchettes, 11 h 30 de jeu', 'Vidéo 4'], ['samsung-galaxy-s26-ultra', 'Meilleur polyvalent : écran AMOLED et bypass charge, 10 h 17 de jeu', 'Vidéo 4'], ['apple-iphone-17-pro-max', 'Cher mais puissant : jeux console AAA, 12 h 54 de jeu (top)', 'Vidéo 4']],
-  photographe: [['pixel-11-pro', 'Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement', 'Vidéo 1'], ['iphone-18-pro', 'Ouverture variable et téléobjectif 4x très polyvalent', 'Vidéo 1'], ['oppo-find-x10-pro-max', 'Triple capteur 200 MP Hasselblad et convertisseur télé magnétique 10x/20x/40x', 'Vidéo 3'], ['vivo-v80', 'Optiques Zeiss 50 MP, principal et téléobjectif', 'Vidéo 6']]
+  etudiant: [['samsung-galaxy-a37', 'Le choix économique : l’essentiel de l’A57 pour 100 $ de moins', 'Vidéo 4'], ['samsung-galaxy-a17', 'Le budget strict : écran 90 Hz, 4 Go de RAM, suffisant pour les tâches basiques', 'Vidéo 4'], ['samsung-galaxy-a57', 'Le meilleur choix de la gamme Samsung', 'Vidéo 4']],
+  professionnel: [['pixel-11-pro', 'Intelligence logicielle, tarif plus doux, régularité photographique', 'Vidéo 1'], ['samsung-galaxy-a57', 'Aluminium, IP68, meilleure autonomie globale de la gamme (10 h 35)', 'Vidéo 4'], ['oppo-find-x10-pro-max', 'Autonomie record : 7 150 mAh en Europe', 'Vidéo 2']],
+  gamer: [['redmagic-11s-pro', 'Rapport qualité/prix pur : ventilateur 24k RPM et gâchettes, 11 h 30 de jeu', 'Vidéo 3'], ['samsung-galaxy-s26-ultra', 'Meilleur polyvalent : écran AMOLED et bypass charge, 10 h 17 de jeu', 'Vidéo 3'], ['apple-iphone-17-pro-max', 'Cher mais puissant : jeux console AAA, 12 h 54 de jeu (top)', 'Vidéo 3']],
+  photographe: [['pixel-11-pro', 'Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement', 'Vidéo 1'], ['iphone-18-pro', 'Ouverture variable et téléobjectif 4x très polyvalent', 'Vidéo 1'], ['oppo-find-x10-pro-max', 'Triple capteur 200 MP Hasselblad et convertisseur télé magnétique 10x/20x/40x', 'Vidéo 2'], ['vivo-v80', 'Optiques Zeiss 50 MP, principal et téléobjectif', 'Vidéo 5']]
 };
 
 const out = {
   categorie: 'smartphones-tests',
-  source: SOURCE, videos: VIDEOS, modeles: MODELES, duel: DUEL, pixel10: PIXEL, gaming: GAMING, samsung: SAMSUNG,
+  source: SOURCE, videos: VIDEOS, modeles: MODELES, gaming: GAMING, samsung: SAMSUNG,
   records: { ordre: ['oneplus-16', 'vivo-v80', 'oppo-find-x10-pro-max'], echelle_mah: 9000 },
   choix_par_profil: Object.fromEntries(Object.entries(CHOIX).map(([k, l]) => [k, l.map(([modele, raison, ref]) => ({ modele, raison, ref }))])),
   tendances: [
@@ -97,7 +78,7 @@ const out = {
     { titre: 'La photo assistée par l’IA', texte: 'Le traitement logiciel de la photo, assisté par l’IA, domine : c’est lui qui fait la régularité d’un smartphone.' }
   ],
   limites: [
-    'Résumé de six vidéos de quatre chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.',
+    'Synthèse de cinq vidéos de quatre chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.',
     'Le dossier ne contient aucune note chiffrée : le guide n’en invente pas et ne calcule pas de score par profil pour ces modèles.',
     'Prix en dollars (prix de sortie américain, ou reconditionné pour le S26 Ultra), non vérifiés en France.',
     'Chaque verdict vaut dans sa vidéo : « meilleur choix » se lit dans la gamme comparée, pas sur tout le marché.',

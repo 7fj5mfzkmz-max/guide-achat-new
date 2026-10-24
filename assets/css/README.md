@@ -8,7 +8,7 @@ Direction « fiche technique » : fond #E3E7EB, encre #0F1115, accent jaune #FFD
 - `design-system.css` : tokens (`--paper`, `--ink`, `--accent`, `--line`, `--shadow`, polices…), en-tête, menu des catégories, recherche, pied de page, boutons.
 - `category-page.css` : éléments communs aux pages catégorie — accroche, chiffres clés, trois idées, cartes profil, FAQ, appel final, menu « Sections » collant. Comportements associés : `assets/js/category-page.js`.
 - **PC portables** (`pc-portables.html`) : `pc-page.css` (questionnaire, catalogue, lexique), `pc-guide.css` (nomenclature, boussole), `pc-landing.css` (parcours, résultat, filtres).
-- **Smartphones** (`smartphones.html`, `smartphones-approfondir.html`) : `smartphones-page.css` (audit des cinq familles, analyseur, profils, guides, page « détails techniques »), précédé de `audit-visuals.css` et `concept-visuals.css` (animations des pastilles et schémas, partagées avec d'autres pages).
+- **Smartphones** (`smartphones.html`, `smartphones-approfondir.html`) : `smartphones-page.css` (audit des cinq familles, analyseur, profils, guides, page « détails techniques »), précédé de `audit-visuals.css` et `concept-visuals.css` (animations des pastilles et schémas, partagées avec d'autres pages). Pour `smartphones.html` seulement : `smartphone-quiz.css` (quiz et schémas animés, `assets/js/smartphone-quiz*.js`), `smartphones-tests.css` (dossier de tests), et `smartphones-flow.css` en dernier (parcours de la page, lisibilité sur téléphone).
 
 ## Ancien thème (pages non encore migrées)
 Utilisé par `a-propos`, `analyseur`, `capture`, `comparateur`, `diagnostic`, `lexique`, `lexique-pc-portables` :
