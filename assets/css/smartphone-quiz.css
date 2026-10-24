@@ -53,22 +53,84 @@
 .sp #purchase-audit .audit-card-trigger .audit-card-copy small,.sp #purchase-audit .audit-card-trigger .audit-no{color:#fff;opacity:.9}
 .sp #purchase-audit .audit-status{color:#fff;background:#0005;border-color:#fff6;letter-spacing:0}
 .sp #purchase-audit .is-complete .audit-status{color:#20221e;background:#ffb38c;border-color:transparent}
-.sp #purchase-audit .sq-primary .audit-pills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.sp #purchase-audit .sq-primary .audit-pill{border-radius:16px;align-items:start;text-align:left;padding:15px;min-width:0}
+
+/* Un schéma animé, des choix courts, puis « + » et « − » en deux lignes discrètes. */
+.sp #purchase-audit .sq-primary{grid-template-columns:minmax(200px,.9fr) minmax(0,1.4fr);align-items:center;gap:22px 32px}
+.sp #purchase-audit .sq-primary+.sq-primary{margin-top:30px;padding-top:28px;border-top:1px solid var(--line)}
+.sp #purchase-audit .sq-primary .audit-pill{padding:9px 16px;min-height:44px}
 .sp #purchase-audit .sq-primary .sq-option-dot{display:none}
-.sp #purchase-audit .sq-primary .audit-pill .pill-copy{display:grid;gap:7px;min-width:0}
-.sp #purchase-audit .sq-primary .audit-pill .pill-copy small{display:block;font:400 14px/1.4 var(--sans);color:inherit;opacity:.85}
-.sp #purchase-audit .sq-primary{grid-template-columns:minmax(180px,.7fr) minmax(0,1.5fr);gap:22px 30px}
-.sp #purchase-audit .sq-feedback{grid-column:1/-1}
-.sp #purchase-audit .sq-feedback>.sq-explanation{min-height:0;margin:0}
-.sp #purchase-audit .sq-tradeoffs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.sp #purchase-audit .sq-tradeoffs>div{display:flex;gap:12px;padding:20px;border-radius:16px;background:var(--paper-2);border:1px solid var(--line);animation:sqTradeoff .4s ease-out both}
-.sp #purchase-audit .sq-tradeoffs>.sq-caution{animation-delay:.08s}
-.sp #purchase-audit .sq-tradeoffs h4{font:800 19px/1.2 var(--head);letter-spacing:-.03em;text-transform:none;color:var(--ink);margin:0 0 8px}
-.sp #purchase-audit .sq-tradeoffs p{font:400 16px/1.5 var(--sans);color:var(--ink-soft);margin:0}
-.sp #purchase-audit .sq-tradeoff-icon{width:28px;height:28px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:#dce6a0;color:#20221e;font:600 21px/1 var(--sans);animation:sqBalance .5s ease-out both}
-.sp #purchase-audit .sq-caution .sq-tradeoff-icon{background:#ffd0b5;animation-delay:.08s}
-@keyframes sqTradeoff{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-@keyframes sqBalance{0%{transform:rotate(-18deg) scale(.8)}70%{transform:rotate(5deg)}100%{transform:rotate(0) scale(1)}}
-@media(max-width:650px){.sp #purchase-audit .audit-card-trigger{min-height:118px;padding:20px 16px;gap:10px}.sp #purchase-audit .audit-card-trigger .audit-card-copy strong{font-size:24px}.sp #purchase-audit .sq-primary{grid-template-columns:1fr;gap:18px}.sp #purchase-audit .sq-illustration svg{height:100px}.sp #purchase-audit .sq-primary .audit-pill{padding:12px}.sp #purchase-audit .sq-primary .audit-pill .pill-copy strong{font-size:16px}.sp #purchase-audit .sq-primary .audit-pill .pill-copy small{font-size:13px}.sp #purchase-audit .sq-tradeoffs{grid-template-columns:1fr;gap:10px}.sp #purchase-audit .sq-tradeoffs>div{padding:16px}.sp #purchase-audit .sq-tradeoffs p{font-size:16px}.sp #purchase-audit .sq-tradeoffs h4{font-size:18px}}
-@media(prefers-reduced-motion:reduce){.sp #purchase-audit .sq-tradeoffs>div,.sp #purchase-audit .sq-tradeoff-icon{animation:none!important}}
+.sp #purchase-audit .sq-illustration svg{max-height:210px}
+.sp #purchase-audit .sq-pm{display:grid;gap:8px;margin-top:18px;min-height:4.6em}
+.sp #purchase-audit .sq-pm p{display:flex;gap:10px;margin:0;font:400 16px/1.45 var(--sans);color:var(--ink-soft);animation:sqRise .4s ease-out both}
+.sp #purchase-audit .sq-pm p+p{animation-delay:.1s}
+.sp #purchase-audit .sq-pm b{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:700 16px/1 var(--sans);animation:sqPop .5s ease-out both}
+.sp #purchase-audit .sq-gain b{background:#dce6a0;color:#20221e}
+.sp #purchase-audit .sq-cost b{background:#ffd0b5;color:#20221e;animation-delay:.1s}
+.sp #purchase-audit .sq-hint{font-size:15px!important;color:var(--ink-mute)!important}
+@keyframes sqRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes sqPop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+
+/* Schémas : texte */
+.sp #purchase-audit .sq-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.sp #purchase-audit .sq-t{font:600 13px var(--mono);fill:#4d4f45}
+.sp #purchase-audit .sq-t-strong{font:800 18px var(--head);fill:#20221e}
+.sp #purchase-audit .sq-t-big{font:700 15px var(--mono);fill:#20221e}
+
+/* OLED / LCD : le noir éteint contre le noir éclairé par derrière */
+.sp #purchase-audit .sq-half{transform-box:fill-box}
+.sp #purchase-audit .sq-half.is-dim{opacity:.5}
+.sp #purchase-audit .sq-backlight{opacity:.2;animation:sqBacklight 2.4s ease-in-out infinite}
+.sp #purchase-audit .sq-moon{animation:sqMoon 2.4s ease-in-out infinite}
+.sp #purchase-audit .sq-star{animation:sqTwinkle 2.4s ease-in-out infinite;animation-delay:var(--d)}
+.sp #purchase-audit .sq-px{animation:sqPixel 2.4s ease-in-out infinite;animation-delay:var(--d)}
+.sp #purchase-audit .sq-px-all{animation:sqPixelAll 2.4s ease-in-out infinite}
+@keyframes sqBacklight{0%,100%{opacity:.12}50%{opacity:.34}}
+@keyframes sqMoon{0%,100%{opacity:.85}50%{opacity:1}}
+@keyframes sqTwinkle{0%,100%{opacity:1}50%{opacity:.15}}
+@keyframes sqPixel{0%,100%{opacity:.08}20%,45%{opacity:1}}
+@keyframes sqPixelAll{0%,100%{opacity:.55}50%{opacity:.8}}
+
+/* Fréquence : la balle saute d’image en image */
+.sp #purchase-audit .sq-ball{animation:sqBall 1.8s steps(var(--n),end) infinite alternate}
+@keyframes sqBall{from{transform:translateX(0)}to{transform:translateX(176px)}}
+
+/* Batterie : le réservoir se vide plus ou moins vite, de matin à soir */
+.sp #purchase-audit .sq-drain{transform-box:fill-box;transform-origin:left center;animation:sqDrain var(--t) linear infinite}
+.sp #purchase-audit .sq-clock{animation:sqClock var(--t) linear infinite}
+@keyframes sqDrain{0%{transform:scaleX(1)}90%,100%{transform:scaleX(.06)}}
+@keyframes sqClock{0%{transform:translateX(0)}90%,100%{transform:translateX(156px)}}
+
+/* Puissance : la charge monte, la chauffe aussi */
+.sp #purchase-audit .sq-load{transform-box:fill-box;transform-origin:center bottom;animation:sqLoad var(--t) ease-in-out infinite alternate;animation-delay:var(--d)}
+.sp #purchase-audit .sq-heat{opacity:var(--h);animation:sqHeat 1.6s ease-in-out infinite alternate}
+@keyframes sqLoad{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
+@keyframes sqHeat{from{transform:scale(.85)}to{transform:scale(1.05)}}
+
+/* Capteur : plus il est grand, plus de lumière tombe dedans */
+.sp #purchase-audit .sq-photon{animation:sqPhoton 1.8s ease-in infinite;animation-delay:var(--d);opacity:0}
+@keyframes sqPhoton{0%{transform:translateY(0);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateY(calc(var(--f) + 30px));opacity:0}}
+
+/* Mises à jour : une barre par année, puis le bouclier */
+.sp #purchase-audit .sq-year{transform-box:fill-box;transform-origin:left center;animation:sqYear 4.5s ease-out infinite;animation-delay:var(--d)}
+.sp #purchase-audit .sq-check{stroke-dasharray:44;animation:sqCheck 4.5s ease-out infinite}
+@keyframes sqYear{0%{transform:scaleX(0)}12%,88%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+@keyframes sqCheck{0%,30%{stroke-dashoffset:44}45%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:44}}
+
+/* Photo de l’en-tête Batterie : un téléphone qui se recharge (plus de batterie externe) */
+.sp #purchase-audit .sq-family-photo svg{display:block;width:100%;height:100%}
+.sp #purchase-audit .sq-charge{transform-box:fill-box;transform-origin:left center;animation:sqCharge 3.6s ease-in-out infinite}
+.sp #purchase-audit .sq-bolt{animation:sqBolt 1.8s ease-in-out infinite}
+@keyframes sqCharge{0%{transform:scaleX(.12)}80%,100%{transform:scaleX(1)}}
+@keyframes sqBolt{0%,100%{opacity:.55}50%{opacity:1}}
+
+@media(max-width:650px){
+.sp #purchase-audit .audit-card-trigger{min-height:118px;padding:20px 16px;gap:10px}
+.sp #purchase-audit .audit-card-trigger .audit-card-copy strong{font-size:24px}
+.sp #purchase-audit .sq-primary{grid-template-columns:1fr;gap:16px}
+.sp #purchase-audit .sq-illustration svg{height:auto;max-height:175px}
+.sp #purchase-audit .sq-primary .audit-pill{padding:8px 14px;min-height:42px}
+.sp #purchase-audit .sq-primary .audit-pill .pill-copy strong{font-size:16px}
+.sp #purchase-audit .sq-pm{min-height:0}
+.sp #purchase-audit .sq-pm p{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){.sp #purchase-audit .sq-pm p,.sp #purchase-audit .sq-pm b{animation:none!important}}
