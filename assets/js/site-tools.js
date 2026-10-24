@@ -181,7 +181,8 @@
       { url: "smartphones.html", label: "Smartphones" },
       { url: "lexique.html", label: "Lexique" },
       { url: "comparateur.html", label: "Comparateur" },
-      { url: "smartphones-approfondir.html", label: "Smartphones · détails techniques" }
+      { url: "smartphones-approfondir.html", label: "Smartphones · détails techniques" },
+      { url: "actualites.html", label: "Mises à jour du site : nouveaux produits, tests et guides" }
     ];
 
     function addRecord(record) {

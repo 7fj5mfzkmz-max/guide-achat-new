@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<meta name="theme-color" content="#0f1115"/>
+<title>Mises à jour du site : Guide·Achat</title>
+<meta name="description" content="Nouveaux produits, tests et guides : toutes les mises à jour de Guide·Achat, datées, par catégorie."/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="canonical" href="https://guide-achat-new.vercel.app/actualites.html"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/design-system.css">
+<link rel="stylesheet" href="assets/css/category-page.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<link rel="stylesheet" href="assets/css/actualites.css">
+<link rel="alternate" type="application/atom+xml" title="Guide·Achat : mises à jour" href="feed.xml">
+<script>document.documentElement.classList.add("hx-js")</script>
+<noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
+<script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
+if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+if(t==="dark")r.classList.add("dark-theme");
+var n=navigator,c=n.connection||{};
+if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
+
+</head>
+<body class="site-redesign home">
+<header class="site-header">
+<div class="header-inner">
+<a aria-label="Guide d’achat : accueil" class="brand-logo" href="index.html"><span class="home-brand-dot" aria-hidden="true"></span><span class="home-wordmark">Guide<span>d’achat</span></span></a>
+<button class="brand-menu-toggle" id="category-menu-toggle" type="button" aria-expanded="false" aria-controls="category-menu" aria-label="Ouvrir les catégories"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><rect x="15" y="15" width="6" height="6" rx="1"/></svg><span class="brand-menu-label">Guides</span></button>
+<nav aria-label="Catégories" class="site-nav" data-category-nav></nav>
+<div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>Rechercher</span></button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><svg class="home-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></svg><svg class="home-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></svg></button></div>
+</div>
+</header>
+<section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker">GUIDE·ACHAT</span><h2 id="search-panel-title">Rechercher</h2></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><span aria-hidden="true">⌕</span><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
+<main id="main" class="hx-home news-page">
+<section class="news-section news-page-head" aria-labelledby="news-title">
+<div class="intro-label"><span class="live-dot" aria-hidden="true"></span> Le fil du site</div>
+<h1 id="news-title">Mises à jour</h1>
+<p class="intro-lead">Chaque nouveau produit, chaque test et chaque guide revu apparaît ici, avec sa date. <span id="news-count">8 mises à jour</span></p>
+<div class="news-filters" id="news-filters" role="group" aria-label="Filtrer par catégorie" hidden></div>
+<!--actualites:liste-->
+<ul class="news-list news-list-all" id="news-list"><li class="news-item" data-cat="smartphones" data-type="article"><a href="smartphones.html#audit"><span class="news-meta"><span class="news-cat">Smartphones</span><time datetime="2026-10-24">24 oct. 2026</time></span><h3>Guide smartphones : un quiz en animation</h3><p>Écran, batterie, puce, photo et mises à jour s’expliquent par le mouvement, avec ce qu’on gagne et ce qu’on accepte à chaque choix.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li><li class="news-item" data-cat="pc" data-type="nouveau"><a href="pc-portables.html"><span class="news-meta"><span class="news-cat">PC portables</span><time datetime="2026-10-23">23 oct. 2026</time></span><h3>11 nouveaux PC portables</h3><p>Au catalogue : HP Laptop 15-fd0154nf, MSI Modern 13 F1MOG-090FR, Samsung Galaxy Book4 NP750XGJ-KG4FR, MSI Modern 14 C7M-428FR et 7 autres.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li><li class="news-item" data-cat="projecteurs" data-type="nouveau"><a href="projecteurs.html"><span class="news-meta"><span class="news-cat">Projecteurs</span><time datetime="2026-10-23">23 oct. 2026</time></span><h3>14 nouveaux projecteurs</h3><p>Au catalogue : NexiGo PJ40 Pro, Vocals G3 Pro, Elephas W1K, Fidoni GC888A et 10 autres.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li><li class="news-item" data-cat="ecouteurs" data-type="nouveau"><a href="ecouteurs.html"><span class="news-meta"><span class="news-cat">Écouteurs</span><time datetime="2026-10-23">23 oct. 2026</time></span><h3>24 nouveaux écouteurs</h3><p>Au catalogue : Nothing Headphone (1) Pro, Anker Soundcore Liberty Buds 2, Roseselsa Ceramics Ultra, HUAWEI FreeBuds Pro 5 et 20 autres.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li><li class="news-item" data-cat="batteries" data-type="nouveau"><a href="batteries-externes.html"><span class="news-meta"><span class="news-cat">Batteries externes</span><time datetime="2026-10-23">23 oct. 2026</time></span><h3>4 nouvelles batteries externes</h3><p>Au catalogue : Samsung EB-P4520, Anker A1383 · 20K 87W, UGREEN Nexode · 12K 100W, UGREEN Nexode · 20K 130W.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li><li class="news-item" data-cat="smartphones" data-type="nouveau"><a href="smartphones.html#tests-2026"><span class="news-meta"><span class="news-cat">Smartphones</span><time datetime="2026-10-23">23 oct. 2026</time></span><h3>Tests 2026 : 12 modèles ajoutés au dossier</h3><p>Au catalogue : Google Pixel 11 Pro, Apple iPhone 18 Pro, OPPO Find X10 Pro Max, Vivo V80 et 8 autres.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li><li class="news-item" data-cat="smartphones" data-type="nouveau"><a href="smartphones.html"><span class="news-meta"><span class="news-cat">Smartphones</span><time datetime="2026-10-21">21 oct. 2026</time></span><h3>86 nouveaux smartphones</h3><p>Au catalogue : Samsung Galaxy A56, Xiaomi 15T, Apple iPhone 17 Pro, OnePlus 15 et 82 autres.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li><li class="news-item" data-cat="pc" data-type="nouveau"><a href="pc-portables.html"><span class="news-meta"><span class="news-cat">PC portables</span><time datetime="2026-10-21">21 oct. 2026</time></span><h3>60 nouveaux PC portables</h3><p>Au catalogue : Apple MacBook Air 13 (M5), Apple MacBook Air 15 (M5), Apple MacBook Air 13 (M4), Apple MacBook Neo et 56 autres.</p><span class="news-go" aria-hidden="true">Voir →</span></a></li></ul>
+<!--/actualites:liste-->
+<p class="news-all"><a class="news-feed" href="feed.xml">S’abonner au flux Atom</a> <a href="index.html">← Retour à l’accueil</a></p>
+</section>
+</main>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><span><b>Guide</b> <strong>d'achat</strong></span></div><div class="footer-copy"><p class="footer-links"><a href="actualites.html">Mises à jour</a> · <a href="a-propos.html">À propos</a> · <a href="analyseur.html">Analyseur</a></p><p>Un guide indépendant pour comprendre si un produit correspond à votre quotidien.</p></div></div></footer>
+
+<script src="assets/js/categories.js"></script>
+<script src="assets/js/site-tools.js"></script>
+<script src="assets/js/category-menu.js" defer></script>
+
+<script src="assets/js/actualites.js" defer></script>
+</body>
+</html>

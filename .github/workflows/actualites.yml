@@ -1,0 +1,26 @@
+# Met à jour le fil d'actualités (accueil, page « Mises à jour », flux Atom) dès que les données changent.
+# Réglage requis : Settings > Actions > General > Workflow permissions > « Read and write permissions ».
+name: Fil d'actualités
+on:
+  push:
+    branches: [main]
+    paths: ['data/**', '!data/actualites*.json', 'tools/actualites/**']
+permissions:
+  contents: write
+jobs:
+  actualites:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: node tools/actualites/construire.js
+      - name: Publier si le fil a changé
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "guide-achat-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data/actualites.json data/actualites-etat.json index.html actualites.html feed.xml
+            git commit -m "Fil d'actualités : mise à jour automatique [skip ci]"
+            git push
+          fi

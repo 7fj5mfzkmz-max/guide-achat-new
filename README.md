@@ -33,3 +33,12 @@ docs/                  Déploiement, notes de refonte, historique
 
 ## Déployer
 Voir `docs/DEPLOIEMENT-VERCEL-GITHUB.md` et `docs/DEPLOIEMENT.md`.
+
+## Fil d'actualités (accueil, page « Mises à jour », flux Atom)
+
+Généré par `node tools/actualites/construire.js` : il compare `data/*.json` à l'état précédent (`data/actualites-etat.json`),
+crée une entrée datée pour chaque lot de nouveaux produits ou de fiches modifiées, puis réécrit le bloc de l'accueil,
+`actualites.html` et `feed.xml`. Sur GitHub, `.github/workflows/actualites.yml` le lance à chaque modification de `data/`.
+`npm test` échoue si le fil est périmé. Article ou guide sans changement de données :
+`node tools/actualites/ajouter.js --cat projecteurs --titre "…" --resume "…" --lien projecteurs.html`, puis relancer le générateur.
+`--amorcer` reconstruit tout depuis git et efface les entrées ajoutées à la main : à ne pas relancer.
