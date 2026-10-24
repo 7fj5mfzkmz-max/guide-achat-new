@@ -1,0 +1,150 @@
+/* Page smartphones : parcours (sur mesure → choix → profil → analyseur → achat → preuves),
+   lecture aérée sur téléphone, éléments importants animés. Chargé en dernier. */
+
+/* ——— Rythme général ——— */
+.sp .section { padding-block: clamp(40px, 6vw, 84px); }
+.sp .section-heading { max-width: 24ch; }
+.sp .section-lead { max-width: 56ch; margin-bottom: 0; }
+
+/* ——— Accueil de page ——— */
+.sp .pg-lead { max-width: 44ch; }
+.sp .pg-cta { gap: 12px; }
+
+/* ——— Choix 2026 : on fait défiler, sur téléphone ——— */
+.sp .picks-section .picks { margin-top: 24px; }
+.sp .pick { box-shadow: none; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.sp .pick:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
+.sp .pick-for { color: #0f1115; background: var(--accent); align-self: flex-start; padding: 4px 8px; }
+.sp .picks-dots { display: none; }
+@media (max-width: 760px) {
+  .sp .picks { display: flex; grid-template-columns: none; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; margin-inline: -16px; padding: 4px 16px 14px; overscroll-behavior-x: contain; scrollbar-width: none; }
+  .sp .picks::-webkit-scrollbar { display: none; }
+  .sp .pick, .sp .pick:nth-child(n+4), .sp .pick:last-child { flex: 0 0 84%; max-width: 340px; grid-column: auto; scroll-snap-align: start; padding: 18px; }
+  .sp .pick-why { font-size: 15px; }
+  .sp .picks-dots { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 2px 0 6px; }
+  .sp .picks-dots i { width: 9px; height: 9px; border: 1px solid var(--ink); background: transparent; transition: width .25s var(--ease), background .25s; }
+  .sp .picks-dots i.is-on { width: 26px; background: var(--accent); }
+  .sp .picks-section.is-fresh .picks { animation: spNudge 1.4s var(--ease) .6s 1; }
+}
+@keyframes spNudge { 0%, 100% { transform: translateX(0); } 40% { transform: translateX(-34px); } }
+
+/* ——— Profils : un seul à la fois, sans titre en double ——— */
+.sp .profile-toggle { margin: 0; border: 0; background: none; box-shadow: none; }
+.sp .profile-toggle-summary, .sp .profile-section .profile-icon { display: none; }
+.sp .profile-section { padding: 0; margin-top: 18px; }
+.sp .profile-header { text-align: left; margin-bottom: 14px; }
+.sp .profile-header h2 { font-size: clamp(20px, 2.6vw, 28px); }
+.sp .profile-situation { max-width: 60ch; margin: 0; }
+.sp .profile-grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; }
+.sp .profile-card-demo { grid-column: 1 / -1; min-height: 0; height: auto; align-self: start; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 14px 18px; }
+.sp .profile-card-demo h3 { margin: 0; }
+.sp .profile-card-demo .demo-caption { margin: 0; font-style: italic; flex: 1 1 260px; }
+.sp .profile-card, .sp .profile-card .signal-table { animation: none; }
+.sp .profile-section.is-swap, .sp .profile-toggle:not([hidden]) .profile-card { animation: spRise .45s var(--ease) both; }
+.sp .profile-toggle:not([hidden]) .profile-card:nth-child(2) { animation-delay: .07s; }
+.sp .profile-toggle:not([hidden]) .profile-card:nth-child(3) { animation-delay: .14s; }
+@keyframes spRise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.sp .profile-hint { margin: 8px 0 0; }
+.sp .profile-toggle { scroll-margin-top: 120px; }
+.sp .profile-section.section { margin-top: 10px; border-top: 0; }
+.sp .profile-picker { padding-bottom: 0; }
+.sp .profile-picker-tabs { margin-top: 18px; }
+.sp .profile-picker-tab.is-current { animation: spPop .35s var(--ease) both; }
+@keyframes spPop { 0% { transform: scale(.96); } 60% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+/* Photographe : l'ancienne alerte devient une explication du profil */
+.sp .profile-extra { margin-top: 18px; padding: 18px clamp(14px, 3vw, 24px); border: 1px solid var(--ink); background: var(--paper-2); }
+.sp .profile-extra-head h3 { margin: 6px 0 12px; font: 800 clamp(18px, 2.2vw, 24px)/1.15 var(--head); text-transform: uppercase; }
+.sp .profile-extra .sensor-demo { padding: 0; }
+.sp .profile-extra-rule { margin: 12px 0 0; padding-left: 12px; border-left: 4px solid var(--accent); color: var(--ink-soft); }
+
+/* ——— Analyseur et guide de lecture ——— */
+.sp .fiche-fold { margin-top: 16px; }
+.sp .fiche-fold .fiche-layout { padding: 0 clamp(12px, 3vw, 22px) 22px; }
+.sp .fiche-fold .section-heading { display: none; }
+
+/* ——— Avant d'acheter : liste cochable qui remplit une barre ——— */
+.sp .ck { margin-top: 22px; }
+.sp .ck-bar { height: 12px; border: 1px solid var(--ink); background: var(--paper-2); overflow: hidden; }
+.sp .ck-bar i { display: block; height: 100%; width: calc(var(--p, 0) * 20%); background: var(--accent); transition: width .45s var(--ease); }
+.sp .ck-count { margin: 8px 0 12px; font: 700 14px var(--mono); }
+.sp .ck-count b { font-size: 18px; }
+.sp .ck.is-done .ck-count { color: #0a7a3b; }
+.sp .ck-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 8px; }
+.sp .ck-list label { display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: center; padding: 12px 14px; border: 1px solid var(--ink); background: var(--paper-2); cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s; }
+.sp .ck-list label:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
+.sp .ck-list input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.sp .ck-box { width: 28px; height: 28px; border: 2px solid var(--ink); background: var(--paper); display: grid; place-items: center; }
+.sp .ck-box::after { content: ''; width: 14px; height: 8px; border-left: 4px solid #0f1115; border-bottom: 4px solid #0f1115; transform: rotate(-45deg) scale(0); margin-top: -3px; transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
+.sp .ck-list input:checked + .ck-box { background: var(--accent); animation: spPop .35s var(--ease); }
+.sp .ck-list input:checked + .ck-box::after { transform: rotate(-45deg) scale(1); }
+.sp .ck-list input:focus-visible + .ck-box { outline: 3px solid var(--ink); outline-offset: 3px; }
+.sp .ck-txt strong { display: block; font: 800 15px/1.25 var(--head); text-transform: uppercase; }
+.sp .ck-txt small { display: block; margin-top: 2px; font-size: 14.5px; color: var(--ink-soft); }
+.sp .ck-list input:checked ~ .ck-txt strong { text-decoration: line-through; text-decoration-thickness: 2px; opacity: .65; }
+
+/* Trois notions : trois pictogrammes animés */
+.sp .notions-title { margin: 34px 0 12px; font: 800 clamp(18px, 2.2vw, 22px)/1.2 var(--head); text-transform: uppercase; }
+.sp .notions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sp .notion { padding: 16px; border: 1px solid var(--ink); background: var(--paper-2); display: grid; gap: 6px; align-content: start; }
+.sp .notion h4 { margin: 4px 0 0; font: 800 16px/1.2 var(--head); text-transform: uppercase; }
+.sp .notion p { margin: 0; font-size: 15px; color: var(--ink-soft); }
+.sp .notion-ic { position: relative; height: 54px; display: flex; align-items: center; gap: 8px; }
+.sp .notion-ic i { display: block; border: 2px solid var(--ink); background: var(--paper); }
+.sp .n-and, .sp .n-ios { width: 30px; height: 46px; border-radius: 8px; }
+.sp .n-and { background: var(--accent); animation: spSwap 3s ease-in-out infinite; }
+.sp .n-ios { animation: spSwap 3s ease-in-out infinite reverse; }
+.sp .notion-eco i { width: 26px; height: 26px; border-radius: 50%; animation: spOrbit 2.4s ease-in-out infinite; }
+.sp .notion-eco i:nth-child(1) { background: var(--accent); width: 34px; height: 34px; animation: none; }
+.sp .notion-eco i:nth-child(3) { animation-delay: .4s; }
+.sp .notion-sup i { width: 18px; border-radius: 3px; height: 14px; animation: spYears 3.2s ease-in-out infinite; }
+.sp .notion-sup i:nth-child(2) { animation-delay: .25s; } .sp .notion-sup i:nth-child(3) { animation-delay: .5s; } .sp .notion-sup i:nth-child(4) { animation-delay: .75s; }
+@keyframes spSwap { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes spOrbit { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+@keyframes spYears { 0%, 20% { height: 14px; background: var(--paper); } 45%, 80% { height: 44px; background: var(--accent); } 100% { height: 14px; background: var(--paper); } }
+.sp .recap-section .falc-more { margin-top: 24px; }
+
+/* ——— Tests : un dossier à ouvrir, pas à subir ——— */
+.sp .st-fold { margin-top: 22px; border: 1px solid var(--ink); background: var(--paper-2); }
+.sp .st-fold > summary { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 14px; padding: 16px 18px; cursor: pointer; list-style: none; font: 800 16px var(--head); text-transform: uppercase; }
+.sp .st-fold > summary::-webkit-details-marker { display: none; }
+.sp .st-fold > summary small { font: 500 13px var(--mono); text-transform: none; color: var(--ink-soft); }
+.sp .st-fold > summary::after { content: '＋'; margin-left: auto; font-size: 22px; transition: transform .25s var(--ease); }
+.sp .st-fold[open] > summary::after { transform: rotate(45deg); }
+.sp .st-fold > summary:hover { background: var(--accent); color: #0f1115; }
+.sp .st-fold > :not(summary) { margin-inline: clamp(12px, 3vw, 22px); }
+.sp .st-fold > .st-method { margin-bottom: 22px; }
+.sp .st-fold > .st-error { margin-top: 12px; }
+
+/* ——— Téléphone : respirer ——— */
+@media (max-width: 760px) {
+  .sp .pg-stage { min-height: 300px !important; }
+  .sp .fiche-fold > summary { grid-template-columns: 1fr auto; grid-template-areas: "num cta" "title cta" "sub cta"; row-gap: 6px; }
+  .sp .fiche-fold .deep-num { justify-self: start; }
+  .sp .section { padding-block: 34px; }
+  .sp .section-heading { font-size: 26px; margin-bottom: .35em; }
+  .sp .section-heading .eyebrow { margin-bottom: 10px; }
+  .sp .section-lead { font-size: 16px; line-height: 1.55; }
+  .sp .pg-hero { padding-block: 10px 6px; }
+  .sp .pg-lead { font-size: 17px; }
+  .sp .pg-cta { display: grid; }
+  .sp .pg-cta .pg-btn { text-align: center; }
+  .sp .profile-grid { grid-template-columns: 1fr; }
+  .sp .profile-card { padding: 16px; }
+  .sp .profile-card-demo { padding: 14px 16px; }
+  .sp .profile-picker-tabs { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 8px; margin-inline: -16px; padding: 4px 16px 10px; scrollbar-width: none; }
+  .sp .profile-picker-tabs::-webkit-scrollbar { display: none; }
+  .sp .profile-picker-tab { flex: 0 0 auto; padding: 12px 16px; white-space: nowrap; }
+  .sp .notions { grid-template-columns: 1fr; gap: 10px; }
+  .sp .notion { grid-template-columns: 72px 1fr; column-gap: 14px; align-items: center; padding: 14px; }
+  .sp .notion-ic { grid-row: span 2; height: 54px; justify-content: center; }
+  .sp .notion h4, .sp .notion p { grid-column: 2; margin: 0; }
+  .sp .sensor-demo { margin-inline: -4px; }
+  .sp #purchase-audit .audit-panel { padding: 14px; }
+  .sp #purchase-audit .sq-illustration { padding: 12px 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sp .n-and, .sp .n-ios, .sp .notion-eco i, .sp .notion-sup i, .sp .pick, .sp .picks-section .picks,
+  .sp .profile-toggle .profile-card, .sp .profile-picker-tab.is-current, .sp .ck-bar i, .sp .ck-box { animation: none !important; transition: none !important; }
+  .sp .notion-sup i { height: 30px; }
+}
