@@ -425,23 +425,23 @@
           groups:[
             {key:"capacity",label:"Capacité",type:"pill-meter",options:[["3000","3 000 mAh","Petite batterie : recharge souvent dans la journée."],["4000","4 000 mAh","Une journée d’usage normal."],["5000","5 000 mAh","La norme : une bonne journée, parfois plus."],["6000","6 000+ mAh","Plus d’autonomie, mais un téléphone souvent plus lourd."]]},
             {key:"chemistry",label:"Technologie / chimie",advanced:true,type:"pill",options:[["liion","Li-ion","Batterie classique, dans la plupart des téléphones."],["lipoly","Li-polymère","Format plat et souple ; ne change pas l’autonomie en soi."],["silicon","Silicium-carbone","Plus d’énergie pour le même volume : batterie plus fine à capacité égale."]]},
-            {key:"charge",label:"Recharge",type:"pill-charge",options:[["25","25 W","Plus d’une heure pour une charge complète."],["45","45 W","Bon équilibre entre vitesse et chaleur."],["67","67 W","Plusieurs heures d’usage en une pause café."],["100","100 W+","Très rapide, mais chargeur souvent vendu à part."]]}
+            {key:"charge",label:"Recharge",type:"pill-charge",options:[["25","25 W","Environ 1 h 30 pour une charge complète."],["45","45 W","Environ 1 h : bon équilibre entre vitesse et chaleur."],["67","67 W","Environ 45 min : plusieurs heures d’usage en une pause café."],["100","100 W+","Environ 30 min, mais chargeur souvent vendu à part."]]}
           ]
         },
         performance:{
           intro:"Concentrez-vous sur la puce exacte et sur l’usage prévu. Pour jouer régulièrement, privilégiez une plateforme adaptée au gaming ; pour un usage plus occasionnel, regardez d’abord le CPU, le GPU, la RAM, l’optimisation et le refroidissement.",
           groups:[
-            {key:"reference",label:"Référence de puce",type:"choice",options:[
-              ["basic","Ex. Snapdragon 4 / Dimensity 600","Messages, web, vidéo. Les jeux 3D récents peuvent ramer."],["mid","Ex. Snapdragon 7 / Dimensity 8000","Bon équilibre : la plupart des jeux et applications passent."],["high","Ex. Snapdragon 8 / Dimensity 9000+","À l’aise partout : jeux 3D, montage, multitâche."],["apple","Ex. Apple A-series récente","Très rapide ; regardez aussi la tenue quand il chauffe."]]},
-            {key:"gaming",label:"Indice de performance",type:"choice",options:[
-              ["daily","★★★☆☆ Quotidien","Réseaux, web, vidéo, messages."],["heavy","★★★★☆ Lourd","Montage, multitâche, jeux exigeants."],["pro","★★★★★ Très lourd","Jeux très lourds longtemps : vérifiez les tests de chauffe."]]},
+            {key:"reference",label:"Niveau de puce",type:"choice",options:[
+              ["basic","Entrée de gamme","Helio G99, Snapdragon 685, Exynos 1330 : messages, web, vidéo. Les jeux 3D récents saccadent."],["mid","Milieu de gamme","Snapdragon 7 Gen 3, Dimensity 8400, Exynos 1580 : la plupart des jeux tournent bien."],["high","Haut de gamme Android","Snapdragon 8 (Gen 3, Elite), Dimensity 9400, Tensor : jeux 3D, montage et multitâche sans effort."],["apple","Puces Apple","A18, A19 : très rapides ; regardez aussi la chauffe en jeu prolongé."]]},
+            {key:"gaming",label:"Votre usage",type:"choice",options:[
+              ["daily","Quotidien","Messages, web, vidéo, réseaux sociaux : n’importe quelle puce récente suffit."],["heavy","Jeux et montage","Jeux 3D comme Genshin Impact, montage vidéo, nombreux onglets : visez au moins le milieu de gamme."],["pro","Jeux très lourds","Graphismes élevés pendant des heures : visez le haut de gamme et lisez les tests de chauffe."]]}
           ]
         },
         photo:{
           intro:"Pour la photo, regardez d’abord la taille du capteur, la stabilisation et le zoom. Le nombre de mégapixels seul ne dit pas si les photos seront bonnes, surtout de nuit.",
           groups:[
             {key:"sensor",label:"Capteur principal",type:"choice",options:[
-              ["small","Ex. 1/2,76\"","Petit capteur : chaque pixel reçoit peu de lumière ; la nuit dépend surtout du logiciel et peut montrer du bruit."],["medium","Ex. 1/1,56\"","Capteur plus grand : chaque pixel reçoit plus de lumière ; les photos de soir et en intérieur sont généralement plus propres."],["large","Ex. 1\"","Très grand capteur : beaucoup plus de lumière, meilleur flou et photos de nuit plus nettes ; rend le téléphone plus épais et cher."]]},
+              ["small","Petit capteur (≈ 1/2,8″)","Entrée de gamme : peu de lumière par pixel, donc du grain le soir."],["medium","Capteur moyen (≈ 1/1,6″)","Milieu de gamme : soirées et intérieurs plus propres."],["large","Grand capteur (≈ 1/1,3″ à 1″)","Haut de gamme : beaucoup plus de lumière, nuit nette, flou d’arrière-plan ; bloc photo plus épais et plus cher."]]},
             {key:"stabilization",label:"Stabilisation",type:"choice",options:[
               ["none","EIS / numérique","Le logiciel recadre pour gommer les tremblements : bien en vidéo."],["ois","OIS / optique","La lentille bouge : photos nettes le soir."],["both","OIS + EIS","Photos nettes le soir et vidéos stables en marchant."]]},
             {key:"zoom",label:"Zoom",type:"choice",options:[

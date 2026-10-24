@@ -17,3 +17,8 @@ Photos illustratives, sans lien avec les modèles recommandés :
 - Performance : photo de smartphone utilisée à l’accueil, source ci-dessus.
 
 Licence des photos Unsplash : https://unsplash.com/license.
+
+## Schémas du quiz smartphone
+
+Tous les schémas du quiz sont des SVG animés écrits à la main (`assets/js/smartphone-quiz-art.js`), sans photo ni source externe.
+Les puces citées en exemple viennent du catalogue `data/smartphones.json`.
