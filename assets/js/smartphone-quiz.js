@@ -1,70 +1,133 @@
 /* Présentation du quiz : les clés et valeurs restent celles du moteur de sélection. */
 (function () {
   'use strict';
-  var primary = {screen:'refresh',battery:'capacity',performance:'gaming',photo:'sensor',longevity:'updates'};
+  var primary = {screen:['tech','refresh'],battery:['capacity'],performance:['gaming'],photo:['sensor'],longevity:['updates']};
+  // Question courte, libellés courts : le schéma animé porte l’explication.
   var questions = {
-    refresh:['Quel confort d’écran vous suffit ?',['Simple et économe','Le juste milieu','Très fluide au quotidien','Pour les jeux compatibles']],
-    capacity:['Quel compromis dans votre poche ?',['La légèreté d’abord','Des prises à proximité','Des journées bien remplies','Longtemps loin d’une prise']],
-    gaming:['De la puissance, pour quoi faire ?',['Messages, web et vidéos','Jeux et montage occasionnels','Jeux exigeants, longues sessions']],
-    sensor:['Qu’aimez-vous photographier ?',['Les souvenirs en journée','Aussi les soirées','La photo, même quand il fait sombre']],
-    updates:['Combien de temps comptez-vous le garder ?',['2 à 3 ans','4 à 5 ans','6 ans ou plus']]
+    tech:['Quel type d’écran ?',['OLED','AMOLED','LCD','LTPO']],
+    refresh:['Quelle fluidité ?',['60 Hz','90 Hz','120 Hz','144 Hz']],
+    capacity:['Quelle batterie ?',['3 000 mAh','4 000 mAh','5 000 mAh','6 000 mAh +']],
+    gaming:['Quelle puissance ?',['Quotidien','Lourd','Très lourd']],
+    sensor:['Quel capteur photo ?',['Petit','Moyen','Grand']],
+    updates:['Combien d’années de mises à jour ?',['3 ans','5 ans','7 ans +']]
   };
-  // Un avantage ET une contrepartie visibles avant le choix ; le détail reste court.
+  // [gain, contrepartie] : une phrase chacune, affichées discrètement sous les choix.
   var tradeoffs = {
+    tech:[
+      ['Vrai noir : chaque pixel s’éteint seul.','Plus cher, léger risque de marquage à long terme.'],
+      ['Même principe que l’OLED, très répandu.','Le nom ne garantit rien : vérifiez la luminosité.'],
+      ['Écran abordable et durable.','Noirs grisés : le rétroéclairage reste allumé.'],
+      ['OLED qui ralentit à l’arrêt : économise la batterie.','Surtout sur les modèles chers.']
+    ],
     refresh:[
-      ['Économe · moins de fluidité','60 Hz : suffisant pour lire, discuter et regarder des vidéos, avec moins de rafraîchissements à alimenter.','Le défilement paraît moins doux qu’à 90 ou 120 Hz.'],
-      ['Plus doux · gain modéré','90 Hz : un défilement plus agréable, sans viser la fréquence maximale.','Moins fluide que 120 Hz ; l’autonomie dépend aussi de la façon dont l’écran s’adapte.'],
-      ['Très doux · consommation à surveiller','120 Hz : les mouvements et le défilement sont très fluides.','La consommation peut augmenter si la fréquence reste élevée. Un écran adaptatif peut limiter cet effet.'],
-      ['Jeu ciblé · intérêt limité hors jeu','144 Hz : un gain possible sur les jeux compatibles, si la puce suit.','Face à 120 Hz, le gain est discret au quotidien. Ne payez pas plus pour ce seul chiffre.']
+      ['Sobre pour la batterie.','Défilement moins doux.'],
+      ['Plus fluide, sans trop consommer.','Moins doux que 120 Hz.'],
+      ['Défilement très fluide.','Consomme plus s’il reste à 120 Hz en permanence.'],
+      ['Un petit plus dans les jeux compatibles.','Presque invisible au quotidien, souvent plus cher.']
     ],
     capacity:[
-      ['Réserve réduite · poids parfois contenu','3 000 mAh : une petite batterie peut aider à contenir le poids et l’encombrement.','Moins de réserve : gardez une possibilité de recharge à proximité. Le poids réel reste à vérifier.'],
-      ['Réserve intermédiaire · recharge à prévoir','4 000 mAh : un compromis possible pour un usage modéré avec une prise accessible.','Moins de marge pour les jeux, le GPS et les longues journées.'],
-      ['Plus de marge · poids à vérifier','5 000 mAh : davantage de réserve pour une journée chargée.','La batterie peut alourdir le téléphone ; le résultat dépend de sa conception.'],
-      ['Grande réserve · encombrement possible','6 000 mAh et plus : une réserve appréciable quand vous rechargez peu souvent.','Un téléphone parfois plus lourd ou épais. Comparez le poids et les tests d’autonomie réels.']
+      ['Téléphone fin et léger.','Recharge dans la journée.'],
+      ['Une journée d’usage normal.','Juste pour les jeux, le GPS ou la vidéo.'],
+      ['La norme : une bonne journée, parfois plus.','Un peu plus lourd.'],
+      ['Deux jours possibles selon l’usage.','Plus lourd et plus épais.']
     ],
     gaming:[
-      ['Budget préservé · jeux limités','Une puissance courante suffit aux messages, au web et aux vidéos. Inutile de payer une puce de jeu pour cela.','Les jeux 3D exigeants et les gros montages peuvent ralentir.'],
-      ['Polyvalent · limites en usage prolongé','Plus de marge pour jouer, monter de petites vidéos et passer d’une application à l’autre.','Une longue session exigeante peut demander de réduire les réglages.'],
-      ['Jeux exigeants · coût et chauffe','Une plateforme puissante peut mieux tenir les jeux et les travaux lourds.','Un prix souvent plus élevé, avec consommation et chauffe à vérifier dans les tests.']
+      ['Prix contenu, peu de chauffe.','Jeux 3D récents saccadés.'],
+      ['Jeux, montage et multitâche passent.','Plus cher, peut chauffer en longue session.'],
+      ['Tient les jeux lourds longtemps.','Cher et gourmand : vérifiez les tests de chauffe.']
     ],
     sensor:[
-      ['Budget contenu · nuit plus difficile','En bonne lumière, un capteur modeste peut suffire aux souvenirs et au partage.','Le soir et en intérieur, le bruit et le flou deviennent plus difficiles à éviter.'],
-      ['Plus de lumière · prix à comparer','Un capteur plus grand peut aider le soir et en intérieur.','Le traitement logiciel reste décisif : comparez les tests avant de payer plus.'],
-      ['Faible lumière · bloc photo plus imposant','Un très grand capteur capte davantage de lumière à technologie comparable.','Un bloc photo souvent plus encombrant et un prix potentiellement plus élevé. Il ne garantit pas à lui seul une meilleure photo.']
+      ['Suffit de jour, modèles abordables.','Le soir et en intérieur : bruit et flou.'],
+      ['Soirées et intérieurs plus propres.','Prix plus haut ; le logiciel compte aussi.'],
+      ['Nuit nette, joli flou d’arrière-plan.','Bloc photo épais et cher.']
     ],
     updates:[
-      ['Suivi court · vigilance sur la sécurité','Un modèle au suivi court peut être moins cher si vous prévoyez de le remplacer bientôt.','Vérifiez les années restantes : après la fin des correctifs, le risque de sécurité augmente.'],
-      ['Un suivi durable · date de fin à vérifier','Un suivi d’environ cinq ans peut couvrir plusieurs années sans changer de téléphone.','Le compteur démarre souvent à la sortie du modèle. Un ancien stock peut avoir déjà consommé une partie du suivi.'],
-      ['Long suivi · entretien à anticiper','Un long suivi permet de conserver les correctifs de sécurité plus longtemps.','Le choix de modèles est plus restreint. Prévoyez aussi la réparabilité et un éventuel remplacement de batterie.']
+      ['Modèles moins chers.','Plus de correctifs de sécurité ensuite.'],
+      ['4 à 5 ans sans changer.','Vérifiez la date de fin : le compteur démarre à la sortie.'],
+      ['Sécurité assurée très longtemps.','Moins de modèles, souvent plus chers.']
     ]
   };
   function esc(v) { return String(v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];}); }
+
+  var INK='#20221e', PAPER='#f0eee6', MUTE='#aaa99c', OFF='#d4d3c7';
+  // Chaque schéma montre la différence par le mouvement ; sans animation, l’image finale reste lisible.
   function illustration(key,index,chosen) {
-    var level=index+1, ink='#20221e', accent=chosen?'#ff651b':'#aaa99c';
-    var body='', frame='<rect x="79" y="12" width="82" height="132" rx="15" fill="#f0eee6" stroke="'+ink+'" stroke-width="4"/><path d="M109 22h22" stroke="'+ink+'" stroke-width="4" stroke-linecap="round"/>';
-    if(key==='refresh') { body=frame+'<g class="sq-shift">'; for(var i=0;i<3;i++)body+='<rect x="90" y="'+(39+i*28)+'" width="60" height="20" rx="5" fill="'+accent+'" opacity="'+(1-i*.2)+'"/>';body+='</g>';for(var n=0;n<4;n++)body+='<circle cx="'+(190+n*9)+'" cy="80" r="3" fill="'+(n<level?accent:'#d4d3c7')+'"/>'; }
-    if(key==='capacity') { body='<rect x="38" y="48" width="158" height="67" rx="13" fill="#f0eee6" stroke="'+ink+'" stroke-width="4"/><path d="M199 67h9v28h-9" fill="'+ink+'"/>';for(var b=0;b<4;b++)body+='<rect class="sq-fill" x="'+(49+b*35)+'" y="59" width="28" height="45" rx="5" fill="'+(b<level?accent:'#deddd2')+'"/>'; }
-    if(key==='gaming') {body='<rect x="79" y="38" width="82" height="82" rx="15" fill="#f0eee6" stroke="'+ink+'" stroke-width="4"/>';for(var c=0;c<4;c++){var pos=92+c*18;body+='<path d="M'+pos+' 28v10m0 82v10M69 '+(51+c*18)+'h10m82 0h10" stroke="'+ink+'" stroke-width="4"/>';}for(var g=0;g<3;g++)body+='<rect class="sq-fill" x="92" y="'+(52+g*19)+'" width="56" height="12" rx="4" fill="'+(g<level?accent:'#deddd2')+'"/>';}
-    if(key==='sensor') {body='<rect x="40" y="41" width="160" height="87" rx="15" fill="#f0eee6" stroke="'+ink+'" stroke-width="4"/><path d="m66 41 10-17h43l10 17" fill="#f0eee6" stroke="'+ink+'" stroke-width="4"/><circle cx="120" cy="83" r="'+(22+index*7)+'" fill="'+accent+'" stroke="'+ink+'" stroke-width="4"/><circle class="sq-fill" cx="120" cy="83" r="12" fill="#f0eee6"/><circle cx="177" cy="58" r="5" fill="'+ink+'"/>';}
-    if(key==='updates') {body=frame+'<path d="M96 67h48M96 82h48M96 97h48" stroke="#d4d3c7" stroke-width="6" stroke-linecap="round"/>';for(var u=0;u<3;u++)body+='<circle class="sq-fill" cx="'+(94+u*26)+'" cy="113" r="7" fill="'+(u<level?accent:'#d4d3c7')+'"/>';body+='<path d="m172 46 8 8 17-19" fill="none" stroke="'+accent+'" stroke-width="5" stroke-linecap="round"/>';}
-    return '<div class="sq-illustration" aria-hidden="true"><svg viewBox="0 0 240 160" fill="none">'+body+'</svg></div>';
+    var level=index+1, accent=chosen?'#ff651b':MUTE, body='', i;
+    if(key==='tech') {
+      var sel=!chosen?-1:(index===2?1:0);
+      var half=function(x,lcd,on){
+        var g='<g class="sq-half'+(on===0?' is-dim':'')+'" transform="translate('+x+' 0)">';
+        g+='<rect x="0" y="8" width="104" height="118" rx="13" fill="'+(lcd?'#4a515c':'#000')+'" stroke="'+(on===1?'#ff651b':INK)+'" stroke-width="'+(on===1?5:3.5)+'"/>';
+        if(lcd) g+='<rect class="sq-backlight" x="4" y="12" width="96" height="110" rx="10" fill="#fff"/>';
+        g+='<circle class="sq-moon" cx="52" cy="48" r="15" fill="#fff3c4"/>';
+        [[22,30],[80,26],[84,62],[20,70]].forEach(function(d,n){g+='<rect class="sq-star" style="--d:'+(n*.35)+'s" x="'+d[0]+'" y="'+d[1]+'" width="5" height="5" fill="#fff"/>';});
+        for(var p=0;p<6;p++) g+='<rect class="'+(lcd?'sq-px-all':'sq-px')+'" style="--d:'+(p*.3)+'s" x="'+(12+p*14)+'" y="100" width="11" height="14" rx="2" fill="'+(lcd?'#8a919c':'#ff9a5c')+'"/>';
+        g+='<text x="52" y="152" text-anchor="middle" class="sq-t sq-t-strong">'+(lcd?'LCD':'OLED')+'</text>';
+        g+='<text x="52" y="170" text-anchor="middle" class="sq-t">noir = '+(lcd?'éclairé':'éteint')+'</text></g>';
+        return g;
+      };
+      body=half(8,false,sel===0?1:sel<0?-1:0)+half(128,true,sel===1?1:sel<0?-1:0);
+      return '<div class="sq-illustration" aria-hidden="true"><svg viewBox="0 0 240 176" fill="none">'+body+'</svg></div>';
+    }
+    if(key==='refresh') {
+      var hz=[60,90,120,144][index], steps=Math.round(hz/10), ballX=176;
+      body='<rect x="14" y="30" width="212" height="70" rx="14" fill="'+PAPER+'" stroke="'+INK+'" stroke-width="3.5"/>';
+      for(i=0;i<=steps;i++) body+='<circle cx="'+(32+ballX*i/steps).toFixed(1)+'" cy="65" r="2.6" fill="'+(chosen?INK:MUTE)+'" opacity=".5"/>';
+      body+='<circle class="sq-ball" style="--n:'+steps+'" cx="32" cy="65" r="11" fill="'+accent+'" stroke="'+INK+'" stroke-width="3"/>';
+      body+='<text x="120" y="134" text-anchor="middle" class="sq-t sq-t-big">'+hz+' images / seconde</text>';
+      return '<div class="sq-illustration" aria-hidden="true"><svg viewBox="0 0 240 150" fill="none">'+body+'</svg></div>';
+    }
+    if(key==='capacity') {
+      var dur=(3+level*1.6).toFixed(1);
+      body='<rect x="26" y="26" width="176" height="76" rx="14" fill="'+PAPER+'" stroke="'+INK+'" stroke-width="4"/><path d="M205 52h10v24h-10" fill="'+INK+'"/>';
+      body+='<rect class="sq-drain" style="--t:'+dur+'s" x="36" y="36" width="156" height="56" rx="7" fill="'+accent+'"/>';
+      for(i=1;i<level+2;i++) body+='<rect x="'+(36+156*i/(level+2)-2).toFixed(1)+'" y="34" width="4" height="60" fill="'+PAPER+'"/>';
+      body+='<path d="M36 130h156" stroke="'+OFF+'" stroke-width="4" stroke-linecap="round"/><circle class="sq-clock" style="--t:'+dur+'s" cx="36" cy="130" r="7" fill="'+INK+'"/>';
+      body+='<text x="36" y="154" class="sq-t">matin</text><text x="192" y="154" text-anchor="end" class="sq-t">soir</text>';
+      return '<div class="sq-illustration" aria-hidden="true"><svg viewBox="0 0 240 162" fill="none">'+body+'</svg></div>';
+    }
+    if(key==='gaming') {
+      body='<circle class="sq-heat" style="--h:'+(chosen?level*.17:.08)+'" cx="120" cy="80" r="62" fill="#ff651b"/>';
+      for(i=0;i<4;i++) body+='<path d="M'+(96+i*16)+' 28v12m0 80v12M70 '+(54+i*16)+'h12m76 0h12" stroke="'+INK+'" stroke-width="4" stroke-linecap="round"/>';
+      body+='<rect x="82" y="40" width="76" height="80" rx="12" fill="'+PAPER+'" stroke="'+INK+'" stroke-width="4"/>';
+      for(i=0;i<3;i++) body+='<rect class="sq-load" style="--d:'+(i*.18)+'s;--t:'+(1.8-level*.35).toFixed(2)+'s" x="'+(94+i*22)+'" y="54" width="14" height="54" rx="4" fill="'+(i<level?accent:OFF)+'"/>';
+      return '<div class="sq-illustration" aria-hidden="true"><svg viewBox="0 0 240 160" fill="none">'+body+'</svg></div>';
+    }
+    if(key==='sensor') {
+      var size=42+index*24, x=120-size/2, n=5+index*4;
+      body='<rect x="'+x+'" y="'+(112-size)+'" width="'+size+'" height="'+size+'" rx="6" fill="'+accent+'" stroke="'+INK+'" stroke-width="4"/>';
+      for(i=0;i<n;i++) body+='<circle class="sq-photon" style="--d:'+((i*.37)%1.8).toFixed(2)+'s;--f:'+(size-6)+'px" cx="'+(x+8+((i*37)%(size-16))).toFixed(1)+'" cy="'+(112-size-34)+'" r="3.4" fill="#f6b73c"/>';
+      body+='<text x="120" y="142" text-anchor="middle" class="sq-t">lumière captée</text>';
+      return '<div class="sq-illustration" aria-hidden="true"><svg viewBox="0 0 240 152" fill="none">'+body+'</svg></div>';
+    }
+    // updates : une barre par année de correctifs, puis le bouclier.
+    var years=[3,5,7][index], w=24;
+    for(i=0;i<years;i++) body+='<rect x="'+(24+i*(w+4))+'" y="70" width="'+w+'" height="30" rx="5" fill="'+OFF+'"/><rect class="sq-year" style="--d:'+(i*.3)+'s" x="'+(24+i*(w+4))+'" y="70" width="'+w+'" height="30" rx="5" fill="'+accent+'"/>';
+    body+='<path d="M200 14l26 9v20c0 12-11 21-26 26-15-5-26-14-26-26V23z" fill="'+PAPER+'" stroke="'+INK+'" stroke-width="4"/>';
+    body+='<path class="sq-check" d="m189 41 8 8 15-17" stroke="'+accent+'" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>';
+    body+='<text x="24" y="128" class="sq-t sq-t-strong">'+years+' ans de correctifs</text>';
+    return '<div class="sq-illustration" aria-hidden="true"><svg viewBox="0 0 240 140" fill="none">'+body+'</svg></div>';
   }
   function renderGroup(group,selected,isPrimary) {
     var question=isPrimary?questions[group.key]:null;
     var selectedIndex=group.options.findIndex(function(o){return o[0]===selected;}), chosen=selectedIndex>=0;
-    var options=group.options.map(function(o,i){return '<button type="button" class="audit-pill'+(selected===o[0]?' is-selected':'')+'" data-value="'+esc(o[0])+'" aria-pressed="'+(selected===o[0])+'"><span class="sq-option-dot" aria-hidden="true"></span><span class="pill-copy"><strong>'+esc(question?question[1][i]:o[1])+'</strong>'+(question?'<small>'+esc(tradeoffs[group.key][i][0])+'</small>':'')+'</span></button>';}).join('');
-    var explanation=chosen&&!question?group.options[selectedIndex][2]:'Choisissez le compromis qui vous ressemble.';
-    var note=group.key==='capacity'?'Les mAh indiquent une réserve, pas une durée : l’écran, la puce et votre usage comptent aussi.':group.key==='updates'?'À prix et usage équivalents, privilégiez le suivi le plus long.':'';
-    var balance=question&&chosen?'<div class="sq-tradeoffs" aria-live="polite" aria-atomic="true"><div class="sq-benefit"><span class="sq-tradeoff-icon" aria-hidden="true">+</span><div><h4>Vous y gagnez</h4><p>'+esc(tradeoffs[group.key][selectedIndex][1])+'</p></div></div><div class="sq-caution"><span class="sq-tradeoff-icon" aria-hidden="true">↔</span><div><h4>À accepter</h4><p>'+esc(tradeoffs[group.key][selectedIndex][2])+'</p></div></div></div>':'<p class="sq-explanation" aria-live="polite">'+esc(explanation)+'</p>';
-    return '<div class="audit-control'+(isPrimary?' sq-primary':'')+'" data-group="'+group.key+'">'+(isPrimary?illustration(group.key,Math.max(0,selectedIndex),chosen):'')+'<div class="sq-question"><h3>'+esc(question?question[0]:group.label)+'</h3><div class="audit-pills" role="group" aria-label="'+esc(question?question[0]:group.label)+'">'+options+'</div></div><div class="sq-feedback">'+balance+(note?'<p class="sq-note">'+esc(note)+'</p>':'')+'</div></div>';
+    var options=group.options.map(function(o,i){return '<button type="button" class="audit-pill'+(selected===o[0]?' is-selected':'')+'" data-value="'+esc(o[0])+'" aria-pressed="'+(selected===o[0])+'"><span class="sq-option-dot" aria-hidden="true"></span><span class="pill-copy"><strong>'+esc(question?question[1][i]:o[1])+'</strong></span></button>';}).join('');
+    var title=esc(question?question[0]:group.label);
+    var feedback;
+    if(question) {
+      var t=tradeoffs[group.key];
+      feedback=chosen?'<div class="sq-pm" aria-live="polite" aria-atomic="true"><p class="sq-gain"><b aria-hidden="true">+</b><span class="sq-sr">Avantage : </span>'+esc(t[selectedIndex][0])+'</p><p class="sq-cost"><b aria-hidden="true">−</b><span class="sq-sr">À accepter : </span>'+esc(t[selectedIndex][1])+'</p></div>':'<div class="sq-pm" aria-live="polite"><p class="sq-hint">Touchez un choix pour voir la différence.</p></div>';
+    } else {
+      feedback='<p class="sq-explanation" aria-live="polite">'+esc(chosen?group.options[selectedIndex][2]:'Vous pouvez laisser cette question sans réponse.')+'</p>';
+    }
+    return '<div class="audit-control'+(isPrimary?' sq-primary':'')+'" data-group="'+group.key+'">'+(isPrimary?illustration(group.key,Math.max(0,selectedIndex),chosen):'')+'<div class="sq-question"><h3>'+title+'</h3><div class="audit-pills" role="group" aria-label="'+title+'">'+options+'</div>'+feedback+'</div></div>';
   }
 
   window.SmartphoneQuizUI={renderPanel:function(key,cfg,state){
-    var main=cfg.groups.find(function(g){return g.key===primary[key];});
-    var rest=cfg.groups.filter(function(g){return g!==main;});
+    var mains=primary[key].map(function(k){return cfg.groups.find(function(g){return g.key===k;});});
+    var rest=cfg.groups.filter(function(g){return mains.indexOf(g)<0;});
     var keys=Object.keys(primary), next=keys[keys.indexOf(key)+1], names={battery:'Batterie',performance:'Performance',photo:'Photo',longevity:'Durée de vie'};
-    return renderGroup(main,state[main.key],true)+'<details class="audit-advanced"><summary>Affiner '+({screen:'l’écran',battery:'la batterie',performance:'la puissance',photo:'la photo',longevity:'la durée de vie'}[key])+' <span>Facultatif</span></summary><div class="sq-details">'+rest.map(function(g){return renderGroup(g,state[g.key],false);}).join('')+'</div></details><div class="sq-footer"><span>Chaque réponse affine la sélection.</span><button type="button" class="sq-next" data-quiz-next="'+(next||'results')+'">'+(next?'Continuer : '+names[next]:'Voir ma sélection')+' <span aria-hidden="true">→</span></button></div>';
+    return mains.map(function(g){return renderGroup(g,state[g.key],true);}).join('')+'<details class="audit-advanced"><summary>Affiner '+({screen:'l’écran',battery:'la batterie',performance:'la puissance',photo:'la photo',longevity:'la durée de vie'}[key])+' <span>Facultatif</span></summary><div class="sq-details">'+rest.map(function(g){return renderGroup(g,state[g.key],false);}).join('')+'</div></details><div class="sq-footer"><span>Chaque réponse affine la sélection.</span><button type="button" class="sq-next" data-quiz-next="'+(next||'results')+'">'+(next?'Continuer : '+names[next]:'Voir ma sélection')+' <span aria-hidden="true">→</span></button></div>';
   }};
   document.addEventListener('click',function(e){var button=e.target.closest('[data-quiz-next]');if(!button)return;var next=button.dataset.quizNext;if(next==='results'){document.getElementById('criteria-recommendations').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});return;}var card=document.querySelector('[data-audit-card="'+next+'"]'),trigger=card.querySelector('.audit-card-trigger');if(trigger.getAttribute('aria-expanded')!=='true')trigger.click();card.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});trigger.focus({preventScroll:true});});
 })();

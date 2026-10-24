@@ -23,26 +23,27 @@ const server = http.createServer((req, res) => {
         const card = page.locator(`[data-audit-card="${family}"]`);
         await card.locator('.audit-card-trigger[aria-expanded="true"]').waitFor();
         await page.waitForTimeout(220);
-        assert.equal(await page.locator('#purchase-audit .sq-illustration:visible').count(), 1);
+        assert.equal(await page.locator('#purchase-audit .sq-illustration:visible').count(), family==='screen'?2:1);
         assert.equal(await card.locator('.audit-advanced').getAttribute('open'), null);
         await card.locator(`.audit-control[data-group="${group}"] [data-value="${value}"]`).click();
         assert.equal(await page.evaluate(({family,group}) => window.GuideAuditState[family][group], {family,group}), value);
         assert((await page.locator('#audit-count').textContent()).startsWith(String(i+1)));
         assert.equal(await page.evaluate(() => document.activeElement.dataset.value), value);
-        assert.equal(await card.locator('.sq-illustration svg').count(), 1);
-        assert(await card.locator('.sq-benefit p').textContent());
-        assert(await card.locator('.sq-caution p').textContent());
-        assert.equal(await card.locator('.sq-primary .audit-pill small').count(), await card.locator('.sq-primary .audit-pill').count());
-        await card.locator('.sq-family-photo img').waitFor();
-        await page.waitForFunction(family=>{const img=document.querySelector('[data-audit-card="'+family+'"] .sq-family-photo img');return img.complete&&img.naturalWidth>0;},family);
-        for(const option of await card.locator('.sq-primary .audit-pill').all()){
-          await option.click();
-          assert(await card.locator('.sq-benefit p').textContent());
-          assert(await card.locator('.sq-caution p').textContent());
-          assert.equal(await card.locator('.sq-tradeoffs>div').first().evaluate(el=>getComputedStyle(el).animationName),'none');
+        assert.equal(await card.locator('.sq-illustration svg').count(), family==='screen'?2:1);
+        assert(await card.locator('[data-group="'+group+'"] .sq-gain').textContent());
+        assert(await card.locator('[data-group="'+group+'"] .sq-cost').textContent());
+        if(family==='battery') assert.equal(await card.locator('.sq-family-photo img').count(), 0);
+        else await page.waitForFunction(family=>{const img=document.querySelector('[data-audit-card="'+family+'"] .sq-family-photo img');return img.complete&&img.naturalWidth>0;},family);
+        for(const g of await card.locator('.sq-primary').all()){
+          for(const option of await g.locator('.audit-pill').all()){
+            await option.click();
+            const gg=card.locator('.sq-primary').nth(await card.locator('.sq-primary').evaluateAll((els,k)=>els.findIndex(e=>e.contains(document.activeElement)),0));
+            assert(await gg.locator('.sq-gain').textContent());
+            assert(await gg.locator('.sq-cost').textContent());
+          }
         }
         await card.locator('.audit-control[data-group="'+group+'"] [data-value="'+value+'"]').click();
-        assert.equal(await card.locator('.sq-fill, .sq-shift').first().evaluate(el => getComputedStyle(el).animationName), 'none');
+        assert.equal(await card.locator('.sq-illustration svg *').evaluateAll(els=>els.filter(e=>getComputedStyle(e).animationName!=='none').length), 0);
         const overflow = await card.evaluate(el => el.scrollWidth > el.clientWidth+1);
         assert(!overflow, 'débordement du critère '+family);
         if (i===1) {
@@ -71,15 +72,12 @@ const server = http.createServer((req, res) => {
     const motionPage = await browser.newPage({viewport:{width:390,height:844}});
     await motionPage.goto(`http://127.0.0.1:${server.address().port}/smartphones.html`, {waitUntil:'networkidle'});
     const screen = motionPage.locator('[data-audit-card="screen"]');
-    await screen.locator('[data-group="refresh"] [data-value="120"]').click();
-    const animation = await screen.locator('.sq-shift').evaluate(el=>({duration:getComputedStyle(el).animationDuration,iterations:getComputedStyle(el).animationIterationCount}));
-    assert.equal(animation.iterations,'1');
-    assert.equal(animation.duration,'0.4s');
-    const feedbackAnimation=await screen.locator('.sq-benefit').evaluate(el=>getComputedStyle(el).animationIterationCount);
-    assert.equal(feedbackAnimation,'1');
+    await screen.locator('[data-group="tech"] [data-value="lcd"]').click();
+    assert.equal(await screen.locator('.sq-backlight').evaluate(el=>getComputedStyle(el).animationIterationCount),'infinite');
+    assert.equal(await screen.locator('[data-group="tech"] .sq-gain').evaluate(el=>getComputedStyle(el).animationIterationCount),'1');
     await motionPage.locator('#theme-toggle').click();
     assert.equal(await motionPage.evaluate(()=>document.documentElement.classList.contains('dark-theme')),true);
     await motionPage.close();
-    console.log('OK animation unique de 400 ms et thème sombre');
+    console.log('OK schémas animés en boucle, retour de choix unique et thème sombre');
   } finally { await browser.close(); }
 })().then(()=>server.close()).catch(e=>{console.error(e);server.close();process.exitCode=1;});
