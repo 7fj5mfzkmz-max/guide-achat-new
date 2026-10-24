@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
   const browser = await chromium.launch();
   try {
     for (const width of [360, 1280]) {
-      const context = await browser.newContext({viewport:{width,height:900}, reducedMotion:'reduce'});
+      const context = await browser.newContext({locale:'fr-FR',viewport:{width,height:900}, reducedMotion:'reduce'});
       const page = await context.newPage(), errors = [];
       page.on('pageerror', e => errors.push(e.message));
       await page.goto(`http://127.0.0.1:${server.address().port}/smartphones.html`, {waitUntil:'networkidle'});
@@ -69,7 +69,7 @@ const server = http.createServer((req, res) => {
       await context.close();
     }
 
-    const motionPage = await browser.newPage({viewport:{width:390,height:844}});
+    const motionPage = await browser.newPage({locale:'fr-FR',viewport:{width:390,height:844}});
     await motionPage.goto(`http://127.0.0.1:${server.address().port}/smartphones.html`, {waitUntil:'networkidle'});
     const screen = motionPage.locator('[data-audit-card="screen"]');
     await screen.locator('[data-group="tech"] [data-value="lcd"]').click();

@@ -42,3 +42,15 @@ crée une entrée datée pour chaque lot de nouveaux produits ou de fiches modif
 `npm test` échoue si le fil est périmé. Article ou guide sans changement de données :
 `node tools/actualites/ajouter.js --cat projecteurs --titre "…" --resume "…" --lien projecteurs.html`, puis relancer le générateur.
 `--amorcer` reconstruit tout depuis git et efface les entrées ajoutées à la main : à ne pas relancer.
+
+## Langues (français, anglais américain, espagnol d’Espagne)
+
+Le français reste la source. `assets/js/i18n.js` traduit la page à l’affichage à partir des dictionnaires `assets/i18n/en.json` et `es.json` (correspondance exacte, chiffres abstraits `{0}`, motifs pour le flux d’actualités, balises `<1>…</1>` pour le texte à mise en forme mêlée). Le bouton de langue se trouve dans la barre d’en-tête : **Auto** (langue du navigateur, anglais par défaut), Français, English, Español. Le choix est mémorisé dans `localStorage` (`guide-achat-lang`).
+
+Ajouter ou corriger une traduction :
+1. `node tools/i18n/extraire.js` relève les chaînes françaises de toutes les pages (`chaines.json`).
+2. Ajouter la paire dans `tools/i18n/extra.en.tsv` / `extra.es.tsv` (français⇥traduction), ou un motif dans `motifs.*.tsv`.
+3. `python3 tools/i18n/construire.py` régénère les dictionnaires ; `node tools/i18n/extraire.js --lang=es` puis `python3 tools/i18n/residuel.py es` liste ce qui reste en français.
+4. `npm run i18n:test` vérifie la cohérence des dictionnaires et la détection de langue.
+
+Limite : traduction faite dans le navigateur, donc non indexée par les moteurs de recherche dans ces langues.

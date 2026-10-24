@@ -11,7 +11,7 @@ async function check(l, fn) { try { await fn(); console.log('OK    ' + l); } cat
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   const base = 'http://127.0.0.1:' + server.address().port, browser = await chromium.launch();
   for (const [name, vp] of [['bureau', { width: 1280, height: 900 }], ['mobile', { width: 390, height: 800 }]]) {
-    const page = await (await browser.newContext({ viewport: vp })).newPage();
+    const page = await (await browser.newContext({ locale: 'fr-FR', viewport: vp })).newPage();
     const errs = []; page.on('pageerror', e => errs.push(e.message));
     await page.goto(base + '/pc-portables.html', { waitUntil: 'networkidle' });
     await check(name + ' : hero lisible, un seul h1, aucun résidu (mode détails, picker, liens « comprendre »)', async () => {

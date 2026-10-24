@@ -21,6 +21,11 @@
 <script id="ga-early">try{if(localStorage.getItem("guide-achat-theme")!=="light")document.documentElement.classList.add("dark-theme")}catch(e){document.documentElement.classList.add("dark-theme")}</script>
 <link rel="stylesheet" href="assets/css/grounded-category.css">
 <link rel="stylesheet" href="assets/css/guide-identity.css?v=12">
+<script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
+function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
+l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
+<style>html.i18n-wait body{opacity:0}</style>
+<link rel="stylesheet" href="assets/css/i18n.css">
 </head>
 <body class="site-redesign">
 <header class="site-header"><div class="header-inner">
@@ -413,5 +418,6 @@
 
 <script src="assets/js/site-extras.js"></script>
 <script src="assets/js/category-menu.js"></script>
+<script src="assets/js/i18n.js" defer></script>
 </body>
 </html>

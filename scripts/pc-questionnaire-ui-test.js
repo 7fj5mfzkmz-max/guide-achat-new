@@ -58,7 +58,7 @@ function parsePrices(texts) {
   const SITE = 'http://127.0.0.1:' + server.address().port;
   const browser = await chromium.launch();
   const errors = [];
-  const page = await browser.newPage({ viewport: { width: 1280, height: 1200 } });
+  const page = await browser.newPage({ locale: 'fr-FR', viewport: { width: 1280, height: 1200 } });
   page.on('pageerror', e => errors.push(String(e)));
   await page.goto(SITE + '/pc-portables.html', { waitUntil: 'networkidle' });
 

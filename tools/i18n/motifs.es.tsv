@@ -1,0 +1,24 @@
+# motifs : expression régulière (sur le texte français normalisé) puis modèle avec $1…
+^Au catalogue : (.+) et (\d+) autres\.$	En el catálogo: $1 y $2 más.
+^Au catalogue : (.+) et 1 autre\.$	En el catálogo: $1 y 1 más.
+^Au catalogue : (.+)\.$	En el catálogo: $1.
+^Prix, caractéristiques ou notes revus : (.+) et (\d+) autres\.$	Precios, características o notas revisados: $1 y $2 más.
+^Prix, caractéristiques ou notes revus : (.+)\.$	Precios, características o notas revisados: $1.
+^1 fiche smartphone mise à jour$	1 ficha de smartphone actualizada
+^(\d+) fiches smartphones mises à jour$	$1 fichas de smartphones actualizadas
+^1 fiche PC portable mise à jour$	1 ficha de portátil actualizada
+^(\d+) fiches PC portables mises à jour$	$1 fichas de portátiles actualizadas
+^1 fiche projecteur mise à jour$	1 ficha de proyector actualizada
+^(\d+) fiches projecteurs mises à jour$	$1 fichas de proyectores actualizadas
+^1 fiche écouteur mise à jour$	1 ficha de auricular actualizada
+^(\d+) fiches écouteurs mises à jour$	$1 fichas de auriculares actualizadas
+^1 fiche batterie externe mise à jour$	1 ficha de batería externa actualizada
+^(\d+) fiches batterie externes mises à jour$	$1 fichas de baterías externas actualizadas
+^Tests (\d+) : 1 modèle ajouté au dossier$	Pruebas de $1: 1 modelo añadido al dossier
+^Tests (\d+) : 1 fiche revue$	Pruebas de $1: 1 ficha revisada
+^Tests (\d+) : (\d+) fiches revues$	Pruebas de $1: $2 fichas revisadas
+^<1></1>Mis à jour le <2>(.+)</2> · (.+) · <3>Toutes les mises à jour</3>$	<1></1>Actualizado el <2>$1</2> · $2 · <3>Todas las actualizaciones</3>
+^(\d+) mises à jour$	$1 actualizaciones
+^Il y a (\d+) jours$	Hace $1 días
+^Aujourd’hui$	Hoy
+^Hier$	Ayer

@@ -1,0 +1,24 @@
+# motifs : expression régulière (sur le texte français normalisé) puis modèle avec $1…
+^Au catalogue : (.+) et (\d+) autres\.$	In the catalog: $1 and $2 more.
+^Au catalogue : (.+) et 1 autre\.$	In the catalog: $1 and 1 more.
+^Au catalogue : (.+)\.$	In the catalog: $1.
+^Prix, caractéristiques ou notes revus : (.+) et (\d+) autres\.$	Price, specs or scores revised: $1 and $2 more.
+^Prix, caractéristiques ou notes revus : (.+)\.$	Price, specs or scores revised: $1.
+^1 fiche smartphone mise à jour$	1 smartphone listing updated
+^(\d+) fiches smartphones mises à jour$	$1 smartphone listings updated
+^1 fiche PC portable mise à jour$	1 laptop listing updated
+^(\d+) fiches PC portables mises à jour$	$1 laptop listings updated
+^1 fiche projecteur mise à jour$	1 projector listing updated
+^(\d+) fiches projecteurs mises à jour$	$1 projector listings updated
+^1 fiche écouteur mise à jour$	1 earbud listing updated
+^(\d+) fiches écouteurs mises à jour$	$1 earbud listings updated
+^1 fiche batterie externe mise à jour$	1 power bank listing updated
+^(\d+) fiches batterie externes mises à jour$	$1 power bank listings updated
+^Tests (\d+) : 1 modèle ajouté au dossier$	$1 tests: 1 model added to the dossier
+^Tests (\d+) : 1 fiche revue$	$1 tests: 1 listing reviewed
+^Tests (\d+) : (\d+) fiches revues$	$1 tests: $2 listings reviewed
+^<1></1>Mis à jour le <2>(.+)</2> · (.+) · <3>Toutes les mises à jour</3>$	<1></1>Updated on <2>$1</2> · $2 · <3>All updates</3>
+^(\d+) mises à jour$	$1 updates
+^Il y a (\d+) jours$	$1 days ago
+^Aujourd’hui$	Today
+^Hier$	Yesterday
