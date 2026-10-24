@@ -121,7 +121,7 @@ function li(e) {
 function blocAccueil(entrees) {
   const recent = entrees.slice(0, ACCUEIL), maj = entrees.length ? entrees[0].date : aujourdhui();
   return '<section class="news-section" id="actualites" aria-labelledby="news-title"><div class="section-heading-home"><h2 id="news-title">Dernières mises à jour</h2><p>Site mis à jour le <time datetime="' + maj + '">' + dLongue(maj) + '</time></p></div>' +
-    '<ul class="news-list">' + recent.map(li).join('') + '</ul><p class="news-all"><a href="actualites.html">Toutes les mises à jour →</a> <a class="news-feed" href="feed.xml">Flux Atom</a></p></section>';
+    '<ul class="news-list">' + recent.map(li).join('') + '</ul><p class="news-all"><a class="news-btn" href="actualites.html">Toutes les mises à jour <span aria-hidden="true">→</span></a></p></section>';
 }
 const blocPage = entrees => '<ul class="news-list news-list-all" id="news-list">' + entrees.map(li).join('') + '</ul>';
 function feedXml(entrees) {

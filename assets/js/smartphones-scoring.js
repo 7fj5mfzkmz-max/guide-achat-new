@@ -254,6 +254,38 @@
     return weight ? Math.round((total / weight) * 10) / 10 : null;
   }
 
+
+  /* Présentation d'un critère : la valeur du modèle, comparée à CE QUE VOUS AVEZ CHOISI (jamais « au-dessus » sans dire de quoi). */
+  var NOMS = { "ecran.refresh": "Fréquence d’écran", "ecran.brightness": "Luminosité", "ecran.tech": "Type d’écran", "batterie.capacity": "Capacité de batterie", "batterie.charge": "Recharge", "performance.reference": "Niveau de puce", "performance.gaming": "Puissance en jeu", "photo.resolution": "Mégapixels", "photo.sensor": "Capteur photo", "photo.zoom": "Zoom", "photo.ois": "Stabilisation", "battery.chemistry": "Technologie de batterie", "durete.updates": "Mises à jour", "durete.repair": "Réparabilité", "durete.protection": "Étanchéité" };
+  var CHOIX = {
+    "performance.reference": { basic: "entrée de gamme", mid: "milieu de gamme", high: "haut de gamme", apple: "puce Apple" },
+    "performance.gaming": { daily: "usage quotidien", heavy: "jeux et montage", pro: "jeux très lourds" },
+    "photo.sensor": { small: "petit capteur", medium: "capteur moyen", large: "grand capteur" },
+    "photo.zoom": { digital: "zoom numérique", "2x": "téléobjectif ×2", "5x": "téléobjectif ×5" },
+    "durete.repair": { low: "pièces limitées", standard: "pièces disponibles", good: "facile à réparer" },
+    "durete.protection": { basic: "sans étanchéité", ip67: "IP67", ip68: "IP68" },
+    "battery.chemistry": { liion: "Li-ion", lipoly: "Li-polymère", silicon: "silicium-carbone" }
+  };
+  function wantText(key, state) {
+    var sc = state.screen || {}, ba = state.battery || {}, pe = state.performance || {}, ph = state.photo || {}, lo = state.longevity || {};
+    var v = { "ecran.refresh": sc.refresh && sc.refresh + " Hz", "ecran.brightness": sc.brightness && AIM["ecran.brightness"].fmt(Number(sc.brightness)), "ecran.tech": sc.tech && String(sc.tech).toUpperCase(),
+      "batterie.capacity": ba.capacity && AIM["batterie.capacity"].fmt(Number(ba.capacity)), "batterie.charge": ba.charge && ba.charge + " W", "battery.chemistry": ba.chemistry && CHOIX["battery.chemistry"][ba.chemistry],
+      "performance.reference": pe.reference && CHOIX["performance.reference"][pe.reference], "performance.gaming": pe.gaming && CHOIX["performance.gaming"][pe.gaming],
+      "photo.resolution": ph.resolution && ph.resolution + " Mpx", "photo.sensor": ph.sensor && CHOIX["photo.sensor"][ph.sensor], "photo.zoom": ph.zoom && CHOIX["photo.zoom"][ph.zoom], "photo.ois": ph.stabilization === "ois" ? "stabilisation optique" : "",
+      "durete.updates": lo.updates && lo.updates + " ans", "durete.repair": lo.repair && CHOIX["durete.repair"][lo.repair], "durete.protection": lo.protection && CHOIX["durete.protection"][lo.protection] };
+    return v[key] || "";
+  }
+  function describe(c, state) {
+    var tone, icon, verdict, far = /nettement/.test(c.delta) || c.out;
+    if (c.delta === "different") { tone = "diff"; icon = "≠"; verdict = "Autre que votre choix"; }
+    else if (c.delta === "pile") { tone = "ok"; icon = "✓"; verdict = "Comme votre choix"; }
+    else if (c.d > 0) { tone = "up"; icon = "▲"; verdict = "Au-dessus de votre choix"; }
+    else { tone = far ? "far" : "low"; icon = "▼"; verdict = far ? "Bien en dessous de votre choix" : "Un peu en dessous de votre choix"; }
+    var have = c.text;
+    if (c.key === "photo.sensor") have = (CHOIX["photo.sensor"][String(c.text).replace("capteur ", "")] || c.text);
+    return { tone: tone, icon: icon, name: NOMS[c.key] || c.key, have: have, verdict: verdict, want: c.delta === "pile" ? "" : wantText(c.key, state) };
+  }
+
   var LABEL_CLASS = { "pile": "is-exact", "un peu en dessous": "is-below", "un peu au-dessus": "is-above" };
 
   /* Aperçu en direct : les 3 meilleurs modèles, dans la barre de l'audit, dès la première sélection. */
@@ -351,12 +383,13 @@
       var article = document.createElement("article");
       article.className = "criteria-recommendation-card";
       article.style.animationDelay = (i * .05) + "s";
-      var chips = x.m.checks.map(function (c) {
-        return '<li class="match-chip ' + (LABEL_CLASS[c.delta] || "is-far") + '"><b>' + esc(c.text) + '</b><span>' + esc(c.delta) + '</span></li>';
+      var rows = x.m.checks.map(function (c) { return describe(c, state); });
+      var chips = rows.map(function (r) {
+        return '<li class="mchip is-' + r.tone + '"><span class="mchip-ic" aria-hidden="true">' + r.icon + '</span><span class="mchip-txt"><span class="mchip-name">' + esc(r.name) + '</span><b>' + esc(r.have) + '</b><span class="mchip-v">' + esc(r.verdict) + (r.want ? ' <em>(votre choix : ' + esc(r.want) + ')</em>' : '') + '</span></span></li>';
       }).join("");
       var pct = Math.round(x.m.score * 100);
       var verdict = pct >= 85 ? ['is-good','Très proche de votre sélection'] : pct >= 70 ? ['is-warn','Proche, avec des compromis'] : ['is-bad','Correspondance partielle'];
-      var why = '<details class="criteria-why"><summary>Pourquoi ce résultat ?</summary><ul>' + x.m.checks.map(function(c){return '<li><b>'+esc(c.text)+'</b> — '+esc(c.delta)+'</li>';}).join('') + '</ul></details>';
+      var why = '<details class="criteria-why"><summary>Pourquoi ce résultat ?</summary><ul>' + rows.map(function(r){return '<li><b>'+esc(r.name)+' :</b> '+esc(r.have)+', '+esc(r.verdict.toLowerCase())+(r.want?' ('+esc(r.want)+')':'')+'</li>';}).join('') + '</ul></details>';
       var meta = [x.p.prix_indicatif ? "≈ " + esc(x.p.prix_indicatif) + " €" : "prix à vérifier", x.p.annee_sortie ? "sortie " + esc(x.p.annee_sortie) : ""].filter(Boolean).join(" · ");
       article.innerHTML =
         '<div class="criteria-recommendation-top"><span class="criteria-recommendation-brand">' + esc(x.p.marque || "") + '</span><span class="criteria-recommendation-score">' + pct + ' %</span></div>' +
