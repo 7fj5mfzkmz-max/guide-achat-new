@@ -9,7 +9,6 @@
 .sp #purchase-audit .audit-panel{padding:26px;gap:22px;animation:none}
 .sp #purchase-audit .audit-control{border:0;padding:0;gap:24px;display:block}
 .sp #purchase-audit .sq-primary{display:grid;grid-template-columns:minmax(180px,.8fr) minmax(0,1.5fr);align-items:center;gap:32px}
-.sp #purchase-audit .sq-illustration{background:#e6e5d9;border-radius:20px;padding:20px;color:#20221e}
 .sp #purchase-audit .sq-illustration svg{display:block;width:100%;height:auto;max-height:220px}
 .sp #purchase-audit .sq-question h3{font:800 clamp(24px,3vw,32px)/1.12 var(--head);letter-spacing:-.04em;color:var(--ink);margin:0 0 18px;text-transform:none}
 .sp #purchase-audit .audit-pills{display:flex;gap:10px;flex-wrap:wrap}
@@ -70,51 +69,86 @@
 @keyframes sqRise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes sqPop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
 
-/* Schémas : texte */
+/* Texte réservé aux lecteurs d’écran */
 .sp #purchase-audit .sq-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
-.sp #purchase-audit .sq-t{font:600 13px var(--mono);fill:#4d4f45}
-.sp #purchase-audit .sq-t-strong{font:800 18px var(--head);fill:#20221e}
-.sp #purchase-audit .sq-t-big{font:700 15px var(--mono);fill:#20221e}
 
-/* OLED / LCD : le noir éteint contre le noir éclairé par derrière */
-.sp #purchase-audit .sq-half{transform-box:fill-box}
-.sp #purchase-audit .sq-half.is-dim{opacity:.5}
-.sp #purchase-audit .sq-backlight{opacity:.2;animation:sqBacklight 2.4s ease-in-out infinite}
-.sp #purchase-audit .sq-moon{animation:sqMoon 2.4s ease-in-out infinite}
-.sp #purchase-audit .sq-star{animation:sqTwinkle 2.4s ease-in-out infinite;animation-delay:var(--d)}
-.sp #purchase-audit .sq-px{animation:sqPixel 2.4s ease-in-out infinite;animation-delay:var(--d)}
-.sp #purchase-audit .sq-px-all{animation:sqPixelAll 2.4s ease-in-out infinite}
-@keyframes sqBacklight{0%,100%{opacity:.12}50%{opacity:.34}}
-@keyframes sqMoon{0%,100%{opacity:.85}50%{opacity:1}}
-@keyframes sqTwinkle{0%,100%{opacity:1}50%{opacity:.15}}
-@keyframes sqPixel{0%,100%{opacity:.08}20%,45%{opacity:1}}
-@keyframes sqPixelAll{0%,100%{opacity:.55}50%{opacity:.8}}
+/* Scène des schémas : fond sombre pour que les téléphones ressortent */
+.sp #purchase-audit .sq-illustration{background:radial-gradient(120% 90% at 50% 0,#33362f,#171916);border-radius:22px;padding:18px 14px}
+.sp #purchase-audit .sq-illustration svg{max-height:340px}
+.sp #purchase-audit .qa-t{font:600 13px var(--sans);fill:#cfd1c4}
+.sp #purchase-audit .qa-t-big{font:800 17px var(--head);fill:#fff;letter-spacing:-.01em}
+.sp #purchase-audit .qa-t-sm{font:500 12.5px var(--sans);fill:#b8bbac}
+.sp #purchase-audit .qa-t-xs{font:500 10px var(--mono);fill:#8d907f}
+.sp #purchase-audit .qa-clock{font:200 30px var(--sans);fill:#fff}
+.sp #purchase-audit .qa-fps{font:800 13px var(--mono)}
+.sp #purchase-audit .qa-pct{font:700 18px var(--sans);fill:#fff}
 
-/* Fréquence : la balle saute d’image en image */
-.sp #purchase-audit .sq-ball{animation:sqBall 1.8s steps(var(--n),end) infinite alternate}
-@keyframes sqBall{from{transform:translateX(0)}to{transform:translateX(176px)}}
+/* Écran : OLED / LCD */
+.sp #purchase-audit .qa-side.is-dim{opacity:.78}
+.sp #purchase-audit .qa-backlight{opacity:.5;animation:qaBacklight 2.6s ease-in-out infinite}
+.sp #purchase-audit .qa-star{animation:qaTwinkle 2.6s ease-in-out infinite;animation-delay:var(--d)}
+.sp #purchase-audit .qa-sub{animation:qaSub 2.6s ease-in-out infinite;animation-delay:var(--d)}
+.sp #purchase-audit .qa-sub-all{animation:qaSubAll 2.6s ease-in-out infinite}
+@keyframes qaBacklight{0%,100%{opacity:.35}50%{opacity:.85}}
+@keyframes qaTwinkle{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes qaSub{0%,100%{opacity:.25}35%,60%{opacity:1}}
+@keyframes qaSubAll{0%,100%{opacity:.6}50%{opacity:1}}
 
-/* Batterie : le réservoir se vide plus ou moins vite, de matin à soir */
-.sp #purchase-audit .sq-drain{transform-box:fill-box;transform-origin:left center;animation:sqDrain var(--t) linear infinite}
-.sp #purchase-audit .sq-clock{animation:sqClock var(--t) linear infinite}
-@keyframes sqDrain{0%{transform:scaleX(1)}90%,100%{transform:scaleX(.06)}}
-@keyframes sqClock{0%{transform:translateX(0)}90%,100%{transform:translateX(156px)}}
+/* Fluidité : la liste défile avec n images par dixième de seconde… */
+.sp #purchase-audit .qa-feed{animation:qaFeed 1.2s steps(var(--n),end) infinite}
+.sp #purchase-audit .qa-tick{opacity:.25;animation:qaTick 1.2s steps(1,end) infinite;animation-delay:var(--d)}
+@keyframes qaFeed{from{transform:translateY(0)}to{transform:translateY(-88px)}}
+@keyframes qaTick{0%{opacity:1}8%,100%{opacity:.25}}
 
-/* Puissance : la charge monte, la chauffe aussi */
-.sp #purchase-audit .sq-load{transform-box:fill-box;transform-origin:center bottom;animation:sqLoad var(--t) ease-in-out infinite alternate;animation-delay:var(--d)}
-.sp #purchase-audit .sq-heat{opacity:var(--h);animation:sqHeat 1.6s ease-in-out infinite alternate}
-@keyframes sqLoad{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
-@keyframes sqHeat{from{transform:scale(.85)}to{transform:scale(1.05)}}
+/* Batterie : où en est-on quand le soleil se couche ? */
+.sp #purchase-audit .qa-level{transform-box:fill-box;transform-origin:left center;animation:qaLevel var(--t) linear infinite}
+.sp #purchase-audit .qa-day{animation:qaDay var(--t) linear infinite}
+.sp #purchase-audit .qa-plug{animation:qaBlink 1.2s ease-in-out infinite}
+@keyframes qaLevel{0%{transform:scaleX(1)}85%,100%{transform:scaleX(max(var(--e),.02))}}
+@keyframes qaDay{0%{transform:translateY(0);fill:#ffc94d}85%,100%{transform:translateY(124px);fill:#9fb0d6}}
+@keyframes qaBlink{0%,100%{opacity:1}50%{opacity:.25}}
 
-/* Capteur : plus il est grand, plus de lumière tombe dedans */
-.sp #purchase-audit .sq-photon{animation:sqPhoton 1.8s ease-in infinite;animation-delay:var(--d);opacity:0}
-@keyframes sqPhoton{0%{transform:translateY(0);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateY(calc(var(--f) + 30px));opacity:0}}
+/* Puce : images par seconde dans un jeu 3D */
+.sp #purchase-audit .qa-fpsline{stroke-dasharray:420;animation:qaDraw 3.2s linear infinite}
+.sp #purchase-audit .qa-car{animation:qaCar 1.6s ease-in-out infinite alternate}
+.sp #purchase-audit .qa-car.is-choppy{animation:qaCarChop 1.6s steps(6,end) infinite alternate}
+@keyframes qaDraw{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+@keyframes qaCar{from{transform:translateX(-26px)}to{transform:translateX(26px)}}
+@keyframes qaCarChop{from{transform:translateX(-26px)}to{transform:translateX(26px)}}
 
-/* Mises à jour : une barre par année, puis le bouclier */
-.sp #purchase-audit .sq-year{transform-box:fill-box;transform-origin:left center;animation:sqYear 4.5s ease-out infinite;animation-delay:var(--d)}
-.sp #purchase-audit .sq-check{stroke-dasharray:44;animation:sqCheck 4.5s ease-out infinite}
-@keyframes sqYear{0%{transform:scaleX(0)}12%,88%{transform:scaleX(1)}100%{transform:scaleX(0)}}
-@keyframes sqCheck{0%,30%{stroke-dashoffset:44}45%,88%{stroke-dashoffset:0}100%{stroke-dashoffset:44}}
+/* Photo : le grain de la nuit, la lumière qui tombe dans le capteur */
+.sp #purchase-audit .qa-ph{opacity:0;animation:qaPhoton 1.6s ease-in infinite;animation-delay:var(--d)}
+@keyframes qaPhoton{0%{transform:translateY(0);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateY(calc(var(--f) + 26px));opacity:0}}
+
+/* Mises à jour : les années passent, le bouclier tient puis s'arrête */
+.sp #purchase-audit .qa-yr{transform-box:fill-box;transform-origin:left center;animation:qaYear 5s ease-out infinite;animation-delay:var(--d)}
+.sp #purchase-audit .qa-shield{animation:qaShield 5s ease-in-out infinite}
+@keyframes qaYear{0%{transform:scaleX(0)}10%,100%{transform:scaleX(1)}}
+@keyframes qaShield{0%,70%{transform:translate(116px,118px) scale(1)}85%{transform:translate(116px,118px) scale(1.12)}100%{transform:translate(116px,118px) scale(1)}}
+
+/* Petites illustrations de « Affiner » */
+.sp #purchase-audit .audit-pills.has-mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:10px}
+.sp #purchase-audit .audit-pill.has-mini{flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:6px;padding:10px 8px 12px;border-radius:16px;min-height:0}
+.sp #purchase-audit .audit-pill.has-mini .sq-option-dot{display:none}
+.sp #purchase-audit .audit-pill.has-mini .pill-copy strong{font-size:15px}
+.sp #purchase-audit .sq-mini{display:grid;justify-items:center;gap:2px;width:100%;background:#24271f;border-radius:12px;padding:6px 4px 4px}
+.sp #purchase-audit .sq-mini svg{width:100%;max-width:92px;height:auto}
+.sp #purchase-audit .sq-mini small{font:600 11px var(--sans);color:#cfd1c4}
+.sp #purchase-audit .qa-sun{animation:qaSun 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.sp #purchase-audit .qa-ray{animation:qaTwinkle 2.4s ease-in-out infinite;animation-delay:var(--d)}
+.sp #purchase-audit .qa-chg{transform-box:fill-box;transform-origin:left center;animation:qaCharge2 2.4s ease-in-out infinite}
+.sp #purchase-audit .qa-bolt2{animation:qaBlink 1.4s ease-in-out infinite}
+.sp #purchase-audit .qa-shake{animation:qaShake .35s linear infinite}
+.sp #purchase-audit .qa-shake-soft{animation:qaShake .6s linear infinite;--a:1px}
+.sp #purchase-audit .qa-zoom{transform-box:fill-box;transform-origin:center;transform:scale(var(--z));animation:qaZoomIn 2.6s ease-in-out infinite}
+.sp #purchase-audit .qa-drop{animation:qaDrop 1.4s ease-in infinite;animation-delay:var(--d);opacity:0}
+@keyframes qaSun{0%,100%{transform:scale(.92)}50%{transform:scale(1.06)}}
+@keyframes qaCharge2{0%{transform:scaleX(.15)}80%,100%{transform:scaleX(1)}}
+@keyframes qaShake{0%,100%{transform:translate(0,0)}25%{transform:translate(calc(var(--a,3px)*-1),var(--a,3px))}50%{transform:translate(var(--a,3px),calc(var(--a,3px)*-1))}75%{transform:translate(calc(var(--a,3px)*-1),calc(var(--a,3px)*-1))}}
+@keyframes qaZoomIn{0%,100%{transform:scale(1)}50%{transform:scale(var(--z))}}
+@keyframes qaDrop{0%{transform:translateY(0);opacity:0}20%{opacity:1}100%{transform:translateY(46px);opacity:0}}
+.sp #purchase-audit .sq-ex{font-size:14px!important;color:var(--ink-mute)!important}
+.sp #purchase-audit .sq-ex b{background:#e6e5d9;color:#20221e}
 
 /* Photo de l’en-tête Batterie : un téléphone qui se recharge (plus de batterie externe) */
 .sp #purchase-audit .sq-family-photo svg{display:block;width:100%;height:100%}
@@ -127,7 +161,7 @@
 .sp #purchase-audit .audit-card-trigger{min-height:118px;padding:20px 16px;gap:10px}
 .sp #purchase-audit .audit-card-trigger .audit-card-copy strong{font-size:24px}
 .sp #purchase-audit .sq-primary{grid-template-columns:1fr;gap:16px}
-.sp #purchase-audit .sq-illustration svg{height:auto;max-height:175px}
+.sp #purchase-audit .sq-illustration svg{height:auto;max-height:300px}
 .sp #purchase-audit .sq-primary .audit-pill{padding:8px 14px;min-height:42px}
 .sp #purchase-audit .sq-primary .audit-pill .pill-copy strong{font-size:16px}
 .sp #purchase-audit .sq-pm{min-height:0}

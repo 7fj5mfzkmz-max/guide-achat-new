@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
       const page = await context.newPage(), errors = [];
       page.on('pageerror', e => errors.push(e.message));
       await page.goto(`http://127.0.0.1:${server.address().port}/smartphones.html`, {waitUntil:'networkidle'});
-      const choices = [['screen','refresh','120'],['battery','capacity','5000'],['performance','gaming','heavy'],['photo','sensor','medium'],['longevity','updates','5']];
+      const choices = [['screen','refresh','120'],['battery','capacity','5000'],['performance','reference','mid'],['photo','sensor','medium'],['longevity','updates','5']];
       for (let i=0; i<choices.length; i++) {
         const [family, group, value] = choices[i];
         const card = page.locator(`[data-audit-card="${family}"]`);
@@ -73,7 +73,7 @@ const server = http.createServer((req, res) => {
     await motionPage.goto(`http://127.0.0.1:${server.address().port}/smartphones.html`, {waitUntil:'networkidle'});
     const screen = motionPage.locator('[data-audit-card="screen"]');
     await screen.locator('[data-group="tech"] [data-value="lcd"]').click();
-    assert.equal(await screen.locator('.sq-backlight').evaluate(el=>getComputedStyle(el).animationIterationCount),'infinite');
+    assert.equal(await screen.locator('.qa-backlight').evaluate(el=>getComputedStyle(el).animationIterationCount),'infinite');
     assert.equal(await screen.locator('[data-group="tech"] .sq-gain').evaluate(el=>getComputedStyle(el).animationIterationCount),'1');
     await motionPage.locator('#theme-toggle').click();
     assert.equal(await motionPage.evaluate(()=>document.documentElement.classList.contains('dark-theme')),true);

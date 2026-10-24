@@ -85,7 +85,7 @@
     if (!Number.isFinite(n)) return null;
     return n >= 69 ? 4 : n >= 68 ? 3 : n >= 67 ? 2.5 : n >= 65 ? 1.5 : n >= 54 ? 1 : 0;
   }
-  var REF = { basic: 3, mid: 4, high: 6, apple: 7 }, GAME = { daily: 3, heavy: 5, pro: 6 };
+  var REF = { basic: 3, mid: 5, high: 6, apple: 7 }, GAME = { daily: 3, heavy: 5, pro: 6 };
 
   function photoSensorRank(c) {
     var text = [c.photo, c.photo_sensor].filter(Boolean).join(' ');
