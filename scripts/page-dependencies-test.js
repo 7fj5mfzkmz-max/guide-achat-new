@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
-const ORDER = ['phone-analyzer/identity.js', 'phone-analyzer/static-resolver.js', 'phone-analyzer/fetcher.js', 'phone-analyzer/references.js', 'phone-analyzer/spec-insights.js', 'phone-analyzer/spec-score.js', 'phone-analyzer/ui.js'];
+const ORDER = ['phone-analyzer/identity.js', 'phone-analyzer/static-resolver.js', 'phone-analyzer/fetcher.js', 'phone-analyzer/references.js', 'phone-analyzer/chips.js', 'phone-analyzer/spec-insights.js', 'phone-analyzer/spec-score.js', 'phone-analyzer/ui.js'];
 const pages = fs.readdirSync(root).filter(f => f.endsWith('.html')).filter(f => fs.readFileSync(path.join(root, f), 'utf8').includes('id="phone-analyzer-form"'));
 assert.ok(pages.length >= 2, 'au moins smartphones.html et analyseur.html hébergent l’analyseur (trouvé : ' + pages.join(', ') + ')');
 for (const page of pages) {
@@ -15,6 +15,7 @@ for (const page of pages) {
   /* score avant ui ; references et spec-insights avant spec-score */
   const at = m => srcs.indexOf(m);
   assert.ok(at('phone-analyzer/references.js') < at('phone-analyzer/spec-score.js'), page + ' : references.js doit précéder spec-score.js');
+  assert.ok(at('phone-analyzer/chips.js') < at('phone-analyzer/spec-score.js'), page + ' : chips.js doit précéder spec-score.js');
   assert.ok(at('phone-analyzer/spec-insights.js') < at('phone-analyzer/spec-score.js'), page + ' : spec-insights.js doit précéder spec-score.js');
   assert.ok(at('phone-analyzer/spec-score.js') < at('phone-analyzer/ui.js'), page + ' : spec-score.js doit précéder ui.js');
   /* aucun <form> imbriqué dans le formulaire principal (le navigateur le supprimerait silencieusement) */

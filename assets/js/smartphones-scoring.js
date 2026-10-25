@@ -10,6 +10,7 @@
   var currentProfile = localStorage.getItem("guide-profile") || "etudiant";
 
   var CRITERIA = [
+    { key: "prix", groups: ["budget"] },
     { key: "ecran", groups: ["tech", "refresh", "brightness"] },
     { key: "batterie", groups: ["capacity", "chemistry", "charge"] },
     { key: "performance", groups: ["reference", "gaming"] },
@@ -65,14 +66,41 @@
     return { score: Math.max(0, 1 - (diff < 0 ? -diff * down : diff * up)), d: diff };
   }
 
-  /* Niveau de puce (1-7) : on retient tout ce qui est « autour » du niveau visé.
-     Un cran en dessous ou au-dessus reste proche ; au-delà de 1 cran en dessous, le modèle est écarté. */
-  var BAND = { "-1": 0.8, "0": 1, "1": 0.9, "2": 0.6 };
-  function band(want, have) {
-    if (want == null || have == null) return null;
-    var diff = Number(have) - want;
-    if (diff < -1) return { score: 0, d: diff, out: true };
-    return { score: BAND[String(Math.round(diff))] != null ? BAND[String(Math.round(diff))] : 0.35, d: diff };
+  /* Niveau de puce (1-10, voir phone-analyzer/chips.js) : chaque choix vise une plage de niveaux.
+     Dans la plage : « comme votre choix ». Jusqu'à deux niveaux en dessous : proche, avec un compromis.
+     Au-delà : écarté. Au-dessus : toujours correct, juste plus puissant que demandé. */
+  var RANGE = {
+    reference: { basic: [1, 3], mid: [4, 6], high: [7, 8], top: [9, 10] },
+    gaming: { daily: [3, 10], heavy: [6, 10], pro: [8, 10] }
+  };
+  function band(range, have) {
+    if (!range || have == null || !Number.isFinite(Number(have))) return null;
+    have = Number(have);
+    if (have >= range[0] && have <= range[1]) return { score: 1, d: 0 };
+    if (have > range[1]) return { score: Math.max(0.6, 1 - (have - range[1]) * 0.08), d: have - range[1] };
+    var diff = have - range[0];
+    if (diff < -2) return { score: 0, d: diff, out: true };
+    return { score: 1 + diff * 0.25, d: diff };
+  }
+
+  /* Prix : quatre paliers. Dans le palier : parfait. Moins cher : bien, mais d'autant moins que le palier est élevé
+     (qui vise un haut de gamme ne veut pas d'un modèle d'entrée de gamme). Plus cher : de moins en moins, puis écarté. */
+  var PALIERS = {
+    bas: { min: 0, max: 150, label: "bas prix", plage: "80 à 150 €", moins: 1 },
+    entree: { min: 150, max: 300, label: "entrée de gamme", plage: "150 à 300 €", moins: 0.85 },
+    milieu: { min: 300, max: 800, label: "milieu de gamme", plage: "300 à 800 €", moins: 0.7 },
+    haut: { min: 800, max: Infinity, label: "haut de gamme", plage: "800 € et plus", moins: 0.45 }
+  };
+  function palierDe(prix) { return ["bas", "entree", "milieu", "haut"].filter(function (k) { return prix <= PALIERS[k].max; })[0] || "haut"; }
+  function priceCheck(palierId, prix) {
+    var t = PALIERS[palierId];
+    if (!t || !Number.isFinite(prix) || prix <= 0) return null;
+    var text = "≈ " + Math.round(prix).toLocaleString("fr-FR") + " €";
+    if (prix >= t.min && prix <= t.max) return { key: "prix.budget", score: 1, d: 0, text: text, delta: "pile" };
+    if (prix < t.min) return { key: "prix.budget", score: t.moins, d: -1, text: text, delta: "moins cher" };
+    var r = prix / t.max;
+    if (r > 1.4) return { key: "prix.budget", score: 0, d: 2, out: true, text: text, delta: "nettement au-dessus" };
+    return { key: "prix.budget", score: r <= 1.15 ? 0.6 : 0.3, d: 1, text: text, delta: r <= 1.15 ? "un peu au-dessus" : "au-dessus" };
   }
   function screenTechRank(t) {
     if (t === "ltpo" || t === "LTPO") return 3;
@@ -86,8 +114,7 @@
     if (!Number.isFinite(n)) return null;
     return n >= 69 ? 4 : n >= 68 ? 3 : n >= 67 ? 2.5 : n >= 65 ? 1.5 : n >= 54 ? 1 : 0;
   }
-  var REF = { basic: 3, mid: 5, high: 6, apple: 7 }, GAME = { daily: 3, heavy: 5, pro: 6 };
-
+  
   function photoSensorRank(c) {
     var text = [c.photo, c.photo_sensor].filter(Boolean).join(' ');
     var m = text.match(/1\/(\d+(?:\.\d+)?)"/);
@@ -134,6 +161,8 @@
       var cfg = AIM[key], r = closeness(Number(want), Number(have), cfg.tol);
       if (r) out.push({ key: key, score: r.score, d: r.d, text: cfg.fmt(Number(have)), delta: deltaLabel(r.d) });
     }
+    var pr = state.price || {};
+    if (pr.budget && p.prix_indicatif) { var pc = priceCheck(pr.budget, Number(p.prix_indicatif)); if (pc) out.push(pc); }
     if (sc.refresh && c.ecran) numeric("ecran.refresh", sc.refresh, c.ecran.frequence_max_hz);
     if (sc.brightness && c.ecran) numeric("ecran.brightness", sc.brightness, c.ecran.luminosite_nits);
     if (sc.tech && c.ecran) {
@@ -143,12 +172,12 @@
     if (ba.capacity && c.batterie) numeric("batterie.capacity", ba.capacity, c.batterie.capacite_mah);
     if (ba.charge && c.batterie) numeric("batterie.charge", ba.charge, c.batterie.recharge_watts);
     if (pe.reference && c.performance) {
-      var r1 = band(REF[pe.reference] || 4, c.performance.niveau);
-      if (r1) out.push({ key: "performance.reference", score: r1.score, d: r1.d, out: r1.out, text: "puce niveau " + c.performance.niveau + "/7", delta: r1.d === 0 ? "pile" : r1.d < 0 ? "en dessous" : "au-dessus" });
+      var r1 = band(RANGE.reference[pe.reference], c.performance.niveau);
+      if (r1) out.push({ key: "performance.reference", score: r1.score, d: r1.d, out: r1.out, text: "puce niveau " + c.performance.niveau + "/10", delta: r1.d === 0 ? "pile" : r1.d < 0 ? "en dessous" : "au-dessus" });
     }
     if (pe.gaming && c.performance) {
-      var r2 = band(GAME[pe.gaming] || 4, c.performance.niveau);
-      if (r2) out.push({ key: "performance.gaming", score: r2.score, d: r2.d, out: r2.out, text: "jeu niveau " + c.performance.niveau + "/7", delta: r2.d === 0 ? "pile" : r2.d < 0 ? "en dessous" : "au-dessus" });
+      var r2 = band(RANGE.gaming[pe.gaming], c.performance.niveau);
+      if (r2) out.push({ key: "performance.gaming", score: r2.score, d: r2.d, out: r2.out, text: "jeu niveau " + c.performance.niveau + "/10", delta: r2.d === 0 ? "pile" : r2.d < 0 ? "en dessous" : "au-dessus" });
     }
     if (ph.resolution && c.photo) numeric("photo.resolution", ph.resolution, c.photo.mp_principal);
     if (ph.sensor && c.photo) {
@@ -197,30 +226,29 @@
   }
   function wantedCount(state) {
     var n = 0, sc = state.screen || {}, ba = state.battery || {}, pe = state.performance || {}, ph = state.photo || {}, lo = state.longevity || {};
-    [sc.refresh, sc.brightness, sc.tech, ba.capacity, ba.chemistry, ba.charge, pe.reference, pe.gaming, ph.resolution, ph.sensor, ph.zoom, ph.stabilization === "ois" ? 1 : 0, lo.updates, lo.repair, lo.protection].forEach(function (v) { if (v) n++; });
+    [(state.price || {}).budget, sc.refresh, sc.brightness, sc.tech, ba.capacity, ba.chemistry, ba.charge, pe.reference, pe.gaming, ph.resolution, ph.sensor, ph.zoom, ph.stabilization === "ois" ? 1 : 0, lo.updates, lo.repair, lo.protection].forEach(function (v) { if (v) n++; });
     return n;
   }
 
   // Une catégorie est « renseignée » dès qu'un choix utile a été fait.
-  function categoryStateKey(key) { return key === "ecran" ? "screen" : key === "batterie" ? "battery" : key === "durete" ? "longevity" : key; }
+  function categoryStateKey(key) { return key === "prix" ? "price" : key === "ecran" ? "screen" : key === "batterie" ? "battery" : key === "durete" ? "longevity" : key; }
   function categoryComplete(state, criterion) {
     var part = state[categoryStateKey(criterion.key)] || {};
     return criterion.groups.some(function (group) { return !!part[group]; });
   }
   function completedCategories(state) { return CRITERIA.filter(function (criterion) { return categoryComplete(state, criterion); }); }
 
-  function isApple(p) { var soc = ((p.compatibilite || {}).performance || {}).soc || ""; return /apple/i.test(p.marque || "") || /^puce\s*a\d|\bA\d{2}\b/i.test(soc); }
   function computeMatch(p, state) {
     var pe = state.performance || {};
     var perf = p.compatibilite && p.compatibilite.performance;
-    if ((pe.reference || pe.gaming) && !(perf && Number.isFinite(Number(perf.niveau)))) return null; // niveau inconnu : on ne devine pas
+    if ((pe.reference || pe.gaming) && !(perf && perf.niveau != null && Number.isFinite(Number(perf.niveau)))) return null; // niveau inconnu : on ne devine pas
+    if (state.price && state.price.budget && !p.prix_indicatif) return null; // prix inconnu : impossible de dire si le modèle tient dans le budget
     var list = checks(p, state), wanted = wantedCount(state);
     if (list.some(function (x) { return x.out; })) return null; // trop en dessous du niveau demandé
     if (!list.length || !wanted) return null;
     var avg = list.reduce(function (a, x) { return a + x.score; }, 0) / list.length;
     var coverage = list.length / wanted;
-    var bonus = (pe.reference === "apple" && isApple(p)) ? 0.08 : 0;
-    return { score: Math.min(1, avg * (0.55 + 0.45 * coverage) + bonus), checks: list, coverage: coverage };
+    return { score: Math.min(1, avg * (0.55 + 0.45 * coverage)), checks: list, coverage: coverage };
   }
 
   /* Pour chaque valeur numérique demandée : y a-t-il du « pile » dans le catalogue ? sinon, quels sont les voisins ? */
@@ -257,9 +285,9 @@
 
 
   /* Présentation d'un critère : la valeur du modèle, comparée à CE QUE VOUS AVEZ CHOISI (jamais « au-dessus » sans dire de quoi). */
-  var NOMS = { "ecran.refresh": "Fréquence d’écran", "ecran.brightness": "Luminosité", "ecran.tech": "Type d’écran", "batterie.capacity": "Capacité de batterie", "batterie.charge": "Recharge", "performance.reference": "Niveau de puce", "performance.gaming": "Puissance en jeu", "photo.resolution": "Mégapixels", "photo.sensor": "Capteur photo", "photo.zoom": "Zoom", "photo.ois": "Stabilisation", "battery.chemistry": "Technologie de batterie", "durete.updates": "Mises à jour", "durete.repair": "Réparabilité", "durete.protection": "Étanchéité" };
+  var NOMS = { "prix.budget": "Prix", "ecran.refresh": "Fréquence d’écran", "ecran.brightness": "Luminosité", "ecran.tech": "Type d’écran", "batterie.capacity": "Capacité de batterie", "batterie.charge": "Recharge", "performance.reference": "Niveau de puce", "performance.gaming": "Puissance en jeu", "photo.resolution": "Mégapixels", "photo.sensor": "Capteur photo", "photo.zoom": "Zoom", "photo.ois": "Stabilisation", "battery.chemistry": "Technologie de batterie", "durete.updates": "Mises à jour", "durete.repair": "Réparabilité", "durete.protection": "Étanchéité" };
   var CHOIX = {
-    "performance.reference": { basic: "entrée de gamme", mid: "milieu de gamme", high: "haut de gamme", apple: "puce Apple" },
+    "performance.reference": { basic: "entrée de gamme", mid: "milieu de gamme", high: "haut de gamme", top: "très haut de gamme" },
     "performance.gaming": { daily: "usage quotidien", heavy: "jeux et montage", pro: "jeux très lourds" },
     "photo.sensor": { small: "petit capteur", medium: "capteur moyen", large: "grand capteur" },
     "photo.zoom": { digital: "zoom numérique", "2x": "téléobjectif ×2", "5x": "téléobjectif ×5" },
@@ -269,7 +297,7 @@
   };
   function wantText(key, state) {
     var sc = state.screen || {}, ba = state.battery || {}, pe = state.performance || {}, ph = state.photo || {}, lo = state.longevity || {};
-    var v = { "ecran.refresh": sc.refresh && sc.refresh + " Hz", "ecran.brightness": sc.brightness && AIM["ecran.brightness"].fmt(Number(sc.brightness)), "ecran.tech": sc.tech && String(sc.tech).toUpperCase(),
+    var v = { "prix.budget": (state.price || {}).budget && PALIERS[state.price.budget] && (PALIERS[state.price.budget].label + " (" + PALIERS[state.price.budget].plage + ")"), "ecran.refresh": sc.refresh && sc.refresh + " Hz", "ecran.brightness": sc.brightness && AIM["ecran.brightness"].fmt(Number(sc.brightness)), "ecran.tech": sc.tech && String(sc.tech).toUpperCase(),
       "batterie.capacity": ba.capacity && AIM["batterie.capacity"].fmt(Number(ba.capacity)), "batterie.charge": ba.charge && ba.charge + " W", "battery.chemistry": ba.chemistry && CHOIX["battery.chemistry"][ba.chemistry],
       "performance.reference": pe.reference && CHOIX["performance.reference"][pe.reference], "performance.gaming": pe.gaming && CHOIX["performance.gaming"][pe.gaming],
       "photo.resolution": ph.resolution && ph.resolution + " Mpx", "photo.sensor": ph.sensor && CHOIX["photo.sensor"][ph.sensor], "photo.zoom": ph.zoom && CHOIX["photo.zoom"][ph.zoom], "photo.ois": ph.stabilization === "ois" ? "stabilisation optique" : "",
@@ -279,6 +307,11 @@
   function describe(c, state) {
     var tone, icon, verdict, far = /nettement/.test(c.delta) || c.out;
     if (c.delta === "different") { tone = "diff"; icon = "≠"; verdict = "Différent"; }
+    else if (c.key === "prix.budget") {
+      if (c.delta === "pile") { tone = "ok"; icon = "✓"; verdict = "Dans votre palier"; }
+      else if (c.d < 0) { tone = "ok"; icon = "▼"; verdict = "Moins cher que votre palier"; }
+      else { tone = far ? "far" : "low"; icon = "▲"; verdict = far ? "Bien plus cher" : "Un peu plus cher"; }
+    }
     else if (c.delta === "pile") { tone = "ok"; icon = "✓"; verdict = "Comme votre choix"; }
     else if (c.d > 0) { tone = "up"; icon = "▲"; verdict = "Au-dessus"; }
     else { tone = far ? "far" : "low"; icon = "▼"; verdict = far ? "Bien en dessous" : "Un peu en dessous"; }
@@ -371,6 +404,7 @@
     if(lo2.repair) unevaluated.push(products.every(function(p){return repairScore(p.compatibilite||{})==null;})?'réparabilité':'');
     unevaluated=unevaluated.filter(Boolean);
     var summaryParts=[];
+    if((state.price||{}).budget) summaryParts.push('prix');
     if(sc2.tech||sc2.refresh||sc2.brightness) summaryParts.push('écran');
     if(ba2.capacity||ba2.chemistry||ba2.charge) summaryParts.push('batterie');
     if(pe2.reference||pe2.gaming) summaryParts.push('performance');
@@ -379,7 +413,7 @@
     var summary=summaryParts.length?'Vous avez précisé : '+summaryParts.join(', ')+'.':'';
     var notes = neighbourNotes(state);
     if(unevaluated.length) notes.push('Critère(s) choisi(s) mais non documenté(s) dans le catalogue : ' + unevaluated.join(', ') + '. Ils ne sont ni bonifiés ni pénalisés.');
-    if (status) status.textContent = (summary ? summary + " " : "") + (done === 5 ? "Les cinq familles sont renseignées. " : "Chaque critère ajouté resserre la liste. ") + "Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « " + profileLabel(currentProfile) + " » départage." + (notes.length ? " " + notes.join(" ") : "");
+    if (status) status.textContent = (summary ? summary + " " : "") + (done === CRITERIA.length ? "Les six familles sont renseignées. " : "Chaque critère ajouté resserre la liste. ") + "Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « " + profileLabel(currentProfile) + " » départage." + (notes.length ? " " + notes.join(" ") : "");
 
     scored.forEach(function (x, i) {
       var article = document.createElement("article");

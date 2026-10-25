@@ -38,15 +38,25 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       await check('sections retirées : plus de checklist, de choix écrits à la main ni de conclusion' + tag, async () => {
         for (const sel of ['#checklist', '#nos-choix', '#suite', '.ga-ticker', '.picks']) assert.equal(await page.locator(sel).count(), 0, sel);
       });
-      await check('chaque besoin : deux colonnes (tests puis fiches), sans doublon' + tag, async () => {
+      await check('chaque besoin : deux colonnes (tests puis fiches), sans doublon dans une colonne' + tag, async () => {
         for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe', 'prix', 'batterie']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
           assert.equal(await page.locator('.tr-chip[aria-pressed="true"]').count(), 1);
           assert.ok(await page.locator('#tr-podium .tr-col').count() === 2, id + ' : deux colonnes attendues');
-          assert.ok(await page.locator('#tr-podium .tr-tag-test').count() >= 3, id + ' : au moins 3 modèles vus en test');
-          assert.ok(await page.locator('#tr-podium .tr-tag:not(.tr-tag-test)').count() >= 1, id + ' : au moins 1 fiche vérifiée');
-          const names = await page.locator('#tr-podium .tr-row h4').allInnerTexts();
-          assert.equal(new Set(names).size, names.length, id + ' : modèle répété ' + names.join(', '));
+          assert.ok(await page.locator('#tr-podium .tr-col').first().locator('.tr-tag-test').count() >= (id === 'prix' ? 1 : 3), id + ' : modèles vus en test');
+          for (const col of [0, 1]) {
+            const names = await page.locator('#tr-podium .tr-col').nth(col).locator('.tr-row h4').allInnerTexts();
+            assert.equal(new Set(names).size, names.length, id + ' : modèle répété ' + names.join(', '));
+          }
+        }
+      });
+      await check('fiches vérifiées : un modèle par gamme (haut, milieu, entrée, bas prix), dans la bonne tranche de prix' + tag, async () => {
+        const bornes = { 'Haut de gamme': [801, 1e9], 'Milieu de gamme': [301, 800], 'Entrée de gamme': [151, 300], 'Bas prix': [80, 150] };
+        for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe', 'batterie']) {
+          await page.click('.tr-chip[data-need="' + id + '"]');
+          const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ gamme: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(e.querySelector('.tr-price').textContent.replace(/[^\d]/g, '')) })));
+          assert.deepEqual(rows.map(r => r.gamme), ['Haut de gamme', 'Milieu de gamme', 'Entrée de gamme', 'Bas prix'], id + ' : quatre gammes attendues');
+          rows.forEach(r => assert.ok(r.prix >= bornes[r.gamme][0] && r.prix <= bornes[r.gamme][1], id + ' : ' + r.gamme + ' à ' + r.prix + ' €'));
         }
       });
       await check('profil Gamer : les modèles du test passent en premier, le profil est mémorisé' + tag, async () => {
@@ -63,10 +73,13 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         assert.match(t, /OnePlus 16/); assert.match(t, /9 000 mAh/); assert.match(t, /12 h 54 en jeu avec 4 823 mAh/);
         assert.equal(await page.locator('.profile-toggle:not([hidden])').count(), 0);
       });
-      await check('Petit prix : la gamme Samsung signale le modèle à éviter' + tag, async () => {
+      await check('Petit prix : 80 à 250 €, quatre tranches, aucun modèle hors fourchette' + tag, async () => {
         await page.click('.tr-chip[data-need="prix"]');
-        assert.equal(await page.locator('.tr-flag-bad').count(), 1);
-        assert.match(await page.locator('.tr-flag-bad').innerText(), /éviter/i);
+        assert.match(await page.locator('#tr-intro').innerText(), /80 à 250 €/);
+        const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ tranche: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(e.querySelector('.tr-price').textContent.replace(/[^\d]/g, '')) })));
+        assert.equal(rows.length, 4, 'quatre tranches attendues');
+        rows.forEach(r => assert.ok(r.prix >= 80 && r.prix <= 250, r.tranche + ' : ' + r.prix + ' €'));
+        assert.ok(await page.locator('.tr-flag').count() >= 1, 'le test Samsung à petit prix porte une étiquette');
       });
       await check('clavier : les flèches changent d’onglet' + tag, async () => {
         await page.focus('#tab-profil'); await page.keyboard.press('ArrowRight');
@@ -111,6 +124,30 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       const proof = await page.locator('#scoring-results .criteria-test').allInnerTexts();
       assert.ok(proof.length >= 1 && proof.every(t => /^Testé/i.test(t)), 'étiquette « Testé » attendue');
       await page.close();
+    });
+    await check('« Mes critères » : le prix est la première famille, sur six, et écarte les modèles trop chers', async () => {
+      const iso = await browser.newContext({ locale: 'fr-FR', viewport: { width: 1280, height: 900 } }), page = await iso.newPage();
+      await page.goto(base + '#audit', { waitUntil: 'networkidle' });
+      assert.equal(await page.locator('.audit-card').count(), 6);
+      assert.equal(await page.locator('.audit-card').first().getAttribute('data-audit-card'), 'price');
+      assert.match(await page.locator('#audit-count').innerText(), /0 \/ 6/);
+      await page.locator('#quiz-price button[data-value="entree"]').first().click();
+      await page.waitForSelector('#scoring-results .criteria-recommendation-card');
+      const prix = (await page.locator('#scoring-results .criteria-recommendation-meta').allInnerTexts()).map(t => Number((t.match(/≈\s*([\d\s\u202f]+)\s*€/) || [])[1].replace(/\D/g, '')));
+      assert.ok(prix.length >= 3 && prix.every(v => v <= 345), 'budget « entrée de gamme » : ' + prix.join(', '));
+      assert.ok(prix.some(v => v >= 150), 'des modèles dans la tranche 150 à 300 €');
+      await iso.close();
+    });
+    await check('« Mes critères » : l’échelle de puces va de 1 à 10, « très haut de gamme » n’admet pas d’entrée de gamme', async () => {
+      const iso = await browser.newContext({ locale: 'fr-FR', viewport: { width: 1280, height: 900 } }), page = await iso.newPage();
+      await page.goto(base + '#audit', { waitUntil: 'networkidle' });
+      await page.click('[data-audit-card="performance"] .audit-card-trigger');
+      await page.locator('#quiz-performance button[data-value="top"]').first().click();
+      await page.waitForSelector('#scoring-results .criteria-recommendation-card');
+      const niveaux = (await page.locator('#scoring-results').innerText()).match(/puce niveau (\d+)\/10/g).map(t => Number(t.match(/(\d+)\//)[1]));
+      assert.ok(niveaux.length >= 3 && niveaux.every(n => n >= 7 && n <= 10), 'niveaux : ' + niveaux.join(', '));
+      assert.ok(!/Puces? Apple/.test(await page.locator('#quiz-performance').innerText()), 'plus de « puce Apple » comme niveau');
+      await iso.close();
     });
     await check('thème sombre : le classement reste lisible (aucune erreur)', async () => {
       const dark = await browser.newContext({ locale: 'fr-FR', viewport: { width: 390, height: 844 }, colorScheme: 'dark' });

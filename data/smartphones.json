@@ -58,7 +58,8 @@
         "performance": {
           "soc": "Exynos 1580 (4 nm)",
           "niveau": 5,
-          "ram_go_max": 8
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -135,8 +136,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 8400-Ultra (4 nm)",
-          "niveau": 5,
-          "ram_go_max": 12
+          "niveau": 7,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -214,8 +216,9 @@
         },
         "performance": {
           "soc": "Puce A19 Pro",
-          "niveau": 7,
-          "ram_go_max": 12
+          "niveau": 10,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 48,
@@ -278,8 +281,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 (3 nm)",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -342,8 +346,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 Leading Version",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -405,8 +410,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 pour chaque marché",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -469,7 +475,8 @@
         "performance": {
           "soc": "Google Tensor 4",
           "niveau": 6,
-          "ram_go_max": 16
+          "ram_go_max": 16,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -532,7 +539,8 @@
         "performance": {
           "soc": "Google Tensor 4",
           "niveau": 6,
-          "ram_go_max": 12
+          "ram_go_max": 12,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -594,8 +602,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 Leading Version",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 200,
@@ -669,8 +678,9 @@
         },
         "performance": {
           "soc": "Apple A19 Pro",
-          "niveau": 7,
-          "ram_go_max": 8
+          "niveau": 10,
+          "ram_go_max": 8,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 12,
@@ -732,8 +742,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 48,
@@ -795,8 +806,9 @@
         },
         "performance": {
           "soc": "Apple A19 Pro",
-          "niveau": 7,
-          "ram_go_max": 8
+          "niveau": 10,
+          "ram_go_max": 8,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 12,
@@ -866,8 +878,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -930,7 +943,8 @@
         "performance": {
           "soc": "Google Tensor 4",
           "niveau": 6,
-          "ram_go_max": 8
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -992,8 +1006,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 8400 (4 nm)",
-          "niveau": 5,
-          "ram_go_max": 12
+          "niveau": 7,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -1055,8 +1070,9 @@
         },
         "performance": {
           "soc": "Apple A19 Bionic",
-          "niveau": 6,
-          "ram_go_max": 8
+          "niveau": 9,
+          "ram_go_max": 8,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 12,
@@ -1119,8 +1135,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading Version",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 8,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -1182,8 +1199,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -1245,8 +1263,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -1308,8 +1327,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 10
+          "niveau": 9,
+          "ram_go_max": 10,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -1372,7 +1392,8 @@
         "performance": {
           "soc": "Google Tensor 4",
           "niveau": 6,
-          "ram_go_max": 16
+          "ram_go_max": 16,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -1434,8 +1455,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 9400",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -1497,8 +1519,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 Leading",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -1572,7 +1595,8 @@
         "performance": {
           "soc": "Exynos 1330 (5 nm)",
           "niveau": 3,
-          "ram_go_max": 8
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -1716,8 +1740,9 @@
         },
         "performance": {
           "soc": "Snapdragon 6 Gen 3",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 4,
+          "ram_go_max": 12,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 108,
@@ -1795,8 +1820,9 @@
         },
         "performance": {
           "soc": "Snapdragon 6 Gen 4 5G",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 4,
+          "ram_go_max": 12,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -1874,8 +1900,9 @@
         },
         "performance": {
           "soc": "Snapdragon 685",
-          "niveau": 4,
-          "ram_go_max": 8
+          "niveau": 2,
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 108,
@@ -1933,7 +1960,8 @@
         "performance": {
           "soc": "MediaTek Helio G81 Ultra",
           "niveau": 2,
-          "ram_go_max": null
+          "ram_go_max": null,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
@@ -2007,8 +2035,9 @@
         },
         "performance": {
           "soc": "MediaTek Helio G92 MAX (12 nm)",
-          "niveau": 4,
-          "ram_go_max": 8
+          "niveau": 3,
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -2086,8 +2115,9 @@
         },
         "performance": {
           "soc": "Dimensity 7025-Ultra",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 4,
+          "ram_go_max": 12,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 108,
@@ -2165,8 +2195,9 @@
         },
         "performance": {
           "soc": "Dimensity 7025",
-          "niveau": 6,
-          "ram_go_max": 8
+          "niveau": 4,
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -2244,8 +2275,9 @@
         },
         "performance": {
           "soc": "Dimensity 7025-Ultra",
-          "niveau": 6,
-          "ram_go_max": 8
+          "niveau": 4,
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 108,
@@ -2323,7 +2355,7 @@
         },
         "performance": {
           "soc": "Octa-core, modèle exact à vérifier selon version",
-          "niveau": 3,
+          "niveau": null,
           "ram_go_max": 8
         },
         "photo": {
@@ -2388,7 +2420,8 @@
         "performance": {
           "soc": "MediaTek Helio G96",
           "niveau": 3,
-          "ram_go_max": null
+          "ram_go_max": null,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
@@ -2446,7 +2479,8 @@
         "performance": {
           "soc": "Snapdragon 695",
           "niveau": 3,
-          "ram_go_max": null
+          "ram_go_max": null,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
@@ -2524,8 +2558,9 @@
         },
         "performance": {
           "soc": "Helio G81 Extreme",
-          "niveau": 3,
-          "ram_go_max": 8
+          "niveau": 2,
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -2602,8 +2637,9 @@
         },
         "performance": {
           "soc": "Helio G81 Extreme",
-          "niveau": 3,
-          "ram_go_max": 8
+          "niveau": 2,
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -2680,8 +2716,9 @@
         },
         "performance": {
           "soc": "Helio G99",
-          "niveau": 4,
-          "ram_go_max": 8
+          "niveau": 3,
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 64,
@@ -2796,7 +2833,8 @@
         "performance": {
           "soc": "Unisoc T7250",
           "niveau": 1,
-          "ram_go_max": null
+          "ram_go_max": null,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
@@ -2854,7 +2892,8 @@
         "performance": {
           "soc": "Unisoc T7250",
           "niveau": 1,
-          "ram_go_max": null
+          "ram_go_max": null,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
@@ -2912,7 +2951,8 @@
         "performance": {
           "soc": "MediaTek Helio G36",
           "niveau": 1,
-          "ram_go_max": null
+          "ram_go_max": null,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
@@ -2967,8 +3007,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 9400 Ultra",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -3022,8 +3063,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -3077,8 +3119,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -3132,8 +3175,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -3187,8 +3231,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 9300",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 8,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -3242,8 +3287,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 930",
-          "niveau": 3,
-          "ram_go_max": 8
+          "niveau": 4,
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -3297,8 +3343,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 8,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -3352,8 +3399,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -3407,8 +3455,9 @@
         },
         "performance": {
           "soc": "Snapdragon 7 Gen 3 Leading",
-          "niveau": 5,
-          "ram_go_max": 8
+          "niveau": 6,
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -3462,8 +3511,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -3521,7 +3571,8 @@
         "performance": {
           "soc": "MediaTek Dimensity 6100",
           "niveau": 3,
-          "ram_go_max": 6
+          "ram_go_max": 6,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -3578,8 +3629,9 @@
         },
         "performance": {
           "soc": "Snapdragon 685",
-          "niveau": 3,
-          "ram_go_max": 8
+          "niveau": 2,
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -3637,7 +3689,8 @@
         "performance": {
           "soc": "MediaTek Dimensity 7025",
           "niveau": 4,
-          "ram_go_max": 8
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -3694,8 +3747,9 @@
         },
         "performance": {
           "soc": "Snapdragon 7s Gen 2",
-          "niveau": 4,
-          "ram_go_max": 8
+          "niveau": 5,
+          "ram_go_max": 8,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -3752,8 +3806,9 @@
         },
         "performance": {
           "soc": "Snapdragon 7 Gen 3",
-          "niveau": 5,
-          "ram_go_max": 12
+          "niveau": 6,
+          "ram_go_max": 12,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -3811,7 +3866,8 @@
         "performance": {
           "soc": "MediaTek Helio G85",
           "niveau": 2,
-          "ram_go_max": 6
+          "ram_go_max": 6,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -3869,7 +3925,8 @@
         "performance": {
           "soc": "MediaTek Helio G99",
           "niveau": 3,
-          "ram_go_max": 8
+          "ram_go_max": 8,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -3926,8 +3983,9 @@
         },
         "performance": {
           "soc": "Snapdragon 680",
-          "niveau": 3,
-          "ram_go_max": 6
+          "niveau": 2,
+          "ram_go_max": 6,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -3985,8 +4043,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 6020",
-          "niveau": 3,
-          "ram_go_max": 6
+          "niveau": 2,
+          "ram_go_max": 6,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
@@ -4044,7 +4103,8 @@
         "performance": {
           "soc": "MediaTek Helio G25",
           "niveau": 1,
-          "ram_go_max": 4
+          "ram_go_max": 4,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 13,
@@ -4101,8 +4161,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 8,
+          "ram_go_max": 16,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -4159,8 +4220,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 8,
+          "ram_go_max": 16,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -4216,8 +4278,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 Leading",
-          "niveau": 6,
-          "ram_go_max": 20
+          "niveau": 9,
+          "ram_go_max": 20,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -4273,8 +4336,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 8,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -4330,8 +4394,9 @@
         },
         "performance": {
           "soc": "Snapdragon 7 Gen 3 Leading",
-          "niveau": 5,
-          "ram_go_max": 12
+          "niveau": 6,
+          "ram_go_max": 12,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -4387,8 +4452,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 8,
+          "ram_go_max": 16,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -4444,8 +4510,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8s Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 7,
+          "ram_go_max": 16,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -4502,8 +4569,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 + gaming GPU boost",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -4560,8 +4628,9 @@
         },
         "performance": {
           "soc": "Snapdragon 7+ Gen 3",
-          "niveau": 5,
-          "ram_go_max": 12
+          "niveau": 7,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -4617,8 +4686,9 @@
         },
         "performance": {
           "soc": "Snapdragon 7 Gen 3",
-          "niveau": 5,
-          "ram_go_max": 16
+          "niveau": 6,
+          "ram_go_max": 16,
+          "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
@@ -4674,8 +4744,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 8,
+          "ram_go_max": 16,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 48,
@@ -4732,8 +4803,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 + NPU photo",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 200,
@@ -4790,8 +4862,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 8,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 48,
@@ -4848,8 +4921,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 + Alpha processing",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 48,
@@ -4906,8 +4980,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3 Leading",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 8,
+          "ram_go_max": 16,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -4964,8 +5039,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 9400 Ultra + Vivo Imaging Processor",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -5022,8 +5098,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -5080,8 +5157,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -5138,8 +5216,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 3",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 8,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -5196,8 +5275,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 9400",
-          "niveau": 6,
-          "ram_go_max": 12
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
@@ -5276,7 +5356,8 @@
         "performance": {
           "soc": "MediaTek Helio G25",
           "niveau": 1,
-          "ram_go_max": 3
+          "ram_go_max": 3,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 13,
@@ -5353,8 +5434,9 @@
         },
         "performance": {
           "soc": "Puce A19 Pro",
-          "niveau": 7,
-          "ram_go_max": 12
+          "niveau": 10,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 48,
@@ -5440,8 +5522,9 @@
         },
         "performance": {
           "soc": "Dimensity 8500-Ultra",
-          "niveau": 6,
-          "ram_go_max": 8
+          "niveau": 7,
+          "ram_go_max": 8,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
@@ -5490,7 +5573,7 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 1,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     },
     {
@@ -5520,8 +5603,9 @@
         },
         "performance": {
           "soc": "MediaTek Dimensity 9600 Pro",
-          "niveau": 6,
-          "ram_go_max": null
+          "niveau": 10,
+          "ram_go_max": null,
+          "gamme": "sommet"
         },
         "batterie": {
           "capacite_mah": 7150,
@@ -5544,7 +5628,7 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 2,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     },
     {
@@ -5595,12 +5679,12 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 5,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     },
     {
       "id": "oneplus-16",
-      "nom": "OnePlus 16 (version extrême)",
+      "nom": "OnePlus 16 Extreme",
       "marque": "OnePlus",
       "prix_indicatif": null,
       "prix_note": "Prix non relevé dans la vidéo.",
@@ -5624,8 +5708,9 @@
         },
         "performance": {
           "soc": "Snapdragon 8 Elite Extreme Gen 6",
-          "niveau": 6,
-          "ram_go_max": null
+          "niveau": 10,
+          "ram_go_max": null,
+          "gamme": "sommet"
         },
         "batterie": {
           "capacite_mah": 9000,
@@ -5648,7 +5733,7 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 5,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     },
     {
@@ -5689,7 +5774,7 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 3,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     },
     {
@@ -5743,7 +5828,7 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 4,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     },
     {
@@ -5778,7 +5863,7 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 4,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     },
     {
@@ -5821,7 +5906,7 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 4,
-        "niveau_puce": "famille de puce nommée dans la vidéo"
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
       }
     }
   ],
@@ -5840,7 +5925,8 @@
       "principe": "Score de compatibilité avec les critères choisis par l’utilisateur. 9/10 correspond à une adéquation très forte; 10/10 n’est jamais attribué. Les scores ne sont pas des notes de qualité absolue."
     },
     "count": 94,
-    "note_fiabilite": "Les fiches marquées « specs_a_verifier » ont été complétées sans source vérifiée ; elles servent à l'audit mais doivent être contrôlées avant publication. Les fiches « exclu_reco » sont écartées des recommandations."
+    "note_fiabilite": "Les fiches marquées « specs_a_verifier » ont été complétées sans source vérifiée ; elles servent à l'audit mais doivent être contrôlées avant publication. Les fiches « exclu_reco » sont écartées des recommandations.",
+    "echelle_puces": "niveau 1-10 (phone-analyzer/chips.js) : 1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme"
   },
   "meta": {
     "prix_verifies_le": "2026-10-06",

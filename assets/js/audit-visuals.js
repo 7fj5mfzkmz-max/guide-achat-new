@@ -37,6 +37,12 @@
       for (var i = 0; i < 8; i++) { var a = i * Math.PI / 4; s += '<path d="M' + (80 + Math.cos(a) * 9).toFixed(1) + ' ' + (14 + Math.sin(a) * 9).toFixed(1) + 'L' + (80 + Math.cos(a) * 12.5).toFixed(1) + ' ' + (14 + Math.sin(a) * 12.5).toFixed(1) + '" stroke="' + K + '" stroke-width="1.6"/>'; }
       return s + tx(48, 59, 8.5, c);
     },
+    budget: function (v) {
+      /* Quatre marches : plus le palier est haut, plus la marche l'est. */
+      var n = { bas: 1, entree: 2, milieu: 3, haut: 4 }[v] || 1, c = { bas: '80 à 150 €', entree: '150 à 300 €', milieu: '300 à 800 €', haut: '800 € et plus' }[v], s = '';
+      for (var i = 0; i < 4; i++) s += rc(10 + i * 19, 44 - (i + 1) * 9, 15, (i + 1) * 9, 3, i === n - 1 ? O : 'none', K, i === n - 1 ? 'stroke-width="2"' : 'stroke-width="2" stroke-dasharray="3 3" opacity=".45"');
+      return s + tx(46, 58, 9, c);
+    },
     capacity: function (v) {
       var p = { '3000': .5, '4000': .67, '5000': .83, '6000': 1 }[v], c = { '3000': 'à recharger vite', '4000': 'tient la journée', '5000': 'un jour et plus', '6000': 'souvent 2 jours' }[v];
       return rc(8, 10, 72, 34, 6, 'none', K, 'stroke-width="3"') + rc(80, 22, 5, 10, 2, K) + rc(12, 14, 64 * p, 26, 3, T, '', 'class="av-grow"') + tx(46, 59, 9, c);
@@ -56,7 +62,7 @@
       return s + rc(12, 14, 66, 22, 6, 'none', K, 'stroke-width="3"') + rc(78, 20, 5, 10, 2, K) + rc(16, 18, 58, 14, 3, T, '', 'class="av-charge" style="--d:' + d + 's"') + tx(48, 49, 12.5, t) + tx(48, 60, 7.5, 'pour charger de 0 à 100 %');
     },
     reference: function (v) {
-      var lv = { basic: 1, mid: 2, high: 3, apple: 4 }[v], c = { basic: 'applis courantes', mid: 'jeux fluides', high: 'jeux exigeants', apple: 'très rapide' }[v], s = rc(10, 10, 28, 28, 5, 'none', K, 'stroke-width="2.4"') + rc(18, 18, 12, 12, 2, K);
+      var lv = { basic: 1, mid: 2, high: 3, top: 4 }[v], c = { basic: 'applis courantes', mid: 'jeux fluides', high: 'jeux exigeants', top: 'le sommet du marché' }[v], s = rc(10, 10, 28, 28, 5, 'none', K, 'stroke-width="2.4"') + rc(18, 18, 12, 12, 2, K);
       for (var i = 0; i < 4; i++) s += '<path d="M' + (15 + i * 6) + ' 6v4m0 28v4" stroke="' + K + '" stroke-width="1.6"/>';
       for (var j = 0; j < 4; j++) s += rc(50 + j * 10, 38 - (j + 1) * 7, 8, (j + 1) * 7, 2, j < lv ? O : 'none', j < lv ? '' : K, j < lv ? '' : 'stroke-dasharray="2 2" opacity=".4"');
       return s + tx(48, 58, 9, c);

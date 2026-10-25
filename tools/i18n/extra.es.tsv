@@ -250,3 +250,63 @@ Chaque critère ajouté resserre la liste.	Cada criterio añadido acota la lista
 OnePlus {0} (version extrême)	OnePlus {0} (versión extrema)
 performance	rendimiento
 {0} / {1} famille renseignée	{0} / {1} familia rellenada
+# gammes de prix, critère Prix, échelle de puces
+Affiner le budget	Afinar el presupuesto
+Bas prix, entrée, milieu ou haut de gamme	Precio bajo, gama de entrada, media o alta
+Choisissez ce qui vous ressemble.	Elige lo que más se parezca a ti.
+Continuer : Écran	Continuar: Pantalla
+Continuer : Batterie	Continuar: Batería
+Continuer : Performance	Continuar: Rendimiento
+Continuer : Photo	Continuar: Foto
+Continuer : Durée de vie	Continuar: Vida útil
+Entrée de gamme	Gama de entrada
+Milieu de gamme	Gama media
+Bas prix	Precio bajo
+Très haut de gamme	Gama muy alta
+Écran LCD	Pantalla LCD
+Les modèles vus en test passent en premier, dans l’ordre des vidéos. Dans les fiches vérifiées, un modèle par gamme, classé selon son score pour ce profil.	Los modelos vistos en pruebas van primero, en el orden de los vídeos. En las fichas verificadas, un modelo por gama, ordenado según su puntuación para este perfil.
+Partez de votre profil, de vos critères ou d’un modèle déjà repéré.	Parte de tu perfil, de tus criterios o de un modelo que ya hayas visto.
+Quel est votre budget ?	¿Cuál es tu presupuesto?
+Six familles de critères, dans l’ordre que vous voulez. Vous pouvez en laisser de côté : le classement se met à jour à chaque choix.	Seis familias de criterios, en el orden que quieras. Puedes dejar algunas sin responder: la clasificación se actualiza con cada elección.
+Tests vidéo {0} : Android Police, The Tech Chap, Versus, Tech Spurt	Pruebas en vídeo {0}: Android Police, The Tech Chap, Versus, Tech Spurt
+Prix	Precio
+Dans votre palier	Dentro de tu franja de precio
+Moins cher que votre palier	Más barato que tu franja de precio
+Un peu plus cher	Un poco más caro
+Bien plus cher	Mucho más caro
+{0} à {1} €	de {0} a {1} €
+{0} à {1} €	de {0} a {1} €
+{0} à {1} €	de {0} a {1} €
+{0} € et plus	{0} € o más
+{0} à {1} €	de {0} a {1} €
+{0} à {1} €	de {0} a {1} €
+{0} à {1} €	de {0} a {1} €
+{0} à {1} €	de {0} a {1} €
+bas prix ({0} à {1} €)	precio bajo (de {0} a {1} €)
+entrée de gamme ({0} à {1} €)	gama de entrada (de {0} a {1} €)
+milieu de gamme ({0} à {1} €)	gama media (de {0} a {1} €)
+haut de gamme ({0} € et plus)	gama alta ({0} € o más)
+très haut de gamme	gama muy alta
+Petit prix, c’est de {0} à {1} €. On y trouve déjà une grosse batterie et un écran fluide ; le téléobjectif, l’étanchéité et de longues mises à jour y restent rares.	Precio bajo significa de {0} a {1} €. Ya hay batería grande y pantalla fluida; el teleobjetivo, la resistencia al agua y las actualizaciones largas siguen siendo raros.
+Tests : gamme Samsung, prix en dollars. Fiches vérifiées : un modèle par tranche de prix, classé sur la moyenne de ses scores performance, autonomie, photo et prix.	Pruebas: gama Samsung, precios en dólares. Fichas verificadas: un modelo por franja de precio, ordenado por la media de sus puntuaciones de rendimiento, autonomía, foto y precio.
+Tests : capacités annoncées par les constructeurs, puis autonomies mesurées en jeu. Fiches vérifiées : un modèle par gamme, classé par capacité annoncée.	Pruebas: capacidades anunciadas por los fabricantes y, después, autonomía medida jugando. Fichas verificadas: un modelo por gama, ordenado por capacidad anunciada.
+Les six familles sont renseignées.	Las seis familias están rellenadas.
+Les six familles sont renseignées : voici les modèles les plus proches de vos choix.	Las seis familias están rellenadas: estos son los modelos más cercanos a tus elecciones.
+Le plus économique : l’essentiel pour téléphoner, naviguer et regarder des vidéos.	El más económico: lo esencial para llamar, navegar y ver vídeos.
+Écran moins fluide, photo et jeux limités.	Pantalla menos fluida, fotos y juegos limitados.
+Écran fluide, bonne batterie : le meilleur rapport entre prix et usage au quotidien.	Pantalla fluida, buena batería: la mejor relación entre precio y uso diario.
+Photo moyenne le soir, pas de téléobjectif, mises à jour plus courtes.	Fotos regulares de noche, sin teleobjetivo, actualizaciones más cortas.
+Bonne photo, puce rapide, écran lumineux : très bon partout.	Buena foto, chip rápido, pantalla luminosa: muy bueno en todo.
+Cher pour un usage simple ; un modèle à {0} € suffit souvent.	Caro para un uso sencillo; un modelo de {0} € suele bastar.
+Le meilleur dans chaque domaine, suivi logiciel très long.	Lo mejor en cada área, con soporte de software muy largo.
+Prix élevé, souvent chargeur non fourni.	Precio alto, a menudo sin cargador.
+Le sommet du marché : tout passe en réglages maximum, longtemps.	La cima del mercado: todo va con los ajustes al máximo, durante años.
+Prix très élevé ; peut chauffer en jeu prolongé.	Precio muy alto; puede calentarse en sesiones largas de juego.
+Moto G06, Moto G06 Power, Blackview Shark {0} · {1} à {2} €	Moto G06, Moto G06 Power, Blackview Shark {0} · de {1} a {2} €
+Galaxy A17 5G, realme P3 5G, Redmi Note {0} 5G · {1} à {2} €	Galaxy A17 5G, realme P3 5G, Redmi Note {0} 5G · de {1} a {2} €
+Galaxy A56, POCO X8 Pro, Xiaomi 15T · {0} à {1} €	Galaxy A56, POCO X8 Pro, Xiaomi 15T · de {0} a {1} €
+iPhone {0} Pro, iPhone {1} Pro Max · {2} € et plus	iPhone {0} Pro, iPhone {1} Pro Max · {2} € o más
+Helio G99, Snapdragon {0}, Exynos {1} · Galaxy A17 5G, Moto G06, realme C67 · {2} à {3} €	Helio G99, Snapdragon {0}, Exynos {1} · Galaxy A17 5G, Moto G06, realme C67 · de {2} a {3} €
+Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · {6} à {7} €	Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · de {6} a {7} €
+Dimensity {0} ou {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · {5} à {6} €	Dimensity {0} u {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · de {5} a {6} €
+Snapdragon {0} Elite, Dimensity {1}, puces Apple A18 Pro et A19 Pro · iPhone {2} Pro, iPhone {3} Pro Max · dès {4} €	Snapdragon {0} Elite, Dimensity {1}, chips Apple A18 Pro y A19 Pro · iPhone {2} Pro, iPhone {3} Pro Max · desde {4} €
