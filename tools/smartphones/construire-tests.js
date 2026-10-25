@@ -28,7 +28,7 @@ const MODELES = [
     specs: { puce: 'MediaTek Dimensity 9600 Pro (gravure 2 nm)', batterie_mah: 7150, batterie_mah_asie: 8000, batterie_note: '7 150 mAh en version Europe, 8 000 mAh en version Asie', charge: '80 W filaire, 50 W sans fil', ecran: 'OLED 6,78" plat, 144 Hz, bordures de 1,15 mm, pic mesuré à 3 600 nits', photo: 'Triple capteur 200 MP Hasselblad (grand-angle, ultra grand-angle, téléobjectif 3x), mode Hasselblad Master', accessoire: 'Convertisseur télé-optique magnétique pour 10x, 20x et 40x', gain_puce: '+25 % en mono-cœur et +28 % en GPU par rapport aux puces concurrentes' } },
   { id: 'vivo-v80', nom: 'Vivo V80', marque: 'Vivo', video: 'nouveautes',
     specs: { ecran: 'OLED 1,5K, 144 Hz', batterie_mah: 7200, photo: 'Optiques Zeiss 50 MP (principal et téléobjectif)', ram: '8 Go au lieu de 12 Go (concession)' } },
-  { id: 'oneplus-16', nom: 'OnePlus 16 (version extrême)', marque: 'OnePlus', video: 'nouveautes',
+  { id: 'oneplus-16', nom: 'OnePlus 16 Extreme', marque: 'OnePlus', video: 'nouveautes',
     specs: { puce: 'Snapdragon 8 Elite Extreme Gen 6', ecran: '185 Hz', batterie_mah: 9000, batterie_note: 'Batterie record', charge: '100 W filaire, 50 W sans fil', design: 'Dos en verre intégrant un affichage matriciel LED personnalisable' } },
   { id: 'redmagic-11s-pro', nom: 'RedMagic 11S Pro', marque: 'Nubia (RedMagic)', video: 'gaming', prix_usd: 799,
     specs: { atout: 'Ventilateur 24k RPM + gâchettes', autonomie_jeu_min: 690, point_noir: 'Stockage max 512 Go / caméras' } },

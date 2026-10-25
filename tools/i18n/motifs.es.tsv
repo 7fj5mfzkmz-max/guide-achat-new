@@ -26,8 +26,8 @@
 ^\(votre choix : (.+)\)$	(tu elección: $1)
 ^(.+), (un peu en dessous|bien en dessous|au-dessus|comme votre choix|différent) \(votre choix : (.+)\)$	$1, $2 (tu elección: $3)
 ^(.+), (un peu en dessous|bien en dessous|au-dessus|comme votre choix|différent)$	$1, $2
-^puce niveau (\d+)/7$	chip de nivel $1/7
-^jeu niveau (\d+)/7$	nivel de juego $1/7
+^puce niveau (\d+)/10$	chip de nivel $1/10
+^jeu niveau (\d+)/10$	nivel de juego $1/10
 ^réparabilité (\d+)/10$	reparabilidad $1/10
 ^(.+) · sortie (\d+)$	$1 · lanzado en $2
 ^Vous avez précisé : (.+)\.$	Has indicado: $1.

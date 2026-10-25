@@ -250,3 +250,63 @@ Chaque critère ajouté resserre la liste.	Each criterion you add narrows the li
 OnePlus {0} (version extrême)	OnePlus {0} (extreme version)
 performance	performance
 {0} / {1} famille renseignée	{0} / {1} family filled in
+# gammes de prix, critère Prix, échelle de puces
+Affiner le budget	Refine the budget
+Bas prix, entrée, milieu ou haut de gamme	Low price, entry-level, mid-range or high-end
+Choisissez ce qui vous ressemble.	Pick what sounds like you.
+Continuer : Écran	Continue: Screen
+Continuer : Batterie	Continue: Battery
+Continuer : Performance	Continue: Performance
+Continuer : Photo	Continue: Photo
+Continuer : Durée de vie	Continue: Lifespan
+Entrée de gamme	Entry-level
+Milieu de gamme	Mid-range
+Bas prix	Low price
+Très haut de gamme	Top-end
+Écran LCD	LCD screen
+Les modèles vus en test passent en premier, dans l’ordre des vidéos. Dans les fiches vérifiées, un modèle par gamme, classé selon son score pour ce profil.	Models seen in tests come first, in the order of the videos. In the verified listings, one model per range, ranked by its score for this profile.
+Partez de votre profil, de vos critères ou d’un modèle déjà repéré.	Start from your profile, your criteria or a model you have already spotted.
+Quel est votre budget ?	What is your budget?
+Six familles de critères, dans l’ordre que vous voulez. Vous pouvez en laisser de côté : le classement se met à jour à chaque choix.	Six families of criteria, in whatever order you like. You can skip some: the ranking updates with every choice.
+Tests vidéo {0} : Android Police, The Tech Chap, Versus, Tech Spurt	Video tests {0}: Android Police, The Tech Chap, Versus, Tech Spurt
+Prix	Price
+Dans votre palier	In your price range
+Moins cher que votre palier	Cheaper than your price range
+Un peu plus cher	A bit more expensive
+Bien plus cher	Much more expensive
+{0} à {1} €	€{0} to €{1}
+{0} à {1} €	€{0} to €{1}
+{0} à {1} €	€{0} to €{1}
+{0} € et plus	€{0} and up
+{0} à {1} €	€{0} to €{1}
+{0} à {1} €	€{0} to €{1}
+{0} à {1} €	€{0} to €{1}
+{0} à {1} €	€{0} to €{1}
+bas prix ({0} à {1} €)	low price (€{0} to €{1})
+entrée de gamme ({0} à {1} €)	entry-level (€{0} to €{1})
+milieu de gamme ({0} à {1} €)	mid-range (€{0} to €{1})
+haut de gamme ({0} € et plus)	high-end (€{0} and up)
+très haut de gamme	top-end
+Petit prix, c’est de {0} à {1} €. On y trouve déjà une grosse batterie et un écran fluide ; le téléobjectif, l’étanchéité et de longues mises à jour y restent rares.	Low price means €{0} to €{1}. You already find a big battery and a smooth screen there; a telephoto lens, water resistance and long updates stay rare.
+Tests : gamme Samsung, prix en dollars. Fiches vérifiées : un modèle par tranche de prix, classé sur la moyenne de ses scores performance, autonomie, photo et prix.	Tests: Samsung range, prices in dollars. Verified listings: one model per price band, ranked on the average of its performance, battery, photo and price scores.
+Tests : capacités annoncées par les constructeurs, puis autonomies mesurées en jeu. Fiches vérifiées : un modèle par gamme, classé par capacité annoncée.	Tests: capacities announced by the makers, then battery life measured in gaming. Verified listings: one model per range, ranked by stated capacity.
+Les six familles sont renseignées.	All six families are filled in.
+Les six familles sont renseignées : voici les modèles les plus proches de vos choix.	All six families are filled in: here are the models closest to your choices.
+Le plus économique : l’essentiel pour téléphoner, naviguer et regarder des vidéos.	The cheapest: the essentials for calling, browsing and watching videos.
+Écran moins fluide, photo et jeux limités.	Less smooth screen, limited photos and games.
+Écran fluide, bonne batterie : le meilleur rapport entre prix et usage au quotidien.	Smooth screen, good battery: the best balance of price and everyday use.
+Photo moyenne le soir, pas de téléobjectif, mises à jour plus courtes.	Average photos at night, no telephoto lens, shorter updates.
+Bonne photo, puce rapide, écran lumineux : très bon partout.	Good photos, fast chip, bright screen: very good all round.
+Cher pour un usage simple ; un modèle à {0} € suffit souvent.	Expensive for simple use; a €{0} model is often enough.
+Le meilleur dans chaque domaine, suivi logiciel très long.	The best in every area, very long software support.
+Prix élevé, souvent chargeur non fourni.	High price, charger often not included.
+Le sommet du marché : tout passe en réglages maximum, longtemps.	The top of the market: everything runs at maximum settings, for years.
+Prix très élevé ; peut chauffer en jeu prolongé.	Very high price; can heat up during long gaming sessions.
+Moto G06, Moto G06 Power, Blackview Shark {0} · {1} à {2} €	Moto G06, Moto G06 Power, Blackview Shark {0} · €{1} to €{2}
+Galaxy A17 5G, realme P3 5G, Redmi Note {0} 5G · {1} à {2} €	Galaxy A17 5G, realme P3 5G, Redmi Note {0} 5G · €{1} to €{2}
+Galaxy A56, POCO X8 Pro, Xiaomi 15T · {0} à {1} €	Galaxy A56, POCO X8 Pro, Xiaomi 15T · €{0} to €{1}
+iPhone {0} Pro, iPhone {1} Pro Max · {2} € et plus	iPhone {0} Pro, iPhone {1} Pro Max · €{2} and up
+Helio G99, Snapdragon {0}, Exynos {1} · Galaxy A17 5G, Moto G06, realme C67 · {2} à {3} €	Helio G99, Snapdragon {0}, Exynos {1} · Galaxy A17 5G, Moto G06, realme C67 · €{2} to €{3}
+Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · {6} à {7} €	Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · €{6} to €{7}
+Dimensity {0} ou {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · {5} à {6} €	Dimensity {0} or {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · €{5} to €{6}
+Snapdragon {0} Elite, Dimensity {1}, puces Apple A18 Pro et A19 Pro · iPhone {2} Pro, iPhone {3} Pro Max · dès {4} €	Snapdragon {0} Elite, Dimensity {1}, Apple A18 Pro and A19 Pro chips · iPhone {2} Pro, iPhone {3} Pro Max · from €{4}

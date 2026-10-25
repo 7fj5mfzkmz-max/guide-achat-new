@@ -90,7 +90,7 @@
     { name: 'Entrée de gamme', base: 28, noise: 9, pts: '0,0 15,-8 30,6 45,-12 60,4 75,-10 90,8 105,-6 120,6 135,-9 150,5 165,-8 180,4' },
     { name: 'Milieu de gamme', base: 48, noise: 5, pts: '0,0 15,-3 30,4 45,-4 60,2 75,-3 90,3 105,-5 120,2 135,-2 150,3 165,-3 180,0' },
     { name: 'Haut de gamme', base: 60, noise: 1, pts: '0,0 15,0 30,-1 45,0 60,1 75,0 90,-1 105,0 120,1 135,0 150,0 165,-1 180,0' },
-    { name: 'Puces Apple', base: 60, noise: 1, pts: '0,0 15,0 30,0 45,-1 60,0 75,1 90,0 105,0 120,0 135,1 150,0 165,0 180,0' }
+    { name: 'Très haut de gamme', base: 60, noise: 1, pts: '0,0 15,0 30,0 45,-1 60,0 75,1 90,0 105,0 120,0 135,1 150,0 165,0 180,0' }
   ];
   function reference(index, chosen) {
     var f = FPS[index], b = '', c = chosen ? ORANGE : MUTE, y0 = 150 - f.base * 1.9, i;
@@ -149,7 +149,27 @@
     return wrap('0 0 270 206', b);
   }
 
-  var primary = { tech: tech, refresh: refresh, capacity: capacity, reference: reference, sensor: sensor, updates: updates };
+  /* ——— Prix : quatre paliers, une marche par palier ——— */
+  var PALIERS = [
+    ['bas prix', '80 – 150 €', 'appels, web, vidéo'],
+    ['entrée de gamme', '150 – 300 €', 'écran fluide, bonne batterie'],
+    ['milieu de gamme', '300 – 800 €', 'bonne photo, puce rapide'],
+    ['haut de gamme', '800 € et plus', 'le meilleur dans chaque domaine']
+  ];
+  function budget(index, chosen) {
+    var c = chosen ? ORANGE : MUTE, b = '', i, x, h;
+    for (i = 0; i < 4; i++) {
+      x = 14 + i * 62; h = 36 + i * 30;
+      b += '<rect class="' + (i === index ? 'qa-step is-on' : 'qa-step') + '" style="--d:' + (i * .12) + 's" x="' + x + '" y="' + (136 - h) + '" width="54" height="' + h + '" rx="7" fill="' + (i === index ? c : '#3a3d36') + '"/>';
+      b += tx(x + 27, 152, ['80', '150', '300', '800'][i] + (i === 3 ? ' +' : ''), 'qa-t-xs', 'middle');
+    }
+    b += '<circle cx="' + (41 + index * 62) + '" cy="' + (136 - (36 + index * 30) - 14) + '" r="9" fill="#ffc94d" stroke="#20221e" stroke-width="2"/>' + tx(41 + index * 62, 136 - (36 + index * 30) - 10.5, '€', 'qa-t-xs', 'middle');
+    b += tx(135, 176, PALIERS[index][0] + ' · ' + PALIERS[index][1], 'qa-t-sm', 'middle');
+    b += tx(135, 198, PALIERS[index][2], 'qa-t-big', 'middle');
+    return wrap('0 0 270 206', b);
+  }
+
+  var primary = { budget: budget, tech: tech, refresh: refresh, capacity: capacity, reference: reference, sensor: sensor, updates: updates };
 
   /* ——— Petites illustrations des critères « Affiner » ——— */
   function mini(group, index, chosen) {

@@ -287,15 +287,17 @@ async function main() {
     const page = await open(SA, 'stub', () => NOT_FOUND);
     /* État initial : premier critère (Écran) ouvert, options visibles, emplacement d'attente visible,
        bouton d'accès aux recommandations masqué tant qu'aucun choix n'est fait. */
-    await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger[aria-expanded="true"]', { timeout: 10000 });
-    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill').count()) > 0, 'les options du premier critère doivent être visibles sans interaction');
-    assert(/0 \/ 5 familles renseignées/.test(await page.locator('#audit-count').innerText()), 'compteur initial attendu : 0 / 5 familles renseignées');
+    await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="price"] .audit-card-trigger[aria-expanded="true"]', { timeout: 10000 });
+    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="price"] .audit-pill').count()) > 0, 'les options du premier critère doivent être visibles sans interaction');
+    assert(/0 \/ 6 familles renseignées/.test(await page.locator('#audit-count').innerText()), 'compteur initial attendu : 0 / 6 familles renseignées');
     assert(await page.locator('#audit-see-results').isHidden(), 'le bouton « Voir mes recommandations » doit être masqué avant le premier choix');
     assert(!(await page.locator('#criteria-recommendations').isHidden()), 'la zone de recommandations doit être visible dès l\u2019arrivée (emplacement d\u2019attente)');
     assert(/premier choix/.test(await page.locator('#scoring-status').innerText()), 'emplacement d\u2019attente attendu dans le statut');
     /* Premier choix : recommandations affichées sans quitter l'audit, pas de saut de page,
        focus clavier rendu à l'option choisie. Le défilement du test est instantané
        (behavior:'instant') : le CSS html{scroll-behavior:smooth} animerait sinon la mesure. */
+    await page.click('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger');
+    await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]', { state: 'visible', timeout: 10000 });
     await page.evaluate(() => document.querySelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]').scrollIntoView({ block: 'center', behavior: 'instant' }));
     await page.waitForTimeout(150);
     const y0 = await page.evaluate(() => window.scrollY);
@@ -304,13 +306,13 @@ async function main() {
     const y1 = await page.evaluate(() => window.scrollY);
     assert(Math.abs(y1 - y0) < 60, 'le premier choix ne doit pas faire sauter la page (écart : ' + Math.round(Math.abs(y1 - y0)) + 'px)');
     assert(!(await page.locator('#audit-see-results').isHidden()), 'le bouton « Voir mes recommandations » doit apparaître dès le premier choix');
-    assert(/1 \/ 5/.test(await page.locator('#audit-count').innerText()), 'compteur attendu après le premier choix : 1 / 5');
+    assert(/1 \/ 6/.test(await page.locator('#audit-count').innerText()), 'compteur attendu après le premier choix : 1 / 6');
     assert(await page.evaluate(() => { const a = document.activeElement; return !!a && a.classList.contains('audit-pill') && a.getAttribute('data-value') === '120'; }), 'le focus clavier doit revenir sur l\u2019option choisie après le re-rendu');
     /* Batterie : les critères avancés restent repliés dans leur <details> après un choix. */
     await page.click('#purchase-audit .audit-card[data-audit-card="battery"] .audit-card-trigger');
     await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="battery"] .audit-pill', { timeout: 10000 });
     await page.click('#purchase-audit .audit-card[data-audit-card="battery"] .audit-control[data-group="capacity"] .audit-pill[data-value="5000"]');
-    await page.waitForFunction(() => { const c = document.getElementById('audit-count'); return c && /2 \/ 5/.test(c.textContent); }, null, { timeout: 5000 });
+    await page.waitForFunction(() => { const c = document.getElementById('audit-count'); return c && /2 \/ 6/.test(c.textContent); }, null, { timeout: 5000 });
     const adv = await page.evaluate(() => {
       const d = document.querySelector('#purchase-audit .audit-card[data-audit-card="battery"] details.audit-advanced');
       return d ? { present: true, open: d.open, hasChemistry: !!d.querySelector('.audit-control[data-group="chemistry"]') } : { present: false };
@@ -322,8 +324,8 @@ async function main() {
     await page.waitForFunction(() => { const r = document.getElementById('criteria-recommendations').getBoundingClientRect(); return r.top > -60 && r.top < window.innerHeight * 0.6; }, null, { timeout: 5000 });
     /* Réinitialisation : retour à zéro, premier critère rouvert, bouton re-masqué. */
     await page.click('.audit-result-live [data-audit-reset]');
-    await page.waitForFunction(() => /0 \/ 5/.test((document.getElementById('audit-count') || {}).innerText || ''), null, { timeout: 5000 });
-    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger').getAttribute('aria-expanded')) === 'true', 'après réinitialisation, le premier critère doit être rouvert');
+    await page.waitForFunction(() => /0 \/ 6/.test((document.getElementById('audit-count') || {}).innerText || ''), null, { timeout: 5000 });
+    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="price"] .audit-card-trigger').getAttribute('aria-expanded')) === 'true', 'après réinitialisation, le premier critère (le prix) doit être rouvert');
     assert((await page.locator('#scoring-results .criteria-recommendation-card').count()) === 0, 'les recommandations doivent être vidées après réinitialisation');
     assert(await page.locator('#audit-see-results').isHidden(), 'le bouton d\u2019accès aux recommandations doit être re-masqué après réinitialisation');
     assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));

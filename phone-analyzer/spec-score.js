@@ -46,7 +46,14 @@
     var n = Number(s);
     return isFinite(n) && n > 0 && n < 10000 ? n : null;
   }
+  /* Puissance de la puce sur 0-9, d'après l'échelle commune 1-10 (phone-analyzer/chips.js) : le même classement que le quiz et le catalogue.
+     La table de secours ci-dessous ne sert que si ce module n'est pas chargé. */
   function chipTier(v) {
+    var chips = typeof module !== 'undefined' && module.exports ? require('./chips.js') : root.PhoneChips;
+    if (chips) { var lvl = chips.level(v); if (lvl != null) return Math.round((2.5 + (lvl - 1) * 0.72) * 100) / 100; }
+    return chipTierLegacy(v);
+  }
+  function chipTierLegacy(v) {
     var s = text(v);
     if (!s) return null;
     var rules = [

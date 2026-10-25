@@ -412,6 +412,13 @@
       var board=document.getElementById("purchase-audit");
       if(!board) return;
       var configs={
+        price:{
+          intro:"Le prix décide de tout le reste : fixez d’abord le palier, les autres critères se jugent ensuite à l’intérieur. Un modèle moins cher que votre palier reste proposé, un modèle plus cher est écarté s’il dépasse trop.",
+          groups:[
+            {key:"budget",label:"Budget",type:"choice",options:[
+              ["bas","80 à 150 €","Bas prix : l’essentiel pour téléphoner, naviguer et regarder des vidéos."],["entree","150 à 300 €","Entrée de gamme : écran fluide et bonne batterie au quotidien."],["milieu","300 à 800 €","Milieu de gamme : bonne photo, puce rapide, écran lumineux."],["haut","800 € et plus","Haut de gamme : le meilleur dans chaque domaine, suivi logiciel très long."]]}
+          ]
+        },
         screen:{
           intro:"Trois choses changent ce que vous voyez : le type d’écran (couleurs et noirs), la fluidité quand vous faites défiler, et la luminosité pour lire dehors. En cas de doute, partez de votre usage plutôt que du plus gros chiffre.",
           groups:[
@@ -435,9 +442,9 @@
           intro:"Deux choses décident : le niveau de la puce et ce que vous en faites. Pour jouer souvent, visez une puce haut de gamme bien refroidie ; pour le reste, le milieu de gamme suffit.",
           groups:[
             {key:"reference",label:"Niveau de puce",type:"choice",options:[
-              ["basic","Entrée de gamme","Helio G99, Snapdragon 685, Exynos 1330 : messages, web, vidéo. Les jeux 3D récents saccadent."],["mid","Milieu de gamme","Snapdragon 7 Gen 3, Dimensity 8400, Exynos 1580 : la plupart des jeux tournent bien."],["high","Haut de gamme Android","Snapdragon 8 (Gen 3, Elite), Dimensity 9400, Tensor : jeux 3D, montage et multitâche sans effort."],["apple","Puces Apple","A18, A19 : très rapides ; regardez aussi la chauffe en jeu prolongé."]]},
+              ["basic","Entrée de gamme (niveaux 1 à 3)","Helio G99, Snapdragon 685, Exynos 1330 : messages, web, vidéo. Les jeux 3D récents saccadent."],["mid","Milieu de gamme (4 à 6)","Snapdragon 6 Gen 3, Exynos 1580, Snapdragon 7 Gen 3 : la plupart des jeux tournent bien."],["high","Haut de gamme (7 à 8)","Dimensity 8400, Snapdragon 8s Gen 3, Snapdragon 8 Gen 3 : jeux 3D, montage et multitâche sans effort."],["top","Très haut de gamme (9 à 10)","Snapdragon 8 Elite, Dimensity 9500, puces Apple A18 Pro et A19 Pro : le sommet du marché, sur Android comme sur iPhone."]]},
             {key:"gaming",label:"Votre usage",type:"choice",options:[
-              ["daily","Quotidien","Messages, web, vidéo, réseaux sociaux : n’importe quelle puce récente suffit."],["heavy","Jeux et montage","Jeux 3D comme Genshin Impact, montage vidéo, nombreux onglets : visez au moins le milieu de gamme."],["pro","Jeux très lourds","Graphismes élevés pendant des heures : visez le haut de gamme et lisez les tests de chauffe."]]}
+              ["daily","Quotidien","Messages, web, vidéo, réseaux sociaux : n’importe quelle puce récente suffit."],["heavy","Jeux et montage","Jeux 3D comme Genshin Impact, montage vidéo, nombreux onglets : visez au moins le niveau 6 (haut du milieu de gamme)."],["pro","Jeux très lourds","Graphismes élevés pendant des heures : visez le niveau 8 ou plus et lisez les tests de chauffe."]]}
           ]
         },
         photo:{
@@ -463,7 +470,7 @@
         }
       };
       var totalGroups=Object.keys(configs).length;
-      var AUDIT_KEY='guide-achat-audit-v55';
+      var AUDIT_KEY='guide-achat-audit-v56';
       var auditStartedAt=null;
       var state={};
       try { var saved=JSON.parse(localStorage.getItem(AUDIT_KEY)||'null'); if(saved&&saved.state&&(Date.now()-(saved.updatedAt||0))<12*3600*1000) state=saved.state; } catch(e) {}
@@ -486,7 +493,7 @@
       }
       function groupVisual(group,o){ return window.AuditVisuals?window.AuditVisuals.render(group.key,o[0]):''; }
       /* Aides courtes, en langage courant, pour chaque groupe de critères. */
-      var HINTS={tech:'couleurs et noirs',refresh:'fluidité du défilement',brightness:'lisibilité en extérieur',capacity:'taille du réservoir',chemistry:'format interne',charge:'vitesse de recharge',reference:'le moteur du téléphone',gaming:'puissance nécessaire',sensor:'lumière captée, surtout la nuit',stabilization:'photos nettes le soir',zoom:'portraits et sujets éloignés',resolution:'détails et recadrage',updates:'durée de vie logicielle',repair:'coût et facilité d’entretien',protection:'eau et poussière'};
+      var HINTS={budget:'palier de prix',tech:'couleurs et noirs',refresh:'fluidité du défilement',brightness:'lisibilité en extérieur',capacity:'taille du réservoir',chemistry:'format interne',charge:'vitesse de recharge',reference:'le moteur du téléphone',gaming:'puissance nécessaire',sensor:'lumière captée, surtout la nuit',stabilization:'photos nettes le soir',zoom:'portraits et sujets éloignés',resolution:'détails et recadrage',updates:'durée de vie logicielle',repair:'coût et facilité d’entretien',protection:'eau et poussière'};
       function renderGroup(group, selected){
         var opts=group.options.map(function(o){
           var active=selected===o[0];
@@ -523,8 +530,8 @@
       function updateTotal(){
         var done=Object.keys(configs).reduce(function(n,k){return n+(configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
         var count=document.getElementById('audit-count'),msg=document.getElementById('audit-message');
-        if(count) count.textContent=done+(done===1?' / 5 famille renseignée':' / 5 familles renseignées');
-        if(msg) msg.textContent=done===5?'Les cinq familles sont renseignées : voici les modèles les plus proches de vos choix.':done?'Chaque famille renseignée resserre la liste. Les autres peuvent rester vides.':'Une famille peut rester sans réponse.';
+        if(count) count.textContent=done+(done===1?' / '+totalGroups+' famille renseignée':' / '+totalGroups+' familles renseignées');
+        if(msg) msg.textContent=done===totalGroups?'Les six familles sont renseignées : voici les modèles les plus proches de vos choix.':done?'Chaque famille renseignée resserre la liste. Les autres peuvent rester vides.':'Une famille peut rester sans réponse.';
         var see=document.getElementById('audit-see-results');
         if(see) see.hidden=done<1;
       }

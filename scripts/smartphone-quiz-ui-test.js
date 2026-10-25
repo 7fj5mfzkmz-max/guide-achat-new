@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
       const page = await context.newPage(), errors = [];
       page.on('pageerror', e => errors.push(e.message));
       await page.goto(`http://127.0.0.1:${server.address().port}/smartphones.html#audit`, {waitUntil:'networkidle'});
-      const choices = [['screen','refresh','120'],['battery','capacity','5000'],['performance','reference','mid'],['photo','sensor','medium'],['longevity','updates','5']];
+      const choices = [['price','budget','entree'],['screen','refresh','120'],['battery','capacity','5000'],['performance','reference','mid'],['photo','sensor','medium'],['longevity','updates','5']];
       for (let i=0; i<choices.length; i++) {
         const [family, group, value] = choices[i];
         const card = page.locator(`[data-audit-card="${family}"]`);
@@ -32,7 +32,7 @@ const server = http.createServer((req, res) => {
         assert.equal(await card.locator('.sq-illustration svg').count(), family==='screen'?2:1);
         assert(await card.locator('[data-group="'+group+'"] .sq-gain').textContent());
         assert(await card.locator('[data-group="'+group+'"] .sq-cost').textContent());
-        if(family==='battery') assert.equal(await card.locator('.sq-family-photo img').count(), 0);
+        if(family==='battery'||family==='price') assert.equal(await card.locator('.sq-family-photo img').count(), 0);
         else await page.waitForFunction(family=>{const img=document.querySelector('[data-audit-card="'+family+'"] .sq-family-photo img');return img.complete&&img.naturalWidth>0;},family);
         for(const g of await card.locator('.sq-primary').all()){
           for(const option of await g.locator('.audit-pill').all()){
@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
         assert.equal(await card.locator('.sq-illustration svg *').evaluateAll(els=>els.filter(e=>getComputedStyle(e).animationName!=='none').length), 0);
         const overflow = await card.evaluate(el => el.scrollWidth > el.clientWidth+1);
         assert(!overflow, 'débordement du critère '+family);
-        if (i===1) {
+        if (family==='battery') {
           await card.locator('.audit-advanced summary').click();
           await card.locator('[data-group="charge"] [data-value="67"]').click();
           assert(await card.locator('.audit-advanced').evaluate(el=>el.open), 'garder Affiner ouvert après un choix');
@@ -65,13 +65,14 @@ const server = http.createServer((req, res) => {
       assert.equal(await page.locator('#scoring-results .criteria-recommendation-card').count(),0);
       await page.locator('[data-audit-card="screen"]').scrollIntoViewIfNeeded();
       if(process.env.QUIZ_SCREENSHOTS){await page.locator('[data-group="refresh"] [data-value="120"]').click();await page.locator('[data-audit-card="screen"]').screenshot({path:`/tmp/smartphone-quiz-${width}.png`});}
-      console.log(`OK ${width}px : cinq familles, sélection, Affiner, focus, persistance, remise à zéro, mouvement réduit`);
+      console.log(`OK ${width}px : six familles, sélection, Affiner, focus, persistance, remise à zéro, mouvement réduit`);
       await context.close();
     }
 
     const motionPage = await browser.newPage({locale:'fr-FR',viewport:{width:390,height:844}});
     await motionPage.goto(`http://127.0.0.1:${server.address().port}/smartphones.html#audit`, {waitUntil:'networkidle'});
     const screen = motionPage.locator('[data-audit-card="screen"]');
+    await screen.locator('.audit-card-trigger').click();
     await screen.locator('[data-group="tech"] [data-value="lcd"]').click();
     assert.equal(await screen.locator('.qa-backlight').evaluate(el=>getComputedStyle(el).animationIterationCount),'infinite');
     assert.equal(await screen.locator('[data-group="tech"] .sq-gain').evaluate(el=>getComputedStyle(el).animationIterationCount),'1');

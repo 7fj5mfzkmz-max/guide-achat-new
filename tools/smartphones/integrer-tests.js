@@ -22,11 +22,11 @@ const EXISTANT = {
 };
 
 /* Ce que le dossier permet de renseigner pour le moteur de classement (compatibilite).
-   `niveau` = famille de puce nommée dans la vidéo (1-7, même échelle que le reste du catalogue : haut de gamme Android = 6). */
+   Le niveau de puce (1-10) n'est pas écrit ici : il est calculé d'après le nom de la puce par classer-puces.js. */
 const COMPAT = {
-  'oppo-find-x10-pro-max': { ecran: { technologie: 'OLED', frequence_max_hz: 144, luminosite_nits: 3600 }, performance: { soc: 'MediaTek Dimensity 9600 Pro', niveau: 6, ram_go_max: null }, batterie: { capacite_mah: 7150, recharge_watts: 80, chimie: null } },
+  'oppo-find-x10-pro-max': { ecran: { technologie: 'OLED', frequence_max_hz: 144, luminosite_nits: 3600 }, performance: { soc: 'MediaTek Dimensity 9600 Pro', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 7150, recharge_watts: 80, chimie: null } },
   'vivo-v80': { ecran: { technologie: 'OLED', frequence_max_hz: 144, luminosite_nits: null }, batterie: { capacite_mah: 7200, recharge_watts: null, chimie: null } },
-  'oneplus-16': { ecran: { technologie: null, frequence_max_hz: 185, luminosite_nits: null }, performance: { soc: 'Snapdragon 8 Elite Extreme Gen 6', niveau: 6, ram_go_max: null }, batterie: { capacite_mah: 9000, recharge_watts: 100, chimie: null } },
+  'oneplus-16': { ecran: { technologie: null, frequence_max_hz: 185, luminosite_nits: null }, performance: { soc: 'Snapdragon 8 Elite Extreme Gen 6', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 9000, recharge_watts: 100, chimie: null } },
   'samsung-galaxy-a57': { ecran: { technologie: 'AMOLED', frequence_max_hz: 120, luminosite_nits: null }, durete: { protection_ip: 'IP68', android_version_sortie: null } },
   'samsung-galaxy-a27': { durete: { protection_ip: 'IP64', android_version_sortie: null } },
   'samsung-galaxy-a37': {},
@@ -117,13 +117,14 @@ for (const m of tests.modeles) {
     fiche_statut: 'teste_video',
     origine: 'test',
     date_verification: tests.meta.derniere_verification.slice(0, 7),
-    spec_provenance: { compatibilite_derivee: 'test_video', video: v.n, niveau_puce: 'famille de puce nommée dans la vidéo' }
+    spec_provenance: { compatibilite_derivee: 'test_video', video: v.n, niveau_puce: 'calculé d’après le nom de la puce (échelle 1-10)' }
   };
   Object.keys(p).forEach(k => { if (p[k] === null && k !== 'prix_indicatif') delete p[k]; });
   const i = cat.produits.findIndex(x => x.id === m.id);
   if (i >= 0) cat.produits[i] = p; else { cat.produits.push(p); ajoutes++; }
 }
 cat.catalogue_meta.count = cat.produits.length;
+require('./classer-puces.js').classer(cat);
 cat.meta = Object.assign({}, cat.meta, { tests_integres_le: tests.meta.derniere_verification, tests_source: tests.source.id });
 fs.writeFileSync(file, JSON.stringify(cat, null, 2) + '\n');
 console.log('Catalogue : ' + ajoutes + ' modèle(s) ajouté(s) depuis les tests, ' + lies + ' fiche(s) existante(s) reliée(s), ' + cat.produits.length + ' au total.');

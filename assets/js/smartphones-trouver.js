@@ -70,14 +70,28 @@
     { id: 'batterie', label: 'Grosse batterie' }
   ];
   var INTRO = {
-    prix: 'Autour de 300 €, on trouve déjà un écran AMOLED 120 Hz et 5 000 mAh. Ce qui coûte ensuite : le téléobjectif, l’étanchéité et la durée des mises à jour.',
+    prix: 'Petit prix, c’est de 80 à 250 €. On y trouve déjà une grosse batterie et un écran fluide ; le téléobjectif, l’étanchéité et de longues mises à jour y restent rares.',
     batterie: 'Les mAh donnent la taille du réservoir, pas la durée : la puce et l’écran décident de la vitesse à laquelle il se vide. Seule une mesure tranche.'
   };
   var NOTE = {
-    profil: 'Les modèles vus en test passent en premier, dans l’ordre des vidéos ; les fiches vérifiées sont classées par leur score pour ce profil.',
-    prix: 'Fiches : modèles à 350 € ou moins, classés sur la moyenne de leurs scores performance, autonomie, photo et prix. Tests : gamme Samsung, prix en dollars.',
-    batterie: 'Fiches : classées par capacité annoncée. Tests : capacités annoncées par les constructeurs, puis autonomies réellement mesurées en jeu.'
+    profil: 'Les modèles vus en test passent en premier, dans l’ordre des vidéos. Dans les fiches vérifiées, un modèle par gamme, classé selon son score pour ce profil.',
+    prix: 'Tests : gamme Samsung, prix en dollars. Fiches vérifiées : un modèle par tranche de prix, classé sur la moyenne de ses scores performance, autonomie, photo et prix.',
+    batterie: 'Tests : capacités annoncées par les constructeurs, puis autonomies mesurées en jeu. Fiches vérifiées : un modèle par gamme, classé par capacité annoncée.'
   };
+  /* Gammes de prix : mêmes seuils que le critère « Prix » du quiz (smartphones-scoring.js). */
+  var GAMMES = [
+    { id: 'haut', label: 'Haut de gamme', plage: '800 € et plus', min: 801, max: Infinity },
+    { id: 'milieu', label: 'Milieu de gamme', plage: '300 à 800 €', min: 301, max: 800 },
+    { id: 'entree', label: 'Entrée de gamme', plage: '150 à 300 €', min: 151, max: 300 },
+    { id: 'bas', label: 'Bas prix', plage: '80 à 150 €', min: 0, max: 150 }
+  ];
+  /* Petit prix : quatre tranches entre 80 et 250 €. */
+  var TRANCHES = [
+    { label: '80 à 130 €', min: 80, max: 130 },
+    { label: '131 à 170 €', min: 131, max: 170 },
+    { label: '171 à 210 €', min: 171, max: 210 },
+    { label: '211 à 250 €', min: 211, max: 250 }
+  ];
 
   var DATA = null, current = null;
 
@@ -102,9 +116,9 @@
   function row(r) {
     var tag = r.video
       ? '<span class="tr-tag tr-tag-test">Vidéo ' + r.video.n + '</span> <span class="tr-src">' + esc(r.video.chaine) + '</span>'
-      : '<span class="tr-tag">Fiche vérifiée</span>';
+      : '<span class="tr-tag">Fiche vérifiée</span>' + (r.tested ? ' <span class="tr-tag tr-tag-test">Testé</span>' : '');
     var flag = r.flag ? ' <span class="tr-flag tr-flag-' + esc(r.tone || 'ok') + '">' + esc(r.flag) + '</span>' : '';
-    return '<li class="tr-row"><div class="tr-row-head"><h4>' + esc(r.nom) + '</h4>' + flag + '</div>' +
+    return '<li class="tr-row' + (r.tier ? ' is-tier' : '') + '">' + (r.tier ? '<p class="tr-tier"><b>' + esc(r.tier) + '</b> <span>' + esc(r.plage || '') + '</span></p>' : '') + '<div class="tr-row-head"><h4>' + esc(r.nom) + '</h4>' + flag + '</div>' +
       '<p class="tr-price">' + esc(r.price) + '</p>' +
       '<p class="tr-why">' + esc(r.why) + '</p>' +
       (r.limit ? '<p class="tr-limit">Limite : ' + esc(r.limit) + '</p>' : '') +
@@ -119,32 +133,56 @@
   }
   function ficheRow(p, why) {
     var l = (p.points_faibles || [])[0];
-    return { nom: p.nom, price: priceOf(p), why: why || (p.points_forts || [])[0] || '', limit: l, productId: p.id };
+    return { nom: p.nom, price: priceOf(p), why: why || (p.points_forts || [])[0] || '', limit: l, productId: p.id, tested: !!(p.tests && p.tests.length) };
   }
 
-  /* Colonne « Vu en test » et colonne « Dans nos fiches » pour un besoin. */
+  /* Score d'un modèle pour un profil : le score éditorial s'il existe, sinon la moyenne pondérée de ses scores par critère. */
+  function profileScore(p, id) {
+    if (p.profil_scores && p.profil_scores[id] != null) return Number(p.profil_scores[id]);
+    var w = (window.GuideProfiles && window.GuideProfiles.weights && window.GuideProfiles.weights[id]) || {}, s = p.scores || {}, t = 0, n = 0;
+    Object.keys(w).forEach(function (k) { if (s[k] != null) { t += Number(s[k]) * w[k]; n += w[k]; } });
+    return n ? t / n : null;
+  }
+  function valueScore(p) {
+    var s = p.scores || {}, k = ['performance', 'autonomie', 'photo', 'prix'].map(function (n) { return s[n]; });
+    return k.some(function (v) { return v == null; }) ? null : k.reduce(function (a, b) { return a + b; }, 0) / 4;
+  }
+  function capacity(p) { var b = p.compatibilite && p.compatibilite.batterie; return b && b.capacite_mah ? Number(b.capacite_mah) : null; }
+  function best(list, score) {
+    return list.map(function (p) { return { p: p, v: score(p) }; }).filter(function (x) { return x.v != null; })
+      .sort(function (a, b) { return b.v - a.v || a.p.prix_indicatif - b.p.prix_indicatif; })[0];
+  }
+
+  /* Colonne « Vu en test » et colonne « Dans nos fiches vérifiées » pour un besoin. */
   function build(need) {
     var tests = [], fiches = [], extraTests = null;
-    var eligible = DATA.produits.filter(isEligible);
-    var onlyFiches = eligible.filter(function (p) { return p.origine !== 'test'; });
+    var onlyFiches = DATA.produits.filter(isEligible).filter(function (p) { return p.origine !== 'test' && p.prix_indicatif; });
+    function tier(g, p, why, score) { var r = ficheRow(p, why); r.tier = g.label; r.plage = g.plage; r.score = score; return r; }
 
+    if (need.profil || need.id === 'batterie') {
+      var score = need.profil ? function (p) { return profileScore(p, need.id); } : capacity;
+      GAMMES.forEach(function (g) {
+        var pick = best(onlyFiches.filter(function (p) { return p.prix_indicatif >= g.min && p.prix_indicatif <= g.max; }), score);
+        if (!pick) return;
+        var b = pick.p.compatibilite && pick.p.compatibilite.batterie;
+        fiches.push(tier(g, pick.p, need.profil ? null : fr(b.capacite_mah) + ' mAh' + (b.recharge_watts ? ', charge ' + b.recharge_watts + ' W' : '')));
+      });
+    }
     if (need.profil) {
       (DATA.tests.choix_par_profil[need.id] || []).forEach(function (x) {
         tests.push(testRow(x.modele, x.raison, Number(String(x.ref).replace(/\D/g, ''))));
       });
-      fiches = onlyFiches.filter(function (p) { return p.profil_scores && p.profil_scores[need.id] != null; })
-        .sort(function (a, b) { return b.profil_scores[need.id] - a.profil_scores[need.id] || (a.prix_indicatif || 1e9) - (b.prix_indicatif || 1e9); })
-        .map(function (p) { return ficheRow(p); });
     } else if (need.id === 'prix') {
       var tone = { best: 'ok', good: 'ok', ok: 'ok', bad: 'bad' };
       DATA.tests.samsung.forEach(function (x) {
         var m = testById(x.modele);
+        if (!m.prix_usd || m.prix_usd > 250) return;
         tests.push(testRow(x.modele, specsLine(m), 4, { flag: x.badge.charAt(0) + x.badge.slice(1).toLowerCase(), tone: tone[x.ton] }));
       });
-      var avg = function (p) { var s = p.scores || {}, k = ['performance', 'autonomie', 'photo', 'prix'].map(function (n) { return s[n]; }); return k.some(function (v) { return v == null; }) ? null : k.reduce(function (a, b) { return a + b; }, 0) / 4; };
-      fiches = onlyFiches.filter(function (p) { return p.prix_indicatif && p.prix_indicatif <= 350 && avg(p) != null; })
-        .sort(function (a, b) { return avg(b) - avg(a) || a.prix_indicatif - b.prix_indicatif; })
-        .map(function (p) { return ficheRow(p); });
+      TRANCHES.forEach(function (t) {
+        var pick = best(onlyFiches.filter(function (p) { return p.prix_indicatif >= t.min && p.prix_indicatif <= t.max; }), valueScore);
+        if (pick) fiches.push(tier({ label: t.label, plage: '' }, pick.p, null));
+      });
     } else if (need.id === 'batterie') {
       (DATA.tests.records.ordre || []).forEach(function (id) {
         var m = testById(id);
@@ -153,23 +191,13 @@
       var measured = DATA.produits.filter(function (p) { return (p.tests || []).some(function (t) { return t.mesures && t.mesures.autonomie_jeu_min; }); })
         .sort(function (a, b) { return a.tests[0].mesures.autonomie_jeu_min < b.tests[0].mesures.autonomie_jeu_min ? 1 : -1; });
       extraTests = measured.map(function (p) {
-        var t = p.tests[0], cap = p.compatibilite && p.compatibilite.batterie && p.compatibilite.batterie.capacite_mah;
+        var t = p.tests[0], cap = capacity(p);
         var r = testRow(t.modele, hours(t.mesures.autonomie_jeu_min) + ' en jeu' + (cap ? ' avec ' + fr(cap) + ' mAh' : ''), null);
         r.productId = p.id; r.price = priceOf(p, testById(t.modele));
         return r;
       });
-      fiches = onlyFiches.filter(function (p) { return p.compatibilite && p.compatibilite.batterie && p.compatibilite.batterie.capacite_mah; })
-        .sort(function (a, b) { return b.compatibilite.batterie.capacite_mah - a.compatibilite.batterie.capacite_mah; })
-        .map(function (p) {
-          var b = p.compatibilite.batterie;
-          return ficheRow(p, fr(b.capacite_mah) + ' mAh' + (b.recharge_watts ? ', charge ' + b.recharge_watts + ' W' : ''));
-        });
     }
-    /* Un modèle déjà vu en test n'est pas répété dans la colonne des fiches. */
-    var seen = {};
-    tests.concat(extraTests || []).forEach(function (r) { if (r.productId) seen[r.productId] = 1; });
-    fiches = fiches.filter(function (r) { return !seen[r.productId]; });
-    return { tests: tests.slice(0, 4), extra: extraTests && extraTests.slice(0, 3), fiches: fiches.slice(0, 3) };
+    return { tests: tests.slice(0, 4), extra: extraTests && extraTests.slice(0, 3), fiches: fiches };
   }
 
   function render(need) {

@@ -26,8 +26,8 @@
 ^\(votre choix : (.+)\)$	(your choice: $1)
 ^(.+), (un peu en dessous|bien en dessous|au-dessus|comme votre choix|différent) \(votre choix : (.+)\)$	$1, $2 (your choice: $3)
 ^(.+), (un peu en dessous|bien en dessous|au-dessus|comme votre choix|différent)$	$1, $2
-^puce niveau (\d+)/7$	chip tier $1/7
-^jeu niveau (\d+)/7$	gaming tier $1/7
+^puce niveau (\d+)/10$	chip tier $1/10
+^jeu niveau (\d+)/10$	gaming tier $1/10
 ^réparabilité (\d+)/10$	repairability $1/10
 ^(.+) · sortie (\d+)$	$1 · released $2
 ^Vous avez précisé : (.+)\.$	You specified: $1.
