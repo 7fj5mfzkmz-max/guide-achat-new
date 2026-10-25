@@ -22,7 +22,7 @@ const server=http.createServer((req,res)=>{const file=path.resolve(root,'.'+new 
    await page.fill('#be-phone','0');assert.match(await page.locator('#be-estimate').innerText(),/Saisissez/);
    await page.fill('#be-phone','5000');
    await page.locator('.be-checklist input').first().check();assert.match(await page.locator('#be-progress').innerText(),/^1 point/);
-   assert.ok(await page.locator('.site-nav a[href="batteries-externes.html"]').count());
+   assert.ok(await page.locator('.footer-col a[href="batteries-externes.html"][aria-current="page"]').count());
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'débordement horizontal à '+width);
    for(const section of await page.locator('.be .section').all()){
     await section.scrollIntoViewIfNeeded();

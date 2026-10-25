@@ -1,6 +1,6 @@
 import re
 #!/usr/bin/env python3
-"""Construit pc-portables.json et le lexique à partir de la liste éditable plus bas.
+"""Construit pc-portables.json et le lexique (affiché dans pc-portables.html#lexique) à partir de la liste éditable plus bas.
 
 Les prix et fiches viennent de relevés publics d'octobre 2026 (Les Numériques,
 JVTECH, FranceMetrics, fiches constructeur). Ce n'est pas un banc d'essai.
@@ -1379,45 +1379,6 @@ AUDIT = [
 ]
 
 
-def lexique_html(sections):
-    """Page lexique PC au gabarit du site : en-tête, recherche, pied de page et scripts sont repris de
-    lexique.html (lexique smartphones) pour que les deux pages restent identiques. Source des textes :
-    lexique-pc-portables.json."""
-    import html as _h
-    src = ROOT / "lexique.html"   # gabarit : page lexique smartphones à la racine du site
-    lex = src.read_text(encoding="utf-8")
-    head = lex[:lex.index("<main")]
-    tail = lex[lex.index("</main>") + len("</main>"):]
-    f0, f1 = tail.index("<footer"), tail.index("</footer>") + len("</footer>")
-    esc = lambda t: _h.escape(t or "", quote=False)
-    head = re.sub(r"<title>.*?</title>", "<title>Lexique PC portables : lire une fiche sans le jargon — Guide·Achat</title>", head, flags=re.S)
-    head = re.sub(r'(<meta name="description" content=")[^"]*', r"\1Les termes d’une fiche de PC portable expliqués simplement : ce que vous voyez, ce que cela change, quoi regarder en priorité.", head)
-    head = re.sub(r'<link[^>]*rel="canonical"[^>]*>', "", head)
-    nav = "".join(f'<a href="#{s["id"]}">{esc(s["titre"])}</a>' for s in sections)
-    out = [head, '<main id="main">', '<div class="hx hx-page" data-tone="teal" data-cat="pc">',
-        '<section class="hx-hero hx-hero--page is-compact"><div class="container-wide hx-hero-inner"><div class="hx-hero-copy">',
-        '<nav class="breadcrumb"><a href="index.html">Accueil</a> / <a href="pc-portables.html">PC portables</a> / Lexique</nav>',
-        '<span class="hx-kicker">LE LEXIQUE DE LA FICHE PRODUIT</span>',
-        '<h1 class="hx-title">Lire une fiche de PC portable sans le jargon</h1>',
-        '<p class="hx-lead">Ce que vous voyez, ce que cela change, ce qu’il faut lire sur la fiche : chaque terme part de la situation concrète avant de remonter vers la technique.</p>',
-        '</div></div></section><div class="container-wide hx-body">',
-        '<div aria-label="Niveau d\'explication" class="lexique-mode" role="region"><div><strong>Deux façons de lire la même information</strong><span id="deep-status">Mode simple : l’essentiel pour choisir.</span></div><button aria-label="Basculer entre le mode simple et le mode détails" aria-pressed="false" id="deep-toggle" type="button"><span data-toggle-label="">Explication approfondie</span><i aria-hidden="true"></i></button></div>',
-        f'<nav aria-label="Rubriques du lexique" class="lexique-nav">{nav}</nav>']
-    for s in sections:
-        out.append(f'<section class="lexique-section" id="{s["id"]}" data-tone="teal"><div class="section-heading"><span class="eyebrow">{esc(s["titre"]).upper()}</span><h2>{esc(s["titre"])}</h2></div>')
-        for e in s["entrees"]:
-            out.append(f'<article class="lex-entry" id="{e["id"]}"><h3>{esc(e["terme"])}</h3><div class="lex-content"></div><div class="lex-quick"><div class="lex-grid">')
-            for lab, k in (("Ce que vous voyez", "voir"), ("Ce que cela change", "change"), ("Sur une fiche produit", "fiche"), ("À regarder en priorité", "priorite")):
-                out.append(f"<div><b>{lab}</b><p>{esc(e[k])}</p></div>")
-            out.append('</div></div><div class="lex-deep" hidden="">')
-            for lab, k in (("Définition", "definition"), ("Comment ça fonctionne", "fonctionne"), ("Ce que le chiffre ne dit pas", "ne_dit_pas"), ("Comment comparer", "comparer")):
-                out.append(f'<div class="deep-block"><span>{lab}</span><p>{esc(e[k])}</p></div>')
-            out.append("</div></article>")
-        out.append("</section>")
-    out.append('<p><a class="hx-link" href="pc-portables.html#lexique">← Retour au guide PC portables</a></p></div></div></main>')
-    out.append(tail[f0:f1]); out.append(tail[f1:])
-    return "\n".join(out)
-
 def main():
     ids = [m["id"] for m in MODELS]
     if len(ids) != len(set(ids)):
@@ -1468,7 +1429,6 @@ def main():
     }
     (DATA / "pc-portables.json").write_text(json.dumps(catalogue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (DATA / "lexique-pc-portables.json").write_text(json.dumps({"categorie": "pc-portables", "sections": LEXIQUE}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (ROOT / "lexique-pc-portables.html").write_text(lexique_html(LEXIQUE), encoding="utf-8")
     print(f"{len(produits)} modèles")
 
 

@@ -3,5 +3,12 @@
     "api/resolve.js": {
       "maxDuration": 30
     }
-  }
+  },
+  "redirects": [
+    { "source": "/comparateur.html", "destination": "/smartphones.html#nos-choix", "permanent": true },
+    { "source": "/lexique.html", "destination": "/smartphones-approfondir.html", "permanent": true },
+    { "source": "/lexique-pc-portables.html", "destination": "/pc-portables.html#lexique", "permanent": true },
+    { "source": "/capture.html", "destination": "/analyseur.html", "permanent": true },
+    { "source": "/diagnostic.html", "destination": "/analyseur.html", "permanent": true }
+  ]
 }

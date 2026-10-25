@@ -14,7 +14,7 @@ FAQ = [
 def build(g):
     ROOT, head, sections_nav, faq_html, faq_ld, shared_top, footer, TAIL = (g[k] for k in ('ROOT', 'head', 'sections_nav', 'faq_html', 'faq_ld', 'shared_top', 'footer', 'TAIL'))
     data = json.loads((ROOT / 'data' / 'ecouteurs.json').read_text(encoding='utf-8'))
-    sec = sections_nav([('classements', 'Classements'), ('modeles', 'Détail'), ('usages', 'Usages'), ('essentiel', 'Essentiel'), ('checklist', 'Checklist'), ('methode', 'Méthode'), ('faq', 'FAQ')])
+    sec = sections_nav([('classements', 'Classement'), ('modeles', 'Modèles'), ('usages', 'Usages'), ('essentiel', 'Comprendre'), ('checklist', 'Avant d’acheter'), ('methode', 'Méthode'), ('faq', 'FAQ')])
     lcard = lambda c: f'<article class="pj-lcard hx-reveal" data-eb="{c["id"]}"><figure id="eb-art-{c["id"]}"></figure><h3>{html.escape(c["titre"])}</h3><p>{html.escape(c["texte"])}</p><p class="eb-check"><strong>À vérifier :</strong> {html.escape(c["verifier"])}</p></article>'
     meth = ''.join(f'<div><h3>{html.escape(m["etape"])}</h3><p>{html.escape(m["texte"])}</p></div>' for m in data['methode'])
     limites = ''.join(f'<li>{html.escape(x)}</li>' for x in data['limites'])

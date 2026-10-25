@@ -293,3 +293,13 @@
   .pg-strip div:nth-child(-n+2) { border-bottom: 1px solid var(--line-soft); }
 }
 @media (max-width: 420px) { .pg-cta .pg-btn { flex: 1 1 100%; justify-content: center; } }
+
+/* ---------- Pages simples (À propos, Analyseur) : même expression éditoriale, une seule colonne ---------- */
+.page-simple .pg-hero{grid-template-columns:1fr;max-width:880px}
+.page-prose{max-width:68ch;padding-bottom:clamp(32px,5vw,64px)}
+.page-prose section+section{border-top:1px solid var(--line);margin-top:36px;padding-top:28px}
+.page-prose h2{font-size:clamp(22px,2.6vw,30px)}
+.page-prose ul{padding-left:1.2em;margin:0 0 1em}.page-prose li{margin:.45em 0}
+.analyzer-switch{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+.analyzer-switch [aria-current]{background:var(--accent);color:#0f1115;border-color:var(--ink)}
+.sp-card-title{font-size:clamp(20px,2.4vw,26px);text-transform:none;margin-bottom:.6em}
