@@ -432,7 +432,7 @@
           ]
         },
         performance:{
-          intro:"Concentrez-vous sur la puce exacte et sur l’usage prévu. Pour jouer régulièrement, privilégiez une plateforme adaptée au gaming ; pour un usage plus occasionnel, regardez d’abord le CPU, le GPU, la RAM, l’optimisation et le refroidissement.",
+          intro:"Deux choses décident : le niveau de la puce et ce que vous en faites. Pour jouer souvent, visez une puce haut de gamme bien refroidie ; pour le reste, le milieu de gamme suffit.",
           groups:[
             {key:"reference",label:"Niveau de puce",type:"choice",options:[
               ["basic","Entrée de gamme","Helio G99, Snapdragon 685, Exynos 1330 : messages, web, vidéo. Les jeux 3D récents saccadent."],["mid","Milieu de gamme","Snapdragon 7 Gen 3, Dimensity 8400, Exynos 1580 : la plupart des jeux tournent bien."],["high","Haut de gamme Android","Snapdragon 8 (Gen 3, Elite), Dimensity 9400, Tensor : jeux 3D, montage et multitâche sans effort."],["apple","Puces Apple","A18, A19 : très rapides ; regardez aussi la chauffe en jeu prolongé."]]},
@@ -524,7 +524,7 @@
         var done=Object.keys(configs).reduce(function(n,k){return n+(configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
         var count=document.getElementById('audit-count'),msg=document.getElementById('audit-message');
         if(count) count.textContent=done+(done===1?' / 5 famille renseignée':' / 5 familles renseignées');
-        if(msg) msg.textContent=done===5?'Vos cinq familles sont définies : voici les modèles du catalogue les plus proches de votre sélection.':done?'Chaque famille renseignée affine les recommandations — les autres peuvent rester sans réponse.':'Choisissez ce qui compte pour vous — une famille peut rester sans réponse.';
+        if(msg) msg.textContent=done===5?'Les cinq familles sont renseignées : voici les modèles les plus proches de vos choix.':done?'Chaque famille renseignée resserre la liste. Les autres peuvent rester vides.':'Une famille peut rester sans réponse.';
         var see=document.getElementById('audit-see-results');
         if(see) see.hidden=done<1;
       }
@@ -600,7 +600,10 @@
       var seeBtn=document.getElementById('audit-see-results');
       if(seeBtn) seeBtn.addEventListener('click',function(){
         var t=document.getElementById('criteria-recommendations');
-        if(t) t.scrollIntoView({behavior:'smooth',block:'start'});
+        if(!t) return;
+        t.scrollIntoView({behavior:'smooth',block:'start'});
+        /* Les panneaux du quiz se replient pendant le défilement : on recale une fois la mise en page stable. */
+        window.setTimeout(function(){ t.scrollIntoView({behavior:'smooth',block:'start'}); },650);
       });
       window.GuideAuditReset = resetAudit;
       document.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('[data-audit-reset]')) resetAudit(); });

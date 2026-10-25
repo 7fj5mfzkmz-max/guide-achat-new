@@ -43,21 +43,4 @@
   window.addEventListener('load', function () { lexique(); signaux(); });
   if (document.readyState !== 'loading') { lexique(); signaux(); } else document.addEventListener('DOMContentLoaded', function () { lexique(); signaux(); });
 
-  /* un seul profil à la fois, après choix */
-  function profils() {
-    var tabs = document.querySelectorAll('.profile-picker-tab'); if (!tabs.length) return;
-    var toggles = {}; ['etudiant', 'professionnel', 'gamer', 'photographe'].forEach(function (k) { toggles[k] = document.getElementById(k + '-toggle'); });
-    var hint = document.createElement('p'); hint.className = 'hint profile-hint'; hint.textContent = 'Touchez un profil pour changer de contenu.'; tabs[0].parentNode.insertAdjacentElement('afterend', hint);
-    function show(k) {
-      Object.keys(toggles).forEach(function (j) { var d = toggles[j]; if (!d) return; d.hidden = j !== k; if (j === k) d.open = true; });
-      tabs.forEach(function (t) { var on = t.getAttribute('data-profile') === k; t.classList.toggle('is-current', on); t.setAttribute('aria-selected', on); });
-      hint.hidden = false;
-    }
-    Object.keys(toggles).forEach(function (j) { if (toggles[j]) toggles[j].hidden = true; });
-    tabs.forEach(function (t) { t.addEventListener('click', function (e) { e.preventDefault(); show(t.getAttribute('data-profile')); var d = toggles[t.getAttribute('data-profile')]; if (d && d.scrollIntoView) d.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
-    /* Un profil est toujours affiché (le premier par défaut) : un onglet « actif » sans contenu paraissait cassé. */
-    var h = (location.hash || '').replace('#', ''); show(toggles[h] ? h : 'etudiant');
-    document.dispatchEvent(new CustomEvent('profiles:ready'));
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', profils); else profils();
 })();

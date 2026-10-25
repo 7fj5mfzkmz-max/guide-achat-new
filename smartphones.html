@@ -32,6 +32,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <link rel="stylesheet" href="assets/css/photo-editorial.css">
 <link rel="stylesheet" href="assets/css/smartphone-quiz.css">
 <link rel="stylesheet" href="assets/css/smartphones-flow.css">
+<link rel="stylesheet" href="assets/css/smartphones-trouver.css">
 <link rel="stylesheet" href="assets/css/actualites.css">
 <script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
 function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
@@ -54,15 +55,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <nav class="pl-sections" id="pl-sections" aria-label="Sections de la page">
 <div class="pl-sections-in">
 <button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Sur mesure</b><i aria-hidden="true">▾</i></button>
-<ul id="pl-sections-list">
-<li><a href="#audit"><small>01</small>Sur mesure</a></li>
-<li><a href="#nos-choix"><small>02</small>Modèles</a></li>
-<li><a href="#choisir-profil"><small>03</small>Usages</a></li>
-<li><a href="#analyser-modele"><small>04</small>Analyseur</a></li>
-<li><a href="#checklist"><small>05</small>Avant d’acheter</a></li>
-<li><a href="#tests-2026"><small>06</small>Tests</a></li>
-<li><a href="#sources"><small>07</small>Sources</a></li>
-</ul>
+<ul id="pl-sections-list"><li><a href="#trouver"><small>01</small>Sur mesure</a></li><li><a href="#tests-2026"><small>02</small>Tests</a></li><li><a href="#sources"><small>03</small>Sources</a></li></ul>
 </div>
 </nav>
 <div class="hx hx-page pg sp" data-cat="smartphones" data-tone="orchid" data-motion="on">
@@ -72,140 +65,88 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
 <span class="pg-kick">Guide pratique · à lire avant d’acheter</span>
 <h1>Choisir un smartphone <mark>à partir de votre usage</mark></h1>
-<p class="pg-lead">Dites ce qui compte pour vous : chaque critère se comprend en un coup d’œil, et les modèles se classent seuls.</p>
-<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#audit">Mon smartphone sur mesure →</a><a class="pg-btn alt" href="#analyser-modele">J’ai déjà un modèle</a><a class="pg-skip" href="#nos-choix">Voir nos 5 choix 2026 ↓</a></div>
+<p class="pg-lead">Partez de votre profil, de vos critères ou d’un modèle déjà repéré. Les tests vidéo récents sont intégrés au classement, avec leur source.</p>
+<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#trouver">Trouver mon téléphone →</a><a class="pg-btn alt" href="#analyser-modele">J’ai déjà un modèle</a><a class="pg-skip" href="#tests-2026">Ce que les tests ont changé ↓</a></div>
 </div>
 <div class="pg-stage" aria-hidden="true" id="hx-stage"></div>
 </header>
-<div class="pg-strip"><div><b>5</b><span>critères en animation</span></div><div><b>4</b><span>profils d’usage</span></div><div><b>5</b><span>choix 2026</span></div><div><b>1</b><span>analyseur de lien</span></div></div>
+<div class="pg-strip pg-strip-3"><div><b data-sp="models">24</b><span>modèles comparables</span></div><div><b data-sp="tested">12</b><span>modèles vus en test vidéo</span></div><div><b data-sp="date">23 oct. 2026</b><span>dernière mise à jour des tests</span></div></div>
 </div>
-<div class="ga-ticker" aria-hidden="true"><div class="ga-ticker-track"><span>Écran <em>/</em> Batterie <em>/</em> Performance <em>/</em> Photo <em>/</em> Durée de vie <em>/</em> Android <em>/</em> iOS <em>/</em> Suivi logiciel <em>/</em> Écosystème <em>/</em> </span><span>Écran <em>/</em> Batterie <em>/</em> Performance <em>/</em> Photo <em>/</em> Durée de vie <em>/</em> Android <em>/</em> iOS <em>/</em> Suivi logiciel <em>/</em> Écosystème <em>/</em> </span></div></div>
 
 <div class="container-wide hx-body">
-<section class="section smartphone-audit-section" data-tone="peach" id="audit">
-<h2 class="section-heading"><span class="eyebrow">01 · Sur mesure</span>Qu’est-ce qui compte pour vous ?</h2>
-<p class="section-lead">Touchez un choix : le schéma bouge, et deux lignes disent ce que vous gagnez et ce que vous acceptez.</p>
-<div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
-<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" aria-controls="quiz-screen" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-1.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Un défilement agréable</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-screen" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" aria-controls="quiz-battery" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><svg viewBox="0 0 800 130" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><rect width="800" height="130" fill="#2b2e28"/><rect x="470" y="14" width="290" height="102" rx="22" fill="#171916" stroke="#8d907f" stroke-width="4"/><rect x="494" y="38" width="170" height="54" rx="10" fill="none" stroke="#fff" stroke-width="4" opacity=".85"/><rect x="666" y="54" width="9" height="22" rx="3" fill="#fff" opacity=".85"/><rect class="sq-charge" x="501" y="45" width="156" height="40" rx="6" fill="#ff651b"/><path class="sq-bolt" d="m722 32-20 34h16l-6 32 26-40h-16z" fill="#ffb38c"/></svg></span><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>De la réserve pour votre journée</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-battery" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" aria-controls="quiz-performance" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/smartphones-home.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Vos applis, vos jeux</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-performance" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" aria-controls="quiz-photo" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-2.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Vos souvenirs, de jour comme de nuit</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-photo" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" aria-controls="quiz-longevity" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-3.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Un téléphone qui vous accompagne</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-longevity" class="audit-panel" hidden=""></div></article>
+<section class="section trouver" data-tone="peach" id="trouver" aria-labelledby="trouver-titre">
+<h2 class="section-heading" id="trouver-titre"><span class="eyebrow">01 · Sur mesure</span>Trois façons de trouver votre téléphone</h2>
+<div class="tr-tabs" role="tablist" aria-label="Façon de chercher">
+<button type="button" role="tab" id="tab-profil" class="tr-tab" aria-controls="choisir-profil" aria-selected="true">Mon profil</button>
+<button type="button" role="tab" id="tab-criteres" class="tr-tab" aria-controls="audit" aria-selected="false" tabindex="-1">Mes critères</button>
+<button type="button" role="tab" id="tab-modele" class="tr-tab" aria-controls="analyser-modele" aria-selected="false" tabindex="-1">J’ai un modèle</button>
 </div>
-<div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 / 5 familles renseignées</strong><span id="audit-message">Choisissez ce qui compte pour vous — une famille peut rester sans réponse.</span><button type="button" class="btn audit-see-btn" id="audit-see-results" hidden>Voir ma sélection →</button><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button></div>
-<div class="audit-next-step"><p>Pour acheter : trouvez le meilleur prix sur <strong>Idealo</strong>, puis choisissez votre marchand.</p><p class="audit-learn">Un mot vous échappe ? Le <a href="lexique.html">lexique</a> l’explique pas à pas.</p></div>
-<div aria-live="polite" class="criteria-recommendations" id="criteria-recommendations">
-<div class="criteria-recommendations-head">
-<div><span class="eyebrow">Votre sélection</span><h3>Les modèles qui correspondent à vos réponses</h3><p>Du plus proche de vos choix au moins proche.</p></div><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button>
-</div>
-<p class="match-legend">Pour chaque critère : la valeur <b>du modèle</b>, comparée à <b>votre choix</b>. <span class="lg lg-ok">✓ comme votre choix</span> <span class="lg lg-up">▲ au-dessus</span> <span class="lg lg-low">▼ en dessous</span></p>
-<div class="criteria-recommendation-grid" id="scoring-results"></div>
-<p class="criteria-recommendations-note" id="scoring-status">Vos premiers modèles apparaîtront ici dès votre premier choix.</p>
-</div>
-</section>
 
-<section class="section picks-section" data-tone="peach" id="nos-choix">
-<h2 class="section-heading"><span class="eyebrow">02 · Nos choix 2026</span>Pas d’idée précise : partez d’ici</h2>
-<p class="section-lead">Cinq téléphones, un par besoin, tirés des fiches vérifiées. Prix indicatifs relevés en septembre-octobre 2026 : comparez avant d’acheter.</p>
-<div class="picks" id="picks" tabindex="0" aria-label="Nos cinq choix 2026, faites défiler">
-<article class="pick" id="choix-photo"><p class="pick-for">Meilleur pour la photo</p><h3>Apple iPhone 17 Pro</h3><p class="pick-price">≈ 1 329 € · 256 Go</p>
-<p class="pick-why">Trois capteurs de 48 Mpx dont un téléobjectif, zoom optique jusqu’à 8×. Photo et vidéo restent la référence, et Apple suit le téléphone 6 à 7 ans.</p>
-<ul class="pick-pm"><li class="plus">Suivi logiciel très long</li><li class="minus">Prix élevé, chargeur non fourni</li></ul>
-<p class="pick-alt">Moins cher : le Xiaomi 15T (≈ 430 €) a aussi un vrai téléobjectif.</p>
-<a class="pick-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="https://www.idealo.fr/prechcat.html?q=Apple+iPhone+17+Pro" rel="noopener" target="_blank">Acheter au meilleur prix · Idealo ↗</a></article>
-<article class="pick" id="choix-tout-terrain"><p class="pick-for">Meilleur tout-terrain</p><h3>Xiaomi 15T</h3><p class="pick-price">≈ 430 € · 256 Go</p>
-<p class="pick-why">Écran AMOLED 120 Hz, 12 Go de RAM, batterie de 5 500 mAh en charge 67 W, trois capteurs Leica dont un téléobjectif, IP68.</p>
-<ul class="pick-pm"><li class="plus">Téléobjectif rare à ce prix</li><li class="minus">Pas de charge sans fil, HyperOS chargé en applications</li></ul>
+<div role="tabpanel" id="choisir-profil" class="tr-panel" aria-labelledby="tab-profil">
+<p class="tr-lead">Choisissez ce qui vous ressemble. Le classement mélange les modèles vus dans les tests vidéo et nos fiches vérifiées.</p>
+<div class="tr-chips" id="tr-chips" role="group" aria-label="Votre besoin"></div>
+<p class="tr-intro" id="tr-intro" hidden></p>
+<div class="tr-podium" id="tr-podium" aria-live="polite"><p class="tr-loading">Chargement du classement…</p></div>
+<div class="tr-profile-cards">
+<div class="profile-toggle" hidden data-tone="teal" id="etudiant-toggle">
 
-<a class="pick-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="https://www.idealo.fr/prechcat.html?q=Xiaomi+15T" rel="noopener" target="_blank">Acheter au meilleur prix · Idealo ↗</a></article>
-<article class="pick" id="choix-batterie"><p class="pick-for">Meilleure batterie</p><h3>POCO X8 Pro</h3><p class="pick-price">≈ 349 € · 256 Go</p>
-<p class="pick-why">6 500 mAh et charge 100 W : la plus grosse batterie de nos fiches vérifiées à ce niveau de prix, avec un écran AMOLED 120 Hz très lumineux.</p>
-<ul class="pick-pm"><li class="plus">Autonomie et recharge rapide</li><li class="minus">Photo correcte sans plus, pas d’indice d’étanchéité annoncé</li></ul>
-<p class="pick-alt">Sous 150 € : le Moto G06 Power (7 000 mAh, mais charge 18 W).</p>
-<a class="pick-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="https://www.idealo.fr/prechcat.html?q=POCO+X8+Pro" rel="noopener" target="_blank">Acheter au meilleur prix · Idealo ↗</a></article>
-<article class="pick" id="choix-compact"><p class="pick-for">Meilleur compact</p><h3>Apple iPhone 17</h3><p class="pick-price">Prix à comparer</p>
-<p class="pick-why">Écran de 6,3" et 177 g : petit et léger pour un haut de gamme actuel, avec puce A19, 120 Hz et IP68.</p>
-<ul class="pick-pm"><li class="plus">Tient dans une main, suivi logiciel long</li><li class="minus">Autonomie moins large que les Android à grosse batterie</li></ul>
+<section class="section profile-section" id="etudiant"><div class="profile-header"><h3>Étudiant</h3><p class="profile-situation">Le téléphone sert du matin au soir : notes, transports, visio, réseaux. Il doit tenir sans prise et rester à jour jusqu’à la fin des études. Inutile de payer le haut de gamme : la batterie et la durée des mises à jour pèsent plus que la puissance.</p></div>
+<div class="profile-grid">
+<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Batterie 5 000 mAh ou plus</strong> : une journée de cours et de transports sans chercher une prise.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>256 Go</strong> si vous gardez photos et vidéos plusieurs années ; 128 Go suffit sinon.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>4 ans de mises à jour annoncés</strong> : pas besoin de racheter avant la fin des études.</p></div>
+<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>64 Go non extensible</strong> : plein dès la deuxième année.</p></div>
+</div></article>
+<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Batterie</span><strong>5 000 mAh+</strong><span>Stockage</span><strong>128–256 Go</strong><span>Écran</span><strong>OLED · 90–120 Hz</strong><span>Suivi</span><strong>4–5 ans annoncés</strong></div></article>
+<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Tiendra-t-il toute ma journée, et sera-t-il encore à jour dans 4 ans ? »</p></article>
+</div>
+</section>
+</div>
+<div class="profile-toggle" hidden data-tone="blue" id="professionnel-toggle">
 
-<a class="pick-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="https://www.idealo.fr/prechcat.html?q=Apple+iPhone+17" rel="noopener" target="_blank">Acheter au meilleur prix · Idealo ↗</a></article>
-<article class="pick" id="choix-petit-prix"><p class="pick-for">Meilleur petit prix</p><h3>Samsung Galaxy A56</h3><p class="pick-price">≈ 300 € · 128 Go</p>
-<p class="pick-why">Écran Super AMOLED 120 Hz, batterie de 5 000 mAh en charge 45 W, IP67 : un bon équilibre autour de 300 €.</p>
-<ul class="pick-pm"><li class="plus">Autonomie confortable, bonne résistance</li><li class="minus">Pas de téléobjectif, photos du soir perfectibles</li></ul>
-<p class="pick-alt">Sous 200 € : le Galaxy A17 5G (≈ 199 €).</p>
-<a class="pick-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A56" rel="noopener" target="_blank">Acheter au meilleur prix · Idealo ↗</a></article>
+<section class="section profile-section" id="professionnel"><div class="profile-header"><h3>Professionnel</h3><p class="profile-situation">Appels, visio, mails, PDF et plans, souvent en déplacement. Une batterie qui dure, un écran lisible dehors et une puce récente comptent plus que la puissance maximale.</p></div>
+<div class="profile-grid">
+<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Batterie 5 000 mAh ou plus</strong> : une journée d’appels et de trajets sans recharge.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Puce récente</strong> : PDF, tableurs et visio s’ouvrent sans attendre.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Écran lumineux</strong> : lisible en plein jour, sur un chantier ou en gare.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>IP68</strong> : résiste à la poussière et aux éclaboussures.</p></div>
+</div></article>
+<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Batterie</span><strong>5 000 mAh+</strong><span>Puce</span><strong>Milieu ou haut de gamme récent</strong><span>Écran</span><strong>Lisible en plein jour</strong><span>Protection</span><strong>IP67/IP68</strong></div></article>
+<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Tiendra-t-il mes appels et mes déplacements, sans ramer avec mes fichiers ? »</p></article>
 </div>
-<div class="picks-dots" id="picks-dots" aria-hidden="true"></div>
-<p class="picks-note">Aucun n’est le meilleur pour tout le monde. Si votre priorité est ailleurs, passez par <a href="#audit">le sur mesure</a> ou <a href="#analyser-modele">l’analyseur</a>.</p>
 </section>
+</div>
+<div class="profile-toggle" hidden data-tone="orchid" id="gamer-toggle">
 
-<section class="section profile-picker" data-tone="blue" id="choisir-profil">
-<h2 class="section-heading"><span class="eyebrow">03 · Votre profil</span>Qui êtes-vous au quotidien ?</h2>
-<div aria-label="Choisir un profil" class="profile-picker-tabs" role="tablist">
-<a class="profile-picker-tab" data-profile="etudiant" data-tone="teal" href="#etudiant">01 · Étudiant</a>
-<a class="profile-picker-tab" data-profile="professionnel" data-tone="blue" href="#professionnel">02 · Professionnel</a>
-<a class="profile-picker-tab" data-profile="gamer" data-tone="orchid" href="#gamer">03 · Gamer</a>
-<a class="profile-picker-tab" data-profile="photographe" data-tone="coral" href="#photographe">04 · Photographe</a>
+<section class="section profile-section" id="gamer"><div class="profile-header"><h3>Gamer</h3><p class="profile-situation">Les jeux lourds font chauffer la puce. Un téléphone puissant mais mal refroidi ralentit au bout de 20 minutes : lisez les tests de chauffe autant que la fiche technique.</p></div>
+<div class="profile-grid">
+<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Puce haut de gamme</strong> : Snapdragon 8, Dimensity 9 ou puce Apple récente.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Refroidissement documenté</strong> : les performances baissent moins après 20 à 30 minutes de jeu.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Écran 120 Hz ou plus</strong> : l’image reste fluide pendant l’action.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>12 Go de RAM</strong> : le jeu reste en mémoire quand vous changez d’appli.</p></div>
+<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>Puce puissante sans test de chauffe</strong> : les images par seconde peuvent chuter quand le téléphone chauffe.</p></div>
+</div></article>
+<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Puce</span><strong>Haut de gamme</strong><span>Refroidissement</span><strong>Test thermique favorable</strong><span>Écran</span><strong>120 Hz+</strong><span>RAM</span><strong>12 Go+</strong></div></article>
+<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Gardera-t-il ses FPS après une longue partie, ou va-t-il chauffer et ralentir ? »</p></article>
 </div>
 </section>
-<details class="profile-toggle" data-tone="teal" id="etudiant-toggle" open="">
-<summary class="profile-toggle-summary"><span class="profile-toggle-index">01</span><span>Profil 1 · Étudier au quotidien</span><span aria-hidden="true" class="profile-toggle-caret">＋</span></summary>
-<section class="section profile-section" id="etudiant"><div class="profile-header"><div aria-hidden="true" class="profile-icon">01</div><h2>Profil 1 · Étudier au quotidien</h2><p class="profile-situation">Pour les cours, les trajets et les révisions : l’objectif est de tenir la journée, garder ses fichiers et éviter de changer trop vite.</p></div>
-<div class="profile-grid">
-<article class="profile-card profile-card-signal"><h3>Ce qui compte vraiment</h3><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Batterie 5 000 mAh ou plus</strong> : cours, transport et révisions sans chercher une prise.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>256 Go</strong> si vous gardez cours, photos et vidéos plusieurs années.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Suivi logiciel annoncé</strong> : moins de risque de changer trop tôt.</p></div>
-<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>64 Go non extensible</strong> : peu de marge si le téléphone doit durer.</p></div>
-</div></article>
-<article class="profile-card profile-card-buy"><h3>En pratique</h3><div class="buy-spec-grid"><span>Batterie</span><strong>5 000 mAh+</strong><span>Stockage</span><strong>128–256 Go</strong><span>Écran</span><strong>OLED · 90–120 Hz</strong><span>Suivi</span><strong>4–5 ans annoncés</strong></div></article>
-<article class="profile-card profile-card-demo"><h3>La question décisive</h3><p class="demo-caption">« Tiendra-t-il toute ma journée, et sera-t-il encore à jour dans 4 ans ? »</p></article>
 </div>
-</section>
-</details>
-<details class="profile-toggle" data-tone="blue" id="professionnel-toggle">
-<summary class="profile-toggle-summary"><span class="profile-toggle-index">02</span><span>Profil 2 · Travailler en mobilité</span><span aria-hidden="true" class="profile-toggle-caret">＋</span></summary>
-<section class="section profile-section" id="professionnel"><div class="profile-header"><div aria-hidden="true" class="profile-icon">02</div><h2>Profil 2 · Travailler en mobilité</h2><p class="profile-situation">Pour les appels, la visio, les déplacements et les documents : l’autonomie, la réactivité et la lisibilité en extérieur comptent plus que la puissance maximale.</p></div>
+<div class="profile-toggle" hidden data-tone="coral" id="photographe-toggle">
+
+<section class="section profile-section" id="photographe"><div class="profile-header"><h3>Photo</h3><p class="profile-situation">Un bon capteur vaut plus qu’un grand nombre de mégapixels. Regardez la taille du capteur, la stabilisation optique, un vrai téléobjectif et le traitement logiciel.</p></div>
 <div class="profile-grid">
-<article class="profile-card profile-card-signal"><h3>Ce qui compte vraiment</h3><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Batterie 5 000 mAh ou plus</strong> : enchaîner appels, mails et déplacements sans panne.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Puce récente</strong> : ouvrir des PDF, tableurs, plans et visio sans ralentir.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Écran lumineux</strong> : rester lisible en extérieur ou sur un chantier.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>IP68</strong> : utile contre la poussière et les projections.</p></div>
+<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Grand capteur principal</strong> : plus de lumière captée, surtout le soir.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>OIS</strong> (stabilisation optique) : photos nettes le soir, vidéos moins tremblées.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Téléobjectif réel</strong> : portraits et zoom nets, contrairement à un simple recadrage.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>256 Go</strong> : les photos et la vidéo 4K remplissent vite la mémoire.</p></div>
+<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>Beaucoup de mégapixels sur un petit capteur</strong> : ne garantit pas de bonnes photos de nuit.</p></div>
 </div></article>
-<article class="profile-card profile-card-buy"><h3>En pratique</h3><div class="buy-spec-grid"><span>Batterie</span><strong>5 000 mAh+</strong><span>Puce</span><strong>Milieu ou haut de gamme récent</strong><span>Écran</span><strong>Lisible en plein jour</strong><span>Protection</span><strong>IP67/IP68</strong></div></article>
-<article class="profile-card profile-card-demo"><h3>La question décisive</h3><p class="demo-caption">« Tiendra-t-il mes appels et mes déplacements, sans ramer avec mes fichiers ? »</p></article>
-</div>
-</section>
-</details>
-<details class="profile-toggle" data-tone="orchid" id="gamer-toggle">
-<summary class="profile-toggle-summary"><span class="profile-toggle-index">03</span><span>Profil 3 · Jouer dans la durée</span><span aria-hidden="true" class="profile-toggle-caret">＋</span></summary>
-<section class="section profile-section" id="gamer"><div class="profile-header"><div aria-hidden="true" class="profile-icon">03</div><h2>Profil 3 · Jouer sérieusement</h2><p class="profile-situation">Pour les jeux exigeants, la puissance ne suffit pas : il faut aussi que le téléphone reste stable quand il chauffe.</p></div>
-<div class="profile-grid">
-<article class="profile-card profile-card-signal"><h3>Ce qui compte vraiment</h3><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Puce haut de gamme</strong> : Snapdragon 8, Dimensity 9 ou équivalent.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Refroidissement documenté</strong> : moins de perte de performances après 20–30 minutes.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Écran 120 Hz ou plus</strong> : déplacements plus fluides.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>12 Go de RAM</strong> : marge pour les jeux lourds et le multitâche.</p></div>
-<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>Puce puissante sans test thermique</strong> : les FPS peuvent chuter à cause de la chauffe.</p></div>
-</div></article>
-<article class="profile-card profile-card-buy"><h3>En pratique</h3><div class="buy-spec-grid"><span>Puce</span><strong>Haut de gamme</strong><span>Refroidissement</span><strong>Test thermique favorable</strong><span>Écran</span><strong>120 Hz+</strong><span>RAM</span><strong>12 Go+</strong></div></article>
-<article class="profile-card profile-card-demo"><h3>La question décisive</h3><p class="demo-caption">« Gardera-t-il ses FPS après une longue partie, ou va-t-il chauffer et ralentir ? »</p></article>
-</div>
-</section>
-</details>
-<details class="profile-toggle" data-tone="coral" id="photographe-toggle">
-<summary class="profile-toggle-summary"><span class="profile-toggle-index">04</span><span>Profil 4 · Photo et création</span><span aria-hidden="true" class="profile-toggle-caret">＋</span></summary>
-<section class="section profile-section" id="photographe"><div class="profile-header"><div aria-hidden="true" class="profile-icon">04</div><h2>Profil 4 · Photo et création</h2><p class="profile-situation">Pour photographier et créer, jugez la chaîne complète : capteur, optique, stabilisation, téléobjectif et traitement logiciel.</p></div>
-<div class="profile-grid">
-<article class="profile-card profile-card-signal"><h3>Ce qui compte vraiment</h3><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Grand capteur principal</strong> : plus de lumière, surtout le soir.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>OIS</strong> : photos plus nettes et vidéos plus stables.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Téléobjectif réel</strong> : portraits et zoom plus propres qu’un recadrage numérique.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>256 Go</strong> : marge pour photos et vidéos.</p></div>
-<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>Beaucoup de mégapixels sur un petit capteur</strong> : cela n’améliore pas automatiquement la nuit.</p></div>
-</div></article>
-<article class="profile-card profile-card-buy"><h3>En pratique</h3><div class="buy-spec-grid"><span>Capteur</span><strong>Grand si possible</strong><span>Stabilisation</span><strong>OIS</strong><span>Zoom</span><strong>Téléobjectif réel</strong><span>Stockage</span><strong>256 Go+</strong></div></article>
-<article class="profile-card profile-card-demo"><h3>La question décisive</h3><p class="demo-caption">« Les photos de nuit, les portraits et le zoom restent-ils propres ? »</p></article>
+<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Capteur</span><strong>Grand si possible</strong><span>Stabilisation</span><strong>OIS</strong><span>Zoom</span><strong>Téléobjectif réel</strong><span>Stockage</span><strong>256 Go+</strong></div></article>
+<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Les photos de nuit, les portraits et le zoom restent-ils propres ? »</p></article>
 </div>
 <div class="profile-extra" id="a-lire-photo"><div class="profile-extra-head"><span class="eyebrow">À retenir</span><h3>Le capteur compte plus que les mégapixels</h3></div>
 <div class="sensor-demo" role="img" aria-label="Comparaison animée entre un grand capteur avec peu de gros pixels et un petit capteur avec beaucoup de pixels minuscules : chaque gros pixel reçoit bien plus de lumière">
@@ -237,11 +178,34 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div>
 <p class="profile-extra-rule">Plus le capteur est grand, plus chaque pixel reçoit de lumière : un capteur de 1/1,3″ à 50 MP peut battre un 1/2,76″ à 200 MP de nuit.</p></div>
 </section>
-</details>
+</div>
+</div>
+<p class="tr-next">Aucun n’est le meilleur pour tout le monde. <a href="#audit" data-open-tab="audit">Affinez avec vos propres critères →</a></p>
+</div>
 
-<section class="section smartphone-analyzer-section" data-tone="orchid" id="analyser-modele">
-<h2 class="section-heading"><span class="eyebrow">04 · Analyseur</span>Un modèle en tête&nbsp;? Collez sa fiche</h2>
-<p class="section-lead">Lien d’une boutique ou nom du téléphone : l’analyseur retrouve ses caractéristiques, les explique et signale ce qui manque ou ce qui est survendu.</p>
+<div role="tabpanel" id="audit" class="tr-panel" aria-labelledby="tab-criteres" hidden>
+<p class="tr-lead">Cinq familles de critères, dans l’ordre que vous voulez. Vous pouvez en laisser de côté : le classement se met à jour à chaque choix.</p>
+<div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
+<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" aria-controls="quiz-screen" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-1.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">01</span><span class="audit-card-copy"><strong>Écran</strong><small>Fluidité, luminosité, type de dalle</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-screen" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" aria-controls="quiz-battery" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><svg viewBox="0 0 800 130" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><rect width="800" height="130" fill="#2b2e28"/><rect x="470" y="14" width="290" height="102" rx="22" fill="#171916" stroke="#8d907f" stroke-width="4"/><rect x="494" y="38" width="170" height="54" rx="10" fill="none" stroke="#fff" stroke-width="4" opacity=".85"/><rect x="666" y="54" width="9" height="22" rx="3" fill="#fff" opacity=".85"/><rect class="sq-charge" x="501" y="45" width="156" height="40" rx="6" fill="#ff651b"/><path class="sq-bolt" d="m722 32-20 34h16l-6 32 26-40h-16z" fill="#ffb38c"/></svg></span><span class="audit-no">02</span><span class="audit-card-copy"><strong>Batterie</strong><small>Capacité et vitesse de recharge</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-battery" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" aria-controls="quiz-performance" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/smartphones-home.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">03</span><span class="audit-card-copy"><strong>Performance</strong><small>Puce, jeux, multitâche</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-performance" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" aria-controls="quiz-photo" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-2.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">04</span><span class="audit-card-copy"><strong>Photo</strong><small>Capteur, zoom, stabilisation</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-photo" class="audit-panel" hidden=""></div></article>
+<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" aria-controls="quiz-longevity" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-3.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">05</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Mises à jour, réparation, étanchéité</small></span><span class="audit-status">À renseigner</span><span class="audit-chevron">⌄</span></button><div id="quiz-longevity" class="audit-panel" hidden=""></div></article>
+</div>
+<div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 / 5 familles renseignées</strong><span id="audit-message">Une famille peut rester sans réponse.</span><button type="button" class="btn audit-see-btn" id="audit-see-results" hidden>Voir ma sélection →</button><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button></div>
+<div class="audit-next-step"><p>Pour acheter : trouvez le meilleur prix sur <strong>Idealo</strong>, puis choisissez votre marchand.</p><p class="audit-learn">Un terme vous échappe ? <a href="smartphones-approfondir.html">Chaque critère est expliqué ici.</a></p></div>
+<div aria-live="polite" class="criteria-recommendations" id="criteria-recommendations">
+<div class="criteria-recommendations-head">
+<div><span class="eyebrow">Votre sélection</span><h3>Les modèles qui correspondent à vos réponses</h3><p>Du plus proche de vos choix au moins proche.</p></div><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button>
+</div>
+<p class="match-legend">Pour chaque critère : la valeur <b>du modèle</b>, comparée à <b>votre choix</b>. <span class="lg lg-ok">✓ comme votre choix</span> <span class="lg lg-up">▲ au-dessus</span> <span class="lg lg-low">▼ en dessous</span></p>
+<div class="criteria-recommendation-grid" id="scoring-results"></div>
+<p class="criteria-recommendations-note" id="scoring-status">Vos premiers modèles apparaîtront ici dès votre premier choix.</p>
+</div>
+</div>
+
+<div role="tabpanel" id="analyser-modele" class="tr-panel" aria-labelledby="tab-modele" hidden>
+<p class="tr-lead">Un modèle repéré dans une boutique ? Collez son lien ou tapez son nom : l’analyseur retrouve ses caractéristiques, les explique et signale ce qui manque ou ce qui est survendu.</p>
 <article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
 <h3>Analyser un téléphone</h3>
 <form class="model-analyzer-form" id="phone-analyzer-form">
@@ -297,43 +261,25 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <article class="fiche-reading-card">
 <h3>Les cinq familles à repérer</h3>
 <div class="reading-list">
-<div><strong>Écran</strong><span>La taille, le type d'écran (OLED ou LCD), la fréquence (Hz), la luminosité.</span></div>
-<div><strong>Batterie</strong><span>mAh = capacité ; watts = recharge ; l’autonomie se lit dans des tests.</span></div>
-<div><strong>Performance</strong><span>La puce calcule, la RAM sert d’espace de travail, le stockage conserve.</span></div>
-<div><strong>Photo</strong><span>Le capteur, la lentille, la stabilisation — ce qui compte, pas juste le nombre de mégapixels.</span></div>
-<div><strong>Durée de vie</strong><span>Les mises à jour, la batterie qu'on peut remplacer, la possibilité de le réparer — voilà ce qui fixe sa vraie durée de vie.</span></div>
+<div><strong>Écran</strong><span>Taille, type de dalle (OLED ou LCD), fréquence en Hz, luminosité.</span></div>
+<div><strong>Batterie</strong><span>Les mAh donnent la capacité, les watts la vitesse de recharge. La durée réelle se lit dans les tests.</span></div>
+<div><strong>Performance</strong><span>La puce calcule, la RAM garde les applis ouvertes, le stockage conserve vos fichiers.</span></div>
+<div><strong>Photo</strong><span>La taille du capteur, la stabilisation, le téléobjectif. Les mégapixels viennent après.</span></div>
+<div><strong>Durée de vie</strong><span>Années de mises à jour, batterie remplaçable, réparabilité : c’est ce qui décide de la durée de vie.</span></div>
 </div>
 </article>
 </div>
 </details>
+</div>
 </section>
 
-<section class="section recap-section" data-tone="peach" id="checklist">
-<h2 class="section-heading"><span class="eyebrow">05 · Avant d’acheter</span>Cinq vérifications, trois notions</h2>
-<p class="section-lead">Cochez au fil de vos recherches : la barre se remplit quand vous êtes prêt à commander.</p>
-<div class="ck" id="ck" data-ck>
-<div class="ck-bar" aria-hidden="true"><i></i></div><p class="ck-count" aria-live="polite"><b data-ck-n>0</b> / 5 vérifié<span data-ck-msg></span></p>
-<ul class="ck-list">
-<li><label><input type="checkbox"><span class="ck-box" aria-hidden="true"></span><span class="ck-txt"><strong>Mon usage</strong><small>Il tient en une phrase.</small></span></label></li>
-<li><label><input type="checkbox"><span class="ck-box" aria-hidden="true"></span><span class="ck-txt"><strong>La fiche</strong><small>J’ai relevé les lignes utiles.</small></span></label></li>
-<li><label><input type="checkbox"><span class="ck-box" aria-hidden="true"></span><span class="ck-txt"><strong>Les chiffres compris</strong><small>Je sais ce que chacun ne prouve pas.</small></span></label></li>
-<li><label><input type="checkbox"><span class="ck-box" aria-hidden="true"></span><span class="ck-txt"><strong>La durée prévue</strong><small>Suivi logiciel et réparabilité vérifiés.</small></span></label></li>
-<li><label><input type="checkbox"><span class="ck-box" aria-hidden="true"></span><span class="ck-txt"><strong>La comparaison</strong><small>Je compare ce qui change mon usage.</small></span></label></li>
-</ul>
-</div>
-<h3 class="notions-title">Trois notions qui expliquent la plupart des écarts</h3>
-<div class="notions">
-<article class="notion"><span class="notion-ic" aria-hidden="true"><i class="n-and"></i><i class="n-ios"></i></span><h4>Android ou iOS</h4><p>Le système fixe vos applications, vos habitudes et la compatibilité avec vos autres appareils.</p></article>
-<article class="notion"><span class="notion-ic notion-eco" aria-hidden="true"><i></i><i></i><i></i></span><h4>L’écosystème</h4><p>Montre, écouteurs, ordinateur, sauvegardes : tout ce qui fonctionne autour du téléphone.</p></article>
-<article class="notion"><span class="notion-ic notion-sup" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h4>Le suivi logiciel</h4><p>Les années de mises à jour décident combien de temps il restera sûr et agréable.</p></article>
-</div>
-<div class="falc-more"><a class="falc-more-link" href="lexique.html">Comprendre chaque terme de la fiche produit <span aria-hidden="true">→</span></a><a class="falc-more-link" href="smartphones-approfondir.html">Ce qui se cache derrière les chiffres d’une fiche <span aria-hidden="true">→</span></a></div>
-</section>
-
-<section class="section st-section" data-tone="orchid" id="tests-2026">
-<h2 class="section-heading"><span class="eyebrow">06 · Les tests 2026</span>Ce que disent cinq vidéos de tests</h2>
-<p class="section-lead">Records de batterie, jeu, gamme Samsung, nouveautés : cinq vidéos (Android Police, The Tech Chap, Versus, Tech Spurt), reprises avec les chiffres que rapportent les testeurs. Aucune note n’est inventée.</p>
-<details class="st-fold"><summary><span>Ouvrir le dossier</span><small>5 vidéos · batteries, jeu, Samsung</small></summary>
+<section class="section st-section" data-tone="orchid" id="tests-2026" aria-labelledby="tests-titre">
+<h2 class="section-heading" id="tests-titre"><span class="eyebrow">02 · Les tests</span>Ce que les tests ont changé</h2>
+<p class="section-lead">Les <span data-sp="videos">5</span> vidéos de test sont intégrées au catalogue : leurs modèles apparaissent dans le classement et dans « Mes critères », avec la mesure relevée et la source. Les chiffres sont ceux des testeurs ; le guide ne les a pas refaits et n’invente aucune note.</p>
+<div class="tr-records" id="sp-records"></div>
+<h3 class="st-sub">Qui a alimenté quoi</h3>
+<ul class="tr-log" id="sp-log"></ul>
+<details class="st-fold"><summary><span>Lire le détail des 5 tests</span><small>chiffres, limites et choix par profil</small></summary>
 <p class="st-error" id="st-error" hidden></p>
 <div class="pj-tabs" id="st-tabs" role="group" aria-label="Choisir un test"></div>
 <div class="st-panel" id="st-panel" aria-live="polite"></div>
@@ -349,13 +295,10 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </details>
 </section>
 
-<section class="section sources-list" data-tone="orchid" id="sources"><h2 class="section-heading"><span class="eyebrow">07 · Sources</span>Sources utiles</h2><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li>Résumé de vidéos smartphones 2026 : Android Police, The Tech Chap, Versus, Tech Spurt (dossier de synthèse : <a href="#tests-2026">Les tests 2026</a>)</li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></section>
-
-<section class="section pl-endwrap" id="suite">
-<div class="pl-end hx-reveal">
-<div><span class="eyebrow">Pour finir</span><h2>Un modèle en tête, ou pas encore ?</h2><p>Collez sa fiche dans l’analyseur, ou dites ce qui compte pour vous et la liste se construit.</p></div>
-<div class="pl-end-btns"><a class="pl-btn" href="#audit">Mon smartphone sur mesure →</a><a class="pl-btn alt" href="#analyser-modele">Analyser un modèle</a></div>
-</div>
+<section class="section sources-list" data-tone="orchid" id="sources" aria-labelledby="sources-titre">
+<h2 class="section-heading" id="sources-titre"><span class="eyebrow">03 · Aller plus loin</span>Comprendre une fiche, vérifier nos sources</h2>
+<p class="section-lead"><a class="hx-link" href="smartphones-approfondir.html">Ce qui se cache derrière les chiffres d’une fiche technique →</a></p>
+<details class="src-fold"><summary>Sources utilisées</summary><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li>Tests vidéo 2026 : Android Police, The Tech Chap, Versus, Tech Spurt (voir <a href="#tests-2026">Ce que les tests ont changé</a>)</li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></details>
 </section>
 
 </div>
@@ -403,7 +346,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/site-extras.js"></script>
 <script src="assets/js/category-menu.js"></script>
 <script src="assets/js/amazon-guide.js"></script>
-<script src="assets/js/smartphones-flow.js" defer></script>
+<script src="assets/js/smartphones-trouver.js" defer></script>
 <script src="assets/js/smartphones-tests.js" defer></script>
 <script src="assets/js/v88-platform.js" defer></script>
 <script src="assets/js/category-page.js" defer></script>

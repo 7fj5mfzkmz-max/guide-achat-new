@@ -56,7 +56,7 @@ async function main() {
   const SITE = 'http://127.0.0.1:' + site.address().port;
   const backend = await startBackend();
   const browser = await chromium.launch({ headless: true, channel: process.env.PW_CHANNEL || undefined });
-  const A = '/analyseur.html', S = '/smartphones.html';
+  const A = '/analyseur.html', S = '/smartphones.html#analyser-modele', SA = '/smartphones.html#audit';
 
   /* mode : "real" (vrai backend, autre origine) | "stub" (réponse simulée, même origine) | "down" (réseau coupé) */
   async function open(pathname, mode, handler) {
@@ -116,7 +116,7 @@ async function main() {
   });
 
   for (const pageName of [A, S]) {
-    await run('Saisie principale + vrai backend (autre origine) + lien vers nos choix [' + pageName + ']', async () => {
+    await run('Saisie principale + vrai backend (autre origine) + lien vers le classement [' + pageName + ']', async () => {
       const page = await open(pageName, 'real');
       const deps = await page.evaluate(() => ({ refs: typeof window.PhoneReferences, ins: typeof window.PhoneSpecInsights }));
       assert(deps.refs === 'object' && deps.ins === 'object', 'PhoneReferences et PhoneSpecInsights doivent être chargés (obtenu ' + JSON.stringify(deps) + ')');
@@ -125,15 +125,16 @@ async function main() {
       assert(/Samsung Galaxy A56/.test(await page.locator('#phone-analyzer-result h3').first().innerText()), 'titre attendu : Samsung Galaxy A56');
       assert((await page.locator('#phone-analyzer-result .spec-badge').count()) > 0, 'des verdicts techniques (badges) doivent s’afficher');
       const link = page.locator('#phone-analyzer-result [data-compare-link]');
-      assert((await link.getAttribute('href')) === 'smartphones.html#nos-choix', 'lien Comparer à nos choix attendu, obtenu ' + (await link.getAttribute('href')));
+      assert((await link.getAttribute('href')) === 'smartphones.html#choisir-profil', 'lien vers le classement attendu, obtenu ' + (await link.getAttribute('href')));
       assert(page.backendResponses.length >= 1, 'le backend doit avoir réellement répondu (secours local non utilisé)');
       const resp = page.backendResponses.find(r => r.body && r.body.ok === true);
       assert(resp, 'au moins une réponse réussie du backend (ok:true) doit être observée, obtenu : ' + JSON.stringify(page.backendResponses));
       assert(resp.body.product && resp.body.product.id === 'galaxy-a56', 'la réponse du backend doit porter l’identifiant galaxy-a56 (stratégie : ' + resp.body.strategy + ')');
       assert(!/indisponible/i.test(await stageText(page)), 'la note d’indisponibilité du secours local ne doit pas apparaître : le vrai backend a été utilisé');
       await link.click();
-      await page.waitForURL(/smartphones\.html#nos-choix/);
-      assert((await page.locator('#nos-choix').count()) === 1, 'la section « nos choix » doit exister');
+      await page.waitForURL(/smartphones\.html#choisir-profil/);
+      await page.waitForSelector('#tr-podium .tr-row', { timeout: 15000 });
+      assert((await page.locator('#choisir-profil').isVisible()), 'le classement doit s’ouvrir');
       assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
       await close(page);
     });
@@ -164,7 +165,7 @@ async function main() {
   for (const pageName of [A, S]) {
     await run('Capture navigateur : le nom capturé est résolu puis analysé [' + pageName + ']', async () => {
       const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.amazon.fr/Samsung-Galaxy-A56/dp/B0TEST1234', t: 'Samsung Galaxy A56' }));
-      const page = await open(pageName + '#capture=' + cap, 'real');
+      const page = await open(pageName.split('#')[0] + '#capture=' + cap, 'real');
       await waitAnalysis(page);
       const t = await stageText(page);
       assert(/Samsung Galaxy A56/.test(t), 'le modèle capturé doit être analysé');
@@ -219,7 +220,7 @@ async function main() {
     await submitMain(page, 'Samsung Galaxy A56');
     await waitAnalysis(page);
     assert(/indisponible/i.test(await stageText(page)), 'l’indisponibilité du service doit être signalée');
-    assert((await page.locator('#phone-analyzer-result [data-compare-link]').getAttribute('href')) === 'smartphones.html#nos-choix', 'le lien Comparer doit aussi fonctionner en secours');
+    assert((await page.locator('#phone-analyzer-result [data-compare-link]').getAttribute('href')) === 'smartphones.html#choisir-profil', 'le lien vers le classement doit aussi fonctionner en secours');
     await close(page);
     page = await open(A, 'down');
     await submitMain(page, 'ModeleIntrouvableXYZ999');
@@ -235,13 +236,13 @@ async function main() {
     await close(page);
   });
 
-  await run('Hors catalogue : le lien mène aussi à nos choix', async () => {
+  await run('Hors catalogue : le lien mène aussi au classement', async () => {
     const page = await open(A, 'stub', () => okResult('Samsung Galaxy A16'));
     await submitMain(page, 'Samsung Galaxy A16');
     await waitAnalysis(page);
     const link = page.locator('#phone-analyzer-result [data-compare-link]');
-    assert((await link.getAttribute('href')) === 'smartphones.html#nos-choix', 'href attendu : smartphones.html#nos-choix, obtenu ' + (await link.getAttribute('href')));
-    assert(/Comparer à nos choix/i.test(await link.innerText()), 'libellé « Comparer à nos choix » attendu');
+    assert((await link.getAttribute('href')) === 'smartphones.html#choisir-profil', 'href attendu : smartphones.html#choisir-profil, obtenu ' + (await link.getAttribute('href')));
+    assert(/Voir le classement/i.test(await link.innerText()), 'libellé « Voir le classement » attendu');
     await close(page);
   });
 
@@ -283,7 +284,7 @@ async function main() {
      d'attente, premier choix → recommandations affichées sans saut de page, bouton
      « Voir mes recommandations » qui y conduit, réinitialisation cohérente. */
   await run('Audit smartphone : guidé de bout en bout (critère ouvert, attente visible, accès aux résultats)', async () => {
-    const page = await open(S, 'stub', () => NOT_FOUND);
+    const page = await open(SA, 'stub', () => NOT_FOUND);
     /* État initial : premier critère (Écran) ouvert, options visibles, emplacement d'attente visible,
        bouton d'accès aux recommandations masqué tant qu'aucun choix n'est fait. */
     await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger[aria-expanded="true"]', { timeout: 10000 });
@@ -291,7 +292,7 @@ async function main() {
     assert(/0 \/ 5 familles renseignées/.test(await page.locator('#audit-count').innerText()), 'compteur initial attendu : 0 / 5 familles renseignées');
     assert(await page.locator('#audit-see-results').isHidden(), 'le bouton « Voir mes recommandations » doit être masqué avant le premier choix');
     assert(!(await page.locator('#criteria-recommendations').isHidden()), 'la zone de recommandations doit être visible dès l\u2019arrivée (emplacement d\u2019attente)');
-    assert(/apparaîtront ici dès votre premier choix/.test(await page.locator('#scoring-status').innerText()), 'emplacement d\u2019attente attendu dans le statut');
+    assert(/premier choix/.test(await page.locator('#scoring-status').innerText()), 'emplacement d\u2019attente attendu dans le statut');
     /* Premier choix : recommandations affichées sans quitter l'audit, pas de saut de page,
        focus clavier rendu à l'option choisie. Le défilement du test est instantané
        (behavior:'instant') : le CSS html{scroll-behavior:smooth} animerait sinon la mesure. */

@@ -14,11 +14,11 @@ const SOURCE = {
 };
 
 const VIDEOS = [
-  { id: 'duel', n: 1, chaine: 'Android Police', titre: 'The Pixel 11 Pro is in another league from the iPhone 18 Pro', theme: 'Haut de gamme', resume: 'Un duel entre les deux visions de référence de l’écosystème smartphone.' },
-  { id: 'records', n: 2, chaine: 'The Tech Chap', titre: 'OPPO Find X10 Pro Max - Phone of the Year?', theme: 'Records matériels', resume: 'Démonstration complète du flagship le plus ambitieux sur le plan matériel.' },
-  { id: 'gaming', n: 3, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Test comparatif ciblé sur le jeu vidéo intensif, l’autonomie et le refroidissement.' },
-  { id: 'samsung', n: 4, chaine: 'Versus', titre: 'Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!', theme: 'Gamme Samsung', resume: 'Guide d’achat pour éviter les erreurs de positionnement dans le milieu de gamme Samsung.' },
-  { id: 'nouveautes', n: 5, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Revue de presse technique sur les derniers lancements Asie et internationaux.' }
+  { id: 'duel', n: 1, chaine: 'Android Police', titre: 'The Pixel 11 Pro is in another league from the iPhone 18 Pro', theme: 'Haut de gamme', resume: 'Pixel 11 Pro contre iPhone 18 Pro : photo, logiciel et prix.' },
+  { id: 'records', n: 2, chaine: 'The Tech Chap', titre: 'OPPO Find X10 Pro Max - Phone of the Year?', theme: 'Records matériels', resume: 'Un seul téléphone passé en revue : l’OPPO Find X10 Pro Max, sa batterie, son écran et ses capteurs.' },
+  { id: 'gaming', n: 3, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Trois téléphones testés en jeu : autonomie mesurée, refroidissement et prix.' },
+  { id: 'samsung', n: 4, chaine: 'Versus', titre: 'Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!', theme: 'Gamme Samsung', resume: 'Quatre Galaxy A comparés pour savoir lequel acheter et lequel éviter.' },
+  { id: 'nouveautes', n: 5, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Les derniers lancements : Vivo V80 et OnePlus 16, avec leurs batteries.' }
 ];
 
 const MODELES = [
@@ -74,8 +74,8 @@ const out = {
   records: { ordre: ['oneplus-16', 'vivo-v80', 'oppo-find-x10-pro-max'], echelle_mah: 9000 },
   choix_par_profil: Object.fromEntries(Object.entries(CHOIX).map(([k, l]) => [k, l.map(([modele, raison, ref]) => ({ modele, raison, ref }))])),
   tendances: [
-    { titre: 'L’explosion des batteries', texte: 'Les capacités atteignent 7 000 à 9 000 mAh sans surépaisseur notable, grâce aux cellules silicium-carbone.' },
-    { titre: 'La photo assistée par l’IA', texte: 'Le traitement logiciel de la photo, assisté par l’IA, domine : c’est lui qui fait la régularité d’un smartphone.' }
+    { titre: 'Des batteries de 7 000 à 9 000 mAh', texte: 'Les capacités atteignent 7 000 à 9 000 mAh sans surépaisseur notable, grâce aux cellules silicium-carbone.' },
+    { titre: 'Le logiciel fait la photo', texte: 'Le traitement logiciel, assisté par l’IA, domine : c’est lui qui rend les photos régulières d’un smartphone à l’autre.' }
   ],
   limites: [
     'Synthèse de cinq vidéos de quatre chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.',

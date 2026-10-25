@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
       const context = await browser.newContext({locale:'fr-FR',viewport:{width,height:900}, reducedMotion:'reduce'});
       const page = await context.newPage(), errors = [];
       page.on('pageerror', e => errors.push(e.message));
-      await page.goto(`http://127.0.0.1:${server.address().port}/smartphones.html`, {waitUntil:'networkidle'});
+      await page.goto(`http://127.0.0.1:${server.address().port}/smartphones.html#audit`, {waitUntil:'networkidle'});
       const choices = [['screen','refresh','120'],['battery','capacity','5000'],['performance','reference','mid'],['photo','sensor','medium'],['longevity','updates','5']];
       for (let i=0; i<choices.length; i++) {
         const [family, group, value] = choices[i];
@@ -70,7 +70,7 @@ const server = http.createServer((req, res) => {
     }
 
     const motionPage = await browser.newPage({locale:'fr-FR',viewport:{width:390,height:844}});
-    await motionPage.goto(`http://127.0.0.1:${server.address().port}/smartphones.html`, {waitUntil:'networkidle'});
+    await motionPage.goto(`http://127.0.0.1:${server.address().port}/smartphones.html#audit`, {waitUntil:'networkidle'});
     const screen = motionPage.locator('[data-audit-card="screen"]');
     await screen.locator('[data-group="tech"] [data-value="lcd"]').click();
     assert.equal(await screen.locator('.qa-backlight').evaluate(el=>getComputedStyle(el).animationIterationCount),'infinite');

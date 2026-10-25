@@ -1,5 +1,4 @@
-/* Page smartphones : parcours (sur mesure → choix → profil → analyseur → achat → preuves),
-   lecture aérée sur téléphone, éléments importants animés. Chargé en dernier. */
+/* Page smartphones : rythme général, profils, lecture aérée sur téléphone, résultats. Chargé avant smartphones-trouver.css. */
 
 /* ——— Rythme général ——— */
 .sp .section { padding-block: clamp(40px, 6vw, 84px); }
@@ -11,45 +10,27 @@
 .sp .pg-cta { gap: 12px; }
 
 /* ——— Choix 2026 : on fait défiler, sur téléphone ——— */
-.sp .picks-section .picks { margin-top: 24px; }
-.sp .pick { box-shadow: none; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
-.sp .pick:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow); }
-.sp .pick-for { color: #0f1115; background: var(--accent); align-self: flex-start; padding: 4px 8px; }
-.sp .picks-dots { display: none; }
 @media (max-width: 760px) {
-  .sp .picks { display: flex; grid-template-columns: none; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px; margin-inline: -16px; padding: 4px 16px 14px; overscroll-behavior-x: contain; scrollbar-width: none; }
-  .sp .picks::-webkit-scrollbar { display: none; }
-  .sp .pick, .sp .pick:nth-child(n+4), .sp .pick:last-child { flex: 0 0 84%; max-width: 340px; grid-column: auto; scroll-snap-align: start; padding: 18px; }
-  .sp .pick-why { font-size: 15px; }
-  .sp .picks-dots { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 2px 0 6px; }
-  .sp .picks-dots i { width: 9px; height: 9px; border: 1px solid var(--ink); background: transparent; transition: width .25s var(--ease), background .25s; }
-  .sp .picks-dots i.is-on { width: 26px; background: var(--accent); }
-  .sp .picks-section.is-fresh .picks { animation: spNudge 1.4s var(--ease) .6s 1; }
 }
-@keyframes spNudge { 0%, 100% { transform: translateX(0); } 40% { transform: translateX(-34px); } }
 
 /* ——— Profils : un seul à la fois, sans titre en double ——— */
 .sp .profile-toggle { margin: 0; border: 0; background: none; box-shadow: none; }
 .sp .profile-toggle-summary, .sp .profile-section .profile-icon { display: none; }
 .sp .profile-section { padding: 0; margin-top: 18px; }
 .sp .profile-header { text-align: left; margin-bottom: 14px; }
-.sp .profile-header h2 { font-size: clamp(20px, 2.6vw, 28px); }
+.sp .profile-header h3 { font-size: clamp(20px, 2.6vw, 28px); }
 .sp .profile-situation { max-width: 60ch; margin: 0; }
 .sp .profile-grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; }
 .sp .profile-card-demo { grid-column: 1 / -1; min-height: 0; height: auto; align-self: start; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px 16px; padding: 14px 18px; }
-.sp .profile-card-demo h3 { margin: 0; }
+.sp .profile-card-demo h4 { margin: 0; }
 .sp .profile-card-demo .demo-caption { margin: 0; font-style: italic; flex: 1 1 260px; }
 .sp .profile-card, .sp .profile-card .signal-table { animation: none; }
 .sp .profile-section.is-swap, .sp .profile-toggle:not([hidden]) .profile-card { animation: spRise .45s var(--ease) both; }
 .sp .profile-toggle:not([hidden]) .profile-card:nth-child(2) { animation-delay: .07s; }
 .sp .profile-toggle:not([hidden]) .profile-card:nth-child(3) { animation-delay: .14s; }
 @keyframes spRise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-.sp .profile-hint { margin: 8px 0 0; }
 .sp .profile-toggle { scroll-margin-top: 120px; }
 .sp .profile-section.section { margin-top: 10px; border-top: 0; }
-.sp .profile-picker { padding-bottom: 0; }
-.sp .profile-picker-tabs { margin-top: 18px; }
-.sp .profile-picker-tab.is-current { animation: spPop .35s var(--ease) both; }
 @keyframes spPop { 0% { transform: scale(.96); } 60% { transform: scale(1.03); } 100% { transform: scale(1); } }
 
 /* Photographe : l'ancienne alerte devient une explication du profil */
@@ -62,47 +43,6 @@
 .sp .fiche-fold { margin-top: 16px; }
 .sp .fiche-fold .fiche-layout { padding: 0 clamp(12px, 3vw, 22px) 22px; }
 .sp .fiche-fold .section-heading { display: none; }
-
-/* ——— Avant d'acheter : liste cochable qui remplit une barre ——— */
-.sp .ck { margin-top: 22px; }
-.sp .ck-bar { height: 12px; border: 1px solid var(--ink); background: var(--paper-2); overflow: hidden; }
-.sp .ck-bar i { display: block; height: 100%; width: calc(var(--p, 0) * 20%); background: var(--accent); transition: width .45s var(--ease); }
-.sp .ck-count { margin: 8px 0 12px; font: 700 14px var(--mono); }
-.sp .ck-count b { font-size: 18px; }
-.sp .ck.is-done .ck-count { color: #0a7a3b; }
-.sp .ck-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 8px; }
-.sp .ck-list label { display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: center; padding: 12px 14px; border: 1px solid var(--ink); background: var(--paper-2); cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s; }
-.sp .ck-list label:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
-.sp .ck-list input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.sp .ck-box { width: 28px; height: 28px; border: 2px solid var(--ink); background: var(--paper); display: grid; place-items: center; }
-.sp .ck-box::after { content: ''; width: 14px; height: 8px; border-left: 4px solid #0f1115; border-bottom: 4px solid #0f1115; transform: rotate(-45deg) scale(0); margin-top: -3px; transition: transform .25s cubic-bezier(.3, 1.6, .5, 1); }
-.sp .ck-list input:checked + .ck-box { background: var(--accent); animation: spPop .35s var(--ease); }
-.sp .ck-list input:checked + .ck-box::after { transform: rotate(-45deg) scale(1); }
-.sp .ck-list input:focus-visible + .ck-box { outline: 3px solid var(--ink); outline-offset: 3px; }
-.sp .ck-txt strong { display: block; font: 800 15px/1.25 var(--head); text-transform: uppercase; }
-.sp .ck-txt small { display: block; margin-top: 2px; font-size: 14.5px; color: var(--ink-soft); }
-.sp .ck-list input:checked ~ .ck-txt strong { text-decoration: line-through; text-decoration-thickness: 2px; opacity: .65; }
-
-/* Trois notions : trois pictogrammes animés */
-.sp .notions-title { margin: 34px 0 12px; font: 800 clamp(18px, 2.2vw, 22px)/1.2 var(--head); text-transform: uppercase; }
-.sp .notions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.sp .notion { padding: 16px; border: 1px solid var(--ink); background: var(--paper-2); display: grid; gap: 6px; align-content: start; }
-.sp .notion h4 { margin: 4px 0 0; font: 800 16px/1.2 var(--head); text-transform: uppercase; }
-.sp .notion p { margin: 0; font-size: 15px; color: var(--ink-soft); }
-.sp .notion-ic { position: relative; height: 54px; display: flex; align-items: center; gap: 8px; }
-.sp .notion-ic i { display: block; border: 2px solid var(--ink); background: var(--paper); }
-.sp .n-and, .sp .n-ios { width: 30px; height: 46px; border-radius: 8px; }
-.sp .n-and { background: var(--accent); animation: spSwap 3s ease-in-out infinite; }
-.sp .n-ios { animation: spSwap 3s ease-in-out infinite reverse; }
-.sp .notion-eco i { width: 26px; height: 26px; border-radius: 50%; animation: spOrbit 2.4s ease-in-out infinite; }
-.sp .notion-eco i:nth-child(1) { background: var(--accent); width: 34px; height: 34px; animation: none; }
-.sp .notion-eco i:nth-child(3) { animation-delay: .4s; }
-.sp .notion-sup i { width: 18px; border-radius: 3px; height: 14px; animation: spYears 3.2s ease-in-out infinite; }
-.sp .notion-sup i:nth-child(2) { animation-delay: .25s; } .sp .notion-sup i:nth-child(3) { animation-delay: .5s; } .sp .notion-sup i:nth-child(4) { animation-delay: .75s; }
-@keyframes spSwap { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes spOrbit { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
-@keyframes spYears { 0%, 20% { height: 14px; background: var(--paper); } 45%, 80% { height: 44px; background: var(--accent); } 100% { height: 14px; background: var(--paper); } }
-.sp .recap-section .falc-more { margin-top: 24px; }
 
 /* ——— Tests : un dossier à ouvrir, pas à subir ——— */
 .sp .st-fold { margin-top: 22px; border: 1px solid var(--ink); background: var(--paper-2); }
@@ -132,49 +72,17 @@
   .sp .profile-grid { grid-template-columns: 1fr; }
   .sp .profile-card { padding: 16px; }
   .sp .profile-card-demo { padding: 14px 16px; }
-  .sp .profile-picker-tabs { display: flex; flex-wrap: nowrap; overflow-x: auto; gap: 8px; margin-inline: -16px; padding: 4px 16px 10px; scrollbar-width: none; }
-  .sp .profile-picker-tabs::-webkit-scrollbar { display: none; }
-  .sp .profile-picker-tab { flex: 0 0 auto; padding: 12px 16px; white-space: nowrap; }
-  .sp .notions { grid-template-columns: 1fr; gap: 10px; }
-  .sp .notion { grid-template-columns: 72px 1fr; column-gap: 14px; align-items: center; padding: 14px; }
-  .sp .notion-ic { grid-row: span 2; height: 54px; justify-content: center; }
-  .sp .notion h4, .sp .notion p { grid-column: 2; margin: 0; }
   .sp .sensor-demo { margin-inline: -4px; }
   .sp #purchase-audit .audit-panel { padding: 14px; }
   .sp #purchase-audit .sq-illustration { padding: 12px 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sp .n-and, .sp .n-ios, .sp .notion-eco i, .sp .notion-sup i, .sp .pick, .sp .picks-section .picks,
-  .sp .profile-toggle .profile-card, .sp .profile-picker-tab.is-current, .sp .ck-bar i, .sp .ck-box { animation: none !important; transition: none !important; }
-  .sp .notion-sup i { height: 30px; }
-}
-
-/* ——— Lisibilité : aucune étiquette sous 12,5 px, boutons à 13,5 px, interlignage confortable ——— */
-.sp .eyebrow, .sp .pick-for, .sp .pg-kick, .sp .pg-skip, .sp .deep-num, .sp .deep-sub, .sp .pj-badge, .sp .st-ref,
-.sp .st-price-inline, .sp .st-gdl dt, .sp .st-batt-val small, .sp .hx-chip, .sp .pg-strip span, .sp .audit-reset-btn,
-.sp .buy-spec-grid span, .sp .signal-table small { font-size: 12.5px; letter-spacing: .05em; }
-.sp .picks-note, .sp .model-analyzer-help { font-size: 14.5px; }
-.sp .pg-btn, .sp .pick-link, .sp .pl-btn, .sp .profile-picker-tab, .sp .pj-tab, .sp .btn, .sp .st-fold > summary small { font-size: 13.5px; }
-.sp .st-gdl dd, .sp .st-step ul, .sp .st-spec dd, .sp .st-trend p, .sp .st-method li, .sp .pick-pm, .sp .pick-alt, .sp .signal-row p, .sp .buy-spec-grid strong, .sp .sources-list li { font-size: 15.5px; line-height: 1.55; }
-.sp .section-lead, .sp .profile-situation, .sp .pick-why, .sp .demo-caption { line-height: 1.6; }
-.sp .st-src { font-size: 14px; line-height: 1.5; }
-.sp .st-panel { padding: clamp(12px, 3vw, 24px); }
-.sp .st-fold .pj-tabs { gap: 8px; }
-@media (max-width: 760px) {
-  .sp .st-fold .pj-tabs { flex-wrap: nowrap; overflow-x: auto; margin-inline: -4px; padding: 2px 4px 8px; scrollbar-width: none; }
-  .sp .st-fold .pj-tabs::-webkit-scrollbar { display: none; }
-  .sp .st-fold .pj-tab { flex: 0 0 auto; padding: 12px 14px; white-space: nowrap; }
-  .sp .st-batt-row { grid-template-columns: 1fr auto; row-gap: 6px; }
-  .sp .st-specs { grid-template-columns: 1fr; }
-  .sp .st-method { grid-template-columns: 1fr; }
-  .sp .sources-list li { padding-block: 10px; }
+  .sp .profile-toggle .profile-card, .sp .tr-chip, .sp .tr-row { animation: none !important; transition: none !important; }
 }
 #tests-2026 .pj-tab, #tests-2026 .pj-badge, #tests-2026 .st-gdl dt, #tests-2026 .st-spec dt, #tests-2026 .st-ref { font-size: 12.5px; }
 #tests-2026 .pj-tab { font-size: 13.5px; }
-.sp .pl-sections .pl-sections-btn span, .sp #purchase-audit .sq-mini small, .sp .sq-mini small, .sp .profile-card > h3, .sp .v88-platform-choice span, .sp .v88-platform-choice button, .sp .amazon-guide-hint span { font-size: 12.5px; }
+.sp .pl-sections .pl-sections-btn span, .sp #purchase-audit .sq-mini small, .sp .sq-mini small, .sp .profile-card > h4, .sp .v88-platform-choice span, .sp .v88-platform-choice button, .sp .amazon-guide-hint span { font-size: 12.5px; }
 .sp .v88-platform-choice button { font-size: 13px; padding-block: 9px; }
-.sp .recap-section .falc-more { display: grid; gap: 10px; max-width: 640px; }
-.sp .falc-more-link { display: block; }
 
 /* ——— Résultats : chaque critère dit clairement « le modèle » contre « votre choix » ——— */
 .sp .match-legend { display: block; line-height: 2.1; margin: 14px 0 0; font-size: 14.5px; color: var(--ink-soft); }

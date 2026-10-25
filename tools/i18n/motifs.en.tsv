@@ -35,3 +35,11 @@
 ^Critère\(s\) choisi\(s\) mais non documenté\(s\) dans le catalogue : (.+)\.$	Criteria chosen but not documented in the catalog: $1.
 ^Classement du plus proche de vos choix au moins proche \(profil « (.+) » en départage\)\.$	Ranked from closest to furthest from your choices (“$1” profile as tiebreaker).
 ^(.+) et à (.+)$	$1 and $2
+^Limite : (.+)$	Limit: $1
+^verdict : (.+)$	verdict: $1
+^(.+) mAh annoncés, charge (.+) \(version Europe\)$	$1 mAh announced, $2 charging (Europe version)
+^(.+) mAh annoncés, charge (.+)$	$1 mAh announced, $2 charging
+^(.+) mAh annoncés$	$1 mAh announced
+^(.+) mAh, devant (.+) \((.+) mAh\)$	$1 mAh, ahead of $2 ($3 mAh)
+^Meilleur choix de la gamme comparée ; à éviter : (.+)\.$	Best choice in the range compared; avoid: $1.
+^Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « (.+) » départage\.$	Closest to least close to your choices; on a tie, a model seen in tests comes first, then the “$1” profile breaks it.

@@ -18,6 +18,7 @@
   ];
 
   var SCORE_CAP = 9;
+  var TEST_BONUS = 0.07;      // départage seulement : moins que l'écart entre deux profils notés 8 et 9
 
   function esc(v) {
     return String(v).replace(/[&<>"']/g, function (c) {
@@ -164,7 +165,7 @@
         out.push({ key: "photo.zoom", score: zd === 0 ? 1 : zd > 0 ? 0.9 : Math.max(0, 1 - Math.abs(zd) * 0.45), d: zd, text: photoZoomRank(c.photo) === 'digital' ? 'zoom numérique' : 'téléobjectif ' + photoZoomRank(c.photo), delta: zd === 0 ? "pile" : zd > 0 ? "un peu au-dessus" : (Math.abs(zd) > 1 ? "nettement en dessous" : "un peu en dessous") });
       }
     }
-    if (ph.stabilization === "ois" && c.photo) out.push({ key: "photo.ois", score: c.photo.ois ? 1 : 0.35, d: c.photo.ois ? 0 : -1, text: c.photo.ois ? "OIS" : "sans OIS", delta: c.photo.ois ? "pile" : "en dessous" });
+    if (ph.stabilization === "ois" && c.photo && c.photo.ois != null) out.push({ key: "photo.ois", score: c.photo.ois ? 1 : 0.35, d: c.photo.ois ? 0 : -1, text: c.photo.ois ? "OIS" : "sans OIS", delta: c.photo.ois ? "pile" : "en dessous" });
     if (ba.chemistry && c.batterie) {
       var wantChem = ba.chemistry, haveChem = batteryChemistry(c);
       if (haveChem) {
@@ -321,7 +322,7 @@
     var done = completedCategories(state).length;
     if (!done) {
       renderLive(null);
-      if (status) status.textContent = "Vos premiers modèles apparaîtront ici dès votre premier choix.";
+      if (status) status.textContent = "Faites un premier choix : les modèles les plus proches s’affichent ici.";
       return;
     }
 
@@ -330,9 +331,9 @@
       var profile = profileScore(p, currentProfile);
       return m ? { p: p, m: m, profile: profile } : null;
     }).filter(Boolean).sort(function (a, b) {
-      // la proximité décide ; le profil ne sert qu'à départager deux modèles aussi proches
-      var sa = a.m.score + (a.profile != null ? a.profile / 10 * 0.12 : 0.06);
-      var sb = b.m.score + (b.profile != null ? b.profile / 10 * 0.12 : 0.06);
+      // la proximité décide ; à égalité, un modèle vu en test passe devant (une mesure vaut plus qu'une fiche), puis le profil départage
+      var sa = a.m.score + (a.profile != null ? a.profile / 10 * 0.12 : 0.06) + (a.p.tests ? TEST_BONUS : 0);
+      var sb = b.m.score + (b.profile != null ? b.profile / 10 * 0.12 : 0.06) + (b.p.tests ? TEST_BONUS : 0);
       return sb - sa;
     });
     // Marge de manœuvre : quand un niveau de puce est demandé, on mélange le niveau visé et ses voisins (un cran en dessous / au-dessus)
@@ -349,7 +350,7 @@
     root.hidden = false;
     root.dataset.resultsState = scored.length ? "ready" : "no-match";
     if (!scored.length) {
-      container.innerHTML = '<div class="criteria-empty-state"><strong>Aucun modèle ne correspond encore à tous ces critères.</strong><p>Le bandeau compact conserve les meilleures correspondances disponibles. Modifiez un choix ou consultez les modèles du catalogue.</p><button type="button" class="btn btn-secondary" data-audit-show-catalog>Voir les modèles du catalogue</button></div>';
+      container.innerHTML = '<div class="criteria-empty-state"><strong>Aucun modèle ne correspond encore à tous ces critères.</strong><p>Aucun téléphone du catalogue ne réunit tout ce que vous demandez. Assouplissez un critère, ou parcourez le catalogue.</p><button type="button" class="btn btn-secondary" data-audit-show-catalog>Voir les modèles du catalogue</button></div>';
       if (status) status.textContent = "Aucune correspondance assez documentée pour tous les critères choisis.";
       var showCatalog = container.querySelector("[data-audit-show-catalog]");
       if (showCatalog) showCatalog.addEventListener("click", function () {
@@ -378,7 +379,7 @@
     var summary=summaryParts.length?'Vous avez précisé : '+summaryParts.join(', ')+'.':'';
     var notes = neighbourNotes(state);
     if(unevaluated.length) notes.push('Critère(s) choisi(s) mais non documenté(s) dans le catalogue : ' + unevaluated.join(', ') + '. Ils ne sont ni bonifiés ni pénalisés.');
-    if (status) status.textContent = (summary ? summary + " " : "") + (done === 5 ? "Sélection complète. " : "Premiers résultats : plus vous précisez, plus la liste se resserre. ") + "Classement du plus proche de vos choix au moins proche (profil « " + profileLabel(currentProfile) + " » en départage)." + (notes.length ? " " + notes.join(" ") : "");
+    if (status) status.textContent = (summary ? summary + " " : "") + (done === 5 ? "Les cinq familles sont renseignées. " : "Chaque critère ajouté resserre la liste. ") + "Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « " + profileLabel(currentProfile) + " » départage." + (notes.length ? " " + notes.join(" ") : "");
 
     scored.forEach(function (x, i) {
       var article = document.createElement("article");
@@ -391,12 +392,13 @@
       var pct = Math.round(x.m.score * 100);
       var verdict = pct >= 85 ? ['is-good','Très proche de votre sélection'] : pct >= 70 ? ['is-warn','Proche, avec des compromis'] : ['is-bad','Correspondance partielle'];
       var why = '<details class="criteria-why"><summary>Pourquoi ce résultat ?</summary><ul>' + rows.map(function(r){return '<li><b>'+esc(r.name)+' :</b> '+esc(r.have)+', '+esc(r.verdict.toLowerCase())+(r.want?' (votre choix : '+esc(r.want)+')':'')+'</li>';}).join('') + '</ul></details>';
-      var meta = [x.p.prix_indicatif ? "≈ " + esc(x.p.prix_indicatif) + " €" : "prix à vérifier", x.p.annee_sortie ? "sortie " + esc(x.p.annee_sortie) : ""].filter(Boolean).join(" · ");
+      var meta = [priceText(x.p), x.p.annee_sortie ? "sortie " + esc(x.p.annee_sortie) : ""].filter(Boolean).join(" · ");
+      var proof = testProof(x.p);
       article.innerHTML =
         '<div class="criteria-recommendation-top"><span class="criteria-recommendation-brand">' + esc(x.p.marque || "") + '</span><span class="criteria-recommendation-score">' + pct + ' %</span></div>' +
         '<h4>' + esc(x.p.nom || "Modèle") + '</h4>' +
         '<span class="criteria-verdict ' + verdict[0] + '">' + esc(verdict[1]) + '</span>' +
-        '<p class="criteria-recommendation-meta">' + meta + '</p>' +
+        '<p class="criteria-recommendation-meta">' + meta + '</p>' + proof +
         '<ul class="match-chips">' + chips + '</ul>' + why +
         '<div class="criteria-recommendation-foot">' +
           (x.p.nom ? '<a class="criteria-recommendation-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="' + esc(idealoUrl(x.p)) + '" target="_blank" rel="noopener noreferrer">Acheter au meilleur prix · Idealo ↗</a>' : '') +
@@ -412,26 +414,35 @@
        « Voir mes recommandations » (barre de l'audit) et les puces de l'aperçu. */
   }
 
+  /* Prix : en euros quand la fiche est vérifiée en France ; en dollars quand il vient d'un test (non vérifié ici). */
+  function priceText(p) {
+    if (p.prix_indicatif) return "≈ " + esc(p.prix_indicatif) + " €";
+    if (p.prix_usd) return "≈ " + esc(String(p.prix_usd)) + " $ (prix US)";
+    return "prix à vérifier";
+  }
+  function hoursText(min) { return Math.floor(min / 60) + " h " + String(min % 60).padStart(2, "0"); }
+  /* Un test publié se voit dans le classement : étiquette, mesure relevée, source. */
+  function testProof(p) {
+    var t = p.tests && p.tests[0];
+    if (!t) return "";
+    var m = t.mesures || {}, line = [];
+    if (m.autonomie_jeu_min) line.push("autonomie en jeu mesurée : " + hoursText(m.autonomie_jeu_min));
+    if (m.autonomie_globale_min) line.push("autonomie mesurée : " + hoursText(m.autonomie_globale_min));
+    if (t.verdict) line.push("verdict : " + t.verdict);
+    return '<p class="criteria-test"><b>Testé</b> <span>' + esc(t.chaine) + (line.length ? " · " + esc(line.join(" · ")) : "") + '</span></p>';
+  }
+
   function profileLabel(profile) {
     return { etudiant: "étudiant", professionnel: "professionnel", gamer: "gamer", photographe: "photographe" }[profile] || "votre profil";
   }
 
-  function readProfileFromUI() {
-    var active = document.querySelector('.profile-picker-tab.is-current');
-    if (active && active.getAttribute("data-profile")) currentProfile = active.getAttribute("data-profile");
-  }
-
-  document.querySelectorAll(".profile-picker-tab").forEach(function (tab) {
-    if (tab.getAttribute("data-profile") === currentProfile) tab.classList.add("is-current");
-    tab.addEventListener("click", function () {
-      currentProfile = tab.getAttribute("data-profile") || "etudiant";
-      localStorage.setItem("guide-profile", currentProfile);
-      document.querySelectorAll(".profile-picker-tab").forEach(function (item) { item.classList.toggle("is-current", item === tab); });
-      renderResults(window.GuideAuditState || {});
-    });
+  /* Le profil choisi dans « Trouver » départage les modèles à égalité (événement émis par smartphones-trouver.js). */
+  window.addEventListener("guide:profile", function (event) {
+    var profile = event.detail && event.detail.profile;
+    if (!profile || profile === currentProfile) return;
+    currentProfile = profile;
+    renderResults(window.GuideAuditState || {});
   });
-
-  readProfileFromUI();
 
   window.addEventListener("guide:audit-change", function (event) {
     if (!(event.detail && event.detail.user)) root.dataset.shown = root.dataset.shown || "0";
