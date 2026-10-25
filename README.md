@@ -36,6 +36,11 @@ Source unique : `tools/site/gabarit.py`. Après modification : `python3 tools/si
 `npm test` échoue si une page s’en écarte (`npm run gabarit:test`). Une nouvelle page s’ajoute dans `PAGES` (avec la cible
 de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, dans `CATEGORIES`.
 
+## Tests vidéo smartphones : du dossier au classement
+`node tools/smartphones/construire-tests.js` écrit `data/smartphones-tests.json` (le dossier des vidéos).
+`node tools/smartphones/integrer-tests.js` fait entrer ses modèles dans `data/smartphones.json` : les fiches existantes reçoivent la preuve du test (`tests`), les autres sont ajoutées (`origine: "test"`) avec uniquement les valeurs relevées, sans note inventée.
+Le classement de la page smartphones (profils, « Mes critères ») lit ensuite ces deux fichiers (`assets/js/smartphones-trouver.js`, `smartphones-scoring.js`). Relancer ensuite `node tools/actualites/construire.js`.
+
 ## Générer les données PC portables
 `python3 tools/pc-portables/construire.py` → écrit `data/pc-portables.json` et `data/lexique-pc-portables.json` (lexique affiché dans `pc-portables.html#lexique`).
 

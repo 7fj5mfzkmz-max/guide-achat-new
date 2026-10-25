@@ -296,8 +296,8 @@
     var imageCandidate = (page && page.product && page.product.image) || cat.image || cat.image_url || null;
     var productImage = /^https?:\/\//i.test(String(imageCandidate || '')) ? String(imageCandidate) : null;
     var imageBlock = productImage ? '<div class="model-analyzer-product-visual"><img src="' + esc(productImage) + '" alt="Illustration du ' + esc(title) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.hidden=true"><span>Illustration issue de la fiche produit</span></div>' : '';
-    var compareHref = state.category === "pc-portables" ? "pc-portables.html#modeles" : "smartphones.html#nos-choix";
-    var compareText = "Comparer à nos choix →";
+    var compareHref = state.category === "pc-portables" ? "pc-portables.html#modeles" : "smartphones.html#choisir-profil";
+    var compareText = state.category === "pc-portables" ? "Voir les modèles →" : "Voir le classement →";
     var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : (state.category === "pc-portables" ? "pc-portables.html#audit" : "smartphones.html#purchase-audit");
     var auditHint = state.category === "pc-portables" ? "4 questions simples : usage, budget, transport et besoin de jeux ou de montage." : "5 familles, 45 secondes : écran, batterie, performance, photo et durée de vie.";
     var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>' + auditHint + '</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Faire l’audit →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';

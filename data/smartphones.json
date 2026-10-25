@@ -613,7 +613,19 @@
       },
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+      },
+      "tests": [
+        {
+          "modele": "samsung-galaxy-s26-ultra",
+          "video": 3,
+          "chaine": "Versus",
+          "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
+          "verdict": "Meilleur polyvalent",
+          "mesures": {
+            "autonomie_jeu_min": 617
+          }
+        }
+      ]
     },
     {
       "id": "iphone-18-pro-max",
@@ -802,7 +814,15 @@
       },
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+      },
+      "tests": [
+        {
+          "modele": "iphone-18-pro",
+          "video": 1,
+          "chaine": "Android Police",
+          "titre": "The Pixel 11 Pro is in another league from the iPhone 18 Pro"
+        }
+      ]
     },
     {
       "id": "galaxy-s26-plus",
@@ -1571,7 +1591,16 @@
       "annee_sortie": 2025,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+      },
+      "tests": [
+        {
+          "modele": "samsung-galaxy-a17",
+          "video": 4,
+          "chaine": "Versus",
+          "titre": "Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!",
+          "verdict": "Le budget strict"
+        }
+      ]
     },
     {
       "id": "redmi-note-15-4g",
@@ -5344,7 +5373,19 @@
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+      },
+      "tests": [
+        {
+          "modele": "apple-iphone-17-pro-max",
+          "video": 3,
+          "chaine": "Versus",
+          "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
+          "verdict": "Cher mais puissant",
+          "mesures": {
+            "autonomie_jeu_min": 774
+          }
+        }
+      ]
     },
     {
       "id": "poco-x8-pro",
@@ -5420,6 +5461,368 @@
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
+    },
+    {
+      "id": "pixel-11-pro",
+      "nom": "Google Pixel 11 Pro",
+      "marque": "Google",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {},
+      "points_forts": [],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {},
+      "tests": [
+        {
+          "modele": "pixel-11-pro",
+          "video": 1,
+          "chaine": "Android Police",
+          "titre": "The Pixel 11 Pro is in another league from the iPhone 18 Pro"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 1,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
+    },
+    {
+      "id": "oppo-find-x10-pro-max",
+      "nom": "OPPO Find X10 Pro Max",
+      "marque": "OPPO",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "ecran": "OLED 6,78\" plat, 144 Hz, bordures de 1,15 mm, pic mesuré à 3 600 nits",
+        "processeur": "MediaTek Dimensity 9600 Pro (gravure 2 nm)",
+        "batterie": "7 150 mAh, charge 80 W filaire, 50 W sans fil (7 150 mAh en version Europe, 8 000 mAh en version Asie)",
+        "photo": "Triple capteur 200 MP Hasselblad (grand-angle, ultra grand-angle, téléobjectif 3x), mode Hasselblad Master ; Convertisseur télé-optique magnétique pour 10x, 20x et 40x"
+      },
+      "points_forts": [
+        "Batterie de 7 150 mAh en Europe"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "ecran": {
+          "technologie": "OLED",
+          "frequence_max_hz": 144,
+          "luminosite_nits": 3600
+        },
+        "performance": {
+          "soc": "MediaTek Dimensity 9600 Pro",
+          "niveau": 6,
+          "ram_go_max": null
+        },
+        "batterie": {
+          "capacite_mah": 7150,
+          "recharge_watts": 80,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "oppo-find-x10-pro-max",
+          "video": 2,
+          "chaine": "The Tech Chap",
+          "titre": "OPPO Find X10 Pro Max - Phone of the Year?"
+        }
+      ],
+      "ready_for_recommendation": true,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 2,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
+    },
+    {
+      "id": "vivo-v80",
+      "nom": "Vivo V80",
+      "marque": "Vivo",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "ecran": "OLED 1,5K, 144 Hz",
+        "ram": "8 Go au lieu de 12 Go (concession)",
+        "batterie": "7 200 mAh",
+        "photo": "Optiques Zeiss 50 MP (principal et téléobjectif)"
+      },
+      "points_forts": [
+        "Batterie de 7 200 mAh"
+      ],
+      "points_faibles": [
+        "RAM 8 Go au lieu de 12 Go"
+      ],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "ecran": {
+          "technologie": "OLED",
+          "frequence_max_hz": 144,
+          "luminosite_nits": null
+        },
+        "batterie": {
+          "capacite_mah": 7200,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "vivo-v80",
+          "video": 5,
+          "chaine": "Tech Spurt",
+          "titre": "Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290"
+        }
+      ],
+      "ready_for_recommendation": true,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 5,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
+    },
+    {
+      "id": "oneplus-16",
+      "nom": "OnePlus 16 (version extrême)",
+      "marque": "OnePlus",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "ecran": "185 Hz",
+        "processeur": "Snapdragon 8 Elite Extreme Gen 6",
+        "batterie": "9 000 mAh, charge 100 W filaire, 50 W sans fil (Batterie record)"
+      },
+      "points_forts": [
+        "Batterie de 9 000 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "ecran": {
+          "technologie": null,
+          "frequence_max_hz": 185,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite Extreme Gen 6",
+          "niveau": 6,
+          "ram_go_max": null
+        },
+        "batterie": {
+          "capacite_mah": 9000,
+          "recharge_watts": 100,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "oneplus-16",
+          "video": 5,
+          "chaine": "Tech Spurt",
+          "titre": "Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290"
+        }
+      ],
+      "ready_for_recommendation": true,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 5,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
+    },
+    {
+      "id": "redmagic-11s-pro",
+      "nom": "RedMagic 11S Pro",
+      "marque": "Nubia (RedMagic)",
+      "prix_indicatif": null,
+      "prix_usd": 799,
+      "prix_note": "Prix en dollars relevé dans la vidéo 3 (prix de sortie américain) : non vérifié en France.",
+      "caracteristiques": {},
+      "points_forts": [
+        "Ventilateur 24k RPM + gâchettes",
+        "Autonomie en jeu mesurée : 11 h 30"
+      ],
+      "points_faibles": [
+        "Stockage max 512 Go / caméras"
+      ],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {},
+      "tests": [
+        {
+          "modele": "redmagic-11s-pro",
+          "video": 3,
+          "chaine": "Versus",
+          "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
+          "verdict": "Rapport qualité/prix pur",
+          "mesures": {
+            "autonomie_jeu_min": 690
+          }
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 3,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
+    },
+    {
+      "id": "samsung-galaxy-a57",
+      "nom": "Samsung Galaxy A57",
+      "marque": "Samsung",
+      "prix_indicatif": null,
+      "prix_usd": 549,
+      "prix_note": "Prix en dollars relevé dans la vidéo 4 (prix de sortie américain) : non vérifié en France.",
+      "caracteristiques": {
+        "ecran": "AMOLED 120 Hz",
+        "photo": "Capteur 50 MP stabilisé",
+        "etancheite": "IP68",
+        "chassis": "Aluminium"
+      },
+      "points_forts": [
+        "Autonomie globale mesurée : 10 h 35",
+        "Châssis aluminium, IP68"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "ecran": {
+          "technologie": "AMOLED",
+          "frequence_max_hz": 120,
+          "luminosite_nits": null
+        },
+        "durete": {
+          "protection_ip": "IP68",
+          "android_version_sortie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "samsung-galaxy-a57",
+          "video": 4,
+          "chaine": "Versus",
+          "titre": "Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!",
+          "verdict": "Le meilleur choix",
+          "mesures": {
+            "autonomie_globale_min": 635
+          }
+        }
+      ],
+      "ready_for_recommendation": true,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 4,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
+    },
+    {
+      "id": "samsung-galaxy-a37",
+      "nom": "Samsung Galaxy A37",
+      "marque": "Samsung",
+      "prix_indicatif": null,
+      "prix_usd": 449,
+      "prix_note": "Prix en dollars relevé dans la vidéo 4 (prix de sortie américain) : non vérifié en France.",
+      "caracteristiques": {},
+      "points_forts": [
+        "Conserve l’essentiel des performances et du capteur photo de l’A57 pour 100 $ de moins"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {},
+      "tests": [
+        {
+          "modele": "samsung-galaxy-a37",
+          "video": 4,
+          "chaine": "Versus",
+          "titre": "Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!",
+          "verdict": "Le choix économique"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 4,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
+    },
+    {
+      "id": "samsung-galaxy-a27",
+      "nom": "Samsung Galaxy A27",
+      "marque": "Samsung",
+      "prix_indicatif": null,
+      "prix_usd": 349,
+      "prix_note": "Prix en dollars relevé dans la vidéo 4 (prix de sortie américain) : non vérifié en France.",
+      "caracteristiques": {
+        "photo": "Ultra grand-angle de 5 MP au rabais",
+        "etancheite": "IP64 (rétrogradé)"
+      },
+      "points_forts": [],
+      "points_faibles": [
+        "Instabilités logicielles récurrentes"
+      ],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "durete": {
+          "protection_ip": "IP64",
+          "android_version_sortie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "samsung-galaxy-a27",
+          "video": 4,
+          "chaine": "Versus",
+          "titre": "Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!",
+          "verdict": "À éviter"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 4,
+        "niveau_puce": "famille de puce nommée dans la vidéo"
+      }
     }
   ],
   "catalogue_meta": {
@@ -5436,10 +5839,12 @@
       "min": 0,
       "principe": "Score de compatibilité avec les critères choisis par l’utilisateur. 9/10 correspond à une adéquation très forte; 10/10 n’est jamais attribué. Les scores ne sont pas des notes de qualité absolue."
     },
-    "count": 86,
+    "count": 94,
     "note_fiabilite": "Les fiches marquées « specs_a_verifier » ont été complétées sans source vérifiée ; elles servent à l'audit mais doivent être contrôlées avant publication. Les fiches « exclu_reco » sont écartées des recommandations."
   },
   "meta": {
-    "prix_verifies_le": "2026-10-06"
+    "prix_verifies_le": "2026-10-06",
+    "tests_integres_le": "2026-10-23",
+    "tests_source": "tech-2026"
   }
 }

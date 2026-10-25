@@ -49,7 +49,6 @@
 .hx-debunk-card .hx-debunk-section p,.hx-debunk-card p{font-size:.95rem;line-height:1.5}
 .hx-debunk-card .hx-debunk-label{font-size:.78rem}
 details.profile-toggle[hidden]{display:none}
-.profile-picker-tab.is-current{outline:2px solid var(--ink);outline-offset:2px}
 .profile-hint{font-weight:700;color:var(--ink)}
 .hx-debunk-visual figure:only-child{max-width:210px;margin-inline:auto}
 

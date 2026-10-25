@@ -92,7 +92,7 @@ function check(label, fn) {
   const calls = [];
   function stubSource(mod, label, result) { mod.resolve = async () => { calls.push(label); return result; }; }
   stubSource(notebookcheck, 'notebookcheck', { found: true, name: LEGION, specs: LEGION_SPECS, specSources: 'notebookcheck', url: 'https://www.notebookcheck.biz/Lenovo-Legion-5-15IAX11-Tests-et-Caracteristiques.1393036.0.html', confidence: 'high' });
-  stubSource(phonesdata, 'phonesdata', { found: true, name: 'Samsung Galaxy A57', specs: { ecran: '6,6" AMOLED, 120 Hz', ram: '8 Go', batterie: '5 000 mAh' }, specSources: {}, url: 'https://example.com/a57', confidence: 0.9 });
+  stubSource(phonesdata, 'phonesdata', { found: true, name: 'Samsung Galaxy A47', specs: { ecran: '6,6" AMOLED, 120 Hz', ram: '8 Go', batterie: '5 000 mAh' }, specSources: {}, url: 'https://example.com/a47', confidence: 0.9 });
   stubSource(kimovil, 'kimovil', null);
   stubSource(gsmarena, 'gsmarena', { found: false });
 
@@ -107,7 +107,7 @@ function check(label, fn) {
   });
   await check('smartphone : PhonesData sollicité, NotebookCheck jamais', async () => {
     calls.length = 0;
-    const r = await serverResolve.resolveModel('Samsung Galaxy A57', { category: 'smartphones' });
+    const r = await serverResolve.resolveModel('Samsung Galaxy A47', { category: 'smartphones' });
     assert.ok(r.ok, 'échec : ' + JSON.stringify(r.reason || r.error));
     assert.equal(r.strategy, 'phonesdata+crosscheck', 'stratégie : ' + r.strategy);
     assert.ok(calls.includes('phonesdata'), 'PhonesData doit être sollicité');

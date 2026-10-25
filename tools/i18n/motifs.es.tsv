@@ -35,3 +35,11 @@
 ^Critère\(s\) choisi\(s\) mais non documenté\(s\) dans le catalogue : (.+)\.$	Criterios elegidos pero no documentados en el catálogo: $1.
 ^Classement du plus proche de vos choix au moins proche \(profil « (.+) » en départage\)\.$	Clasificación del más cercano al menos cercano a tus elecciones (perfil «$1» como desempate).
 ^(.+) et à (.+)$	$1 y $2
+^Limite : (.+)$	Límite: $1
+^verdict : (.+)$	veredicto: $1
+^(.+) mAh annoncés, charge (.+) \(version Europe\)$	$1 mAh anunciados, carga de $2 (versión europea)
+^(.+) mAh annoncés, charge (.+)$	$1 mAh anunciados, carga de $2
+^(.+) mAh annoncés$	$1 mAh anunciados
+^(.+) mAh, devant (.+) \((.+) mAh\)$	$1 mAh, por delante de $2 ($3 mAh)
+^Meilleur choix de la gamme comparée ; à éviter : (.+)\.$	Mejor opción de la gama comparada; a evitar: $1.
+^Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « (.+) » départage\.$	De más a menos cercano a tus elecciones; en caso de empate, va primero un modelo visto en pruebas y después desempata el perfil «$1».

@@ -116,3 +116,137 @@ Outil · vous avez déjà un modèle en tête	Tool · you already have a model i
 Analysez un produit <1>en collant son lien</1>	Analyze a product <1>by pasting its link</1>
 Le guide lit le nom et la référence du modèle, retrouve ses caractéristiques techniques, les explique et indique à quels usages il convient. Chaque type de produit a sa propre base de données : choisissez-le d’abord.	The guide reads the model’s name and reference, finds its technical specs, explains them and shows which uses it suits. Each product type has its own database: choose it first.
 Collez le lien ou le nom du modèle	Paste the link or the model name
+# page smartphones : espace « Trouver », classement tests + fiches, records
+Partez de votre profil, de vos critères ou d’un modèle déjà repéré. Les tests vidéo récents sont intégrés au classement, avec leur source.	Start from your profile, your criteria or a model you have already spotted. Recent video tests are built into the ranking, with their source.
+Trouver mon téléphone →	Find my phone →
+Ce que les tests ont changé ↓	What the tests changed ↓
+modèles comparables	comparable models
+modèles vus en test vidéo	models seen in video tests
+dernière mise à jour des tests	latest test update
+<1>{0} · Sur mesure</1>Trois façons de trouver votre téléphone	<1>{0} · Tailored</1>Three ways to find your phone
+Façon de chercher	Way to search
+Mon profil	My profile
+Mes critères	My criteria
+J’ai un modèle	I have a model
+Choisissez ce qui vous ressemble. Le classement mélange les modèles vus dans les tests vidéo et nos fiches vérifiées.	Pick what sounds like you. The ranking mixes the models seen in video tests with our verified listings.
+Votre besoin	Your need
+Vu en test	Seen in tests
+Dans nos fiches vérifiées	In our verified listings
+Fiche vérifiée	Verified listing
+Comparer les prix ↗	Compare prices ↗
+Autonomie mesurée en jeu	Battery life measured in gaming
+Chargement du classement…	Loading the ranking…
+Petit prix	Low price
+Grosse batterie	Big battery
+Testé	Tested
+Les modèles vus en test passent en premier, dans l’ordre des vidéos ; les fiches vérifiées sont classées par leur score pour ce profil.	Models seen in tests come first, in the order of the videos; verified listings are ranked by their score for this profile.
+Fiches : modèles à 350 € ou moins, classés sur la moyenne de leurs scores performance, autonomie, photo et prix. Tests : gamme Samsung, prix en dollars.	Listings: models at €350 or less, ranked on the average of their performance, battery, photo and price scores. Tests: Samsung range, prices in dollars.
+Fiches : classées par capacité annoncée. Tests : capacités annoncées par les constructeurs, puis autonomies réellement mesurées en jeu.	Listings: ranked by stated capacity. Tests: capacities announced by the makers, then battery life actually measured in gaming.
+Autour de 300 €, on trouve déjà un écran AMOLED 120 Hz et 5 000 mAh. Ce qui coûte ensuite : le téléobjectif, l’étanchéité et la durée des mises à jour.	Around €300 you already get a 120 Hz AMOLED screen and 5,000 mAh. What costs extra after that: the telephoto lens, water resistance and the length of updates.
+Les mAh donnent la taille du réservoir, pas la durée : la puce et l’écran décident de la vitesse à laquelle il se vide. Seule une mesure tranche.	mAh give the size of the tank, not how long it lasts: the chip and the screen decide how fast it drains. Only a measurement settles it.
+Aucun n’est le meilleur pour tout le monde. <1>Affinez avec vos propres critères →</1>	None is the best for everyone. <1>Refine with your own criteria →</1>
+Cinq familles de critères, dans l’ordre que vous voulez. Vous pouvez en laisser de côté : le classement se met à jour à chaque choix.	Five families of criteria, in whatever order you like. You can skip some: the ranking updates with every choice.
+Un modèle repéré dans une boutique ? Collez son lien ou tapez son nom : l’analyseur retrouve ses caractéristiques, les explique et signale ce qui manque ou ce qui est survendu.	Spotted a model in a shop? Paste its link or type its name: the analyzer finds its specs, explains them and flags what is missing or oversold.
+Une famille peut rester sans réponse.	A family can stay unanswered.
+Faites un premier choix : les modèles les plus proches s’affichent ici.	Make a first choice: the closest models appear here.
+Un terme vous échappe ? <1>Chaque critère est expliqué ici.</1>	A term unclear? <1>Every criterion is explained here.</1>
+Fluidité, luminosité, type de dalle	Smoothness, brightness, panel type
+Capacité et vitesse de recharge	Capacity and charging speed
+Puce, jeux, multitâche	Chip, games, multitasking
+Capteur, zoom, stabilisation	Sensor, zoom, stabilization
+Mises à jour, réparation, étanchéité	Updates, repair, water resistance
+À viser	Aim for
+Ce qui compte	What matters
+La question à se poser	The question to ask
+Le téléphone sert du matin au soir : notes, transports, visio, réseaux. Il doit tenir sans prise et rester à jour jusqu’à la fin des études. Inutile de payer le haut de gamme : la batterie et la durée des mises à jour pèsent plus que la puissance.	The phone is used from morning to night: notes, commuting, video calls, social media. It must last without a charger and stay up to date until the end of your studies. No need to pay for a flagship: battery and update length matter more than power.
+Appels, visio, mails, PDF et plans, souvent en déplacement. Une batterie qui dure, un écran lisible dehors et une puce récente comptent plus que la puissance maximale.	Calls, video meetings, email, PDFs and plans, often on the move. A battery that lasts, a screen readable outdoors and a recent chip matter more than peak power.
+Les jeux lourds font chauffer la puce. Un téléphone puissant mais mal refroidi ralentit au bout de 20 minutes : lisez les tests de chauffe autant que la fiche technique.	Heavy games heat up the chip. A powerful but poorly cooled phone slows down after 20 minutes: read the heat tests as much as the spec sheet.
+Un bon capteur vaut plus qu’un grand nombre de <1>mégapixels</1>. Regardez la taille du capteur, la stabilisation optique, un vrai téléobjectif et le traitement logiciel.	A good sensor is worth more than a high <1>megapixel</1> count. Look at sensor size, optical stabilization, a real telephoto lens and the software processing.
+<1><2>Batterie {0} <3>mAh</3> ou plus</2></1> : une journée d’appels et de trajets sans recharge.	<1><2>Battery of {0} <3>mAh</3> or more</2></1>: a day of calls and travel without recharging.
+<1><2>Batterie {0} <3>mAh</3> ou plus</2></1> : une journée de cours et de transports sans chercher une prise.	<1><2>Battery of {0} <3>mAh</3> or more</2></1>: a day of classes and commuting without hunting for an outlet.
+<1>{0} Go</1> si vous gardez photos et vidéos plusieurs années ; {1} Go suffit sinon.	<1>{0} GB</1> if you keep photos and videos for years; {1} GB is enough otherwise.
+<1>{0} ans de mises à jour annoncés</1> : pas besoin de racheter avant la fin des études.	<1>{0} years of announced updates</1>: no need to buy again before your studies end.
+<1>{0} Go non extensible</1> : plein dès la deuxième année.	<1>{0} GB, not expandable</1>: full by the second year.
+<1>Puce récente</1> : PDF, tableurs et visio s’ouvrent sans attendre.	<1>Recent chip</1>: PDFs, spreadsheets and video calls open without waiting.
+<1>Écran lumineux</1> : lisible en plein jour, sur un chantier ou en gare.	<1>Bright screen</1>: readable in daylight, on a building site or in a station.
+<1>IP68</1> : résiste à la poussière et aux éclaboussures.	<1>IP68</1>: resists dust and splashes.
+<1>Puce haut de gamme</1> : Snapdragon 8, Dimensity 9 ou puce Apple récente.	<1>High-end chip</1>: Snapdragon 8, Dimensity 9 or a recent Apple chip.
+<1>Refroidissement documenté</1> : les performances baissent moins après 20 à 30 minutes de jeu.	<1>Documented cooling</1>: performance drops less after 20 to 30 minutes of play.
+<1><2>Écran {0} <3>Hz</3> ou plus</2></1> : l’image reste fluide pendant l’action.	<1><2>Screen of {0} <3>Hz</3> or more</2></1>: the picture stays smooth during the action.
+<1><2>{0} Go de <3>RAM</3></2></1> : le jeu reste en mémoire quand vous changez d’appli.	<1><2>{0} GB of <3>RAM</3></2></1>: the game stays in memory when you switch apps.
+<1>Puce puissante sans test de chauffe</1> : les images par seconde peuvent chuter quand le téléphone chauffe.	<1>Powerful chip with no heat test</1>: frame rates can drop when the phone heats up.
+<1>Grand capteur principal</1> : plus de lumière captée, surtout le soir.	<1>Large main sensor</1>: more light captured, especially in the evening.
+<1><2><3>OIS</3></2></1> (stabilisation optique) : photos nettes le soir, vidéos moins tremblées.	<1><2><3>OIS</3></2></1> (optical stabilization): sharp evening photos, steadier videos.
+<1>Téléobjectif réel</1> : portraits et zoom nets, contrairement à un simple recadrage.	<1>Real telephoto lens</1>: sharp portraits and zoom, unlike a simple crop.
+<1>{0} Go</1> : les photos et la vidéo 4K remplissent vite la mémoire.	<1>{0} GB</1>: photos and 4K video fill the memory quickly.
+<1><2>Beaucoup de <3>mégapixels</3> sur un petit capteur</2></1> : ne garantit pas de bonnes photos de nuit.	<1><2>Lots of <3>megapixels</3> on a small sensor</2></1>: does not guarantee good night photos.
+Taille, type de dalle (<1>OLED</1> ou <2>LCD</2>), fréquence en <3>Hz</3>, luminosité.	Size, panel type (<1>OLED</1> or <2>LCD</2>), frequency in <3>Hz</3>, brightness.
+Les <1>mAh</1> donnent la capacité, les watts la vitesse de recharge. La durée réelle se lit dans les tests.	<1>mAh</1> give the capacity, watts the charging speed. Real battery life is read in tests.
+La puce calcule, la <1>RAM</1> garde les applis ouvertes, le stockage conserve vos fichiers.	The chip computes, <1>RAM</1> keeps apps open, storage keeps your files.
+La taille du capteur, la stabilisation, le téléobjectif. Les <1>mégapixels</1> viennent après.	Sensor size, stabilization, the telephoto lens. <1>Megapixels</1> come after.
+Années de mises à jour, batterie remplaçable, réparabilité : c’est ce qui décide de la durée de vie.	Years of updates, replaceable battery, repairability: that is what decides lifespan.
+<1>{0} · Les tests</1>Ce que les tests ont changé	<1>{0} · The tests</1>What the tests changed
+Les <1>{0}</1> vidéos de test sont intégrées au catalogue : leurs modèles apparaissent dans le classement et dans « Mes critères », avec la mesure relevée et la source. Les chiffres sont ceux des testeurs ; le guide ne les a pas refaits et n’invente aucune note.	The <1>{0}</1> test videos are built into the catalog: their models appear in the ranking and in “My criteria”, with the measurement taken and the source. The figures are the testers’; the guide did not redo them and invents no score.
+Plus grosse batterie annoncée	Largest battery announced
+Plus longue autonomie mesurée en jeu	Longest battery life measured in gaming
+Gamme Samsung	Samsung range
+Avec {0} mAh seulement : la capacité ne dit pas la durée.	With only {0} mAh: capacity does not tell you how long it lasts.
+Mesure du test comparatif de jeu.	Measured in the gaming comparison test.
+Qui a alimenté quoi	Who fed what
+Lire le détail des {0} tests	Read the detail of the {0} tests
+chiffres, limites et choix par profil	figures, limits and picks by profile
+Des batteries de {0} à {1} mAh	Batteries from {0} to {1} mAh
+Le logiciel fait la photo	Software makes the photo
+Le traitement logiciel, assisté par l’IA, domine : c’est lui qui rend les photos régulières d’un smartphone à l’autre.	Software processing, assisted by AI, dominates: it is what makes a smartphone’s photos consistent from one shot to the next.
+<1>{0} · Aller plus loin</1>Comprendre une fiche, vérifier nos sources	<1>{0} · Going further</1>Understand a spec sheet, check our sources
+Ce qui se cache derrière les chiffres d’une fiche technique →	What hides behind the figures on a spec sheet →
+Sources utilisées	Sources used
+Tests vidéo {0} : Android Police, The Tech Chap, Versus, Tech Spurt (voir <1>Ce que les tests ont changé</1>)	Video tests {0}: Android Police, The Tech Chap, Versus, Tech Spurt (see <1>What the tests changed</1>)
+Les tests vidéo entrent dans le classement	Video tests join the ranking
+Les {0} vidéos de test sont intégrées : leurs modèles apparaissent dans les classements par profil et dans « Mes critères », avec la mesure relevée et la source.	The {0} test videos are built in: their models appear in the rankings by profile and in “My criteria”, with the measurement taken and the source.
+{0} $ (prix US)	{0} $ (US price)
+{0} Go	{0} GB
+Autonomie confortable	Comfortable battery life
+Pas de téléobjectif dédié	No dedicated telephoto lens
+Très grosse batterie et charge {0} W	Very large battery and {0} W charging
+Photo correcte, pas au niveau des haut de gamme	Decent photos, not at flagship level
+Excellent rapport qualité-prix	Excellent value for money
+Pas de charge sans fil	No wireless charging
+Autonomie record : {0} mAh en Europe	Record battery life: {0} mAh in Europe
+Suivi logiciel très long ({0}-{1} ans)	Very long software support ({0}-{1} years)
+Prix élevé	High price
+Autonomie très longue (lecture vidéo annoncée jusqu'à {0} h)	Very long battery life (video playback stated up to {0} h)
+Très cher et encombrant	Very expensive and bulky
+Budget strict	Tight budget
+À éviter	Avoid
+Choix économique	Budget pick
+Meilleur choix	Best choice
+Lenteurs occasionnelles mais suffisant pour les tâches basiques	Occasional slowdowns but enough for basic tasks
+IP64 (rétrogradé)	IP64 (downgraded)
+Ultra grand-angle de {0} MP au rabais	Cut-price {0} MP ultra-wide
+Instabilités logicielles récurrentes	Recurring software instability
+Aluminium	Aluminum
+Capteur {0} MP stabilisé	{0} MP stabilized sensor
+AMOLED {0} Hz très lumineux	Very bright {0} Hz AMOLED
+Écran AMOLED {0} Hz	{0} Hz AMOLED screen
+Puce milieu de gamme	Mid-range chip
+Photo secondaire limitée	Limited secondary camera
+Écran LCD (pas d'AMOLED)	LCD screen (not AMOLED)
+{0} W filaire, {1} W sans fil	{0} W wired, {1} W wireless
+{0} mAh, charge {1} W	{0} mAh, {1} W charging
+{0} h {1} en jeu avec {2} mAh	{0} h {1} of gaming with {2} mAh
+{0} h {1} en jeu	{0} h {1} of gaming
+autonomie en jeu mesurée : {0} h {1}	battery life measured in gaming: {0} h {1}
+autonomie mesurée : {0} h {1}	measured battery life: {0} h {1}
+Meilleur polyvalent	Best all-rounder
+Rapport qualité/prix pur	Pure value for money
+Le meilleur choix	The best choice
+Le choix économique	The budget choice
+Le budget strict	The tight-budget pick
+Chaque famille renseignée resserre la liste. Les autres peuvent rester vides.	Each family you fill in narrows the list. The others can stay empty.
+Les cinq familles sont renseignées : voici les modèles les plus proches de vos choix.	All five families are filled in: here are the models closest to your choices.
+Les cinq familles sont renseignées.	All five families are filled in.
+Chaque critère ajouté resserre la liste.	Each criterion you add narrows the list.
+OnePlus {0} (version extrême)	OnePlus {0} (extreme version)
+performance	performance
+{0} / {1} famille renseignée	{0} / {1} family filled in

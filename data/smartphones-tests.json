@@ -18,7 +18,7 @@
       "chaine": "Android Police",
       "titre": "The Pixel 11 Pro is in another league from the iPhone 18 Pro",
       "theme": "Haut de gamme",
-      "resume": "Un duel entre les deux visions de référence de l’écosystème smartphone."
+      "resume": "Pixel 11 Pro contre iPhone 18 Pro : photo, logiciel et prix."
     },
     {
       "id": "records",
@@ -26,7 +26,7 @@
       "chaine": "The Tech Chap",
       "titre": "OPPO Find X10 Pro Max - Phone of the Year?",
       "theme": "Records matériels",
-      "resume": "Démonstration complète du flagship le plus ambitieux sur le plan matériel."
+      "resume": "Un seul téléphone passé en revue : l’OPPO Find X10 Pro Max, sa batterie, son écran et ses capteurs."
     },
     {
       "id": "gaming",
@@ -34,7 +34,7 @@
       "chaine": "Versus",
       "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
       "theme": "Smart-gaming",
-      "resume": "Test comparatif ciblé sur le jeu vidéo intensif, l’autonomie et le refroidissement."
+      "resume": "Trois téléphones testés en jeu : autonomie mesurée, refroidissement et prix."
     },
     {
       "id": "samsung",
@@ -42,7 +42,7 @@
       "chaine": "Versus",
       "titre": "Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!",
       "theme": "Gamme Samsung",
-      "resume": "Guide d’achat pour éviter les erreurs de positionnement dans le milieu de gamme Samsung."
+      "resume": "Quatre Galaxy A comparés pour savoir lequel acheter et lequel éviter."
     },
     {
       "id": "nouveautes",
@@ -50,7 +50,7 @@
       "chaine": "Tech Spurt",
       "titre": "Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290",
       "theme": "Actualités",
-      "resume": "Revue de presse technique sur les derniers lancements Asie et internationaux."
+      "resume": "Les derniers lancements : Vivo V80 et OnePlus 16, avec leurs batteries."
     }
   ],
   "modeles": [
@@ -325,12 +325,12 @@
   },
   "tendances": [
     {
-      "titre": "L’explosion des batteries",
+      "titre": "Des batteries de 7 000 à 9 000 mAh",
       "texte": "Les capacités atteignent 7 000 à 9 000 mAh sans surépaisseur notable, grâce aux cellules silicium-carbone."
     },
     {
-      "titre": "La photo assistée par l’IA",
-      "texte": "Le traitement logiciel de la photo, assisté par l’IA, domine : c’est lui qui fait la régularité d’un smartphone."
+      "titre": "Le logiciel fait la photo",
+      "texte": "Le traitement logiciel, assisté par l’IA, domine : c’est lui qui rend les photos régulières d’un smartphone à l’autre."
     }
   ],
   "limites": [

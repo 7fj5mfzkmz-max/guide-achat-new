@@ -1,6 +1,56 @@
 {
-  "mis_a_jour": "2026-10-24",
+  "mis_a_jour": "2026-10-25",
   "entrees": [
+    {
+      "id": "article-2026-10-25-les-tests-vide-o-entrent-dans-le-classem",
+      "date": "2026-10-25",
+      "cat": "smartphones",
+      "source": "article",
+      "type": "article",
+      "nombre": 1,
+      "noms": [],
+      "titre": "Les tests vidéo entrent dans le classement",
+      "resume": "Les 5 vidéos de test sont intégrées : leurs modèles apparaissent dans les classements par profil et dans « Mes critères », avec la mesure relevée et la source.",
+      "lien": "smartphones.html#tests-2026"
+    },
+    {
+      "id": "smartphones-nouveau-2026-10-25",
+      "date": "2026-10-25",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "nouveau",
+      "nombre": 8,
+      "noms": [
+        "Google Pixel 11 Pro",
+        "OPPO Find X10 Pro Max",
+        "Vivo V80",
+        "OnePlus 16 (version extrême)",
+        "RedMagic 11S Pro",
+        "Samsung Galaxy A57",
+        "Samsung Galaxy A37",
+        "Samsung Galaxy A27"
+      ],
+      "titre": "8 nouveaux smartphones",
+      "resume": "Au catalogue : Google Pixel 11 Pro, OPPO Find X10 Pro Max, Vivo V80, OnePlus 16 (version extrême) et 4 autres.",
+      "lien": "smartphones.html"
+    },
+    {
+      "id": "smartphones-maj-2026-10-25",
+      "date": "2026-10-25",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "maj",
+      "nombre": 4,
+      "noms": [
+        "Galaxy S26 Ultra",
+        "iPhone 18 Pro",
+        "Samsung Galaxy A17 5G",
+        "Apple iPhone 17 Pro Max"
+      ],
+      "titre": "4 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : Galaxy S26 Ultra, iPhone 18 Pro, Samsung Galaxy A17 5G, Apple iPhone 17 Pro Max.",
+      "lien": "smartphones.html"
+    },
     {
       "id": "article-2026-10-24-guide-smartphones-un-quiz-en-animation",
       "date": "2026-10-24",

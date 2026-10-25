@@ -53,12 +53,47 @@ check('page smartphones : section, onglets, liens et numérotation cohérents ; 
   assert.ok(html.includes('id="tests-2026"')); assert.ok(html.includes('assets/css/smartphones-tests.css')); assert.ok(html.includes('assets/js/smartphones-tests.js'));
   ['assets/css/smartphones-tests.css', 'assets/js/smartphones-tests.js', 'data/smartphones-tests.json'].forEach(f => assert.ok(fs.existsSync(path.join(root, f)), f));
   const nav = [...html.matchAll(/<li><a href="#([a-z0-9-]+)"><small>(\d\d)<\/small>/g)].map(m => [m[1], m[2]]);
-  assert.deepEqual(nav.map(n => n[0]), ['audit', 'nos-choix', 'choisir-profil', 'analyser-modele', 'checklist', 'tests-2026', 'sources']);
-  assert.deepEqual(nav.map(n => n[1]), ['01', '02', '03', '04', '05', '06', '07']);
+  assert.deepEqual(nav.map(n => n[0]), ['trouver', 'tests-2026', 'sources']);
+  assert.deepEqual(nav.map(n => n[1]), ['01', '02', '03']);
   nav.forEach(([id]) => assert.ok(html.includes('id="' + id + '"'), id));
-  ['01 · Sur mesure', '02 · Nos choix 2026', '03 · Votre profil', '04 · Analyseur', '05 · Avant d’acheter', '06 · Les tests 2026', '07 · Sources'].forEach(t => assert.ok(html.includes(t), t));
+  ['01 · Sur mesure', '02 · Les tests', '03 · Aller plus loin'].forEach(t => assert.ok(html.includes(t), t));
+  ['choisir-profil', 'audit', 'analyser-modele'].forEach(id => assert.ok(html.includes('id="' + id + '"') && html.includes('aria-controls="' + id + '"'), 'onglet ' + id));
+  ['nos-choix', 'checklist', 'suite'].forEach(id => assert.ok(!html.includes('id="' + id + '"'), 'section retirée : ' + id));
   assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('phone-analyzer/ui.js'));
   const ids = [...html.matchAll(/ id="([^"]+)"/g)].map(m => m[1]); assert.equal(new Set(ids).size, ids.length, 'identifiants HTML dupliqués');
+});
+const cat = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones.json'), 'utf8'));
+check('catalogue : chaque modèle testé y figure, relié à son test', () => {
+  d.modeles.forEach(m => {
+    const p = cat.produits.find(x => (x.tests || []).some(t => t.modele === m.id));
+    assert.ok(p, m.id + ' absent du catalogue (relancer node tools/smartphones/integrer-tests.js)');
+    assert.ok(p.tests[0].video >= 1 && p.tests[0].chaine, m.id + ' : preuve de test incomplète');
+  });
+  assert.equal(new Set(cat.produits.map(p => p.id)).size, cat.produits.length, 'identifiants du catalogue dupliqués');
+  assert.equal(cat.catalogue_meta.count, cat.produits.length);
+});
+check('catalogue : aucune note inventée pour les modèles issus des tests', () => {
+  cat.produits.filter(p => p.origine === 'test').forEach(p => {
+    assert.equal(Object.keys(p.scores || {}).length, 0, p.id + ' : score inventé');
+    assert.equal(Object.keys(p.profil_scores || {}).length, 0, p.id + ' : score par profil inventé');
+    assert.equal(p.fiche_statut, 'teste_video');
+    const m = M(p.id);
+    if (m && m.specs && m.specs.batterie_mah && p.compatibilite.batterie) assert.equal(p.compatibilite.batterie.capacite_mah, m.specs.batterie_mah, p.id + ' : batterie différente du dossier');
+  });
+});
+check('catalogue : mesures d’autonomie du dossier reportées sur les fiches', () => {
+  const mesure = id => cat.produits.find(p => (p.tests || []).some(t => t.modele === id)).tests[0].mesures || {};
+  assert.equal(mesure('apple-iphone-17-pro-max').autonomie_jeu_min, 774);
+  assert.equal(mesure('redmagic-11s-pro').autonomie_jeu_min, 690);
+  assert.equal(mesure('samsung-galaxy-s26-ultra').autonomie_jeu_min, 617);
+  assert.equal(mesure('samsung-galaxy-a57').autonomie_globale_min, 635);
+});
+check('classement : les modèles prêts issus des tests ont assez de données et un état de fiche explicite', () => {
+  cat.produits.filter(p => p.origine === 'test' && p.ready_for_recommendation).forEach(p => {
+    const n = ['ecran', 'performance', 'batterie', 'durete'].filter(k => p.compatibilite[k] && Object.values(p.compatibilite[k]).some(v => v != null)).length;
+    assert.ok(n >= 2, p.id + ' : pas assez de données pour être classé');
+  });
+  assert.ok(cat.produits.filter(p => p.origine === 'test' && p.ready_for_recommendation).length >= 3);
 });
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
 if (failures) process.exitCode = 1;

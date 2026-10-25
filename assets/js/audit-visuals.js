@@ -38,7 +38,7 @@
       return s + tx(48, 59, 8.5, c);
     },
     capacity: function (v) {
-      var p = { '3000': .5, '4000': .67, '5000': .83, '6000': 1 }[v], c = { '3000': 'peu de marge', '4000': 'journée correcte', '5000': 'journée large', '6000': '2 jours possibles' }[v];
+      var p = { '3000': .5, '4000': .67, '5000': .83, '6000': 1 }[v], c = { '3000': 'à recharger vite', '4000': 'tient la journée', '5000': 'un jour et plus', '6000': 'souvent 2 jours' }[v];
       return rc(8, 10, 72, 34, 6, 'none', K, 'stroke-width="3"') + rc(80, 22, 5, 10, 2, K) + rc(12, 14, 64 * p, 26, 3, T, '', 'class="av-grow"') + tx(46, 59, 9, c);
     },
     chemistry: function (v) {
