@@ -97,7 +97,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         assert.match(await page.locator('#sp-log').innerText(), /Gamer/);
       });
       await check('chiffres de l’en-tête alimentés par les données' + tag, async () => {
-        assert.equal((await page.locator('[data-sp="models"]').first().innerText()).trim(), '55');
+        assert.equal((await page.locator('[data-sp="models"]').first().innerText()).trim(), '51');
         assert.equal((await page.locator('[data-sp="tested"]').first().innerText()).trim(), '12');
       });
       await check('aucune erreur JavaScript' + tag, async () => assert.deepEqual(errors, []));

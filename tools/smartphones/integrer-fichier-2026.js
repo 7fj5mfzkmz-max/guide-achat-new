@@ -20,7 +20,17 @@ const ALIAS = {
   'zte nubia focus 6 air': 'nubia-focus-6-air',
   'asus rog phone 9': 'rog-phone-9',
 };
-const CONFLIT = { 'nothing phone (3)': 'Puce, batterie et charge différentes des sources relevées (Snapdragon 8s Gen 4, 5 150 mAh) : à vérifier avant publication.' };
+const CONFLIT = {};
+// Corrections relevées sur les sources (Les Mobiles, Kimovil, LDLC) : la puce et la batterie du classeur étaient fausses.
+const CORRECTIONS = {
+  'nothing-phone-3': {
+    prix: 699, prix_note: 'Prix relevé chez LDLC (12/256 Go, oct. 2026) ; le classeur donnait une estimation de 649 €.',
+    processeur: 'Snapdragon 8s Gen 4 (4 nm)', batterie_mah: 5150, charge_w: null,
+    sources: ['https://www.lesmobiles.com/telephones/nothing-phone-3.html', 'https://www.kimovil.com/fr/ou-acheter-nothing-pohne-3'],
+  },
+};
+// Modèles anciens : gardés dans le catalogue, retirés de tous les classements.
+const ANCIENS = ['nokia-g10', 'redmi-note-11s', 'realme-c67', 'htc-u24-pro', 'zte-blade-v70-vita'];
 const PLIABLE = /fold|flip|razr|magic v|duo/i; // pliables : hors classement par profil, comme les autres pliables
 const vide = v => v == null || v === '' || v === 'À documenter' || v === 'Octa-core, modèle exact à vérifier selon version';
 const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9+ ()]/g, '').replace(/\s+/g, ' ').trim();
@@ -130,6 +140,31 @@ function appliquerLigne(cat, f, rapport) {
   if (!p.fiche_statut) p.fiche_statut = 'fichier_integral';
 }
 
+function appliquerCorrections(cat) {
+  Object.keys(CORRECTIONS).forEach(id => {
+    const p = cat.produits.find(x => x.id === id);
+    if (!p) return;
+    const c = CORRECTIONS[id];
+    p.prix_indicatif = c.prix;
+    p.prix_note = c.prix_note;
+    p.caracteristiques.processeur = c.processeur;
+    p.caracteristiques.batterie = c.batterie_mah + ' mAh';
+    p.compatibilite.performance.soc = c.processeur;
+    p.compatibilite.batterie.capacite_mah = c.batterie_mah;
+    p.compatibilite.batterie.recharge_watts = c.charge_w;
+    p.sources_verification = c.sources;
+    p.date_verification = DATE;
+    p.fiche_statut = 'source_fichier';
+    p.ready_for_recommendation = true;
+  });
+  ANCIENS.forEach(id => {
+    const p = cat.produits.find(x => x.id === id);
+    if (!p) return;
+    p.exclu_reco = true;
+    p.prix_note = (p.prix_note ? p.prix_note + ' ' : '') + 'Modèle ancien : hors classement.';
+  });
+}
+
 function main() {
   const cat = JSON.parse(fs.readFileSync(CAT, 'utf8'));
   const src = JSON.parse(fs.readFileSync(FICHIER, 'utf8'));
@@ -137,6 +172,7 @@ function main() {
   const dejaDansData = new Set(src.data.map(f => norm(f.modele)));
   src.data.forEach(f => appliquerLigne(cat, f, rapport));
   src.integral.filter(f => !dejaDansData.has(norm(f.modele))).forEach(f => appliquerLigne(cat, f, rapport));
+  appliquerCorrections(cat);
   classer(cat);
   cat.catalogue_meta.count = cat.produits.length;
   cat.catalogue_meta.fichier_2026 = { date: DATE, classeurs: src.classeurs, note: 'Données du classeur Data (sources) puis Integral (sans source). Les fiches vérifiées sur le web ne sont pas remplacées.' };

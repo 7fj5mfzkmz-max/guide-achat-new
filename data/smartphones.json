@@ -1961,7 +1961,7 @@
       "nom": "realme C67",
       "marque": "realme",
       "prix_indicatif": 150,
-      "prix_note": "Prix du classeur (Lancement 2023).",
+      "prix_note": "Prix du classeur (Lancement 2023). Modèle ancien : hors classement.",
       "tranche_prix": "100-200",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -2036,7 +2036,8 @@
         "https://www.frandroid.com/marques/realme",
         "https://www.gsmarena.com/realme_c67_4g-12749.php"
       ],
-      "fiche_statut": "source_fichier"
+      "fiche_statut": "source_fichier",
+      "exclu_reco": true
     },
     {
       "id": "redmi-15c",
@@ -2509,7 +2510,7 @@
       "nom": "Xiaomi Redmi Note 11S",
       "marque": "Xiaomi",
       "prix_indicatif": 249,
-      "prix_note": "Prix du classeur (Lancement 2022).",
+      "prix_note": "Prix du classeur (Lancement 2022). Modèle ancien : hors classement.",
       "tranche_prix": "moins-100",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -2572,7 +2573,8 @@
         "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-11s",
         "https://www.lesnumeriques.com/telephone-portable/xiaomi-redmi-note-11s-p67333/test.html"
       ],
-      "date_verification": "2026-10"
+      "date_verification": "2026-10",
+      "exclu_reco": true
     },
     {
       "id": "galaxy-a23-5g",
@@ -2868,7 +2870,7 @@
       "nom": "ZTE Blade V70 Vita",
       "marque": "ZTE",
       "prix_indicatif": 92,
-      "prix_note": "Prix du classeur (Lancement 2025).",
+      "prix_note": "Prix du classeur (Lancement 2025). Modèle ancien : hors classement.",
       "tranche_prix": "moins-100",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -2924,7 +2926,8 @@
         "https://www.kimovil.com/fr/telephones-zte"
       ],
       "date_verification": "2026-10",
-      "fiche_statut": "source_fichier"
+      "fiche_statut": "source_fichier",
+      "exclu_reco": true
     },
     {
       "id": "redmi-a5",
@@ -3503,7 +3506,7 @@
       "nom": "HTC U24 Pro",
       "marque": "HTC",
       "prix_indicatif": 549,
-      "prix_note": "Prix du classeur (Juin 2024).",
+      "prix_note": "Prix du classeur (Juin 2024). Modèle ancien : hors classement.",
       "caracteristiques": {
         "ecran": "6.8 OLED 120Hz",
         "processeur": "Snapdragon 7 Gen 3 (4 nm)",
@@ -3554,7 +3557,8 @@
       "sources_verification": [
         "https://www.gsmarena.com/htc_u24_pro-13038.php",
         "https://www.kimovil.com/fr/ou-acheter-htc-u24-pro"
-      ]
+      ],
+      "exclu_reco": true
     },
     {
       "id": "asus-zenfone-12-ultra",
@@ -5554,7 +5558,7 @@
       "nom": "Nokia G10",
       "marque": "Nokia",
       "prix_indicatif": 149,
-      "prix_note": "Prix du classeur (Lancement 2021).",
+      "prix_note": "Prix du classeur (Lancement 2021). Modèle ancien : hors classement.",
       "caracteristiques": {
         "ecran": "6.52 LCD 60Hz",
         "processeur": "Helio G25 (12 nm)",
@@ -5630,7 +5634,8 @@
         "https://www.gsmarena.com/nokia_g10-10842.php",
         "https://www.frandroid.com/marques/nokia/909187_nokia-g10"
       ],
-      "fiche_statut": "source_fichier"
+      "fiche_statut": "source_fichier",
+      "exclu_reco": true
     },
     {
       "id": "iphone-17-pro-max",
@@ -6353,14 +6358,14 @@
       "id": "nothing-phone-3",
       "nom": "Nothing Phone (3)",
       "marque": "Nothing",
-      "prix_indicatif": null,
-      "prix_note": "Prix du classeur : 649 € (Juin 2026 (Est.), non retenu : ni relevé ni confirmé). Puce, batterie et charge différentes des sources relevées (Snapdragon 8s Gen 4, 5 150 mAh) : à vérifier avant publication.",
+      "prix_indicatif": 699,
+      "prix_note": "Prix relevé chez LDLC (12/256 Go, oct. 2026) ; le classeur donnait une estimation de 649 €.",
       "caracteristiques": {
         "ecran": "6.7 AMOLED 120Hz 2000nits",
-        "processeur": "Snapdragon 8s Gen 3 (4 nm)",
+        "processeur": "Snapdragon 8s Gen 4 (4 nm)",
         "ram": "12 Go",
         "stockage": "256 Go",
-        "batterie": "5000 mAh, charge 45 W",
+        "batterie": "5150 mAh",
         "photo": "50 Mpx",
         "etancheite": "IP54",
         "os": "Android 14 (3 ans)"
@@ -6377,7 +6382,7 @@
           "luminosite_nits": 2000
         },
         "performance": {
-          "soc": "Snapdragon 8s Gen 3",
+          "soc": "Snapdragon 8s Gen 4 (4 nm)",
           "niveau": 7,
           "ram_go_max": 12,
           "gamme": "haut"
@@ -6387,8 +6392,8 @@
           "ois": true
         },
         "batterie": {
-          "capacite_mah": 5000,
-          "recharge_watts": 45,
+          "capacite_mah": 5150,
+          "recharge_watts": null,
           "chimie": null
         },
         "durete": {
@@ -6396,12 +6401,17 @@
           "android_version_sortie": 14
         }
       },
-      "ready_for_recommendation": false,
-      "fiche_statut": "conflit_a_verifier",
+      "ready_for_recommendation": true,
+      "fiche_statut": "source_fichier",
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
         "prix": "rumeur_non_retenue"
-      }
+      },
+      "sources_verification": [
+        "https://www.lesmobiles.com/telephones/nothing-phone-3.html",
+        "https://www.kimovil.com/fr/ou-acheter-nothing-pohne-3"
+      ],
+      "date_verification": "2026-10"
     }
   ],
   "catalogue_meta": {

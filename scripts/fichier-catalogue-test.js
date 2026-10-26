@@ -18,10 +18,16 @@ check('une rumeur ou un conflit ne donne jamais une fiche classée', () => {
 check('chaque fiche classée a une puce reconnue (niveau 1 à 10)', () => {
   classees.forEach(p => { const n = p.compatibilite.performance.niveau; assert.ok(Number.isInteger(n) && n >= 1 && n <= 10, p.nom + ' : niveau ' + n); });
 });
-check('Nothing Phone (3) est au catalogue, en conflit signalé, hors classement', () => {
+check('Nothing Phone (3) est corrigé d’après les sources : Snapdragon 8s Gen 4, 5 150 mAh', () => {
   const p = produits.find(x => x.id === 'nothing-phone-3');
-  assert.ok(p, 'absent'); assert.equal(p.fiche_statut, 'conflit_a_verifier'); assert.equal(p.ready_for_recommendation, false);
-  assert.match(p.prix_note, /à vérifier/);
+  assert.ok(p, 'absent'); assert.equal(p.compatibilite.batterie.capacite_mah, 5150); assert.match(p.compatibilite.performance.soc, /8s Gen 4/);
+  assert.equal(p.fiche_statut, 'source_fichier'); assert.equal(p.ready_for_recommendation, true);
+});
+check('les modèles anciens restent au catalogue mais hors classement', () => {
+  ['nokia-g10', 'redmi-note-11s', 'realme-c67', 'htc-u24-pro', 'zte-blade-v70-vita'].forEach(id => {
+    const p = produits.find(x => x.id === id);
+    assert.ok(p, id); assert.equal(p.exclu_reco, true, id);
+  });
 });
 check('les pliables du classeur restent hors classement', () => {
   produits.filter(p => /fold|flip|razr|magic v|duo/i.test(p.nom)).forEach(p => assert.equal(p.ready_for_recommendation, false, p.nom));
