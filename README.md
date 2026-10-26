@@ -45,6 +45,9 @@ Le classement de la page smartphones (profils, « Mes critères ») lit ensuite 
 `phone-analyzer/chips.js` classe chaque puce sur une seule échelle (1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme), partagée par le catalogue, le quiz et l'analyseur. `node tools/smartphones/classer-puces.js` écrit `perf.niveau` et `perf.gamme` dans `data/smartphones.json` (déjà appelé par `integrer-tests.js`). Puce inconnue : pas de niveau. Nouvelle puce : ajouter une règle dans `chips.js`, puis `node scripts/chips-test.js`.
 Paliers de prix du quiz : bas prix 80-150 €, entrée 150-300 €, milieu 300-800 €, haut 800 € et plus ; « petit prix » = 80 à 250 €.
 
+### Fiches vérifiées sur sources
+`data/smartphones-verifications.json` liste les fiches relues sur au moins deux sources (presse, fabricant, revendeur), avec le prix France et les liens. `node tools/smartphones/verifier-fiches.js` les applique au catalogue : statut `verifie_web`, éligibles aux classements. Une valeur absente ou contradictoire reste vide. Les modèles introuvables sont écartés (`exclu_reco`), les pliables et imports restent hors classement. Contrôle : `node scripts/verifications-test.js`.
+
 ## Générer les données PC portables
 `python3 tools/pc-portables/construire.py` → écrit `data/pc-portables.json` et `data/lexique-pc-portables.json` (lexique affiché dans `pc-portables.html#lexique`).
 

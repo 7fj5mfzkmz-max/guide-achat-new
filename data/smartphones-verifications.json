@@ -1,0 +1,780 @@
+{
+ "date": "2026-10",
+ "note": "Chaque fiche est relue sur au moins deux sources (presse, fabricants, revendeurs). Une valeur absente ou contradictoire n'est pas renseignée.",
+ "verifiees": [
+  {
+   "id": "oneplus-15",
+   "prix": 799,
+   "prix_note": "Lancement 979 € (nov. 2025) ; offres de 670 à 795 € relevées en 2026.",
+   "sources": [
+    {
+     "nom": "LesMobiles — lancement France",
+     "url": "https://www.lesmobiles.com/actualite/oneplus-15-lancement-officiel-fiche-technique-et-ambitions-en-france"
+    },
+    {
+     "nom": "KultureGeek — prix France",
+     "url": "https://kulturegeek.fr/news-342022/oneplus-15-officialise-france-prix-baisse"
+    },
+    {
+     "nom": "Kimovil — prix France",
+     "url": "https://www.kimovil.com/fr/oneplus-15/price/FR"
+    }
+   ],
+   "ecran": "6,78\" AMOLED LTPO, 165 Hz",
+   "techno": "AMOLED",
+   "hz": 165,
+   "soc": "Snapdragon 8 Elite Gen 5 (3 nm)",
+   "ram_txt": "12 ou 16 Go",
+   "ram_max": 16,
+   "mah": 7300,
+   "w": 120,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal (Sony IMX906)"
+  },
+  {
+   "id": "oneplus-nord-5",
+   "prix": 469,
+   "prix_note": "Prix de lancement ; promotions à 275-290 € relevées chez AliExpress (version globale).",
+   "sources": [
+    {
+     "nom": "Phonandroid — annonce",
+     "url": "https://www.phonandroid.com/?p=2657147"
+    },
+    {
+     "nom": "Dealabs — fiche 5 200 mAh / 80 W",
+     "url": "https://www.dealabs.com/bons-plans/le-1708-a-00h-smartphone-oneplus-nord-5-5g-8256-go-snapdragon-8s-gen-3-amoled-683-144-hz-5200-mah-80-w-50-mp-3392840"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-oneplus-nord-5"
+    }
+   ],
+   "ecran": "6,83\" AMOLED, 144 Hz",
+   "techno": "AMOLED",
+   "hz": 144,
+   "soc": "Snapdragon 8s Gen 3 (4 nm)",
+   "ram_txt": "8 ou 12 Go",
+   "ram_max": 12,
+   "mah": 5200,
+   "w": 80,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal",
+   "stockage": "256 ou 512 Go (UFS 3.1)"
+  },
+  {
+   "id": "galaxy-s26",
+   "prix": 999,
+   "prix_note": "Prix de lancement France (fév. 2026) ; offres de 663 à 790 € relevées depuis.",
+   "sources": [
+    {
+     "nom": "KultureGeek — prix France",
+     "url": "https://kulturegeek.fr/news-346697/samsung-galaxy-s26-prix-francais-devoiles-hausse"
+    },
+    {
+     "nom": "Presse-citron — où acheter",
+     "url": "https://www.presse-citron.net/ou-acheter-les-galaxy-s26-et-s26-de-samsung-au-meilleur-prix/"
+    },
+    {
+     "nom": "Edcom — Galaxy S26 à 663 €",
+     "url": "https://www.edcom.fr/actualites/galaxy-s26-a-663-seulement-sur-amazon-135-sous-le-tarif-officiel-samsung"
+    }
+   ],
+   "ecran": "6,3\" Dynamic AMOLED 2X, 120 Hz",
+   "techno": "AMOLED",
+   "hz": 120,
+   "soc": "Exynos 2600 (2 nm)",
+   "ram_txt": "12 Go",
+   "ram_max": 12,
+   "mah": 4300,
+   "w": 25,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal",
+   "android": 16,
+   "stockage": "256 Go ou plus"
+  },
+  {
+   "id": "galaxy-s26-plus",
+   "prix": 1269,
+   "prix_note": "Prix annoncé avant le lancement (256 Go) ; à confirmer sur samsung.com/fr.",
+   "sources": [
+    {
+     "nom": "KultureGeek — prix France",
+     "url": "https://kulturegeek.fr/news-346697/samsung-galaxy-s26-prix-francais-devoiles-hausse"
+    },
+    {
+     "nom": "Kimovil — Galaxy S26+",
+     "url": "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-s26-plus"
+    },
+    {
+     "nom": "LDLC — fiche S26+",
+     "url": "https://www.ldlc.com/fr-be/fiche/PB00728525.html"
+    }
+   ],
+   "ecran": "6,7\" Dynamic AMOLED 2X, 120 Hz adaptatif, 2 600 nits",
+   "techno": "AMOLED",
+   "hz": 120,
+   "nits": 2600,
+   "soc": "Exynos 2600 (2 nm)",
+   "ram_txt": "12 Go",
+   "ram_max": 12,
+   "mah": 4900,
+   "w": 45,
+   "android": 16,
+   "photo_txt": null
+  },
+  {
+   "id": "galaxy-s26-ultra",
+   "prix": 1569,
+   "prix_note": "Prix Samsung France (256 Go) ; revendeur LDLC à 1 469,95 €.",
+   "sources": [
+    {
+     "nom": "LDLC — fiche S26 Ultra",
+     "url": "https://www.ldlc.com/fiche/PB00728577.html"
+    },
+    {
+     "nom": "Kimovil — prix France",
+     "url": "https://www.kimovil.com/fr/samsung-galaxy-s26-ultra/price/FR"
+    }
+   ],
+   "ecran": "6,9\" Dynamic AMOLED 2X, QHD+, 120 Hz, 2 600 nits",
+   "techno": "AMOLED",
+   "hz": 120,
+   "nits": 2600,
+   "soc": "Snapdragon 8 Elite Gen 5",
+   "ram_txt": "12 à 16 Go",
+   "ram_max": 16,
+   "mah": 5000,
+   "w": 60,
+   "ip": "IP68",
+   "android": 16
+  },
+  {
+   "id": "pixel-10",
+   "prix": 599,
+   "prix_note": "Offres de 495 à 689 € (Amazon 599 € en juin 2026).",
+   "sources": [
+    {
+     "nom": "Kimovil — Pixel 10",
+     "url": "https://www.kimovil.com/fr/ou-acheter-google-pixel-10"
+    },
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/google-pixel-10.html"
+    },
+    {
+     "nom": "Edcom — Pixel 10 à 599 €",
+     "url": "https://www.edcom.fr/actualites/le-google-pixel-10-smartphone-de-l-equipe-de-france-est-a-seulement-599-sur-amazon-pour-le-prime-day"
+    }
+   ],
+   "ecran": "6,3\" OLED, 120 Hz, 2 700 nits",
+   "techno": "OLED",
+   "hz": 120,
+   "nits": 2700,
+   "soc": "Google Tensor G5 (3 nm)",
+   "mah": 4970,
+   "w": 27
+  },
+  {
+   "id": "pixel-10-pro",
+   "prix": 999,
+   "prix_note": "Prix habituel du Google Store ; promotions à 749 € (Boulanger).",
+   "sources": [
+    {
+     "nom": "Google Store — fiche Pixel 10 Pro",
+     "url": "https://store.google.com/fr/product/pixel_10_pro_specs"
+    },
+    {
+     "nom": "Edcom — Pixel 10 Pro à 749 €",
+     "url": "https://www.edcom.fr/actualites/pixel-10-pro-le-smartphone-de-l-equipe-de-france-a-749-chez-boulanger"
+    },
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/google-pixel-10-pro.html"
+    }
+   ],
+   "ecran": "6,3\" OLED LTPO, 1 à 120 Hz, 3 300 nits",
+   "techno": "OLED",
+   "hz": 120,
+   "nits": 3300,
+   "soc": "Google Tensor G5 (3 nm)",
+   "ram_txt": "16 Go",
+   "ram_max": 16,
+   "ip": "IP68"
+  },
+  {
+   "id": "pixel-10-pro-xl",
+   "prix": 829,
+   "prix_note": "Offre version globale (256 Go) relevée sur Kimovil ; pas de prix officiel trouvé.",
+   "sources": [
+    {
+     "nom": "Kimovil — Pixel 10 Pro XL",
+     "url": "https://www.kimovil.com/fr/ou-acheter-google-pixel-10-pro-xl"
+    },
+    {
+     "nom": "Clubic — fiche",
+     "url": "https://www.clubic.com/574116-google-pixel-10-pro-xl.html"
+    },
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/google-pixel-10-pro-xl.html"
+    }
+   ],
+   "ecran": "6,8\" OLED LTPO, 120 Hz, 3 300 nits",
+   "techno": "OLED",
+   "hz": 120,
+   "nits": 3300,
+   "soc": "Google Tensor G5 (3 nm)",
+   "ram_txt": "16 Go",
+   "ram_max": 16,
+   "mah": 5200,
+   "w": 45,
+   "ip": "IP68"
+  },
+  {
+   "id": "pixel-10a",
+   "prix": 499,
+   "prix_note": "Lancement 499 € ; descendu à 419,99 € chez Rakuten (août 2026).",
+   "sources": [
+    {
+     "nom": "Bbox-mag — test Pixel 10a",
+     "url": "https://www.bbox-mag.fr/mobiles/pixel-10a-test-avis/44623980"
+    },
+    {
+     "nom": "Edcom — Pixel 10a sous 420 €",
+     "url": "https://www.edcom.fr/actualites/google-pixel-10a-le-meilleur-photophone-pas-cher-passe-sous-les-420"
+    },
+    {
+     "nom": "Kimovil — Pixel 10a",
+     "url": "https://www.kimovil.com/fr/ou-acheter-google-pixel-10a"
+    }
+   ],
+   "ecran": "6,3\" pOLED, 120 Hz",
+   "techno": "OLED",
+   "hz": 120,
+   "soc": "Google Tensor G4",
+   "ram_txt": "8 Go",
+   "ram_max": 8,
+   "mah": 5100,
+   "w": 45,
+   "ip": "IP68",
+   "stockage": "128 ou 256 Go"
+  },
+  {
+   "id": "xperia-1-vii",
+   "prix": 1500,
+   "prix_note": "Environ 1 500 € au lancement ; offre import à 1 164 €.",
+   "sources": [
+    {
+     "nom": "Phonandroid — annonce",
+     "url": "https://www.phonandroid.com/?p=2647926"
+    },
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/sony-xperia-1-vii.html"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-sony-xperia-1-vii"
+    }
+   ],
+   "ecran": "6,5\" OLED, 120 Hz",
+   "techno": "OLED",
+   "hz": 120,
+   "soc": "Snapdragon 8 Elite (3 nm)",
+   "ram_txt": "12 Go",
+   "ram_max": 12,
+   "mah": 5000,
+   "w": 30
+  },
+  {
+   "id": "iphone-18-pro",
+   "prix": 1479,
+   "prix_note": "Prix Apple France (256 Go).",
+   "sources": [
+    {
+     "nom": "Bbox-mag — prix officiel",
+     "url": "https://www.bbox-mag.fr/mobiles/iphone-18-pro/47766847"
+    },
+    {
+     "nom": "Back Market — fiche",
+     "url": "https://www.backmarket.fr/fr-fr/c/iphone/iphone-18-pro-review"
+    },
+    {
+     "nom": "LDLC — fiche",
+     "url": "https://www.ldlc.pro/fr-ch/fiche/PB00752861.html"
+    }
+   ],
+   "ecran": "6,3\" OLED, 1206 x 2622",
+   "techno": "OLED",
+   "hz": 120,
+   "soc": "Apple A20 Pro (2 nm)",
+   "w": 45
+  },
+  {
+   "id": "iphone-18-pro-max",
+   "prix": 1629,
+   "prix_note": "Prix Apple France (256 Go), relevé au 15/09/2026.",
+   "sources": [
+    {
+     "nom": "Lifone — fiche et prix",
+     "url": "https://lifone.store/blogs/guides-iphone/iphone-18-pro-max-fiche-technique-prix-avis"
+    },
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/apple-iphone-18-pro-max.html"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-apple-iphone-18-pro-max"
+    }
+   ],
+   "ecran": "6,9\" OLED ProMotion 120 Hz, 3 000 nits",
+   "techno": "OLED",
+   "hz": 120,
+   "nits": 3000,
+   "soc": "Apple A20 Pro (2 nm)",
+   "w": 60,
+   "mp": 48,
+   "photo_txt": "48 Mpx principal à ouverture variable, zoom optique 8x",
+   "ip": "IP68"
+  },
+  {
+   "id": "honor-magic-8-pro",
+   "prix": 1099,
+   "prix_note": "Prix Bouygues Telecom (512 Go) ; offres import dès 753 €.",
+   "sources": [
+    {
+     "nom": "Phonandroid — prise en main",
+     "url": "https://www.phonandroid.com/?p=2680160"
+    },
+    {
+     "nom": "Bbox-mag — prix France",
+     "url": "https://www.bbox-mag.fr/mobiles/honor-magic-8-pro-bouygues-telecom/47766399"
+    },
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/honor-magic8-pro.html"
+    }
+   ],
+   "ecran": "6,7\" OLED, 120 Hz",
+   "techno": "OLED",
+   "hz": 120,
+   "soc": "Snapdragon 8 Elite Gen 5",
+   "ram_txt": "12 Go",
+   "ram_max": 12,
+   "mah": 6270,
+   "w": 100,
+   "ip": "IP68",
+   "photo_txt": "Téléobjectif périscopique 200 Mpx avec stabilisation optique (zoom 3,7x)",
+   "stockage": "512 Go"
+  },
+  {
+   "id": "motorola-edge-70-pro",
+   "prix": 439,
+   "prix_note": "Offre version internationale 8/256 Go (Kimovil) ; pas de prix officiel France trouvé.",
+   "sources": [
+    {
+     "nom": "Phonandroid — annonce",
+     "url": "https://www.phonandroid.com/motorola-edge-70-pro-officiel.html"
+    },
+    {
+     "nom": "Kimovil — Edge 70 Pro",
+     "url": "https://www.kimovil.com/fr/ou-acheter-motorola-edge-70-pro"
+    },
+    {
+     "nom": "Phonesdata",
+     "url": "https://phonesdata.com/fr/smartphones/motorola/edge-70-pro-5465863/"
+    }
+   ],
+   "ecran": "6,8\" AMOLED, 144 Hz, 5 200 nits",
+   "techno": "AMOLED",
+   "hz": 144,
+   "nits": 5200,
+   "soc": "MediaTek Dimensity 8500 Ultra (4 nm)",
+   "ram_txt": "8 Go",
+   "ram_max": 8,
+   "mah": 6500,
+   "w": 90,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal + 50 Mpx ultra grand-angle (pas de téléobjectif)",
+   "ip": "IP68"
+  },
+  {
+   "id": "rog-phone-9",
+   "prix": null,
+   "prix_note": "Pas de prix officiel France trouvé.",
+   "sources": [
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/asus-rog-phone-9.html"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-asus-rog-phone-9"
+    },
+    {
+     "nom": "Phonandroid — annonce",
+     "url": "https://www.phonandroid.com/?p=2620820"
+    }
+   ],
+   "ecran": "6,78\" AMOLED, 165 Hz",
+   "techno": "AMOLED",
+   "hz": 165,
+   "soc": "Snapdragon 8 Elite (3 nm)",
+   "ram_txt": "12 ou 16 Go",
+   "ram_max": 16,
+   "mah": 5800
+  },
+  {
+   "id": "oppo-find-x9",
+   "prix": 839,
+   "prix_note": "Offre import version globale 12/512 Go (Kimovil) ; pas de grille France officielle trouvée.",
+   "sources": [
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/oppo-find-x9.html"
+    },
+    {
+     "nom": "Journal du Geek — annonce",
+     "url": "https://www.journaldugeek.com/2025/10/29/oppo-presente-le-find-x9-son-nouveau-smartphone-avec-une-technologie-de-batterie-revolutionnaire/"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-oppo-find-x9"
+    }
+   ],
+   "ecran": "6,59\" AMOLED, 120 Hz",
+   "techno": "AMOLED",
+   "hz": 120,
+   "soc": "MediaTek Dimensity 9500 (3 nm)",
+   "ram_txt": "12 Go",
+   "ram_max": 12,
+   "mah": 7025,
+   "w": 80
+  },
+  {
+   "id": "realme-gt-7-pro",
+   "prix": 799,
+   "prix_note": "Prix de lancement (nov. 2024) ; probablement plus bas aujourd'hui.",
+   "sources": [
+    {
+     "nom": "LesMobiles — arrivée en France",
+     "url": "https://www.lesmobiles.com/actualite/le-realme-gt-7-pro-arrive-en-france-a-un-prix-tres-competitif"
+    },
+    {
+     "nom": "Phonandroid",
+     "url": "https://www.phonandroid.com/?p=2622910"
+    },
+    {
+     "nom": "Journal du Geek — test",
+     "url": "https://www.journaldugeek.com/test/test-realme-gt-7-pro-lendurance-dans-un-prix-contenu/"
+    }
+   ],
+   "ecran": "6,78\" AMOLED",
+   "techno": "AMOLED",
+   "soc": "Snapdragon 8 Elite (3 nm)",
+   "mah": 6500,
+   "w": 120,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal + 50 Mpx + 8 Mpx"
+  },
+  {
+   "id": "poco-f6-pro",
+   "prix": 480,
+   "prix_note": "Prix relevé chez des vendeurs français ; le lancement était à 499,90 € (mai 2024).",
+   "sources": [
+    {
+     "nom": "Journal du Geek — test",
+     "url": "https://www.journaldugeek.com/test/test-xiaomi-poco-f6-pro-des-performances-a-prix-maitrise/"
+    },
+    {
+     "nom": "Edcom — arrivée en France",
+     "url": "https://www.edcom.fr/actualites/les-poco-f6-et-f6-pro-arrivent-en-france-rapides-puissants-et-abordables"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-poco-f6-pro"
+    }
+   ],
+   "ecran": "6,67\" AMOLED, 1440 x 3200, 120 Hz, 4 000 nits",
+   "techno": "AMOLED",
+   "hz": 120,
+   "nits": 4000,
+   "soc": "Snapdragon 8 Gen 2",
+   "ram_txt": "12 ou 16 Go",
+   "ram_max": 16,
+   "mah": 5000,
+   "w": 120
+  },
+  {
+   "id": "poco-x6",
+   "prix": 259,
+   "prix_note": "Version européenne chez un revendeur (lancement 299,90 € en 2024).",
+   "sources": [
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/xiaomi-poco-x6.html"
+    },
+    {
+     "nom": "LesMobiles — prix 259 €",
+     "url": "https://www.lesmobiles.com/actualite/43743-xiaomi-poco-x6-5g-le-milieu-de-gamme-avec-8-go-de-ram-et-une-puce-snapdragon-pour-moins-de-260.html"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-poco-x6"
+    }
+   ],
+   "ecran": "6,67\"",
+   "soc": "Snapdragon 7s Gen 2",
+   "ram_txt": "8 ou 12 Go",
+   "ram_max": 12,
+   "mah": 5100,
+   "w": 33
+  },
+  {
+   "id": "motorola-moto-g85",
+   "prix": 220,
+   "prix_note": "Offres de 218 à 230 € (12/256 Go) ; lancement attendu vers 300 €.",
+   "sources": [
+    {
+     "nom": "Phonesdata",
+     "url": "https://phonesdata.com/fr/smartphones/motorola/moto-g85-5464868/"
+    },
+    {
+     "nom": "Blog Nouvelles Technologies",
+     "url": "https://www.blog-nouvelles-technologies.fr/?p=294324"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/motorola-g85/antutu"
+    }
+   ],
+   "ecran": "6,67\" P-OLED, 1080 x 2400, 120 Hz, 1 600 nits",
+   "techno": "OLED",
+   "hz": 120,
+   "nits": 1600,
+   "soc": "Snapdragon 6s Gen 3",
+   "ram_txt": "8 ou 12 Go",
+   "ram_max": 12,
+   "mah": 5000,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal + 8 Mpx ultra grand-angle"
+  },
+  {
+   "id": "samsung-galaxy-a15",
+   "prix": 179,
+   "prix_note": "Lancement 249 € (5G, 2024) ; 179 € au Black Friday 2024.",
+   "sources": [
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/samsung-galaxy-a15.html"
+    },
+    {
+     "nom": "Phonandroid — où l'acheter",
+     "url": "https://www.phonandroid.com/?p=2580581"
+    },
+    {
+     "nom": "Dealabs",
+     "url": "https://www.dealabs.com/magazine/?p=39237"
+    }
+   ],
+   "ecran": "6,5\" AMOLED Full HD+, 90 Hz",
+   "techno": "AMOLED",
+   "hz": 90,
+   "soc": "MediaTek Dimensity 6100+",
+   "mah": 5000,
+   "w": 25,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal + 5 Mpx macro + 2 Mpx profondeur"
+  },
+  {
+   "id": "xiaomi-redmi-note-13",
+   "prix": 170,
+   "prix_note": "Lancement 199 € (4G, 2024) ; offres de 143 à 197 € relevées.",
+   "sources": [
+    {
+     "nom": "Journal du Geek — test",
+     "url": "https://www.journaldugeek.com/test/test-xiaomi-redmi-note-13-4g-le-nouveau-meilleur-ami-des-petits-budgets/"
+    },
+    {
+     "nom": "Tom's Guide — test",
+     "url": "https://www.tomsguide.fr/test-du-xiaomi-redmi-note-13-smartphone-petit-prix-compromis/"
+    },
+    {
+     "nom": "Kimovil — comparatif",
+     "url": "https://www.kimovil.com/fr/comparer/xiaomi-redmi-note-11,xiaomi-redmi-note-13-4g"
+    }
+   ],
+   "ecran": null,
+   "soc": "Snapdragon 685",
+   "ram_txt": "6 ou 8 Go",
+   "ram_max": 8,
+   "mah": 5000,
+   "stockage": "128 ou 256 Go"
+  },
+  {
+   "id": "realme-12-pro",
+   "prix": 219,
+   "prix_note": "Relevés de 217 à 290 € (sources non datées).",
+   "sources": [
+    {
+     "nom": "LesMobiles — fiche",
+     "url": "https://www.lesmobiles.com/telephones/realme-12-pro.html"
+    },
+    {
+     "nom": "PcComponentes — fiche",
+     "url": "https://www.pccomponentes.fr/realme-12-pro-5g-12gb-256gb-6-7-bleu"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com/realme_12_pro-ampp-12810.php"
+    }
+   ],
+   "ecran": "6,7\" AMOLED Full HD+, 120 Hz, 950 nits",
+   "techno": "AMOLED",
+   "hz": 120,
+   "nits": 950,
+   "soc": "Snapdragon 6 Gen 1",
+   "ram_txt": "8 ou 12 Go",
+   "ram_max": 12,
+   "mah": 5000,
+   "w": 67,
+   "mp": 50,
+   "photo_txt": "50 Mpx principal + 32 Mpx téléobjectif + 8 Mpx ultra grand-angle",
+   "ip": "IP65",
+   "android": 14
+  },
+  {
+   "id": "redmi-15c",
+   "prix": 160,
+   "prix_note": "Version 4G 256 Go chez LDLC ; une version 5G (Dimensity 6300) est annoncée.",
+   "sources": [
+    {
+     "nom": "LDLC — fiche Redmi 15C",
+     "url": "https://www.ldlc.com/fr-ch/fiche/PB00698624.html"
+    },
+    {
+     "nom": "Kimovil — Redmi 15C",
+     "url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-15c-global"
+    },
+    {
+     "nom": "Dealabs — version 5G",
+     "url": "https://www.dealabs.com/magazine/?p=60347"
+    }
+   ],
+   "ecran": "6,9\" LCD IPS, 720 x 1600, 120 Hz, 450 nits",
+   "techno": "LCD",
+   "hz": 120,
+   "nits": 450,
+   "soc": "MediaTek Helio G81 (version 4G)",
+   "mah": 6000,
+   "w": 33
+  },
+  {
+   "id": "poco-c71",
+   "prix": 100,
+   "prix_note": "Offres de 88 à 162 € selon vendeur (4/128 Go).",
+   "sources": [
+    {
+     "nom": "Kimovil — POCO C71",
+     "url": "https://www.kimovil.com/fr/ou-acheter-poco-c71"
+    },
+    {
+     "nom": "Notebookcheck",
+     "url": "https://www.notebookcheck.com/Xiaomi-Poco-C71-startet-mit-120-Hz-Display-und-5-200-mAh-Akku-fuer-umgerechnet-69-Euro.992818.0.html"
+    },
+    {
+     "nom": "Xiaomi — caractéristiques",
+     "url": "https://www.mi.com/africa-fr/product/poco-c71/specs/"
+    }
+   ],
+   "ecran": "6,88\" LCD IPS, 720 x 1640, 120 Hz",
+   "techno": "LCD",
+   "hz": 120,
+   "soc": "Unisoc T7250 (Tiger T615)",
+   "mah": 5200,
+   "ip": "IP52",
+   "ram_txt": "3 ou 4 Go",
+   "ram_max": 4
+  },
+  {
+   "id": "redmi-a5",
+   "prix": 100,
+   "prix_note": "Prix très variables : 64 € en promotion, 141-150 € ailleurs.",
+   "sources": [
+    {
+     "nom": "Presse-citron — Redmi A5",
+     "url": "https://www.presse-citron.net/xiaomi-redmi-a5-a-moins-de-65e-cest-lentree-de-gamme-parfait-pour-les-plus-jeunes/"
+    },
+    {
+     "nom": "Kimovil — Redmi A5",
+     "url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-a5"
+    },
+    {
+     "nom": "LDLC — fiche",
+     "url": "https://www.ldlc.pro/fr-ch/fiche/PB00673708.html"
+    }
+   ],
+   "ecran": "6,88\" LCD IPS, 720 x 1640, 120 Hz",
+   "techno": "LCD",
+   "hz": 120,
+   "soc": "Unisoc T7250",
+   "ram_txt": "3 ou 4 Go",
+   "ram_max": 4,
+   "mah": 5200,
+   "w": 15,
+   "mp": 32,
+   "photo_txt": "32 Mpx principal",
+   "android": 15
+  },
+  {
+   "id": "redmi-a3",
+   "prix": 99,
+   "prix_note": "LDLC : 129,95 € (retiré de la vente) ; Kimovil : dès 89 € (3/64 Go).",
+   "sources": [
+    {
+     "nom": "LDLC — fiche Redmi A3",
+     "url": "https://www.ldlc.com/fr-be/fiche/PB00606896.html"
+    },
+    {
+     "nom": "Phonesdata",
+     "url": "https://phonesdata.com/fr/smartphones/xiaomi/redmi-a3-5464885/"
+    },
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-a3"
+    }
+   ],
+   "ecran": "6,71\" LCD IPS, 720 x 1650, 90 Hz",
+   "techno": "LCD",
+   "hz": 90,
+   "soc": "MediaTek Helio G36",
+   "ram_txt": "3 ou 4 Go",
+   "ram_max": 4,
+   "mah": 5000,
+   "mp": 8,
+   "photo_txt": "8 Mpx principal",
+   "android": 14
+  }
+ ],
+ "existantes_non_classees": {
+  "iphone-duo": "Pliable : classement par profil non adapté ; prix France non confirmé.",
+  "galaxy-z-fold8": "Pliable : classement par profil non adapté ; prix autour de 2 000 €.",
+  "motorola-razr-60-ultra": "Pliable : classement par profil non adapté ; prix France très variable.",
+  "vivo-x200-ultra": "Vendu en import seulement : pas de prix ni de garantie officiels en France."
+ },
+ "introuvables": [
+  "samsung-galaxy-s26-gaming",
+  "samsung-galaxy-s26-photo",
+  "fujifilm-x-s20-mobile",
+  "hasselblad-mobile",
+  "oneplus-12-ultra",
+  "sony-xperia-pro-camera",
+  "xiaomi-mix-fold-3-photo",
+  "vivo-x200-ultra-photo",
+  "honor-magic-pro-photo",
+  "oppo-find-x9-photographer",
+  "realme-gt-photo-pro",
+  "nothing-phone-4"
+ ]
+}

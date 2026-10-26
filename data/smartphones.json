@@ -243,21 +243,14 @@
       "id": "oneplus-15",
       "nom": "OnePlus 15",
       "marque": "OnePlus",
-      "prix_indicatif": 899,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 799,
+      "prix_note": "Lancement 979 € (nov. 2025) ; offres de 670 à 795 € relevées en 2026.",
       "caracteristiques": {
-        "écran": "6,86\" AMOLED, 120 Hz, 2600 x 1184, 10000 nits",
-        "processeur": "Snapdragon 8 Gen 4 (3 nm)",
-        "RAM": "12 Go ou 16 Go LPDDR5X",
-        "stockage": "256 ou 512 Go UFS4.0",
-        "batterie": "6500 mAh, charge 100 W",
-        "photo": "50 Mpx principal (Samsung ISOCELL HP2, f/1.6) + 50 Mpx ultra grand-angle + 12 Mpx téléobjectif (3×)",
-        "vidéo": "8K @ 30/60 fps, stabilisation électronique",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
-        "étanchéité": "IP69",
-        "OS": "Android 15, OxygenOS 15",
-        "dimensions": "246,2 × 73,1 × 8,5 mm",
-        "poids": "212 g"
+        "ecran": "6,78\" AMOLED LTPO, 165 Hz",
+        "processeur": "Snapdragon 8 Elite Gen 5 (3 nm)",
+        "ram": "12 ou 16 Go",
+        "batterie": "7 300 mAh, charge 120 W",
+        "photo": "50 Mpx principal (Sony IMX906)"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -266,63 +259,69 @@
       ],
       "critere_principal": "Batterie / autonomie",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+15",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
-          "frequence_max_hz": 120,
-          "luminosite_nits": 10000
+          "frequence_max_hz": 165,
+          "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4 (3 nm)",
-          "niveau": 9,
+          "soc": "Snapdragon 8 Elite Gen 5 (3 nm)",
+          "niveau": 10,
           "ram_go_max": 16,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 6500,
-          "recharge_watts": 100,
+          "capacite_mah": 7300,
+          "recharge_watts": 120,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP69",
-          "android_version_sortie": 15
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "LesMobiles — lancement France",
+          "url": "https://www.lesmobiles.com/actualite/oneplus-15-lancement-officiel-fiche-technique-et-ambitions-en-france"
+        },
+        {
+          "nom": "KultureGeek — prix France",
+          "url": "https://kulturegeek.fr/news-342022/oneplus-15-officialise-france-prix-baisse"
+        },
+        {
+          "nom": "Kimovil — prix France",
+          "url": "https://www.kimovil.com/fr/oneplus-15/price/FR"
+        }
+      ]
     },
     {
       "id": "rog-phone-9",
       "nom": "ROG Phone 9",
       "marque": "ASUS",
-      "prix_indicatif": 999,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": null,
+      "prix_note": "Pas de prix officiel France trouvé.",
       "caracteristiques": {
-        "écran": "6,78\" AMOLED, 120 Hz, 2880 x 1260, 10000 nits",
-        "processeur": "Snapdragon 8 Gen 4 Leading Version",
-        "RAM": "16 Go LPDDR5X",
-        "stockage": "512 Go UFS4.0",
-        "batterie": "5500 mAh, charge 65 W, batterie 2.0 externe 10000 mAh",
-        "photo": "50 Mpx principal (f/1.6) + 13 Mpx ultra grand-angle + 32 Mpx téléobjectif (2×)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, dual SIM",
-        "étanchéité": "IP68",
-        "OS": "Android 15, ROG UI",
-        "notes": "Ports latéraux AirTrigger, écran plus fluide (144 Hz en jeu via GPU overclock)",
-        "dimensions": "264,8 × 77,2 × 8,9 mm",
-        "poids": "221 g"
+        "ecran": "6,78\" AMOLED, 165 Hz",
+        "processeur": "Snapdragon 8 Elite (3 nm)",
+        "ram": "12 ou 16 Go",
+        "batterie": "5 800 mAh"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -331,49 +330,64 @@
       ],
       "critere_principal": "Batterie / autonomie",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+ROG+Phone+9",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
-          "frequence_max_hz": 120,
-          "luminosite_nits": 10000
+          "frequence_max_hz": 165,
+          "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4 Leading Version",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
           "ram_go_max": 16,
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": false
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5500,
-          "recharge_watts": 65,
+          "capacite_mah": 5800,
+          "recharge_watts": null,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/asus-rog-phone-9.html"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-asus-rog-phone-9"
+        },
+        {
+          "nom": "Phonandroid — annonce",
+          "url": "https://www.phonandroid.com/?p=2620820"
+        }
+      ]
     },
     {
       "id": "galaxy-z-fold8",
       "nom": "Galaxy Z Fold8",
       "marque": "Samsung",
       "prix_indicatif": 2099,
-      "prix_note": "À vérifier avant publication.",
+      "prix_note": "Pliable : classement par profil non adapté ; prix autour de 2 000 €.",
       "caracteristiques": {
         "écran": "Écran principal 7,6\" AMOLED (pliable), écran extérieur 6,3\" AMOLED, jusqu'à 120 Hz",
         "processeur": "Snapdragon 8 Gen 4 pour chaque marché",
@@ -400,8 +414,8 @@
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
       "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -436,21 +450,14 @@
       "id": "pixel-10-pro-xl",
       "nom": "Pixel 10 Pro XL",
       "marque": "Google",
-      "prix_indicatif": 1299,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 829,
+      "prix_note": "Offre version globale (256 Go) relevée sur Kimovil ; pas de prix officiel trouvé.",
       "caracteristiques": {
-        "écran": "6,9\" OLED, 120 Hz, 2992 x 1344",
-        "processeur": "Google Tensor 4",
-        "RAM": "16 Go LPDDR5X",
-        "stockage": "256 ou 512 Go UFS4.0",
-        "batterie": "6000 mAh, charge 37 W, sans fil 23 W",
-        "photo": "50 Mpx principal (f/1.68, capteur 1/1.3\") + 48 Mpx téléobjectif (5×) + 48 Mpx ultra grand-angle",
-        "vidéo": "8K @ 30 fps, mode vidéo IA (Clear Calling, Magic Zoom)",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.3, NFC, eSIM",
-        "étanchéité": "IP68",
-        "OS": "Android 16, suite Google Photos/Assistant optimisée",
-        "dimensions": "166,0 × 79,9 × 8,5 mm",
-        "poids": "240 g"
+        "ecran": "6,8\" OLED LTPO, 120 Hz, 3 300 nits",
+        "processeur": "Google Tensor G5 (3 nm)",
+        "ram": "16 Go",
+        "batterie": "5 200 mAh, charge 45 W",
+        "etancheite": "IP68"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -459,169 +466,185 @@
       ],
       "critere_principal": "Écran / immersion",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10+Pro+XL",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 3300
         },
         "performance": {
-          "soc": "Google Tensor 4",
-          "niveau": 6,
+          "soc": "Google Tensor G5 (3 nm)",
+          "niveau": 7,
           "ram_go_max": 16,
-          "gamme": "milieu"
+          "gamme": "haut"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": false
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 6000,
-          "recharge_watts": 37,
-          "chimie": null
-        },
-        "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 16
-        }
-      },
-      "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
-    },
-    {
-      "id": "pixel-10",
-      "nom": "Pixel 10",
-      "marque": "Google",
-      "prix_indicatif": 899,
-      "prix_note": "À vérifier avant publication.",
-      "caracteristiques": {
-        "écran": "6,3\" OLED, 120 Hz, 2350 x 1080",
-        "processeur": "Google Tensor 4",
-        "RAM": "12 Go LPDDR5X",
-        "stockage": "128, 256 ou 512 Go UFS4.0",
-        "batterie": "5000 mAh, charge 30 W, sans fil 20 W",
-        "photo": "50 Mpx principal (f/1.68) + 48 Mpx ultra grand-angle + capteur thermique",
-        "vidéo": "4K @ 60 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.3, NFC, eSIM",
-        "étanchéité": "IP68",
-        "OS": "Android 16",
-        "dimensions": "152,8 × 72,0 × 8,5 mm",
-        "poids": "195 g"
-      },
-      "points_forts": [],
-      "points_faibles": [],
-      "profil_adapte": [
-        "photo"
-      ],
-      "critere_principal": "Photo",
-      "scores": {},
-      "ready_for_recommendation": false,
-      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10",
-      "kimovil_url": "https://www.kimovil.com/fr/",
-      "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
-      "compatibilite": {
-        "ecran": {
-          "technologie": "AMOLED",
-          "frequence_max_hz": 120,
-          "luminosite_nits": null
-        },
-        "performance": {
-          "soc": "Google Tensor 4",
-          "niveau": 6,
-          "ram_go_max": 12,
-          "gamme": "milieu"
-        },
-        "photo": {
-          "mp_principal": 50,
-          "ois": false
-        },
-        "batterie": {
-          "capacite_mah": 5000,
-          "recharge_watts": 30,
-          "chimie": null
-        },
-        "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 16
-        }
-      },
-      "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
-    },
-    {
-      "id": "galaxy-s26-ultra",
-      "nom": "Galaxy S26 Ultra",
-      "marque": "Samsung",
-      "prix_indicatif": 1499,
-      "prix_note": "À vérifier avant publication.",
-      "caracteristiques": {
-        "écran": "6,9\" Dynamic AMOLED 2X, 120 Hz, 1440 x 3120, 3000 nits",
-        "processeur": "Snapdragon 8 Gen 4 Leading Version",
-        "RAM": "16 Go LPDDR5X",
-        "stockage": "256, 512 Go ou 1 To UFS4.0",
-        "batterie": "5000 mAh, charge 45 W, sans fil 15 W",
-        "photo": "Triple caméra Isocell : 200 Mpx principal (f/1.7, 10-bit) + 50 Mpx ultra grand-angle + 10 Mpx périscopique (10×, OIS)",
-        "vidéo": "8K @ 60 fps, IA de stabilisation",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC, eSIM",
-        "étanchéité": "IP68",
-        "OS": "Android 15, One UI 7",
-        "dimensions": "162,8 × 77,8 × 8,9 mm",
-        "poids": "233 g"
-      },
-      "points_forts": [],
-      "points_faibles": [],
-      "profil_adapte": [
-        "photo"
-      ],
-      "critere_principal": "Photo",
-      "scores": {},
-      "ready_for_recommendation": false,
-      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Ultra",
-      "kimovil_url": "https://www.kimovil.com/fr/",
-      "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
-      "compatibilite": {
-        "ecran": {
-          "technologie": "AMOLED",
-          "frequence_max_hz": 120,
-          "luminosite_nits": 3000
-        },
-        "performance": {
-          "soc": "Snapdragon 8 Gen 4 Leading Version",
-          "niveau": 9,
-          "ram_go_max": 16,
-          "gamme": "sommet"
-        },
-        "photo": {
-          "mp_principal": 200,
-          "ois": true
-        },
-        "batterie": {
-          "capacite_mah": 5000,
+          "capacite_mah": 5200,
           "recharge_watts": 45,
           "chimie": null
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Kimovil — Pixel 10 Pro XL",
+          "url": "https://www.kimovil.com/fr/ou-acheter-google-pixel-10-pro-xl"
+        },
+        {
+          "nom": "Clubic — fiche",
+          "url": "https://www.clubic.com/574116-google-pixel-10-pro-xl.html"
+        },
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/google-pixel-10-pro-xl.html"
+        }
+      ]
+    },
+    {
+      "id": "pixel-10",
+      "nom": "Pixel 10",
+      "marque": "Google",
+      "prix_indicatif": 599,
+      "prix_note": "Offres de 495 à 689 € (Amazon 599 € en juin 2026).",
+      "caracteristiques": {
+        "ecran": "6,3\" OLED, 120 Hz, 2 700 nits",
+        "processeur": "Google Tensor G5 (3 nm)",
+        "batterie": "4 970 mAh, charge 27 W"
+      },
+      "points_forts": [],
+      "points_faibles": [],
+      "profil_adapte": [
+        "photo"
+      ],
+      "critere_principal": "Photo",
+      "scores": {},
+      "ready_for_recommendation": true,
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10",
+      "kimovil_url": "https://www.kimovil.com/fr/",
+      "fabricant_url": "",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
+      "compatibilite": {
+        "ecran": {
+          "technologie": "OLED",
+          "frequence_max_hz": 120,
+          "luminosite_nits": 2700
+        },
+        "performance": {
+          "soc": "Google Tensor G5 (3 nm)",
+          "niveau": 7,
+          "ram_go_max": null,
+          "gamme": "haut"
+        },
+        "photo": {
+          "mp_principal": null,
+          "ois": null
+        },
+        "batterie": {
+          "capacite_mah": 4970,
+          "recharge_watts": 27,
+          "chimie": null
+        },
+        "durete": {
+          "protection_ip": null,
+          "android_version_sortie": null
+        }
+      },
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Kimovil — Pixel 10",
+          "url": "https://www.kimovil.com/fr/ou-acheter-google-pixel-10"
+        },
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/google-pixel-10.html"
+        },
+        {
+          "nom": "Edcom — Pixel 10 à 599 €",
+          "url": "https://www.edcom.fr/actualites/le-google-pixel-10-smartphone-de-l-equipe-de-france-est-a-seulement-599-sur-amazon-pour-le-prime-day"
+        }
+      ]
+    },
+    {
+      "id": "galaxy-s26-ultra",
+      "nom": "Galaxy S26 Ultra",
+      "marque": "Samsung",
+      "prix_indicatif": 1569,
+      "prix_note": "Prix Samsung France (256 Go) ; revendeur LDLC à 1 469,95 €.",
+      "caracteristiques": {
+        "ecran": "6,9\" Dynamic AMOLED 2X, QHD+, 120 Hz, 2 600 nits",
+        "processeur": "Snapdragon 8 Elite Gen 5",
+        "ram": "12 à 16 Go",
+        "batterie": "5 000 mAh, charge 60 W",
+        "etancheite": "IP68",
+        "os": "Android 16"
+      },
+      "points_forts": [],
+      "points_faibles": [],
+      "profil_adapte": [
+        "photo"
+      ],
+      "critere_principal": "Photo",
+      "scores": {},
+      "ready_for_recommendation": true,
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Ultra",
+      "kimovil_url": "https://www.kimovil.com/fr/",
+      "fabricant_url": "",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
+      "compatibilite": {
+        "ecran": {
+          "technologie": "AMOLED",
+          "frequence_max_hz": 120,
+          "luminosite_nits": 2600
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite Gen 5",
+          "niveau": 10,
+          "ram_go_max": 16,
+          "gamme": "sommet"
+        },
+        "photo": {
+          "mp_principal": null,
+          "ois": null
+        },
+        "batterie": {
+          "capacite_mah": 5000,
+          "recharge_watts": 60,
+          "chimie": null
+        },
+        "durete": {
+          "protection_ip": "IP68",
+          "android_version_sortie": 16
+        }
+      },
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
       },
       "tests": [
         {
@@ -634,27 +657,29 @@
             "autonomie_jeu_min": 617
           }
         }
+      ],
+      "sources_verification": [
+        {
+          "nom": "LDLC — fiche S26 Ultra",
+          "url": "https://www.ldlc.com/fiche/PB00728577.html"
+        },
+        {
+          "nom": "Kimovil — prix France",
+          "url": "https://www.kimovil.com/fr/samsung-galaxy-s26-ultra/price/FR"
+        }
       ]
     },
     {
       "id": "iphone-18-pro-max",
       "nom": "iPhone 18 Pro Max",
       "marque": "Apple",
-      "prix_indicatif": 1399,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 1629,
+      "prix_note": "Prix Apple France (256 Go), relevé au 15/09/2026.",
       "caracteristiques": {
-        "écran": "6,9\" Super Retina XDR OLED, 120 Hz, 2796 x 1290, 3000 nits",
-        "processeur": "Apple A19 Pro",
-        "RAM": "8 Go",
-        "stockage": "256, 512 Go ou 1 To",
-        "batterie": "Li-Ion, charge 45 W, sans fil 25 W",
-        "photo": "Caméra principale 12 Mpx (f/1.3, stabilisation optique) + ultra grand-angle + téléobjectif 12 Mpx (5×, OIS)",
-        "vidéo": "4K @ 120 fps, ProRes avancé",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, eSIM",
-        "étanchéité": "IP68",
-        "OS": "iOS 18",
-        "dimensions": "221,5 × 77,6 × 8,8 mm",
-        "poids": "246 g"
+        "ecran": "6,9\" OLED ProMotion 120 Hz, 3 000 nits",
+        "processeur": "Apple A20 Pro (2 nm)",
+        "photo": "48 Mpx principal à ouverture variable, zoom optique 8x",
+        "etancheite": "IP68"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -663,32 +688,32 @@
       ],
       "critere_principal": "Vidéo / réalisation",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+18+Pro+Max",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
           "luminosite_nits": 3000
         },
         "performance": {
-          "soc": "Apple A19 Pro",
+          "soc": "Apple A20 Pro (2 nm)",
           "niveau": 10,
-          "ram_go_max": 8,
+          "ram_go_max": null,
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": 12,
-          "ois": true
+          "mp_principal": 48,
+          "ois": null
         },
         "batterie": {
           "capacite_mah": null,
-          "recharge_watts": 45,
+          "recharge_watts": 60,
           "chimie": null
         },
         "durete": {
@@ -697,28 +722,35 @@
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Lifone — fiche et prix",
+          "url": "https://lifone.store/blogs/guides-iphone/iphone-18-pro-max-fiche-technique-prix-avis"
+        },
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/apple-iphone-18-pro-max.html"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-apple-iphone-18-pro-max"
+        }
+      ]
     },
     {
       "id": "xperia-1-vii",
       "nom": "Xperia 1 VII",
       "marque": "Sony",
-      "prix_indicatif": 1299,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 1500,
+      "prix_note": "Environ 1 500 € au lancement ; offre import à 1 164 €.",
       "caracteristiques": {
-        "écran": "6,5\" 4K OLED (3840 x 1644), 120 Hz",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "12 Go LPDDR5X",
-        "stockage": "256 Go UFS4.0",
-        "batterie": "5500 mAh, charge 30 W, sans fil 15 W",
-        "photo": "Triple Zeiss : 48 Mpx principal (f/2.1, OIS) + 12 Mpx ultra grand-angle + 12 Mpx périscopique (3,6×, OIS)",
-        "vidéo": "8K @ 30 fps, mode cinématographique",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC, eSIM",
-        "étanchéité": "IP65/68",
-        "OS": "Android 15",
-        "dimensions": "165 × 71,3 × 8,2 mm",
-        "poids": "192 g"
+        "ecran": "6,5\" OLED, 120 Hz",
+        "processeur": "Snapdragon 8 Elite (3 nm)",
+        "ram": "12 Go",
+        "batterie": "5 000 mAh, charge 30 W"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -727,62 +759,67 @@
       ],
       "critere_principal": "Vidéo / réalisation",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Sony+Xperia+1+VII",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
           "ram_go_max": 12,
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": 48,
-          "ois": true
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5500,
+          "capacite_mah": 5000,
           "recharge_watts": 30,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP65",
-          "android_version_sortie": 15
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Phonandroid — annonce",
+          "url": "https://www.phonandroid.com/?p=2647926"
+        },
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/sony-xperia-1-vii.html"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-sony-xperia-1-vii"
+        }
+      ]
     },
     {
       "id": "iphone-18-pro",
       "nom": "iPhone 18 Pro",
       "marque": "Apple",
-      "prix_indicatif": 1099,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 1479,
+      "prix_note": "Prix Apple France (256 Go).",
       "caracteristiques": {
-        "écran": "6,3\" Super Retina XDR OLED, 120 Hz, 2560 x 1179",
-        "processeur": "Apple A19 Pro",
-        "RAM": "8 Go",
-        "stockage": "256, 512 Go ou 1 To",
-        "batterie": "Li-Ion, charge 45 W, sans fil 25 W",
-        "photo": "Caméra principale 12 Mpx (f/1.3, OIS) + ultra grand-angle + téléobjectif 12 Mpx (3×, OIS)",
-        "vidéo": "4K @ 120 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, eSIM",
-        "étanchéité": "IP68",
-        "OS": "iOS 18",
-        "dimensions": "215,2 × 71,7 × 8,8 mm",
-        "poids": "220 g"
+        "ecran": "6,3\" OLED, 1206 x 2622",
+        "processeur": "Apple A20 Pro (2 nm)"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -791,28 +828,28 @@
       ],
       "critere_principal": "Stockage / performances",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+18+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Apple A19 Pro",
+          "soc": "Apple A20 Pro (2 nm)",
           "niveau": 10,
-          "ram_go_max": 8,
+          "ram_go_max": null,
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": 12,
-          "ois": true
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
           "capacite_mah": null,
@@ -820,12 +857,13 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP68",
+          "protection_ip": null,
           "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
       },
       "tests": [
         {
@@ -834,27 +872,34 @@
           "chaine": "Android Police",
           "titre": "The Pixel 11 Pro is in another league from the iPhone 18 Pro"
         }
+      ],
+      "sources_verification": [
+        {
+          "nom": "Bbox-mag — prix officiel",
+          "url": "https://www.bbox-mag.fr/mobiles/iphone-18-pro/47766847"
+        },
+        {
+          "nom": "Back Market — fiche",
+          "url": "https://www.backmarket.fr/fr-fr/c/iphone/iphone-18-pro-review"
+        },
+        {
+          "nom": "LDLC — fiche",
+          "url": "https://www.ldlc.pro/fr-ch/fiche/PB00752861.html"
+        }
       ]
     },
     {
       "id": "galaxy-s26-plus",
       "nom": "Galaxy S26+",
       "marque": "Samsung",
-      "prix_indicatif": 999,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 1269,
+      "prix_note": "Prix annoncé avant le lancement (256 Go) ; à confirmer sur samsung.com/fr.",
       "caracteristiques": {
-        "écran": "6,7\" Dynamic AMOLED 2X, 120 Hz, 1440 x 3200, 2000 nits",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "12 Go LPDDR5X",
-        "stockage": "256 ou 512 Go UFS4.0",
-        "batterie": "4900 mAh, charge 45 W, sans fil 15 W",
-        "photo": "50 Mpx principal (f/1.8, OIS) + 12 Mpx ultra grand-angle + 10 Mpx téléobjectif (3×, OIS)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC, eSIM",
-        "étanchéité": "IP68",
-        "OS": "Android 15, One UI 7",
-        "dimensions": "154,9 × 72,8 × 8,4 mm",
-        "poids": "218 g"
+        "ecran": "6,7\" Dynamic AMOLED 2X, 120 Hz adaptatif, 2 600 nits",
+        "processeur": "Exynos 2600 (2 nm)",
+        "ram": "12 Go",
+        "batterie": "4 900 mAh, charge 45 W",
+        "os": "Android 16"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -863,28 +908,28 @@
       ],
       "critere_principal": "Stockage / performances",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26%2B",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": 2000
+          "luminosite_nits": 2600
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
+          "soc": "Exynos 2600 (2 nm)",
           "niveau": 9,
           "ram_go_max": 12,
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": true
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 4900,
@@ -892,33 +937,42 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "protection_ip": null,
+          "android_version_sortie": 16
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "KultureGeek — prix France",
+          "url": "https://kulturegeek.fr/news-346697/samsung-galaxy-s26-prix-francais-devoiles-hausse"
+        },
+        {
+          "nom": "Kimovil — Galaxy S26+",
+          "url": "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-s26-plus"
+        },
+        {
+          "nom": "LDLC — fiche S26+",
+          "url": "https://www.ldlc.com/fr-be/fiche/PB00728525.html"
+        }
+      ]
     },
     {
       "id": "pixel-10a",
       "nom": "Pixel 10a",
       "marque": "Google",
-      "prix_indicatif": 599,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 499,
+      "prix_note": "Lancement 499 € ; descendu à 419,99 € chez Rakuten (août 2026).",
       "caracteristiques": {
-        "écran": "6,0\" OLED, 60 Hz, 2100 x 1080",
-        "processeur": "Google Tensor 4",
-        "RAM": "8 Go LPDDR5X",
-        "stockage": "128 ou 256 Go UFS4.0",
-        "batterie": "4900 mAh, charge 30 W, sans fil 20 W",
-        "photo": "50 Mpx principal (f/1.95) + 12 Mpx ultra grand-angle",
-        "vidéo": "4K @ 30/60 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.3, NFC, eSIM",
-        "étanchéité": "IP67",
-        "OS": "Android 16",
-        "dimensions": "151,6 × 72,0 × 8,8 mm",
-        "poids": "188 g"
+        "ecran": "6,3\" pOLED, 120 Hz",
+        "processeur": "Google Tensor G4",
+        "ram": "8 Go",
+        "stockage": "128 ou 256 Go",
+        "batterie": "5 100 mAh, charge 45 W",
+        "etancheite": "IP68"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -927,62 +981,71 @@
       ],
       "critere_principal": "Rapport qualité-prix",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10a",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
-          "frequence_max_hz": 60,
+          "technologie": "OLED",
+          "frequence_max_hz": 120,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Google Tensor 4",
+          "soc": "Google Tensor G4",
           "niveau": 6,
           "ram_go_max": 8,
           "gamme": "milieu"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": false
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 4900,
-          "recharge_watts": 30,
+          "capacite_mah": 5100,
+          "recharge_watts": 45,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP67",
-          "android_version_sortie": 16
+          "protection_ip": "IP68",
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Bbox-mag — test Pixel 10a",
+          "url": "https://www.bbox-mag.fr/mobiles/pixel-10a-test-avis/44623980"
+        },
+        {
+          "nom": "Edcom — Pixel 10a sous 420 €",
+          "url": "https://www.edcom.fr/actualites/google-pixel-10a-le-meilleur-photophone-pas-cher-passe-sous-les-420"
+        },
+        {
+          "nom": "Kimovil — Pixel 10a",
+          "url": "https://www.kimovil.com/fr/ou-acheter-google-pixel-10a"
+        }
+      ]
     },
     {
       "id": "oneplus-nord-5",
       "nom": "OnePlus Nord 5",
       "marque": "OnePlus",
-      "prix_indicatif": 449,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 469,
+      "prix_note": "Prix de lancement ; promotions à 275-290 € relevées chez AliExpress (version globale).",
       "caracteristiques": {
-        "écran": "6,43\" AMOLED, 120 Hz, 2400 x 1080",
-        "processeur": "MediaTek Dimensity 8400 (4 nm)",
-        "RAM": "8 ou 12 Go LPDDR5X",
-        "stockage": "256 Go UFS4.0",
-        "batterie": "5500 mAh, charge 80 W",
-        "photo": "50 Mpx principal (f/1.8, OIS) + 12 Mpx ultra grand-angle + 2 Mpx macro",
-        "vidéo": "4K @ 30/60 fps",
-        "connectivité": "5G, WiFi 6E, Bluetooth 5.3, NFC",
-        "étanchéité": "IP65",
-        "OS": "Android 15, OxygenOS 15",
-        "dimensions": "161,3 × 73,9 × 8,0 mm",
-        "poids": "184 g"
+        "ecran": "6,83\" AMOLED, 144 Hz",
+        "processeur": "Snapdragon 8s Gen 3 (4 nm)",
+        "ram": "8 ou 12 Go",
+        "stockage": "256 ou 512 Go (UFS 3.1)",
+        "batterie": "5 200 mAh, charge 80 W",
+        "photo": "50 Mpx principal"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -991,49 +1054,64 @@
       ],
       "critere_principal": "Rapport qualité-prix",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+Nord+5",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
-          "frequence_max_hz": 120,
+          "frequence_max_hz": 144,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "MediaTek Dimensity 8400 (4 nm)",
+          "soc": "Snapdragon 8s Gen 3 (4 nm)",
           "niveau": 7,
           "ram_go_max": 12,
           "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5500,
+          "capacite_mah": 5200,
           "recharge_watts": 80,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP65",
-          "android_version_sortie": 15
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Phonandroid — annonce",
+          "url": "https://www.phonandroid.com/?p=2657147"
+        },
+        {
+          "nom": "Dealabs — fiche 5 200 mAh / 80 W",
+          "url": "https://www.dealabs.com/bons-plans/le-1708-a-00h-smartphone-oneplus-nord-5-5g-8256-go-snapdragon-8s-gen-3-amoled-683-144-hz-5200-mah-80-w-50-mp-3392840"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-oneplus-nord-5"
+        }
+      ]
     },
     {
       "id": "iphone-duo",
       "nom": "iPhone Duo",
       "marque": "Apple",
       "prix_indicatif": 1899,
-      "prix_note": "À vérifier avant publication.",
+      "prix_note": "Pliable : classement par profil non adapté ; prix France non confirmé.",
       "caracteristiques": {
         "écran": "6,6\" écrans modulables OLED x2 (3840 x 2160 chacun, side-by-side)",
         "processeur": "Apple A19 Bionic",
@@ -1060,8 +1138,8 @@
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
       "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -1098,7 +1176,7 @@
       "nom": "Nothing Phone (4)",
       "marque": "Nothing",
       "prix_indicatif": 649,
-      "prix_note": "À vérifier avant publication.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,7\" OLED, 120 Hz, 2412 x 1084",
         "processeur": "Snapdragon 8 Gen 3 Leading Version",
@@ -1125,8 +1203,8 @@
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
       "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "date_verification": "2026-10",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -1155,7 +1233,8 @@
       },
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+      },
+      "exclu_reco": true
     },
     {
       "id": "xiaomi-16-pro",
@@ -1225,21 +1304,16 @@
       "id": "honor-magic-8-pro",
       "nom": "Honor Magic 8 Pro",
       "marque": "Honor",
-      "prix_indicatif": 889,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 1099,
+      "prix_note": "Prix Bouygues Telecom (512 Go) ; offres import dès 753 €.",
       "caracteristiques": {
-        "écran": "6,9\" OLED, 120 Hz, 2664 x 1200",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "12 ou 16 Go LPDDR5X",
-        "stockage": "256, 512 Go ou 1 To UFS4.0",
-        "batterie": "5900 mAh, charge 80 W, sans fil 80 W (!)",
-        "photo": "Triple : 50 Mpx principal (f/1.6, OIS) + 12 Mpx ultra grand-angle + 40 Mpx téléobjectif (3.5×, OIS)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC, eSIM",
-        "étanchéité": "IP68/IP69",
-        "OS": "Android 15, Magic UI 9.0",
-        "dimensions": "162,3 × 77,3 × 8,8 mm",
-        "poids": "225 g"
+        "ecran": "6,7\" OLED, 120 Hz",
+        "processeur": "Snapdragon 8 Elite Gen 5",
+        "ram": "12 Go",
+        "stockage": "512 Go",
+        "batterie": "6 270 mAh, charge 100 W",
+        "photo": "Téléobjectif périscopique 200 Mpx avec stabilisation optique (zoom 3,7x)",
+        "etancheite": "IP68"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1248,62 +1322,72 @@
       ],
       "critere_principal": "Polyvalence / multimédia",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+Magic+8+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
-          "niveau": 9,
-          "ram_go_max": 16,
+          "soc": "Snapdragon 8 Elite Gen 5",
+          "niveau": 10,
+          "ram_go_max": 12,
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": true
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5900,
-          "recharge_watts": 80,
+          "capacite_mah": 6270,
+          "recharge_watts": 100,
           "chimie": null
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Phonandroid — prise en main",
+          "url": "https://www.phonandroid.com/?p=2680160"
+        },
+        {
+          "nom": "Bbox-mag — prix France",
+          "url": "https://www.bbox-mag.fr/mobiles/honor-magic-8-pro-bouygues-telecom/47766399"
+        },
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/honor-magic8-pro.html"
+        }
+      ]
     },
     {
       "id": "galaxy-s26",
       "nom": "Galaxy S26",
       "marque": "Samsung",
-      "prix_indicatif": 849,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 999,
+      "prix_note": "Prix de lancement France (fév. 2026) ; offres de 663 à 790 € relevées depuis.",
       "caracteristiques": {
-        "écran": "6,3\" Dynamic AMOLED 2X, 120 Hz, 1440 x 3120, 2000 nits",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "10 Go LPDDR5X",
-        "stockage": "256 ou 512 Go UFS4.0",
-        "batterie": "4500 mAh, charge 45 W, sans fil 15 W",
-        "photo": "50 Mpx principal (f/1.8, OIS) + 12 Mpx ultra grand-angle + 10 Mpx téléobjectif (3×, OIS)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC, eSIM",
-        "étanchéité": "IP68",
-        "OS": "Android 15, One UI 7",
-        "dimensions": "146,3 × 70,5 × 7,8 mm",
-        "poids": "198 g"
+        "ecran": "6,3\" Dynamic AMOLED 2X, 120 Hz",
+        "processeur": "Exynos 2600 (2 nm)",
+        "ram": "12 Go",
+        "stockage": "256 Go ou plus",
+        "batterie": "4 300 mAh, charge 25 W",
+        "photo": "50 Mpx principal",
+        "os": "Android 16"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1312,77 +1396,13 @@
       ],
       "critere_principal": "Compact / ergonomie",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
-      "compatibilite": {
-        "ecran": {
-          "technologie": "AMOLED",
-          "frequence_max_hz": 120,
-          "luminosite_nits": 2000
-        },
-        "performance": {
-          "soc": "Snapdragon 8 Gen 4",
-          "niveau": 9,
-          "ram_go_max": 10,
-          "gamme": "sommet"
-        },
-        "photo": {
-          "mp_principal": 50,
-          "ois": true
-        },
-        "batterie": {
-          "capacite_mah": 4500,
-          "recharge_watts": 45,
-          "chimie": null
-        },
-        "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15
-        }
-      },
-      "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
-    },
-    {
-      "id": "pixel-10-pro",
-      "nom": "Pixel 10 Pro",
-      "marque": "Google",
-      "prix_indicatif": 1099,
-      "prix_note": "À vérifier avant publication.",
-      "caracteristiques": {
-        "écran": "6,7\" OLED, 120 Hz, 2992 x 1344",
-        "processeur": "Google Tensor 4",
-        "RAM": "16 Go LPDDR5X",
-        "stockage": "256 ou 512 Go UFS4.0",
-        "batterie": "5500 mAh, charge 37 W, sans fil 23 W",
-        "photo": "50 Mpx principal (f/1.68, 1/1.3\") + 48 Mpx téléobjectif (5×) + 48 Mpx ultra grand-angle",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.3, NFC, eSIM",
-        "étanchéité": "IP68",
-        "OS": "Android 16",
-        "dimensions": "161,0 × 77,2 × 8,5 mm",
-        "poids": "230 g"
-      },
-      "points_forts": [],
-      "points_faibles": [],
-      "profil_adapte": [
-        "compact / ergonomie"
-      ],
-      "critere_principal": "Compact / ergonomie",
-      "scores": {},
-      "ready_for_recommendation": false,
-      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10+Pro",
-      "kimovil_url": "https://www.kimovil.com/fr/",
-      "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -1390,48 +1410,128 @@
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Google Tensor 4",
-          "niveau": 6,
-          "ram_go_max": 16,
-          "gamme": "milieu"
+          "soc": "Exynos 2600 (2 nm)",
+          "niveau": 9,
+          "ram_go_max": 12,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5500,
-          "recharge_watts": 37,
+          "capacite_mah": 4300,
+          "recharge_watts": 25,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP68",
+          "protection_ip": null,
           "android_version_sortie": 16
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "KultureGeek — prix France",
+          "url": "https://kulturegeek.fr/news-346697/samsung-galaxy-s26-prix-francais-devoiles-hausse"
+        },
+        {
+          "nom": "Presse-citron — où acheter",
+          "url": "https://www.presse-citron.net/ou-acheter-les-galaxy-s26-et-s26-de-samsung-au-meilleur-prix/"
+        },
+        {
+          "nom": "Edcom — Galaxy S26 à 663 €",
+          "url": "https://www.edcom.fr/actualites/galaxy-s26-a-663-seulement-sur-amazon-135-sous-le-tarif-officiel-samsung"
+        }
+      ]
+    },
+    {
+      "id": "pixel-10-pro",
+      "nom": "Pixel 10 Pro",
+      "marque": "Google",
+      "prix_indicatif": 999,
+      "prix_note": "Prix habituel du Google Store ; promotions à 749 € (Boulanger).",
+      "caracteristiques": {
+        "ecran": "6,3\" OLED LTPO, 1 à 120 Hz, 3 300 nits",
+        "processeur": "Google Tensor G5 (3 nm)",
+        "ram": "16 Go",
+        "etancheite": "IP68"
+      },
+      "points_forts": [],
+      "points_faibles": [],
+      "profil_adapte": [
+        "compact / ergonomie"
+      ],
+      "critere_principal": "Compact / ergonomie",
+      "scores": {},
+      "ready_for_recommendation": true,
+      "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10+Pro",
+      "kimovil_url": "https://www.kimovil.com/fr/",
+      "fabricant_url": "",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
+      "compatibilite": {
+        "ecran": {
+          "technologie": "OLED",
+          "frequence_max_hz": 120,
+          "luminosite_nits": 3300
+        },
+        "performance": {
+          "soc": "Google Tensor G5 (3 nm)",
+          "niveau": 7,
+          "ram_go_max": 16,
+          "gamme": "haut"
+        },
+        "photo": {
+          "mp_principal": null,
+          "ois": null
+        },
+        "batterie": {
+          "capacite_mah": null,
+          "recharge_watts": null,
+          "chimie": null
+        },
+        "durete": {
+          "protection_ip": "IP68",
+          "android_version_sortie": null
+        }
+      },
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Google Store — fiche Pixel 10 Pro",
+          "url": "https://store.google.com/fr/product/pixel_10_pro_specs"
+        },
+        {
+          "nom": "Edcom — Pixel 10 Pro à 749 €",
+          "url": "https://www.edcom.fr/actualites/pixel-10-pro-le-smartphone-de-l-equipe-de-france-a-749-chez-boulanger"
+        },
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/google-pixel-10-pro.html"
+        }
+      ]
     },
     {
       "id": "motorola-edge-70-pro",
       "nom": "Motorola Edge 70 Pro",
       "marque": "Motorola",
-      "prix_indicatif": 599,
-      "prix_note": "À vérifier avant publication.",
+      "prix_indicatif": 439,
+      "prix_note": "Offre version internationale 8/256 Go (Kimovil) ; pas de prix officiel France trouvé.",
       "caracteristiques": {
-        "écran": "6,5\" AMOLED, 144 Hz, 2688 x 1224",
-        "processeur": "MediaTek Dimensity 9400",
-        "RAM": "12 Go LPDDR5X",
-        "stockage": "512 Go UFS4.0",
-        "batterie": "5100 mAh, charge 68 W",
-        "photo": "50 Mpx principal (f/1.6, OIS) + 12 Mpx ultra grand-angle + 12 Mpx téléobjectif (2×)",
-        "vidéo": "4K @ 60 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.3, NFC, eSIM",
-        "étanchéité": "IP68",
-        "OS": "Android 15, My UI",
-        "dimensions": "160,0 × 71,5 × 8,2 mm",
-        "poids": "196 g"
+        "ecran": "6,8\" AMOLED, 144 Hz, 5 200 nits",
+        "processeur": "MediaTek Dimensity 8500 Ultra (4 nm)",
+        "ram": "8 Go",
+        "batterie": "6 500 mAh, charge 90 W",
+        "photo": "50 Mpx principal + 50 Mpx ultra grand-angle (pas de téléobjectif)",
+        "etancheite": "IP68"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1440,42 +1540,57 @@
       ],
       "critere_principal": "Robustesse / durabilité",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Motorola+Edge+70+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 144,
-          "luminosite_nits": null
+          "luminosite_nits": 5200
         },
         "performance": {
-          "soc": "MediaTek Dimensity 9400",
-          "niveau": 9,
-          "ram_go_max": 12,
-          "gamme": "sommet"
+          "soc": "MediaTek Dimensity 8500 Ultra (4 nm)",
+          "niveau": 7,
+          "ram_go_max": 8,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5100,
-          "recharge_watts": 68,
+          "capacite_mah": 6500,
+          "recharge_watts": 90,
           "chimie": null
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "android_version_sortie": null
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Phonandroid — annonce",
+          "url": "https://www.phonandroid.com/motorola-edge-70-pro-officiel.html"
+        },
+        {
+          "nom": "Kimovil — Edge 70 Pro",
+          "url": "https://www.kimovil.com/fr/ou-acheter-motorola-edge-70-pro"
+        },
+        {
+          "nom": "Phonesdata",
+          "url": "https://phonesdata.com/fr/smartphones/motorola/edge-70-pro-5465863/"
+        }
+      ]
     },
     {
       "id": "xiaomi-16-ultra",
@@ -1927,19 +2042,14 @@
       "id": "redmi-15c",
       "nom": "Xiaomi Redmi 15C",
       "marque": "Xiaomi",
-      "prix_indicatif": 153,
-      "prix_note": "Prix indicatif observé en septembre 2026 ; variable selon version, vendeur et marché.",
+      "prix_indicatif": 160,
+      "prix_note": "Version 4G 256 Go chez LDLC ; une version 5G (Dimensity 6300) est annoncée.",
       "tranche_prix": "100-200",
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "caracteristiques": {
-        "ecran": "À documenter",
-        "processeur": "À documenter",
-        "ram": "À documenter",
-        "stockage": "À documenter",
-        "batterie": "À documenter",
-        "photo": "À documenter",
-        "etancheite": "À documenter",
-        "os": "À documenter"
+        "ecran": "6,9\" LCD IPS, 720 x 1600, 120 Hz, 450 nits",
+        "processeur": "MediaTek Helio G81 (version 4G)",
+        "batterie": "6 000 mAh, charge 33 W"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1953,34 +2063,51 @@
       "kimovil_url": "",
       "compatibilite": {
         "ecran": {
-          "technologie": null,
-          "frequence_max_hz": null,
-          "luminosite_nits": null
+          "technologie": "LCD",
+          "frequence_max_hz": 120,
+          "luminosite_nits": 450
         },
         "performance": {
-          "soc": "MediaTek Helio G81 Ultra",
+          "soc": "MediaTek Helio G81 (version 4G)",
           "niveau": 2,
           "ram_go_max": null,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
-          "ois": false
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": null,
-          "recharge_watts": null,
+          "capacite_mah": 6000,
+          "recharge_watts": 33,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "À documenter",
+          "protection_ip": null,
           "android_version_sortie": null
         }
       },
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "date_verification": "2026-10",
+      "sources_verification": [
+        {
+          "nom": "LDLC — fiche Redmi 15C",
+          "url": "https://www.ldlc.com/fr-ch/fiche/PB00698624.html"
+        },
+        {
+          "nom": "Kimovil — Redmi 15C",
+          "url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-15c-global"
+        },
+        {
+          "nom": "Dealabs — version 5G",
+          "url": "https://www.dealabs.com/magazine/?p=60347"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "realme-c75",
@@ -2800,19 +2927,17 @@
       "id": "redmi-a5",
       "nom": "Xiaomi Redmi A5",
       "marque": "Xiaomi",
-      "prix_indicatif": 98,
-      "prix_note": "Prix à vérifier au moment de l'achat ; disponibilité et prix variables selon version, vendeur et marché.",
+      "prix_indicatif": 100,
+      "prix_note": "Prix très variables : 64 € en promotion, 141-150 € ailleurs.",
       "tranche_prix": "moins-100",
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "caracteristiques": {
-        "ecran": "À documenter",
-        "processeur": "À documenter",
-        "ram": "À documenter",
-        "stockage": "À documenter",
-        "batterie": "À documenter",
-        "photo": "À documenter",
-        "etancheite": "À documenter",
-        "os": "À documenter"
+        "ecran": "6,88\" LCD IPS, 720 x 1640, 120 Hz",
+        "processeur": "Unisoc T7250",
+        "ram": "3 ou 4 Go",
+        "batterie": "5 200 mAh, charge 15 W",
+        "photo": "32 Mpx principal",
+        "os": "Android 15"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -2826,52 +2951,66 @@
       "kimovil_url": "",
       "compatibilite": {
         "ecran": {
-          "technologie": null,
-          "frequence_max_hz": null,
+          "technologie": "LCD",
+          "frequence_max_hz": 120,
           "luminosite_nits": null
         },
         "performance": {
           "soc": "Unisoc T7250",
           "niveau": 1,
-          "ram_go_max": null,
+          "ram_go_max": 4,
           "gamme": "entree"
         },
         "photo": {
-          "mp_principal": null,
-          "ois": false
+          "mp_principal": 32,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": null,
-          "recharge_watts": null,
+          "capacite_mah": 5200,
+          "recharge_watts": 15,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "À documenter",
-          "android_version_sortie": null
+          "protection_ip": null,
+          "android_version_sortie": 15
         }
       },
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "date_verification": "2026-10",
+      "sources_verification": [
+        {
+          "nom": "Presse-citron — Redmi A5",
+          "url": "https://www.presse-citron.net/xiaomi-redmi-a5-a-moins-de-65e-cest-lentree-de-gamme-parfait-pour-les-plus-jeunes/"
+        },
+        {
+          "nom": "Kimovil — Redmi A5",
+          "url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-a5"
+        },
+        {
+          "nom": "LDLC — fiche",
+          "url": "https://www.ldlc.pro/fr-ch/fiche/PB00673708.html"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "poco-c71",
       "nom": "POCO C71",
       "marque": "POCO",
-      "prix_indicatif": 81,
-      "prix_note": "Prix indicatif observé en septembre 2026 ; variable selon version, vendeur et marché.",
+      "prix_indicatif": 100,
+      "prix_note": "Offres de 88 à 162 € selon vendeur (4/128 Go).",
       "tranche_prix": "moins-100",
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "caracteristiques": {
-        "ecran": "À documenter",
-        "processeur": "À documenter",
-        "ram": "À documenter",
-        "stockage": "À documenter",
-        "batterie": "À documenter",
-        "photo": "À documenter",
-        "etancheite": "À documenter",
-        "os": "À documenter"
+        "ecran": "6,88\" LCD IPS, 720 x 1640, 120 Hz",
+        "processeur": "Unisoc T7250 (Tiger T615)",
+        "ram": "3 ou 4 Go",
+        "batterie": "5 200 mAh",
+        "etancheite": "IP52"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -2885,52 +3024,67 @@
       "kimovil_url": "",
       "compatibilite": {
         "ecran": {
-          "technologie": null,
-          "frequence_max_hz": null,
+          "technologie": "LCD",
+          "frequence_max_hz": 120,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Unisoc T7250",
+          "soc": "Unisoc T7250 (Tiger T615)",
           "niveau": 1,
-          "ram_go_max": null,
+          "ram_go_max": 4,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": null,
-          "ois": false
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": null,
+          "capacite_mah": 5200,
           "recharge_watts": null,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "À documenter",
+          "protection_ip": "IP52",
           "android_version_sortie": null
         }
       },
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "date_verification": "2026-10",
+      "sources_verification": [
+        {
+          "nom": "Kimovil — POCO C71",
+          "url": "https://www.kimovil.com/fr/ou-acheter-poco-c71"
+        },
+        {
+          "nom": "Notebookcheck",
+          "url": "https://www.notebookcheck.com/Xiaomi-Poco-C71-startet-mit-120-Hz-Display-und-5-200-mAh-Akku-fuer-umgerechnet-69-Euro.992818.0.html"
+        },
+        {
+          "nom": "Xiaomi — caractéristiques",
+          "url": "https://www.mi.com/africa-fr/product/poco-c71/specs/"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "redmi-a3",
       "nom": "Xiaomi Redmi A3",
       "marque": "Xiaomi",
       "prix_indicatif": 99,
-      "prix_note": "Prix indicatif observé en septembre 2026 ; variable selon version, vendeur et marché.",
+      "prix_note": "LDLC : 129,95 € (retiré de la vente) ; Kimovil : dès 89 € (3/64 Go).",
       "tranche_prix": "moins-100",
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "caracteristiques": {
-        "ecran": "À documenter",
-        "processeur": "À documenter",
-        "ram": "À documenter",
-        "stockage": "À documenter",
-        "batterie": "À documenter",
-        "photo": "À documenter",
-        "etancheite": "À documenter",
-        "os": "À documenter"
+        "ecran": "6,71\" LCD IPS, 720 x 1650, 90 Hz",
+        "processeur": "MediaTek Helio G36",
+        "ram": "3 ou 4 Go",
+        "batterie": "5 000 mAh",
+        "photo": "8 Mpx principal",
+        "os": "Android 14"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -2944,41 +3098,58 @@
       "kimovil_url": "",
       "compatibilite": {
         "ecran": {
-          "technologie": null,
-          "frequence_max_hz": null,
+          "technologie": "LCD",
+          "frequence_max_hz": 90,
           "luminosite_nits": null
         },
         "performance": {
           "soc": "MediaTek Helio G36",
           "niveau": 1,
-          "ram_go_max": null,
+          "ram_go_max": 4,
           "gamme": "entree"
         },
         "photo": {
-          "mp_principal": null,
-          "ois": false
+          "mp_principal": 8,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": null,
+          "capacite_mah": 5000,
           "recharge_watts": null,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "À documenter",
-          "android_version_sortie": null
+          "protection_ip": null,
+          "android_version_sortie": 14
         }
       },
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "date_verification": "2026-10",
+      "sources_verification": [
+        {
+          "nom": "LDLC — fiche Redmi A3",
+          "url": "https://www.ldlc.com/fr-be/fiche/PB00606896.html"
+        },
+        {
+          "nom": "Phonesdata",
+          "url": "https://phonesdata.com/fr/smartphones/xiaomi/redmi-a3-5464885/"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-a3"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "vivo-x200-ultra",
       "nom": "Vivo X200 Ultra",
       "marque": "Vivo",
       "prix_indicatif": 1099,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Vendu en import seulement : pas de prix ni de garantie officiels en France.",
       "caracteristiques": {
         "écran": "6,82\" AMOLED, 120 Hz, 3200 x 1440, 3000 nits",
         "processeur": "MediaTek Dimensity 9400 Ultra",
@@ -2998,7 +3169,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vivo+X200+Ultra",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -3034,19 +3205,13 @@
       "id": "oppo-find-x9",
       "nom": "OPPO Find X9",
       "marque": "OPPO",
-      "prix_indicatif": 999,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 839,
+      "prix_note": "Offre import version globale 12/512 Go (Kimovil) ; pas de grille France officielle trouvée.",
       "caracteristiques": {
-        "écran": "6,7\" AMOLED, 120 Hz, 2800 x 1264",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "12 Go LPDDR5X",
-        "stockage": "512 Go UFS4.0",
-        "batterie": "5910 mAh, charge 80 W, sans fil 50 W",
-        "photo": "Triple caméra : 50 Mpx principal (f/1.6, OIS) + 50 Mpx ultra grand-angle + 50 Mpx téléobjectif (3×, OIS)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4",
-        "étanchéité": "IP68/IP69",
-        "OS": "Android 15, ColorOS 15"
+        "ecran": "6,59\" AMOLED, 120 Hz",
+        "processeur": "MediaTek Dimensity 9500 (3 nm)",
+        "ram": "12 Go",
+        "batterie": "7 025 mAh, charge 80 W"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3054,7 +3219,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OPPO+Find+X9",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -3062,47 +3227,57 @@
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
-          "niveau": 9,
+          "soc": "MediaTek Dimensity 9500 (3 nm)",
+          "niveau": 10,
           "ram_go_max": 12,
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": true
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5910,
+          "capacite_mah": 7025,
           "recharge_watts": 80,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/oppo-find-x9.html"
+        },
+        {
+          "nom": "Journal du Geek — annonce",
+          "url": "https://www.journaldugeek.com/2025/10/29/oppo-presente-le-find-x9-son-nouveau-smartphone-avec-une-technologie-de-batterie-revolutionnaire/"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-oppo-find-x9"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "realme-gt-7-pro",
       "nom": "Realme GT 7 Pro",
       "marque": "Realme",
-      "prix_indicatif": 749,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 799,
+      "prix_note": "Prix de lancement (nov. 2024) ; probablement plus bas aujourd'hui.",
       "caracteristiques": {
-        "écran": "6,78\" AMOLED, 120 Hz, 2780 x 1264",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "12 ou 16 Go LPDDR5X",
-        "stockage": "256 ou 512 Go UFS4.0",
-        "batterie": "6500 mAh, charge 120 W",
-        "photo": "50 Mpx principal (f/1.6, OIS) + 50 Mpx ultra grand-angle + 12 Mpx téléobjectif (2×)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
-        "étanchéité": "IP68",
-        "OS": "Android 15, Realme UI 6"
+        "ecran": "6,78\" AMOLED",
+        "processeur": "Snapdragon 8 Elite (3 nm)",
+        "batterie": "6 500 mAh, charge 120 W",
+        "photo": "50 Mpx principal + 50 Mpx + 8 Mpx"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3110,22 +3285,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+GT+7+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
-          "frequence_max_hz": 120,
+          "frequence_max_hz": null,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
-          "ram_go_max": 16,
+          "ram_go_max": null,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 6500,
@@ -3133,14 +3308,30 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "LesMobiles — arrivée en France",
+          "url": "https://www.lesmobiles.com/actualite/le-realme-gt-7-pro-arrive-en-france-a-un-prix-tres-competitif"
+        },
+        {
+          "nom": "Phonandroid",
+          "url": "https://www.phonandroid.com/?p=2622910"
+        },
+        {
+          "nom": "Journal du Geek — test",
+          "url": "https://www.journaldugeek.com/test/test-realme-gt-7-pro-lendurance-dans-un-prix-contenu/"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "zte-nubia-z60s",
@@ -3483,7 +3674,7 @@
       "nom": "Motorola Razr 60 Ultra",
       "marque": "Motorola",
       "prix_indicatif": 1299,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Pliable : classement par profil non adapté ; prix France très variable.",
       "caracteristiques": {
         "écran": "Écran pliable : 6,9\" intérieur + 3,6\" extérieur AMOLED, 120 Hz",
         "processeur": "Snapdragon 8 Gen 4",
@@ -3502,7 +3693,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Motorola+Razr+60+Ultra",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -3538,19 +3729,13 @@
       "id": "samsung-galaxy-a15",
       "nom": "Samsung Galaxy A15",
       "marque": "Samsung",
-      "prix_indicatif": 169,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 179,
+      "prix_note": "Lancement 249 € (5G, 2024) ; 179 € au Black Friday 2024.",
       "caracteristiques": {
-        "écran": "6,5\" IPS LCD, 90 Hz, 1600 x 720",
-        "processeur": "MediaTek Dimensity 6100",
-        "RAM": "4 ou 6 Go LPDDR4X",
-        "stockage": "128 Go eMMC",
-        "batterie": "5000 mAh, charge 25 W",
-        "photo": "50 Mpx principal (f/1.8) + 5 Mpx ultra grand-angle + 2 Mpx macro",
-        "vidéo": "1080p @ 30 fps",
-        "connectivité": "4G LTE, WiFi 5, Bluetooth 5.0",
-        "étanchéité": "IP65",
-        "OS": "Android 14, One UI Core"
+        "ecran": "6,5\" AMOLED Full HD+, 90 Hz",
+        "processeur": "MediaTek Dimensity 6100+",
+        "batterie": "5 000 mAh, charge 25 W",
+        "photo": "50 Mpx principal + 5 Mpx macro + 2 Mpx profondeur"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3561,22 +3746,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A15",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "LCD",
+          "technologie": "AMOLED",
           "frequence_max_hz": 90,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "MediaTek Dimensity 6100",
+          "soc": "MediaTek Dimensity 6100+",
           "niveau": 3,
-          "ram_go_max": 6,
+          "ram_go_max": null,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3584,32 +3769,42 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP65",
-          "android_version_sortie": 14
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/samsung-galaxy-a15.html"
+        },
+        {
+          "nom": "Phonandroid — où l'acheter",
+          "url": "https://www.phonandroid.com/?p=2580581"
+        },
+        {
+          "nom": "Dealabs",
+          "url": "https://www.dealabs.com/magazine/?p=39237"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "xiaomi-redmi-note-13",
       "nom": "Xiaomi Redmi Note 13",
       "marque": "Xiaomi",
-      "prix_indicatif": 199,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 170,
+      "prix_note": "Lancement 199 € (4G, 2024) ; offres de 143 à 197 € relevées.",
       "caracteristiques": {
-        "écran": "6,67\" AMOLED, 120 Hz, 2412 x 1080",
         "processeur": "Snapdragon 685",
-        "RAM": "6 ou 8 Go LPDDR4X",
-        "stockage": "128 Go UFS2.2",
-        "batterie": "5000 mAh, charge 33 W",
-        "photo": "50 Mpx principal (f/1.8) + 8 Mpx ultra grand-angle + 2 Mpx macro",
-        "vidéo": "1080p @ 30 fps",
-        "connectivité": "4G LTE, WiFi 5, Bluetooth 5.0",
-        "étanchéité": "IP54",
-        "OS": "Android 13, MIUI 14"
+        "ram": "6 ou 8 Go",
+        "stockage": "128 ou 256 Go",
+        "batterie": "5 000 mAh"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3620,11 +3815,11 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Redmi+Note+13",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
-          "frequence_max_hz": 120,
+          "technologie": null,
+          "frequence_max_hz": null,
           "luminosite_nits": null
         },
         "performance": {
@@ -3634,41 +3829,52 @@
           "gamme": "entree"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": false
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5000,
-          "recharge_watts": 33,
+          "recharge_watts": null,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP54",
-          "android_version_sortie": 13
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Journal du Geek — test",
+          "url": "https://www.journaldugeek.com/test/test-xiaomi-redmi-note-13-4g-le-nouveau-meilleur-ami-des-petits-budgets/"
+        },
+        {
+          "nom": "Tom's Guide — test",
+          "url": "https://www.tomsguide.fr/test-du-xiaomi-redmi-note-13-smartphone-petit-prix-compromis/"
+        },
+        {
+          "nom": "Kimovil — comparatif",
+          "url": "https://www.kimovil.com/fr/comparer/xiaomi-redmi-note-11,xiaomi-redmi-note-13-4g"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "motorola-moto-g85",
       "nom": "Motorola Moto G85",
       "marque": "Motorola",
-      "prix_indicatif": 189,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 220,
+      "prix_note": "Offres de 218 à 230 € (12/256 Go) ; lancement attendu vers 300 €.",
       "caracteristiques": {
-        "écran": "6,5\" AMOLED, 120 Hz, 2400 x 1080",
-        "processeur": "MediaTek Dimensity 7025",
-        "RAM": "6 ou 8 Go LPDDR5",
-        "stockage": "128 Go UFS3.1",
-        "batterie": "5000 mAh, charge 30 W",
-        "photo": "50 Mpx principal (f/1.8) + 8 Mpx ultra grand-angle + 2 Mpx macro",
-        "vidéo": "1080p @ 60 fps",
-        "connectivité": "4G LTE, WiFi 6, Bluetooth 5.1",
-        "étanchéité": "IP54",
-        "OS": "Android 14, stock"
+        "ecran": "6,67\" P-OLED, 1080 x 2400, 120 Hz, 1 600 nits",
+        "processeur": "Snapdragon 6s Gen 3",
+        "ram": "8 ou 12 Go",
+        "batterie": "5 000 mAh",
+        "photo": "50 Mpx principal + 8 Mpx ultra grand-angle"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3679,55 +3885,68 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Motorola+Moto+G85",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 1600
         },
         "performance": {
-          "soc": "MediaTek Dimensity 7025",
-          "niveau": 4,
-          "ram_go_max": 8,
-          "gamme": "milieu"
+          "soc": "Snapdragon 6s Gen 3",
+          "niveau": 3,
+          "ram_go_max": 12,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5000,
-          "recharge_watts": 30,
+          "recharge_watts": null,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP54",
-          "android_version_sortie": 14
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Phonesdata",
+          "url": "https://phonesdata.com/fr/smartphones/motorola/moto-g85-5464868/"
+        },
+        {
+          "nom": "Blog Nouvelles Technologies",
+          "url": "https://www.blog-nouvelles-technologies.fr/?p=294324"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/motorola-g85/antutu"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "realme-12-pro",
       "nom": "Realme 12 Pro",
       "marque": "Realme",
-      "prix_indicatif": 179,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 219,
+      "prix_note": "Relevés de 217 à 290 € (sources non datées).",
       "caracteristiques": {
-        "écran": "6,7\" AMOLED, 120 Hz, 2412 x 1080",
-        "processeur": "Snapdragon 7s Gen 2",
-        "RAM": "8 Go LPDDR4X",
-        "stockage": "256 Go UFS3.1",
-        "batterie": "5000 mAh, charge 67 W",
-        "photo": "50 Mpx principal (f/1.8, OIS) + 8 Mpx ultra grand-angle + 2 Mpx macro",
-        "vidéo": "1080p @ 60 fps",
-        "connectivité": "5G, WiFi 6, Bluetooth 5.3",
-        "étanchéité": "IP54",
-        "OS": "Android 14, Realme UI 5"
+        "ecran": "6,7\" AMOLED Full HD+, 120 Hz, 950 nits",
+        "processeur": "Snapdragon 6 Gen 1",
+        "ram": "8 ou 12 Go",
+        "batterie": "5 000 mAh, charge 67 W",
+        "photo": "50 Mpx principal + 32 Mpx téléobjectif + 8 Mpx ultra grand-angle",
+        "etancheite": "IP65",
+        "os": "Android 14"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3738,22 +3957,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+12+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 950
         },
         "performance": {
-          "soc": "Snapdragon 7s Gen 2",
-          "niveau": 5,
-          "ram_go_max": 8,
-          "gamme": "milieu"
+          "soc": "Snapdragon 6 Gen 1",
+          "niveau": 3,
+          "ram_go_max": 12,
+          "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3761,32 +3980,42 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP54",
+          "protection_ip": "IP65",
           "android_version_sortie": 14
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/realme-12-pro.html"
+        },
+        {
+          "nom": "PcComponentes — fiche",
+          "url": "https://www.pccomponentes.fr/realme-12-pro-5g-12gb-256gb-6-7-bleu"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com/realme_12_pro-ampp-12810.php"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "poco-x6",
       "nom": "POCO X6",
       "marque": "POCO",
-      "prix_indicatif": 199,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 259,
+      "prix_note": "Version européenne chez un revendeur (lancement 299,90 € en 2024).",
       "caracteristiques": {
-        "écran": "6,67\" AMOLED, 120 Hz, 2712 x 1220",
-        "processeur": "Snapdragon 7 Gen 3",
-        "RAM": "8 ou 12 Go LPDDR5",
-        "stockage": "256 ou 512 Go UFS3.1",
-        "batterie": "5110 mAh, charge 67 W",
-        "photo": "50 Mpx principal (f/1.7, OIS) + 12 Mpx ultra grand-angle + 2 Mpx macro",
-        "vidéo": "1080p @ 60 fps",
-        "connectivité": "4G LTE, WiFi 6, Bluetooth 5.3",
-        "étanchéité": "IP54",
-        "OS": "Android 14, MIUI 15"
+        "ecran": "6,67\"",
+        "processeur": "Snapdragon 7s Gen 2",
+        "ram": "8 ou 12 Go",
+        "batterie": "5 100 mAh, charge 33 W"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3797,37 +4026,53 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=POCO+X6",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
-          "frequence_max_hz": 120,
+          "technologie": null,
+          "frequence_max_hz": null,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 7 Gen 3",
-          "niveau": 6,
+          "soc": "Snapdragon 7s Gen 2",
+          "niveau": 5,
           "ram_go_max": 12,
           "gamme": "milieu"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": true
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5110,
-          "recharge_watts": 67,
+          "capacite_mah": 5100,
+          "recharge_watts": 33,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP54",
-          "android_version_sortie": 14
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "LesMobiles — fiche",
+          "url": "https://www.lesmobiles.com/telephones/xiaomi-poco-x6.html"
+        },
+        {
+          "nom": "LesMobiles — prix 259 €",
+          "url": "https://www.lesmobiles.com/actualite/43743-xiaomi-poco-x6-5g-le-milieu-de-gamme-avec-8-go-de-ram-et-une-puce-snapdragon-pour-moins-de-260.html"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-poco-x6"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "tecno-spark-20",
@@ -4130,7 +4375,7 @@
       "nom": "OnePlus 12 Ultra",
       "marque": "OnePlus",
       "prix_indicatif": 1099,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,82\" AMOLED, 144 Hz, 2800 x 1264",
         "processeur": "Snapdragon 8 Gen 3 Leading",
@@ -4152,7 +4397,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+12+Ultra",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4182,7 +4427,8 @@
       "ready_for_recommendation": false,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+      },
+      "exclu_reco": true
     },
     {
       "id": "xiaomi-black-shark-7-pro",
@@ -4479,19 +4725,13 @@
       "id": "poco-f6-pro",
       "nom": "POCO F6 Pro",
       "marque": "POCO",
-      "prix_indicatif": 499,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_indicatif": 480,
+      "prix_note": "Prix relevé chez des vendeurs français ; le lancement était à 499,90 € (mai 2024).",
       "caracteristiques": {
-        "écran": "6,67\" AMOLED, 120 Hz, 2712 x 1220",
-        "processeur": "Snapdragon 8s Gen 3 Leading",
-        "RAM": "12 ou 16 Go LPDDR5X",
-        "stockage": "512 Go UFS4.0",
-        "batterie": "5830 mAh, charge 120 W",
-        "photo": "50 Mpx principal (f/1.6, OIS) + 50 Mpx ultra grand-angle + 12 Mpx téléobjectif (2×)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 6E, Bluetooth 5.3, NFC",
-        "étanchéité": "IP54",
-        "OS": "Android 14, MIUI 15"
+        "ecran": "6,67\" AMOLED, 1440 x 3200, 120 Hz, 4 000 nits",
+        "processeur": "Snapdragon 8 Gen 2",
+        "ram": "12 ou 16 Go",
+        "batterie": "5 000 mAh, charge 120 W"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4501,44 +4741,60 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=POCO+F6+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 4000
         },
         "performance": {
-          "soc": "Snapdragon 8s Gen 3 Leading",
+          "soc": "Snapdragon 8 Gen 2",
           "niveau": 7,
           "ram_go_max": 16,
           "gamme": "haut"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": true
+          "mp_principal": null,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5830,
+          "capacite_mah": 5000,
           "recharge_watts": 120,
           "chimie": null
         },
         "durete": {
-          "protection_ip": "IP54",
-          "android_version_sortie": 14
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 3
+      },
+      "sources_verification": [
+        {
+          "nom": "Journal du Geek — test",
+          "url": "https://www.journaldugeek.com/test/test-xiaomi-poco-f6-pro-des-performances-a-prix-maitrise/"
+        },
+        {
+          "nom": "Edcom — arrivée en France",
+          "url": "https://www.edcom.fr/actualites/les-poco-f6-et-f6-pro-arrivent-en-france-rapides-puissants-et-abordables"
+        },
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com/fr/ou-acheter-poco-f6-pro"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "samsung-galaxy-s26-gaming",
       "nom": "Samsung Galaxy S26 Gaming",
       "marque": "Samsung",
       "prix_indicatif": 949,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,8\" Dynamic AMOLED 2X, 144 Hz, 2880 x 1440",
         "processeur": "Snapdragon 8 Gen 4 + gaming GPU boost",
@@ -4560,7 +4816,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Gaming",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4588,7 +4844,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -4714,7 +4970,7 @@
       "nom": "OnePlus 12 Hasselblad Edition",
       "marque": "OnePlus",
       "prix_indicatif": 1299,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,82\" AMOLED, 120 Hz, 2800 x 1264",
         "processeur": "Snapdragon 8 Gen 3 Leading",
@@ -4735,7 +4991,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+12+Hasselblad+Edition",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4763,7 +5019,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -4773,7 +5029,7 @@
       "nom": "Samsung Galaxy S26 Photography Pro",
       "marque": "Samsung",
       "prix_indicatif": 1299,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,7\" Dynamic AMOLED 2X, 120 Hz, 2800 x 1280",
         "processeur": "Snapdragon 8 Gen 4 + NPU photo",
@@ -4794,7 +5050,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Photography+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4822,7 +5078,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -4832,7 +5088,7 @@
       "nom": "Fujifilm X-S20 Mobile",
       "marque": "Fujifilm",
       "prix_indicatif": 1399,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,7\" OLED, 120 Hz, 2560 x 1440",
         "processeur": "Snapdragon 8 Gen 3 Leading",
@@ -4853,7 +5109,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Fujifilm+X-S20+Mobile",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4881,7 +5137,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -4891,7 +5147,7 @@
       "nom": "Sony Xperia Pro Camera Edition",
       "marque": "Sony",
       "prix_indicatif": 1599,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,5\" 4K OLED (3840 x 1644), 144 Hz",
         "processeur": "Snapdragon 8 Gen 4 + Alpha processing",
@@ -4912,7 +5168,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Sony+Xperia+Pro+Camera+Edition",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4940,7 +5196,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -4950,7 +5206,7 @@
       "nom": "Xiaomi Mix Fold 3 Photography",
       "marque": "Xiaomi",
       "prix_indicatif": 1899,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "Pliable : 8,02\" intérieur AMOLED (2160 x 2480, 120 Hz)",
         "processeur": "Snapdragon 8 Gen 3 Leading",
@@ -4971,7 +5227,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Mix+Fold+3+Photography",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4999,7 +5255,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -5009,7 +5265,7 @@
       "nom": "Vivo X200 Ultra Studio",
       "marque": "Vivo",
       "prix_indicatif": 1299,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,82\" AMOLED, 120 Hz, 3200 x 1440",
         "processeur": "MediaTek Dimensity 9400 Ultra + Vivo Imaging Processor",
@@ -5030,7 +5286,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vivo+X200+Ultra+Studio",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -5058,7 +5314,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -5068,7 +5324,7 @@
       "nom": "Honor Magic 9 Pro Photo",
       "marque": "Honor",
       "prix_indicatif": 1199,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,9\" OLED, 120 Hz, 2664 x 1200",
         "processeur": "Snapdragon 8 Gen 4",
@@ -5089,7 +5345,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+Magic+9+Pro+Photo",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -5117,7 +5373,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -5127,7 +5383,7 @@
       "nom": "OPPO Find X9 Photographer's Edition",
       "marque": "OPPO",
       "prix_indicatif": 1299,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,7\" AMOLED, 120 Hz, 2800 x 1264",
         "processeur": "Snapdragon 8 Gen 4",
@@ -5148,7 +5404,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OPPO+Find+X9+Photographer%27s+Edition",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -5176,7 +5432,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -5186,7 +5442,7 @@
       "nom": "Realme GT Photo Pro",
       "marque": "Realme",
       "prix_indicatif": 699,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Aucune source trouvée pour ce modèle (recherches d’octobre 2026) : fiche écartée.",
       "caracteristiques": {
         "écran": "6,78\" AMOLED, 120 Hz, 2780 x 1264",
         "processeur": "Snapdragon 8 Gen 3",
@@ -5207,7 +5463,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+GT+Photo+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "introuvable",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -5235,7 +5491,7 @@
         }
       },
       "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       }
@@ -5911,7 +6167,7 @@
     }
   ],
   "catalogue_meta": {
-    "derniere_verification": "2026-09-17",
+    "derniere_verification": "2026-10",
     "note": "Les scores servent à classer la compatibilité avec un profil, pas à mesurer une qualité absolue. Un score de compatibilité est plafonné à 9/10.",
     "sources": [
       "Frandroid",
@@ -5926,7 +6182,12 @@
     },
     "count": 94,
     "note_fiabilite": "Les fiches marquées « specs_a_verifier » ont été complétées sans source vérifiée ; elles servent à l'audit mais doivent être contrôlées avant publication. Les fiches « exclu_reco » sont écartées des recommandations.",
-    "echelle_puces": "niveau 1-10 (phone-analyzer/chips.js) : 1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme"
+    "echelle_puces": "niveau 1-10 (phone-analyzer/chips.js) : 1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme",
+    "verification_web": {
+      "date": "2026-10",
+      "fiches": 27,
+      "note": "Chaque fiche est relue sur au moins deux sources (presse, fabricants, revendeurs). Une valeur absente ou contradictoire n'est pas renseignée."
+    }
   },
   "meta": {
     "prix_verifies_le": "2026-10-06",
