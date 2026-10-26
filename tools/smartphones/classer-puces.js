@@ -8,6 +8,7 @@ const chips = require('../../phone-analyzer/chips.js');
 const file = path.join(__dirname, '..', '..', 'data', 'smartphones.json');
 
 function classer(cat) {
+  require('./integrer-complet.js').appliquer(cat); // cases vides remplies depuis le classeur Complet (avant le calcul des niveaux)
   const inconnues = [];
   let changees = 0;
   for (const p of cat.produits) {
@@ -22,6 +23,7 @@ function classer(cat) {
   }
   cat.catalogue_meta = Object.assign({}, cat.catalogue_meta, { echelle_puces: 'niveau 1-10 (phone-analyzer/chips.js) : 1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme' });
   require('./classer-capteurs.js').appliquer(cat); // la note du capteur photo suit le même passage
+  require('./classer-suivi.js').appliquer(cat); // et la durée de suivi logiciel
   return { changees, inconnues };
 }
 module.exports = { classer };

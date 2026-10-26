@@ -39,8 +39,9 @@ check('le catalogue porte exactement les relevés : format, note du module, gamm
     assert.ok(c, r.id + ' : capteur absent (relancer node tools/smartphones/classer-capteurs.js)');
     assert.equal(c.format, r.format, r.id); assert.equal(c.niveau, L(r.format), r.id); assert.equal(c.gamme, sensors.gamme(c.niveau).id, r.id);
   });
-  const notes = cat.produits.filter(p => p.compatibilite && p.compatibilite.photo && p.compatibilite.photo.capteur).length;
-  assert.equal(notes, releves.capteurs.length, 'une fiche porte un capteur qui n’est pas dans les relevés');
+  // Les modèles hors relevés sourcés viennent du classeur Complet : marqués « classeur », sans source propre.
+  const sansReleve = cat.produits.filter(p => p.compatibilite && p.compatibilite.photo && p.compatibilite.photo.capteur && !releves.capteurs.some(r => r.id === p.id));
+  sansReleve.forEach(p => { const c = p.compatibilite.photo.capteur; assert.equal(c.origine, 'classeur', p.id + ' : capteur sans relevé ni classeur'); assert.equal(c.niveau, L(c.format), p.id); });
 });
 console.log((ok + ko) + ' vérifications, ' + ko + ' échec(s).');
 if (ko) process.exit(1);

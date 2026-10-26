@@ -368,3 +368,85 @@ Grand capteur ({0}/1,{1}″ à {2}/1,{3}″)	Sensor grande ({0}/1,{1}″ a {2}/1
 Très grand capteur ({0}/1,{1}″ à {2}″)	Sensor muy grande ({0}/1,{1}″ a {2}″)
 Haut de gamme : nuit nette, flou d’arrière-plan ; bloc photo plus épais et plus cher.	Gama alta: noche nítida, desenfoque de fondo; bloque de cámara más grueso y más caro.
 Le sommet des photophones : le maximum de lumière, nuit très nette ; bloc photo épais, prix très élevé.	La cima de los fotófonos: el máximo de luz, noche muy nítida; bloque de cámara grueso, precio muy alto.
+Les noms de puces, les <1>nits</1> et les pouces ressemblent à des codes. Voici comment les lire.	Los nombres de chips, los <1>nits</1> y las pulgadas parecen códigos. Así se leen.
+Lire un nom de puce	Cómo leer el nombre de un chip
+Qualcomm · Snapdragon	Qualcomm · Snapdragon
+MediaTek · Dimensity	MediaTek · Dimensity
+Samsung · Exynos	Samsung · Exynos
+Apple · iPhone	Apple · iPhone
+Google · Pixel	Google · Pixel
+La marque de la puce	La marca del chip
+La série : {0} haut de gamme, {1} milieu, {2} et {3} entrée	La serie: {0} gama alta, {1} media, {2} y {3} entrada
+Le nom premium, depuis {0}	El nombre premium, desde {0}
+La génération : une de plus chaque année	La generación: una más cada año
+Un « s » (8s Gen {0}) veut dire version allégée : un cran sous la série {1}.	Una «s» (8s Gen {0}) indica una versión más ligera: un escalón por debajo de la serie {1}.
+La série : {0} haut de gamme, {1} milieu haut, {2} milieu, {3} entrée	La serie: {0} gama alta, {1} media alta, {2} media, {3} entrada
+La génération : {0}, {1}, {2}…	La generación: {0}, {1}, {2}…
+« + » ou « Ultra » après le nombre : version poussée	«+» o «Ultra» tras el número: versión potenciada
+La série : {0} haut de gamme, {1} milieu et entrée	La serie: {0} gama alta, {1} media y entrada
+La génération : {0}, {1}, {2} ({3}, {4}, {5})	La generación: {0}, {1}, {2} ({3}, {4}, {5})
+Variante du même modèle	Variante del mismo modelo
+La famille de puces des iPhone	La familia de chips de los iPhone
+La génération : A18, A19, A20 ({0}, {1}, {2})	La generación: A18, A19, A20 ({0}, {1}, {2})
+La version des iPhone Pro : plus de puissance graphique	La versión de los iPhone Pro: más potencia gráfica
+La génération : G3 (Pixel {0}), G4 (Pixel {1}), G5 (Pixel {2})	La generación: G3 (Pixel {0}), G4 (Pixel {1}), G5 (Pixel {2})
+Dans une même famille, plus la génération est grande, plus la puce est récente. Pour comparer des marques entre elles, on utilise la note de {0} à {1}.	Dentro de una misma familia, cuanto mayor es la generación, más reciente es el chip. Para comparar marcas entre sí usamos la nota de {0} a {1}.
+La note de puce, de {0} à {1}	La nota del chip, de {0} a {1}
+Sommet	Cima
+Helio G99, Snapdragon {0}	Helio G99, Snapdragon {0}
+Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}	Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}
+Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro	Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro
+Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro et A20 Pro	Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro y A20 Pro
+Capteur photo : plus il est grand, plus la note monte	Sensor de la cámara: cuanto mayor es, más sube la nota
+Note {0} : le sommet des photophones	Nota {0}: la cima de los fotófonos
+Note {0} : Pixel {1} Pro, Galaxy S26 Ultra	Nota {0}: Pixel {1} Pro, Galaxy S26 Ultra
+Note {0} : Galaxy A56, OnePlus {1}	Nota {0}: Galaxy A56, OnePlus {1}
+Note {0} : Pixel {1}, POCO X6	Nota {0}: Pixel {1}, POCO X6
+Note {0} : Galaxy A17 5G, Redmi 15C	Nota {0}: Galaxy A17 5G, Redmi 15C
+Pas encore renseigné au catalogue	Aún sin datos en el catálogo
+Facultatif	Opcional
+Technologie / chimie	Tecnología / química
+applis courantes	apps habituales
+beaucoup de lumière	mucha luz
+gros jeux longtemps	juegos pesados durante horas
+jeux 3D	juegos 3D
+jeux exigeants	juegos exigentes
+jeux fluides	juegos fluidos
+le sommet du marché	la cima del mercado
+lisible dehors	legible en exteriores
+lisible à l’ombre	legible a la sombra
+même capacité	misma capacidad
+même en plein soleil	incluso a pleno sol
+noir un peu grisé	negro algo grisáceo
+noirs + couleurs vives	negros intensos + colores vivos
+peu de lumière	poca luz
+pièces	piezas
+plus de lumière	más luz
+souvent {0} jours	a menudo {0} días
+tient la journée	dura todo el día
+ultra fluide	ultrafluido
+un jour et plus	un día o más
+vidéo, réseaux	vídeo, redes
+×{0} flou	×{0} borroso
+à recharger vite	para cargar rápido
+{0} ans	{0} años
+appels, web, vidéo	llamadas, web, vídeo
+bas prix	precio bajo
+bonne photo, puce rapide	buenas fotos, chip rápido
+dehors, nuageux	exteriores, nublado
+le meilleur dans chaque domaine	lo mejor en cada ámbito
+léger flou	ligero desenfoque
+net + vidéo stable	nítido + vídeo estable
+net à ×{0}	nítido a ×{0}
+nuit propre	noche limpia
+tient juste le soir	aguanta justo la noche
+tient toute la soirée	dura toda la noche
+éclaboussures	salpicaduras
+écran fluide, bonne batterie	pantalla fluida, buena batería
+A20 Pro, décodé en trois parties : famille, génération, version	A20 Pro, descifrado en tres partes: familia, generación, versión
+Cinq rectangles à l’échelle : un capteur d’un pouce, puis {0}/1,{1}, {2}/1,{3}, {4}/2 et {5}/2,{6} pouce, de plus en plus petits	Cinco rectángulos a escala: un sensor de una pulgada y luego {0}/1,{1}, {2}/1,{3}, {4}/2 y {5}/2,{6} pulgadas, cada vez más pequeños
+Dimensity {0}, décodé en quatre parties : marque, série, génération, variante	Dimensity {0}, descifrado en cuatro partes: marca, serie, generación, variante
+Échelle de {0} à {1}	Escala del {0} al {1}
+Exynos {0}, décodé en quatre parties : marque, série, génération, variante	Exynos {0}, descifrado en cuatro partes: marca, serie, generación, variante
+Snapdragon {0} Elite Gen {1}, décodé en quatre parties : marque, série, nom premium, génération	Snapdragon {0} Elite Gen {1}, descifrado en cuatro partes: marca, serie, nombre premium, generación
+Tensor G5, décodé en deux parties : marque, génération	Tensor G5, descifrado en dos partes: marca, generación

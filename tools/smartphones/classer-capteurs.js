@@ -8,6 +8,8 @@ const path = require('node:path');
 const sensors = require('../../phone-analyzer/sensors.js');
 const file = path.join(__dirname, '..', '..', 'data', 'smartphones.json');
 const releves = path.join(__dirname, '..', '..', 'data', 'smartphones-capteurs.json');
+const complet = path.join(__dirname, '..', '..', 'data', 'classeur-complet-2026.json');
+const { trouver } = require('./noms.js');
 
 function appliquer(cat, donnees) {
   const d = donnees || JSON.parse(fs.readFileSync(releves, 'utf8'));
@@ -24,8 +26,20 @@ function appliquer(cat, donnees) {
     p.compatibilite.photo = Object.assign({ mp_principal: null, ois: null }, p.compatibilite.photo);
     p.compatibilite.photo.capteur = { format: String(r.format), niveau, gamme: sensors.gamme(niveau).id, sources: r.sources };
   }
+  // Modèles sans relevé sourcé : taille donnée par le classeur Complet (sans source propre, marquée « classeur »).
+  const c = JSON.parse(fs.readFileSync(complet, 'utf8')), classeur = [];
+  Object.keys(c.capteur).forEach(nom => {
+    const p = trouver(cat, nom);
+    if (!p || (p.compatibilite && p.compatibilite.photo && p.compatibilite.photo.capteur)) return;
+    const niveau = sensors.level(c.capteur[nom]);
+    if (niveau == null) { illisibles.push(nom + ' : « ' + c.capteur[nom] + ' »'); return; }
+    p.compatibilite = p.compatibilite || {};
+    p.compatibilite.photo = Object.assign({ mp_principal: null, ois: null }, p.compatibilite.photo);
+    p.compatibilite.photo.capteur = { format: String(c.capteur[nom]), niveau, gamme: sensors.gamme(niveau).id, sources: [], origine: 'classeur' };
+    classeur.push(p.id);
+  });
   cat.catalogue_meta = Object.assign({}, cat.catalogue_meta, { echelle_capteurs: 'note 1-10 selon la taille du capteur principal (phone-analyzer/sensors.js) : 1″ = 10, 1/1.3″ = 8, 1/1.56″ = 7, 1/2.76″ = 3' });
-  return { manquants, illisibles, n: d.capteurs.length - manquants.length - illisibles.length };
+  return { manquants, illisibles, n: d.capteurs.length - manquants.length + classeur.length };
 }
 module.exports = { appliquer };
 

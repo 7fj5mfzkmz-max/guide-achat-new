@@ -90,7 +90,7 @@
       var label=question?question[1][i]:o[1];
       var mini=hasMini?art.mini(group.key,i,selected===o[0]):'';
       var dispo=D?D.option(group.key,o[0],values):{ok:true}, off=!dispo.ok&&selected!==o[0];
-      var note=off?'<small class="pill-note">'+(dispo.raison==='budget'?'Aucun modèle dans ce budget':'Aucun modèle au catalogue')+'</small>':'';
+      var note=off?'<small class="pill-note">'+(dispo.raison==='budget'?'Aucun modèle dans ce budget':dispo.raison==='donnees'?'Pas encore renseigné au catalogue':'Aucun modèle au catalogue')+'</small>':'';
       return '<button type="button" class="audit-pill'+(selected===o[0]?' is-selected':'')+(hasMini?' has-mini':'')+(off?' is-unavailable':'')+'" data-value="'+esc(o[0])+'" aria-pressed="'+(selected===o[0])+'"'+(off?' aria-disabled="true"':'')+'><span class="sq-option-dot" aria-hidden="true"></span>'+mini+'<span class="pill-copy"><strong>'+esc(label)+'</strong>'+note+'</span></button>';
     }).join('');
     var title=esc(question?question[0]:group.label);
