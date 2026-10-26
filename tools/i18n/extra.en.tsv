@@ -310,3 +310,35 @@ Helio G99, Snapdragon {0}, Exynos {1} · Galaxy A17 5G, Moto G06, realme C67 · 
 Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · {6} à {7} €	Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · €{6} to €{7}
 Dimensity {0} ou {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · {5} à {6} €	Dimensity {0} or {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · €{5} to €{6}
 Snapdragon {0} Elite, Dimensity {1}, puces Apple A18 Pro et A19 Pro · iPhone {2} Pro, iPhone {3} Pro Max · dès {4} €	Snapdragon {0} Elite, Dimensity {1}, Apple A18 Pro and A19 Pro chips · iPhone {2} Pro, iPhone {3} Pro Max · from €{4}
+: lisible en plein soleil, sur un chantier ou en gare. Sous {0} <1>nits</1>, on le lit mal dehors.	: readable in full sun, on a building site or at the station. Below {0} <1>nits</1>, it is hard to read outdoors.
+<1>Grand capteur principal ({0}/1,{1}″ ou plus)</1> : plus de lumière captée, surtout le soir.	<1>Large main sensor ({0}/{1}″ or larger)</1>: more light captured, especially in the evening.
+<1>Puce de niveau {0} ou plus</1> (sur {1}, repères ci-dessus) : PDF, tableurs et visio s’ouvrent sans attendre.	<1>Chip level {0} or higher</1> (out of {1}, see the reference points above): PDFs, spreadsheets and video calls open without waiting.
+<1>Puce de niveau {0} ou plus</1> (sur {1}) : Snapdragon 8s Gen {2} et au-dessus, Dimensity {3} et au-dessus, Apple A16 et au-dessus.	<1>Chip level {0} or higher</1> (out of {1}): Snapdragon 8s Gen {2} and above, Dimensity {3} and above, Apple A16 and above.
+{0} <1>nits</1> ou plus	{0} <1>nits</1> or more
+{0}/1,{1}″ ou plus	{0}/{1}″ or larger
+{0} <1>nits</1> et plus	{0} <1>nits</1> and more
+{0} <1>mAh</1> et plus	{0} <1>mAh</1> and more
+Appels, visio, mails, PDF et plans, souvent en déplacement. Une batterie qui dure, un écran lisible dehors ({0} <1>nits</1> ou plus) et une puce de niveau {1} ou plus comptent plus que la puissance maximale.	Calls, video calls, emails, PDFs and plans, often on the move. A battery that lasts, a screen that is readable outdoors ({0} <1>nits</1> or more) and a chip of level {1} or higher matter more than peak power.
+Correct dehors, sauf sous un soleil fort	Fine outdoors, except under strong sun
+Écran {0} <1>nits</1> ou plus	Screen of {0} <1>nits</1> or more
+Entrée de gamme : Helio G99, Snapdragon {0}	Entry level: Helio G99, Snapdragon {0}
+Haut de gamme : Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro	High end: Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro
+La norme : une bonne journée, parfois plus	The norm: a good day, sometimes more
+Les trois valeurs qui reviennent partout, avec ce qu’elles veulent dire. Le niveau de puce est notre échelle, la même pour toutes les marques.	The three values that come up everywhere, and what they mean. The chip level is our own scale, the same for every brand.
+Lisible à l’ombre	Readable in the shade
+Lisible en plein soleil	Readable in full sun
+Luminosité de l’écran	Screen brightness
+Milieu de gamme : Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}	Mid-range: Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}
+Niveau {0} à {1} sur {2}	Level {0} to {1} out of {2}
+Niveau {0} ou plus sur {1}	Level {0} or higher out of {1}
+Plus d’une journée, téléphone plus lourd	More than a day, heavier phone
+Puce, de {0} à {1}	Chip, from {0} to {1}
+Repères pour lire les chiffres	Reference points for reading the numbers
+Sommet : Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro et A20 Pro	Top: Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro and A20 Pro
+Très lumineux	Very bright
+Une journée d’usage normal	A day of normal use
+{0} à {1}	{0} to {1}
+Aucun modèle dans ce budget	No model in this budget
+Aucun modèle au catalogue	No model in the catalogue
+Un choix a été retiré : plus aucun modèle ne correspond dans ce budget.	One choice was removed: no model matches it in this budget any more.
+{0} choix ont été retirés : plus aucun modèle ne correspond dans ce budget.	{0} choices were removed: no model matches them in this budget any more.

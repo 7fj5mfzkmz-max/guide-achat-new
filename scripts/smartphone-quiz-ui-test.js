@@ -36,6 +36,7 @@ const server = http.createServer((req, res) => {
         else await page.waitForFunction(family=>{const img=document.querySelector('[data-audit-card="'+family+'"] .sq-family-photo img');return img.complete&&img.naturalWidth>0;},family);
         for(const g of await card.locator('.sq-primary').all()){
           for(const option of await g.locator('.audit-pill').all()){
+            if(await option.getAttribute('aria-disabled')==='true') continue; // option sans modèle correspondant : vérifiée plus bas
             await option.click();
             const gg=card.locator('.sq-primary').nth(await card.locator('.sq-primary').evaluateAll((els,k)=>els.findIndex(e=>e.contains(document.activeElement)),0));
             assert(await gg.locator('.sq-gain').textContent());
@@ -80,5 +81,35 @@ const server = http.createServer((req, res) => {
     assert.equal(await motionPage.evaluate(()=>document.documentElement.classList.contains('dark-theme')),true);
     await motionPage.close();
     console.log('OK schémas animés en boucle, retour de choix unique et thème sombre');
+
+    // Disponibilité : le budget grise ce qu'aucun modèle du catalogue ne propose
+    const dispo = await browser.newPage({locale:'fr-FR',viewport:{width:1280,height:900}});
+    await dispo.goto(`http://127.0.0.1:${server.address().port}/smartphones.html#audit`, {waitUntil:'networkidle'});
+    await dispo.waitForFunction(() => window.GuideDisponibilite && window.GuideDisponibilite.ready);
+    await dispo.locator('#quiz-price [data-value="bas"]').click();
+    const perf = dispo.locator('[data-audit-card="performance"]');
+    await perf.locator('.audit-card-trigger').click();
+    for (const v of ['mid', 'high', 'top']) {
+      const pill = perf.locator(`[data-group="reference"] [data-value="${v}"]`);
+      assert.equal(await pill.getAttribute('aria-disabled'), 'true', 'puce ' + v + ' grisée avec un budget de 80 à 150 €');
+      assert.match(await pill.innerText(), /Aucun modèle dans ce budget/);
+    }
+    assert.equal(await perf.locator('[data-group="reference"] [data-value="basic"]').getAttribute('aria-disabled'), null, 'entrée de gamme disponible');
+    await perf.locator('[data-group="reference"] [data-value="top"]').click({force:true});
+    assert.equal(await dispo.evaluate(() => (window.GuideAuditState.performance || {}).reference), undefined, 'un clic sur une option grisée ne change rien');
+    const longev = dispo.locator('[data-audit-card="longevity"]');
+    await longev.locator('.audit-card-trigger').click();
+    assert.equal(await longev.locator('[data-group="protection"] [data-value="ip68"]').getAttribute('aria-disabled'), 'true', 'IP68 grisé à ce prix');
+    // changer de budget retire les choix devenus impossibles et le dit
+    await perf.locator('.audit-card-trigger').click();
+    await perf.locator('[data-group="reference"] [data-value="basic"]').click();
+    assert.equal(await dispo.evaluate(() => window.GuideAuditState.performance.reference), 'basic');
+    await dispo.locator('[data-audit-card="price"] .audit-card-trigger').click();
+    await dispo.locator('#quiz-price [data-value="haut"]').click();
+    assert.equal(await dispo.evaluate(() => (window.GuideAuditState.performance || {}).reference), undefined, 'puce d’entrée de gamme retirée avec un budget de 800 € et plus');
+    assert.match(await dispo.locator('#audit-message').innerText(), /retiré/);
+    assert.equal(await dispo.evaluate(() => window.GuideAuditState.price.budget), 'haut');
+    await dispo.close();
+    console.log('OK options grisées selon le budget, clic ignoré, choix impossibles retirés');
   } finally { await browser.close(); }
 })().then(()=>server.close()).catch(e=>{console.error(e);server.close();process.exitCode=1;});

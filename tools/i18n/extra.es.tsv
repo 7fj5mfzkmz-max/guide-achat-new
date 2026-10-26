@@ -310,3 +310,35 @@ Helio G99, Snapdragon {0}, Exynos {1} · Galaxy A17 5G, Moto G06, realme C67 · 
 Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · {6} à {7} €	Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · de {6} a {7} €
 Dimensity {0} ou {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · {5} à {6} €	Dimensity {0} u {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · de {5} a {6} €
 Snapdragon {0} Elite, Dimensity {1}, puces Apple A18 Pro et A19 Pro · iPhone {2} Pro, iPhone {3} Pro Max · dès {4} €	Snapdragon {0} Elite, Dimensity {1}, chips Apple A18 Pro y A19 Pro · iPhone {2} Pro, iPhone {3} Pro Max · desde {4} €
+: lisible en plein soleil, sur un chantier ou en gare. Sous {0} <1>nits</1>, on le lit mal dehors.	: legible a pleno sol, en una obra o en la estación. Por debajo de {0} <1>nits</1>, cuesta leerla en exteriores.
+<1>Grand capteur principal ({0}/1,{1}″ ou plus)</1> : plus de lumière captée, surtout le soir.	<1>Sensor principal grande ({0}/{1}″ o más)</1>: capta más luz, sobre todo por la noche.
+<1>Puce de niveau {0} ou plus</1> (sur {1}, repères ci-dessus) : PDF, tableurs et visio s’ouvrent sans attendre.	<1>Chip de nivel {0} o superior</1> (sobre {1}, ver las referencias de arriba): los PDF, las hojas de cálculo y las videollamadas se abren sin esperar.
+<1>Puce de niveau {0} ou plus</1> (sur {1}) : Snapdragon 8s Gen {2} et au-dessus, Dimensity {3} et au-dessus, Apple A16 et au-dessus.	<1>Chip de nivel {0} o superior</1> (sobre {1}): Snapdragon 8s Gen {2} y superiores, Dimensity {3} y superiores, Apple A16 y superiores.
+{0} <1>nits</1> ou plus	{0} <1>nits</1> o más
+{0}/1,{1}″ ou plus	{0}/{1}″ o más
+{0} <1>nits</1> et plus	{0} <1>nits</1> y más
+{0} <1>mAh</1> et plus	{0} <1>mAh</1> y más
+Appels, visio, mails, PDF et plans, souvent en déplacement. Une batterie qui dure, un écran lisible dehors ({0} <1>nits</1> ou plus) et une puce de niveau {1} ou plus comptent plus que la puissance maximale.	Llamadas, videollamadas, correos, PDF y planos, a menudo en movimiento. Una batería que dure, una pantalla legible en exteriores ({0} <1>nits</1> o más) y un chip de nivel {1} o superior importan más que la potencia máxima.
+Correct dehors, sauf sous un soleil fort	Correcta en exteriores, salvo bajo un sol fuerte
+Écran {0} <1>nits</1> ou plus	Pantalla de {0} <1>nits</1> o más
+Entrée de gamme : Helio G99, Snapdragon {0}	Gama de entrada: Helio G99, Snapdragon {0}
+Haut de gamme : Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro	Gama alta: Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro
+La norme : une bonne journée, parfois plus	Lo habitual: un buen día, a veces más
+Les trois valeurs qui reviennent partout, avec ce qu’elles veulent dire. Le niveau de puce est notre échelle, la même pour toutes les marques.	Los tres valores que aparecen en todas partes y lo que significan. El nivel de chip es nuestra escala, la misma para todas las marcas.
+Lisible à l’ombre	Legible a la sombra
+Lisible en plein soleil	Legible a pleno sol
+Luminosité de l’écran	Brillo de la pantalla
+Milieu de gamme : Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}	Gama media: Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}
+Niveau {0} à {1} sur {2}	Nivel {0} a {1} sobre {2}
+Niveau {0} ou plus sur {1}	Nivel {0} o superior sobre {1}
+Plus d’une journée, téléphone plus lourd	Más de un día, teléfono más pesado
+Puce, de {0} à {1}	Chip, del {0} al {1}
+Repères pour lire les chiffres	Referencias para leer las cifras
+Sommet : Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro et A20 Pro	Cima: Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro y A20 Pro
+Très lumineux	Muy luminosa
+Une journée d’usage normal	Un día de uso normal
+{0} à {1}	{0} a {1}
+Aucun modèle dans ce budget	Ningún modelo en este presupuesto
+Aucun modèle au catalogue	Ningún modelo en el catálogo
+Un choix a été retiré : plus aucun modèle ne correspond dans ce budget.	Se ha quitado una opción: ya no hay ningún modelo que encaje con este presupuesto.
+{0} choix ont été retirés : plus aucun modèle ne correspond dans ce budget.	Se han quitado {0} opciones: ya no hay ningún modelo que encaje con este presupuesto.

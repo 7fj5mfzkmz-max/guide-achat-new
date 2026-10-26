@@ -512,9 +512,39 @@
         }
         return html;
       }
+      /* Quand le budget change, les choix qui n'ont plus aucun modèle correspondant sont retirés (et signalés). */
+      var prunedNote='';
+      function pruneUnavailable(){
+        var D=window.GuideDisponibilite; if(!D||!D.ready) return 0;
+        var n=0;
+        Object.keys(configs).forEach(function(k){
+          configs[k].groups.forEach(function(g){
+            var v=state[k]&&state[k][g.key];
+            if(g.key==='budget'||!v) return;
+            if(!D.option(g.key,v,g.options.map(function(o){return o[0];})).ok){ delete state[k][g.key]; n++; }
+          });
+        });
+        if(n){
+          prunedNote=n===1?'Un choix a été retiré : plus aucun modèle ne correspond dans ce budget.':n+' choix ont été retirés : plus aucun modèle ne correspond dans ce budget.';
+          board.querySelectorAll('.audit-card').forEach(function(card){ updateCard(card,card.getAttribute('data-audit-card')); });
+        } else prunedNote='';
+        return n;
+      }
+      window.addEventListener('guide:disponibilite',function(){
+        pruneUnavailable();
+        board.querySelectorAll('.audit-card').forEach(function(card){
+          var tr=card.querySelector('.audit-card-trigger');
+          if(tr.getAttribute('aria-expanded')==='true') card.querySelector('.audit-panel').innerHTML=panelHtml(card.getAttribute('data-audit-card'));
+        });
+        persistAudit();
+        window.dispatchEvent(new CustomEvent('guide:audit-change',{detail:{state:state}}));
+      });
+      /* Un panneau qui se referme est masqué après l'animation ; rouvert entre-temps, il ne doit pas être masqué par ce délai. */
+      function hidePanel(p){ p.classList.remove('is-open'); window.clearTimeout(p._hideTimer); p._hideTimer=window.setTimeout(function(){p.hidden=true;},180); }
       function renderCard(card,key){
         state[key]=state[key]||{};
         var panel=card.querySelector('.audit-panel');
+        window.clearTimeout(panel._hideTimer);
         panel.innerHTML=panelHtml(key);
         panel.hidden=false;
         requestAnimationFrame(function(){panel.classList.add('is-open');});
@@ -531,7 +561,8 @@
         var done=Object.keys(configs).reduce(function(n,k){return n+(configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
         var count=document.getElementById('audit-count'),msg=document.getElementById('audit-message');
         if(count) count.textContent=done+(done===1?' / '+totalGroups+' famille renseignée':' / '+totalGroups+' familles renseignées');
-        if(msg) msg.textContent=done===totalGroups?'Les six familles sont renseignées : voici les modèles les plus proches de vos choix.':done?'Chaque famille renseignée resserre la liste. Les autres peuvent rester vides.':'Une famille peut rester sans réponse.';
+        if(msg&&prunedNote) msg.textContent=prunedNote;
+        else if(msg) msg.textContent=done===totalGroups?'Les six familles sont renseignées : voici les modèles les plus proches de vos choix.':done?'Chaque famille renseignée resserre la liste. Les autres peuvent rester vides.':'Une famille peut rester sans réponse.';
         var see=document.getElementById('audit-see-results');
         if(see) see.hidden=done<1;
       }
@@ -542,7 +573,7 @@
           if(!auditStartedAt) auditStartedAt=Date.now();
           var open=trigger.getAttribute('aria-expanded')==='true';
           board.querySelectorAll('.audit-card').forEach(function(other){
-            if(other!==card){other.querySelector('.audit-card-trigger').setAttribute('aria-expanded','false');var p=other.querySelector('.audit-panel');p.classList.remove('is-open');setTimeout(function(){p.hidden=true;},180);}
+            if(other!==card){other.querySelector('.audit-card-trigger').setAttribute('aria-expanded','false');var p=other.querySelector('.audit-panel');hidePanel(p);}
           });
           trigger.setAttribute('aria-expanded',String(!open));
           if(!open) {
@@ -553,15 +584,17 @@
               if(Math.abs(drift)>1) window.scrollBy(0,drift);
             });
           } else {
-            card.querySelector('.audit-panel').classList.remove('is-open');
-            setTimeout(function(){card.querySelector('.audit-panel').hidden=true;},180);
+            hidePanel(card.querySelector('.audit-panel'));
           }
         });
         card.addEventListener('click',function(e){
           var opt=e.target.closest('.audit-pill');
           if(!opt) return;
+          if(opt.getAttribute('aria-disabled')==='true') return; // option sans modèle correspondant : on n'enregistre rien
           var group=opt.closest('.audit-control').getAttribute('data-group');
           state[key]=state[key]||{}; state[key][group]=opt.getAttribute('data-value');
+          prunedNote='';
+          if(group==='budget') pruneUnavailable();
           persistAudit();
           var panel=card.querySelector('.audit-panel');
           /* Re-render complet du panneau via panelHtml : les critères avancés

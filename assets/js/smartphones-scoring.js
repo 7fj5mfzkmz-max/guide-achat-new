@@ -483,6 +483,50 @@
     renderResults((event.detail && event.detail.state) || window.GuideAuditState || {}, !!(event.detail && event.detail.user));
   });
 
+  /* Disponibilité des options : un choix reste proposé seulement si au moins un modèle du catalogue, dans le budget
+     déjà choisi, y correspond vraiment (même règle que le classement : valeur « pile » ou très proche).
+     Un critère que le catalogue ne documente pour aucun modèle n'est pas grisé : on ne peut pas dire qu'il manque. */
+  var STATE_OF = { budget: "price", tech: "screen", refresh: "screen", brightness: "screen", capacity: "battery", chemistry: "battery", charge: "battery", reference: "performance", gaming: "performance", sensor: "photo", stabilization: "photo", zoom: "photo", resolution: "photo", updates: "longevity", repair: "longevity", protection: "longevity" };
+  var CHECK_KEY = { tech: "ecran.tech", refresh: "ecran.refresh", brightness: "ecran.brightness", capacity: "batterie.capacity", chemistry: "battery.chemistry", charge: "batterie.charge", reference: "performance.reference", gaming: "performance.gaming", sensor: "photo.sensor", zoom: "photo.zoom", resolution: "photo.resolution", updates: "durete.updates", repair: "durete.repair", protection: "durete.protection" };
+  var NUMERIC_KEYS = { "ecran.refresh": 1, "ecran.brightness": 1, "batterie.capacity": 1, "batterie.charge": 1, "photo.resolution": 1 };
+  var dispoCache = {}, documentedCache = {};
+
+  function inTier(p, budget) {
+    var t = PALIERS[budget], prix = Number(p.prix_indicatif);
+    return !!t && Number.isFinite(prix) && prix > 0 && prix >= t.min * 0.85 && prix <= t.max * 1.15;
+  }
+  function optionMatches(p, group, value) {
+    if (group === "budget") return inTier(p, value);
+    if (group === "stabilization") return value === "none" || (p.compatibilite && p.compatibilite.photo && p.compatibilite.photo.ois === true);
+    if (group === "protection" && value === "basic") return true;
+    var part = {}, st = {};
+    part[group] = value; st[STATE_OF[group]] = part;
+    var item = checks(p, st).filter(function (x) { return x.key === CHECK_KEY[group]; })[0];
+    if (!item || item.out) return false;
+    return NUMERIC_KEYS[CHECK_KEY[group]] ? item.score >= 0.75 : item.d === 0;
+  }
+  function anyMatch(pool, group, value) { return pool.some(function (p) { return optionMatches(p, group, value); }); }
+  // Le catalogue documente-t-il ce critère ? (au moins un modèle, une option, sans limite de budget)
+  function isDocumented(group, options) {
+    if (documentedCache[group] == null) documentedCache[group] = options.some(function (v) { return anyMatch(products, group, v); });
+    return documentedCache[group];
+  }
+  window.GuideDisponibilite = {
+    ready: false,
+    /* → { ok: bool, raison: "budget" | "catalogue" } ; ok vrai si l'option est proposée. */
+    option: function (group, value, siblings) {
+      if (!this.ready) return { ok: true };
+      var budget = ((window.GuideAuditState || {}).price || {}).budget || "";
+      var memo = budget + "|" + group + "|" + value;
+      if (dispoCache[memo]) return dispoCache[memo];
+      var res = { ok: true };
+      if (group !== "budget" && !isDocumented(group, siblings || [value])) res = { ok: true };
+      else if (!anyMatch(budget && group !== "budget" ? products.filter(function (p) { return inTier(p, budget); }) : products, group, value)) res = { ok: false, raison: budget && group !== "budget" ? "budget" : "catalogue" };
+      dispoCache[memo] = res;
+      return res;
+    }
+  };
+
   // Éviter le scroll automatique quand le JSON finit de charger
   if (root && !root.dataset.shown) root.dataset.shown = "0";
 
@@ -493,6 +537,9 @@
     })
     .then(function (data) {
       products = (data.produits || []).filter(function (p) { return p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== "specs_a_verifier" && p.compatibilite; });
+      dispoCache = {}; documentedCache = {};
+      window.GuideDisponibilite.ready = true;
+      window.dispatchEvent(new CustomEvent("guide:disponibilite"));
       renderResults(window.GuideAuditState || {}, false);
     })
     .catch(function () {
