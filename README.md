@@ -45,6 +45,9 @@ Le classement de la page smartphones (profils, « Mes critères ») lit ensuite 
 `phone-analyzer/chips.js` classe chaque puce sur une seule échelle (1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme), partagée par le catalogue, le quiz et l'analyseur. `node tools/smartphones/classer-puces.js` écrit `perf.niveau` et `perf.gamme` dans `data/smartphones.json` (déjà appelé par `integrer-tests.js`). Puce inconnue : pas de niveau. Nouvelle puce : ajouter une règle dans `chips.js`, puis `node scripts/chips-test.js`.
 Paliers de prix du quiz : bas prix 80-150 €, entrée 150-300 €, milieu 300-800 €, haut 800 € et plus ; « petit prix » = 80 à 250 €.
 
+### Échelle des capteurs photo (1 à 10)
+`phone-analyzer/sensors.js` note le capteur principal selon sa taille : 1″ = 10, 1/1.3″ = 8, 1/1.56″ = 7, 1/2″ = 5, 1/2.76″ = 3 (1-3 petit, 4-6 moyen, 7-8 grand, 9-10 très grand). Les tailles relevées, avec leurs sources, sont dans `data/smartphones-capteurs.json` ; `node tools/smartphones/classer-capteurs.js` les inscrit dans `compatibilite.photo.capteur` (relancé par tous les outils du catalogue). Un modèle sans relevé n'a pas de note : on ne devine pas. Contrôle : `node scripts/sensors-test.js`.
+
 ### Options du quiz « Mes critères » grisées
 `window.GuideDisponibilite` (`assets/js/smartphones-scoring.js`) dit si une option a au moins un modèle correspondant dans le catalogue, dans le budget déjà choisi (palier ± 15 %). Même règle que le classement : valeur « pile » ou très proche. Une option sans modèle est grisée (`aria-disabled`, « Aucun modèle dans ce budget »), un clic dessus est ignoré, et changer de budget retire les choix devenus impossibles. Un critère que le catalogue ne documente pour aucun modèle (chimie de batterie par exemple) n'est pas grisé.
 

@@ -342,3 +342,29 @@ Aucun modèle dans ce budget	Ningún modelo en este presupuesto
 Aucun modèle au catalogue	Ningún modelo en el catálogo
 Un choix a été retiré : plus aucun modèle ne correspond dans ce budget.	Se ha quitado una opción: ya no hay ningún modelo que encaje con este presupuesto.
 {0} choix ont été retirés : plus aucun modèle ne correspond dans ce budget.	Se han quitado {0} opciones: ya no hay ningún modelo que encaje con este presupuesto.
+<1>Capteur de note {0} ou plus sur {1}</1> ({2}/1,{3}″ ou plus grand) : plus de lumière captée, surtout le soir.	<1>Sensor de nota {0} o superior sobre {1}</1> ({2}/1,{3}″ o más grande): capta más luz, sobre todo por la noche.
+Capteur photo, de {0} à {1}	Sensor de la cámara, del {0} al {1}
+Petit : {0}/2,{1}″ et moins (Galaxy A17 5G, Redmi 15C)	Pequeño: {0}/2,{1}″ o menos (Galaxy A17 5G, Redmi 15C)
+Moyen : {0}/2,{1}″ à {2}/1,{3}″ (Pixel {4}, Moto G85, Redmi Note {5} 5G)	Medio: {0}/2,{1}″ a {2}/1,{3}″ (Pixel {4}, Moto G85, Redmi Note {5} 5G)
+Grand : {0}/1,{1}″ à {2}/1,{3}″ (Galaxy A56, OnePlus {4}, Pixel {5} Pro)	Grande: {0}/1,{1}″ a {2}/1,{3}″ (Galaxy A56, OnePlus {4}, Pixel {5} Pro)
+Très grand : {0}/1,{1}″ à {2}″, un capteur d’un pouce vaut {3}	Muy grande: {0}/1,{1}″ a {2}″, un sensor de una pulgada vale {3}
+Plus le second chiffre est petit, plus le capteur est grand : {0}/1,{1}″ est bien plus grand que {2}/2,{3}″.	Cuanto menor es el segundo número, mayor es el sensor: {0}/1,{1}″ es mucho mayor que {2}/2,{3}″.
+Les valeurs qui reviennent partout, avec ce qu’elles veulent dire. Les notes de puce et de capteur sont notre échelle, la même pour toutes les marques.	Los valores que aparecen en todas partes y lo que significan. Las notas del chip y del sensor son nuestra escala, la misma para todas las marcas.
+Note {0} ou plus sur {1}	Nota {0} o superior sobre {1}
+Très grand	Muy grande
+Le maximum de lumière : nuit très nette, détails fins.	El máximo de luz: noche muy nítida, detalles finos.
+Très cher, gros bloc photo, téléphone plus épais.	Muy caro, bloque de cámara grande, teléfono más grueso.
+Note {0} à {1} · {2}/2,{3}″ et moins · Galaxy A17 5G, Redmi 15C, POCO C85	Nota {0} a {1} · {2}/2,{3}″ o menos · Galaxy A17 5G, Redmi 15C, POCO C85
+Note {0} à {1} · {2}/2,{3}″ à {4}/1,{5}″ · Pixel {6}, Moto G85, Redmi Note {7} 5G	Nota {0} a {1} · {2}/2,{3}″ a {4}/1,{5}″ · Pixel {6}, Moto G85, Redmi Note {7} 5G
+Note {0} à {1} · {2}/1,{3}″ à {4}/1,{5}″ · Galaxy A56, OnePlus {6}, Pixel {7} Pro	Nota {0} a {1} · {2}/1,{3}″ a {4}/1,{5}″ · Galaxy A56, OnePlus {6}, Pixel {7} Pro
+Note {0} à {1} · {2}/1,{3}″ à {4}″ · le sommet : un capteur d’un pouce vaut {5}	Nota {0} a {1} · {2}/1,{3}″ a {4}″ · la cima: un sensor de una pulgada vale {5}
+très grand capteur	sensor muy grande
+nuit très nette	noche muy nítida
+nuit nette	noche nítida
+le maximum de lumière	el máximo de luz
+Petit capteur ({0}/2,{1}″ et moins)	Sensor pequeño ({0}/2,{1}″ o menos)
+Capteur moyen ({0}/2,{1}″ à {2}/1,{3}″)	Sensor medio ({0}/2,{1}″ a {2}/1,{3}″)
+Grand capteur ({0}/1,{1}″ à {2}/1,{3}″)	Sensor grande ({0}/1,{1}″ a {2}/1,{3}″)
+Très grand capteur ({0}/1,{1}″ à {2}″)	Sensor muy grande ({0}/1,{1}″ a {2}″)
+Haut de gamme : nuit nette, flou d’arrière-plan ; bloc photo plus épais et plus cher.	Gama alta: noche nítida, desenfoque de fondo; bloque de cámara más grueso y más caro.
+Le sommet des photophones : le maximum de lumière, nuit très nette ; bloc photo épais, prix très élevé.	La cima de los fotófonos: el máximo de luz, noche muy nítida; bloque de cámara grueso, precio muy alto.

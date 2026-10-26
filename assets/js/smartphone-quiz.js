@@ -10,7 +10,7 @@
     refresh:['Quelle fluidité ?',['60 Hz','90 Hz','120 Hz','144 Hz']],
     capacity:['Quelle batterie ?',['3 000 mAh','4 000 mAh','5 000 mAh','6 000 mAh +']],
     reference:['Quelle puce vous faut-il ?',['Entrée de gamme','Milieu de gamme','Haut de gamme','Très haut de gamme']],
-    sensor:['Quel capteur photo ?',['Petit','Moyen','Grand']],
+    sensor:['Quel capteur photo ?',['Petit','Moyen','Grand','Très grand']],
     updates:['Combien d’années de mises à jour ?',['3 ans','5 ans','7 ans +']]
   };
   // [gain, contrepartie] : une phrase chacune, affichées discrètement sous les choix.
@@ -48,7 +48,8 @@
     sensor:[
       ['Suffit de jour, modèles abordables.','Le soir et en intérieur : grain et flou.'],
       ['Soirées et intérieurs plus propres.','Prix plus haut ; le logiciel compte aussi.'],
-      ['Nuit nette, joli flou d’arrière-plan.','Bloc photo épais et cher.']
+      ['Nuit nette, joli flou d’arrière-plan.','Bloc photo épais et cher.'],
+      ['Le maximum de lumière : nuit très nette, détails fins.','Très cher, gros bloc photo, téléphone plus épais.']
     ],
     updates:[
       ['Modèles moins chers.','Plus de correctifs de sécurité ensuite.'],
@@ -71,9 +72,10 @@
       'Snapdragon 8 Elite, Dimensity 9500, puces Apple A18 Pro et A19 Pro · iPhone 17 Pro, iPhone 17 Pro Max · dès 1 300 €'
     ],
     sensor:[
-      'Capteur ≈ 1/2,8″ à 1/2″ · entrée de gamme',
-      'Capteur ≈ 1/1,7″ à 1/1,5″ · milieu de gamme',
-      'Capteur ≈ 1/1,3″ à 1″ · haut de gamme et photophones'
+      'Note 1 à 3 · 1/2,8″ et moins · Galaxy A17 5G, Redmi 15C, POCO C85',
+      'Note 4 à 6 · 1/2,3″ à 1/1,7″ · Pixel 10, Moto G85, Redmi Note 14 5G',
+      'Note 7 à 8 · 1/1,56″ à 1/1,3″ · Galaxy A56, OnePlus 15, Pixel 10 Pro',
+      'Note 9 à 10 · 1/1,2″ à 1″ · le sommet : un capteur d’un pouce vaut 10'
     ],
     updates:[null,null,'Pixel 8 et suivants, Galaxy S24 et suivants']
   };
@@ -95,7 +97,7 @@
     var feedback;
     if(question) {
       var t=tradeoffs[group.key], ex=examples[group.key]&&examples[group.key][selectedIndex];
-      feedback=chosen?'<div class="sq-pm" aria-live="polite" aria-atomic="true"><p class="sq-gain"><b aria-hidden="true">+</b><span class="sq-sr">Avantage : </span>'+esc(t[selectedIndex][0])+'</p><p class="sq-cost"><b aria-hidden="true">−</b><span class="sq-sr">À accepter : </span>'+esc(t[selectedIndex][1])+'</p>'+(ex?'<p class="sq-ex"><b aria-hidden="true">≈</b><span><span class="sq-sr">Repères : </span>'+esc(ex)+'</span></p>':'')+'</div>':'<div class="sq-pm" aria-live="polite"><p class="sq-hint">Touchez un choix pour voir la différence.</p></div>';
+      feedback=chosen?'<div class="sq-pm" aria-live="polite" aria-atomic="true"><p class="sq-gain"><b aria-hidden="true">+</b><span class="sq-sr">Avantage : </span>'+esc(t[selectedIndex][0])+'</p><p class="sq-cost"><b aria-hidden="true">−</b><span class="sq-sr">À accepter : </span>'+esc(t[selectedIndex][1])+'</p>'+(ex?'<p class="sq-ex"><b aria-hidden="true">≈</b><span><span class="sq-sr">Repères : </span><span>'+esc(ex)+'</span></span></p>':'')+'</div>':'<div class="sq-pm" aria-live="polite"><p class="sq-hint">Touchez un choix pour voir la différence.</p></div>';
     } else {
       feedback='<p class="sq-explanation" aria-live="polite">'+esc(chosen?group.options[selectedIndex][2]:'Vous pouvez laisser cette question sans réponse.')+'</p>';
     }

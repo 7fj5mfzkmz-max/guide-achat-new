@@ -88,10 +88,11 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <p class="tr-intro" id="tr-intro" hidden></p>
 <div class="tr-podium" id="tr-podium" aria-live="polite"><p class="tr-loading">Chargement du classement…</p></div>
 <div class="tr-profile-cards">
-<aside class="tr-reperes" aria-labelledby="reperes-titre"><h4 id="reperes-titre">Repères pour lire les chiffres</h4><p>Les trois valeurs qui reviennent partout, avec ce qu’elles veulent dire. Le niveau de puce est notre échelle, la même pour toutes les marques.</p>
+<aside class="tr-reperes" aria-labelledby="reperes-titre"><h4 id="reperes-titre">Repères pour lire les chiffres</h4><p>Les valeurs qui reviennent partout, avec ce qu’elles veulent dire. Les notes de puce et de capteur sont notre échelle, la même pour toutes les marques.</p>
 <div class="tr-reperes-grid">
 <div><h5>Puce, de 1 à 10</h5><dl><dt>1 à 3</dt><dd>Entrée de gamme : Helio G99, Snapdragon 685</dd><dt>4 à 6</dt><dd>Milieu de gamme : Snapdragon 6 Gen 3, Exynos 1580, Snapdragon 7 Gen 3</dd><dt>7 à 8</dt><dd>Haut de gamme : Snapdragon 8s Gen 3, Dimensity 8500, Tensor G5, Apple A17 Pro</dd><dt>9 à 10</dt><dd>Sommet : Snapdragon 8 Elite, Exynos 2600, Apple A19 Pro et A20 Pro</dd></dl></div>
 <div><h5>Luminosité de l’écran</h5><dl><dt>600 nits</dt><dd>Lisible à l’ombre</dd><dt>1 000 nits</dt><dd>Correct dehors, sauf sous un soleil fort</dd><dt>1 600 nits</dt><dd>Lisible en plein soleil</dd><dt>2 500 nits et plus</dt><dd>Très lumineux</dd></dl></div>
+<div><h5>Capteur photo, de 1 à 10</h5><dl><dt>1 à 3</dt><dd>Petit : 1/2,8″ et moins (Galaxy A17 5G, Redmi 15C)</dd><dt>4 à 6</dt><dd>Moyen : 1/2,3″ à 1/1,7″ (Pixel 10, Moto G85, Redmi Note 14 5G)</dd><dt>7 à 8</dt><dd>Grand : 1/1,56″ à 1/1,3″ (Galaxy A56, OnePlus 15, Pixel 10 Pro)</dd><dt>9 à 10</dt><dd>Très grand : 1/1,2″ à 1″, un capteur d’un pouce vaut 10</dd></dl><p class="tr-reperes-note">Plus le second chiffre est petit, plus le capteur est grand : 1/1,3″ est bien plus grand que 1/2,8″.</p></div>
 <div><h5>Batterie</h5><dl><dt>4 000 mAh</dt><dd>Une journée d’usage normal</dd><dt>5 000 mAh</dt><dd>La norme : une bonne journée, parfois plus</dd><dt>6 000 mAh et plus</dt><dd>Plus d’une journée, téléphone plus lourd</dd></dl></div>
 </div></aside>
 <div class="profile-toggle" hidden data-tone="teal" id="etudiant-toggle">
@@ -145,13 +146,13 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <section class="section profile-section" id="photographe"><div class="profile-header"><h3>Photo</h3><p class="profile-situation">Un bon capteur vaut plus qu’un grand nombre de mégapixels. Regardez la taille du capteur, la stabilisation optique, un vrai téléobjectif et le traitement logiciel.</p></div>
 <div class="profile-grid">
 <article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Grand capteur principal (1/1,3″ ou plus)</strong> : plus de lumière captée, surtout le soir.</p></div>
+<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Capteur de note 7 ou plus sur 10</strong> (1/1,56″ ou plus grand) : plus de lumière captée, surtout le soir.</p></div>
 <div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>OIS</strong> (stabilisation optique) : photos nettes le soir, vidéos moins tremblées.</p></div>
 <div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Téléobjectif réel</strong> : portraits et zoom nets, contrairement à un simple recadrage.</p></div>
 <div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>256 Go</strong> : les photos et la vidéo 4K remplissent vite la mémoire.</p></div>
 <div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>Beaucoup de mégapixels sur un petit capteur</strong> : ne garantit pas de bonnes photos de nuit.</p></div>
 </div></article>
-<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Capteur</span><strong>1/1,3″ ou plus</strong><span>Stabilisation</span><strong>OIS</strong><span>Zoom</span><strong>Téléobjectif réel</strong><span>Stockage</span><strong>256 Go+</strong></div></article>
+<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Capteur</span><strong>Note 7 ou plus sur 10</strong><span>Stabilisation</span><strong>OIS</strong><span>Zoom</span><strong>Téléobjectif réel</strong><span>Stockage</span><strong>256 Go+</strong></div></article>
 <article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Les photos de nuit, les portraits et le zoom restent-ils propres ? »</p></article>
 </div>
 <div class="profile-extra" id="a-lire-photo"><div class="profile-extra-head"><span class="eyebrow">À retenir</span><h3>Le capteur compte plus que les mégapixels</h3></div>

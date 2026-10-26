@@ -1,0 +1,289 @@
+{
+ "date": "2026-10",
+ "note": "Taille du capteur principal (format optique, 1/x pouce), relevée sur des fiches techniques et des tests (GSMArena, PhoneArena, Kimovil, fabricants). Un modèle absent d'ici n'a pas de note photo : on ne devine pas.",
+ "capteurs": [
+  {
+   "id": "oneplus-15",
+   "format": "1/1.56",
+   "sources": [
+    "https://www.androidcentral.com/phones/oneplus/oneplus-15-camera-review",
+    "https://petapixel.com/2025/11/18/oneplus-15-review-camera-conundrum/"
+   ]
+  },
+  {
+   "id": "oneplus-nord-5",
+   "format": "1/1.56",
+   "sources": [
+    "https://fo.gsmarena.com/oneplus_nord_5-review-2849p5.php",
+    "https://www.business-standard.com/technology/tech-news/oneplus-confirms-nord-5-camera-specs-ahead-of-july-8-launch-check-details-125062400904_1.html"
+   ]
+  },
+  {
+   "id": "galaxy-s26",
+   "format": "1/1.56",
+   "sources": [
+    "https://m.gsmarena.com/samsung_galaxy_s26-review-2942p5.php"
+   ]
+  },
+  {
+   "id": "galaxy-s26-ultra",
+   "format": "1/1.3",
+   "sources": [
+    "https://www.phonearena.com/news/samsung-galaxy-s26-ultra-camera-rumor-debunked_id175562",
+    "https://www.photoworkout.com/?p=221532"
+   ]
+  },
+  {
+   "id": "pixel-10",
+   "format": "1/2",
+   "sources": [
+    "https://m.gsmarena.com/google_pixel_10_in_for_review-amp-69253.php"
+   ]
+  },
+  {
+   "id": "pixel-10-pro",
+   "format": "1/1.31",
+   "sources": [
+    "https://www.gsmarena.com/google_pixel_10_pro-13987.php",
+    "https://www.phonearena.com/phones/compare/Apple-iPhone-17-Plus,Google-Pixel-10-Pro/phones/12494,12652"
+   ]
+  },
+  {
+   "id": "pixel-10-pro-xl",
+   "format": "1/1.31",
+   "sources": [
+    "https://www.gsmarena.com/google_pixel_10_pro-13987.php"
+   ]
+  },
+  {
+   "id": "pixel-10a",
+   "format": "1/2",
+   "sources": [
+    "https://www.dxomark.com/?p=191172",
+    "https://petapixel.com/2026/02/18/google-says-new-pixel-10a-has-best-camera-under-500/"
+   ]
+  },
+  {
+   "id": "iphone-17-pro",
+   "format": "1/1.28",
+   "sources": [
+    "https://www.nasdaq.com/articles/iphone-18-pro-rumored-feature-larger-camera-bump-advanced-imaging-upgrades"
+   ]
+  },
+  {
+   "id": "iphone-17-pro-max",
+   "format": "1/1.28",
+   "sources": [
+    "https://www.nasdaq.com/articles/iphone-18-pro-rumored-feature-larger-camera-bump-advanced-imaging-upgrades"
+   ]
+  },
+  {
+   "id": "honor-magic-8-pro",
+   "format": "1/1.3",
+   "sources": [
+    "https://m.gsmarena.com/honor_magic8_pro_camera_samples-amp-70254.php",
+    "https://www.androidheadlines.com/honor-magic8-pro-review"
+   ]
+  },
+  {
+   "id": "xperia-1-vii",
+   "format": "1/1.35",
+   "sources": [
+    "https://www.phonearena.com/phones/Sony-Xperia-1-VII_id12726",
+    "https://www.gizchina.com/2025/05/13/sony-xperia-1-vii-debuts-with-snapdragon-8-elite-and-better-camera/"
+   ]
+  },
+  {
+   "id": "oppo-find-x9",
+   "format": "1/1.4",
+   "sources": [
+    "https://www.smartprix.com/bytes/oppo-find-x9-review-with-pros-and-cons/"
+   ]
+  },
+  {
+   "id": "nothing-phone-3",
+   "format": "1/1.3",
+   "sources": [
+    "https://www.gsmarena.com/nothing_phone_(3)_5g-13969.php",
+    "https://www.phonearena.com/phones/compare/Apple-iPhone-17-Plus,Nothing-Phone-3/phones/12494,12615"
+   ]
+  },
+  {
+   "id": "motorola-edge-70-pro",
+   "format": "1/1.56",
+   "sources": [
+    "https://www.phonearena.com/phones/Motorola-Edge-70-Pro_id12990",
+    "https://www.kimovil.com/de/wo-kaufen-motorola-edge-70-pro"
+   ]
+  },
+  {
+   "id": "xiaomi-15t",
+   "format": "1/1.56",
+   "sources": [
+    "https://www.photobohemian.com/xiaomi-15t-camera-review/",
+    "https://eshop.jo.zain.com/en/xiaomi-15t"
+   ]
+  },
+  {
+   "id": "galaxy-a56",
+   "format": "1/1.56",
+   "sources": [
+    "https://www.phonearena.com/phones/Samsung-Galaxy-A56-5G_id12470",
+    "https://www.tuttoandroid.net/schede-tecniche/Samsung-Galaxy-A56_4711/"
+   ]
+  },
+  {
+   "id": "samsung-galaxy-a57",
+   "format": "1/1.56",
+   "sources": [
+    "https://www.phonearena.com/phones/Samsung-Galaxy-A57-5G_id12808"
+   ]
+  },
+  {
+   "id": "realme-gt-7-pro",
+   "format": "1/1.56",
+   "sources": [
+    "https://www.kimovil.com/es/realme-gt7-pro/camara",
+    "https://us.smartprix.com/mobiles/realme_gt_7_pro_5g_vs_xiaomi_redmi_k90_pro-cpd1w3k94nks_pd171hw4024.php"
+   ]
+  },
+  {
+   "id": "rog-phone-9",
+   "format": "1/1.56",
+   "sources": [
+    "https://en.wikipedia.org/wiki/ROG_Phone_9",
+    "https://www.phonearena.com/phones/Asus-ROG-Phone-9_id12478"
+   ]
+  },
+  {
+   "id": "poco-f6-pro",
+   "format": "1/1.55",
+   "sources": [
+    "https://www.mi.com/global/product/poco-f6-pro/specs/",
+    "https://androidpimp.com/mobile-phones/poco-f6-pro-review/9"
+   ]
+  },
+  {
+   "id": "poco-x6",
+   "format": "1/2",
+   "sources": [
+    "https://www.kimovil.com/en/poco-x6/camera",
+    "https://telset.id/harga-spesifikasi/poco/poco-x6"
+   ]
+  },
+  {
+   "id": "poco-x8-pro",
+   "format": "1/1.95",
+   "sources": [
+    "https://www.phonearena.com/phones/Xiaomi-Poco-X8-Pro_id12937",
+    "https://www.kimovil.com/en/compare/poco-x8-pro,xiaomi-poco-f3"
+   ]
+  },
+  {
+   "id": "motorola-moto-g85",
+   "format": "1/1.95",
+   "sources": [
+    "https://m.gsmarena.com/motorola_moto_g85-ampp-13144.php"
+   ]
+  },
+  {
+   "id": "moto-g55-5g",
+   "format": "1/1.8",
+   "sources": [
+    "https://www.coolblue.de/en/product/953622/motorola-moto-g55-256gb-purple-5g.html"
+   ]
+  },
+  {
+   "id": "moto-edge-50-pro",
+   "format": "1/1.55",
+   "sources": [
+    "https://gadgets.beebom.com/compare/motorola-edge-50-pro-vs-motorola-edge-70-pro",
+    "https://www.kimovil.com/en/compare/motorola-edge-50-pro,motorola-edge-70-pro"
+   ]
+  },
+  {
+   "id": "honor-400-lite",
+   "format": "1/1.67",
+   "sources": [
+    "https://m.gsmarena.com/honor_400_lite_debuts_with_dimensity_7025_ultra_and_108mp_cam-news-67244.php",
+    "https://propakistani.pk/2025/04/05/honor-400-lite-launches-with-dimensity-7025-ultra-and-108mp-camera-for-under-280/amp/"
+   ]
+  },
+  {
+   "id": "vivo-v80",
+   "format": "1/1.56",
+   "sources": [
+    "https://petapixel.com/2026/10/20/vivos-mid-range-v80-smartphone-has-impressive-zeiss-engineered-cameras/",
+    "https://www.notebookcheck.net/Vivo-officially-reveals-new-V-series-phone-with-Zeiss-cameras.1405456.0.html"
+   ]
+  },
+  {
+   "id": "redmi-note-14-5g",
+   "format": "1/1.67",
+   "sources": [
+    "https://www.phonearena.com/phones/Xiaomi-Redmi-Note-14-5G_id12628",
+    "https://telset.id/harga-spesifikasi/xiaomi/xiaomi-redmi-note-14-5g"
+   ]
+  },
+  {
+   "id": "redmi-note-15-5g",
+   "format": "1/1.67",
+   "sources": [
+    "https://www.phonearena.com/phones/Xiaomi-Redmi-Note-15-5G_id12897",
+    "https://www.skroutz.mt/s/65037245/xiaomi-redmi-note-15-5g-dual-sim-6gb-128gb-black.html"
+   ]
+  },
+  {
+   "id": "xiaomi-redmi-note-13",
+   "format": "1/1.67",
+   "sources": [
+    "https://m.gsmarena.com/xiaomi_redmi_note_13_4g-12750.php"
+   ]
+  },
+  {
+   "id": "realme-p3-5g",
+   "format": "1/2.88",
+   "sources": [
+    "https://m.gsmarena.com/realme_p3-ampp-13715.php",
+    "https://shop.ourtelekom.com.sb/?p=1178"
+   ]
+  },
+  {
+   "id": "galaxy-a17-5g",
+   "format": "1/2.76",
+   "sources": [
+    "https://www.phonearena.com/phones/Samsung-Galaxy-A17-5G_id12806",
+    "https://www.digicelpacific.com/mobile/ws/devices/samsung-galaxy-a17-5g"
+   ]
+  },
+  {
+   "id": "redmi-15c",
+   "format": "1/2.76",
+   "sources": [
+    "https://m.gsmarena.com/xiaomi_redmi_15c_4g-14005.php"
+   ]
+  },
+  {
+   "id": "poco-c85",
+   "format": "1/2.76",
+   "sources": [
+    "https://m.gsmarena.com/xiaomi_poco_c85_5g-14337.php",
+    "https://www.kimovil.com/en/where-to-buy-poco-c85"
+   ]
+  },
+  {
+   "id": "samsung-galaxy-a05",
+   "format": "1/2.8",
+   "sources": [
+    "https://m.gsmarena.com/samsung_galaxy_a05-12583.php"
+   ]
+  },
+  {
+   "id": "poco-c71",
+   "format": "1/3.6",
+   "sources": [
+    "https://www.mi.com/my/support/faq/details/KA-559836"
+   ]
+  }
+ ]
+}

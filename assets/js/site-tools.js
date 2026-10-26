@@ -451,7 +451,7 @@
           intro:"Pour la photo, regardez d’abord la taille du capteur, la stabilisation et le zoom. Le nombre de mégapixels seul ne dit pas si les photos seront bonnes, surtout de nuit.",
           groups:[
             {key:"sensor",label:"Capteur principal",type:"choice",options:[
-              ["small","Petit capteur (≈ 1/2,8″)","Entrée de gamme : peu de lumière par pixel, donc du grain le soir."],["medium","Capteur moyen (≈ 1/1,6″)","Milieu de gamme : soirées et intérieurs plus propres."],["large","Grand capteur (≈ 1/1,3″ à 1″)","Haut de gamme : beaucoup plus de lumière, nuit nette, flou d’arrière-plan ; bloc photo plus épais et plus cher."]]},
+              ["small","Petit capteur (1/2,8″ et moins)","Entrée de gamme : peu de lumière par pixel, donc du grain le soir."],["medium","Capteur moyen (1/2,3″ à 1/1,7″)","Milieu de gamme : soirées et intérieurs plus propres."],["large","Grand capteur (1/1,56″ à 1/1,3″)","Haut de gamme : nuit nette, flou d’arrière-plan ; bloc photo plus épais et plus cher."],["xl","Très grand capteur (1/1,2″ à 1″)","Le sommet des photophones : le maximum de lumière, nuit très nette ; bloc photo épais, prix très élevé."]]},
             {key:"stabilization",label:"Stabilisation",type:"choice",options:[
               ["none","EIS / numérique","Le logiciel recadre pour gommer les tremblements : bien en vidéo."],["ois","OIS / optique","La lentille bouge : photos nettes le soir."],["both","OIS + EIS","Photos nettes le soir et vidéos stables en marchant."]]},
             {key:"zoom",label:"Zoom",type:"choice",options:[

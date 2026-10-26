@@ -109,7 +109,24 @@ const server = http.createServer((req, res) => {
     assert.equal(await dispo.evaluate(() => (window.GuideAuditState.performance || {}).reference), undefined, 'puce d’entrée de gamme retirée avec un budget de 800 € et plus');
     assert.match(await dispo.locator('#audit-message').innerText(), /retiré/);
     assert.equal(await dispo.evaluate(() => window.GuideAuditState.price.budget), 'haut');
+    // capteur photo : la note suit la taille, les options sans modèle sont grisées
+    const photoCard = dispo.locator('[data-audit-card="photo"]');
+    await photoCard.locator('.audit-card-trigger').click();
+    const opt = v => photoCard.locator(`[data-group="sensor"] [data-value="${v}"]`);
+    assert.equal(await photoCard.locator('[data-group="sensor"] .audit-pill').count(), 4, 'quatre tailles de capteur');
+    assert.equal(await opt('large').getAttribute('aria-disabled'), null, 'grand capteur disponible à 800 € et plus');
+    assert.equal(await opt('small').getAttribute('aria-disabled'), 'true', 'petit capteur grisé à 800 € et plus');
+    assert.equal(await opt('xl').getAttribute('aria-disabled'), 'true', 'très grand capteur (≈ 1 pouce) absent du catalogue');
+    await dispo.locator('[data-audit-card="price"] .audit-card-trigger').click();
+    await dispo.locator('#quiz-price [data-value="bas"]').click();
+    await photoCard.locator('.audit-card-trigger').click();
+    assert.equal(await opt('large').getAttribute('aria-disabled'), 'true', 'grand capteur grisé à 80-150 €');
+    assert.equal(await opt('small').getAttribute('aria-disabled'), null, 'petit capteur disponible à 80-150 €');
+    await opt('small').click();
+    assert.equal(await dispo.evaluate(() => window.GuideAuditState.photo.sensor), 'small');
+    await dispo.locator('#scoring-results .criteria-recommendation-card').first().waitFor();
+    assert.match(await dispo.locator('#scoring-results').innerText(), /capteur 1\/\d+(,\d+)?″ \(niveau \d\/10\)/i, 'la note du capteur s’affiche dans les résultats');
     await dispo.close();
-    console.log('OK options grisées selon le budget, clic ignoré, choix impossibles retirés');
+    console.log('OK options grisées selon le budget, clic ignoré, choix impossibles retirés, capteur photo noté sur 10');
   } finally { await browser.close(); }
 })().then(()=>server.close()).catch(e=>{console.error(e);server.close();process.exitCode=1;});

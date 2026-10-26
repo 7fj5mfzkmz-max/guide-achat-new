@@ -77,8 +77,8 @@
     },
     sensor: function (v) {
       /* Un capteur plus grand reçoit plus de lumière : chaque point représente une part de lumière captée. */
-      var d = { small: [26, 17], medium: [46, 30], large: [74, 44] }, cap = { small: 'peu de lumière', medium: 'plus de lumière', large: 'beaucoup de lumière' }[v], s = '';
-      ['large', 'medium', 'small'].forEach(function (k) { var w = d[k][0], h = d[k][1], on = k === v; s += rc(48 - w / 2, 28 - h / 2, w, h, 3, on ? T : 'none', K, on ? 'stroke-width="2.4" fill-opacity=".25"' : 'stroke-dasharray="3 3" opacity=".3"'); });
+      var d = { small: [24, 16], medium: [40, 26], large: [62, 38], xl: [86, 50] }, cap = { small: 'peu de lumière', medium: 'plus de lumière', large: 'beaucoup de lumière', xl: 'le maximum de lumière' }[v], s = '';
+      ['xl', 'large', 'medium', 'small'].forEach(function (k) { var w = d[k][0], h = d[k][1], on = k === v; s += rc(48 - w / 2, 28 - h / 2, w, h, 3, on ? T : 'none', K, on ? 'stroke-width="2.4" fill-opacity=".25"' : 'stroke-dasharray="3 3" opacity=".3"'); });
       var w = d[v][0], h = d[v][1], cols = Math.floor(w / 9), rows = Math.floor(h / 9), x0 = 48 - cols * 4.5 + 2.25, y0 = 28 - rows * 4.5 + 2.25;
       for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) s += '<circle cx="' + (x0 + c * 9) + '" cy="' + (y0 + r * 9) + '" r="2" fill="' + L + '" stroke="none"/>';
       return s + tx(48, 60, 8.5, cap);

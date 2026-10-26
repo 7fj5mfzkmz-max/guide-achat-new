@@ -71,7 +71,9 @@
      Au-delà : écarté. Au-dessus : toujours correct, juste plus puissant que demandé. */
   var RANGE = {
     reference: { basic: [1, 3], mid: [4, 6], high: [7, 8], top: [9, 10] },
-    gaming: { daily: [3, 10], heavy: [6, 10], pro: [8, 10] }
+    gaming: { daily: [3, 10], heavy: [6, 10], pro: [8, 10] },
+    /* Note du capteur principal (1-10, voir phone-analyzer/sensors.js) : un capteur d'un pouce vaut 10. */
+    sensor: { small: [1, 3], medium: [4, 6], large: [7, 8], xl: [9, 10] }
   };
   function band(range, have) {
     if (!range || have == null || !Number.isFinite(Number(have))) return null;
@@ -115,22 +117,17 @@
     return n >= 69 ? 4 : n >= 68 ? 3 : n >= 67 ? 2.5 : n >= 65 ? 1.5 : n >= 54 ? 1 : 0;
   }
   
-  function photoSensorRank(c) {
-    var text = [c.photo, c.photo_sensor].filter(Boolean).join(' ');
-    var m = text.match(/1\/(\d+(?:\.\d+)?)"/);
-    if (!m) return null;
-    var n = Number(m[1]);
-    if (n <= 1.4) return 'large';
-    if (n <= 2.4) return 'medium';
-    return 'small';
-  }
   function photoZoomRank(c) {
     var text = [c.photo, c.photo_zoom].filter(Boolean).join(' ').toLowerCase();
     if (/periscope|5x|5×/.test(text)) return '5x';
     if (/telephoto|téléobjectif|2x|2×/.test(text)) return '2x';
     return 'digital';
   }
-  var SENSOR_ORDER = { small: 1, medium: 2, large: 3 };
+  /* « 1/1.3 » → « 1/1,3″ » ; « 1 » → « 1″ » */
+  function sensorLabel(format) {
+    var f = String(format).replace(",", ".").replace(/[″"]/g, "");
+    return (f === "1" ? "1″" : f.replace(".", ",") + "″");
+  }
   var ZOOM_ORDER = { digital: 1, '2x': 2, '5x': 3 };
   function batteryChemistry(c) {
     var declared = c.batterie && c.batterie.chimie;
@@ -180,12 +177,9 @@
       if (r2) out.push({ key: "performance.gaming", score: r2.score, d: r2.d, out: r2.out, text: "jeu niveau " + c.performance.niveau + "/10", delta: r2.d === 0 ? "pile" : r2.d < 0 ? "en dessous" : "au-dessus" });
     }
     if (ph.resolution && c.photo) numeric("photo.resolution", ph.resolution, c.photo.mp_principal);
-    if (ph.sensor && c.photo) {
-      var wantSensor = SENSOR_ORDER[ph.sensor], haveSensor = SENSOR_ORDER[photoSensorRank(c.photo)];
-      if (wantSensor && haveSensor) {
-        var sd = haveSensor - wantSensor;
-        out.push({ key: "photo.sensor", score: sd === 0 ? 1 : sd > 0 ? 0.9 : Math.max(0, 1 - Math.abs(sd) * 0.45), d: sd, text: "capteur " + photoSensorRank(c.photo), delta: sd === 0 ? "pile" : sd > 0 ? "un peu au-dessus" : (Math.abs(sd) > 1 ? "nettement en dessous" : "un peu en dessous") });
-      }
+    if (ph.sensor && c.photo && c.photo.capteur) {
+      var rs = band(RANGE.sensor[ph.sensor], c.photo.capteur.niveau);
+      if (rs) out.push({ key: "photo.sensor", score: rs.score, d: rs.d, out: rs.out, text: "capteur " + sensorLabel(c.photo.capteur.format) + " (niveau " + c.photo.capteur.niveau + "/10)", delta: rs.d === 0 ? "pile" : rs.d < 0 ? "en dessous" : "au-dessus" });
     }
     if (ph.zoom && c.photo) {
       var wantZoom = ZOOM_ORDER[ph.zoom], haveZoom = ZOOM_ORDER[photoZoomRank(c.photo)];
@@ -289,7 +283,7 @@
   var CHOIX = {
     "performance.reference": { basic: "entrée de gamme", mid: "milieu de gamme", high: "haut de gamme", top: "très haut de gamme" },
     "performance.gaming": { daily: "usage quotidien", heavy: "jeux et montage", pro: "jeux très lourds" },
-    "photo.sensor": { small: "petit capteur", medium: "capteur moyen", large: "grand capteur" },
+    "photo.sensor": { small: "petit capteur", medium: "capteur moyen", large: "grand capteur", xl: "très grand capteur" },
     "photo.zoom": { digital: "zoom numérique", "2x": "téléobjectif ×2", "5x": "téléobjectif ×5" },
     "durete.repair": { low: "pièces limitées", standard: "pièces disponibles", good: "facile à réparer" },
     "durete.protection": { basic: "sans étanchéité", ip67: "IP67", ip68: "IP68" },
@@ -316,7 +310,6 @@
     else if (c.d > 0) { tone = "up"; icon = "▲"; verdict = "Au-dessus"; }
     else { tone = far ? "far" : "low"; icon = "▼"; verdict = far ? "Bien en dessous" : "Un peu en dessous"; }
     var have = c.text;
-    if (c.key === "photo.sensor") have = (CHOIX["photo.sensor"][String(c.text).replace("capteur ", "")] || c.text);
     if (c.key === "battery.chemistry") have = (CHOIX["battery.chemistry"][c.text] || c.text);
     return { tone: tone, icon: icon, name: NOMS[c.key] || c.key, have: have, verdict: verdict, want: c.delta === "pile" ? "" : wantText(c.key, state) };
   }
@@ -521,7 +514,8 @@
       if (dispoCache[memo]) return dispoCache[memo];
       var res = { ok: true };
       if (group !== "budget" && !isDocumented(group, siblings || [value])) res = { ok: true };
-      else if (!anyMatch(budget && group !== "budget" ? products.filter(function (p) { return inTier(p, budget); }) : products, group, value)) res = { ok: false, raison: budget && group !== "budget" ? "budget" : "catalogue" };
+      else if (!anyMatch(products, group, value)) res = { ok: false, raison: "catalogue" }; // aucun modèle nulle part
+      else if (budget && group !== "budget" && !anyMatch(products.filter(function (p) { return inTier(p, budget); }), group, value)) res = { ok: false, raison: "budget" };
       dispoCache[memo] = res;
       return res;
     }
