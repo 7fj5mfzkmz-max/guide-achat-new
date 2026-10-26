@@ -86,15 +86,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <p class="tr-lead">Choisissez ce qui vous ressemble.</p>
 <div class="tr-chips" id="tr-chips" role="group" aria-label="Votre besoin"></div>
 <p class="tr-intro" id="tr-intro" hidden></p>
-<div class="tr-podium" id="tr-podium" aria-live="polite"><p class="tr-loading">Chargement du classement…</p></div>
 <div class="tr-profile-cards">
-<aside class="tr-reperes" aria-labelledby="reperes-titre"><h4 id="reperes-titre">Repères pour lire les chiffres</h4><p>Les valeurs qui reviennent partout, avec ce qu’elles veulent dire. Les notes de puce et de capteur sont notre échelle, la même pour toutes les marques.</p>
-<div class="tr-reperes-grid">
-<div><h5>Puce, de 1 à 10</h5><dl><dt>1 à 3</dt><dd>Entrée de gamme : Helio G99, Snapdragon 685</dd><dt>4 à 6</dt><dd>Milieu de gamme : Snapdragon 6 Gen 3, Exynos 1580, Snapdragon 7 Gen 3</dd><dt>7 à 8</dt><dd>Haut de gamme : Snapdragon 8s Gen 3, Dimensity 8500, Tensor G5, Apple A17 Pro</dd><dt>9 à 10</dt><dd>Sommet : Snapdragon 8 Elite, Exynos 2600, Apple A19 Pro et A20 Pro</dd></dl></div>
-<div><h5>Luminosité de l’écran</h5><dl><dt>600 nits</dt><dd>Lisible à l’ombre</dd><dt>1 000 nits</dt><dd>Correct dehors, sauf sous un soleil fort</dd><dt>1 600 nits</dt><dd>Lisible en plein soleil</dd><dt>2 500 nits et plus</dt><dd>Très lumineux</dd></dl></div>
-<div><h5>Capteur photo, de 1 à 10</h5><dl><dt>1 à 3</dt><dd>Petit : 1/2,8″ et moins (Galaxy A17 5G, Redmi 15C)</dd><dt>4 à 6</dt><dd>Moyen : 1/2,3″ à 1/1,7″ (Pixel 10, Moto G85, Redmi Note 14 5G)</dd><dt>7 à 8</dt><dd>Grand : 1/1,56″ à 1/1,3″ (Galaxy A56, OnePlus 15, Pixel 10 Pro)</dd><dt>9 à 10</dt><dd>Très grand : 1/1,2″ à 1″, un capteur d’un pouce vaut 10</dd></dl><p class="tr-reperes-note">Plus le second chiffre est petit, plus le capteur est grand : 1/1,3″ est bien plus grand que 1/2,8″.</p></div>
-<div><h5>Batterie</h5><dl><dt>4 000 mAh</dt><dd>Une journée d’usage normal</dd><dt>5 000 mAh</dt><dd>La norme : une bonne journée, parfois plus</dd><dt>6 000 mAh et plus</dt><dd>Plus d’une journée, téléphone plus lourd</dd></dl></div>
-</div></aside>
 <div class="profile-toggle" hidden data-tone="teal" id="etudiant-toggle">
 
 <section class="section profile-section" id="etudiant"><div class="profile-header"><h3>Étudiant</h3><p class="profile-situation">Le téléphone sert du matin au soir : notes, transports, visio, réseaux. Il doit tenir sans prise et rester à jour jusqu’à la fin des études. Inutile de payer le haut de gamme : la batterie et la durée des mises à jour pèsent plus que la puissance.</p></div>
@@ -187,6 +179,84 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 </div>
 </div>
+<div class="tr-podium" id="tr-podium" aria-live="polite"><p class="tr-loading">Chargement du classement…</p></div>
+<aside class="tr-reperes" aria-labelledby="reperes-titre"><h4 id="reperes-titre">Repères pour lire les chiffres</h4>
+<p>Les noms de puces, les nits et les pouces ressemblent à des codes. Voici comment les lire.</p>
+
+<h5 class="rp-title">Lire un nom de puce</h5>
+<div class="decode-grid">
+<figure class="decode"><figcaption>Qualcomm · Snapdragon</figcaption>
+<div class="decode-name" role="img" aria-label="Snapdragon 8 Elite Gen 5, décodé en quatre parties : marque, série, nom premium, génération">
+<div class="seg brand"><b>Snapdragon</b><i>La marque de la puce</i></div>
+<div class="seg"><b>8</b><i>La série : 8 haut de gamme, 7 milieu, 6 et 4 entrée</i></div>
+<div class="seg"><b>Elite</b><i>Le nom premium, depuis 2024</i></div>
+<div class="seg"><b>Gen 5</b><i>La génération : une de plus chaque année</i></div>
+</div><p class="decode-note">Un « s » (8s Gen 3) veut dire version allégée : un cran sous la série 8.</p></figure>
+<figure class="decode"><figcaption>MediaTek · Dimensity</figcaption>
+<div class="decode-name" role="img" aria-label="Dimensity 9500, décodé en quatre parties : marque, série, génération, variante">
+<div class="seg brand"><b>Dimensity</b><i>La marque de la puce</i></div>
+<div class="seg"><b>9</b><i>La série : 9 haut de gamme, 8 milieu haut, 7 milieu, 6 entrée</i></div>
+<div class="seg"><b>5</b><i>La génération : 9300, 9400, 9500…</i></div>
+<div class="seg"><b>00</b><i>« + » ou « Ultra » après le nombre : version poussée</i></div>
+</div></figure>
+<figure class="decode"><figcaption>Samsung · Exynos</figcaption>
+<div class="decode-name" role="img" aria-label="Exynos 2600, décodé en quatre parties : marque, série, génération, variante">
+<div class="seg brand"><b>Exynos</b><i>La marque de la puce</i></div>
+<div class="seg"><b>2</b><i>La série : 2 haut de gamme, 1 milieu et entrée</i></div>
+<div class="seg"><b>6</b><i>La génération : 2400, 2500, 2600 (2024, 2025, 2026)</i></div>
+<div class="seg"><b>00</b><i>Variante du même modèle</i></div>
+</div></figure>
+<figure class="decode"><figcaption>Apple · iPhone</figcaption>
+<div class="decode-name" role="img" aria-label="A20 Pro, décodé en trois parties : famille, génération, version">
+<div class="seg"><b>A</b><i>La famille de puces des iPhone</i></div>
+<div class="seg"><b>20</b><i>La génération : A18, A19, A20 (2024, 2025, 2026)</i></div>
+<div class="seg"><b>Pro</b><i>La version des iPhone Pro : plus de puissance graphique</i></div>
+</div></figure>
+<figure class="decode"><figcaption>Google · Pixel</figcaption>
+<div class="decode-name" role="img" aria-label="Tensor G5, décodé en deux parties : marque, génération">
+<div class="seg brand"><b>Tensor</b><i>La marque de la puce</i></div>
+<div class="seg"><b>G5</b><i>La génération : G3 (Pixel 8), G4 (Pixel 9), G5 (Pixel 10)</i></div>
+</div></figure>
+</div>
+<p class="rp-rule">Dans une même famille, plus la génération est grande, plus la puce est récente. Pour comparer des marques entre elles, on utilise la note de 1 à 10.</p>
+
+<h5 class="rp-title">La note de puce, de 1 à 10</h5>
+<div class="rp-scale">
+<ol class="rp-cells" aria-label="Échelle de 1 à 10"><li class="g1">1</li><li class="g1">2</li><li class="g1">3</li><li class="g2">4</li><li class="g2">5</li><li class="g2">6</li><li class="g3">7</li><li class="g3">8</li><li class="g4">9</li><li class="g4">10</li></ol>
+<div class="rp-bands">
+<div class="g1"><b>1 à 3</b><span>Entrée de gamme</span><i>Helio G99, Snapdragon 685</i></div>
+<div class="g2"><b>4 à 6</b><span>Milieu de gamme</span><i>Snapdragon 6 Gen 3, Exynos 1580, Snapdragon 7 Gen 3</i></div>
+<div class="g3"><b>7 à 8</b><span>Haut de gamme</span><i>Snapdragon 8s Gen 3, Dimensity 8500, Tensor G5, Apple A17 Pro</i></div>
+<div class="g4"><b>9 à 10</b><span>Sommet</span><i>Snapdragon 8 Elite, Exynos 2600, Apple A19 Pro et A20 Pro</i></div>
+</div></div>
+
+<h5 class="rp-title">Capteur photo : plus il est grand, plus la note monte</h5>
+<div class="rp-sensor">
+<div class="rp-sensor-draw" role="img" aria-label="Cinq rectangles à l’échelle : un capteur d’un pouce, puis 1/1,3, 1/1,56, 1/2 et 1/2,76 pouce, de plus en plus petits"><span class="s s10"></span><span class="s s8"></span><span class="s s7"></span><span class="s s5"></span><span class="s s3"></span></div>
+<ul class="rp-sensor-list">
+<li><b>1″</b><span>Note 10 : le sommet des photophones</span></li>
+<li><b>1/1,3″</b><span>Note 8 : Pixel 10 Pro, Galaxy S26 Ultra</span></li>
+<li><b>1/1,56″</b><span>Note 7 : Galaxy A56, OnePlus 15</span></li>
+<li><b>1/2″</b><span>Note 5 : Pixel 10, POCO X6</span></li>
+<li><b>1/2,76″</b><span>Note 3 : Galaxy A17 5G, Redmi 15C</span></li>
+</ul></div>
+<p class="rp-rule">Plus le second chiffre est petit, plus le capteur est grand : 1/1,3″ est bien plus grand que 1/2,8″.</p>
+
+<h5 class="rp-title">Luminosité de l’écran</h5>
+<div class="rp-bars">
+<div class="rp-bar" style="--w:24%"><b>600 nits</b><span class="bar"></span><i>Lisible à l’ombre</i></div>
+<div class="rp-bar" style="--w:40%"><b>1 000 nits</b><span class="bar"></span><i>Correct dehors, sauf sous un soleil fort</i></div>
+<div class="rp-bar" style="--w:64%"><b>1 600 nits</b><span class="bar"></span><i>Lisible en plein soleil</i></div>
+<div class="rp-bar" style="--w:100%"><b>2 500 nits et plus</b><span class="bar"></span><i>Très lumineux</i></div>
+</div>
+
+<h5 class="rp-title">Batterie</h5>
+<div class="rp-bars">
+<div class="rp-bar" style="--w:67%"><b>4 000 mAh</b><span class="bar"></span><i>Une journée d’usage normal</i></div>
+<div class="rp-bar" style="--w:83%"><b>5 000 mAh</b><span class="bar"></span><i>La norme : une bonne journée, parfois plus</i></div>
+<div class="rp-bar" style="--w:100%"><b>6 000 mAh et plus</b><span class="bar"></span><i>Plus d’une journée, téléphone plus lourd</i></div>
+</div>
+</aside>
 <p class="tr-next">Aucun n’est le meilleur pour tout le monde. <a href="#audit" data-open-tab="audit">Affinez avec vos propres critères →</a></p>
 </div>
 

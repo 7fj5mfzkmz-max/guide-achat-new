@@ -139,7 +139,7 @@
   }
   function updateYears(c) {
     var d = c.durete || {};
-    var n = Number(String(d.android_version_sortie == null ? '' : d.android_version_sortie).match(/(\d+(?:[.,]\d+)?)/));
+    var n = Number(d.mises_a_jour_ans);
     return Number.isFinite(n) && n > 0 ? n : null;
   }
   function repairScore(c) {
@@ -482,7 +482,7 @@
   var STATE_OF = { budget: "price", tech: "screen", refresh: "screen", brightness: "screen", capacity: "battery", chemistry: "battery", charge: "battery", reference: "performance", gaming: "performance", sensor: "photo", stabilization: "photo", zoom: "photo", resolution: "photo", updates: "longevity", repair: "longevity", protection: "longevity" };
   var CHECK_KEY = { tech: "ecran.tech", refresh: "ecran.refresh", brightness: "ecran.brightness", capacity: "batterie.capacity", chemistry: "battery.chemistry", charge: "batterie.charge", reference: "performance.reference", gaming: "performance.gaming", sensor: "photo.sensor", zoom: "photo.zoom", resolution: "photo.resolution", updates: "durete.updates", repair: "durete.repair", protection: "durete.protection" };
   var NUMERIC_KEYS = { "ecran.refresh": 1, "ecran.brightness": 1, "batterie.capacity": 1, "batterie.charge": 1, "photo.resolution": 1 };
-  var dispoCache = {}, documentedCache = {};
+  var dispoCache = {};
 
   function inTier(p, budget) {
     var t = PALIERS[budget], prix = Number(p.prix_indicatif);
@@ -496,26 +496,39 @@
     part[group] = value; st[STATE_OF[group]] = part;
     var item = checks(p, st).filter(function (x) { return x.key === CHECK_KEY[group]; })[0];
     if (!item || item.out) return false;
-    return NUMERIC_KEYS[CHECK_KEY[group]] ? item.score >= 0.75 : item.d === 0;
+    return NUMERIC_KEYS[CHECK_KEY[group]] ? (item.score >= 0.75 || item.d > 0) : item.d === 0; // un chiffre « atteint ou dépassé » répond au besoin
   }
   function anyMatch(pool, group, value) { return pool.some(function (p) { return optionMatches(p, group, value); }); }
-  // Le catalogue documente-t-il ce critère ? (au moins un modèle, une option, sans limite de budget)
-  function isDocumented(group, options) {
-    if (documentedCache[group] == null) documentedCache[group] = options.some(function (v) { return anyMatch(products, group, v); });
-    return documentedCache[group];
+  /* Combien de modèles de ce groupe de fiches renseignent le critère ? Sous 3 modèles, on ne conclut pas qu'une option manque. */
+  function dataCount(pool, group, options) {
+    if (group === "budget") return pool.length;
+    if (group === "stabilization") return pool.filter(function (p) { return p.compatibilite && p.compatibilite.photo && p.compatibilite.photo.ois != null; }).length;
+    return pool.filter(function (p) {
+      return options.some(function (v) {
+        var part = {}, st = {};
+        part[group] = v; st[STATE_OF[group]] = part;
+        return checks(p, st).some(function (x) { return x.key === CHECK_KEY[group]; });
+      });
+    }).length;
   }
+  var MIN_DATA = 3;
   window.GuideDisponibilite = {
     ready: false,
-    /* → { ok: bool, raison: "budget" | "catalogue" } ; ok vrai si l'option est proposée. */
+    /* → { ok: bool, raison: "budget" | "catalogue" | "donnees" } ; ok vrai si l'option est proposée.
+       « donnees » : aucun modèle du catalogue ne renseigne ce critère (il ne changerait rien au classement). */
     option: function (group, value, siblings) {
       if (!this.ready) return { ok: true };
       var budget = ((window.GuideAuditState || {}).price || {}).budget || "";
       var memo = budget + "|" + group + "|" + value;
       if (dispoCache[memo]) return dispoCache[memo];
-      var res = { ok: true };
-      if (group !== "budget" && !isDocumented(group, siblings || [value])) res = { ok: true };
+      var opts = siblings || [value], res = { ok: true };
+      if (dataCount(products, group, opts) === 0) res = { ok: false, raison: "donnees" };
       else if (!anyMatch(products, group, value)) res = { ok: false, raison: "catalogue" }; // aucun modèle nulle part
-      else if (budget && group !== "budget" && !anyMatch(products.filter(function (p) { return inTier(p, budget); }), group, value)) res = { ok: false, raison: "budget" };
+      else if (budget && group !== "budget") {
+        var tier = products.filter(function (p) { return inTier(p, budget); });
+        // sans donnée dans ce budget, on ne peut pas dire qu'il manque : l'option reste proposée
+        if (dataCount(tier, group, opts) >= MIN_DATA && !anyMatch(tier, group, value)) res = { ok: false, raison: "budget" };
+      }
       dispoCache[memo] = res;
       return res;
     }
@@ -531,7 +544,7 @@
     })
     .then(function (data) {
       products = (data.produits || []).filter(function (p) { return p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== "specs_a_verifier" && p.compatibilite; });
-      dispoCache = {}; documentedCache = {};
+      dispoCache = {};
       window.GuideDisponibilite.ready = true;
       window.dispatchEvent(new CustomEvent("guide:disponibilite"));
       renderResults(window.GuideAuditState || {}, false);

@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
       const page = await context.newPage(), errors = [];
       page.on('pageerror', e => errors.push(e.message));
       await page.goto(`http://127.0.0.1:${server.address().port}/smartphones.html#audit`, {waitUntil:'networkidle'});
-      const choices = [['price','budget','entree'],['screen','refresh','120'],['battery','capacity','5000'],['performance','reference','mid'],['photo','sensor','medium'],['longevity','updates','5']];
+      const choices = [['price','budget','entree'],['screen','refresh','120'],['battery','capacity','5000'],['performance','reference','mid'],['photo','sensor','medium'],['longevity','updates','3']];
       for (let i=0; i<choices.length; i++) {
         const [family, group, value] = choices[i];
         const card = page.locator(`[data-audit-card="${family}"]`);
