@@ -17,7 +17,7 @@
     "pc:test": "node scripts/pc-portables-test.js",
     "analyzer:ui-test": "node scripts/ui-flow-test.js",
     "analyzer:live-test": "node scripts/live-sources-test.js",
-    "test": "npm run gabarit:test && npm run kit:check && npm run chips:test && npm run analyzer:test && npm run analyzer:routing-test && npm run analyzer:extract-test && npm run network:test && npm run analyzer:identification-test && npm run fixtures:test && npm run analyzer:v113-test && npm run references:test && npm run pages:test && npm run pc:test && npm run pc:amazon-test && npm run projecteurs:test && npm run smartphones:tests-test && npm run pc:catalogue-test && node scripts/recommendation-readiness-test.js && node scripts/resolver-contract-test.js && npm run batteries:test && npm run actualites:test",
+    "test": "npm run gabarit:test && npm run kit:check && npm run chips:test && npm run verifications:test && npm run fichier-catalogue:test && npm run sensors:test && npm run analyzer:test && npm run analyzer:routing-test && npm run analyzer:extract-test && npm run network:test && npm run analyzer:identification-test && npm run fixtures:test && npm run analyzer:v113-test && npm run references:test && npm run pages:test && npm run pc:test && npm run pc:amazon-test && npm run projecteurs:test && npm run smartphones:tests-test && npm run pc:catalogue-test && node scripts/recommendation-readiness-test.js && node scripts/resolver-contract-test.js && npm run batteries:test && npm run actualites:test",
     "test:ui": "npm run smartphones:quiz-test && npm run smartphones:trouver-test && npm run analyzer:ui-test && npm run pc:ui-test && npm run batteries:ui-test && npm run i18n:test",
     "test:full": "npm test && npm run test:ui && npm run analyzer:live-test",
     "pc:catalogue-test": "node scripts/pc-catalogue-test.js",
@@ -35,7 +35,10 @@
     "gabarit": "python3 tools/site/gabarit.py",
     "gabarit:test": "python3 tools/site/gabarit.py --verifier",
     "smartphones:trouver-test": "node scripts/smartphones-trouver-ui-test.js",
-    "chips:test": "node scripts/chips-test.js"
+    "chips:test": "node scripts/chips-test.js",
+    "verifications:test": "node scripts/verifications-test.js",
+    "fichier-catalogue:test": "node scripts/fichier-catalogue-test.js",
+    "sensors:test": "node scripts/sensors-test.js"
   },
   "engines": {
     "node": ">=20"

@@ -49,7 +49,7 @@
     [/dimensity\s*7[0-1]\d{2}|dimensity\s*930\b|dimensity\s*810\b/, 4],
     [/exynos\s*1[2-4]\d{2}(?!\d)/, 3],
     /* ——— 3 ——— */
-    [/snapdragon\s*(?:695|6\s*gen\s*1|4\s*gen\s*2)/, 3],
+    [/snapdragon\s*(?:695|6\s*gen\s*1|6s\s*gen\s*3|4\s*gen\s*2)/, 3],
     [/dimensity\s*(?:6[1-9]\d{2}|700)\b/, 3],
     [/helio\s*g(?:9[0-9])\b/, 3],
     /* ——— 2 ——— */

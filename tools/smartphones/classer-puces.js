@@ -21,6 +21,7 @@ function classer(cat) {
     if (niveau == null) inconnues.push(p.id + ' : « ' + perf.soc + ' »');
   }
   cat.catalogue_meta = Object.assign({}, cat.catalogue_meta, { echelle_puces: 'niveau 1-10 (phone-analyzer/chips.js) : 1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme' });
+  require('./classer-capteurs.js').appliquer(cat); // la note du capteur photo suit le même passage
   return { changees, inconnues };
 }
 module.exports = { classer };

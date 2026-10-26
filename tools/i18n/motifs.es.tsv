@@ -43,3 +43,6 @@
 ^(.+) mAh, devant (.+) \((.+) mAh\)$	$1 mAh, por delante de $2 ($3 mAh)
 ^Meilleur choix de la gamme comparée ; à éviter : (.+)\.$	Mejor opción de la gama comparada; a evitar: $1.
 ^Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « (.+) » départage\.$	De más a menos cercano a tus elecciones; en caso de empate, va primero un modelo visto en pruebas y después desempata el perfil «$1».
+^capteur (\d+)/(\d+)[,.](\d+)″ \(niveau (\d+)/10\)$	sensor $1/$2,$3″ (nivel $4/10)
+^capteur (\d+)/(\d+)″ \(niveau (\d+)/10\)$	sensor $1/$2″ (nivel $3/10)
+^capteur 1″ \(niveau (\d+)/10\)$	sensor 1″ (nivel $1/10)

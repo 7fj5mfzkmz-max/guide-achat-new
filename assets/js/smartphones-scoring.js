@@ -71,7 +71,9 @@
      Au-delà : écarté. Au-dessus : toujours correct, juste plus puissant que demandé. */
   var RANGE = {
     reference: { basic: [1, 3], mid: [4, 6], high: [7, 8], top: [9, 10] },
-    gaming: { daily: [3, 10], heavy: [6, 10], pro: [8, 10] }
+    gaming: { daily: [3, 10], heavy: [6, 10], pro: [8, 10] },
+    /* Note du capteur principal (1-10, voir phone-analyzer/sensors.js) : un capteur d'un pouce vaut 10. */
+    sensor: { small: [1, 3], medium: [4, 6], large: [7, 8], xl: [9, 10] }
   };
   function band(range, have) {
     if (!range || have == null || !Number.isFinite(Number(have))) return null;
@@ -115,22 +117,17 @@
     return n >= 69 ? 4 : n >= 68 ? 3 : n >= 67 ? 2.5 : n >= 65 ? 1.5 : n >= 54 ? 1 : 0;
   }
   
-  function photoSensorRank(c) {
-    var text = [c.photo, c.photo_sensor].filter(Boolean).join(' ');
-    var m = text.match(/1\/(\d+(?:\.\d+)?)"/);
-    if (!m) return null;
-    var n = Number(m[1]);
-    if (n <= 1.4) return 'large';
-    if (n <= 2.4) return 'medium';
-    return 'small';
-  }
   function photoZoomRank(c) {
     var text = [c.photo, c.photo_zoom].filter(Boolean).join(' ').toLowerCase();
     if (/periscope|5x|5×/.test(text)) return '5x';
     if (/telephoto|téléobjectif|2x|2×/.test(text)) return '2x';
     return 'digital';
   }
-  var SENSOR_ORDER = { small: 1, medium: 2, large: 3 };
+  /* « 1/1.3 » → « 1/1,3″ » ; « 1 » → « 1″ » */
+  function sensorLabel(format) {
+    var f = String(format).replace(",", ".").replace(/[″"]/g, "");
+    return (f === "1" ? "1″" : f.replace(".", ",") + "″");
+  }
   var ZOOM_ORDER = { digital: 1, '2x': 2, '5x': 3 };
   function batteryChemistry(c) {
     var declared = c.batterie && c.batterie.chimie;
@@ -180,12 +177,9 @@
       if (r2) out.push({ key: "performance.gaming", score: r2.score, d: r2.d, out: r2.out, text: "jeu niveau " + c.performance.niveau + "/10", delta: r2.d === 0 ? "pile" : r2.d < 0 ? "en dessous" : "au-dessus" });
     }
     if (ph.resolution && c.photo) numeric("photo.resolution", ph.resolution, c.photo.mp_principal);
-    if (ph.sensor && c.photo) {
-      var wantSensor = SENSOR_ORDER[ph.sensor], haveSensor = SENSOR_ORDER[photoSensorRank(c.photo)];
-      if (wantSensor && haveSensor) {
-        var sd = haveSensor - wantSensor;
-        out.push({ key: "photo.sensor", score: sd === 0 ? 1 : sd > 0 ? 0.9 : Math.max(0, 1 - Math.abs(sd) * 0.45), d: sd, text: "capteur " + photoSensorRank(c.photo), delta: sd === 0 ? "pile" : sd > 0 ? "un peu au-dessus" : (Math.abs(sd) > 1 ? "nettement en dessous" : "un peu en dessous") });
-      }
+    if (ph.sensor && c.photo && c.photo.capteur) {
+      var rs = band(RANGE.sensor[ph.sensor], c.photo.capteur.niveau);
+      if (rs) out.push({ key: "photo.sensor", score: rs.score, d: rs.d, out: rs.out, text: "capteur " + sensorLabel(c.photo.capteur.format) + " (niveau " + c.photo.capteur.niveau + "/10)", delta: rs.d === 0 ? "pile" : rs.d < 0 ? "en dessous" : "au-dessus" });
     }
     if (ph.zoom && c.photo) {
       var wantZoom = ZOOM_ORDER[ph.zoom], haveZoom = ZOOM_ORDER[photoZoomRank(c.photo)];
@@ -289,7 +283,7 @@
   var CHOIX = {
     "performance.reference": { basic: "entrée de gamme", mid: "milieu de gamme", high: "haut de gamme", top: "très haut de gamme" },
     "performance.gaming": { daily: "usage quotidien", heavy: "jeux et montage", pro: "jeux très lourds" },
-    "photo.sensor": { small: "petit capteur", medium: "capteur moyen", large: "grand capteur" },
+    "photo.sensor": { small: "petit capteur", medium: "capteur moyen", large: "grand capteur", xl: "très grand capteur" },
     "photo.zoom": { digital: "zoom numérique", "2x": "téléobjectif ×2", "5x": "téléobjectif ×5" },
     "durete.repair": { low: "pièces limitées", standard: "pièces disponibles", good: "facile à réparer" },
     "durete.protection": { basic: "sans étanchéité", ip67: "IP67", ip68: "IP68" },
@@ -316,7 +310,6 @@
     else if (c.d > 0) { tone = "up"; icon = "▲"; verdict = "Au-dessus"; }
     else { tone = far ? "far" : "low"; icon = "▼"; verdict = far ? "Bien en dessous" : "Un peu en dessous"; }
     var have = c.text;
-    if (c.key === "photo.sensor") have = (CHOIX["photo.sensor"][String(c.text).replace("capteur ", "")] || c.text);
     if (c.key === "battery.chemistry") have = (CHOIX["battery.chemistry"][c.text] || c.text);
     return { tone: tone, icon: icon, name: NOMS[c.key] || c.key, have: have, verdict: verdict, want: c.delta === "pile" ? "" : wantText(c.key, state) };
   }
@@ -483,6 +476,51 @@
     renderResults((event.detail && event.detail.state) || window.GuideAuditState || {}, !!(event.detail && event.detail.user));
   });
 
+  /* Disponibilité des options : un choix reste proposé seulement si au moins un modèle du catalogue, dans le budget
+     déjà choisi, y correspond vraiment (même règle que le classement : valeur « pile » ou très proche).
+     Un critère que le catalogue ne documente pour aucun modèle n'est pas grisé : on ne peut pas dire qu'il manque. */
+  var STATE_OF = { budget: "price", tech: "screen", refresh: "screen", brightness: "screen", capacity: "battery", chemistry: "battery", charge: "battery", reference: "performance", gaming: "performance", sensor: "photo", stabilization: "photo", zoom: "photo", resolution: "photo", updates: "longevity", repair: "longevity", protection: "longevity" };
+  var CHECK_KEY = { tech: "ecran.tech", refresh: "ecran.refresh", brightness: "ecran.brightness", capacity: "batterie.capacity", chemistry: "battery.chemistry", charge: "batterie.charge", reference: "performance.reference", gaming: "performance.gaming", sensor: "photo.sensor", zoom: "photo.zoom", resolution: "photo.resolution", updates: "durete.updates", repair: "durete.repair", protection: "durete.protection" };
+  var NUMERIC_KEYS = { "ecran.refresh": 1, "ecran.brightness": 1, "batterie.capacity": 1, "batterie.charge": 1, "photo.resolution": 1 };
+  var dispoCache = {}, documentedCache = {};
+
+  function inTier(p, budget) {
+    var t = PALIERS[budget], prix = Number(p.prix_indicatif);
+    return !!t && Number.isFinite(prix) && prix > 0 && prix >= t.min * 0.85 && prix <= t.max * 1.15;
+  }
+  function optionMatches(p, group, value) {
+    if (group === "budget") return inTier(p, value);
+    if (group === "stabilization") return value === "none" || (p.compatibilite && p.compatibilite.photo && p.compatibilite.photo.ois === true);
+    if (group === "protection" && value === "basic") return true;
+    var part = {}, st = {};
+    part[group] = value; st[STATE_OF[group]] = part;
+    var item = checks(p, st).filter(function (x) { return x.key === CHECK_KEY[group]; })[0];
+    if (!item || item.out) return false;
+    return NUMERIC_KEYS[CHECK_KEY[group]] ? item.score >= 0.75 : item.d === 0;
+  }
+  function anyMatch(pool, group, value) { return pool.some(function (p) { return optionMatches(p, group, value); }); }
+  // Le catalogue documente-t-il ce critère ? (au moins un modèle, une option, sans limite de budget)
+  function isDocumented(group, options) {
+    if (documentedCache[group] == null) documentedCache[group] = options.some(function (v) { return anyMatch(products, group, v); });
+    return documentedCache[group];
+  }
+  window.GuideDisponibilite = {
+    ready: false,
+    /* → { ok: bool, raison: "budget" | "catalogue" } ; ok vrai si l'option est proposée. */
+    option: function (group, value, siblings) {
+      if (!this.ready) return { ok: true };
+      var budget = ((window.GuideAuditState || {}).price || {}).budget || "";
+      var memo = budget + "|" + group + "|" + value;
+      if (dispoCache[memo]) return dispoCache[memo];
+      var res = { ok: true };
+      if (group !== "budget" && !isDocumented(group, siblings || [value])) res = { ok: true };
+      else if (!anyMatch(products, group, value)) res = { ok: false, raison: "catalogue" }; // aucun modèle nulle part
+      else if (budget && group !== "budget" && !anyMatch(products.filter(function (p) { return inTier(p, budget); }), group, value)) res = { ok: false, raison: "budget" };
+      dispoCache[memo] = res;
+      return res;
+    }
+  };
+
   // Éviter le scroll automatique quand le JSON finit de charger
   if (root && !root.dataset.shown) root.dataset.shown = "0";
 
@@ -493,6 +531,9 @@
     })
     .then(function (data) {
       products = (data.produits || []).filter(function (p) { return p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== "specs_a_verifier" && p.compatibilite; });
+      dispoCache = {}; documentedCache = {};
+      window.GuideDisponibilite.ready = true;
+      window.dispatchEvent(new CustomEvent("guide:disponibilite"));
       renderResults(window.GuideAuditState || {}, false);
     })
     .catch(function () {

@@ -310,3 +310,61 @@ Helio G99, Snapdragon {0}, Exynos {1} · Galaxy A17 5G, Moto G06, realme C67 · 
 Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · {6} à {7} €	Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4} · Redmi Note {5} 5G, Galaxy A56 · €{6} to €{7}
 Dimensity {0} ou {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · {5} à {6} €	Dimensity {0} or {1}, Snapdragon 8s Gen {2}, Snapdragon {3} Gen {4} · Xiaomi 15T, POCO X8 Pro · €{5} to €{6}
 Snapdragon {0} Elite, Dimensity {1}, puces Apple A18 Pro et A19 Pro · iPhone {2} Pro, iPhone {3} Pro Max · dès {4} €	Snapdragon {0} Elite, Dimensity {1}, Apple A18 Pro and A19 Pro chips · iPhone {2} Pro, iPhone {3} Pro Max · from €{4}
+: lisible en plein soleil, sur un chantier ou en gare. Sous {0} <1>nits</1>, on le lit mal dehors.	: readable in full sun, on a building site or at the station. Below {0} <1>nits</1>, it is hard to read outdoors.
+<1>Grand capteur principal ({0}/1,{1}″ ou plus)</1> : plus de lumière captée, surtout le soir.	<1>Large main sensor ({0}/{1}″ or larger)</1>: more light captured, especially in the evening.
+<1>Puce de niveau {0} ou plus</1> (sur {1}, repères ci-dessus) : PDF, tableurs et visio s’ouvrent sans attendre.	<1>Chip level {0} or higher</1> (out of {1}, see the reference points above): PDFs, spreadsheets and video calls open without waiting.
+<1>Puce de niveau {0} ou plus</1> (sur {1}) : Snapdragon 8s Gen {2} et au-dessus, Dimensity {3} et au-dessus, Apple A16 et au-dessus.	<1>Chip level {0} or higher</1> (out of {1}): Snapdragon 8s Gen {2} and above, Dimensity {3} and above, Apple A16 and above.
+{0} <1>nits</1> ou plus	{0} <1>nits</1> or more
+{0}/1,{1}″ ou plus	{0}/{1}″ or larger
+{0} <1>nits</1> et plus	{0} <1>nits</1> and more
+{0} <1>mAh</1> et plus	{0} <1>mAh</1> and more
+Appels, visio, mails, PDF et plans, souvent en déplacement. Une batterie qui dure, un écran lisible dehors ({0} <1>nits</1> ou plus) et une puce de niveau {1} ou plus comptent plus que la puissance maximale.	Calls, video calls, emails, PDFs and plans, often on the move. A battery that lasts, a screen that is readable outdoors ({0} <1>nits</1> or more) and a chip of level {1} or higher matter more than peak power.
+Correct dehors, sauf sous un soleil fort	Fine outdoors, except under strong sun
+Écran {0} <1>nits</1> ou plus	Screen of {0} <1>nits</1> or more
+Entrée de gamme : Helio G99, Snapdragon {0}	Entry level: Helio G99, Snapdragon {0}
+Haut de gamme : Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro	High end: Snapdragon 8s Gen {0}, Dimensity {1}, Tensor G5, Apple A17 Pro
+La norme : une bonne journée, parfois plus	The norm: a good day, sometimes more
+Les trois valeurs qui reviennent partout, avec ce qu’elles veulent dire. Le niveau de puce est notre échelle, la même pour toutes les marques.	The three values that come up everywhere, and what they mean. The chip level is our own scale, the same for every brand.
+Lisible à l’ombre	Readable in the shade
+Lisible en plein soleil	Readable in full sun
+Luminosité de l’écran	Screen brightness
+Milieu de gamme : Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}	Mid-range: Snapdragon {0} Gen {1}, Exynos {2}, Snapdragon {3} Gen {4}
+Niveau {0} à {1} sur {2}	Level {0} to {1} out of {2}
+Niveau {0} ou plus sur {1}	Level {0} or higher out of {1}
+Plus d’une journée, téléphone plus lourd	More than a day, heavier phone
+Puce, de {0} à {1}	Chip, from {0} to {1}
+Repères pour lire les chiffres	Reference points for reading the numbers
+Sommet : Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro et A20 Pro	Top: Snapdragon {0} Elite, Exynos {1}, Apple A19 Pro and A20 Pro
+Très lumineux	Very bright
+Une journée d’usage normal	A day of normal use
+{0} à {1}	{0} to {1}
+Aucun modèle dans ce budget	No model in this budget
+Aucun modèle au catalogue	No model in the catalogue
+Un choix a été retiré : plus aucun modèle ne correspond dans ce budget.	One choice was removed: no model matches it in this budget any more.
+{0} choix ont été retirés : plus aucun modèle ne correspond dans ce budget.	{0} choices were removed: no model matches them in this budget any more.
+<1>Capteur de note {0} ou plus sur {1}</1> ({2}/1,{3}″ ou plus grand) : plus de lumière captée, surtout le soir.	<1>Sensor rated {0} or higher out of {1}</1> ({2}/1,{3}″ or larger): more light captured, especially in the evening.
+Capteur photo, de {0} à {1}	Camera sensor, from {0} to {1}
+Petit : {0}/2,{1}″ et moins (Galaxy A17 5G, Redmi 15C)	Small: {0}/2,{1}″ or less (Galaxy A17 5G, Redmi 15C)
+Moyen : {0}/2,{1}″ à {2}/1,{3}″ (Pixel {4}, Moto G85, Redmi Note {5} 5G)	Medium: {0}/2,{1}″ to {2}/1,{3}″ (Pixel {4}, Moto G85, Redmi Note {5} 5G)
+Grand : {0}/1,{1}″ à {2}/1,{3}″ (Galaxy A56, OnePlus {4}, Pixel {5} Pro)	Large: {0}/1,{1}″ to {2}/1,{3}″ (Galaxy A56, OnePlus {4}, Pixel {5} Pro)
+Très grand : {0}/1,{1}″ à {2}″, un capteur d’un pouce vaut {3}	Very large: {0}/1,{1}″ to {2}″, a one-inch sensor is rated {3}
+Plus le second chiffre est petit, plus le capteur est grand : {0}/1,{1}″ est bien plus grand que {2}/2,{3}″.	The smaller the second number, the bigger the sensor: {0}/1,{1}″ is much bigger than {2}/2,{3}″.
+Les valeurs qui reviennent partout, avec ce qu’elles veulent dire. Les notes de puce et de capteur sont notre échelle, la même pour toutes les marques.	The values that come up everywhere, and what they mean. The chip and sensor ratings are our own scale, the same for every brand.
+Note {0} ou plus sur {1}	Rating {0} or higher out of {1}
+Très grand	Very large
+Le maximum de lumière : nuit très nette, détails fins.	The most light possible: very sharp night shots, fine detail.
+Très cher, gros bloc photo, téléphone plus épais.	Very expensive, big camera block, thicker phone.
+Note {0} à {1} · {2}/2,{3}″ et moins · Galaxy A17 5G, Redmi 15C, POCO C85	Rating {0} to {1} · {2}/2,{3}″ or less · Galaxy A17 5G, Redmi 15C, POCO C85
+Note {0} à {1} · {2}/2,{3}″ à {4}/1,{5}″ · Pixel {6}, Moto G85, Redmi Note {7} 5G	Rating {0} to {1} · {2}/2,{3}″ to {4}/1,{5}″ · Pixel {6}, Moto G85, Redmi Note {7} 5G
+Note {0} à {1} · {2}/1,{3}″ à {4}/1,{5}″ · Galaxy A56, OnePlus {6}, Pixel {7} Pro	Rating {0} to {1} · {2}/1,{3}″ to {4}/1,{5}″ · Galaxy A56, OnePlus {6}, Pixel {7} Pro
+Note {0} à {1} · {2}/1,{3}″ à {4}″ · le sommet : un capteur d’un pouce vaut {5}	Rating {0} to {1} · {2}/1,{3}″ to {4}″ · the top: a one-inch sensor is rated {5}
+très grand capteur	very large sensor
+nuit très nette	very sharp night
+nuit nette	sharp night
+le maximum de lumière	the most light possible
+Petit capteur ({0}/2,{1}″ et moins)	Small sensor ({0}/2,{1}″ or less)
+Capteur moyen ({0}/2,{1}″ à {2}/1,{3}″)	Medium sensor ({0}/2,{1}″ to {2}/1,{3}″)
+Grand capteur ({0}/1,{1}″ à {2}/1,{3}″)	Large sensor ({0}/1,{1}″ to {2}/1,{3}″)
+Très grand capteur ({0}/1,{1}″ à {2}″)	Very large sensor ({0}/1,{1}″ to {2}″)
+Haut de gamme : nuit nette, flou d’arrière-plan ; bloc photo plus épais et plus cher.	High end: sharp night shots, background blur; thicker, more expensive camera block.
+Le sommet des photophones : le maximum de lumière, nuit très nette ; bloc photo épais, prix très élevé.	The top of camera phones: the most light possible, very sharp night shots; thick camera block, very high price.

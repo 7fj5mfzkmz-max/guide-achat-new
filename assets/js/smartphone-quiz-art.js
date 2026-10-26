@@ -108,8 +108,8 @@
 
   /* ——— Photo : même scène de nuit, selon la taille du capteur ——— */
   function sensor(index, chosen) {
-    var b = '', noise = [.55, .28, .06][index], light = [.55, .8, 1][index], c = chosen ? ORANGE : MUTE, i;
-    var sz = [34, 52, 76][index], X = 226;
+    var b = '', noise = [.55, .3, .12, .03][index], light = [.5, .7, .85, 1][index], c = chosen ? ORANGE : MUTE, i;
+    var sz = [28, 44, 60, 76][index], X = 226;
     b += '<defs><linearGradient id="qa-nsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101a3a"/><stop offset="1" stop-color="#4a3a63"/></linearGradient>' +
       '<filter id="qa-noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"><animate attributeName="seed" values="1;5;2;8;3;6" dur=".8s" repeatCount="indefinite" calcMode="discrete"/></feTurbulence><feColorMatrix type="saturate" values="0"/></filter>' +
       '<clipPath id="qa-ph"><rect x="10" y="8" width="170" height="130" rx="12"/></clipPath></defs>';
@@ -127,8 +127,8 @@
     var n = 4 + index * 4;
     for (i = 0; i < n; i++) b += '<circle class="qa-ph" style="--d:' + ((i * .31) % 1.6).toFixed(2) + 's;--f:' + (sz - 6) + 'px" cx="' + (X - sz / 2 + 7 + ((i * 29) % (sz - 14))) + '" cy="' + (112 - sz - 30) + '" r="2.8" fill="#ffd25e"/>';
     b += '</g>';
-    b += tx(X, 134, ['petit capteur', 'capteur moyen', 'grand capteur'][index], 'qa-t-sm', 'middle');
-    b += tx(95, 158, ['grain et nuit sombre', 'nuit propre', 'nuit nette et lumineuse'][index], 'qa-t-big', 'middle');
+    b += tx(X, 134, ['petit capteur', 'capteur moyen', 'grand capteur', 'très grand capteur'][index], 'qa-t-sm', 'middle');
+    b += tx(95, 158, ['grain et nuit sombre', 'nuit propre', 'nuit nette', 'nuit très nette'][index], 'qa-t-big', 'middle');
     return wrap('0 0 276 170', b);
   }
 
