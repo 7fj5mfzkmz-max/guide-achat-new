@@ -8,6 +8,7 @@ const chips = require('../../phone-analyzer/chips.js');
 const file = path.join(__dirname, '..', '..', 'data', 'smartphones.json');
 
 function classer(cat) {
+  require('./integrer-complet.js').appliquer(cat); // cases vides remplies depuis le classeur Complet (avant le calcul des niveaux)
   const inconnues = [];
   let changees = 0;
   for (const p of cat.produits) {

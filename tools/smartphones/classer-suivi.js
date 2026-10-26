@@ -6,6 +6,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const fichier = path.join(__dirname, '..', '..', 'data', 'fichier-catalogue-2026.json');
+const complet = path.join(__dirname, '..', '..', 'data', 'classeur-complet-2026.json');
+const { trouver } = require('./noms.js');
 const ALIAS = { 'zte nubia red magic 10 pro': 'nubia-red-magic-10-pro', 'zte nubia focus 6 air': 'nubia-focus-6-air', 'asus rog phone 9': 'rog-phone-9' };
 // Durées officielles relevées sur des sources (Google annonce 7 ans pour les Pixel 10).
 const OFFICIELLES = { 'pixel-10a': 7 };
@@ -26,6 +28,9 @@ function appliquer(cat) {
     const p = ALIAS[norm(f.modele)] ? parId.get(ALIAS[norm(f.modele)]) : par.get(norm(f.modele));
     poser(p, f.os && f.os.mises_a_jour_ans);
   }));
+  // Le classeur Complet complète les cases encore vides (« 5 ans » → 5).
+  const c = JSON.parse(fs.readFileSync(complet, 'utf8'));
+  Object.keys(c.maj).forEach(nom => poser(trouver(cat, nom), c.maj[nom]));
   Object.keys(OFFICIELLES).forEach(id => { const p = parId.get(id); if (p && p.compatibilite && p.compatibilite.durete) { p.compatibilite.durete.mises_a_jour_ans = OFFICIELLES[id]; } else poser(p, OFFICIELLES[id]); });
   return n;
 }

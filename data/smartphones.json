@@ -64,6 +64,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -82,13 +86,23 @@
         "durete": {
           "protection_ip": "IP67",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 4
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A56",
+        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a56"
+      ]
     },
     {
       "id": "xiaomi-15t",
@@ -153,6 +167,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -171,13 +189,23 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 4
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+15T",
+        "https://www.kimovil.com/fr/ou-acheter-xiaomi-15t"
+      ]
     },
     {
       "id": "iphone-17-pro",
@@ -243,6 +271,10 @@
         "photo": {
           "mp_principal": 48,
           "ois": false,
+          "teleobjectif": {
+            "present": true,
+            "zoom": 5
+          },
           "capteur": {
             "format": "1/1.28",
             "niveau": 8,
@@ -260,13 +292,23 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 19,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 6
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Apple+iPhone+17+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-apple-iphone-17-pro"
+      ]
     },
     {
       "id": "oneplus-15",
@@ -299,7 +341,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 165,
-          "luminosite_nits": null
+          "luminosite_nits": 4500
         },
         "performance": {
           "soc": "Snapdragon 8 Elite Gen 5 (3 nm)",
@@ -309,7 +351,11 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -326,13 +372,22 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP69",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 5
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -379,7 +434,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 165,
-          "luminosite_nits": null
+          "luminosite_nits": 2500
         },
         "performance": {
           "soc": "Snapdragon 8 Elite (3 nm)",
@@ -389,7 +444,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -402,18 +461,27 @@
         },
         "batterie": {
           "capacite_mah": 5800,
-          "recharge_watts": null,
+          "recharge_watts": 65,
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
+          "protection_ip": "IP68",
           "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele",
+          "w"
+        ]
       },
       "sources_verification": [
         {
@@ -468,7 +536,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 2600
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4 pour chaque marché",
@@ -478,7 +546,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 4400,
@@ -487,12 +566,24 @@
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Galaxy+Z+Fold8",
+        "https://www.kimovil.com/fr/ou-acheter-galaxy-z-fold8"
+      ]
     },
     {
       "id": "pixel-10-pro-xl",
@@ -535,7 +626,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.31",
             "niveau": 8,
@@ -552,12 +647,19 @@
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": null
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.5 à 8.5/10",
+          "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -613,7 +715,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2",
             "niveau": 5,
@@ -629,13 +735,21 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP68",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.5 à 8.5/10",
+          "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -694,7 +808,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.3",
             "niveau": 8,
@@ -712,12 +830,19 @@
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": 16
+          "android_version_sortie": 16,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 2
+        "sources": 2,
+        "classeur_complet": [
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "tests": [
         {
@@ -782,21 +907,40 @@
         },
         "photo": {
           "mp_principal": 48,
-          "ois": null
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.14",
+            "niveau": 9,
+            "gamme": "xl",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
-          "capacite_mah": null,
+          "capacite_mah": 4600,
           "recharge_watts": 60,
           "chimie": null
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": null
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.5 à 8.5/10",
+          "mises_a_jour_ans": 5
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "mah",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -843,7 +987,7 @@
         "ecran": {
           "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 1500
         },
         "performance": {
           "soc": "Snapdragon 8 Elite (3 nm)",
@@ -853,7 +997,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.35",
             "niveau": 8,
@@ -870,13 +1018,22 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP68",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 3
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -921,7 +1078,7 @@
         "ecran": {
           "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 3000
         },
         "performance": {
           "soc": "Apple A20 Pro (2 nm)",
@@ -931,21 +1088,42 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.14",
+            "niveau": 9,
+            "gamme": "xl",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
-          "capacite_mah": null,
+          "capacite_mah": 3400,
           "recharge_watts": 45,
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP68",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.5 à 8.5/10",
+          "mises_a_jour_ans": 5
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "mah",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "tests": [
         {
@@ -1011,7 +1189,18 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 4900,
@@ -1019,13 +1208,21 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": 16
+          "protection_ip": "IP68",
+          "android_version_sortie": 16,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -1074,7 +1271,7 @@
         "ecran": {
           "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 2000
         },
         "performance": {
           "soc": "Google Tensor G4",
@@ -1084,7 +1281,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2",
             "niveau": 5,
@@ -1103,12 +1304,19 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": null,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -1157,7 +1365,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 144,
-          "luminosite_nits": null
+          "luminosite_nits": 2100
         },
         "performance": {
           "soc": "Snapdragon 8s Gen 3 (4 nm)",
@@ -1167,7 +1375,11 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -1184,13 +1396,22 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP65",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 4
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -1389,7 +1610,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": 3.2
+          },
+          "capteur": {
+            "format": "1/1.31",
+            "niveau": 8,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5900,
@@ -1399,13 +1631,23 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 4
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
-      }
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+16+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-xiaomi-16-pro"
+      ]
     },
     {
       "id": "honor-magic-8-pro",
@@ -1440,7 +1682,7 @@
         "ecran": {
           "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 5000
         },
         "performance": {
           "soc": "Snapdragon 8 Elite Gen 5",
@@ -1450,7 +1692,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.3",
             "niveau": 8,
@@ -1468,12 +1714,20 @@
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": null
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 4
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -1523,7 +1777,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 2600
         },
         "performance": {
           "soc": "Exynos 2600 (2 nm)",
@@ -1533,7 +1787,11 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -1549,13 +1807,22 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": 16
+          "protection_ip": "IP68",
+          "android_version_sortie": 16,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -1612,7 +1879,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.31",
             "niveau": 8,
@@ -1624,18 +1895,27 @@
           }
         },
         "batterie": {
-          "capacite_mah": null,
-          "recharge_watts": null,
+          "capacite_mah": 4700,
+          "recharge_watts": 30,
           "chimie": null
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": null
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.5 à 8.5/10",
+          "mises_a_jour_ans": 7
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "mah",
+          "ois",
+          "reparabilite",
+          "tele",
+          "w"
+        ]
       },
       "sources_verification": [
         {
@@ -1694,7 +1974,11 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -1712,12 +1996,19 @@
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": null
+          "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 4
         }
       },
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -1768,7 +2059,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 3000
         },
         "performance": {
           "soc": "Snapdragon 8 Elite",
@@ -1778,7 +2069,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": 4
+          },
+          "capteur": {
+            "format": "1",
+            "niveau": 10,
+            "gamme": "xl",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5300,
@@ -1788,12 +2090,23 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 4
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+16+Ultra",
+        "https://www.kimovil.com/fr/ou-acheter-xiaomi-16-ultra"
+      ]
     },
     {
       "id": "galaxy-a17-5g",
@@ -1843,7 +2156,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 1000
         },
         "performance": {
           "soc": "Dimensity 6100+",
@@ -1854,6 +2167,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2.76",
             "niveau": 3,
@@ -1870,14 +2187,22 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
+          "protection_ip": "IP54",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 4
         }
       },
       "annee_sortie": 2025,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
       "tests": [
         {
@@ -1888,7 +2213,11 @@
           "verdict": "Le budget strict"
         }
       ],
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A17+5G",
+        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a17-5g"
+      ]
     },
     {
       "id": "redmi-note-15-4g",
@@ -1932,7 +2261,18 @@
         },
         "photo": {
           "mp_principal": 108,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.76",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -1942,12 +2282,22 @@
         "durete": {
           "protection_ip": "IP54",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 3
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+15+4G",
+        "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-15-4g"
+      ]
     },
     {
       "id": "redmi-note-15-5g",
@@ -1999,7 +2349,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 1800
         },
         "performance": {
           "soc": "Dimensity 7300",
@@ -2010,6 +2360,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.67",
             "niveau": 6,
@@ -2028,14 +2382,25 @@
         "durete": {
           "protection_ip": "IP64",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 3
         }
       },
       "annee_sortie": 2025,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+15+5G",
+        "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-15-5g"
+      ]
     },
     {
       "id": "realme-p3-5g",
@@ -2087,7 +2452,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 2000
         },
         "performance": {
           "soc": "Dimensity 7050",
@@ -2098,6 +2463,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2.88",
             "niveau": 3,
@@ -2116,14 +2485,25 @@
         "durete": {
           "protection_ip": "IP54",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2025,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=realme+P3+5G",
+        "https://www.kimovil.com/fr/ou-acheter-realme-p3-5g"
+      ]
     },
     {
       "id": "realme-c67",
@@ -2246,7 +2626,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2.76",
             "niveau": 3,
@@ -2262,14 +2646,22 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP52",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 2
         }
       },
       "fiche_statut": "verifie_web",
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "date_verification": "2026-10",
       "sources_verification": [
@@ -2337,7 +2729,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 900
         },
         "performance": {
           "soc": "Unisoc T612",
@@ -2347,7 +2739,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.76",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -2357,14 +2760,25 @@
         "durete": {
           "protection_ip": "IP54",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2024,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=realme+C75",
+        "https://www.kimovil.com/fr/ou-acheter-realme-c75"
+      ]
     },
     {
       "id": "redmi-note-14-5g",
@@ -2416,7 +2830,7 @@
         "ecran": {
           "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 1800
         },
         "performance": {
           "soc": "Dimensity 7025 Ultra",
@@ -2427,6 +2841,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.67",
             "niveau": 6,
@@ -2445,14 +2863,25 @@
         "durete": {
           "protection_ip": "IP64",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 3
         }
       },
       "annee_sortie": 2024,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+14+5G",
+        "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-14-5g"
+      ]
     },
     {
       "id": "moto-g55-5g",
@@ -2504,7 +2933,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 1000
         },
         "performance": {
           "soc": "Dimensity 7025",
@@ -2515,6 +2944,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.8",
             "niveau": 6,
@@ -2532,12 +2965,18 @@
         "durete": {
           "protection_ip": "IP52",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2024,
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "classeur_2026",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         "https://www.gsmarena.com/motorola_moto_g55-13295.php",
@@ -2595,7 +3034,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 2000
         },
         "performance": {
           "soc": "Dimensity 6080",
@@ -2606,6 +3045,10 @@
         "photo": {
           "mp_principal": 108,
           "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.67",
             "niveau": 6,
@@ -2624,14 +3067,25 @@
         "durete": {
           "protection_ip": "IP54",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2025,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=HONOR+400+Lite",
+        "https://www.kimovil.com/fr/ou-acheter-honor-400-lite"
+      ]
     },
     {
       "id": "poco-c85",
@@ -2686,7 +3140,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 600
         },
         "performance": {
           "soc": "Helio G91 Ultra",
@@ -2697,6 +3151,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2.76",
             "niveau": 3,
@@ -2715,13 +3173,24 @@
         "durete": {
           "protection_ip": "IP64",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2025,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=POCO+C85",
+        "https://www.kimovil.com/fr/ou-acheter-poco-c85"
+      ]
     },
     {
       "id": "redmi-note-11s",
@@ -2826,7 +3295,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Snapdragon 695",
@@ -2836,7 +3305,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.76",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -2846,13 +3326,24 @@
         "durete": {
           "protection_ip": null,
           "android_version_sortie": 12,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 4
         }
       },
       "fiche_statut": "specs_a_verifier",
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A23+5G",
+        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a23-5g"
+      ]
     },
     {
       "id": "moto-g06-power",
@@ -2904,7 +3395,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Unisoc T606",
@@ -2914,7 +3405,18 @@
         },
         "photo": {
           "mp_principal": 13,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/3",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 6000,
@@ -2924,14 +3426,25 @@
         "durete": {
           "protection_ip": "IP52",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2025,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Motorola+Moto+G06+Power",
+        "https://www.kimovil.com/fr/ou-acheter-motorola-moto-g06-power"
+      ]
     },
     {
       "id": "moto-g06",
@@ -2982,7 +3495,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Unisoc T606",
@@ -2992,7 +3505,18 @@
         },
         "photo": {
           "mp_principal": 13,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/3",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3002,14 +3526,25 @@
         "durete": {
           "protection_ip": "IP52",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2025,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Motorola+Moto+G06",
+        "https://www.kimovil.com/fr/ou-acheter-motorola-moto-g06"
+      ]
     },
     {
       "id": "blackview-shark-8",
@@ -3059,7 +3594,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Helio G99",
@@ -3069,7 +3604,18 @@
         },
         "photo": {
           "mp_principal": 64,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.8",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3079,14 +3625,27 @@
         "durete": {
           "protection_ip": null,
           "android_version_sortie": 13,
+          "sans_ip": true,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 1
         }
       },
       "annee_sortie": 2023,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Blackview+Shark+8",
+        "https://www.kimovil.com/fr/ou-acheter-blackview-shark-8"
+      ]
     },
     {
       "id": "zte-blade-v70-vita",
@@ -3183,7 +3742,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Unisoc T7250",
@@ -3193,7 +3752,18 @@
         },
         "photo": {
           "mp_principal": 32,
-          "ois": null
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/3",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5200,
@@ -3202,13 +3772,23 @@
         },
         "durete": {
           "protection_ip": null,
-          "android_version_sortie": 15
+          "android_version_sortie": 15,
+          "sans_ip": true,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 2
         }
       },
       "fiche_statut": "verifie_web",
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "date_verification": "2026-10",
       "sources_verification": [
@@ -3256,7 +3836,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Unisoc T7250 (Tiger T615)",
@@ -3266,7 +3846,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/3.6",
             "niveau": 2,
@@ -3278,18 +3862,27 @@
         },
         "batterie": {
           "capacite_mah": 5200,
-          "recharge_watts": null,
+          "recharge_watts": 18,
           "chimie": null
         },
         "durete": {
           "protection_ip": "IP52",
-          "android_version_sortie": null
+          "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 2
         }
       },
       "fiche_statut": "verifie_web",
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele",
+          "w"
+        ]
       },
       "date_verification": "2026-10",
       "sources_verification": [
@@ -3338,7 +3931,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "MediaTek Helio G36",
@@ -3348,22 +3941,44 @@
         },
         "photo": {
           "mp_principal": 8,
-          "ois": null
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/3",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
-          "recharge_watts": null,
+          "recharge_watts": 10,
           "chimie": null
         },
         "durete": {
           "protection_ip": null,
-          "android_version_sortie": 14
+          "android_version_sortie": 14,
+          "sans_ip": true,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 2
         }
       },
       "fiche_statut": "verifie_web",
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele",
+          "w"
+        ]
       },
       "date_verification": "2026-10",
       "sources_verification": [
@@ -3422,7 +4037,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1",
+            "niveau": 10,
+            "gamme": "xl",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 6100,
@@ -3431,13 +4057,24 @@
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Vivo+X200+Ultra",
+        "https://www.kimovil.com/fr/ou-acheter-vivo-x200-ultra"
+      ]
     },
     {
       "id": "oppo-find-x9",
@@ -3462,7 +4099,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 4500
         },
         "performance": {
           "soc": "MediaTek Dimensity 9500 (3 nm)",
@@ -3472,7 +4109,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.4",
             "niveau": 8,
@@ -3488,14 +4129,23 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP69",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 4
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -3535,8 +4185,8 @@
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
-          "frequence_max_hz": null,
-          "luminosite_nits": null
+          "frequence_max_hz": 120,
+          "luminosite_nits": 6000
         },
         "performance": {
           "soc": "Snapdragon 8 Elite (3 nm)",
@@ -3546,7 +4196,11 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -3563,14 +4217,24 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP69",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "hz",
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -3615,7 +4279,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 1200
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 2",
@@ -3625,7 +4289,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.49",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5100,
@@ -3635,13 +4310,24 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=ZTE+Nubia+Z60S",
+        "https://www.kimovil.com/fr/ou-acheter-zte-nubia-z60s"
+      ]
     },
     {
       "id": "tecno-camon-40-pro",
@@ -3670,7 +4356,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 144,
-          "luminosite_nits": null
+          "luminosite_nits": 1300
         },
         "performance": {
           "soc": "Dimensity 8200",
@@ -3680,7 +4366,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3690,13 +4387,24 @@
         "durete": {
           "protection_ip": "IP53",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Tecno+Camon+40+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-tecno-camon-40-pro"
+      ]
     },
     {
       "id": "nokia-g70-5g",
@@ -3725,7 +4433,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 600
         },
         "performance": {
           "soc": "Snapdragon 4 Gen 1",
@@ -3735,7 +4443,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2",
+            "niveau": 5,
+            "gamme": "medium",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3745,13 +4464,24 @@
         "durete": {
           "protection_ip": "IP52",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Nokia+G70+5G",
+        "https://www.kimovil.com/fr/ou-acheter-nokia-g70-5g"
+      ]
     },
     {
       "id": "htc-u24-pro",
@@ -3856,7 +4586,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": 3
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5900,
@@ -3866,14 +4607,24 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 4
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
-      }
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=ASUS+Zenfone+12+Ultra",
+        "https://www.kimovil.com/fr/ou-acheter-asus-zenfone-12-ultra"
+      ]
     },
     {
       "id": "samsung-galaxy-xcover-8-pro",
@@ -3902,7 +4653,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 1000
         },
         "performance": {
           "soc": "Snapdragon 7s Gen 2",
@@ -3912,7 +4663,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.76",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 4500,
@@ -3922,13 +4684,24 @@
         "durete": {
           "protection_ip": "IP68 / MIL-STD",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 5
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+XCover+8+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-xcover-8-pro"
+      ]
     },
     {
       "id": "motorola-razr-60-ultra",
@@ -3959,7 +4732,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 3000
         },
         "performance": {
           "soc": "Snapdragon 8 Gen 4",
@@ -3969,7 +4742,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 4400,
@@ -3978,13 +4762,25 @@
         },
         "durete": {
           "protection_ip": "IP68",
-          "android_version_sortie": 15
+          "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Motorola+Razr+60+Ultra",
+        "https://www.kimovil.com/fr/ou-acheter-motorola-razr-60-ultra"
+      ]
     },
     {
       "id": "samsung-galaxy-a15",
@@ -4012,7 +4808,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 800
         },
         "performance": {
           "soc": "MediaTek Dimensity 6100+",
@@ -4022,7 +4818,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.76",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -4031,13 +4838,23 @@
         },
         "durete": {
           "protection_ip": null,
-          "android_version_sortie": null
+          "android_version_sortie": null,
+          "sans_ip": true,
+          "reparabilite_estimee": "7.5 à 8.5/10",
+          "mises_a_jour_ans": 4
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -4079,9 +4896,9 @@
       "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": null,
-          "frequence_max_hz": null,
-          "luminosite_nits": null
+          "technologie": "AMOLED",
+          "frequence_max_hz": 120,
+          "luminosite_nits": 1800
         },
         "performance": {
           "soc": "Snapdragon 685",
@@ -4091,7 +4908,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.67",
             "niveau": 6,
@@ -4103,18 +4924,30 @@
         },
         "batterie": {
           "capacite_mah": 5000,
-          "recharge_watts": null,
+          "recharge_watts": 33,
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP54",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "7.0 à 8.0/10",
+          "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ecran",
+          "hz",
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele",
+          "w"
+        ]
       },
       "sources_verification": [
         {
@@ -4169,7 +5002,11 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.95",
             "niveau": 5,
@@ -4181,18 +5018,27 @@
         },
         "batterie": {
           "capacite_mah": 5000,
-          "recharge_watts": null,
+          "recharge_watts": 30,
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP54",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "ois",
+          "reparabilite",
+          "tele",
+          "w"
+        ]
       },
       "sources_verification": [
         {
@@ -4249,7 +5095,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": null
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2",
+            "niveau": 5,
+            "gamme": "medium",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -4258,13 +5115,20 @@
         },
         "durete": {
           "protection_ip": "IP65",
-          "android_version_sortie": 14
+          "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 2
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -4306,9 +5170,9 @@
       "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": null,
-          "frequence_max_hz": null,
-          "luminosite_nits": null
+          "technologie": "AMOLED",
+          "frequence_max_hz": 120,
+          "luminosite_nits": 1800
         },
         "performance": {
           "soc": "Snapdragon 7s Gen 2",
@@ -4318,7 +5182,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2",
             "niveau": 5,
@@ -4335,14 +5203,25 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP54",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ecran",
+          "hz",
+          "ip",
+          "nits",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -4390,7 +5269,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Helio G85",
@@ -4400,7 +5279,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.8",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -4410,13 +5300,24 @@
         "durete": {
           "protection_ip": "IP53",
           "android_version_sortie": 13,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 1
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Tecno+Spark+20",
+        "https://www.kimovil.com/fr/ou-acheter-tecno-spark-20"
+      ]
     },
     {
       "id": "infinix-hot-40",
@@ -4448,7 +5349,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 90,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Helio G88",
@@ -4458,7 +5359,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.8",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -4468,13 +5380,24 @@
         "durete": {
           "protection_ip": "IP53",
           "android_version_sortie": 13,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 1
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Infinix+Hot+40",
+        "https://www.kimovil.com/fr/ou-acheter-infinix-hot-40"
+      ]
     },
     {
       "id": "honor-9-lite",
@@ -4565,7 +5488,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 60,
-          "luminosite_nits": null
+          "luminosite_nits": 500
         },
         "performance": {
           "soc": "Helio G85",
@@ -4576,6 +5499,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/2.8",
             "niveau": 3,
@@ -4593,12 +5520,20 @@
         "durete": {
           "protection_ip": null,
           "android_version_sortie": 13,
+          "sans_ip": true,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "classeur_2026",
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         "https://www.gsmarena.com/samsung_galaxy_a05-12534.php",
@@ -4635,7 +5570,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 60,
-          "luminosite_nits": null
+          "luminosite_nits": 400
         },
         "performance": {
           "soc": "Unisoc SC9863A",
@@ -4645,7 +5580,18 @@
         },
         "photo": {
           "mp_principal": 13,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/3",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5050,
@@ -4655,13 +5601,24 @@
         "durete": {
           "protection_ip": "IP52",
           "android_version_sortie": 12,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Nokia+C31",
+        "https://www.kimovil.com/fr/ou-acheter-nokia-c31"
+      ]
     },
     {
       "id": "oneplus-12-ultra",
@@ -4751,7 +5708,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 144,
-          "luminosite_nits": null
+          "luminosite_nits": 1500
         },
         "performance": {
           "soc": "Snapdragon 8 Elite",
@@ -4761,7 +5718,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 6000,
@@ -4769,15 +5737,27 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
+          "protection_ip": "IP54",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 2
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Black+Shark+7+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-xiaomi-black-shark-7-pro"
+      ]
     },
     {
       "id": "nubia-red-magic-10-pro",
@@ -4823,7 +5803,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.57",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 7100,
@@ -4833,14 +5824,24 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
-      }
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Nubia+Red+Magic+10+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-nubia-red-magic-10-pro"
+      ]
     },
     {
       "id": "moto-edge-50-pro",
@@ -4941,7 +5942,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 144,
-          "luminosite_nits": null
+          "luminosite_nits": 6000
         },
         "performance": {
           "soc": "Dimensity 9300+",
@@ -4951,7 +5952,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5500,
@@ -4961,13 +5973,24 @@
         "durete": {
           "protection_ip": "IP65",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Realme+GT+Neo+7",
+        "https://www.kimovil.com/fr/ou-acheter-realme-gt-neo-7"
+      ]
     },
     {
       "id": "honor-magic-v3",
@@ -5008,7 +6031,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": 3.5
+          },
+          "capteur": {
+            "format": "1/1.56",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5150,
@@ -5018,12 +6052,17 @@
         "durete": {
           "protection_ip": "IPX8",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 4
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "classeur_2026",
+        "classeur_complet": [
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         "https://www.lesnumeriques.com/telephone-portable/honor-magic-v3-p75043/test.html",
@@ -5065,7 +6104,11 @@
         },
         "photo": {
           "mp_principal": null,
-          "ois": null,
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.55",
             "niveau": 7,
@@ -5082,14 +6125,22 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
-          "android_version_sortie": null
+          "protection_ip": "IP54",
+          "android_version_sortie": null,
+          "reparabilite_estimee": "6.5 à 7.5/10",
+          "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
         "compatibilite_derivee": "sources_web",
-        "sources": 3
+        "sources": 3,
+        "classeur_complet": [
+          "ip",
+          "ois",
+          "reparabilite",
+          "tele"
+        ]
       },
       "sources_verification": [
         {
@@ -5196,7 +6247,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 144,
-          "luminosite_nits": null
+          "luminosite_nits": 4500
         },
         "performance": {
           "soc": "Snapdragon 8s Gen 3",
@@ -5206,7 +6257,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.95",
+            "niveau": 5,
+            "gamme": "medium",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 6000,
@@ -5216,13 +6278,24 @@
         "durete": {
           "protection_ip": "IP64",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Vivo+iQOO+Z9+Turbo",
+        "https://www.kimovil.com/fr/ou-acheter-vivo-iqoo-z9-turbo"
+      ]
     },
     {
       "id": "nubia-focus-6-air",
@@ -5252,7 +6325,7 @@
         "ecran": {
           "technologie": "LCD",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 600
         },
         "performance": {
           "soc": "Unisoc T760",
@@ -5262,7 +6335,18 @@
         },
         "photo": {
           "mp_principal": 108,
-          "ois": false
+          "ois": false,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2",
+            "niveau": 5,
+            "gamme": "medium",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -5272,13 +6356,26 @@
         "durete": {
           "protection_ip": null,
           "android_version_sortie": 14,
+          "sans_ip": true,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 1
         }
       },
       "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
-      }
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "ip",
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Nubia+Focus+6+Air",
+        "https://www.kimovil.com/fr/ou-acheter-nubia-focus-6-air"
+      ]
     },
     {
       "id": "hasselblad-mobile",
@@ -6017,6 +7114,10 @@
         "photo": {
           "mp_principal": 48,
           "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": 5
+          },
           "capteur": {
             "format": "1/1.28",
             "niveau": 8,
@@ -6034,12 +7135,18 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 19,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 6
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
+        "compatibilite_derivee": "caracteristiques_catalogue",
+        "classeur_complet": [
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
       "tests": [
         {
@@ -6052,6 +7159,10 @@
             "autonomie_jeu_min": 774
           }
         }
+      ],
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Apple+iPhone+17+Pro+Max",
+        "https://www.kimovil.com/fr/ou-acheter-apple-iphone-17-pro-max"
       ]
     },
     {
@@ -6104,7 +7215,7 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": null
+          "luminosite_nits": 2400
         },
         "performance": {
           "soc": "Snapdragon 7s Gen 3",
@@ -6115,6 +7226,10 @@
         "photo": {
           "mp_principal": 200,
           "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.95",
             "niveau": 5,
@@ -6133,21 +7248,32 @@
         "durete": {
           "protection_ip": "IP54",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
       "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral"
+        "compatibilite_derivee": "fichier_integral",
+        "classeur_complet": [
+          "nits",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
       },
-      "fiche_statut": "fichier_integral"
+      "fiche_statut": "fichier_integral",
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=POCO+X8+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-poco-x8-pro"
+      ]
     },
     {
       "id": "pixel-11-pro",
       "nom": "Google Pixel 11 Pro",
       "marque": "Google",
-      "prix_indicatif": null,
-      "prix_note": "Prix du classeur : 1099 € (Rumeur (Fin 2026), non retenu : ni relevé ni confirmé).",
+      "prix_indicatif": 1099,
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "6.3 OLED 120Hz 3000nits",
         "processeur": "Tensor G6 (2 nm)",
@@ -6171,12 +7297,24 @@
         },
         "performance": {
           "soc": "Tensor G6",
-          "niveau": null,
-          "ram_go_max": 16
+          "niveau": 9,
+          "ram_go_max": 16,
+          "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": 5
+          },
+          "capteur": {
+            "format": "1/1.31",
+            "niveau": 8,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 4800,
@@ -6186,6 +7324,7 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 16,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 7
         }
       },
@@ -6197,21 +7336,31 @@
           "titre": "The Pixel 11 Pro is in another league from the iPhone 18 Pro"
         }
       ],
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "fiche_statut": "teste_video",
       "origine": "test",
       "date_verification": "2026-10",
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
-      }
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Google+Pixel+11+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-google-pixel-11-pro"
+      ]
     },
     {
       "id": "oppo-find-x10-pro-max",
       "nom": "OPPO Find X10 Pro Max",
       "marque": "OPPO",
-      "prix_indicatif": null,
-      "prix_note": "Prix du classeur : 1499 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_indicatif": 1399,
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "OLED 6,78\" plat, 144 Hz, bordures de 1,15 mm, pic mesuré à 3 600 nits",
         "processeur": "MediaTek Dimensity 9600 Pro (gravure 2 nm)",
@@ -6248,11 +7397,23 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1",
+            "niveau": 10,
+            "gamme": "xl",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 16,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 5
         }
       },
@@ -6271,15 +7432,25 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 2,
-        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
-      }
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)",
+        "classeur_complet": [
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=OPPO+Find+X10+Pro+Max",
+        "https://www.kimovil.com/fr/ou-acheter-oppo-find-x10-pro-max"
+      ]
     },
     {
       "id": "vivo-v80",
       "nom": "Vivo V80",
       "marque": "Vivo",
-      "prix_indicatif": null,
-      "prix_note": "Prix du classeur : 499 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_indicatif": 499,
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "OLED 1,5K, 144 Hz",
         "ram": "8 Go au lieu de 12 Go (concession)",
@@ -6319,6 +7490,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -6332,6 +7507,7 @@
         "durete": {
           "protection_ip": "IP54",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
@@ -6350,15 +7526,25 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 5,
-        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
-      }
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)",
+        "classeur_complet": [
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Vivo+V80",
+        "https://www.kimovil.com/fr/ou-acheter-vivo-v80"
+      ]
     },
     {
       "id": "oneplus-16",
       "nom": "OnePlus 16 Extreme",
       "marque": "OnePlus",
-      "prix_indicatif": null,
-      "prix_note": "Prix du classeur : 1199 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_indicatif": 999,
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "185 Hz",
         "processeur": "Snapdragon 8 Elite Extreme Gen 6",
@@ -6395,11 +7581,23 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.4",
+            "niveau": 8,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 16,
+          "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 5
         }
       },
@@ -6418,16 +7616,26 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 5,
-        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
-      }
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)",
+        "classeur_complet": [
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=OnePlus+16+Extreme",
+        "https://www.kimovil.com/fr/ou-acheter-oneplus-16-extreme"
+      ]
     },
     {
       "id": "redmagic-11s-pro",
       "nom": "RedMagic 11S Pro",
       "marque": "Nubia (RedMagic)",
-      "prix_indicatif": null,
+      "prix_indicatif": 849,
       "prix_usd": 799,
-      "prix_note": "Prix du classeur : 899 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "6.8 AMOLED 165Hz 2000nits",
         "processeur": "Snapdragon 8 Elite (3 nm)",
@@ -6461,7 +7669,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": true,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/1.57",
+            "niveau": 7,
+            "gamme": "large",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 6500,
@@ -6469,8 +7688,9 @@
           "chimie": null
         },
         "durete": {
-          "protection_ip": null,
+          "protection_ip": "IP68",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
@@ -6486,22 +7706,33 @@
           }
         }
       ],
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "fiche_statut": "teste_video",
       "origine": "test",
       "date_verification": "2026-10",
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
-      }
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "ip",
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=RedMagic+11S+Pro",
+        "https://www.kimovil.com/fr/ou-acheter-redmagic-11s-pro"
+      ]
     },
     {
       "id": "samsung-galaxy-a57",
       "nom": "Samsung Galaxy A57",
       "marque": "Samsung",
-      "prix_indicatif": null,
+      "prix_indicatif": 499,
       "prix_usd": 549,
-      "prix_note": "Prix du classeur : 549 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "AMOLED 120 Hz",
         "photo": "Capteur 50 MP stabilisé",
@@ -6530,6 +7761,7 @@
         "durete": {
           "protection_ip": "IP68",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 4
         },
         "performance": {
@@ -6541,6 +7773,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.56",
             "niveau": 7,
@@ -6575,16 +7811,26 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 4,
-        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
-      }
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)",
+        "classeur_complet": [
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A57",
+        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a57"
+      ]
     },
     {
       "id": "samsung-galaxy-a37",
       "nom": "Samsung Galaxy A37",
       "marque": "Samsung",
-      "prix_indicatif": null,
+      "prix_indicatif": 399,
       "prix_usd": 449,
-      "prix_note": "Prix du classeur : 399 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "6.6 AMOLED 120Hz 1000nits",
         "processeur": "Exynos 1480 (4 nm)",
@@ -6616,7 +7862,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.76",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -6626,6 +7883,7 @@
         "durete": {
           "protection_ip": "IP67",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 4
         }
       },
@@ -6638,22 +7896,32 @@
           "verdict": "Le choix économique"
         }
       ],
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "fiche_statut": "teste_video",
       "origine": "test",
       "date_verification": "2026-10",
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
-      }
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A37",
+        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a37"
+      ]
     },
     {
       "id": "samsung-galaxy-a27",
       "nom": "Samsung Galaxy A27",
       "marque": "Samsung",
-      "prix_indicatif": null,
+      "prix_indicatif": 299,
       "prix_usd": 349,
-      "prix_note": "Prix du classeur : 299 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "photo": "Ultra grand-angle de 5 MP au rabais",
         "etancheite": "IP64 (rétrogradé)",
@@ -6675,6 +7943,7 @@
         "durete": {
           "protection_ip": "IP64",
           "android_version_sortie": 15,
+          "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 4
         },
         "ecran": {
@@ -6690,7 +7959,18 @@
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
+          "capteur": {
+            "format": "1/2.76",
+            "niveau": 3,
+            "gamme": "small",
+            "sources": [],
+            "origine": "classeur"
+          }
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -6707,14 +7987,24 @@
           "verdict": "À éviter"
         }
       ],
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "fiche_statut": "teste_video",
       "origine": "test",
       "date_verification": "2026-10",
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
-      }
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "prix",
+          "reparabilite",
+          "sources",
+          "tele"
+        ]
+      },
+      "sources_verification": [
+        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A27",
+        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a27"
+      ]
     },
     {
       "id": "nothing-phone-3",
@@ -6752,6 +8042,10 @@
         "photo": {
           "mp_principal": 50,
           "ois": true,
+          "teleobjectif": {
+            "present": false,
+            "zoom": null
+          },
           "capteur": {
             "format": "1/1.3",
             "niveau": 8,
@@ -6764,12 +8058,13 @@
         },
         "batterie": {
           "capacite_mah": 5150,
-          "recharge_watts": null,
+          "recharge_watts": 45,
           "chimie": null
         },
         "durete": {
           "protection_ip": "IP54",
           "android_version_sortie": 14,
+          "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
@@ -6777,7 +8072,12 @@
       "fiche_statut": "source_fichier",
       "spec_provenance": {
         "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue"
+        "prix": "rumeur_non_retenue",
+        "classeur_complet": [
+          "reparabilite",
+          "tele",
+          "w"
+        ]
       },
       "sources_verification": [
         "https://www.lesmobiles.com/telephones/nothing-phone-3.html",
@@ -6816,7 +8116,11 @@
       ],
       "note": "Données du classeur Data (sources) puis Integral (sans source). Les fiches vérifiées sur le web ne sont pas remplacées."
     },
-    "echelle_capteurs": "note 1-10 selon la taille du capteur principal (phone-analyzer/sensors.js) : 1″ = 10, 1/1.3″ = 8, 1/1.56″ = 7, 1/2.76″ = 3"
+    "echelle_capteurs": "note 1-10 selon la taille du capteur principal (phone-analyzer/sensors.js) : 1″ = 10, 1/1.3″ = 8, 1/1.56″ = 7, 1/2.76″ = 3",
+    "classeur_complet": {
+      "date": "2026-10",
+      "note": "Cases vides remplies depuis le classeur Complet ; réparabilité = estimation, non utilisée dans le classement."
+    }
   },
   "meta": {
     "prix_verifies_le": "2026-10-06",

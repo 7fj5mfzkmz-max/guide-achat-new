@@ -31,6 +31,7 @@
     /* ——— 7 ——— */
     [/snapdragon\s*8\s*gen\s*2|snapdragon\s*8s\s*gen\s*[34]|snapdragon\s*7\+\s*gen\s*3/, 7],
     [/dimensity\s*(?:92\d{2}|84\d{2}|85\d{2})/, 7],
+    [/tensor\s*g6\b|tensor\s*6\b/, 9], /* niveau donné par le classeur Complet (Pixel 11 Pro) */
     [/tensor\s*g5\b|tensor\s*5\b/, 7],
     [/\ba17\b(?!\s*pro)|\ba16\b/, 7],
     /* ——— 6 ——— */

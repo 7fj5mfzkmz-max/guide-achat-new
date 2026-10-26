@@ -110,14 +110,21 @@
     if (t === "lcd" || t === "LCD") return 1;
     return null;
   }
+  /* Code IP → rang. « IP68 / MIL-STD » vaut IP68 ; « IPX8 » (eau seulement) vaut IP68 ; plusieurs codes : le plus haut. */
   function protectionRank(ip) {
     if (!ip) return null;
-    var n = parseInt(String(ip).replace(/\D/g, ""), 10);
-    if (!Number.isFinite(n)) return null;
+    var codes = String(ip).toUpperCase().match(/IP\s?([X\d])(\d)/g);
+    var n = null;
+    (codes || []).forEach(function (c) {
+      var m = c.match(/IP\s?([X\d])(\d)/), v = m[1] === "X" ? 60 + Number(m[2]) : Number(m[1]) * 10 + Number(m[2]);
+      if (n == null || v > n) n = v;
+    });
+    if (n == null) { n = parseInt(String(ip).replace(/\D/g, ""), 10); if (!Number.isFinite(n)) return null; }
     return n >= 69 ? 4 : n >= 68 ? 3 : n >= 67 ? 2.5 : n >= 65 ? 1.5 : n >= 54 ? 1 : 0;
   }
-  
   function photoZoomRank(c) {
+    // Donnée structurée (classeur) : pas de téléobjectif = zoom numérique ; avec téléobjectif, ×5 seulement si le zoom connu atteint 5.
+    if (c.teleobjectif) return c.teleobjectif.present ? (Number(c.teleobjectif.zoom) >= 5 ? '5x' : '2x') : 'digital';
     var text = [c.photo, c.photo_zoom].filter(Boolean).join(' ').toLowerCase();
     if (/periscope|5x|5×/.test(text)) return '5x';
     if (/telephoto|téléobjectif|2x|2×/.test(text)) return '2x';
@@ -181,7 +188,7 @@
       var rs = band(RANGE.sensor[ph.sensor], c.photo.capteur.niveau);
       if (rs) out.push({ key: "photo.sensor", score: rs.score, d: rs.d, out: rs.out, text: "capteur " + sensorLabel(c.photo.capteur.format) + " (niveau " + c.photo.capteur.niveau + "/10)", delta: rs.d === 0 ? "pile" : rs.d < 0 ? "en dessous" : "au-dessus" });
     }
-    if (ph.zoom && c.photo) {
+    if (ph.zoom && c.photo && c.photo.teleobjectif) { // sans donnée de téléobjectif, on ne juge pas
       var wantZoom = ZOOM_ORDER[ph.zoom], haveZoom = ZOOM_ORDER[photoZoomRank(c.photo)];
       if (wantZoom && haveZoom) {
         var zd = haveZoom - wantZoom;
@@ -213,8 +220,8 @@
       }
     }
     if (lo.protection && c.durete) {
-      var r3 = ordinal(protectionRank(lo.protection), protectionRank(c.durete.protection_ip), 0.3, 0.03);
-      if (r3) out.push({ key: "durete.protection", score: r3.score, d: r3.d, text: c.durete.protection_ip, delta: r3.d === 0 ? "pile" : r3.d < 0 ? "en dessous" : "au-dessus" });
+      var r3 = ordinal(protectionRank(lo.protection), c.durete.sans_ip ? 0 : protectionRank(c.durete.protection_ip), 0.3, 0.03);
+      if (r3) out.push({ key: "durete.protection", score: r3.score, d: r3.d, text: c.durete.sans_ip ? "sans étanchéité" : c.durete.protection_ip, delta: r3.d === 0 ? "pile" : r3.d < 0 ? "en dessous" : "au-dessus" });
     }
     return out;
   }

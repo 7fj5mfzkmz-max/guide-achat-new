@@ -116,11 +116,12 @@ const server = http.createServer((req, res) => {
     assert.equal(await photoCard.locator('[data-group="sensor"] .audit-pill').count(), 4, 'quatre tailles de capteur');
     assert.equal(await opt('large').getAttribute('aria-disabled'), null, 'grand capteur disponible à 800 € et plus');
     assert.equal(await opt('small').getAttribute('aria-disabled'), 'true', 'petit capteur grisé à 800 € et plus');
-    assert.equal(await opt('xl').getAttribute('aria-disabled'), 'true', 'très grand capteur (≈ 1 pouce) absent du catalogue');
+    assert.equal(await opt('xl').getAttribute('aria-disabled'), null, 'très grand capteur (1 pouce) disponible à 800 € et plus');
     await dispo.locator('[data-audit-card="price"] .audit-card-trigger').click();
     await dispo.locator('#quiz-price [data-value="bas"]').click();
     await photoCard.locator('.audit-card-trigger').click();
     assert.equal(await opt('large').getAttribute('aria-disabled'), 'true', 'grand capteur grisé à 80-150 €');
+    assert.equal(await opt('xl').getAttribute('aria-disabled'), 'true', 'très grand capteur grisé à 80-150 €');
     assert.equal(await opt('small').getAttribute('aria-disabled'), null, 'petit capteur disponible à 80-150 €');
     await opt('small').click();
     assert.equal(await dispo.evaluate(() => window.GuideAuditState.photo.sensor), 'small');
