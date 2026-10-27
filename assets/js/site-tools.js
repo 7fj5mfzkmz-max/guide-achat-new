@@ -416,7 +416,7 @@
           intro:"Le prix décide de tout le reste : fixez d’abord le palier, les autres critères se jugent ensuite à l’intérieur. Un modèle moins cher que votre palier reste proposé, un modèle plus cher est écarté s’il dépasse trop.",
           groups:[
             {key:"budget",label:"Budget",type:"choice",options:[
-              ["bas","80 à 150 €","Bas prix : l’essentiel pour téléphoner, naviguer et regarder des vidéos."],["entree","150 à 300 €","Entrée de gamme : écran fluide et bonne batterie au quotidien."],["milieu","300 à 800 €","Milieu de gamme : bonne photo, puce rapide, écran lumineux."],["haut","800 € et plus","Haut de gamme : le meilleur dans chaque domaine, suivi logiciel très long."]]}
+              ["bas","80 à 150 €","Bas prix : l’essentiel pour téléphoner, naviguer et regarder des vidéos."],["entree","150 à 300 €","Entrée de gamme : écran fluide et bonne batterie au quotidien."],["milieu","300 à 500 €","Milieu de gamme : bonne photo, puce rapide, écran lumineux."],["milieu_haut","500 à 800 €","Milieu de gamme supérieur : puce de haut de gamme, bonne photo, parfois un téléobjectif."],["haut","800 à 1 000 €","Haut de gamme : grand capteur, écran lumineux, suivi logiciel long."],["tres_haut","1 000 à 1 200 €","Très haut de gamme : les meilleurs composants, matériaux premium."],["premium","1 200 € et plus","Premium : le maximum dans chaque domaine, suivi logiciel très long."]]}
           ]
         },
         screen:{
@@ -470,7 +470,7 @@
         }
       };
       var totalGroups=Object.keys(configs).length;
-      var AUDIT_KEY='guide-achat-audit-v56';
+      var AUDIT_KEY='guide-achat-audit-v57';
       var auditStartedAt=null;
       var state={};
       try { var saved=JSON.parse(localStorage.getItem(AUDIT_KEY)||'null'); if(saved&&saved.state&&(Date.now()-(saved.updatedAt||0))<12*3600*1000) state=saved.state; } catch(e) {}

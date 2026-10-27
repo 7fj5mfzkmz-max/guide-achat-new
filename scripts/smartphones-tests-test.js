@@ -27,7 +27,7 @@ check('records : batteries 9 000 / 7 200 / 7 150 (8 000 en Asie), charges et éc
   assert.deepEqual(d.records.ordre, ['oneplus-16', 'vivo-v80', 'oppo-find-x10-pro-max']);
 });
 check('jeu : autonomies 11 h 30 / 10 h 17 / 12 h 54 et prix 799 / 988 / 1 199 $', () => {
-  assert.equal(M('redmagic-11s-pro').specs.autonomie_jeu_min, 11 * 60 + 30); assert.equal(M('samsung-galaxy-s26-ultra').specs.autonomie_jeu_min, 10 * 60 + 17); assert.equal(M('apple-iphone-17-pro-max').specs.autonomie_jeu_min, 12 * 60 + 54);
+  assert.equal(M('redmagic-11s-pro').specs.autonomie_min, 11 * 60 + 30); assert.equal(M('samsung-galaxy-s26-ultra').specs.autonomie_min, 10 * 60 + 17); assert.equal(M('apple-iphone-17-pro-max').specs.autonomie_min, 12 * 60 + 54);
   assert.deepEqual([M('redmagic-11s-pro').prix_usd, M('samsung-galaxy-s26-ultra').prix_usd, M('apple-iphone-17-pro-max').prix_usd], [799, 988, 1199]);
   assert.equal(M('samsung-galaxy-s26-ultra').prix_note, 'reconditionné');
 });
@@ -83,9 +83,9 @@ check('catalogue : aucune note inventée pour les modèles issus des tests', () 
 });
 check('catalogue : mesures d’autonomie du dossier reportées sur les fiches', () => {
   const mesure = id => cat.produits.find(p => (p.tests || []).some(t => t.modele === id)).tests[0].mesures || {};
-  assert.equal(mesure('apple-iphone-17-pro-max').autonomie_jeu_min, 774);
-  assert.equal(mesure('redmagic-11s-pro').autonomie_jeu_min, 690);
-  assert.equal(mesure('samsung-galaxy-s26-ultra').autonomie_jeu_min, 617);
+  assert.equal(mesure('apple-iphone-17-pro-max').autonomie_min, 774);
+  assert.equal(mesure('redmagic-11s-pro').autonomie_min, 690);
+  assert.equal(mesure('samsung-galaxy-s26-ultra').autonomie_min, 617);
   assert.equal(mesure('samsung-galaxy-a57').autonomie_globale_min, 635);
 });
 check('classement : les modèles prêts issus des tests ont assez de données et un état de fiche explicite', () => {

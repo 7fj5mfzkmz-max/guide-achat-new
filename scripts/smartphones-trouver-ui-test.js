@@ -70,7 +70,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       await check('Grosse batterie : capacités annoncées puis autonomie mesurée' + tag, async () => {
         await page.click('.tr-chip[data-need="batterie"]');
         const t = (await page.locator('#tr-podium').innerText()).replace(/[\u202f\u00a0]/g, ' ');
-        assert.match(t, /OnePlus 16/); assert.match(t, /9 000 mAh/); assert.match(t, /12 h 54 en jeu avec 4 823 mAh/);
+        assert.match(t, /OnePlus 16/); assert.match(t, /9 000 mAh/); assert.match(t, /12 h 54 avec 4 823 mAh/);
         assert.equal(await page.locator('.profile-toggle:not([hidden])').count(), 0);
       });
       await check('Petit prix : 80 à 250 €, quatre tranches, aucun modèle hors fourchette' + tag, async () => {
@@ -117,12 +117,13 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       const page = await ctx.newPage();
       await page.goto(base + '#audit', { waitUntil: 'networkidle' });
       await page.click('[data-audit-card="performance"] .audit-card-trigger');
-      await page.locator('#quiz-performance button[data-value="high"]').first().click();
+      await page.locator('#quiz-performance button[data-value="top"]').first().click();
       await page.waitForSelector('#scoring-results .criteria-recommendation-card');
+      // le classement ne favorise plus les modèles testés : on vérifie seulement que la preuve d'un test s'affiche quand il y en a un
       const names = (await page.locator('#scoring-results h4').allInnerTexts()).map(s => s.toLowerCase());
-      assert.ok(names.some(n => /oppo find x10 pro max|oneplus 16|iphone 17 pro max|iphone 18 pro|galaxy s26 ultra|pixel 10 pro xl|rog phone 9|xperia 1 vii/.test(n)), 'aucun modèle testé dans ' + names.join(', '));
+      assert.ok(names.length >= 3, 'des résultats : ' + names.join(', '));
       const proof = await page.locator('#scoring-results .criteria-test').allInnerTexts();
-      assert.ok(proof.length >= 1 && proof.every(t => /^Testé/i.test(t)), 'étiquette « Testé » attendue');
+      assert.ok(proof.every(t => /^Testé/i.test(t)), 'étiquette « Testé » attendue');
       await page.close();
     });
     await check('« Mes critères » : le prix est la première famille, sur six, et écarte les modèles trop chers', async () => {

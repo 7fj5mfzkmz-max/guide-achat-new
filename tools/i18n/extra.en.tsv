@@ -450,3 +450,31 @@ Dimensity {0}, décodé en quatre parties : marque, série, génération, varian
 Exynos {0}, décodé en quatre parties : marque, série, génération, variante	Exynos {0}, decoded in four parts: brand, series, generation, variant
 Snapdragon {0} Elite Gen {1}, décodé en quatre parties : marque, série, nom premium, génération	Snapdragon {0} Elite Gen {1}, decoded in four parts: brand, series, premium name, generation
 Tensor G5, décodé en deux parties : marque, génération	Tensor G5, decoded in two parts: brand, generation
+Milieu de gamme supérieur : puce de haut de gamme, bonne photo, parfois un téléobjectif.	Upper mid-range: high-end chip, good photos, sometimes a telephoto lens.
+Haut de gamme : grand capteur, écran lumineux, suivi logiciel long.	High end: large sensor, bright screen, long software support.
+Très haut de gamme : les meilleurs composants, matériaux premium.	Very high end: the best components, premium materials.
+Premium : le maximum dans chaque domaine, suivi logiciel très long.	Premium: the best in every area, very long software support.
+Bonne photo, puce rapide, écran lumineux : très bon rapport qualité-prix.	Good photos, fast chip, bright screen: very good value for money.
+Souvent pas de téléobjectif, suivi logiciel parfois court.	Often no telephoto lens, software support sometimes short.
+Puce de haut de gamme et bonne photo, parfois un téléobjectif.	High-end chip and good photos, sometimes a telephoto lens.
+Le haut de gamme sans les extrêmes : grand capteur, écran lumineux, suivi long.	High end without the extremes: large sensor, bright screen, long support.
+Chargeur souvent vendu à part.	Charger often sold separately.
+Les meilleurs composants : puce de sommet, photo poussée, matériaux premium.	The best components: top chip, advanced photography, premium materials.
+Peu de gain visible par rapport au palier d’en dessous.	Little visible gain over the tier below.
+Le maximum : nuit très nette, suivi logiciel très long, finitions premium.	The maximum: very sharp night shots, very long software support, premium finish.
+Redmi A3, Moto G06, POCO C85 · {0} à {1} €	Redmi A3, Moto G06, POCO C85 · €{0} to €{1}
+POCO X8 Pro, Xiaomi 15T, Pixel 10a · {0} à {1} €	POCO X8 Pro, Xiaomi 15T, Pixel 10a · €{0} to €{1}
+Pixel {0}, Nothing Phone ({1}), OnePlus {2} · {3} à {4} €	Pixel {0}, Nothing Phone ({1}), OnePlus {2} · €{3} to €{4}
+Pixel {0} Pro, Galaxy S26, OPPO Find X9 · {1} à {2} €	Pixel {0} Pro, Galaxy S26, OPPO Find X9 · €{1} to €{2}
+Honor Magic {0} Pro, ROG Phone {1}, Pixel {2} Pro · {3} €	Honor Magic {0} Pro, ROG Phone {1}, Pixel {2} Pro · €{3}
+Galaxy S26 Ultra, iPhone {0} Pro, Xperia {1} VII · {2} à {3} €	Galaxy S26 Ultra, iPhone {0} Pro, Xperia {1} VII · €{2} to €{3}
+milieu de gamme supérieur	upper mid-range
+{0} – {1} €	€{0} – €{1}
+puce haut de gamme, bonne photo	high-end chip, good photos
+grand capteur, écran lumineux	large sensor, bright screen
+les meilleurs composants	the best components
+premium	premium
+Plus longue autonomie mesurée	Longest measured battery life
+Autonomie mesurée	Measured battery life
+Tests : capacités annoncées par les constructeurs, puis autonomies mesurées. Fiches vérifiées : un modèle par gamme, classé par capacité annoncée.	Tests: capacities announced by the manufacturers, then measured battery life. Verified listings: one model per range, ranked by announced capacity.
+Trois téléphones testés : autonomie mesurée, refroidissement et prix.	Three phones tested: measured battery life, cooling and price.

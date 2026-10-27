@@ -19,7 +19,8 @@
   ];
 
   var SCORE_CAP = 9;
-  var TEST_BONUS = 0.07;      // départage seulement : moins que l'écart entre deux profils notés 8 et 9
+  var TEST_BONUS = 0.01;      // départage seulement : un test ne doit pas faire remonter un modèle qui correspond moins bien
+  var PROFILE_WEIGHT = 0.02;  // idem pour la note de profil (0 à 0,02) ; sans note : 0,01
 
   function esc(v) {
     return String(v).replace(/[&<>"']/g, function (c) {
@@ -79,21 +80,26 @@
     if (!range || have == null || !Number.isFinite(Number(have))) return null;
     have = Number(have);
     if (have >= range[0] && have <= range[1]) return { score: 1, d: 0 };
-    if (have > range[1]) return { score: Math.max(0.6, 1 - (have - range[1]) * 0.08), d: have - range[1] };
+    // Plus puissant que demandé : correct jusqu'à deux niveaux d'écart ; au-delà c'est un autre segment (et un autre prix), on l'écarte.
+    if (have > range[1]) return have - range[1] > 2 ? { score: 0, d: have - range[1], out: true } : { score: 1 - (have - range[1]) * 0.12, d: have - range[1] };
     var diff = have - range[0];
     if (diff < -2) return { score: 0, d: diff, out: true };
     return { score: 1 + diff * 0.25, d: diff };
   }
 
-  /* Prix : quatre paliers. Dans le palier : parfait. Moins cher : bien, mais d'autant moins que le palier est élevé
+  /* Prix : sept paliers. Dans le palier : parfait. Moins cher : bien, mais d'autant moins que le palier est élevé
      (qui vise un haut de gamme ne veut pas d'un modèle d'entrée de gamme). Plus cher : de moins en moins, puis écarté. */
   var PALIERS = {
     bas: { min: 0, max: 150, label: "bas prix", plage: "80 à 150 €", moins: 1 },
     entree: { min: 150, max: 300, label: "entrée de gamme", plage: "150 à 300 €", moins: 0.85 },
-    milieu: { min: 300, max: 800, label: "milieu de gamme", plage: "300 à 800 €", moins: 0.7 },
-    haut: { min: 800, max: Infinity, label: "haut de gamme", plage: "800 € et plus", moins: 0.45 }
+    milieu: { min: 300, max: 500, label: "milieu de gamme", plage: "300 à 500 €", moins: 0.75 },
+    milieu_haut: { min: 500, max: 800, label: "milieu de gamme supérieur", plage: "500 à 800 €", moins: 0.65 },
+    haut: { min: 800, max: 1000, label: "haut de gamme", plage: "800 à 1 000 €", moins: 0.55 },
+    tres_haut: { min: 1000, max: 1200, label: "très haut de gamme", plage: "1 000 à 1 200 €", moins: 0.45 },
+    premium: { min: 1200, max: Infinity, label: "premium", plage: "1 200 € et plus", moins: 0.35 }
   };
-  function palierDe(prix) { return ["bas", "entree", "milieu", "haut"].filter(function (k) { return prix <= PALIERS[k].max; })[0] || "haut"; }
+  var ORDRE_PALIERS = ["bas", "entree", "milieu", "milieu_haut", "haut", "tres_haut", "premium"];
+  function palierDe(prix) { return ORDRE_PALIERS.filter(function (k) { return prix <= PALIERS[k].max; })[0] || "premium"; }
   function priceCheck(palierId, prix) {
     var t = PALIERS[palierId];
     if (!t || !Number.isFinite(prix) || prix <= 0) return null;
@@ -239,6 +245,10 @@
   }
   function completedCategories(state) { return CRITERIA.filter(function (criterion) { return categoryComplete(state, criterion); }); }
 
+  function rangScore(x) {
+    var bonus = (x.profile != null ? x.profile / 10 * PROFILE_WEIGHT : PROFILE_WEIGHT / 2) + (x.p.tests ? TEST_BONUS : 0);
+    return Math.round((x.m.score + bonus) / 0.03);
+  }
   function computeMatch(p, state) {
     var pe = state.performance || {};
     var perf = p.compatibilite && p.compatibilite.performance;
@@ -364,11 +374,15 @@
       var profile = profileScore(p, currentProfile);
       return m ? { p: p, m: m, profile: profile } : null;
     }).filter(Boolean).sort(function (a, b) {
-      // la proximité décide ; à égalité, un modèle vu en test passe devant (une mesure vaut plus qu'une fiche), puis le profil départage
-      var sa = a.m.score + (a.profile != null ? a.profile / 10 * 0.12 : 0.06) + (a.p.tests ? TEST_BONUS : 0);
-      var sb = b.m.score + (b.profile != null ? b.profile / 10 * 0.12 : 0.06) + (b.p.tests ? TEST_BONUS : 0);
-      return sb - sa;
-    });
+      // La proximité décide, par paliers de 3 points. Dans un même palier (correspondance équivalente), un modèle vu en test ou
+      // bien noté pour le profil passe devant de très peu, puis le MOINS CHER d'abord : à choix égal, c'est le meilleur achat.
+      var ka = rangScore(a), kb = rangScore(b);
+      if (ka !== kb) return kb - ka;
+      var pa = Number(a.p.prix_indicatif) || Infinity, pb = Number(b.p.prix_indicatif) || Infinity;
+      return pa === pb ? 0 : pa < pb ? -1 : 1;
+    });    // Un modèle qui ne correspond qu'à moitié (par exemple un téléphone à 200 € pour un budget de 1 000 €) n'est pas proposé, sauf s'il n'y a rien d'autre.
+    var corrects = scored.filter(function (x) { return x.m.score >= 0.5; });
+    if (corrects.length) scored = corrects;
     // Marge de manœuvre : quand un niveau de puce est demandé, on mélange le niveau visé et ses voisins (un cran en dessous / au-dessus)
     var perfWanted = !!((state.performance || {}).reference || (state.performance || {}).gaming);
     if (perfWanted) {
@@ -460,7 +474,7 @@
     var t = p.tests && p.tests[0];
     if (!t) return "";
     var m = t.mesures || {}, line = [];
-    if (m.autonomie_jeu_min) line.push("autonomie en jeu mesurée : " + hoursText(m.autonomie_jeu_min));
+    if (m.autonomie_min) line.push("autonomie mesurée : " + hoursText(m.autonomie_min));
     if (m.autonomie_globale_min) line.push("autonomie mesurée : " + hoursText(m.autonomie_globale_min));
     if (t.verdict) line.push("verdict : " + t.verdict);
     return '<p class="criteria-test"><b>Testé</b> <span>' + esc(t.chaine) + (line.length ? " · " + esc(line.join(" · ")) : "") + '</span></p>';

@@ -34,7 +34,7 @@
       "chaine": "Versus",
       "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
       "theme": "Smart-gaming",
-      "resume": "Trois téléphones testés en jeu : autonomie mesurée, refroidissement et prix."
+      "resume": "Trois téléphones testés : autonomie mesurée, refroidissement et prix."
     },
     {
       "id": "samsung",
@@ -97,7 +97,7 @@
     },
     {
       "id": "oneplus-16",
-      "nom": "OnePlus 16 Extreme",
+      "nom": "OnePlus 16",
       "marque": "OnePlus",
       "video": "nouveautes",
       "specs": {
@@ -117,7 +117,7 @@
       "prix_usd": 799,
       "specs": {
         "atout": "Ventilateur 24k RPM + gâchettes",
-        "autonomie_jeu_min": 690,
+        "autonomie_min": 690,
         "point_noir": "Stockage max 512 Go / caméras"
       }
     },
@@ -130,7 +130,7 @@
       "prix_note": "reconditionné",
       "specs": {
         "atout": "Écran AMOLED + bypass charge",
-        "autonomie_jeu_min": 617,
+        "autonomie_min": 617,
         "point_noir": "Prix élevé / léger throttling"
       }
     },
@@ -142,7 +142,7 @@
       "prix_usd": 1199,
       "specs": {
         "atout": "Catalogue de jeux console AAA",
-        "autonomie_jeu_min": 774,
+        "autonomie_min": 774,
         "point_noir": "Pas de gâchettes / tarif très fort"
       }
     },

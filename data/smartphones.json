@@ -15,7 +15,9 @@
         "batterie": "5 000 mAh, charge 45 W",
         "photo": "50 Mpx principal + 12 Mpx ultra grand-angle + 5 Mpx macro",
         "etancheite": "IP67",
-        "os": "Android, One UI"
+        "os": "Android, One UI",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Autonomie confortable",
@@ -118,7 +120,9 @@
         "batterie": "5 500 mAh, charge 67 W",
         "photo": "Triple capteur Leica : 50 Mpx principal + 50 Mpx téléobjectif + 12 Mpx ultra grand-angle",
         "etancheite": "IP68",
-        "os": "Android, HyperOS"
+        "os": "Android, HyperOS",
+        "charge": "67 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Excellent rapport qualité-prix",
@@ -221,7 +225,9 @@
         "batterie": "≈ 4 250 mAh, charge 40 W filaire / 25 W MagSafe",
         "photo": "Triple capteur 48 Mpx (principal, ultra grand-angle, téléobjectif), zoom optique jusqu'à 8x",
         "etancheite": "IP68",
-        "os": "iOS 26"
+        "os": "iOS 26",
+        "charge": "40 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Suivi logiciel très long (6-7 ans)",
@@ -321,7 +327,9 @@
         "processeur": "Snapdragon 8 Elite Gen 5 (3 nm)",
         "ram": "12 ou 16 Go",
         "batterie": "7 300 mAh, charge 120 W",
-        "photo": "50 Mpx principal (Sony IMX906)"
+        "photo": "50 Mpx principal (Sony IMX906)",
+        "charge": "120 W",
+        "refresh": "165 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -414,7 +422,9 @@
         "ecran": "6,78\" AMOLED, 165 Hz",
         "processeur": "Snapdragon 8 Elite (3 nm)",
         "ram": "12 ou 16 Go",
-        "batterie": "5 800 mAh"
+        "batterie": "5 800 mAh",
+        "charge": "65 W",
+        "refresh": "165 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -443,7 +453,7 @@
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -481,6 +491,9 @@
           "reparabilite",
           "tele",
           "w"
+        ],
+        "mp_principal": [
+          "https://en.wikipedia.org/wiki/ROG_Phone_9"
         ]
       },
       "sources_verification": [
@@ -516,7 +529,9 @@
         "étanchéité": "IPX8 (pas de protection poudre)",
         "OS": "Android 15, One UI Fold",
         "dimensions": "Plié: 154,9 × 68,1 × 12,1 mm | Déplié: 154,9 × 134,1 × 5,6 mm",
-        "poids": "253 g"
+        "poids": "253 g",
+        "charge": "25 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -596,7 +611,9 @@
         "processeur": "Google Tensor G5 (3 nm)",
         "ram": "16 Go",
         "batterie": "5 200 mAh, charge 45 W",
-        "etancheite": "IP68"
+        "etancheite": "IP68",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -625,7 +642,7 @@
           "gamme": "haut"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -659,6 +676,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.gsmarena.com/google_pixel_10_pro-13987.php"
         ]
       },
       "sources_verification": [
@@ -685,7 +705,9 @@
       "caracteristiques": {
         "ecran": "6,3\" OLED, 120 Hz, 2 700 nits",
         "processeur": "Google Tensor G5 (3 nm)",
-        "batterie": "4 970 mAh, charge 27 W"
+        "batterie": "4 970 mAh, charge 27 W",
+        "charge": "27 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -714,7 +736,7 @@
           "gamme": "haut"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 48,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -749,6 +771,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://m.gsmarena.com/google_pixel_10_in_for_review-amp-69253.php"
         ]
       },
       "sources_verification": [
@@ -778,7 +803,9 @@
         "ram": "12 à 16 Go",
         "batterie": "5 000 mAh, charge 60 W",
         "etancheite": "IP68",
-        "os": "Android 16"
+        "os": "Android 16",
+        "charge": "60 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -807,7 +834,7 @@
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 200,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -842,6 +869,10 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.phonearena.com/news/samsung-galaxy-s26-ultra-camera-rumor-debunked_id175562",
+          "https://www.photoworkout.com/?p=221532"
         ]
       },
       "tests": [
@@ -852,7 +883,7 @@
           "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
           "verdict": "Meilleur polyvalent",
           "mesures": {
-            "autonomie_jeu_min": 617
+            "autonomie_min": 617
           }
         }
       ],
@@ -877,7 +908,9 @@
         "ecran": "6,9\" OLED ProMotion 120 Hz, 3 000 nits",
         "processeur": "Apple A20 Pro (2 nm)",
         "photo": "48 Mpx principal à ouverture variable, zoom optique 8x",
-        "etancheite": "IP68"
+        "etancheite": "IP68",
+        "charge": "60 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -967,7 +1000,9 @@
         "ecran": "6,5\" OLED, 120 Hz",
         "processeur": "Snapdragon 8 Elite (3 nm)",
         "ram": "12 Go",
-        "batterie": "5 000 mAh, charge 30 W"
+        "batterie": "5 000 mAh, charge 30 W",
+        "charge": "30 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -996,7 +1031,7 @@
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 48,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -1033,6 +1068,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.phonearena.com/phones/Sony-Xperia-1-VII_id12726"
         ]
       },
       "sources_verification": [
@@ -1058,7 +1096,9 @@
       "prix_note": "Prix Apple France (256 Go).",
       "caracteristiques": {
         "ecran": "6,3\" OLED, 1206 x 2622",
-        "processeur": "Apple A20 Pro (2 nm)"
+        "processeur": "Apple A20 Pro (2 nm)",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1087,7 +1127,7 @@
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 48,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -1123,6 +1163,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.ithinkdiff.com/iphone-18-pro-camera-features-48mp/"
         ]
       },
       "tests": [
@@ -1159,7 +1202,9 @@
         "processeur": "Exynos 2600 (2 nm)",
         "ram": "12 Go",
         "batterie": "4 900 mAh, charge 45 W",
-        "os": "Android 16"
+        "os": "Android 16",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1188,7 +1233,7 @@
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -1222,6 +1267,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://m.gsmarena.com/samsung_galaxy_s26_plus-review-2941p5.php"
         ]
       },
       "sources_verification": [
@@ -1251,7 +1299,9 @@
         "ram": "8 Go",
         "stockage": "128 ou 256 Go",
         "batterie": "5 100 mAh, charge 45 W",
-        "etancheite": "IP68"
+        "etancheite": "IP68",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1280,7 +1330,7 @@
           "gamme": "milieu"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 48,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -1316,6 +1366,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.dxomark.com/?p=191172"
         ]
       },
       "sources_verification": [
@@ -1345,7 +1398,9 @@
         "ram": "8 ou 12 Go",
         "stockage": "256 ou 512 Go (UFS 3.1)",
         "batterie": "5 200 mAh, charge 80 W",
-        "photo": "50 Mpx principal"
+        "photo": "50 Mpx principal",
+        "charge": "80 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1446,7 +1501,8 @@
         "étanchéité": "IP67",
         "OS": "iOS 18 (mode split-screen natif)",
         "dimensions": "193 × 144 × 10 mm (plié)",
-        "poids": "298 g"
+        "poids": "298 g",
+        "charge": "45 W"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1511,7 +1567,9 @@
         "étanchéité": "IP54",
         "OS": "Android 15, Nothing OS 4",
         "dimensions": "162,7 × 75,4 × 8,2 mm",
-        "poids": "208 g"
+        "poids": "208 g",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1580,7 +1638,9 @@
         "ecran": "6.73 AMOLED 120Hz 3000nits",
         "ram": "12 Go",
         "etancheite": "IP68",
-        "os": "Android 15 (4 ans)"
+        "os": "Android 15 (4 ans)",
+        "charge": "90 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1662,7 +1722,9 @@
         "stockage": "512 Go",
         "batterie": "6 270 mAh, charge 100 W",
         "photo": "Téléobjectif périscopique 200 Mpx avec stabilisation optique (zoom 3,7x)",
-        "etancheite": "IP68"
+        "etancheite": "IP68",
+        "charge": "100 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1691,7 +1753,7 @@
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -1727,6 +1789,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://m.gsmarena.com/honor_magic8_pro_camera_samples-amp-70254.php"
         ]
       },
       "sources_verification": [
@@ -1757,7 +1822,9 @@
         "stockage": "256 Go ou plus",
         "batterie": "4 300 mAh, charge 25 W",
         "photo": "50 Mpx principal",
-        "os": "Android 16"
+        "os": "Android 16",
+        "charge": "25 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1849,7 +1916,9 @@
         "ecran": "6,3\" OLED LTPO, 1 à 120 Hz, 3 300 nits",
         "processeur": "Google Tensor G5 (3 nm)",
         "ram": "16 Go",
-        "etancheite": "IP68"
+        "etancheite": "IP68",
+        "charge": "30 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -1878,7 +1947,7 @@
           "gamme": "haut"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -1915,6 +1984,9 @@
           "reparabilite",
           "tele",
           "w"
+        ],
+        "mp_principal": [
+          "https://www.gsmarena.com/google_pixel_10_pro-13987.php"
         ]
       },
       "sources_verification": [
@@ -1944,7 +2016,9 @@
         "ram": "8 Go",
         "batterie": "6 500 mAh, charge 90 W",
         "photo": "50 Mpx principal + 50 Mpx ultra grand-angle (pas de téléobjectif)",
-        "etancheite": "IP68"
+        "etancheite": "IP68",
+        "charge": "90 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -2039,7 +2113,9 @@
         "batterie": "5300 mAh, charge 90 W",
         "photo": "50 Mpx, téléobjectif ×4",
         "etancheite": "IP68",
-        "os": "Android 15 (4 ans)"
+        "os": "Android 15 (4 ans)",
+        "charge": "90 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -2123,7 +2199,9 @@
         "stockage": "128 Go",
         "batterie": "5000 mAh, charge 25 W",
         "photo": "50 Mpx",
-        "os": "Android 15 (4 ans)"
+        "os": "Android 15 (4 ans)",
+        "charge": "25 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [
         "Écran Super AMOLED lumineux (1100 nits)",
@@ -2235,7 +2313,9 @@
         "batterie": "5000 mAh, charge 33 W",
         "photo": "108 Mpx",
         "etancheite": "IP54",
-        "os": "Android 14 (3 ans)"
+        "os": "Android 14 (3 ans)",
+        "charge": "33 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -2313,9 +2393,11 @@
         "ram": "8 Go",
         "stockage": "128 Go",
         "batterie": "5000 mAh, charge 45 W",
-        "photo": "50 Mpx",
+        "photo": "108 Mpx",
         "etancheite": "IP64",
-        "os": "Android 15 (3 ans)"
+        "os": "Android 15 (3 ans)",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "AMOLED 120 Hz très lumineux",
@@ -2358,7 +2440,7 @@
           "gamme": "milieu"
         },
         "photo": {
-          "mp_principal": 50,
+          "mp_principal": 108,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -2394,6 +2476,10 @@
           "reparabilite",
           "sources",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.phonearena.com/phones/Xiaomi-Redmi-Note-15-5G_id12897",
+          "https://www.skroutz.mt/s/65037245/xiaomi-redmi-note-15-5g-dual-sim-6gb-128gb-black.html"
         ]
       },
       "fiche_statut": "fichier_integral",
@@ -2418,7 +2504,9 @@
         "batterie": "5000 mAh, charge 45 W",
         "photo": "50 Mpx",
         "etancheite": "IP54",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Écran AMOLED 120 Hz",
@@ -2521,7 +2609,9 @@
         "batterie": "5000 mAh, charge 33 W",
         "photo": "108 Mpx",
         "etancheite": "IP54",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "33 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [
         "108 Mpx avec zoom capteur 3x",
@@ -2600,7 +2690,9 @@
       "caracteristiques": {
         "ecran": "6,9\" LCD IPS, 720 x 1600, 120 Hz, 450 nits",
         "processeur": "MediaTek Helio G81 (version 4G)",
-        "batterie": "6 000 mAh, charge 33 W"
+        "batterie": "6 000 mAh, charge 33 W",
+        "charge": "33 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -2696,7 +2788,9 @@
         "batterie": "5000 mAh, charge 45 W",
         "photo": "50 Mpx",
         "etancheite": "IP54",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "45 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [
         "Très bonne résistance à l'eau et à la poussière (IP69), rare à ce prix",
@@ -2794,9 +2888,11 @@
         "ram": "8 Go",
         "stockage": "128 Go",
         "batterie": "5110 mAh, charge 45 W",
-        "photo": "50 Mpx",
+        "photo": "108 Mpx",
         "etancheite": "IP64",
-        "os": "Android 14 (3 ans)"
+        "os": "Android 14 (3 ans)",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "AMOLED 120 Hz",
@@ -2839,7 +2935,7 @@
           "gamme": "milieu"
         },
         "photo": {
-          "mp_principal": 50,
+          "mp_principal": 108,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -2875,6 +2971,10 @@
           "reparabilite",
           "sources",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.phonearena.com/phones/Xiaomi-Redmi-Note-14-5G_id12628",
+          "https://m.gsmarena.com/xiaomi_redmi_note_14-ampp-13559.php"
         ]
       },
       "fiche_statut": "fichier_integral",
@@ -2899,7 +2999,9 @@
         "batterie": "5000 mAh, charge 30 W",
         "photo": "50 Mpx",
         "etancheite": "IP52",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "30 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "OIS sur le capteur principal",
@@ -3000,7 +3102,9 @@
         "batterie": "4500 mAh, charge 35 W",
         "photo": "108 Mpx",
         "etancheite": "IP54",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "35 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [
         "AMOLED 120 Hz très lumineux",
@@ -3106,7 +3210,9 @@
         "chimie_batterie": "Lithium",
         "photo": "50 Mpx principal + caméra secondaire",
         "etancheite": "IP64",
-        "os": "HyperOS 2"
+        "os": "HyperOS 2",
+        "charge": "33 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "6 000 mAh",
@@ -3208,7 +3314,9 @@
         "batterie": "5000 mAh, charge 33 W",
         "photo": "108 Mpx",
         "etancheite": "IP53",
-        "os": "Android 11 (2 ans)"
+        "os": "Android 11 (2 ans)",
+        "charge": "33 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3279,7 +3387,9 @@
         "stockage": "64 Go",
         "batterie": "5000 mAh, charge 25 W",
         "photo": "50 Mpx",
-        "os": "Android 12 (4 ans)"
+        "os": "Android 12 (4 ans)",
+        "charge": "25 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3361,7 +3471,9 @@
         "batterie": "6000 mAh, charge 15 W",
         "photo": "13 Mpx",
         "etancheite": "IP52",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "15 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [
         "Énorme batterie 7 000 mAh",
@@ -3462,7 +3574,9 @@
         "batterie": "5000 mAh, charge 10 W",
         "photo": "13 Mpx",
         "etancheite": "IP52",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "10 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [
         "120 Hz",
@@ -3561,7 +3675,9 @@
         "stockage": "128 Go",
         "batterie": "5000 mAh, charge 33 W",
         "photo": "64 Mpx",
-        "os": "Android 13 (1 an)"
+        "os": "Android 13 (1 an)",
+        "charge": "33 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "FHD+ 120 Hz",
@@ -3662,7 +3778,9 @@
         "stockage": "128 Go",
         "batterie": "5000 mAh, charge 22.5 W",
         "photo": "50 Mpx",
-        "os": "Android 14 (1 an)"
+        "os": "Android 14 (1 an)",
+        "charge": "22.5 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3726,7 +3844,9 @@
         "ram": "3 ou 4 Go",
         "batterie": "5 200 mAh, charge 15 W",
         "photo": "32 Mpx principal",
-        "os": "Android 15"
+        "os": "Android 15",
+        "charge": "15 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3820,7 +3940,9 @@
         "processeur": "Unisoc T7250 (Tiger T615)",
         "ram": "3 ou 4 Go",
         "batterie": "5 200 mAh",
-        "etancheite": "IP52"
+        "etancheite": "IP52",
+        "charge": "18 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -3915,7 +4037,9 @@
         "ram": "3 ou 4 Go",
         "batterie": "5 000 mAh",
         "photo": "8 Mpx principal",
-        "os": "Android 14"
+        "os": "Android 14",
+        "charge": "10 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4014,7 +4138,9 @@
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP68",
         "OS": "Android 15, OriginOS Ultra",
-        "poids": "218 g"
+        "poids": "218 g",
+        "charge": "120 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4086,7 +4212,9 @@
         "ecran": "6,59\" AMOLED, 120 Hz",
         "processeur": "MediaTek Dimensity 9500 (3 nm)",
         "ram": "12 Go",
-        "batterie": "7 025 mAh, charge 80 W"
+        "batterie": "7 025 mAh, charge 80 W",
+        "charge": "80 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4108,7 +4236,7 @@
           "gamme": "sommet"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -4145,6 +4273,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.smartprix.com/bytes/oppo-find-x9-review-with-pros-and-cons/"
         ]
       },
       "sources_verification": [
@@ -4173,7 +4304,9 @@
         "ecran": "6,78\" AMOLED",
         "processeur": "Snapdragon 8 Elite (3 nm)",
         "batterie": "6 500 mAh, charge 120 W",
-        "photo": "50 Mpx principal + 50 Mpx + 8 Mpx"
+        "photo": "50 Mpx principal + 50 Mpx + 8 Mpx",
+        "charge": "120 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4266,7 +4399,9 @@
         "batterie": "5100 mAh, charge 80 W",
         "photo": "50 Mpx, téléobjectif ×2",
         "etancheite": "IP68",
-        "os": "Android 14 (3 ans)"
+        "os": "Android 14 (3 ans)",
+        "charge": "80 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4343,7 +4478,9 @@
         "batterie": "5000 mAh, charge 70 W",
         "photo": "50 Mpx",
         "etancheite": "IP53",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "70 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4420,7 +4557,9 @@
         "batterie": "5000 mAh, charge 20 W",
         "photo": "50 Mpx",
         "etancheite": "IP52",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "20 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4497,7 +4636,9 @@
         "batterie": "4600 mAh, charge 60 W",
         "photo": "50 Mpx, téléobjectif ×2",
         "etancheite": "IP67",
-        "os": "Android 14 (2 ans)"
+        "os": "Android 14 (2 ans)",
+        "charge": "60 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4563,7 +4704,9 @@
         "ecran": "6.78 AMOLED 144Hz 2500nits",
         "ram": "12 Go",
         "etancheite": "IP68",
-        "os": "Android 15 (4 ans)"
+        "os": "Android 15 (4 ans)",
+        "charge": "80 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4640,7 +4783,9 @@
         "batterie": "4500 mAh, charge 25 W",
         "photo": "50 Mpx",
         "etancheite": "IP68 / MIL-STD",
-        "os": "Android 14 (5 ans)"
+        "os": "Android 14 (5 ans)",
+        "charge": "25 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4719,7 +4864,9 @@
         "vidéo": "8K @ 30 fps",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, eSIM",
         "étanchéité": "IPX8 (pas de protection poudre)",
-        "OS": "Android 15, Near Stock"
+        "OS": "Android 15, Near Stock",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4792,7 +4939,9 @@
         "ecran": "6,5\" AMOLED Full HD+, 90 Hz",
         "processeur": "MediaTek Dimensity 6100+",
         "batterie": "5 000 mAh, charge 25 W",
-        "photo": "50 Mpx principal + 5 Mpx macro + 2 Mpx profondeur"
+        "photo": "50 Mpx principal + 5 Mpx macro + 2 Mpx profondeur",
+        "charge": "25 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4882,7 +5031,9 @@
         "processeur": "Snapdragon 685",
         "ram": "6 ou 8 Go",
         "stockage": "128 ou 256 Go",
-        "batterie": "5 000 mAh"
+        "batterie": "5 000 mAh",
+        "charge": "33 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4976,7 +5127,9 @@
         "processeur": "Snapdragon 6s Gen 3",
         "ram": "8 ou 12 Go",
         "batterie": "5 000 mAh",
-        "photo": "50 Mpx principal + 8 Mpx ultra grand-angle"
+        "photo": "50 Mpx principal + 8 Mpx ultra grand-angle",
+        "charge": "30 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5069,7 +5222,9 @@
         "batterie": "5 000 mAh, charge 67 W",
         "photo": "50 Mpx principal + 32 Mpx téléobjectif + 8 Mpx ultra grand-angle",
         "etancheite": "IP65",
-        "os": "Android 14"
+        "os": "Android 14",
+        "charge": "67 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5156,7 +5311,9 @@
         "ecran": "6,67\"",
         "processeur": "Snapdragon 7s Gen 2",
         "ram": "8 ou 12 Go",
-        "batterie": "5 100 mAh, charge 33 W"
+        "batterie": "5 100 mAh, charge 33 W",
+        "charge": "33 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5253,7 +5410,9 @@
         "batterie": "5000 mAh, charge 18 W",
         "photo": "50 Mpx",
         "etancheite": "IP53",
-        "os": "Android 13 (1 an)"
+        "os": "Android 13 (1 an)",
+        "charge": "18 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5333,7 +5492,9 @@
         "batterie": "5000 mAh, charge 33 W",
         "photo": "50 Mpx",
         "etancheite": "IP53",
-        "os": "Android 13 (1 an)"
+        "os": "Android 13 (1 an)",
+        "charge": "33 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5415,7 +5576,9 @@
         "vidéo": "1080p @ 30 fps",
         "connectivité": "4G LTE, WiFi 5, Bluetooth 5.0",
         "étanchéité": "IP54",
-        "OS": "Android 14, Magic UI 8"
+        "OS": "Android 14, Magic UI 8",
+        "charge": "22 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5472,7 +5635,9 @@
         "stockage": "64 Go",
         "batterie": "5000 mAh, charge 25 W",
         "photo": "50 Mpx",
-        "os": "Android 13 (2 ans)"
+        "os": "Android 13 (2 ans)",
+        "charge": "25 W",
+        "refresh": "60 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5554,7 +5719,9 @@
         "batterie": "5050 mAh, charge 10 W",
         "photo": "13 Mpx",
         "etancheite": "IP52",
-        "os": "Android 12 (2 ans)"
+        "os": "Android 12 (2 ans)",
+        "charge": "10 W",
+        "refresh": "60 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5637,7 +5804,9 @@
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP68",
         "OS": "Android 15, OxygenOS 15",
-        "notes": "Ventilation liquid cooling, 5000 mAh sustain, triggers latéraux"
+        "notes": "Ventilation liquid cooling, 5000 mAh sustain, triggers latéraux",
+        "charge": "100 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5693,7 +5862,9 @@
         "stockage": "512 Go",
         "batterie": "6000 mAh, charge 120 W",
         "photo": "50 Mpx",
-        "os": "Android 15 (2 ans)"
+        "os": "Android 15 (2 ans)",
+        "charge": "120 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5778,7 +5949,9 @@
         "OS": "Android 15, RedMagic OS 9",
         "ecran": "6.8 AMOLED 144Hz",
         "ram": "12 Go",
-        "os": "Android 15 (2 ans)"
+        "os": "Android 15 (2 ans)",
+        "charge": "120 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5857,7 +6030,9 @@
         "batterie": "4500 mAh, charge 125 W",
         "photo": "50 Mpx, téléobjectif ×3",
         "etancheite": "IP68",
-        "os": "Android 14 (3 ans)"
+        "os": "Android 14 (3 ans)",
+        "charge": "125 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5927,7 +6102,9 @@
         "batterie": "5500 mAh, charge 120 W",
         "photo": "50 Mpx",
         "etancheite": "IP65",
-        "os": "Android 14 (3 ans)"
+        "os": "Android 14 (3 ans)",
+        "charge": "120 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6006,7 +6183,9 @@
         "batterie": "5150 mAh, charge 66 W",
         "photo": "50 Mpx, téléobjectif ×3.5",
         "etancheite": "IPX8",
-        "os": "Android 14 (4 ans)"
+        "os": "Android 14 (4 ans)",
+        "charge": "66 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6079,7 +6258,9 @@
         "ecran": "6,67\" AMOLED, 1440 x 3200, 120 Hz, 4 000 nits",
         "processeur": "Snapdragon 8 Gen 2",
         "ram": "12 ou 16 Go",
-        "batterie": "5 000 mAh, charge 120 W"
+        "batterie": "5 000 mAh, charge 120 W",
+        "charge": "120 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6103,7 +6284,7 @@
           "gamme": "haut"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -6140,6 +6321,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.mi.com/global/product/poco-f6-pro/specs/"
         ]
       },
       "sources_verification": [
@@ -6175,7 +6359,9 @@
         "connectivité": "5G, WiFi 7, Bluetooth 5.4",
         "étanchéité": "IP68",
         "OS": "Android 15, One UI Gaming",
-        "notes": "Triple cooling system, game optimizer, 1ms touch latency"
+        "notes": "Triple cooling system, game optimizer, 1ms touch latency",
+        "charge": "65 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6232,7 +6418,9 @@
         "batterie": "6000 mAh, charge 80 W",
         "photo": "50 Mpx",
         "etancheite": "IP64",
-        "os": "Android 14 (3 ans)"
+        "os": "Android 14 (3 ans)",
+        "charge": "80 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6310,7 +6498,9 @@
         "stockage": "256 Go",
         "batterie": "5000 mAh, charge 33 W",
         "photo": "108 Mpx",
-        "os": "Android 14 (1 an)"
+        "os": "Android 14 (1 an)",
+        "charge": "33 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6393,7 +6583,9 @@
         "vidéo": "8K @ 60 fps, Hasselblad color science",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP68",
-        "OS": "Android 15, OxygenOS 15"
+        "OS": "Android 15, OxygenOS 15",
+        "charge": "100 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6452,7 +6644,9 @@
         "vidéo": "8K @ 60 fps, mode professionnel RAW",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP68",
-        "OS": "Android 15, One UI Pro Photo"
+        "OS": "Android 15, One UI Pro Photo",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6511,7 +6705,9 @@
         "vidéo": "8K @ 30 fps, film simulations Fujifilm, RAW video",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4",
         "étanchéité": "IP68",
-        "OS": "Android 15, Fujifilm Camera OS"
+        "OS": "Android 15, Fujifilm Camera OS",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6570,7 +6766,9 @@
         "vidéo": "8K @ 60 fps, FX30 codec, RAW output",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP65/68",
-        "OS": "Android 15, Xperia Pro Photo"
+        "OS": "Android 15, Xperia Pro Photo",
+        "charge": "30 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6629,7 +6827,9 @@
         "vidéo": "8K @ 60 fps, cinéma 24fps professionnel",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IPX8",
-        "OS": "Android 14, HyperOS Photo Suite"
+        "OS": "Android 14, HyperOS Photo Suite",
+        "charge": "120 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6688,7 +6888,9 @@
         "vidéo": "8K @ 30 fps, Zeiss color science",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP68",
-        "OS": "Android 15, OriginOS Ultra Photo"
+        "OS": "Android 15, OriginOS Ultra Photo",
+        "charge": "120 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6747,7 +6949,9 @@
         "vidéo": "8K @ 60 fps, triple stabilisation",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP68/IP69",
-        "OS": "Android 15, Magic UI 9 Pro Photo"
+        "OS": "Android 15, Magic UI 9 Pro Photo",
+        "charge": "80 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6806,7 +7010,9 @@
         "vidéo": "8K @ 30 fps, Hasselblad video mode",
         "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
         "étanchéité": "IP68/IP69",
-        "OS": "Android 15, ColorOS 15 Photo Suite"
+        "OS": "Android 15, ColorOS 15 Photo Suite",
+        "charge": "80 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6865,7 +7071,9 @@
         "vidéo": "8K @ 30 fps, Hasselblad processing",
         "connectivité": "5G, WiFi 6E, Bluetooth 5.3, NFC",
         "étanchéité": "IP65",
-        "OS": "Android 14, Realme UI 5 Photo"
+        "OS": "Android 14, Realme UI 5 Photo",
+        "charge": "120 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6924,7 +7132,9 @@
         "vidéo": "4K @ 60 fps, photo prioritaire",
         "connectivité": "5G, WiFi 6E, Bluetooth 5.3",
         "étanchéité": "IP68",
-        "OS": "Android 14, HiOS 14 Photo"
+        "OS": "Android 14, HiOS 14 Photo",
+        "charge": "70 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -6980,7 +7190,9 @@
         "stockage": "32 Go",
         "batterie": "5050 mAh, charge 10 W",
         "photo": "13 Mpx",
-        "os": "Android 11 (2 ans)"
+        "os": "Android 11 (2 ans)",
+        "charge": "10 W",
+        "refresh": "60 Hz"
       },
       "points_forts": [
         "Grande batterie 5 050 mAh",
@@ -7066,7 +7278,9 @@
         "batterie": "4 823 mAh (nano-SIM), charge jusqu'à 40 W / 25 W MagSafe",
         "photo": "Triple capteur 48 Mpx (principal, ultra grand-angle, téléobjectif), zoom optique 4× et 8×, avant 18 Mpx",
         "etancheite": "IP68",
-        "os": "iOS 26"
+        "os": "iOS 26",
+        "charge": "40 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Autonomie très longue (lecture vidéo annoncée jusqu'à 37 h)",
@@ -7156,7 +7370,7 @@
           "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
           "verdict": "Cher mais puissant",
           "mesures": {
-            "autonomie_jeu_min": 774
+            "autonomie_min": 774
           }
         }
       ],
@@ -7177,9 +7391,11 @@
         "ram": "8 Go",
         "stockage": "256 Go",
         "batterie": "5100 mAh, charge 67 W",
-        "photo": "200 Mpx",
+        "photo": "50 Mpx",
         "etancheite": "IP54",
-        "os": "Android 15 (3 ans)"
+        "os": "Android 15 (3 ans)",
+        "charge": "67 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Très grosse batterie et charge 100 W",
@@ -7224,7 +7440,7 @@
           "gamme": "milieu"
         },
         "photo": {
-          "mp_principal": 200,
+          "mp_principal": 50,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -7260,6 +7476,10 @@
           "reparabilite",
           "sources",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.phonearena.com/phones/Xiaomi-Poco-X8-Pro_id12937",
+          "https://www.kimovil.com/en/compare/poco-x8-pro,xiaomi-poco-f3"
         ]
       },
       "fiche_statut": "fichier_integral",
@@ -7282,7 +7502,9 @@
         "batterie": "4800 mAh, charge 35 W",
         "photo": "50 Mpx, téléobjectif ×5",
         "etancheite": "IP68",
-        "os": "Android 16 (7 ans)"
+        "os": "Android 16 (7 ans)",
+        "charge": "35 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -7369,7 +7591,9 @@
         "ram": "16 Go",
         "stockage": "512 Go",
         "etancheite": "IP68",
-        "os": "Android 16 (5 ans)"
+        "os": "Android 16 (5 ans)",
+        "charge": "80 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [
         "Batterie de 7 150 mAh en Europe"
@@ -7396,7 +7620,7 @@
           "chimie": null
         },
         "photo": {
-          "mp_principal": 50,
+          "mp_principal": 200,
           "ois": true,
           "teleobjectif": {
             "present": true,
@@ -7438,6 +7662,9 @@
           "reparabilite",
           "sources",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.youtube.com/@TheTechChap"
         ]
       },
       "sources_verification": [
@@ -7459,7 +7686,9 @@
         "processeur": "Snapdragon 7 Gen 3 (4 nm)",
         "stockage": "256 Go",
         "etancheite": "IP54",
-        "os": "Android 15 (3 ans)"
+        "os": "Android 15 (3 ans)",
+        "charge": "80 W",
+        "refresh": "144 Hz"
       },
       "points_forts": [
         "Batterie de 7 200 mAh"
@@ -7541,7 +7770,7 @@
     },
     {
       "id": "oneplus-16",
-      "nom": "OnePlus 16 Extreme",
+      "nom": "OnePlus 16",
       "marque": "OnePlus",
       "prix_indicatif": 999,
       "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
@@ -7553,7 +7782,9 @@
         "stockage": "512 Go",
         "photo": "50 Mpx (1 pouce), téléobjectif ×3",
         "etancheite": "IP68",
-        "os": "Android 16 (5 ans)"
+        "os": "Android 16 (5 ans)",
+        "charge": "100 W",
+        "refresh": "185 Hz"
       },
       "points_forts": [
         "Batterie de 9 000 mAh"
@@ -7643,7 +7874,9 @@
         "stockage": "512 Go",
         "batterie": "6500 mAh, charge 80 W",
         "photo": "50 Mpx",
-        "os": "Android 15 (2 ans)"
+        "os": "Android 15 (2 ans)",
+        "charge": "80 W",
+        "refresh": "165 Hz"
       },
       "points_forts": [
         "Ventilateur 24k RPM + gâchettes",
@@ -7702,7 +7935,7 @@
           "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
           "verdict": "Rapport qualité/prix pur",
           "mesures": {
-            "autonomie_jeu_min": 690
+            "autonomie_min": 690
           }
         }
       ],
@@ -7742,7 +7975,9 @@
         "ram": "8 Go",
         "stockage": "256 Go",
         "batterie": "5000 mAh, charge 25 W",
-        "os": "Android 15 (4 ans)"
+        "os": "Android 15 (4 ans)",
+        "charge": "25 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Autonomie globale mesurée : 10 h 35",
@@ -7839,7 +8074,9 @@
         "batterie": "5000 mAh, charge 25 W",
         "photo": "50 Mpx",
         "etancheite": "IP67",
-        "os": "Android 15 (4 ans)"
+        "os": "Android 15 (4 ans)",
+        "charge": "25 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [
         "Conserve l’essentiel des performances et du capteur photo de l’A57 pour 100 $ de moins"
@@ -7930,7 +8167,9 @@
         "ram": "6 Go",
         "stockage": "128 Go",
         "batterie": "5000 mAh, charge 25 W",
-        "os": "Android 15 (4 ans)"
+        "os": "Android 15 (4 ans)",
+        "charge": "25 W",
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [
@@ -8020,7 +8259,9 @@
         "batterie": "5150 mAh",
         "photo": "50 Mpx",
         "etancheite": "IP54",
-        "os": "Android 14 (3 ans)"
+        "os": "Android 14 (3 ans)",
+        "charge": "45 W",
+        "refresh": "120 Hz"
       },
       "points_forts": [],
       "points_faibles": [],

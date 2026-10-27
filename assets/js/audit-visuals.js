@@ -38,9 +38,10 @@
       return s + tx(48, 59, 8.5, c);
     },
     budget: function (v) {
-      /* Quatre marches : plus le palier est haut, plus la marche l'est. */
-      var n = { bas: 1, entree: 2, milieu: 3, haut: 4 }[v] || 1, c = { bas: '80 à 150 €', entree: '150 à 300 €', milieu: '300 à 800 €', haut: '800 € et plus' }[v], s = '';
-      for (var i = 0; i < 4; i++) s += rc(10 + i * 19, 44 - (i + 1) * 9, 15, (i + 1) * 9, 3, i === n - 1 ? O : 'none', K, i === n - 1 ? 'stroke-width="2"' : 'stroke-width="2" stroke-dasharray="3 3" opacity=".45"');
+      /* Sept marches : plus le palier est haut, plus la marche l'est. */
+      var ids = ['bas', 'entree', 'milieu', 'milieu_haut', 'haut', 'tres_haut', 'premium'], n = ids.indexOf(v) + 1 || 1;
+      var c = { bas: '80 à 150 €', entree: '150 à 300 €', milieu: '300 à 500 €', milieu_haut: '500 à 800 €', haut: '800 à 1 000 €', tres_haut: '1 000 à 1 200 €', premium: '1 200 € et plus' }[v], s = '';
+      for (var i = 0; i < 7; i++) s += rc(6 + i * 12, 46 - (i + 1) * 5, 10, (i + 1) * 5, 2, i === n - 1 ? O : 'none', K, i === n - 1 ? 'stroke-width="2"' : 'stroke-width="2" stroke-dasharray="3 3" opacity=".45"');
       return s + tx(46, 58, 9, c);
     },
     capacity: function (v) {

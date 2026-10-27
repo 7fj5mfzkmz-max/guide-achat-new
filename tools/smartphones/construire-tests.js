@@ -16,7 +16,7 @@ const SOURCE = {
 const VIDEOS = [
   { id: 'duel', n: 1, chaine: 'Android Police', titre: 'The Pixel 11 Pro is in another league from the iPhone 18 Pro', theme: 'Haut de gamme', resume: 'Pixel 11 Pro contre iPhone 18 Pro : photo, logiciel et prix.' },
   { id: 'records', n: 2, chaine: 'The Tech Chap', titre: 'OPPO Find X10 Pro Max - Phone of the Year?', theme: 'Records matériels', resume: 'Un seul téléphone passé en revue : l’OPPO Find X10 Pro Max, sa batterie, son écran et ses capteurs.' },
-  { id: 'gaming', n: 3, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Trois téléphones testés en jeu : autonomie mesurée, refroidissement et prix.' },
+  { id: 'gaming', n: 3, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Trois téléphones testés : autonomie mesurée, refroidissement et prix.' },
   { id: 'samsung', n: 4, chaine: 'Versus', titre: 'Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!', theme: 'Gamme Samsung', resume: 'Quatre Galaxy A comparés pour savoir lequel acheter et lequel éviter.' },
   { id: 'nouveautes', n: 5, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Les derniers lancements : Vivo V80 et OnePlus 16, avec leurs batteries.' }
 ];
@@ -28,14 +28,14 @@ const MODELES = [
     specs: { puce: 'MediaTek Dimensity 9600 Pro (gravure 2 nm)', batterie_mah: 7150, batterie_mah_asie: 8000, batterie_note: '7 150 mAh en version Europe, 8 000 mAh en version Asie', charge: '80 W filaire, 50 W sans fil', ecran: 'OLED 6,78" plat, 144 Hz, bordures de 1,15 mm, pic mesuré à 3 600 nits', photo: 'Triple capteur 200 MP Hasselblad (grand-angle, ultra grand-angle, téléobjectif 3x), mode Hasselblad Master', accessoire: 'Convertisseur télé-optique magnétique pour 10x, 20x et 40x', gain_puce: '+25 % en mono-cœur et +28 % en GPU par rapport aux puces concurrentes' } },
   { id: 'vivo-v80', nom: 'Vivo V80', marque: 'Vivo', video: 'nouveautes',
     specs: { ecran: 'OLED 1,5K, 144 Hz', batterie_mah: 7200, photo: 'Optiques Zeiss 50 MP (principal et téléobjectif)', ram: '8 Go au lieu de 12 Go (concession)' } },
-  { id: 'oneplus-16', nom: 'OnePlus 16 Extreme', marque: 'OnePlus', video: 'nouveautes',
+  { id: 'oneplus-16', nom: 'OnePlus 16', marque: 'OnePlus', video: 'nouveautes',
     specs: { puce: 'Snapdragon 8 Elite Extreme Gen 6', ecran: '185 Hz', batterie_mah: 9000, batterie_note: 'Batterie record', charge: '100 W filaire, 50 W sans fil', design: 'Dos en verre intégrant un affichage matriciel LED personnalisable' } },
   { id: 'redmagic-11s-pro', nom: 'RedMagic 11S Pro', marque: 'Nubia (RedMagic)', video: 'gaming', prix_usd: 799,
-    specs: { atout: 'Ventilateur 24k RPM + gâchettes', autonomie_jeu_min: 690, point_noir: 'Stockage max 512 Go / caméras' } },
+    specs: { atout: 'Ventilateur 24k RPM + gâchettes', autonomie_min: 690, point_noir: 'Stockage max 512 Go / caméras' } },
   { id: 'samsung-galaxy-s26-ultra', nom: 'Samsung Galaxy S26 Ultra', marque: 'Samsung', video: 'gaming', prix_usd: 988, prix_note: 'reconditionné',
-    specs: { atout: 'Écran AMOLED + bypass charge', autonomie_jeu_min: 617, point_noir: 'Prix élevé / léger throttling' } },
+    specs: { atout: 'Écran AMOLED + bypass charge', autonomie_min: 617, point_noir: 'Prix élevé / léger throttling' } },
   { id: 'apple-iphone-17-pro-max', nom: 'Apple iPhone 17 Pro Max', marque: 'Apple', video: 'gaming', prix_usd: 1199,
-    specs: { atout: 'Catalogue de jeux console AAA', autonomie_jeu_min: 774, point_noir: 'Pas de gâchettes / tarif très fort' } },
+    specs: { atout: 'Catalogue de jeux console AAA', autonomie_min: 774, point_noir: 'Pas de gâchettes / tarif très fort' } },
   { id: 'samsung-galaxy-a57', nom: 'Samsung Galaxy A57', marque: 'Samsung', video: 'samsung', prix_usd: 549,
     specs: { chassis: 'Aluminium', etancheite: 'IP68', ecran: 'AMOLED 120 Hz', photo: 'Capteur 50 MP stabilisé', autonomie_globale_min: 635 } },
   { id: 'samsung-galaxy-a37', nom: 'Samsung Galaxy A37', marque: 'Samsung', video: 'samsung', prix_usd: 449,

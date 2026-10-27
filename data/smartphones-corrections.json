@@ -1,0 +1,154 @@
+{
+ "date": "2026-10",
+ "note": "Corrections et compléments de mégapixels du capteur principal. « remplace » : la valeur du catalogue était fausse ; sinon on ne remplit qu'une case vide.",
+ "corrections": [
+  {
+   "id": "oppo-find-x10-pro-max",
+   "mp_principal": 200,
+   "remplace": true,
+   "sources": [
+    "https://www.youtube.com/@TheTechChap"
+   ],
+   "note": "Vidéo de test : « Triple capteur 200 MP Hasselblad » ; le classeur donnait 50 Mpx."
+  },
+  {
+   "id": "galaxy-s26-ultra",
+   "mp_principal": 200,
+   "remplace": true,
+   "sources": [
+    "https://www.phonearena.com/news/samsung-galaxy-s26-ultra-camera-rumor-debunked_id175562",
+    "https://www.photoworkout.com/?p=221532"
+   ],
+   "note": "Capteur principal 200 Mpx."
+  },
+  {
+   "id": "poco-x8-pro",
+   "mp_principal": 50,
+   "remplace": true,
+   "sources": [
+    "https://www.phonearena.com/phones/Xiaomi-Poco-X8-Pro_id12937",
+    "https://www.kimovil.com/en/compare/poco-x8-pro,xiaomi-poco-f3"
+   ],
+   "note": "Capteur principal 50 Mpx (Sony IMX882) ; le classeur donnait 200 Mpx."
+  },
+  {
+   "id": "redmi-note-14-5g",
+   "mp_principal": 108,
+   "remplace": true,
+   "sources": [
+    "https://www.phonearena.com/phones/Xiaomi-Redmi-Note-14-5G_id12628",
+    "https://m.gsmarena.com/xiaomi_redmi_note_14-ampp-13559.php"
+   ],
+   "note": "Version mondiale : 108 Mpx ; le classeur donnait 50 Mpx."
+  },
+  {
+   "id": "redmi-note-15-5g",
+   "mp_principal": 108,
+   "remplace": true,
+   "sources": [
+    "https://www.phonearena.com/phones/Xiaomi-Redmi-Note-15-5G_id12897",
+    "https://www.skroutz.mt/s/65037245/xiaomi-redmi-note-15-5g-dual-sim-6gb-128gb-black.html"
+   ],
+   "note": "108 Mpx ; le classeur donnait 50 Mpx."
+  },
+  {
+   "id": "pixel-10",
+   "mp_principal": 48,
+   "remplace": false,
+   "sources": [
+    "https://m.gsmarena.com/google_pixel_10_in_for_review-amp-69253.php"
+   ],
+   "note": ""
+  },
+  {
+   "id": "pixel-10a",
+   "mp_principal": 48,
+   "remplace": false,
+   "sources": [
+    "https://www.dxomark.com/?p=191172"
+   ],
+   "note": ""
+  },
+  {
+   "id": "pixel-10-pro",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://www.gsmarena.com/google_pixel_10_pro-13987.php"
+   ],
+   "note": ""
+  },
+  {
+   "id": "pixel-10-pro-xl",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://www.gsmarena.com/google_pixel_10_pro-13987.php"
+   ],
+   "note": "Même module que le Pixel 10 Pro."
+  },
+  {
+   "id": "xperia-1-vii",
+   "mp_principal": 48,
+   "remplace": false,
+   "sources": [
+    "https://www.phonearena.com/phones/Sony-Xperia-1-VII_id12726"
+   ],
+   "note": ""
+  },
+  {
+   "id": "galaxy-s26-plus",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://m.gsmarena.com/samsung_galaxy_s26_plus-review-2941p5.php"
+   ],
+   "note": ""
+  },
+  {
+   "id": "iphone-18-pro",
+   "mp_principal": 48,
+   "remplace": false,
+   "sources": [
+    "https://www.ithinkdiff.com/iphone-18-pro-camera-features-48mp/"
+   ],
+   "note": ""
+  },
+  {
+   "id": "oppo-find-x9",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://www.smartprix.com/bytes/oppo-find-x9-review-with-pros-and-cons/"
+   ],
+   "note": ""
+  },
+  {
+   "id": "honor-magic-8-pro",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://m.gsmarena.com/honor_magic8_pro_camera_samples-amp-70254.php"
+   ],
+   "note": "Le 200 Mpx est le téléobjectif périscopique."
+  },
+  {
+   "id": "rog-phone-9",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://en.wikipedia.org/wiki/ROG_Phone_9"
+   ],
+   "note": ""
+  },
+  {
+   "id": "poco-f6-pro",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://www.mi.com/global/product/poco-f6-pro/specs/"
+   ],
+   "note": ""
+  }
+ ]
+}

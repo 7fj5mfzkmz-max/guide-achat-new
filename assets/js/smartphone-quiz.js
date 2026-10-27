@@ -5,7 +5,7 @@
   var primary = {price:['budget'],screen:['tech','refresh'],battery:['capacity'],performance:['reference'],photo:['sensor'],longevity:['updates']};
   // Question courte, libellés courts : le schéma animé porte l’explication.
   var questions = {
-    budget:['Quel est votre budget ?',['80 à 150 €','150 à 300 €','300 à 800 €','800 € et plus']],
+    budget:['Quel est votre budget ?',['80 à 150 €','150 à 300 €','300 à 500 €','500 à 800 €','800 à 1 000 €','1 000 à 1 200 €','1 200 € et plus']],
     tech:['Quel type d’écran ?',['OLED','AMOLED','LCD','LTPO']],
     refresh:['Quelle fluidité ?',['60 Hz','90 Hz','120 Hz','144 Hz']],
     capacity:['Quelle batterie ?',['3 000 mAh','4 000 mAh','5 000 mAh','6 000 mAh +']],
@@ -18,8 +18,11 @@
     budget:[
       ['Le plus économique : l’essentiel pour téléphoner, naviguer et regarder des vidéos.','Écran moins fluide, photo et jeux limités.'],
       ['Écran fluide, bonne batterie : le meilleur rapport entre prix et usage au quotidien.','Photo moyenne le soir, pas de téléobjectif, mises à jour plus courtes.'],
-      ['Bonne photo, puce rapide, écran lumineux : très bon partout.','Cher pour un usage simple ; un modèle à 400 € suffit souvent.'],
-      ['Le meilleur dans chaque domaine, suivi logiciel très long.','Prix élevé, souvent chargeur non fourni.']
+      ['Bonne photo, puce rapide, écran lumineux : très bon rapport qualité-prix.','Souvent pas de téléobjectif, suivi logiciel parfois court.'],
+      ['Puce de haut de gamme et bonne photo, parfois un téléobjectif.','Cher pour un usage simple ; un modèle à 400 € suffit souvent.'],
+      ['Le haut de gamme sans les extrêmes : grand capteur, écran lumineux, suivi long.','Chargeur souvent vendu à part.'],
+      ['Les meilleurs composants : puce de sommet, photo poussée, matériaux premium.','Peu de gain visible par rapport au palier d’en dessous.'],
+      ['Le maximum : nuit très nette, suivi logiciel très long, finitions premium.','Prix très élevé, souvent chargeur non fourni.']
     ],
     tech:[
       ['Vrai noir : chaque pixel s’éteint seul.','Plus cher, léger risque de marquage à long terme.'],
@@ -60,10 +63,13 @@
   // Repères réels tirés du catalogue, pour savoir où l’on se situe.
   var examples = {
     budget:[
-      'Moto G06, Moto G06 Power, Blackview Shark 8 · 110 à 140 €',
-      'Galaxy A17 5G, realme P3 5G, Redmi Note 15 5G · 200 à 250 €',
-      'Galaxy A56, POCO X8 Pro, Xiaomi 15T · 300 à 430 €',
-      'iPhone 17 Pro, iPhone 17 Pro Max · 1 300 € et plus'
+      'Redmi A3, Moto G06, POCO C85 · 99 à 150 €',
+      'Galaxy A17 5G, realme P3 5G, Redmi Note 15 5G · 199 à 300 €',
+      'POCO X8 Pro, Xiaomi 15T, Pixel 10a · 349 à 499 €',
+      'Pixel 10, Nothing Phone (3), OnePlus 15 · 599 à 799 €',
+      'Pixel 10 Pro, Galaxy S26, OPPO Find X9 · 829 à 999 €',
+      'Honor Magic 8 Pro, ROG Phone 9, Pixel 11 Pro · 1 099 €',
+      'Galaxy S26 Ultra, iPhone 18 Pro, Xperia 1 VII · 1 269 à 1 629 €'
     ],
     reference:[
       'Helio G99, Snapdragon 685, Exynos 1330 · Galaxy A17 5G, Moto G06, realme C67 · 100 à 200 €',
