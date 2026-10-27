@@ -25,7 +25,7 @@ function appliquer(cat) {
     if (p.compatibilite.durete.mises_a_jour_ans == null) { p.compatibilite.durete.mises_a_jour_ans = ans; n++; }
   };
   [src.data, src.integral].forEach(rows => rows.forEach(f => {
-    const p = ALIAS[norm(f.modele)] ? parId.get(ALIAS[norm(f.modele)]) : par.get(norm(f.modele));
+    const p = trouver(cat, f.modele);
     poser(p, f.os && f.os.mises_a_jour_ans);
   }));
   // Le classeur Complet complète les cases encore vides (« 5 ans » → 5).

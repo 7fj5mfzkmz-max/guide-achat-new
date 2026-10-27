@@ -43,7 +43,7 @@ const modeles = Object.fromEntries(tests.modeles.map(m => [m.id, m]));
 function pointsForts(m) {
   const s = m.specs || {}, out = [];
   if (s.atout) out.push(s.atout);
-  if (s.autonomie_jeu_min) out.push('Autonomie en jeu mesurée : ' + heures(s.autonomie_jeu_min));
+  if (s.autonomie_min) out.push('Autonomie mesurée : ' + heures(s.autonomie_min));
   if (s.autonomie_globale_min) out.push('Autonomie globale mesurée : ' + heures(s.autonomie_globale_min));
   if (s.batterie_mah) out.push('Batterie de ' + fmt(s.batterie_mah) + ' mAh' + (s.batterie_note && /Europe/.test(s.batterie_note) ? ' en Europe' : ''));
   if (s.chassis && s.etancheite) out.push('Châssis ' + s.chassis.toLowerCase() + ', ' + s.etancheite);
@@ -71,7 +71,7 @@ function caracteristiques(m) {
 function preuve(m) {
   const v = videoDe(m.video), s = m.specs || {};
   const mesures = {};
-  if (s.autonomie_jeu_min) mesures.autonomie_jeu_min = s.autonomie_jeu_min;
+  if (s.autonomie_min) mesures.autonomie_min = s.autonomie_min;
   if (s.autonomie_globale_min) mesures.autonomie_globale_min = s.autonomie_globale_min;
   const verdict = ((tests.samsung || []).find(x => x.modele === m.id) || {}).verdict
     || ((tests.gaming.lignes || []).find(x => x.modele === m.id) || {}).verdict || null;

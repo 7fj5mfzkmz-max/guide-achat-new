@@ -76,7 +76,7 @@
   var NOTE = {
     profil: 'Les modèles vus en test passent en premier, dans l’ordre des vidéos. Dans les fiches vérifiées, un modèle par gamme, classé selon son score pour ce profil.',
     prix: 'Tests : gamme Samsung, prix en dollars. Fiches vérifiées : un modèle par tranche de prix, classé sur la moyenne de ses scores performance, autonomie, photo et prix.',
-    batterie: 'Tests : capacités annoncées par les constructeurs, puis autonomies mesurées en jeu. Fiches vérifiées : un modèle par gamme, classé par capacité annoncée.'
+    batterie: 'Tests : capacités annoncées par les constructeurs, puis autonomies mesurées. Fiches vérifiées : un modèle par gamme, classé par capacité annoncée.'
   };
   /* Gammes de prix : mêmes seuils que le critère « Prix » du quiz (smartphones-scoring.js). */
   var GAMMES = [
@@ -188,11 +188,11 @@
         var m = testById(id);
         tests.push(testRow(id, fr(m.specs.batterie_mah) + ' mAh annoncés' + (m.specs.charge ? ', charge ' + m.specs.charge : '') + (m.specs.batterie_note && /Europe/.test(m.specs.batterie_note) ? ' (version Europe)' : ''), null));
       });
-      var measured = DATA.produits.filter(function (p) { return (p.tests || []).some(function (t) { return t.mesures && t.mesures.autonomie_jeu_min; }); })
-        .sort(function (a, b) { return a.tests[0].mesures.autonomie_jeu_min < b.tests[0].mesures.autonomie_jeu_min ? 1 : -1; });
+      var measured = DATA.produits.filter(function (p) { return (p.tests || []).some(function (t) { return t.mesures && t.mesures.autonomie_min; }); })
+        .sort(function (a, b) { return a.tests[0].mesures.autonomie_min < b.tests[0].mesures.autonomie_min ? 1 : -1; });
       extraTests = measured.map(function (p) {
         var t = p.tests[0], cap = capacity(p);
-        var r = testRow(t.modele, hours(t.mesures.autonomie_jeu_min) + ' en jeu' + (cap ? ' avec ' + fr(cap) + ' mAh' : ''), null);
+        var r = testRow(t.modele, hours(t.mesures.autonomie_min) + (cap ? ' avec ' + fr(cap) + ' mAh' : ''), null);
         r.productId = p.id; r.price = priceOf(p, testById(t.modele));
         return r;
       });
@@ -206,7 +206,7 @@
     var out = build(need);
     var note = need.profil ? NOTE.profil : NOTE[need.id];
     var left = '<section class="tr-col" aria-labelledby="tr-h-test"><h3 id="tr-h-test">Vu en test</h3><ol class="tr-list">' + out.tests.map(row).join('') + '</ol>' +
-      (out.extra && out.extra.length ? '<h3 class="tr-sub">Autonomie mesurée en jeu</h3><ol class="tr-list">' + out.extra.map(row).join('') + '</ol>' : '') + '</section>';
+      (out.extra && out.extra.length ? '<h3 class="tr-sub">Autonomie mesurée</h3><ol class="tr-list">' + out.extra.map(row).join('') + '</ol>' : '') + '</section>';
     var right = '<section class="tr-col" aria-labelledby="tr-h-fiche"><h3 id="tr-h-fiche">Dans nos fiches vérifiées</h3><ol class="tr-list">' + out.fiches.map(row).join('') + '</ol></section>';
     $('tr-podium').innerHTML = left + right + '<p class="tr-note">' + esc(note) + '</p>';
     var intro = INTRO[need.id];
@@ -224,13 +224,13 @@
     var box = $('sp-records'); if (!box) return;
     var withCap = DATA.produits.filter(function (p) { return p.compatibilite && p.compatibilite.batterie && p.compatibilite.batterie.capacite_mah && (p.tests || p.origine === 'test'); })
       .sort(function (a, b) { return b.compatibilite.batterie.capacite_mah - a.compatibilite.batterie.capacite_mah; });
-    var measured = DATA.produits.filter(function (p) { return (p.tests || []).some(function (t) { return t.mesures && t.mesures.autonomie_jeu_min; }); })
-      .sort(function (a, b) { return b.tests[0].mesures.autonomie_jeu_min - a.tests[0].mesures.autonomie_jeu_min; });
+    var measured = DATA.produits.filter(function (p) { return (p.tests || []).some(function (t) { return t.mesures && t.mesures.autonomie_min; }); })
+      .sort(function (a, b) { return b.tests[0].mesures.autonomie_min - a.tests[0].mesures.autonomie_min; });
     var cards = [];
     if (withCap[0]) cards.push('<article class="tr-record"><p class="tr-record-k">Plus grosse batterie annoncée</p><p class="tr-record-v">' + esc(withCap[0].nom) + '</p><p class="tr-record-d">' + fr(withCap[0].compatibilite.batterie.capacite_mah) + ' mAh' + (withCap[1] ? ', devant ' + esc(withCap[1].nom) + ' (' + fr(withCap[1].compatibilite.batterie.capacite_mah) + ' mAh)' : '') + '</p></article>');
     if (measured[0]) {
       var cap = measured[0].compatibilite.batterie && measured[0].compatibilite.batterie.capacite_mah;
-      cards.push('<article class="tr-record"><p class="tr-record-k">Plus longue autonomie mesurée en jeu</p><p class="tr-record-v">' + esc(measured[0].nom) + ' · ' + hours(measured[0].tests[0].mesures.autonomie_jeu_min) + '</p><p class="tr-record-d">' + (cap && withCap[0] && cap < withCap[0].compatibilite.batterie.capacite_mah ? 'Avec ' + fr(cap) + ' mAh seulement : la capacité ne dit pas la durée.' : 'Mesure du test comparatif de jeu.') + '</p></article>');
+      cards.push('<article class="tr-record"><p class="tr-record-k">Plus longue autonomie mesurée</p><p class="tr-record-v">' + esc(measured[0].nom) + ' · ' + hours(measured[0].tests[0].mesures.autonomie_min) + '</p><p class="tr-record-d">' + (cap && withCap[0] && cap < withCap[0].compatibilite.batterie.capacite_mah ? 'Avec ' + fr(cap) + ' mAh seulement : la capacité ne dit pas la durée.' : 'Mesure du test comparatif de jeu.') + '</p></article>');
     }
     var best = DATA.tests.samsung.filter(function (x) { return x.ton === 'best'; })[0], bad = DATA.tests.samsung.filter(function (x) { return x.ton === 'bad'; })[0];
     if (best && bad) cards.push('<article class="tr-record"><p class="tr-record-k">Gamme Samsung</p><p class="tr-record-v">' + esc(testById(best.modele).nom) + '</p><p class="tr-record-d">Meilleur choix de la gamme comparée ; à éviter : ' + esc(testById(bad.modele).nom) + '.</p></article>');

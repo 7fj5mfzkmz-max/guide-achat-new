@@ -6,6 +6,7 @@ const ALIAS = {
   'asus rog phone 9': 'rog-phone-9',
   'rog phone 9': 'rog-phone-9',
   'redmagic 11s pro': 'redmagic-11s-pro',
+  'oneplus 16 extreme': 'oneplus-16', // le téléphone s'appelle OnePlus 16 (puce Snapdragon 8 Elite Extreme Gen 6)
 };
 const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9+ ()]/g, '').replace(/\s+/g, ' ').trim();
 function trouver(cat, nom) {

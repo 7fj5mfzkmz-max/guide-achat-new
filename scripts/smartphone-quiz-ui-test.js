@@ -105,18 +105,18 @@ const server = http.createServer((req, res) => {
     await perf.locator('[data-group="reference"] [data-value="basic"]').click();
     assert.equal(await dispo.evaluate(() => window.GuideAuditState.performance.reference), 'basic');
     await dispo.locator('[data-audit-card="price"] .audit-card-trigger').click();
-    await dispo.locator('#quiz-price [data-value="haut"]').click();
-    assert.equal(await dispo.evaluate(() => (window.GuideAuditState.performance || {}).reference), undefined, 'puce d’entrée de gamme retirée avec un budget de 800 € et plus');
+    await dispo.locator('#quiz-price [data-value="premium"]').click();
+    assert.equal(await dispo.evaluate(() => (window.GuideAuditState.performance || {}).reference), undefined, 'puce d’entrée de gamme retirée avec un budget de 1 200 € et plus');
     assert.match(await dispo.locator('#audit-message').innerText(), /retiré/);
-    assert.equal(await dispo.evaluate(() => window.GuideAuditState.price.budget), 'haut');
+    assert.equal(await dispo.evaluate(() => window.GuideAuditState.price.budget), 'premium');
     // capteur photo : la note suit la taille, les options sans modèle sont grisées
     const photoCard = dispo.locator('[data-audit-card="photo"]');
     await photoCard.locator('.audit-card-trigger').click();
     const opt = v => photoCard.locator(`[data-group="sensor"] [data-value="${v}"]`);
     assert.equal(await photoCard.locator('[data-group="sensor"] .audit-pill').count(), 4, 'quatre tailles de capteur');
-    assert.equal(await opt('large').getAttribute('aria-disabled'), null, 'grand capteur disponible à 800 € et plus');
-    assert.equal(await opt('small').getAttribute('aria-disabled'), 'true', 'petit capteur grisé à 800 € et plus');
-    assert.equal(await opt('xl').getAttribute('aria-disabled'), null, 'très grand capteur (1 pouce) disponible à 800 € et plus');
+    assert.equal(await opt('large').getAttribute('aria-disabled'), null, 'grand capteur disponible à 1 200 € et plus');
+    assert.equal(await opt('small').getAttribute('aria-disabled'), 'true', 'petit capteur grisé à 1 200 € et plus');
+    assert.equal(await opt('xl').getAttribute('aria-disabled'), null, 'très grand capteur (1 pouce) disponible à 1 200 € et plus');
     await dispo.locator('[data-audit-card="price"] .audit-card-trigger').click();
     await dispo.locator('#quiz-price [data-value="bas"]').click();
     await photoCard.locator('.audit-card-trigger').click();

@@ -19,6 +19,7 @@ const ALIAS = {
   'zte nubia red magic 10 pro': 'nubia-red-magic-10-pro',
   'zte nubia focus 6 air': 'nubia-focus-6-air',
   'asus rog phone 9': 'rog-phone-9',
+  'oneplus 16 extreme': 'oneplus-16',
 };
 const CONFLIT = {};
 // Corrections relevées sur les sources (Les Mobiles, Kimovil, LDLC) : la puce et la batterie du classeur étaient fausses.

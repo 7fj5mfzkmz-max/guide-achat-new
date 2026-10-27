@@ -149,21 +149,25 @@
     return wrap('0 0 270 206', b);
   }
 
-  /* ——— Prix : quatre paliers, une marche par palier ——— */
+  /* ——— Prix : sept paliers, une marche par palier ——— */
   var PALIERS = [
     ['bas prix', '80 – 150 €', 'appels, web, vidéo'],
     ['entrée de gamme', '150 – 300 €', 'écran fluide, bonne batterie'],
-    ['milieu de gamme', '300 – 800 €', 'bonne photo, puce rapide'],
-    ['haut de gamme', '800 € et plus', 'le meilleur dans chaque domaine']
+    ['milieu de gamme', '300 – 500 €', 'bonne photo, puce rapide'],
+    ['milieu de gamme supérieur', '500 – 800 €', 'puce haut de gamme, bonne photo'],
+    ['haut de gamme', '800 – 1 000 €', 'grand capteur, écran lumineux'],
+    ['très haut de gamme', '1 000 – 1 200 €', 'les meilleurs composants'],
+    ['premium', '1 200 € et plus', 'le meilleur dans chaque domaine']
   ];
   function budget(index, chosen) {
     var c = chosen ? ORANGE : MUTE, b = '', i, x, h;
-    for (i = 0; i < 4; i++) {
-      x = 14 + i * 62; h = 36 + i * 30;
-      b += '<rect class="' + (i === index ? 'qa-step is-on' : 'qa-step') + '" style="--d:' + (i * .12) + 's" x="' + x + '" y="' + (136 - h) + '" width="54" height="' + h + '" rx="7" fill="' + (i === index ? c : '#3a3d36') + '"/>';
-      b += tx(x + 27, 152, ['80', '150', '300', '800'][i] + (i === 3 ? ' +' : ''), 'qa-t-xs', 'middle');
+    for (i = 0; i < 7; i++) {
+      x = 8 + i * 36.5; h = 22 + i * 14;
+      b += '<rect class="' + (i === index ? 'qa-step is-on' : 'qa-step') + '" style="--d:' + (i * .08) + 's" x="' + x + '" y="' + (136 - h) + '" width="31" height="' + h + '" rx="5" fill="' + (i === index ? c : '#3a3d36') + '"/>';
+      b += tx(x + 15.5, 152, ['80', '150', '300', '500', '800', '1 000', '1 200+'][i], 'qa-t-xs', 'middle');
     }
-    b += '<circle cx="' + (41 + index * 62) + '" cy="' + (136 - (36 + index * 30) - 14) + '" r="9" fill="#ffc94d" stroke="#20221e" stroke-width="2"/>' + tx(41 + index * 62, 136 - (36 + index * 30) - 10.5, '€', 'qa-t-xs', 'middle');
+    var cx = 23.5 + index * 36.5, cy = 136 - (22 + index * 14) - 14;
+    b += '<circle cx="' + cx + '" cy="' + cy + '" r="9" fill="#ffc94d" stroke="#20221e" stroke-width="2"/>' + tx(cx, cy + 3.5, '€', 'qa-t-xs', 'middle');
     b += tx(135, 176, PALIERS[index][0] + ' · ' + PALIERS[index][1], 'qa-t-sm', 'middle');
     b += tx(135, 198, PALIERS[index][2], 'qa-t-big', 'middle');
     return wrap('0 0 270 206', b);
