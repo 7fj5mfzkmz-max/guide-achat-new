@@ -554,14 +554,14 @@
           "luminosite_nits": 2600
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4 pour chaque marché",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
-          "ram_go_max": 16,
+          "ram_go_max": 12,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": null
@@ -596,8 +596,14 @@
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Galaxy+Z+Fold8",
-        "https://www.kimovil.com/fr/ou-acheter-galaxy-z-fold8"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ]
     },
     {
@@ -1621,24 +1627,11 @@
       "nom": "Xiaomi 16 Pro",
       "marque": "Xiaomi",
       "prix_indicatif": 749,
-      "prix_note": "Prix du classeur : 1299 € (Rumeur 2026, non retenu : ni relevé ni confirmé).",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "écran": "6,7\" AMOLED, 120 Hz, 2712 x 1220, 3000 nits",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "12 ou 16 Go LPDDR5X",
-        "stockage": "512 Go UFS4.0",
-        "batterie": "5900 mAh, charge 90 W",
-        "photo": "Triple caméra : 50 Mpx principal (f/1.4, OIS) + 50 Mpx ultra grand-angle + 50 Mpx périscopique (3.2×, OIS)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
-        "étanchéité": "IP68",
-        "OS": "Android 15, HyperOS 2.0",
-        "dimensions": "159,4 × 75,2 × 8,6 mm",
-        "poids": "210 g",
-        "ecran": "6.73 AMOLED 120Hz 3000nits",
-        "ram": "12 Go",
-        "etancheite": "IP68",
-        "os": "Android 15 (4 ans)",
+        "ecran": "OLED, 120 Hz",
+        "processeur": "Snapdragon 8 Elite (3 nm)",
+        "batterie": "6 100 mAh, charge 90 W",
         "charge": "90 W",
         "refresh": "120 Hz"
       },
@@ -1649,28 +1642,28 @@
       ],
       "critere_principal": "Polyvalence / multimédia",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+16+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "rumeur_fichier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": 3000
+          "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
           "ram_go_max": 16,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": 3.2
@@ -1684,29 +1677,34 @@
           }
         },
         "batterie": {
-          "capacite_mah": 5900,
+          "capacite_mah": 6100,
           "recharge_watts": 90,
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 4
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+16+Pro",
-        "https://www.kimovil.com/fr/ou-acheter-xiaomi-16-pro"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ]
     },
     {
@@ -2104,16 +2102,11 @@
       "nom": "Xiaomi 16 Ultra",
       "marque": "Xiaomi",
       "prix_indicatif": 1499,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.73 AMOLED 120Hz",
-        "processeur": "Snapdragon 8 Elite (3 nm)",
-        "ram": "16 Go",
-        "stockage": "512 Go",
-        "batterie": "5300 mAh, charge 90 W",
-        "photo": "50 Mpx, téléobjectif ×4",
-        "etancheite": "IP68",
-        "os": "Android 15 (4 ans)",
+        "ecran": "OLED, 120 Hz",
+        "processeur": "Snapdragon 8 Elite Gen 5 (3 nm)",
+        "batterie": "6 000 mAh, charge 90 W",
         "charge": "90 W",
         "refresh": "120 Hz"
       },
@@ -2124,28 +2117,28 @@
       ],
       "critere_principal": "Robustesse / durabilité",
       "scores": {},
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+16+Ultra",
       "kimovil_url": "https://www.kimovil.com/fr/",
       "fabricant_url": "",
-      "pour_qui": "Fiche à documenter : prix, caractéristiques et analyse à vérifier avant publication.",
-      "date_verification": null,
-      "fiche_statut": "specs_a_verifier",
+      "pour_qui": "",
+      "date_verification": "2026-10",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 120,
           "luminosite_nits": 3000
         },
         "performance": {
-          "soc": "Snapdragon 8 Elite",
-          "niveau": 9,
+          "soc": "Snapdragon 8 Elite Gen 5 (3 nm)",
+          "niveau": 10,
           "ram_go_max": 16,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": 4
@@ -2159,29 +2152,35 @@
           }
         },
         "batterie": {
-          "capacite_mah": 5300,
+          "capacite_mah": 6000,
           "recharge_watts": 90,
-          "chimie": "Silicium-carbone"
+          "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 4
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+16+Ultra",
-        "https://www.kimovil.com/fr/ou-acheter-xiaomi-16-ultra"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ]
     },
     {
@@ -2598,18 +2597,13 @@
       "nom": "realme C67",
       "marque": "realme",
       "prix_indicatif": 150,
-      "prix_note": "Prix du classeur (Lancement 2023). Modèle ancien : hors classement.",
+      "prix_note": "Prix indicatif vérifié",
       "tranche_prix": "100-200",
-      "ready_for_recommendation": true,
+      "ready_for_recommendation": false,
       "caracteristiques": {
-        "ecran": "6.72 LCD 90Hz",
+        "ecran": "LCD, 90 Hz",
         "processeur": "Snapdragon 685 (6 nm)",
-        "ram": "8 Go",
-        "stockage": "128 Go",
-        "batterie": "5000 mAh, charge 33 W",
-        "photo": "108 Mpx",
-        "etancheite": "IP54",
-        "os": "Android 14 (2 ans)",
+        "batterie": "5 000 mAh, charge 33 W",
         "charge": "33 W",
         "refresh": "90 Hz"
       },
@@ -2648,14 +2642,14 @@
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 685",
+          "soc": "Snapdragon 685 (6 nm)",
           "niveau": 2,
           "ram_go_max": 8,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 108,
-          "ois": false
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -2663,20 +2657,28 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP54",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "mises_a_jour_ans": 2
         }
       },
       "annee_sortie": 2023,
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
       },
       "sources_verification": [
-        "https://www.frandroid.com/marques/realme",
-        "https://www.gsmarena.com/realme_c67_4g-12749.php"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ],
-      "fiche_statut": "source_fichier",
+      "fiche_statut": "verifie_web",
+      "pour_qui": "",
       "exclu_reco": true
     },
     {
@@ -3306,18 +3308,13 @@
       "nom": "Xiaomi Redmi Note 11S",
       "marque": "Xiaomi",
       "prix_indicatif": 249,
-      "prix_note": "Prix du classeur (Lancement 2022). Modèle ancien : hors classement.",
+      "prix_note": "Prix indicatif vérifié",
       "tranche_prix": "moins-100",
-      "ready_for_recommendation": true,
+      "ready_for_recommendation": false,
       "caracteristiques": {
-        "ecran": "6.43 AMOLED 90Hz 1000nits",
+        "ecran": "AMOLED, 90 Hz",
         "processeur": "Helio G96 (12 nm)",
-        "ram": "6 Go",
-        "stockage": "64 Go",
-        "batterie": "5000 mAh, charge 33 W",
-        "photo": "108 Mpx",
-        "etancheite": "IP53",
-        "os": "Android 11 (2 ans)",
+        "batterie": "5 000 mAh, charge 33 W",
         "charge": "33 W",
         "refresh": "90 Hz"
       },
@@ -3341,17 +3338,17 @@
         "ecran": {
           "technologie": "AMOLED",
           "frequence_max_hz": 90,
-          "luminosite_nits": 1000
+          "luminosite_nits": null
         },
         "performance": {
-          "soc": "Helio G96",
+          "soc": "Helio G96 (12 nm)",
           "niveau": 3,
-          "ram_go_max": 6,
+          "ram_go_max": 8,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 108,
-          "ois": false
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3359,20 +3356,28 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP53",
-          "android_version_sortie": 11,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "mises_a_jour_ans": 2
         }
       },
-      "fiche_statut": "source_fichier",
+      "fiche_statut": "verifie_web",
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
       },
       "sources_verification": [
-        "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-11s",
-        "https://www.lesnumeriques.com/telephone-portable/xiaomi-redmi-note-11s-p67333/test.html"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ],
       "date_verification": "2026-10",
+      "pour_qui": "",
       "exclu_reco": true
     },
     {
@@ -3380,17 +3385,13 @@
       "nom": "Samsung Galaxy A23 5G",
       "marque": "Samsung",
       "prix_indicatif": 319,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "tranche_prix": "moins-100",
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "caracteristiques": {
-        "ecran": "6.6 LCD 120Hz",
+        "ecran": "LCD, 120 Hz",
         "processeur": "Snapdragon 695 (6 nm)",
-        "ram": "4 Go",
-        "stockage": "64 Go",
-        "batterie": "5000 mAh, charge 25 W",
-        "photo": "50 Mpx",
-        "os": "Android 12 (4 ans)",
+        "batterie": "5 000 mAh, charge 25 W",
         "charge": "25 W",
         "refresh": "120 Hz"
       },
@@ -3411,14 +3412,14 @@
           "luminosite_nits": 500
         },
         "performance": {
-          "soc": "Snapdragon 695",
+          "soc": "Snapdragon 695 (6 nm)",
           "niveau": 3,
-          "ram_go_max": 4,
+          "ram_go_max": 6,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -3438,25 +3439,33 @@
         },
         "durete": {
           "protection_ip": null,
-          "android_version_sortie": 12,
+          "android_version_sortie": null,
           "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 4
         }
       },
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A23+5G",
-        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a23-5g"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "date_verification": "2026-10",
+      "pour_qui": ""
     },
     {
       "id": "moto-g06-power",
@@ -3771,17 +3780,13 @@
       "nom": "ZTE Blade V70 Vita",
       "marque": "ZTE",
       "prix_indicatif": 92,
-      "prix_note": "Prix du classeur (Lancement 2025). Modèle ancien : hors classement.",
+      "prix_note": "Prix indicatif vérifié",
       "tranche_prix": "moins-100",
-      "ready_for_recommendation": true,
+      "ready_for_recommendation": false,
       "caracteristiques": {
-        "ecran": "6.6 LCD 90Hz",
+        "ecran": "LCD, 90 Hz",
         "processeur": "Unisoc T606 (12 nm)",
-        "ram": "4 Go",
-        "stockage": "128 Go",
-        "batterie": "5000 mAh, charge 22.5 W",
-        "photo": "50 Mpx",
-        "os": "Android 14 (1 an)",
+        "batterie": "5 000 mAh, charge 22.5 W",
         "charge": "22.5 W",
         "refresh": "90 Hz"
       },
@@ -3802,14 +3807,14 @@
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Unisoc T606",
+          "soc": "Unisoc T606 (12 nm)",
           "niveau": 1,
           "ram_go_max": 4,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5000,
@@ -3818,19 +3823,27 @@
         },
         "durete": {
           "protection_ip": null,
-          "android_version_sortie": 14,
+          "android_version_sortie": null,
           "mises_a_jour_ans": 1
         }
       },
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
       },
       "sources_verification": [
-        "https://www.gsmarena.com/zte-phones-62.php",
-        "https://www.kimovil.com/fr/telephones-zte"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ],
       "date_verification": "2026-10",
-      "fiche_statut": "source_fichier",
+      "fiche_statut": "verifie_web",
+      "pour_qui": "",
       "exclu_reco": true
     },
     {
@@ -4396,16 +4409,11 @@
       "nom": "ZTE Nubia Z60S",
       "marque": "ZTE",
       "prix_indicatif": 599,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.78 AMOLED 120Hz",
+        "ecran": "AMOLED, 120 Hz",
         "processeur": "Snapdragon 8 Gen 2 (4 nm)",
-        "ram": "12 Go",
-        "stockage": "256 Go",
-        "batterie": "5100 mAh, charge 80 W",
-        "photo": "50 Mpx, téléobjectif ×2",
-        "etancheite": "IP68",
-        "os": "Android 14 (3 ans)",
+        "batterie": "5 100 mAh, charge 80 W",
         "charge": "80 W",
         "refresh": "120 Hz"
       },
@@ -4415,7 +4423,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ZTE+Nubia+Z60S",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4423,14 +4431,14 @@
           "luminosite_nits": 1200
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 2",
+          "soc": "Snapdragon 8 Gen 2 (4 nm)",
           "niveau": 7,
-          "ram_go_max": 12,
+          "ram_go_max": 16,
           "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -4449,42 +4457,44 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=ZTE+Nubia+Z60S",
-        "https://www.kimovil.com/fr/ou-acheter-zte-nubia-z60s"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "tecno-camon-40-pro",
       "nom": "Tecno Camon 40 Pro",
       "marque": "Tecno",
       "prix_indicatif": 349,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.78 AMOLED 144Hz",
+        "ecran": "AMOLED, 144 Hz",
         "processeur": "Dimensity 8200 (4 nm)",
-        "ram": "8 Go",
-        "stockage": "256 Go",
-        "batterie": "5000 mAh, charge 70 W",
-        "photo": "50 Mpx",
-        "etancheite": "IP53",
-        "os": "Android 14 (2 ans)",
+        "batterie": "5 000 mAh, charge 70 W",
         "charge": "70 W",
         "refresh": "144 Hz"
       },
@@ -4494,7 +4504,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Tecno+Camon+40+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -4502,14 +4512,14 @@
           "luminosite_nits": 1300
         },
         "performance": {
-          "soc": "Dimensity 8200",
+          "soc": "Dimensity 8200 (4 nm)",
           "niveau": 6,
-          "ram_go_max": 8,
+          "ram_go_max": 12,
           "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": null
@@ -4528,44 +4538,46 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP53",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Tecno+Camon+40+Pro",
-        "https://www.kimovil.com/fr/ou-acheter-tecno-camon-40-pro"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "nokia-g70-5g",
       "nom": "Nokia G70 5G",
       "marque": "Nokia",
       "prix_indicatif": 249,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.6 LCD 120Hz",
+        "ecran": "LCD, 90 Hz",
         "processeur": "Snapdragon 4 Gen 1 (6 nm)",
-        "ram": "6 Go",
-        "stockage": "128 Go",
-        "batterie": "5000 mAh, charge 20 W",
-        "photo": "50 Mpx",
-        "etancheite": "IP52",
-        "os": "Android 14 (2 ans)",
+        "batterie": "5 000 mAh, charge 20 W",
         "charge": "20 W",
-        "refresh": "120 Hz"
+        "refresh": "90 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4573,22 +4585,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nokia+G70+5G",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "LCD",
-          "frequence_max_hz": 120,
+          "frequence_max_hz": 90,
           "luminosite_nits": 600
         },
         "performance": {
-          "soc": "Snapdragon 4 Gen 1",
+          "soc": "Snapdragon 4 Gen 1 (6 nm)",
           "niveau": 2,
           "ram_go_max": 6,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -4607,42 +4619,44 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP52",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Nokia+G70+5G",
-        "https://www.kimovil.com/fr/ou-acheter-nokia-g70-5g"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "htc-u24-pro",
       "nom": "HTC U24 Pro",
       "marque": "HTC",
       "prix_indicatif": 549,
-      "prix_note": "Prix du classeur (Juin 2024). Modèle ancien : hors classement.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.8 OLED 120Hz",
+        "ecran": "OLED, 120 Hz",
         "processeur": "Snapdragon 7 Gen 3 (4 nm)",
-        "ram": "12 Go",
-        "stockage": "256 Go",
-        "batterie": "4600 mAh, charge 60 W",
-        "photo": "50 Mpx, téléobjectif ×2",
-        "etancheite": "IP67",
-        "os": "Android 14 (2 ans)",
+        "batterie": "4 600 mAh, charge 60 W",
         "charge": "60 W",
         "refresh": "120 Hz"
       },
@@ -4652,7 +4666,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=HTC+U24+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "source_fichier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "OLED",
@@ -4660,14 +4674,14 @@
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 7 Gen 3",
+          "soc": "Snapdragon 7 Gen 3 (4 nm)",
           "niveau": 6,
           "ram_go_max": 12,
           "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 4600,
@@ -4675,19 +4689,27 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP67",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "mises_a_jour_ans": 2
         }
       },
-      "ready_for_recommendation": true,
+      "ready_for_recommendation": false,
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
       },
       "sources_verification": [
-        "https://www.gsmarena.com/htc_u24_pro-13038.php",
-        "https://www.kimovil.com/fr/ou-acheter-htc-u24-pro"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ],
+      "pour_qui": "",
       "exclu_reco": true
     },
     {
@@ -4695,24 +4717,13 @@
       "nom": "ASUS Zenfone 12 Ultra",
       "marque": "ASUS",
       "prix_indicatif": 799,
-      "prix_note": "Prix du classeur : 999 € (Est. 2026, non retenu : ni relevé ni confirmé).",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "écran": "6,8\" AMOLED, 120 Hz, 2880 x 1300",
-        "processeur": "Snapdragon 8 Gen 4",
-        "RAM": "12 ou 16 Go LPDDR5X",
-        "stockage": "512 Go UFS4.0",
-        "batterie": "5900 mAh, charge 80 W",
-        "photo": "50 Mpx principal (f/1.6, OIS) + 12 Mpx ultra grand-angle + 12 Mpx téléobjectif (3.2×, OIS)",
-        "vidéo": "8K @ 30 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4, NFC",
-        "étanchéité": "IP68",
-        "OS": "Android 15, ZenUI 12",
-        "ecran": "6.78 AMOLED 144Hz 2500nits",
-        "ram": "12 Go",
-        "etancheite": "IP68",
-        "os": "Android 15 (4 ans)",
+        "ecran": "AMOLED, 144 Hz",
+        "processeur": "Snapdragon 8 Elite (3 nm)",
+        "batterie": "5 900 mAh, charge 80 W",
         "charge": "80 W",
-        "refresh": "120 Hz"
+        "refresh": "144 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -4720,22 +4731,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+Zenfone+12+Ultra",
       "date_verification": "2026-10",
-      "fiche_statut": "rumeur_fichier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
-          "frequence_max_hz": 120,
-          "luminosite_nits": 2500
+          "frequence_max_hz": 144,
+          "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
           "ram_go_max": 16,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": 3
@@ -4754,42 +4765,43 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 4
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=ASUS+Zenfone+12+Ultra",
-        "https://www.kimovil.com/fr/ou-acheter-asus-zenfone-12-ultra"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "samsung-galaxy-xcover-8-pro",
       "nom": "Samsung Galaxy XCover 8 Pro",
       "marque": "Samsung",
       "prix_indicatif": 649,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.6 LCD 120Hz",
+        "ecran": "LCD, 120 Hz",
         "processeur": "Snapdragon 7s Gen 2 (4 nm)",
-        "ram": "8 Go",
-        "stockage": "128 Go",
-        "batterie": "4500 mAh, charge 25 W",
-        "photo": "50 Mpx",
-        "etancheite": "IP68 / MIL-STD",
-        "os": "Android 14 (5 ans)",
+        "batterie": "4 500 mAh, charge 25 W",
         "charge": "25 W",
         "refresh": "120 Hz"
       },
@@ -4799,7 +4811,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+XCover+8+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "LCD",
@@ -4807,14 +4819,14 @@
           "luminosite_nits": 1000
         },
         "performance": {
-          "soc": "Snapdragon 7s Gen 2",
+          "soc": "Snapdragon 7s Gen 2 (4 nm)",
           "niveau": 5,
-          "ram_go_max": 8,
+          "ram_go_max": 6,
           "gamme": "milieu"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": null
@@ -4833,26 +4845,33 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP68 / MIL-STD",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "7.5 à 8.5/10",
           "mises_a_jour_ans": 5
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+XCover+8+Pro",
-        "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-xcover-8-pro"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "motorola-razr-60-ultra",
@@ -4883,19 +4902,19 @@
       "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
-          "frequence_max_hz": 120,
+          "technologie": "OLED",
+          "frequence_max_hz": 165,
           "luminosite_nits": 3000
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4",
-          "niveau": 9,
-          "ram_go_max": 16,
-          "gamme": "sommet"
+          "soc": "Snapdragon 8s Gen 3 (4 nm)",
+          "niveau": 7,
+          "ram_go_max": 12,
+          "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": null
@@ -4909,7 +4928,7 @@
           }
         },
         "batterie": {
-          "capacite_mah": 4400,
+          "capacite_mah": 4000,
           "recharge_watts": 45,
           "chimie": "Li-Po"
         },
@@ -4931,8 +4950,14 @@
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Motorola+Razr+60+Ultra",
-        "https://www.kimovil.com/fr/ou-acheter-motorola-razr-60-ultra"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ]
     },
     {
@@ -5413,16 +5438,11 @@
       "nom": "Tecno Spark 20",
       "marque": "Tecno",
       "prix_indicatif": 149,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.6 LCD 90Hz",
+        "ecran": "LCD, 90 Hz",
         "processeur": "Helio G85 (12 nm)",
-        "ram": "8 Go",
-        "stockage": "128 Go",
-        "batterie": "5000 mAh, charge 18 W",
-        "photo": "50 Mpx",
-        "etancheite": "IP53",
-        "os": "Android 13 (1 an)",
+        "batterie": "5 000 mAh, charge 18 W",
         "charge": "18 W",
         "refresh": "90 Hz"
       },
@@ -5435,7 +5455,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Tecno+Spark+20",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "LCD",
@@ -5443,14 +5463,14 @@
           "luminosite_nits": 500
         },
         "performance": {
-          "soc": "Helio G85",
+          "soc": "Helio G85 (12 nm)",
           "niveau": 2,
           "ram_go_max": 8,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -5469,42 +5489,44 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP53",
-          "android_version_sortie": 13,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 1
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Tecno+Spark+20",
-        "https://www.kimovil.com/fr/ou-acheter-tecno-spark-20"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "infinix-hot-40",
       "nom": "Infinix Hot 40",
       "marque": "Infinix",
       "prix_indicatif": 150,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.78 LCD 90Hz",
+        "ecran": "LCD, 90 Hz",
         "processeur": "Helio G88 (12 nm)",
-        "ram": "8 Go",
-        "stockage": "128 Go",
-        "batterie": "5000 mAh, charge 33 W",
-        "photo": "50 Mpx",
-        "etancheite": "IP53",
-        "os": "Android 13 (1 an)",
+        "batterie": "5 000 mAh, charge 33 W",
         "charge": "33 W",
         "refresh": "90 Hz"
       },
@@ -5517,7 +5539,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Infinix+Hot+40",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "LCD",
@@ -5525,14 +5547,14 @@
           "luminosite_nits": 500
         },
         "performance": {
-          "soc": "Helio G88",
+          "soc": "Helio G88 (12 nm)",
           "niveau": 2,
           "ram_go_max": 8,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -5551,46 +5573,46 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP53",
-          "android_version_sortie": 13,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 1
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Infinix+Hot+40",
-        "https://www.kimovil.com/fr/ou-acheter-infinix-hot-40"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "honor-9-lite",
       "nom": "Honor 9 Lite",
       "marque": "Honor",
       "prix_indicatif": 149,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "écran": "6,5\" IPS LCD, 90 Hz, 1600 x 720",
-        "processeur": "Snapdragon 680",
-        "RAM": "4 ou 6 Go LPDDR4X",
-        "stockage": "128 Go eMMC",
-        "batterie": "5000 mAh, charge 22 W",
-        "photo": "50 Mpx principal (f/1.8) + 5 Mpx ultra grand-angle + 2 Mpx macro",
-        "vidéo": "1080p @ 30 fps",
-        "connectivité": "4G LTE, WiFi 5, Bluetooth 5.0",
-        "étanchéité": "IP54",
-        "OS": "Android 14, Magic UI 8",
-        "charge": "22 W",
-        "refresh": "90 Hz"
+        "ecran": "5,65\" IPS LCD, 1080 x 2160, 60 Hz",
+        "processeur": "Kirin 659 (16 nm)",
+        "batterie": "3 000 mAh, charge 10 W",
+        "charge": "10 W",
+        "refresh": "60 Hz"
       },
       "points_forts": [],
       "points_faibles": [],
@@ -5601,38 +5623,49 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+9+Lite",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "LCD",
-          "frequence_max_hz": 90,
+          "frequence_max_hz": 60,
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 680",
+          "soc": "Kirin 659 (16 nm)",
           "niveau": 2,
-          "ram_go_max": 6,
+          "ram_go_max": 4,
           "gamme": "entree"
         },
         "photo": {
-          "mp_principal": 50,
-          "ois": false
+          "mp_principal": 13,
+          "ois": null
         },
         "batterie": {
-          "capacite_mah": 5000,
-          "recharge_watts": 22,
+          "capacite_mah": 3000,
+          "recharge_watts": 10,
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP54",
-          "android_version_sortie": 14
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
+      },
+      "sources_verification": [
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "samsung-galaxy-a05",
@@ -5722,16 +5755,11 @@
       "nom": "Nokia C31",
       "marque": "Nokia",
       "prix_indicatif": 129,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.75 LCD 60Hz",
+        "ecran": "LCD, 60 Hz",
         "processeur": "Unisoc SC9863A (28 nm)",
-        "ram": "4 Go",
-        "stockage": "64 Go",
-        "batterie": "5050 mAh, charge 10 W",
-        "photo": "13 Mpx",
-        "etancheite": "IP52",
-        "os": "Android 12 (2 ans)",
+        "batterie": "5 050 mAh, charge 10 W",
         "charge": "10 W",
         "refresh": "60 Hz"
       },
@@ -5744,7 +5772,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nokia+C31",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "LCD",
@@ -5752,14 +5780,14 @@
           "luminosite_nits": 400
         },
         "performance": {
-          "soc": "Unisoc SC9863A",
+          "soc": "Unisoc SC9863A (28 nm)",
           "niveau": 1,
           "ram_go_max": 4,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 13,
-          "ois": false,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -5778,26 +5806,33 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP52",
-          "android_version_sortie": 12,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Nokia+C31",
-        "https://www.kimovil.com/fr/ou-acheter-nokia-c31"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "oneplus-12-ultra",
@@ -5866,15 +5901,11 @@
       "nom": "Xiaomi Black Shark 7 Pro",
       "marque": "Xiaomi",
       "prix_indicatif": 899,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.8 AMOLED 144Hz",
+        "ecran": "OLED, 144 Hz",
         "processeur": "Snapdragon 8 Elite (3 nm)",
-        "ram": "16 Go",
-        "stockage": "512 Go",
-        "batterie": "6000 mAh, charge 120 W",
-        "photo": "50 Mpx",
-        "os": "Android 15 (2 ans)",
+        "batterie": "6 000 mAh, charge 120 W",
         "charge": "120 W",
         "refresh": "144 Hz"
       },
@@ -5886,22 +5917,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Black+Shark+7+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 144,
           "luminosite_nits": 1500
         },
         "performance": {
-          "soc": "Snapdragon 8 Elite",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
           "ram_go_max": 16,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": null
@@ -5921,48 +5952,45 @@
         },
         "durete": {
           "protection_ip": "IP54",
-          "android_version_sortie": 15,
+          "android_version_sortie": null,
           "reparabilite_estimee": "7.0 à 8.0/10",
           "mises_a_jour_ans": 2
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "ip",
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Black+Shark+7+Pro",
-        "https://www.kimovil.com/fr/ou-acheter-xiaomi-black-shark-7-pro"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "nubia-red-magic-10-pro",
       "nom": "Nubia Red Magic 10 Pro",
       "marque": "ZTE Nubia",
       "prix_indicatif": 749,
-      "prix_note": "Prix du classeur : 799 € (Rumeur 2025, non retenu : ni relevé ni confirmé).",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "écran": "6,87\" OLED, 144 Hz, 2688 x 1216, 10000 nits, 1ms latency",
-        "processeur": "Snapdragon 8 Gen 4 Leading",
-        "RAM": "16 ou 20 Go LPDDR5X",
-        "stockage": "512 Go ou 1 To UFS4.0",
-        "batterie": "7100 mAh, charge 120 W, batterie active 5800 mAh",
-        "photo": "50 Mpx principal (f/1.6) + 50 Mpx ultra grand-angle + 12 Mpx téléobjectif",
-        "vidéo": "8K @ 60 fps",
-        "connectivité": "5G, WiFi 7, Bluetooth 5.4",
-        "étanchéité": "IP68",
-        "OS": "Android 15, RedMagic OS 9",
-        "ecran": "6.8 AMOLED 144Hz",
-        "ram": "12 Go",
-        "os": "Android 15 (2 ans)",
-        "charge": "120 W",
+        "ecran": "OLED, 144 Hz",
+        "processeur": "Snapdragon 8 Elite (3 nm)",
+        "batterie": "7 050 mAh, charge 100 W",
+        "charge": "100 W",
         "refresh": "144 Hz"
       },
       "points_forts": [],
@@ -5973,22 +6001,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ZTE+Nubia+Nubia+Red+Magic+10+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "rumeur_fichier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 144,
-          "luminosite_nits": 10000
+          "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 4 Leading",
+          "soc": "Snapdragon 8 Elite (3 nm)",
           "niveau": 9,
-          "ram_go_max": 20,
+          "ram_go_max": 24,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": false,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": null
@@ -6002,31 +6030,37 @@
           }
         },
         "batterie": {
-          "capacite_mah": 7100,
-          "recharge_watts": 120,
+          "capacite_mah": 7050,
+          "recharge_watts": 100,
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 15,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 2
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026",
-        "prix": "rumeur_non_retenue",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Nubia+Red+Magic+10+Pro",
-        "https://www.kimovil.com/fr/ou-acheter-nubia-red-magic-10-pro"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "moto-edge-50-pro",
@@ -6105,16 +6139,11 @@
       "nom": "Realme GT Neo 7",
       "marque": "Realme",
       "prix_indicatif": 499,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.78 AMOLED 144Hz",
+        "ecran": "OLED, 144 Hz",
         "processeur": "Dimensity 9300+ (4 nm)",
-        "ram": "12 Go",
-        "stockage": "256 Go",
-        "batterie": "5500 mAh, charge 120 W",
-        "photo": "50 Mpx",
-        "etancheite": "IP65",
-        "os": "Android 14 (3 ans)",
+        "batterie": "5 500 mAh, charge 120 W",
         "charge": "120 W",
         "refresh": "144 Hz"
       },
@@ -6126,22 +6155,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+GT+Neo+7",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 144,
           "luminosite_nits": 6000
         },
         "performance": {
-          "soc": "Dimensity 9300+",
+          "soc": "Dimensity 9300+ (4 nm)",
           "niveau": 8,
-          "ram_go_max": 12,
+          "ram_go_max": 16,
           "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -6160,26 +6189,33 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP65",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Realme+GT+Neo+7",
-        "https://www.kimovil.com/fr/ou-acheter-realme-gt-neo-7"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "honor-magic-v3",
@@ -6207,22 +6243,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+Magic+V3",
       "date_verification": "2026-10",
-      "fiche_statut": "source_fichier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "OLED",
           "frequence_max_hz": 120,
-          "luminosite_nits": 1600
+          "luminosite_nits": null
         },
         "performance": {
-          "soc": "Snapdragon 8 Gen 3",
+          "soc": "Snapdragon 8 Gen 3 (4 nm)",
           "niveau": 8,
-          "ram_go_max": 12,
+          "ram_go_max": 16,
           "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": true,
             "zoom": 3.5
@@ -6238,7 +6274,7 @@
         "batterie": {
           "capacite_mah": 5150,
           "recharge_watts": 66,
-          "chimie": "Silicium-carbone"
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IPX8",
@@ -6256,9 +6292,16 @@
         ]
       },
       "sources_verification": [
-        "https://www.lesnumeriques.com/telephone-portable/honor-magic-v3-p75043/test.html",
-        "https://www.frandroid.com/marques/honor/2330656_test-honor-magic-v3"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "exclu_reco": true
     },
     {
       "id": "poco-f6-pro",
@@ -6421,16 +6464,11 @@
       "nom": "Vivo iQOO Z9 Turbo",
       "marque": "Vivo",
       "prix_indicatif": 350,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.78 AMOLED 144Hz",
+        "ecran": "OLED, 144 Hz",
         "processeur": "Snapdragon 8s Gen 3 (4 nm)",
-        "ram": "12 Go",
-        "stockage": "256 Go",
-        "batterie": "6000 mAh, charge 80 W",
-        "photo": "50 Mpx",
-        "etancheite": "IP64",
-        "os": "Android 14 (3 ans)",
+        "batterie": "6 000 mAh, charge 80 W",
         "charge": "80 W",
         "refresh": "144 Hz"
       },
@@ -6442,22 +6480,22 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vivo+iQOO+Z9+Turbo",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
-          "technologie": "AMOLED",
+          "technologie": "OLED",
           "frequence_max_hz": 144,
           "luminosite_nits": 4500
         },
         "performance": {
-          "soc": "Snapdragon 8s Gen 3",
+          "soc": "Snapdragon 8s Gen 3 (4 nm)",
           "niveau": 7,
-          "ram_go_max": 12,
+          "ram_go_max": 16,
           "gamme": "haut"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -6476,41 +6514,44 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP64",
-          "android_version_sortie": 14,
+          "protection_ip": null,
+          "android_version_sortie": null,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 3
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Vivo+iQOO+Z9+Turbo",
-        "https://www.kimovil.com/fr/ou-acheter-vivo-iqoo-z9-turbo"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "nubia-focus-6-air",
       "nom": "Nubia Focus 6 Air",
       "marque": "ZTE Nubia",
       "prix_indicatif": 299,
-      "prix_note": "Valeurs du classeur Integral, sans source.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.6 LCD 120Hz",
+        "ecran": "LCD, 120 Hz",
         "processeur": "Unisoc T760 (6 nm)",
-        "ram": "8 Go",
-        "stockage": "256 Go",
-        "batterie": "5000 mAh, charge 33 W",
-        "photo": "108 Mpx",
-        "os": "Android 14 (1 an)",
+        "batterie": "5 000 mAh, charge 33 W",
         "charge": "33 W",
         "refresh": "120 Hz"
       },
@@ -6522,7 +6563,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ZTE+Nubia+Nubia+Focus+6+Air",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "LCD",
@@ -6530,14 +6571,14 @@
           "luminosite_nits": 600
         },
         "performance": {
-          "soc": "Unisoc T760",
+          "soc": "Unisoc T760 (6 nm)",
           "niveau": 1,
           "ram_go_max": 8,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 108,
-          "ois": false,
+          "ois": null,
           "teleobjectif": {
             "present": false,
             "zoom": null
@@ -6557,27 +6598,34 @@
         },
         "durete": {
           "protection_ip": null,
-          "android_version_sortie": 14,
+          "android_version_sortie": null,
           "sans_ip": true,
           "reparabilite_estimee": "6.5 à 7.5/10",
           "mises_a_jour_ans": 1
         }
       },
-      "ready_for_recommendation": false,
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "fichier_integral",
+        "compatibilite_derivee": "sources_web",
+        "sources": 2,
         "classeur_complet": [
           "ip",
           "nits",
           "reparabilite",
-          "sources",
           "tele"
         ]
       },
       "sources_verification": [
-        "https://www.gsmarena.com/res.php3?sSearch=Nubia+Focus+6+Air",
-        "https://www.kimovil.com/fr/ou-acheter-nubia-focus-6-air"
-      ]
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "hasselblad-mobile",
@@ -7133,18 +7181,11 @@
       "nom": "Tecno Phantom X3 Pro",
       "marque": "Tecno",
       "prix_indicatif": 649,
-      "prix_note": "Prix généralement constaté, hors promotions ponctuelles.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "écran": "6,8\" AMOLED, 120 Hz, 2800 x 1264",
-        "processeur": "MediaTek Dimensity 9400",
-        "RAM": "12 Go LPDDR5X",
-        "stockage": "512 Go UFS4.0",
-        "batterie": "5900 mAh, charge 70 W",
-        "photo": "Triple : 50 Mpx principal (f/1.6, OIS, Sony IMX) + 50 Mpx ultra grand-angle + 12 Mpx téléobjectif (3×, OIS)",
-        "vidéo": "4K @ 60 fps, photo prioritaire",
-        "connectivité": "5G, WiFi 6E, Bluetooth 5.3",
-        "étanchéité": "IP68",
-        "OS": "Android 14, HiOS 14 Photo",
+        "ecran": "AMOLED, 120 Hz",
+        "processeur": "Dimensity 9400 (3 nm)",
+        "batterie": "5 900 mAh, charge 70 W",
         "charge": "70 W",
         "refresh": "120 Hz"
       },
@@ -7156,7 +7197,7 @@
       "scores": {},
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Tecno+Phantom+X3+Pro",
       "date_verification": "2026-10",
-      "fiche_statut": "specs_a_verifier",
+      "fiche_statut": "verifie_web",
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -7164,14 +7205,14 @@
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "MediaTek Dimensity 9400",
+          "soc": "Dimensity 9400 (3 nm)",
           "niveau": 9,
           "ram_go_max": 12,
           "gamme": "sommet"
         },
         "photo": {
           "mp_principal": 50,
-          "ois": true
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5900,
@@ -7179,30 +7220,37 @@
           "chimie": "Li-Po"
         },
         "durete": {
-          "protection_ip": "IP68",
-          "android_version_sortie": 14
+          "protection_ip": null,
+          "android_version_sortie": null
         }
       },
-      "ready_for_recommendation": false,
-      "exclu_reco": "modèle probablement inexistant tel que décrit",
+      "ready_for_recommendation": true,
       "spec_provenance": {
-        "compatibilite_derivee": "caracteristiques_catalogue"
-      }
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
+      },
+      "sources_verification": [
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
+      ],
+      "pour_qui": ""
     },
     {
       "id": "nokia-g10",
       "nom": "Nokia G10",
       "marque": "Nokia",
       "prix_indicatif": 149,
-      "prix_note": "Prix du classeur (Lancement 2021). Modèle ancien : hors classement.",
+      "prix_note": "Prix indicatif vérifié",
       "caracteristiques": {
-        "ecran": "6.52 LCD 60Hz",
+        "ecran": "LCD, 60 Hz",
         "processeur": "Helio G25 (12 nm)",
-        "ram": "3 Go",
-        "stockage": "32 Go",
-        "batterie": "5050 mAh, charge 10 W",
-        "photo": "13 Mpx",
-        "os": "Android 11 (2 ans)",
+        "batterie": "5 050 mAh, charge 10 W",
         "charge": "10 W",
         "refresh": "60 Hz"
       },
@@ -7244,14 +7292,14 @@
           "luminosite_nits": null
         },
         "performance": {
-          "soc": "Helio G25",
+          "soc": "Helio G25 (12 nm)",
           "niveau": 1,
-          "ram_go_max": 3,
+          "ram_go_max": 4,
           "gamme": "entree"
         },
         "photo": {
           "mp_principal": 13,
-          "ois": false
+          "ois": null
         },
         "batterie": {
           "capacite_mah": 5050,
@@ -7260,20 +7308,28 @@
         },
         "durete": {
           "protection_ip": null,
-          "android_version_sortie": 11,
+          "android_version_sortie": null,
           "mises_a_jour_ans": 2
         }
       },
-      "ready_for_recommendation": true,
+      "ready_for_recommendation": false,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nokia+G10",
       "spec_provenance": {
-        "compatibilite_derivee": "classeur_2026"
+        "compatibilite_derivee": "sources_web",
+        "sources": 2
       },
       "sources_verification": [
-        "https://www.gsmarena.com/nokia_g10-10842.php",
-        "https://www.frandroid.com/marques/nokia/909187_nokia-g10"
+        {
+          "nom": "Kimovil",
+          "url": "https://www.kimovil.com"
+        },
+        {
+          "nom": "GSMArena",
+          "url": "https://m.gsmarena.com"
+        }
       ],
-      "fiche_statut": "source_fichier",
+      "fiche_statut": "verifie_web",
+      "pour_qui": "",
       "exclu_reco": true
     },
     {
@@ -8358,7 +8414,7 @@
     "echelle_puces": "niveau 1-10 (phone-analyzer/chips.js) : 1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme",
     "verification_web": {
       "date": "2026-10",
-      "fiches": 27,
+      "fiches": 45,
       "note": "Chaque fiche est relue sur au moins deux sources (presse, fabricants, revendeurs). Une valeur absente ou contradictoire n'est pas renseignée."
     },
     "fichier_2026": {
