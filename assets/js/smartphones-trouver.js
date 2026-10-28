@@ -159,16 +159,20 @@
     var onlyFiches = DATA.produits.filter(isEligible).filter(function (p) { return p.origine !== 'test' && p.prix_indicatif; });
     function tier(g, p, why, score) { var r = ficheRow(p, why); r.tier = g.label; r.plage = g.plage; r.score = score; return r; }
 
+    var PROFILE_MAX_PRIX = { etudiant: 500, prix: 250, professionnel: 1000, gamer: 1200, photographe: 1650, batterie: 800 };
     if (need.profil || need.id === 'batterie') {
       var scoreFn = need.profil ? function (p) { return profileScore(p, need.id); } : capacity;
+      var maxPrice = PROFILE_MAX_PRIX[need.id] || Infinity;
       GAMMES.forEach(function (g) {
-        var items = onlyFiches.filter(function (p) { return p.prix_indicatif >= g.min && p.prix_indicatif <= g.max; })
+        if (g.min > maxPrice) return;
+        var items = onlyFiches.filter(function (p) { return p.prix_indicatif >= g.min && p.prix_indicatif <= Math.min(g.max, maxPrice); })
           .map(function (p) { return { p: p, v: scoreFn(p) }; }).filter(function (x) { return x.v != null; })
           .sort(function (a, b) { return b.v - a.v || a.p.prix_indicatif - b.p.prix_indicatif; });
-        items.forEach(function (item) {
-          var b = item.p.compatibilite && item.p.compatibilite.batterie;
-          fiches.push(tier(g, item.p, need.profil ? null : fr(b.capacite_mah) + ' mAh' + (b.recharge_watts ? ', charge ' + b.recharge_watts + ' W' : '')));
-        });
+        var bestInGamme = items[0];
+        if (bestInGamme) {
+          var b = bestInGamme.p.compatibilite && bestInGamme.p.compatibilite.batterie;
+          fiches.push(tier(g, bestInGamme.p, need.profil ? null : fr(b.capacite_mah) + ' mAh' + (b.recharge_watts ? ', charge ' + b.recharge_watts + ' W' : '')));
+        }
       });
     }
     if (need.profil) {
@@ -200,7 +204,7 @@
         return r;
       });
     }
-    return { tests: tests.slice(0, 4), extra: extraTests && extraTests.slice(0, 3), fiches: fiches };
+    return { tests: tests.slice(0, 4), extra: extraTests && extraTests.slice(0, 3), fiches: fiches.slice(0, 4) };
   }
 
   function render(need) {
