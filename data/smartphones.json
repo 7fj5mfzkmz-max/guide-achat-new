@@ -2717,7 +2717,7 @@
           "gamme": "entree"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 50,
           "ois": false,
           "teleobjectif": {
             "present": false,
@@ -2753,6 +2753,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-15c-global"
         ]
       },
       "date_verification": "2026-10",
@@ -3967,7 +3970,7 @@
           "gamme": "entree"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 32,
           "ois": false,
           "teleobjectif": {
             "present": false,
@@ -4004,6 +4007,9 @@
           "reparabilite",
           "tele",
           "w"
+        ],
+        "mp_principal": [
+          "https://www.mi.com/africa-fr/product/poco-c71/specs/"
         ]
       },
       "date_verification": "2026-10",
@@ -5058,7 +5064,7 @@
           "gamme": "entree"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 108,
           "ois": false,
           "teleobjectif": {
             "present": false,
@@ -5098,6 +5104,9 @@
           "reparabilite",
           "tele",
           "w"
+        ],
+        "mp_principal": [
+          "https://www.journaldugeek.com/test/test-xiaomi-redmi-note-13-4g-le-nouveau-meilleur-ami-des-petits-budgets/"
         ]
       },
       "sources_verification": [
@@ -5338,7 +5347,7 @@
           "gamme": "milieu"
         },
         "photo": {
-          "mp_principal": null,
+          "mp_principal": 64,
           "ois": true,
           "teleobjectif": {
             "present": false,
@@ -5378,6 +5387,9 @@
           "ois",
           "reparabilite",
           "tele"
+        ],
+        "mp_principal": [
+          "https://www.kimovil.com/fr/ou-acheter-poco-x6"
         ]
       },
       "sources_verification": [

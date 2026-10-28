@@ -1,6 +1,23 @@
 {
-  "mis_a_jour": "2026-10-27",
+  "mis_a_jour": "2026-10-28",
   "entrees": [
+    {
+      "id": "smartphones-maj-2026-10-28",
+      "date": "2026-10-28",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "maj",
+      "nombre": 4,
+      "noms": [
+        "Xiaomi Redmi 15C",
+        "POCO C71",
+        "Xiaomi Redmi Note 13",
+        "POCO X6"
+      ],
+      "titre": "4 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : Xiaomi Redmi 15C, POCO C71, Xiaomi Redmi Note 13, POCO X6.",
+      "lien": "smartphones.html"
+    },
     {
       "id": "smartphones-maj-2026-10-27",
       "date": "2026-10-27",

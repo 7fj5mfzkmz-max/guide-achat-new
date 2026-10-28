@@ -149,6 +149,42 @@
     "https://www.mi.com/global/product/poco-f6-pro/specs/"
    ],
    "note": ""
+  },
+  {
+   "id": "redmi-15c",
+   "mp_principal": 50,
+   "remplace": false,
+   "sources": [
+    "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-15c-global"
+   ],
+   "note": "Capteur principal 50 Mpx."
+  },
+  {
+   "id": "poco-c71",
+   "mp_principal": 32,
+   "remplace": false,
+   "sources": [
+    "https://www.mi.com/africa-fr/product/poco-c71/specs/"
+   ],
+   "note": "Capteur principal 32 Mpx."
+  },
+  {
+   "id": "xiaomi-redmi-note-13",
+   "mp_principal": 108,
+   "remplace": false,
+   "sources": [
+    "https://www.journaldugeek.com/test/test-xiaomi-redmi-note-13-4g-le-nouveau-meilleur-ami-des-petits-budgets/"
+   ],
+   "note": "Capteur principal 108 Mpx."
+  },
+  {
+   "id": "poco-x6",
+   "mp_principal": 64,
+   "remplace": false,
+   "sources": [
+    "https://www.kimovil.com/fr/ou-acheter-poco-x6"
+   ],
+   "note": "Capteur principal 64 Mpx."
   }
  ]
 }
