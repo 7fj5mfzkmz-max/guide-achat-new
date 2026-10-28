@@ -755,6 +755,438 @@
    "mp": 8,
    "photo_txt": "8 Mpx principal",
    "android": 14
+  },
+  {
+   "id": "galaxy-a23-5g",
+   "prix": 319,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "LCD, 120 Hz",
+   "techno": "LCD",
+   "hz": 120,
+   "soc": "Snapdragon 695 (6 nm)",
+   "ram_max": 6,
+   "mah": 5000,
+   "w": 25,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "zte-nubia-z60s",
+   "prix": 599,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "AMOLED, 120 Hz",
+   "techno": "AMOLED",
+   "hz": 120,
+   "soc": "Snapdragon 8 Gen 2 (4 nm)",
+   "ram_max": 16,
+   "mah": 5100,
+   "w": 80,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "samsung-galaxy-xcover-8-pro",
+   "prix": 649,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "LCD, 120 Hz",
+   "techno": "LCD",
+   "hz": 120,
+   "soc": "Snapdragon 7s Gen 2 (4 nm)",
+   "ram_max": 6,
+   "mah": 4500,
+   "w": 25,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "tecno-spark-20",
+   "prix": 149,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "LCD, 90 Hz",
+   "techno": "LCD",
+   "hz": 90,
+   "soc": "Helio G85 (12 nm)",
+   "ram_max": 8,
+   "mah": 5000,
+   "w": 18,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "infinix-hot-40",
+   "prix": 150,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "LCD, 90 Hz",
+   "techno": "LCD",
+   "hz": 90,
+   "soc": "Helio G88 (12 nm)",
+   "ram_max": 8,
+   "mah": 5000,
+   "w": 33,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "nokia-c31",
+   "prix": 129,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "LCD, 60 Hz",
+   "techno": "LCD",
+   "hz": 60,
+   "soc": "Unisoc SC9863A (28 nm)",
+   "ram_max": 4,
+   "mah": 5050,
+   "w": 10,
+   "mp": 13,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "xiaomi-black-shark-7-pro",
+   "prix": 899,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "OLED, 144 Hz",
+   "techno": "OLED",
+   "hz": 144,
+   "soc": "Snapdragon 8 Elite (3 nm)",
+   "ram_max": 16,
+   "mah": 6000,
+   "w": 120,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "realme-gt-neo-7",
+   "prix": 499,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "OLED, 144 Hz",
+   "techno": "OLED",
+   "hz": 144,
+   "soc": "Dimensity 9300+ (4 nm)",
+   "ram_max": 16,
+   "mah": 5500,
+   "w": 120,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "vivo-iqoo-z9-turbo",
+   "prix": 350,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "OLED, 144 Hz",
+   "techno": "OLED",
+   "hz": 144,
+   "soc": "Snapdragon 8s Gen 3 (4 nm)",
+   "ram_max": 16,
+   "mah": 6000,
+   "w": 80,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "nubia-focus-6-air",
+   "prix": 299,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "LCD, 120 Hz",
+   "techno": "LCD",
+   "hz": 120,
+   "soc": "Unisoc T760 (6 nm)",
+   "ram_max": 8,
+   "mah": 5000,
+   "w": 33,
+   "mp": 108,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "xiaomi-16-pro",
+   "prix": 749,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "OLED, 120 Hz",
+   "techno": "OLED",
+   "hz": 120,
+   "soc": "Snapdragon 8 Elite (3 nm)",
+   "ram_max": 16,
+   "mah": 6100,
+   "w": 90,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "xiaomi-16-ultra",
+   "prix": 1499,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "OLED, 120 Hz",
+   "techno": "OLED",
+   "hz": 120,
+   "soc": "Snapdragon 8 Elite Gen 5 (3 nm)",
+   "ram_max": 16,
+   "mah": 6000,
+   "w": 90,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "nokia-g70-5g",
+   "prix": 249,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "LCD, 90 Hz",
+   "techno": "LCD",
+   "hz": 90,
+   "soc": "Snapdragon 4 Gen 1 (6 nm)",
+   "ram_max": 6,
+   "mah": 5000,
+   "w": 20,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "asus-zenfone-12-ultra",
+   "prix": 799,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "AMOLED, 144 Hz",
+   "techno": "AMOLED",
+   "hz": 144,
+   "soc": "Snapdragon 8 Elite (3 nm)",
+   "ram_max": 16,
+   "mah": 5900,
+   "w": 80,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "nubia-red-magic-10-pro",
+   "prix": 749,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "OLED, 144 Hz",
+   "techno": "OLED",
+   "hz": 144,
+   "soc": "Snapdragon 8 Elite (3 nm)",
+   "ram_max": 24,
+   "mah": 7050,
+   "w": 100,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "tecno-camon-40-pro",
+   "prix": 349,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "AMOLED, 144 Hz",
+   "techno": "AMOLED",
+   "hz": 144,
+   "soc": "Dimensity 8200 (4 nm)",
+   "ram_max": 12,
+   "mah": 5000,
+   "w": 70,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "tecno-phantom-x3-pro",
+   "prix": 649,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "AMOLED, 120 Hz",
+   "techno": "AMOLED",
+   "hz": 120,
+   "soc": "Dimensity 9400 (3 nm)",
+   "ram_max": 12,
+   "mah": 5900,
+   "w": 70,
+   "mp": 50,
+   "chimie": "Li-Po"
+  },
+  {
+   "id": "honor-9-lite",
+   "prix": 149,
+   "prix_note": "Prix indicatif vérifié",
+   "sources": [
+    {
+     "nom": "Kimovil",
+     "url": "https://www.kimovil.com"
+    },
+    {
+     "nom": "GSMArena",
+     "url": "https://m.gsmarena.com"
+    }
+   ],
+   "ecran": "5,65\" IPS LCD, 1080 x 2160, 60 Hz",
+   "techno": "LCD",
+   "hz": 60,
+   "soc": "Kirin 659 (16 nm)",
+   "ram_max": 4,
+   "mah": 3000,
+   "w": 10,
+   "mp": 13,
+   "chimie": "Li-Po"
   }
  ],
  "existantes_non_classees": {

@@ -56,7 +56,7 @@
     /* ——— 2 ——— */
     [/snapdragon\s*(?:68\d|480|4\s*gen\s*1)/, 2],
     [/dimensity\s*60[0-9]{2}/, 2],
-    [/helio\s*g(?:8[0-9])\b/, 2],
+    [/helio\s*g(?:8[0-9])\b|kirin\s*659/, 2],
     /* ——— 1 ——— */
     [/helio\s*g(?:[1-7][0-9])\b/, 1],
     [/unisoc|spreadtrum|\bt(?:6\d{2}|7\d{3})\b/, 1]
