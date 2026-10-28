@@ -83,7 +83,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP67",
@@ -188,7 +188,7 @@
         "batterie": {
           "capacite_mah": 5500,
           "recharge_watts": 67,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -293,7 +293,7 @@
         "batterie": {
           "capacite_mah": 4250,
           "recharge_watts": 40,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -377,7 +377,7 @@
         "batterie": {
           "capacite_mah": 7300,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "durete": {
           "protection_ip": "IP69",
@@ -472,7 +472,7 @@
         "batterie": {
           "capacite_mah": 5800,
           "recharge_watts": 65,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -577,7 +577,7 @@
         "batterie": {
           "capacite_mah": 4400,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -660,7 +660,7 @@
         "batterie": {
           "capacite_mah": 5200,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -754,7 +754,7 @@
         "batterie": {
           "capacite_mah": 4970,
           "recharge_watts": 27,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -853,7 +853,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 60,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -956,7 +956,7 @@
         "batterie": {
           "capacite_mah": 4600,
           "recharge_watts": 60,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1050,7 +1050,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 30,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1144,7 +1144,7 @@
         "batterie": {
           "capacite_mah": 3400,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1250,7 +1250,7 @@
         "batterie": {
           "capacite_mah": 4900,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1349,7 +1349,7 @@
         "batterie": {
           "capacite_mah": 5100,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1448,7 +1448,7 @@
         "batterie": {
           "capacite_mah": 5200,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP65",
@@ -1537,7 +1537,7 @@
         "batterie": {
           "capacite_mah": 2400,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP67",
@@ -1604,7 +1604,7 @@
         "batterie": {
           "capacite_mah": 5900,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -1686,7 +1686,7 @@
         "batterie": {
           "capacite_mah": 5900,
           "recharge_watts": 90,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1772,7 +1772,7 @@
         "batterie": {
           "capacite_mah": 6270,
           "recharge_watts": 100,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1871,7 +1871,7 @@
         "batterie": {
           "capacite_mah": 4300,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -1966,7 +1966,7 @@
         "batterie": {
           "capacite_mah": 4700,
           "recharge_watts": 30,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -2066,7 +2066,7 @@
         "batterie": {
           "capacite_mah": 6500,
           "recharge_watts": 90,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -2161,7 +2161,7 @@
         "batterie": {
           "capacite_mah": 5300,
           "recharge_watts": 90,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -2262,7 +2262,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -2357,7 +2357,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -2459,7 +2459,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP64",
@@ -2568,7 +2568,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -2660,7 +2660,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -2735,7 +2735,7 @@
         "batterie": {
           "capacite_mah": 6000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP52",
@@ -2852,7 +2852,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -2957,7 +2957,7 @@
         "batterie": {
           "capacite_mah": 5110,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP64",
@@ -3065,7 +3065,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 30,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP52",
@@ -3169,7 +3169,7 @@
         "batterie": {
           "capacite_mah": 4500,
           "recharge_watts": 35,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -3277,7 +3277,7 @@
         "batterie": {
           "capacite_mah": 6000,
           "recharge_watts": 33,
-          "chimie": "Lithium"
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP64",
@@ -3356,7 +3356,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP53",
@@ -3434,7 +3434,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -3536,7 +3536,7 @@
         "batterie": {
           "capacite_mah": 6000,
           "recharge_watts": 15,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP52",
@@ -3638,7 +3638,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 10,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP52",
@@ -3739,7 +3739,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -3814,7 +3814,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 22.5,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -3891,7 +3891,7 @@
         "batterie": {
           "capacite_mah": 5200,
           "recharge_watts": 15,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -3988,7 +3988,7 @@
         "batterie": {
           "capacite_mah": 5200,
           "recharge_watts": 18,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP52",
@@ -4087,7 +4087,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 10,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -4185,7 +4185,7 @@
         "batterie": {
           "capacite_mah": 6100,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -4260,7 +4260,7 @@
         "batterie": {
           "capacite_mah": 7025,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "durete": {
           "protection_ip": "IP69",
@@ -4353,7 +4353,7 @@
         "batterie": {
           "capacite_mah": 6500,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "durete": {
           "protection_ip": "IP69",
@@ -4446,7 +4446,7 @@
         "batterie": {
           "capacite_mah": 5100,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -4525,7 +4525,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 70,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP53",
@@ -4604,7 +4604,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 20,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP52",
@@ -4672,7 +4672,7 @@
         "batterie": {
           "capacite_mah": 4600,
           "recharge_watts": 60,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP67",
@@ -4751,7 +4751,7 @@
         "batterie": {
           "capacite_mah": 5900,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -4830,7 +4830,7 @@
         "batterie": {
           "capacite_mah": 4500,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68 / MIL-STD",
@@ -4911,7 +4911,7 @@
         "batterie": {
           "capacite_mah": 4400,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -4989,7 +4989,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -5082,7 +5082,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -5181,7 +5181,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 30,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -5275,7 +5275,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 67,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP65",
@@ -5366,7 +5366,7 @@
         "batterie": {
           "capacite_mah": 5100,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -5466,7 +5466,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 18,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP53",
@@ -5548,7 +5548,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP53",
@@ -5621,7 +5621,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 22,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -5692,7 +5692,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -5775,7 +5775,7 @@
         "batterie": {
           "capacite_mah": 5050,
           "recharge_watts": 10,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP52",
@@ -5848,7 +5848,7 @@
         "batterie": {
           "capacite_mah": 6100,
           "recharge_watts": 100,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -5917,7 +5917,7 @@
         "batterie": {
           "capacite_mah": 6000,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -6004,7 +6004,7 @@
         "batterie": {
           "capacite_mah": 7100,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6083,7 +6083,7 @@
         "batterie": {
           "capacite_mah": 4500,
           "recharge_watts": 125,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6157,7 +6157,7 @@
         "batterie": {
           "capacite_mah": 5500,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP65",
@@ -6238,7 +6238,7 @@
         "batterie": {
           "capacite_mah": 5150,
           "recharge_watts": 66,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "durete": {
           "protection_ip": "IPX8",
@@ -6315,7 +6315,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -6403,7 +6403,7 @@
         "batterie": {
           "capacite_mah": 4800,
           "recharge_watts": 65,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6473,7 +6473,7 @@
         "batterie": {
           "capacite_mah": 6000,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP64",
@@ -6553,7 +6553,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 33,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -6627,7 +6627,7 @@
         "batterie": {
           "capacite_mah": 6100,
           "recharge_watts": 100,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6688,7 +6688,7 @@
         "batterie": {
           "capacite_mah": 4900,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6749,7 +6749,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6810,7 +6810,7 @@
         "batterie": {
           "capacite_mah": 5500,
           "recharge_watts": 30,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP65",
@@ -6871,7 +6871,7 @@
         "batterie": {
           "capacite_mah": 5110,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6932,7 +6932,7 @@
         "batterie": {
           "capacite_mah": 6100,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -6993,7 +6993,7 @@
         "batterie": {
           "capacite_mah": 5900,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -7054,7 +7054,7 @@
         "batterie": {
           "capacite_mah": 5910,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -7115,7 +7115,7 @@
         "batterie": {
           "capacite_mah": 5800,
           "recharge_watts": 120,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP65",
@@ -7176,7 +7176,7 @@
         "batterie": {
           "capacite_mah": 5900,
           "recharge_watts": 70,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -7256,7 +7256,7 @@
         "batterie": {
           "capacite_mah": 5050,
           "recharge_watts": 10,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": null,
@@ -7356,7 +7356,7 @@
         "batterie": {
           "capacite_mah": 4823,
           "recharge_watts": 40,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -7471,7 +7471,7 @@
         "batterie": {
           "capacite_mah": 5100,
           "recharge_watts": 67,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",
@@ -7553,7 +7553,7 @@
         "batterie": {
           "capacite_mah": 4800,
           "recharge_watts": 35,
-          "chimie": null
+          "chimie": "Li-ion"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -7629,7 +7629,7 @@
         "batterie": {
           "capacite_mah": 7150,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "photo": {
           "mp_principal": 200,
@@ -7720,7 +7720,7 @@
         "batterie": {
           "capacite_mah": 7200,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "performance": {
           "soc": "Snapdragon 7 Gen 3",
@@ -7820,7 +7820,7 @@
         "batterie": {
           "capacite_mah": 9000,
           "recharge_watts": 100,
-          "chimie": null
+          "chimie": "Silicium-carbone"
         },
         "photo": {
           "mp_principal": 50,
@@ -7930,7 +7930,7 @@
         "batterie": {
           "capacite_mah": 6500,
           "recharge_watts": 80,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP68",
@@ -8036,7 +8036,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         }
       },
       "tests": [
@@ -8127,7 +8127,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP67",
@@ -8226,7 +8226,7 @@
         "batterie": {
           "capacite_mah": 5000,
           "recharge_watts": 25,
-          "chimie": null
+          "chimie": "Li-Po"
         }
       },
       "tests": [
@@ -8312,7 +8312,7 @@
         "batterie": {
           "capacite_mah": 5150,
           "recharge_watts": 45,
-          "chimie": null
+          "chimie": "Li-Po"
         },
         "durete": {
           "protection_ip": "IP54",

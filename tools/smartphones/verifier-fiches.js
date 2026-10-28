@@ -26,12 +26,13 @@ function fiche(e) {
   return c;
 }
 
-function compat(e) {
+function compat(e, p) {
+  const chimieExistante = p && p.compatibilite && p.compatibilite.batterie && p.compatibilite.batterie.chimie;
   return {
     ecran: { technologie: e.techno || null, frequence_max_hz: e.hz || null, luminosite_nits: e.nits || null },
     performance: { soc: e.soc, niveau: null, ram_go_max: e.ram_max || null },
     photo: { mp_principal: e.mp || null, ois: null },
-    batterie: { capacite_mah: e.mah || null, recharge_watts: e.w || null, chimie: null },
+    batterie: { capacite_mah: e.mah || null, recharge_watts: e.w || null, chimie: e.chimie || chimieExistante || null },
     durete: { protection_ip: e.ip || null, android_version_sortie: e.android || null }
   };
 }
@@ -45,7 +46,7 @@ function appliquer(cat, ver) {
     p.prix_indicatif = e.prix;
     p.prix_note = e.prix_note;
     p.caracteristiques = fiche(e);
-    p.compatibilite = compat(e);
+    p.compatibilite = compat(e, p);
     p.fiche_statut = 'verifie_web';
     p.ready_for_recommendation = true;
     delete p.exclu_reco;
