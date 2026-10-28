@@ -159,13 +159,10 @@
     var onlyFiches = DATA.produits.filter(isEligible).filter(function (p) { return p.origine !== 'test' && p.prix_indicatif; });
     function tier(g, p, why, score) { var r = ficheRow(p, why); r.tier = g.label; r.plage = g.plage; r.score = score; return r; }
 
-    var PROFILE_MAX_PRIX = { etudiant: 500, prix: 250, professionnel: 1000, gamer: 1200, photographe: 1650, batterie: 800 };
     if (need.profil || need.id === 'batterie') {
       var scoreFn = need.profil ? function (p) { return profileScore(p, need.id); } : capacity;
-      var maxPrice = PROFILE_MAX_PRIX[need.id] || Infinity;
       GAMMES.forEach(function (g) {
-        if (g.min > maxPrice) return;
-        var items = onlyFiches.filter(function (p) { return p.prix_indicatif >= g.min && p.prix_indicatif <= Math.min(g.max, maxPrice); })
+        var items = onlyFiches.filter(function (p) { return p.prix_indicatif >= g.min && p.prix_indicatif <= g.max; })
           .map(function (p) { return { p: p, v: scoreFn(p) }; }).filter(function (x) { return x.v != null; })
           .sort(function (a, b) { return b.v - a.v || a.p.prix_indicatif - b.p.prix_indicatif; });
         var bestInGamme = items[0];
@@ -173,6 +170,11 @@
           var b = bestInGamme.p.compatibilite && bestInGamme.p.compatibilite.batterie;
           fiches.push(tier(g, bestInGamme.p, need.profil ? null : fr(b.capacite_mah) + ' mAh' + (b.recharge_watts ? ', charge ' + b.recharge_watts + ' W' : '')));
         }
+      });
+      /* Trier les propositions par prix croissant (du plus accessible au flagship) */
+      fiches.sort(function (a, b) {
+        var pa = DATA.produits.find(function (x) { return x.id === a.productId; }), pb = DATA.produits.find(function (x) { return x.id === b.productId; });
+        return (pa ? pa.prix_indicatif : 0) - (pb ? pb.prix_indicatif : 0);
       });
     }
     if (need.profil) {
