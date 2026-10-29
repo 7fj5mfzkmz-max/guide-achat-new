@@ -34,22 +34,20 @@
         "budget"
       ],
       "scores": {
-        "performance": 6,
+        "performance": 5,
         "autonomie": 8,
-        "photo": 6,
-        "prix": 9,
-        "gaming": 5,
-        "taille": 6
+        "photo": 7,
+        "prix": 9
       },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A56",
       "kimovil_url": "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a56",
       "fabricant_url": "https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a56-5g/",
       "date_verification": "2026-09",
       "profil_scores": {
-        "professionnel": 8,
-        "gamer": 6,
-        "photographe": 7,
-        "etudiant": 8
+        "etudiant": 7.7,
+        "professionnel": 7,
+        "gamer": 6.5,
+        "photographe": 7
       },
       "compatibilite": {
         "ecran": {
@@ -139,22 +137,20 @@
         "polyvalent"
       ],
       "scores": {
-        "performance": 8,
-        "autonomie": 8,
-        "photo": 8,
-        "prix": 8,
-        "gaming": 7,
-        "taille": 5
+        "performance": 7,
+        "autonomie": 9,
+        "photo": 7,
+        "prix": 8
       },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+15T",
       "kimovil_url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-15t",
       "fabricant_url": "https://www.mi.com/fr/product/xiaomi-15t/",
       "date_verification": "2026-09",
       "profil_scores": {
-        "professionnel": 8,
-        "gamer": 7,
-        "photographe": 8,
-        "etudiant": 8
+        "etudiant": 8,
+        "professionnel": 7.8,
+        "gamer": 7.7,
+        "photographe": 7.5
       },
       "compatibilite": {
         "ecran": {
@@ -245,22 +241,20 @@
         "durée de vie"
       ],
       "scores": {
-        "performance": 9,
+        "performance": 10,
         "autonomie": 7,
-        "photo": 9,
-        "prix": 4,
-        "gaming": 8,
-        "taille": 6
+        "photo": 8,
+        "prix": 3
       },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+17+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/ou-acheter-apple-iphone-17-pro",
       "fabricant_url": "https://www.apple.com/fr/iphone-17-pro/",
       "date_verification": "2026-09",
       "profil_scores": {
-        "professionnel": 9,
-        "gamer": 8,
-        "photographe": 9,
-        "etudiant": 8
+        "etudiant": 6.3,
+        "professionnel": 7.4,
+        "gamer": 8.2,
+        "photographe": 7.7
       },
       "compatibilite": {
         "ecran": {
@@ -337,7 +331,12 @@
         "batterie / autonomie"
       ],
       "critere_principal": "Batterie / autonomie",
-      "scores": {},
+      "scores": {
+        "performance": 10,
+        "autonomie": 10,
+        "photo": 7,
+        "prix": 7
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+15",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -410,7 +409,13 @@
           "nom": "Kimovil — prix France",
           "url": "https://www.kimovil.com/fr/oneplus-15/price/FR"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 8.6,
+        "professionnel": 9,
+        "gamer": 9.4,
+        "photographe": 8.2
+      }
     },
     {
       "id": "rog-phone-9",
@@ -432,7 +437,12 @@
         "batterie / autonomie"
       ],
       "critere_principal": "Batterie / autonomie",
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 7,
+        "prix": 5
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+ROG+Phone+9",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -509,7 +519,13 @@
           "nom": "Phonandroid — annonce",
           "url": "https://www.phonandroid.com/?p=2620820"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.8,
+        "professionnel": 8.2,
+        "gamer": 8.7,
+        "photographe": 7.8
+      }
     },
     {
       "id": "galaxy-z-fold8",
@@ -539,7 +555,12 @@
         "écran / immersion"
       ],
       "critere_principal": "Écran / immersion",
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 7,
+        "photo": 7,
+        "prix": 3
+      },
       "ready_for_recommendation": false,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+Z+Fold8",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -604,7 +625,13 @@
           "nom": "GSMArena",
           "url": "https://m.gsmarena.com"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6.9,
+        "gamer": 7.6,
+        "photographe": 7
+      }
     },
     {
       "id": "pixel-10-pro-xl",
@@ -627,7 +654,12 @@
         "écran / immersion"
       ],
       "critere_principal": "Écran / immersion",
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 9,
+        "photo": 8,
+        "prix": 5
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10+Pro+XL",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -700,7 +732,13 @@
           "nom": "LesMobiles — fiche",
           "url": "https://www.lesmobiles.com/telephones/google-pixel-10-pro-xl.html"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.1,
+        "professionnel": 7.4,
+        "gamer": 7.5,
+        "photographe": 7.7
+      }
     },
     {
       "id": "pixel-10",
@@ -721,7 +759,12 @@
         "photo"
       ],
       "critere_principal": "Photo",
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 8,
+        "photo": 5,
+        "prix": 7
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -795,7 +838,13 @@
           "nom": "Edcom — Pixel 10 à 599 €",
           "url": "https://www.edcom.fr/actualites/le-google-pixel-10-smartphone-de-l-equipe-de-france-est-a-seulement-599-sur-amazon-pour-le-prime-day"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.2,
+        "professionnel": 7,
+        "gamer": 7.1,
+        "photographe": 6.2
+      }
     },
     {
       "id": "galaxy-s26-ultra",
@@ -819,7 +868,12 @@
         "photo"
       ],
       "critere_principal": "Photo",
-      "scores": {},
+      "scores": {
+        "performance": 10,
+        "autonomie": 8,
+        "photo": 8,
+        "prix": 3
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Ultra",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -902,7 +956,13 @@
           "nom": "Kimovil — prix France",
           "url": "https://www.kimovil.com/fr/samsung-galaxy-s26-ultra/price/FR"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.7,
+        "professionnel": 7.7,
+        "gamer": 8.5,
+        "photographe": 7.9
+      }
     },
     {
       "id": "iphone-18-pro-max",
@@ -924,7 +984,12 @@
         "vidéo / réalisation"
       ],
       "critere_principal": "Vidéo / réalisation",
-      "scores": {},
+      "scores": {
+        "performance": 10,
+        "autonomie": 8,
+        "photo": 9,
+        "prix": 3
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+18+Pro+Max",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -994,7 +1059,13 @@
           "nom": "Kimovil",
           "url": "https://www.kimovil.com/fr/ou-acheter-apple-iphone-18-pro-max"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 7.9,
+        "gamer": 8.6,
+        "photographe": 8.4
+      }
     },
     {
       "id": "xperia-1-vii",
@@ -1016,7 +1087,12 @@
         "vidéo / réalisation"
       ],
       "critere_principal": "Vidéo / réalisation",
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 8,
+        "photo": 8,
+        "prix": 3
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Sony+Xperia+1+VII",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1092,7 +1168,13 @@
           "nom": "Kimovil",
           "url": "https://www.kimovil.com/fr/ou-acheter-sony-xperia-1-vii"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.5,
+        "professionnel": 7.4,
+        "gamer": 8,
+        "photographe": 7.7
+      }
     },
     {
       "id": "iphone-18-pro",
@@ -1112,7 +1194,12 @@
         "stockage / performances"
       ],
       "critere_principal": "Stockage / performances",
-      "scores": {},
+      "scores": {
+        "performance": 10,
+        "autonomie": 6,
+        "photo": 9,
+        "prix": 3
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+18+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1195,7 +1282,13 @@
           "nom": "LDLC — fiche",
           "url": "https://www.ldlc.pro/fr-ch/fiche/PB00752861.html"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.1,
+        "professionnel": 7.3,
+        "gamer": 8,
+        "photographe": 8
+      }
     },
     {
       "id": "galaxy-s26-plus",
@@ -1218,7 +1311,12 @@
         "stockage / performances"
       ],
       "critere_principal": "Stockage / performances",
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 8,
+        "photo": 7,
+        "prix": 3
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26%2B",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1291,7 +1389,13 @@
           "nom": "LDLC — fiche S26+",
           "url": "https://www.ldlc.com/fr-be/fiche/PB00728525.html"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.4,
+        "professionnel": 7.2,
+        "gamer": 7.9,
+        "photographe": 7.2
+      }
     },
     {
       "id": "pixel-10a",
@@ -1315,7 +1419,12 @@
         "rapport qualité-prix"
       ],
       "critere_principal": "Rapport qualité-prix",
-      "scores": {},
+      "scores": {
+        "performance": 6,
+        "autonomie": 9,
+        "photo": 5,
+        "prix": 8
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10a",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1390,7 +1499,13 @@
           "nom": "Kimovil — Pixel 10a",
           "url": "https://www.kimovil.com/fr/ou-acheter-google-pixel-10a"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.7,
+        "professionnel": 7.1,
+        "gamer": 7,
+        "photographe": 6.3
+      }
     },
     {
       "id": "oneplus-nord-5",
@@ -1414,7 +1529,12 @@
         "rapport qualité-prix"
       ],
       "critere_principal": "Rapport qualité-prix",
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 9,
+        "photo": 7,
+        "prix": 8
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+Nord+5",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1487,7 +1607,13 @@
           "nom": "Kimovil",
           "url": "https://www.kimovil.com/fr/ou-acheter-oneplus-nord-5"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 8,
+        "professionnel": 7.8,
+        "gamer": 7.7,
+        "photographe": 7.5
+      }
     },
     {
       "id": "iphone-duo",
@@ -1516,7 +1642,12 @@
         "originalité / design unique"
       ],
       "critere_principal": "Originalité / design unique",
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 4,
+        "photo": 4,
+        "prix": 3
+      },
       "ready_for_recommendation": false,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+Duo",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1553,6 +1684,12 @@
       "exclu_reco": "modèle probablement inexistant tel que décrit",
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 4.7,
+        "professionnel": 5.5,
+        "gamer": 6.4,
+        "photographe": 4.9
       }
     },
     {
@@ -1583,7 +1720,12 @@
         "originalité / design unique"
       ],
       "critere_principal": "Originalité / design unique",
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 7
+      },
       "ready_for_recommendation": false,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nothing+Phone+%284%29",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1620,7 +1762,13 @@
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       },
-      "exclu_reco": true
+      "exclu_reco": true,
+      "profil_scores": {
+        "etudiant": 8.1,
+        "professionnel": 8.1,
+        "gamer": 8.3,
+        "photographe": 7.3
+      }
     },
     {
       "id": "xiaomi-16-pro",
@@ -1641,7 +1789,12 @@
         "polyvalence / multimédia"
       ],
       "critere_principal": "Polyvalence / multimédia",
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 8,
+        "prix": 7
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+16+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1705,7 +1858,13 @@
           "nom": "GSMArena",
           "url": "https://m.gsmarena.com"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 8.5,
+        "professionnel": 8.8,
+        "gamer": 9,
+        "photographe": 8.5
+      }
     },
     {
       "id": "honor-magic-8-pro",
@@ -1730,7 +1889,12 @@
         "polyvalence / multimédia"
       ],
       "critere_principal": "Polyvalence / multimédia",
-      "scores": {},
+      "scores": {
+        "performance": 10,
+        "autonomie": 10,
+        "photo": 8,
+        "prix": 5
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+Magic+8+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1805,7 +1969,13 @@
           "nom": "LesMobiles — fiche",
           "url": "https://www.lesmobiles.com/telephones/honor-magic8-pro.html"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 8.1,
+        "professionnel": 8.7,
+        "gamer": 9.3,
+        "photographe": 8.5
+      }
     },
     {
       "id": "galaxy-s26",
@@ -1830,7 +2000,12 @@
         "compact / ergonomie"
       ],
       "critere_principal": "Compact / ergonomie",
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 7,
+        "photo": 7,
+        "prix": 5
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1902,7 +2077,13 @@
           "nom": "Edcom — Galaxy S26 à 663 €",
           "url": "https://www.edcom.fr/actualites/galaxy-s26-a-663-seulement-sur-amazon-135-sous-le-tarif-officiel-samsung"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.7,
+        "professionnel": 7.3,
+        "gamer": 7.8,
+        "photographe": 7.2
+      }
     },
     {
       "id": "pixel-10-pro",
@@ -1924,7 +2105,12 @@
         "compact / ergonomie"
       ],
       "critere_principal": "Compact / ergonomie",
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 8,
+        "photo": 8,
+        "prix": 5
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Google+Pixel+10+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -2000,7 +2186,13 @@
           "nom": "LesMobiles — fiche",
           "url": "https://www.lesmobiles.com/telephones/google-pixel-10-pro.html"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 7.1,
+        "gamer": 7.2,
+        "photographe": 7.5
+      }
     },
     {
       "id": "motorola-edge-70-pro",
@@ -2024,7 +2216,12 @@
         "robustesse / durabilité"
       ],
       "critere_principal": "Robustesse / durabilité",
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 10,
+        "photo": 7,
+        "prix": 8
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Motorola+Edge+70+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -2095,7 +2292,13 @@
           "nom": "Phonesdata",
           "url": "https://phonesdata.com/fr/smartphones/motorola/edge-70-pro-5465863/"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 8.4,
+        "professionnel": 8.1,
+        "gamer": 8,
+        "photographe": 7.7
+      }
     },
     {
       "id": "xiaomi-16-ultra",
@@ -2116,7 +2319,12 @@
         "robustesse / durabilité"
       ],
       "critere_principal": "Robustesse / durabilité",
-      "scores": {},
+      "scores": {
+        "performance": 10,
+        "autonomie": 10,
+        "photo": 10,
+        "prix": 3
+      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+16+Ultra",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -2181,7 +2389,13 @@
           "nom": "GSMArena",
           "url": "https://m.gsmarena.com"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.6,
+        "professionnel": 8.6,
+        "gamer": 9.3,
+        "photographe": 9.3
+      }
     },
     {
       "id": "galaxy-a17-5g",
@@ -2217,12 +2431,10 @@
         "polyvalent"
       ],
       "scores": {
-        "performance": 5,
-        "autonomie": 7,
-        "photo": 5,
-        "prix": 8,
-        "gaming": 4,
-        "taille": 6
+        "performance": 3,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 9
       },
       "image_url": "",
       "image_alt": "Illustration du Samsung Galaxy A17 5G",
@@ -2294,7 +2506,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A17+5G",
         "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a17-5g"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 5.7,
+        "gamer": 5.1,
+        "photographe": 4.6
+      }
     },
     {
       "id": "redmi-note-15-4g",
@@ -2321,7 +2539,12 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 9
+      },
       "image_url": "",
       "image_alt": "Illustration du Xiaomi Redmi Note 15 4G",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Redmi+Note+15+4G",
@@ -2376,7 +2599,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+15+4G",
         "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-15-4g"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.7,
+        "professionnel": 5.4,
+        "gamer": 4.6,
+        "photographe": 4.4
+      }
     },
     {
       "id": "redmi-note-15-5g",
@@ -2414,12 +2643,10 @@
         "budget"
       ],
       "scores": {
-        "performance": 6,
+        "performance": 5,
         "autonomie": 8,
-        "photo": 7,
-        "prix": 9,
-        "gaming": 5,
-        "taille": 5
+        "photo": 6,
+        "prix": 9
       },
       "image_url": "",
       "image_alt": "Illustration du Xiaomi Redmi Note 15 5G",
@@ -2485,7 +2712,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+15+5G",
         "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-15-5g"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.5,
+        "professionnel": 6.9,
+        "gamer": 6.4,
+        "photographe": 6.5
+      }
     },
     {
       "id": "realme-p3-5g",
@@ -2523,12 +2756,10 @@
         "jeux légers"
       ],
       "scores": {
-        "performance": 7,
+        "performance": 4,
         "autonomie": 8,
-        "photo": 5,
-        "prix": 9,
-        "gaming": 6,
-        "taille": 6
+        "photo": 3,
+        "prix": 9
       },
       "image_url": "",
       "image_alt": "Illustration du realme P3 5G",
@@ -2590,7 +2821,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=realme+P3+5G",
         "https://www.kimovil.com/fr/ou-acheter-realme-p3-5g"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 6.1,
+        "gamer": 5.6,
+        "photographe": 4.8
+      }
     },
     {
       "id": "realme-c67",
@@ -2623,12 +2860,10 @@
         "quotidien"
       ],
       "scores": {
-        "performance": 4,
-        "autonomie": 7,
-        "photo": 6,
-        "prix": 9,
-        "gaming": 3,
-        "taille": 6
+        "performance": 2,
+        "autonomie": 8,
+        "photo": 7,
+        "prix": 10
       },
       "image_url": "",
       "image_alt": "Illustration du realme C67",
@@ -2679,7 +2914,13 @@
       ],
       "fiche_statut": "verifie_web",
       "pour_qui": "",
-      "exclu_reco": true
+      "exclu_reco": true,
+      "profil_scores": {
+        "etudiant": 7.4,
+        "professionnel": 6.1,
+        "gamer": 5.1,
+        "photographe": 6.5
+      }
     },
     {
       "id": "redmi-15c",
@@ -2701,7 +2942,12 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 10,
+        "photo": 3,
+        "prix": 9
+      },
       "image_url": "",
       "image_alt": "Illustration du Xiaomi Redmi 15C",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Redmi+15C",
@@ -2775,7 +3021,13 @@
           "url": "https://www.dealabs.com/magazine/?p=60347"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.4,
+        "professionnel": 6,
+        "gamer": 5.2,
+        "photographe": 4.8
+      }
     },
     {
       "id": "realme-c75",
@@ -2812,12 +3064,10 @@
         "autonomie"
       ],
       "scores": {
-        "performance": 4,
+        "performance": 1,
         "autonomie": 8,
-        "photo": 5,
-        "prix": 9,
-        "gaming": 3,
-        "taille": 5
+        "photo": 3,
+        "prix": 9
       },
       "image_url": "",
       "image_alt": "Illustration du realme C75",
@@ -2877,7 +3127,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=realme+C75",
         "https://www.kimovil.com/fr/ou-acheter-realme-c75"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.5,
+        "professionnel": 5,
+        "gamer": 4.1,
+        "photographe": 4.2
+      }
     },
     {
       "id": "redmi-note-14-5g",
@@ -2915,12 +3171,10 @@
         "budget"
       ],
       "scores": {
-        "performance": 6,
-        "autonomie": 7,
-        "photo": 7,
-        "prix": 8,
-        "gaming": 5,
-        "taille": 6
+        "performance": 4,
+        "autonomie": 9,
+        "photo": 6,
+        "prix": 9
       },
       "image_url": "",
       "image_alt": "Illustration du Xiaomi Redmi Note 14 5G",
@@ -2986,7 +3240,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+14+5G",
         "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-14-5g"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.7,
+        "professionnel": 6.8,
+        "gamer": 6.2,
+        "photographe": 6.5
+      }
     },
     {
       "id": "moto-g55-5g",
@@ -3024,12 +3284,10 @@
         "budget"
       ],
       "scores": {
-        "performance": 5,
-        "autonomie": 7,
+        "performance": 4,
+        "autonomie": 8,
         "photo": 6,
-        "prix": 8,
-        "gaming": 5,
-        "taille": 8
+        "prix": 9
       },
       "image_url": "",
       "image_alt": "Illustration du Motorola Moto G55 5G",
@@ -3089,7 +3347,13 @@
         "https://www.gsmarena.com/motorola_moto_g55-13295.php",
         "https://www.lesnumeriques.com/telephone-portable/motorola.html"
       ],
-      "fiche_statut": "source_fichier"
+      "fiche_statut": "source_fichier",
+      "profil_scores": {
+        "etudiant": 7.4,
+        "professionnel": 6.5,
+        "gamer": 5.9,
+        "photographe": 6.3
+      }
     },
     {
       "id": "honor-400-lite",
@@ -3127,12 +3391,10 @@
         "léger"
       ],
       "scores": {
-        "performance": 5,
+        "performance": 2,
         "autonomie": 8,
         "photo": 6,
-        "prix": 8,
-        "gaming": 4,
-        "taille": 8
+        "prix": 9
       },
       "image_url": "",
       "image_alt": "Illustration du HONOR 400 Lite",
@@ -3194,7 +3456,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=HONOR+400+Lite",
         "https://www.kimovil.com/fr/ou-acheter-honor-400-lite"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 5.8,
+        "gamer": 4.9,
+        "photographe": 5.9
+      }
     },
     {
       "id": "poco-c85",
@@ -3235,12 +3503,10 @@
         "quotidien"
       ],
       "scores": {
-        "performance": 4,
-        "autonomie": 9,
-        "photo": 5,
-        "prix": 9,
-        "gaming": 3,
-        "taille": 4
+        "performance": 3,
+        "autonomie": 10,
+        "photo": 3,
+        "prix": 10
       },
       "image_url": "",
       "image_alt": "Illustration du POCO C85",
@@ -3301,7 +3567,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=POCO+C85",
         "https://www.kimovil.com/fr/ou-acheter-poco-c85"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.9,
+        "professionnel": 6.5,
+        "gamer": 5.8,
+        "photographe": 5.1
+      }
     },
     {
       "id": "redmi-note-11s",
@@ -3323,16 +3595,21 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 3,
+        "autonomie": 8,
+        "photo": 7,
+        "prix": 9
+      },
       "image_url": "",
       "image_alt": "Illustration du Xiaomi Redmi Note 11S",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Redmi+Note+11S",
       "kimovil_url": "",
       "profil_scores": {
-        "professionnel": 5,
-        "gamer": 4,
-        "photographe": 6,
-        "etudiant": 6
+        "etudiant": 7.2,
+        "professionnel": 6.3,
+        "gamer": 5.5,
+        "photographe": 6.6
       },
       "compatibilite": {
         "ecran": {
@@ -3400,7 +3677,12 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 3,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 8
+      },
       "image_url": "",
       "image_alt": "Illustration du Samsung Galaxy A23 5G",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A23+5G",
@@ -3465,7 +3747,13 @@
         }
       ],
       "date_verification": "2026-10",
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.5,
+        "professionnel": 5.5,
+        "gamer": 5,
+        "photographe": 4.5
+      }
     },
     {
       "id": "moto-g06-power",
@@ -3503,12 +3791,10 @@
         "quotidien"
       ],
       "scores": {
-        "performance": 3,
-        "autonomie": 9,
-        "photo": 4,
-        "prix": 9,
-        "gaming": 2,
-        "taille": 4
+        "performance": 1,
+        "autonomie": 10,
+        "photo": 3,
+        "prix": 10
       },
       "image_url": "",
       "image_alt": "Illustration du Motorola Moto G06 Power",
@@ -3568,7 +3854,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Motorola+Moto+G06+Power",
         "https://www.kimovil.com/fr/ou-acheter-motorola-moto-g06-power"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.5,
+        "professionnel": 5.8,
+        "gamer": 4.8,
+        "photographe": 4.7
+      }
     },
     {
       "id": "moto-g06",
@@ -3605,12 +3897,10 @@
         "quotidien"
       ],
       "scores": {
-        "performance": 3,
-        "autonomie": 7,
-        "photo": 4,
-        "prix": 9,
-        "gaming": 2,
-        "taille": 4
+        "performance": 1,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 10
       },
       "image_url": "",
       "image_alt": "Illustration du Motorola Moto G06",
@@ -3670,7 +3960,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Motorola+Moto+G06",
         "https://www.kimovil.com/fr/ou-acheter-motorola-moto-g06"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 5.2,
+        "gamer": 4.2,
+        "photographe": 4.3
+      }
     },
     {
       "id": "blackview-shark-8",
@@ -3706,12 +4002,10 @@
         "quotidien"
       ],
       "scores": {
-        "performance": 5,
-        "autonomie": 6,
-        "photo": 5,
-        "prix": 8,
-        "gaming": 4,
-        "taille": 5
+        "performance": 3,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 10
       },
       "image_url": "",
       "image_alt": "Illustration du Blackview Shark 8",
@@ -3773,7 +4067,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Blackview+Shark+8",
         "https://www.kimovil.com/fr/ou-acheter-blackview-shark-8"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.2,
+        "professionnel": 5.9,
+        "gamer": 5.2,
+        "photographe": 4.7
+      }
     },
     {
       "id": "zte-blade-v70-vita",
@@ -3795,7 +4095,12 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 1,
+        "autonomie": 8,
+        "photo": 6,
+        "prix": 10
+      },
       "image_url": "",
       "image_alt": "Illustration du ZTE Blade V70 Vita",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ZTE+Blade+V70+Vita",
@@ -3844,7 +4149,13 @@
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
       "pour_qui": "",
-      "exclu_reco": true
+      "exclu_reco": true,
+      "profil_scores": {
+        "etudiant": 7.1,
+        "professionnel": 5.7,
+        "gamer": 4.5,
+        "photographe": 5.8
+      }
     },
     {
       "id": "redmi-a5",
@@ -3869,7 +4180,12 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 1,
+        "autonomie": 9,
+        "photo": 3,
+        "prix": 10
+      },
       "image_url": "",
       "image_alt": "Illustration du Xiaomi Redmi A5",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Redmi+A5",
@@ -3941,7 +4257,13 @@
           "url": "https://www.ldlc.pro/fr-ch/fiche/PB00673708.html"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.2,
+        "professionnel": 5.5,
+        "gamer": 4.5,
+        "photographe": 4.5
+      }
     },
     {
       "id": "poco-c71",
@@ -3965,7 +4287,12 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 1,
+        "autonomie": 9,
+        "photo": 2,
+        "prix": 10
+      },
       "image_url": "",
       "image_alt": "Illustration du POCO C71",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=POCO+C71",
@@ -4040,7 +4367,13 @@
           "url": "https://www.mi.com/africa-fr/product/poco-c71/specs/"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.1,
+        "professionnel": 5.4,
+        "gamer": 4.4,
+        "photographe": 4
+      }
     },
     {
       "id": "redmi-a3",
@@ -4065,7 +4398,12 @@
       "profil_adapte": [
         "budget"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 1,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 10
+      },
       "image_url": "",
       "image_alt": "Illustration du Xiaomi Redmi A3",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Redmi+A3",
@@ -4138,7 +4476,13 @@
           "url": "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-a3"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 5.2,
+        "gamer": 4.2,
+        "photographe": 4.3
+      }
     },
     {
       "id": "vivo-x200-ultra",
@@ -4164,7 +4508,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 10,
+        "prix": 5
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vivo+X200+Ultra",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4219,7 +4568,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Vivo+X200+Ultra",
         "https://www.kimovil.com/fr/ou-acheter-vivo-x200-ultra"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 8.1,
+        "professionnel": 8.7,
+        "gamer": 9,
+        "photographe": 9.3
+      }
     },
     {
       "id": "oppo-find-x9",
@@ -4238,7 +4593,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 10,
+        "autonomie": 10,
+        "photo": 8,
+        "prix": 5
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OPPO+Find+X9",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4311,7 +4671,13 @@
           "url": "https://www.kimovil.com/fr/ou-acheter-oppo-find-x9"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 8.1,
+        "professionnel": 8.7,
+        "gamer": 9.3,
+        "photographe": 8.5
+      }
     },
     {
       "id": "realme-gt-7-pro",
@@ -4330,7 +4696,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 7,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+GT+7+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4402,7 +4773,13 @@
           "url": "https://www.journaldugeek.com/test/test-realme-gt-7-pro-lendurance-dans-un-prix-contenu/"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 8.5,
+        "professionnel": 8.6,
+        "gamer": 8.9,
+        "photographe": 8
+      }
     },
     {
       "id": "zte-nubia-z60s",
@@ -4420,7 +4797,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 9,
+        "photo": 7,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ZTE+Nubia+Z60S",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4483,7 +4865,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.7,
+        "professionnel": 7.6,
+        "gamer": 7.6,
+        "photographe": 7.4
+      }
     },
     {
       "id": "tecno-camon-40-pro",
@@ -4501,7 +4889,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 6,
+        "autonomie": 8,
+        "photo": 7,
+        "prix": 8
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Tecno+Camon+40+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4564,7 +4957,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.5,
+        "professionnel": 7.2,
+        "gamer": 6.9,
+        "photographe": 7.1
+      }
     },
     {
       "id": "nokia-g70-5g",
@@ -4582,7 +4981,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 8,
+        "photo": 5,
+        "prix": 9
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nokia+G70+5G",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4645,7 +5049,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.9,
+        "professionnel": 5.6,
+        "gamer": 4.8,
+        "photographe": 5.4
+      }
     },
     {
       "id": "htc-u24-pro",
@@ -4663,7 +5073,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 6,
+        "autonomie": 8,
+        "photo": 6,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=HTC+U24+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4710,7 +5125,13 @@
         }
       ],
       "pour_qui": "",
-      "exclu_reco": true
+      "exclu_reco": true,
+      "profil_scores": {
+        "etudiant": 7.1,
+        "professionnel": 6.8,
+        "gamer": 6.7,
+        "photographe": 6.5
+      }
     },
     {
       "id": "asus-zenfone-12-ultra",
@@ -4728,7 +5149,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 7,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ASUS+Zenfone+12+Ultra",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4790,7 +5216,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 8.5,
+        "professionnel": 8.6,
+        "gamer": 8.9,
+        "photographe": 8
+      }
     },
     {
       "id": "samsung-galaxy-xcover-8-pro",
@@ -4808,7 +5240,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 5,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+XCover+8+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4871,7 +5308,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.6,
+        "professionnel": 6,
+        "gamer": 5.9,
+        "photographe": 4.8
+      }
     },
     {
       "id": "motorola-razr-60-ultra",
@@ -4896,7 +5339,12 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 7,
+        "photo": 7,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Motorola+Razr+60+Ultra",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -4958,7 +5406,13 @@
           "nom": "GSMArena",
           "url": "https://m.gsmarena.com"
         }
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 5.6,
+        "professionnel": 6.2,
+        "gamer": 6.6,
+        "photographe": 6.6
+      }
     },
     {
       "id": "samsung-galaxy-a15",
@@ -4980,7 +5434,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 3,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 9
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A15",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5050,7 +5509,13 @@
           "url": "https://www.dealabs.com/magazine/?p=39237"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 5.7,
+        "gamer": 5.1,
+        "photographe": 4.6
+      }
     },
     {
       "id": "xiaomi-redmi-note-13",
@@ -5072,7 +5537,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 8,
+        "photo": 6,
+        "prix": 9
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Redmi+Note+13",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5148,7 +5618,13 @@
           "url": "https://www.kimovil.com/fr/comparer/xiaomi-redmi-note-11,xiaomi-redmi-note-13-4g"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 5.8,
+        "gamer": 4.9,
+        "photographe": 5.9
+      }
     },
     {
       "id": "motorola-moto-g85",
@@ -5171,7 +5647,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 3,
+        "autonomie": 8,
+        "photo": 5,
+        "prix": 9
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Motorola+Moto+G85",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5241,7 +5722,13 @@
           "url": "https://www.kimovil.com/fr/motorola-g85/antutu"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 6,
+        "gamer": 5.3,
+        "photographe": 5.6
+      }
     },
     {
       "id": "realme-12-pro",
@@ -5266,7 +5753,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 3,
+        "autonomie": 8,
+        "photo": 5,
+        "prix": 9
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+12+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5333,7 +5825,13 @@
           "url": "https://m.gsmarena.com/realme_12_pro-ampp-12810.php"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 6,
+        "gamer": 5.3,
+        "photographe": 5.6
+      }
     },
     {
       "id": "poco-x6",
@@ -5355,7 +5853,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 5,
+        "autonomie": 9,
+        "photo": 5,
+        "prix": 9
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=POCO+X6",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5431,7 +5934,13 @@
           "url": "https://www.kimovil.com/fr/ou-acheter-poco-x6"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.8,
+        "professionnel": 7,
+        "gamer": 6.6,
+        "photographe": 6.2
+      }
     },
     {
       "id": "tecno-spark-20",
@@ -5452,7 +5961,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 10
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Tecno+Spark+20",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5515,7 +6029,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 5.6,
+        "gamer": 4.7,
+        "photographe": 4.5
+      }
     },
     {
       "id": "infinix-hot-40",
@@ -5536,7 +6056,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 10
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Infinix+Hot+40",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5599,7 +6124,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 5.6,
+        "gamer": 4.7,
+        "photographe": 4.5
+      }
     },
     {
       "id": "honor-9-lite",
@@ -5620,7 +6151,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 5,
+        "photo": 4,
+        "prix": 10
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+9+Lite",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5665,7 +6201,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.1,
+        "professionnel": 4.8,
+        "gamer": 3.9,
+        "photographe": 4.4
+      }
     },
     {
       "id": "samsung-galaxy-a05",
@@ -5690,7 +6232,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 2,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 10
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A05",
       "date_verification": "2026-10",
       "fiche_statut": "source_fichier",
@@ -5748,7 +6295,13 @@
       "sources_verification": [
         "https://www.gsmarena.com/samsung_galaxy_a05-12534.php",
         "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a05"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 5.6,
+        "gamer": 4.7,
+        "photographe": 4.5
+      }
     },
     {
       "id": "nokia-c31",
@@ -5769,7 +6322,12 @@
         "budget",
         "étudiant"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 1,
+        "autonomie": 8,
+        "photo": 3,
+        "prix": 10
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Nokia+C31",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5832,7 +6390,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 5.2,
+        "gamer": 4.2,
+        "photographe": 4.3
+      }
     },
     {
       "id": "oneplus-12-ultra",
@@ -5860,7 +6424,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 5
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+12+Ultra",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -5894,7 +6463,13 @@
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
       },
-      "exclu_reco": true
+      "exclu_reco": true,
+      "profil_scores": {
+        "etudiant": 7.5,
+        "professionnel": 7.7,
+        "gamer": 8.1,
+        "photographe": 7.1
+      }
     },
     {
       "id": "xiaomi-black-shark-7-pro",
@@ -5914,7 +6489,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 7,
+        "prix": 5
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Black+Shark+7+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -5978,7 +6558,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.8,
+        "professionnel": 8.2,
+        "gamer": 8.7,
+        "photographe": 7.8
+      }
     },
     {
       "id": "nubia-red-magic-10-pro",
@@ -5998,7 +6584,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 7,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ZTE+Nubia+Nubia+Red+Magic+10+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -6060,7 +6651,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 8.5,
+        "professionnel": 8.6,
+        "gamer": 8.9,
+        "photographe": 8
+      }
     },
     {
       "id": "moto-edge-50-pro",
@@ -6085,7 +6682,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 6,
+        "autonomie": 8,
+        "photo": 7,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Motorola+Moto+Edge+50+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "source_fichier",
@@ -6132,7 +6734,13 @@
       "sources_verification": [
         "https://www.frandroid.com/marques/motorola/1990426_test-motorola-edge-50-pro",
         "https://www.lesnumeriques.com/telephone-portable/motorola-edge-50-pro-p74542/test.html"
-      ]
+      ],
+      "profil_scores": {
+        "etudiant": 7.2,
+        "professionnel": 7,
+        "gamer": 6.8,
+        "photographe": 7
+      }
     },
     {
       "id": "realme-gt-neo-7",
@@ -6152,7 +6760,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 9,
+        "photo": 7,
+        "prix": 8
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+GT+Neo+7",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -6215,7 +6828,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 8.2,
+        "professionnel": 8.2,
+        "gamer": 8.2,
+        "photographe": 7.7
+      }
     },
     {
       "id": "honor-magic-v3",
@@ -6240,7 +6859,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 9,
+        "photo": 7,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+Magic+V3",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -6301,7 +6925,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "exclu_reco": true
+      "exclu_reco": true,
+      "profil_scores": {
+        "etudiant": 6.5,
+        "professionnel": 7.2,
+        "gamer": 7.7,
+        "photographe": 7.2
+      }
     },
     {
       "id": "poco-f6-pro",
@@ -6322,7 +6952,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 8,
+        "photo": 7,
+        "prix": 8
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=POCO+F6+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -6395,7 +7030,13 @@
           "url": "https://www.kimovil.com/fr/ou-acheter-poco-f6-pro"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 7.7,
+        "professionnel": 7.5,
+        "gamer": 7.4,
+        "photographe": 7.3
+      }
     },
     {
       "id": "samsung-galaxy-s26-gaming",
@@ -6423,7 +7064,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 8,
+        "photo": 6,
+        "prix": 5
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Gaming",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -6457,6 +7103,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 7.5,
+        "gamer": 8,
+        "photographe": 6.9
       }
     },
     {
@@ -6477,7 +7129,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 10,
+        "photo": 5,
+        "prix": 8
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vivo+iQOO+Z9+Turbo",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -6540,7 +7197,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 8.2,
+        "professionnel": 7.8,
+        "gamer": 7.8,
+        "photographe": 6.7
+      }
     },
     {
       "id": "nubia-focus-6-air",
@@ -6560,7 +7223,12 @@
       "profil_adapte": [
         "gamer"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 1,
+        "autonomie": 8,
+        "photo": 5,
+        "prix": 9
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=ZTE+Nubia+Nubia+Focus+6+Air",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -6625,7 +7293,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 6.7,
+        "professionnel": 5.3,
+        "gamer": 4.3,
+        "photographe": 5.2
+      }
     },
     {
       "id": "hasselblad-mobile",
@@ -6652,7 +7326,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OnePlus+12+Hasselblad+Edition",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -6686,6 +7365,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 6.8,
+        "professionnel": 7.3,
+        "gamer": 7.9,
+        "photographe": 6.9
       }
     },
     {
@@ -6713,7 +7398,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 8,
+        "photo": 7,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Photography+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -6747,6 +7437,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 6.4,
+        "professionnel": 7.2,
+        "gamer": 7.9,
+        "photographe": 7.2
       }
     },
     {
@@ -6774,7 +7470,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 8,
+        "photo": 6,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Fujifilm+X-S20+Mobile",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -6808,6 +7509,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 6,
+        "professionnel": 6.7,
+        "gamer": 7.3,
+        "photographe": 6.5
       }
     },
     {
@@ -6835,7 +7542,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 9,
+        "photo": 6,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Sony+Xperia+Pro+Camera+Edition",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -6869,6 +7581,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 6.6,
+        "professionnel": 7.4,
+        "gamer": 8.1,
+        "photographe": 6.9
       }
     },
     {
@@ -6896,7 +7614,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 9,
+        "photo": 6,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Xiaomi+Mix+Fold+3+Photography",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -6930,6 +7653,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 6.4,
+        "professionnel": 7,
+        "gamer": 7.6,
+        "photographe": 6.7
       }
     },
     {
@@ -6957,7 +7686,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Vivo+X200+Ultra+Studio",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -6991,6 +7725,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 7.7,
+        "gamer": 8.4,
+        "photographe": 7.1
       }
     },
     {
@@ -7018,7 +7758,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 5
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Honor+Magic+9+Pro+Photo",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -7052,6 +7797,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 7.7,
+        "professionnel": 8.1,
+        "gamer": 8.6,
+        "photographe": 7.3
       }
     },
     {
@@ -7079,7 +7830,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 3
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=OPPO+Find+X9+Photographer%27s+Edition",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -7113,6 +7869,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 7,
+        "professionnel": 7.7,
+        "gamer": 8.4,
+        "photographe": 7.1
       }
     },
     {
@@ -7140,7 +7902,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 8,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Realme+GT+Photo+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "introuvable",
@@ -7174,6 +7941,12 @@
       "exclu_reco": true,
       "spec_provenance": {
         "compatibilite_derivee": "caracteristiques_catalogue"
+      },
+      "profil_scores": {
+        "etudiant": 8.1,
+        "professionnel": 8.1,
+        "gamer": 8.3,
+        "photographe": 7.3
       }
     },
     {
@@ -7194,7 +7967,12 @@
       "profil_adapte": [
         "photographe"
       ],
-      "scores": {},
+      "scores": {
+        "performance": 9,
+        "autonomie": 10,
+        "photo": 6,
+        "prix": 7
+      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Tecno+Phantom+X3+Pro",
       "date_verification": "2026-10",
       "fiche_statut": "verifie_web",
@@ -7239,7 +8017,13 @@
           "url": "https://m.gsmarena.com"
         }
       ],
-      "pour_qui": ""
+      "pour_qui": "",
+      "profil_scores": {
+        "etudiant": 8.4,
+        "professionnel": 8.5,
+        "gamer": 8.8,
+        "photographe": 7.5
+      }
     },
     {
       "id": "nokia-g10",
@@ -7270,20 +8054,18 @@
         "autonomie"
       ],
       "scores": {
-        "performance": 2,
-        "autonomie": 7,
-        "photo": 2,
-        "prix": null,
-        "gaming": 1,
-        "taille": 5
+        "performance": 1,
+        "autonomie": 8,
+        "photo": 4,
+        "prix": 10
       },
       "kimovil_url": "https://www.kimovil.com/fr/ou-acheter-nokia-g10",
       "date_verification": "2026-10",
       "profil_scores": {
-        "professionnel": 4,
-        "gamer": 2,
-        "photographe": 2,
-        "etudiant": 5
+        "etudiant": 6.9,
+        "professionnel": 5.4,
+        "gamer": 4.3,
+        "photographe": 4.8
       },
       "compatibilite": {
         "ecran": {
@@ -7365,21 +8147,19 @@
         "autonomie"
       ],
       "scores": {
-        "performance": 9,
-        "autonomie": 9,
-        "photo": 9,
-        "prix": 3,
-        "gaming": 9,
-        "taille": 4
+        "performance": 10,
+        "autonomie": 8,
+        "photo": 8,
+        "prix": 3
       },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+17+Pro+Max",
       "fabricant_url": "https://www.apple.com/fr/iphone-17-pro/",
       "date_verification": "2026-10",
       "profil_scores": {
-        "professionnel": 9,
-        "gamer": 9,
-        "photographe": 9,
-        "etudiant": 6
+        "etudiant": 6.7,
+        "professionnel": 7.7,
+        "gamer": 8.5,
+        "photographe": 7.9
       },
       "compatibilite": {
         "ecran": {
@@ -7480,20 +8260,18 @@
         "autonomie"
       ],
       "scores": {
-        "performance": 7,
+        "performance": 5,
         "autonomie": 9,
-        "photo": 7,
-        "prix": 8,
-        "gaming": 8,
-        "taille": 6
+        "photo": 5,
+        "prix": 8
       },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=POCO+X8+Pro",
       "date_verification": "2026-10",
       "profil_scores": {
-        "professionnel": 7,
-        "gamer": 8,
-        "photographe": 7,
-        "etudiant": 8
+        "etudiant": 7.5,
+        "professionnel": 6.8,
+        "gamer": 6.5,
+        "photographe": 6.1
       },
       "compatibilite": {
         "ecran": {
@@ -7577,8 +8355,6 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "ecran": {
           "technologie": "OLED",
@@ -7668,8 +8444,6 @@
       ],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "ecran": {
           "technologie": "OLED",
@@ -7765,8 +8539,6 @@
         "RAM 8 Go au lieu de 12 Go"
       ],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "ecran": {
           "technologie": "OLED",
@@ -7859,8 +8631,6 @@
       ],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -7954,8 +8724,6 @@
         "Stockage max 512 Go / caméras"
       ],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -8053,8 +8821,6 @@
       ],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -8151,8 +8917,6 @@
       ],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
@@ -8244,8 +9008,6 @@
         "Instabilités logicielles récurrentes"
       ],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
       "compatibilite": {
         "durete": {
           "protection_ip": "IP64",
@@ -8334,8 +9096,18 @@
       "points_forts": [],
       "points_faibles": [],
       "profil_adapte": [],
-      "scores": {},
-      "profil_scores": {},
+      "scores": {
+        "performance": 7,
+        "autonomie": 9,
+        "photo": 8,
+        "prix": 7
+      },
+      "profil_scores": {
+        "etudiant": 7.8,
+        "professionnel": 7.8,
+        "gamer": 7.7,
+        "photographe": 7.9
+      },
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
