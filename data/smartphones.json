@@ -868,12 +868,6 @@
         "photo"
       ],
       "critere_principal": "Photo",
-      "scores": {
-        "performance": 10,
-        "autonomie": 8,
-        "photo": 8,
-        "prix": 3
-      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+S26+Ultra",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -956,13 +950,7 @@
           "nom": "Kimovil — prix France",
           "url": "https://www.kimovil.com/fr/samsung-galaxy-s26-ultra/price/FR"
         }
-      ],
-      "profil_scores": {
-        "etudiant": 6.7,
-        "professionnel": 7.7,
-        "gamer": 8.5,
-        "photographe": 7.9
-      }
+      ]
     },
     {
       "id": "iphone-18-pro-max",
@@ -1194,12 +1182,6 @@
         "stockage / performances"
       ],
       "critere_principal": "Stockage / performances",
-      "scores": {
-        "performance": 10,
-        "autonomie": 6,
-        "photo": 9,
-        "prix": 3
-      },
       "ready_for_recommendation": true,
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+18+Pro",
       "kimovil_url": "https://www.kimovil.com/fr/",
@@ -1282,13 +1264,7 @@
           "nom": "LDLC — fiche",
           "url": "https://www.ldlc.pro/fr-ch/fiche/PB00752861.html"
         }
-      ],
-      "profil_scores": {
-        "etudiant": 6.1,
-        "professionnel": 7.3,
-        "gamer": 8,
-        "photographe": 8
-      }
+      ]
     },
     {
       "id": "galaxy-s26-plus",
@@ -2430,12 +2406,6 @@
         "rapport qualité-prix",
         "polyvalent"
       ],
-      "scores": {
-        "performance": 3,
-        "autonomie": 8,
-        "photo": 3,
-        "prix": 9
-      },
       "image_url": "",
       "image_alt": "Illustration du Samsung Galaxy A17 5G",
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Samsung+Galaxy+A17+5G",
@@ -2506,13 +2476,7 @@
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A17+5G",
         "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a17-5g"
-      ],
-      "profil_scores": {
-        "etudiant": 6.8,
-        "professionnel": 5.7,
-        "gamer": 5.1,
-        "photographe": 4.6
-      }
+      ]
     },
     {
       "id": "redmi-note-15-4g",
@@ -8146,21 +8110,9 @@
         "performance",
         "autonomie"
       ],
-      "scores": {
-        "performance": 10,
-        "autonomie": 8,
-        "photo": 8,
-        "prix": 3
-      },
       "idealo_url": "https://www.idealo.fr/prechcat.html?q=Apple+iPhone+17+Pro+Max",
       "fabricant_url": "https://www.apple.com/fr/iphone-17-pro/",
       "date_verification": "2026-10",
-      "profil_scores": {
-        "etudiant": 6.7,
-        "professionnel": 7.7,
-        "gamer": 8.5,
-        "photographe": 7.9
-      },
       "compatibilite": {
         "ecran": {
           "technologie": "AMOLED",
