@@ -9,7 +9,8 @@ function setupCounters(){
  if(!('IntersectionObserver' in window)||document.documentElement.classList.contains('fx-lite')||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))return;
  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;io.unobserve(e.target);
   var el=e.target,m=/^(\d+)(.*)$/.exec(el.textContent);if(!m)return;var end=+m[1],t0=null;
-  function f(t){if(t0===null)t0=t;var k=Math.min(1,(t-t0)/900);el.textContent=Math.round(end*(1-Math.pow(1-k,3)))+m[2];if(k<1)requestAnimationFrame(f)}
+  /* data-end : valeur finale posée par un script de page (chiffres lus dans les données) ; relue à chaque image pour ne pas être écrasée */
+  function f(t){if(t0===null)t0=t;var k=Math.min(1,(t-t0)/900),to=el.hasAttribute('data-end')?+el.getAttribute('data-end'):end;el.textContent=Math.round(to*(1-Math.pow(1-k,3)))+m[2];if(k<1)requestAnimationFrame(f)}
   requestAnimationFrame(f)})},{threshold:.6});
  els.forEach(function(el){io.observe(el)});
 }

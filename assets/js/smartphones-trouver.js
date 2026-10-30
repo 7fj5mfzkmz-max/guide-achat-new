@@ -241,10 +241,14 @@
     var measured = DATA.produits.filter(function (p) { return (p.tests || []).some(function (t) { return t.mesures && t.mesures.autonomie_min; }); })
       .sort(function (a, b) { return b.tests[0].mesures.autonomie_min - a.tests[0].mesures.autonomie_min; });
     var cards = [];
-    if (withCap[0]) cards.push('<article class="tr-record"><p class="tr-record-k">Plus grosse batterie annoncée</p><p class="tr-record-v">' + esc(withCap[0].nom) + '</p><p class="tr-record-d">' + fr(withCap[0].compatibilite.batterie.capacite_mah) + ' mAh' + (withCap[1] ? ', devant ' + esc(withCap[1].nom) + ' (' + fr(withCap[1].compatibilite.batterie.capacite_mah) + ' mAh)' : '') + '</p></article>');
+    if (withCap[0]) {
+      var mah = function (p) { return p.compatibilite.batterie.capacite_mah; };
+      var leaders = withCap.filter(function (p) { return mah(p) === mah(withCap[0]); }), behind = withCap.filter(function (p) { return mah(p) < mah(withCap[0]); })[0];
+      cards.push('<article class="tr-record"><p class="tr-record-k">Plus grosse batterie annoncée</p><p class="tr-record-v">' + leaders.map(function (p) { return esc(p.nom); }).join(' et ') + '</p><p class="tr-record-d">' + fr(mah(withCap[0])) + ' mAh' + (leaders.length > 1 ? ' chacun' : '') + (behind ? ', devant ' + esc(behind.nom) + ' (' + fr(mah(behind)) + ' mAh)' : '') + '</p></article>');
+    }
     if (measured[0]) {
       var cap = measured[0].compatibilite.batterie && measured[0].compatibilite.batterie.capacite_mah;
-      cards.push('<article class="tr-record"><p class="tr-record-k">Plus longue autonomie mesurée</p><p class="tr-record-v">' + esc(measured[0].nom) + ' · ' + hours(measured[0].tests[0].mesures.autonomie_min) + '</p><p class="tr-record-d">' + (cap && withCap[0] && cap < withCap[0].compatibilite.batterie.capacite_mah ? 'Avec ' + fr(cap) + ' mAh seulement : la capacité ne dit pas la durée.' : 'Mesure du test comparatif de jeu.') + '</p></article>');
+      cards.push('<article class="tr-record"><p class="tr-record-k">Plus longue autonomie mesurée</p><p class="tr-record-v">' + esc(measured[0].nom) + ' · ' + hours(measured[0].tests[0].mesures.autonomie_min) + '</p><p class="tr-record-d">' + (cap && withCap[0] && cap < withCap[0].compatibilite.batterie.capacite_mah ? 'Avec ' + fr(cap) + ' mAh seulement : la capacité ne dit pas la durée.' : 'Mesure relevée dans la vidéo ' + measured[0].tests[0].video + '.') + '</p></article>');
     }
     var best = DATA.tests.samsung.filter(function (x) { return x.ton === 'best'; })[0], bad = DATA.tests.samsung.filter(function (x) { return x.ton === 'bad'; })[0];
     if (best && bad) cards.push('<article class="tr-record"><p class="tr-record-k">Gamme Samsung</p><p class="tr-record-v">' + esc(testById(best.modele).nom) + '</p><p class="tr-record-d">Meilleur choix de la gamme comparée ; à éviter : ' + esc(testById(bad.modele).nom) + '.</p></article>');
@@ -272,9 +276,8 @@
     var n = DATA.produits.filter(isEligible).length;
     [].forEach.call(document.querySelectorAll('[data-sp]'), function (el) {
       var k = el.getAttribute('data-sp');
-      if (k === 'models') el.textContent = n;
-      if (k === 'tested') el.textContent = DATA.tests.modeles.length;
-      if (k === 'videos') el.textContent = DATA.tests.videos.length;
+      var v = k === 'models' ? n : k === 'tested' ? DATA.tests.modeles.length : k === 'videos' ? DATA.tests.videos.length : null;
+      if (v != null) { el.textContent = v; el.setAttribute('data-end', v); }
       if (k === 'date') {
         var d = new Date(DATA.tests.meta.derniere_verification + 'T12:00:00');
         el.textContent = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });

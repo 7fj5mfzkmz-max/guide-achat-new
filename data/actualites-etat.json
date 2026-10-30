@@ -90,11 +90,22 @@
   "oppo-find-x10-pro-max": "a0fe5439c3",
   "vivo-v80": "65379197d4",
   "oneplus-16": "6b17f924d4",
-  "redmagic-11s-pro": "59ff37357f",
+  "redmagic-11s-pro": "7eb6ed0346",
   "samsung-galaxy-a57": "92e569576c",
   "samsung-galaxy-a37": "28fb24891a",
   "samsung-galaxy-a27": "6861d1ac9a",
-  "nothing-phone-3": "043e75e013"
+  "nothing-phone-3": "043e75e013",
+  "oppo-find-x9-pro": "1e7735d3cf",
+  "vivo-v80-lite": "b9ee04fae6",
+  "poco-x8": "836152df02",
+  "honor-x9d": "61e46d0a2f",
+  "honor-600-pro": "32210b29e9",
+  "redmi-note-17-pro-max": "e96e2329b2",
+  "apple-iphone-17": "522e4749cc",
+  "poco-f9-pro": "188b5c6ea6",
+  "huawei-pura-90s-pro-max": "4f3bd51bc6",
+  "redmi-note-15-pro-5g": "0f7b6898af",
+  "honor-magic-8-lite": "a8c7ac3f6f"
  },
  "pc": {
   "macbook-air-13-m5": "cbbf32e42b",
@@ -229,6 +240,17 @@
   "samsung-galaxy-a57": "5bd145898f",
   "samsung-galaxy-a37": "70c44897d9",
   "samsung-galaxy-a27": "6e16234075",
-  "samsung-galaxy-a17": "299d5928a8"
+  "samsung-galaxy-a17": "299d5928a8",
+  "oppo-find-x9-pro": "b898158f89",
+  "vivo-v80-lite": "3802a8e50d",
+  "poco-x8": "d0da026f6a",
+  "honor-x9d": "2ed4998dd1",
+  "honor-600-pro": "a0e52b6a76",
+  "redmi-note-17-pro-max": "9d828f3765",
+  "apple-iphone-17": "f66ff1e6ee",
+  "poco-f9-pro": "1ecc5f61c1",
+  "huawei-pura-90s-pro-max": "3b238aa40a",
+  "redmi-note-15-pro-5g": "24b34369aa",
+  "honor-magic-8-lite": "39c80cc991"
  }
 }

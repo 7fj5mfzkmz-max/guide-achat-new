@@ -8393,6 +8393,495 @@
         "https://www.kimovil.com/fr/ou-acheter-nothing-pohne-3"
       ],
       "date_verification": "2026-10"
+    },
+    {
+      "id": "oppo-find-x9-pro",
+      "nom": "OPPO Find X9 Pro",
+      "marque": "OPPO",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "batterie": "7 500 mAh"
+      },
+      "points_forts": [
+        "Environ deux jours complets d’autonomie (estimation du rapport)",
+        "Batterie de 7 500 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 7500,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "oppo-find-x9-pro",
+          "video": 6,
+          "chaine": "Techmo",
+          "titre": "Battery Test: OnePlus vs. Oppo, iPhone, Galaxy, Pixel, Xiaomi, vivo"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 6,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "vivo-v80-lite",
+      "nom": "Vivo V80 Lite 5G",
+      "marque": "Vivo",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "batterie": "10 000 mAh"
+      },
+      "points_forts": [
+        "Vainqueur du test de décharge continue de l’écran",
+        "Batterie de 10 000 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 10000,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "vivo-v80-lite",
+          "video": 7,
+          "chaine": "TechNick",
+          "titre": "Vivo V80 Lite vs POCO / HONOR / Samsung / iPhone Battery Life DRAIN Test!"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 7,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "poco-x8",
+      "nom": "POCO X8",
+      "marque": "POCO",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "batterie": "8 340 mAh"
+      },
+      "points_forts": [
+        "Deuxième du test de décharge, avec un écart notable sur le Vivo V80 Lite",
+        "Batterie de 8 340 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 8340,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "poco-x8",
+          "video": 7,
+          "chaine": "TechNick",
+          "titre": "Vivo V80 Lite vs POCO / HONOR / Samsung / iPhone Battery Life DRAIN Test!"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 7,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "honor-x9d",
+      "nom": "HONOR X9d",
+      "marque": "HONOR",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "batterie": "8 300 mAh"
+      },
+      "points_forts": [
+        "Troisième du test de décharge",
+        "Batterie de 8 300 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 8300,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "honor-x9d",
+          "video": 7,
+          "chaine": "TechNick",
+          "titre": "Vivo V80 Lite vs POCO / HONOR / Samsung / iPhone Battery Life DRAIN Test!"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 7,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "honor-600-pro",
+      "nom": "HONOR 600 Pro",
+      "marque": "HONOR",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "batterie": "7 000 mAh"
+      },
+      "points_forts": [
+        "Quatrième du test de décharge",
+        "Batterie de 7 000 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 7000,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "honor-600-pro",
+          "video": 7,
+          "chaine": "TechNick",
+          "titre": "Vivo V80 Lite vs POCO / HONOR / Samsung / iPhone Battery Life DRAIN Test!"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 7,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "redmi-note-17-pro-max",
+      "nom": "Xiaomi REDMI Note 17 Pro Max",
+      "marque": "Xiaomi",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "batterie": "10 000 mAh"
+      },
+      "points_forts": [
+        "Encore allumé, avec 22 % de charge, à la fin du cycle robotisé",
+        "Batterie de 10 000 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 10000,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "redmi-note-17-pro-max",
+          "video": 8,
+          "chaine": "PhoneBuff",
+          "titre": "REDMI Note 17 Pro Max vs. Reno16 F vs. Galaxy A57 vs. iPhone 17 Battery Test"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 8,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "apple-iphone-17",
+      "nom": "Apple iPhone 17",
+      "marque": "Apple",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "batterie": "4 300 mAh"
+      },
+      "points_forts": [
+        "Batterie de 4 300 mAh"
+      ],
+      "points_faibles": [
+        "Éteint à l’étape 6 du cycle robotisé"
+      ],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 4300,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "apple-iphone-17",
+          "video": 8,
+          "chaine": "PhoneBuff",
+          "titre": "REDMI Note 17 Pro Max vs. Reno16 F vs. Galaxy A57 vs. iPhone 17 Battery Test"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 8,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "poco-f9-pro",
+      "nom": "POCO F9 Pro",
+      "marque": "POCO",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "ecran": "OLED 185 Hz",
+        "processeur": "Snapdragon 8 Elite, 5e génération",
+        "ram": "16 Go LPDDR5X",
+        "charge": "120 W",
+        "refresh": "185 Hz"
+      },
+      "points_forts": [
+        "Écran 185 Hz, 16 Go de RAM et charge 120 W ; rapport qualité/prix jugé supérieur, plus équilibré que la version Ultra"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "ecran": {
+          "technologie": "OLED",
+          "frequence_max_hz": 185,
+          "luminosite_nits": null
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite Gen 5",
+          "niveau": 10,
+          "ram_go_max": 16,
+          "gamme": "sommet"
+        },
+        "batterie": {
+          "capacite_mah": null,
+          "recharge_watts": 120,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "poco-f9-pro",
+          "video": 9,
+          "chaine": "TechNick",
+          "titre": "POCO F9 Pro vs POCO F9 Ultra: The ULTIMATE Comparison!"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 9,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "huawei-pura-90s-pro-max",
+      "nom": "Huawei Pura 90s Pro Max",
+      "marque": "Huawei",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "photo": "Capteur principal 1 pouce, téléobjectif périscope 200 MP"
+      },
+      "points_forts": [
+        "Jugé « daily driver » par le testeur"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {},
+      "tests": [
+        {
+          "modele": "huawei-pura-90s-pro-max",
+          "video": 10,
+          "chaine": "TechNick",
+          "titre": "Huawei Pura 90s Pro Max Review: My New Daily Driver!"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 10,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "redmi-note-15-pro-5g",
+      "nom": "Xiaomi Redmi Note 15 Pro 5G",
+      "marque": "Xiaomi",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "processeur": "MediaTek Dimensity 7400",
+        "batterie": "6 580 mAh",
+        "photo": "Capteur 200 MP"
+      },
+      "points_forts": [
+        "Batterie de 6 580 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "performance": {
+          "soc": "MediaTek Dimensity 7400",
+          "niveau": 5,
+          "ram_go_max": null,
+          "gamme": "milieu"
+        },
+        "batterie": {
+          "capacite_mah": 6580,
+          "recharge_watts": null,
+          "chimie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "redmi-note-15-pro-5g",
+          "video": 13,
+          "chaine": "Tech Spurt",
+          "titre": "Best Budget Phones (Summer 2026) | Top 10 Tested & Reviewed"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 13,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
+    },
+    {
+      "id": "honor-magic-8-lite",
+      "nom": "Honor Magic 8 Lite",
+      "marque": "HONOR",
+      "prix_indicatif": null,
+      "prix_note": "Prix non relevé dans la vidéo.",
+      "caracteristiques": {
+        "processeur": "Snapdragon 6 Gen 4",
+        "batterie": "7 500 mAh",
+        "etancheite": "IP68 et IP69"
+      },
+      "points_forts": [
+        "Châssis anti-chute (2,5 m), écran tactile calibré pour les doigts mouillés",
+        "Batterie de 7 500 mAh"
+      ],
+      "points_faibles": [],
+      "profil_adapte": [],
+      "scores": {},
+      "profil_scores": {},
+      "compatibilite": {
+        "performance": {
+          "soc": "Snapdragon 6 Gen 4",
+          "niveau": 4,
+          "ram_go_max": null,
+          "gamme": "milieu"
+        },
+        "batterie": {
+          "capacite_mah": 7500,
+          "recharge_watts": null,
+          "chimie": null
+        },
+        "durete": {
+          "protection_ip": "IP68",
+          "android_version_sortie": null
+        }
+      },
+      "tests": [
+        {
+          "modele": "honor-magic-8-lite",
+          "video": 13,
+          "chaine": "Tech Spurt",
+          "titre": "Best Budget Phones (Summer 2026) | Top 10 Tested & Reviewed"
+        }
+      ],
+      "ready_for_recommendation": false,
+      "fiche_statut": "teste_video",
+      "origine": "test",
+      "date_verification": "2026-10",
+      "spec_provenance": {
+        "compatibilite_derivee": "test_video",
+        "video": 13,
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
+      }
     }
   ],
   "catalogue_meta": {
@@ -8409,7 +8898,7 @@
       "min": 0,
       "principe": "Score de compatibilité avec les critères choisis par l’utilisateur. 9/10 correspond à une adéquation très forte; 10/10 n’est jamais attribué. Les scores ne sont pas des notes de qualité absolue."
     },
-    "count": 95,
+    "count": 106,
     "note_fiabilite": "Les fiches marquées « specs_a_verifier » ont été complétées sans source vérifiée ; elles servent à l'audit mais doivent être contrôlées avant publication. Les fiches « exclu_reco » sont écartées des recommandations.",
     "echelle_puces": "niveau 1-10 (phone-analyzer/chips.js) : 1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme",
     "verification_web": {
@@ -8433,7 +8922,7 @@
   },
   "meta": {
     "prix_verifies_le": "2026-10-06",
-    "tests_integres_le": "2026-10-23",
+    "tests_integres_le": "2026-10-30",
     "tests_source": "tech-2026"
   }
 }

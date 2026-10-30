@@ -10,9 +10,10 @@ let passed = 0, failures = 0;
 function check(label, fn) { try { fn(); passed++; } catch (e) { failures++; console.error('✗ ' + label + '\n    ' + String(e.message).split('\n')[0]); } }
 const M = id => d.modeles.find(m => m.id === id);
 
-check('5 vidéos de 4 chaînes, 12 modèles aux identifiants uniques', () => {
-  assert.equal(d.videos.length, 5); assert.deepEqual(d.source.chaines, ['Android Police', 'The Tech Chap', 'Versus', 'Tech Spurt']);
-  assert.equal(d.modeles.length, 12); assert.equal(new Set(d.modeles.map(m => m.id)).size, 12);
+check('13 vidéos de 7 chaînes, 23 modèles aux identifiants uniques', () => {
+  assert.equal(d.videos.length, 13); assert.deepEqual(d.source.chaines, ['Android Police', 'The Tech Chap', 'Versus', 'Tech Spurt', 'Techmo', 'TechNick', 'PhoneBuff']);
+  assert.deepEqual(d.videos.map(v => v.n), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]);
+  assert.equal(d.modeles.length, 23); assert.equal(new Set(d.modeles.map(m => m.id)).size, 23);
   d.modeles.forEach(m => assert.ok(d.videos.some(v => v.id === m.video), m.id));
 });
 check('duel et rétrospective Pixel retirés des données', () => {
@@ -24,7 +25,10 @@ check('records : batteries 9 000 / 7 200 / 7 150 (8 000 en Asie), charges et éc
   assert.ok(/80 W filaire, 50 W sans fil/.test(M('oppo-find-x10-pro-max').specs.charge)); assert.ok(/3 600 nits/.test(M('oppo-find-x10-pro-max').specs.ecran));
   assert.ok(/100 W filaire, 50 W sans fil/.test(M('oneplus-16').specs.charge)); assert.ok(/185 Hz/.test(M('oneplus-16').specs.ecran));
   assert.ok(/8 Go au lieu de 12 Go/.test(M('vivo-v80').specs.ram));
-  assert.deepEqual(d.records.ordre, ['oneplus-16', 'vivo-v80', 'oppo-find-x10-pro-max']);
+  const mah = id => M(id).specs.batterie_mah;
+  assert.deepEqual(d.records.ordre.map(mah), d.records.ordre.map(mah).slice().sort((a, b) => b - a), 'records classés par capacité décroissante');
+  assert.equal(d.records.echelle_mah, Math.max(...d.records.ordre.map(mah)));
+  assert.deepEqual(d.records.ordre.slice(0, 3), ['vivo-v80-lite', 'redmi-note-17-pro-max', 'oneplus-16']);
 });
 check('jeu : autonomies 11 h 30 / 10 h 17 / 12 h 54 et prix 799 / 988 / 1 199 $', () => {
   assert.equal(M('redmagic-11s-pro').specs.autonomie_min, 11 * 60 + 30); assert.equal(M('samsung-galaxy-s26-ultra').specs.autonomie_min, 10 * 60 + 17); assert.equal(M('apple-iphone-17-pro-max').specs.autonomie_min, 12 * 60 + 54);
@@ -37,7 +41,19 @@ check('gamme Samsung : prix 199 / 349 / 449 / 549 $, verdicts et autonomie A57 1
   const prix = d.samsung.map(s => M(s.modele).prix_usd); assert.deepEqual(prix.slice().sort((a, b) => a - b), prix, 'ordre croissant des prix');
 });
 check('tendances et limites présentes', () => {
-  assert.equal(d.tendances.length, 2); assert.ok(/silicium-carbone/.test(d.tendances[0].texte)); assert.ok(d.limites.length >= 4);
+  assert.equal(d.tendances.length, 3); assert.ok(/silicium-carbone/.test(d.tendances[0].texte)); assert.ok(d.limites.length >= 4);
+});
+check('rapport du 30 octobre : vidéos 6 à 13 avec lien et titre vérifié, chiffres relevés, deux vidéos non reprises', () => {
+  d.videos.filter(v => v.n >= 6).forEach(v => { assert.match(v.lien, /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}$/, 'vidéo ' + v.n); assert.ok(v.titre && v.chaine); });
+  assert.deepEqual(['vivo-v80-lite', 'poco-x8', 'honor-x9d', 'honor-600-pro'].map(id => M(id).specs.batterie_mah), [10000, 8340, 8300, 7000]);
+  assert.deepEqual(d.decharge.classement.ordre, ['vivo-v80-lite', 'poco-x8', 'honor-x9d', 'honor-600-pro']);
+  assert.equal(M('redmi-note-17-pro-max').specs.batterie_mah, 10000); assert.equal(M('apple-iphone-17').specs.batterie_mah, 4300);
+  assert.deepEqual(d.decharge.robot.lignes.map(l => l.ton), ['ok', 'ok', 'bad', 'bad']);
+  assert.ok(/185 Hz/.test(M('poco-f9-pro').specs.ecran) && /120 W/.test(M('poco-f9-pro').specs.charge));
+  assert.equal(d.non_reprises.length, 2);
+  d.non_reprises.forEach(v => assert.ok(v.raison && v.lien && v.titre));
+  assert.ok(!/Android 16|47 °C|Crash/.test(JSON.stringify(d.modeles) + JSON.stringify(d.fiches)), 'affirmations non recoupées exclues');
+  assert.ok(d.source.rapport.verification && d.limites.some(l => /rapport de synthèse/.test(l)));
 });
 check('aucune note chiffrée inventée : pas de score, ni de note par profil', () => {
   const t = JSON.stringify(d);
@@ -46,8 +62,8 @@ check('aucune note chiffrée inventée : pas de score, ni de note par profil', (
 });
 check('choix par profil : 4 profils, modèles existants, raison et vidéo citées', () => {
   assert.deepEqual(Object.keys(d.choix_par_profil), ['etudiant', 'professionnel', 'gamer', 'photographe']);
-  Object.values(d.choix_par_profil).forEach(l => l.forEach(x => { assert.ok(M(x.modele), x.modele); assert.ok(x.raison); assert.match(x.ref, /^Vidéo [1-5]$/); }));
-  assert.deepEqual(d.choix_par_profil.gamer.map(x => x.modele), ['redmagic-11s-pro', 'samsung-galaxy-s26-ultra', 'apple-iphone-17-pro-max']);
+  Object.values(d.choix_par_profil).forEach(l => l.forEach(x => { assert.ok(M(x.modele), x.modele); assert.ok(x.raison); assert.match(x.ref, /^Vidéo (\d|1[0-3])$/); }));
+  assert.deepEqual(d.choix_par_profil.gamer.map(x => x.modele), ['redmagic-11s-pro', 'samsung-galaxy-s26-ultra', 'apple-iphone-17-pro-max', 'poco-f9-pro']);
 });
 check('page smartphones : section, onglets, liens et numérotation cohérents ; analyseur intact', () => {
   assert.ok(html.includes('id="tests-2026"')); assert.ok(html.includes('assets/css/smartphones-tests.css')); assert.ok(html.includes('assets/js/smartphones-tests.js'));

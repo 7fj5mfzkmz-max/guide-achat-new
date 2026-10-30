@@ -31,7 +31,19 @@ const COMPAT = {
   'samsung-galaxy-a27': { durete: { protection_ip: 'IP64', android_version_sortie: null } },
   'samsung-galaxy-a37': {},
   'redmagic-11s-pro': {},
-  'pixel-11-pro': {}
+  'pixel-11-pro': {},
+  /* Rapport du 30 octobre 2026 (vidéos 6 à 13) : seulement les capacités, écrans, puces et protections cités. */
+  'oppo-find-x9-pro': { batterie: { capacite_mah: 7500, recharge_watts: null, chimie: null } },
+  'vivo-v80-lite': { batterie: { capacite_mah: 10000, recharge_watts: null, chimie: null } },
+  'poco-x8': { batterie: { capacite_mah: 8340, recharge_watts: null, chimie: null } },
+  'honor-x9d': { batterie: { capacite_mah: 8300, recharge_watts: null, chimie: null } },
+  'honor-600-pro': { batterie: { capacite_mah: 7000, recharge_watts: null, chimie: null } },
+  'redmi-note-17-pro-max': { batterie: { capacite_mah: 10000, recharge_watts: null, chimie: null } },
+  'apple-iphone-17': { batterie: { capacite_mah: 4300, recharge_watts: null, chimie: null } },
+  'poco-f9-pro': { ecran: { technologie: 'OLED', frequence_max_hz: 185, luminosite_nits: null }, performance: { soc: 'Snapdragon 8 Elite Gen 5', niveau: null, ram_go_max: 16 }, batterie: { capacite_mah: null, recharge_watts: 120, chimie: null } },
+  'huawei-pura-90s-pro-max': {},
+  'redmi-note-15-pro-5g': { performance: { soc: 'MediaTek Dimensity 7400', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 6580, recharge_watts: null, chimie: null } },
+  'honor-magic-8-lite': { performance: { soc: 'Snapdragon 6 Gen 4', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 7500, recharge_watts: null, chimie: null }, durete: { protection_ip: 'IP68', android_version_sortie: null } }
 };
 
 const fmt = n => Number(n).toLocaleString('fr-FR').replace(/ /g, ' ');
@@ -80,10 +92,6 @@ function preuve(m) {
   if (Object.keys(mesures).length) e.mesures = mesures;
   return e;
 }
-function prete(compat) {
-  const n = ['ecran', 'performance', 'batterie', 'durete'].filter(k => compat[k] && Object.values(compat[k]).some(v => v != null)).length;
-  return n >= 2;
-}
 
 const parId = Object.fromEntries(cat.produits.map(p => [p.id, p]));
 let ajoutes = 0, lies = 0;
@@ -113,7 +121,7 @@ for (const m of tests.modeles) {
     profil_scores: {},
     compatibilite: compat,
     tests: [preuve(m)],
-    ready_for_recommendation: prete(compat),
+    ready_for_recommendation: false, // classé ensuite par integrer-complet.js, dès que prix, puce, batterie et écran sont tous connus
     fiche_statut: 'teste_video',
     origine: 'test',
     date_verification: tests.meta.derniere_verification.slice(0, 7),
@@ -121,7 +129,8 @@ for (const m of tests.modeles) {
   };
   Object.keys(p).forEach(k => { if (p[k] === null && k !== 'prix_indicatif') delete p[k]; });
   const i = cat.produits.findIndex(x => x.id === m.id);
-  if (i >= 0) cat.produits[i] = p; else { cat.produits.push(p); ajoutes++; }
+  /* Une fiche de test déjà au catalogue garde ses enrichissements (classeur, fichier 2026) : seule la preuve du test est rafraîchie. */
+  if (i >= 0) { cat.produits[i].tests = p.tests; lies++; } else { cat.produits.push(p); ajoutes++; }
 }
 cat.catalogue_meta.count = cat.produits.length;
 require('./classer-puces.js').classer(cat);

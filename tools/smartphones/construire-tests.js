@@ -10,7 +10,14 @@ const SOURCE = {
   id: 'tech-2026',
   titre: 'Résumé détaillé des 6 vidéos Smartphones 2026',
   support: 'Dossier de synthèse de 3 pages (Resume_Complet_Videos_Tech_2026.html.pdf) sur six vidéos de quatre chaînes (cinq sont reprises ici)',
-  chaines: ['Android Police', 'The Tech Chap', 'Versus', 'Tech Spurt']
+  chaines: ['Android Police', 'The Tech Chap', 'Versus', 'Tech Spurt', 'Techmo', 'TechNick', 'PhoneBuff'],
+  rapport: {
+    id: 'rapports-tech-2026-10',
+    titre: 'Rapports d’Analyses Isolées (dossier 1/5), série d’audits techniques Q4-2026',
+    support: 'PDF de 5 pages (Rapports_Techniques_Individuels_2026.pdf) sur dix vidéos, dont huit reprises ici',
+    recu_le: '2026-10-30',
+    verification: 'Titres et chaînes des dix vidéos contrôlés auprès de YouTube ; le contenu des vidéos n’a pas pu être relu (pas de sous-titres accessibles), les chiffres sont ceux du rapport.'
+  }
 };
 
 const VIDEOS = [
@@ -18,7 +25,21 @@ const VIDEOS = [
   { id: 'records', n: 2, chaine: 'The Tech Chap', titre: 'OPPO Find X10 Pro Max - Phone of the Year?', theme: 'Records matériels', resume: 'Un seul téléphone passé en revue : l’OPPO Find X10 Pro Max, sa batterie, son écran et ses capteurs.' },
   { id: 'gaming', n: 3, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Trois téléphones testés : autonomie mesurée, refroidissement et prix.' },
   { id: 'samsung', n: 4, chaine: 'Versus', titre: 'Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!', theme: 'Gamme Samsung', resume: 'Quatre Galaxy A comparés pour savoir lequel acheter et lequel éviter.' },
-  { id: 'nouveautes', n: 5, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Les derniers lancements : Vivo V80 et OnePlus 16, avec leurs batteries.' }
+  { id: 'nouveautes', n: 5, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Les derniers lancements : Vivo V80 et OnePlus 16, avec leurs batteries.' },
+  { id: 'batteries-comparees', n: 6, chaine: 'Techmo', titre: 'Battery Test: OnePlus vs. Oppo, iPhone, Galaxy, Pixel, Xiaomi, vivo', theme: 'Autonomie', lien: 'https://www.youtube.com/watch?v=xpgo8T9hhxs', resume: 'Comparaison d’autonomie : OnePlus 16 (9 000 mAh) et OPPO Find X9 Pro (7 500 mAh) face aux batteries d’environ 5 000 mAh des modèles occidentaux.' },
+  { id: 'drain-v80-lite', n: 7, chaine: 'TechNick', titre: 'Vivo V80 Lite vs POCO / HONOR / Samsung / iPhone Battery Life DRAIN Test!', theme: 'Test de décharge', lien: 'https://www.youtube.com/watch?v=gEPCdMFG5lE', resume: 'Décharge continue de l’écran : le Vivo V80 Lite (10 000 mAh) devant POCO X8, HONOR X9d et HONOR 600 Pro.' },
+  { id: 'robot', n: 8, chaine: 'PhoneBuff', titre: 'REDMI Note 17 Pro Max vs. Reno16 F vs. Galaxy A57 vs. iPhone 17 Battery Test', theme: 'Décharge robotisée', lien: 'https://www.youtube.com/watch?v=yIXi7YyhvHg', resume: 'Cycle d’applications identique joué par un bras robotisé sur quatre téléphones, jusqu’à l’extinction.' },
+  { id: 'poco-f9', n: 9, chaine: 'TechNick', titre: 'POCO F9 Pro vs POCO F9 Ultra: The ULTIMATE Comparison!', theme: 'Fiche : POCO F9 Pro', lien: 'https://www.youtube.com/watch?v=wDmYRIUJiGA', resume: 'Le POCO F9 Pro face au F9 Ultra : écran, mémoire et charge.' },
+  { id: 'pura', n: 10, chaine: 'TechNick', titre: 'Huawei Pura 90s Pro Max Review: My New Daily Driver!', theme: 'Fiche : Huawei Pura 90s Pro Max', lien: 'https://www.youtube.com/watch?v=Fy62KgKcIHk', resume: 'Test du Huawei Pura 90s Pro Max : capteur 1 pouce et téléobjectif périscope.' },
+  { id: 'photo', n: 11, chaine: 'Tech Spurt', titre: 'Best Camera Phones (Autumn 2026) | Top 15 From OPPO, Vivo, Samsung & More!', theme: 'Photo', lien: 'https://www.youtube.com/watch?v=gDdc9gEbg_E', resume: 'Les meilleurs téléphones photo de l’automne 2026 : cinq d’entre eux sont repris par le rapport.' },
+  { id: 'milieu', n: 12, chaine: 'Tech Spurt', titre: 'Best Mid-Range Phones (Summer 2026) | Top 20 Reviewed', theme: 'Milieu de gamme', lien: 'https://www.youtube.com/watch?v=zw30rfxoVO4', resume: 'Vingt téléphones de milieu de gamme passés en revue ; le rapport en retient quatre.' },
+  { id: 'budget', n: 13, chaine: 'Tech Spurt', titre: 'Best Budget Phones (Summer 2026) | Top 10 Tested & Reviewed', theme: 'Petit budget', lien: 'https://www.youtube.com/watch?v=Oi3uzDEFflo', resume: 'Dix téléphones à petit prix testés ; le rapport en retient quatre, avec leur résistance.' }
+];
+
+/* Deux vidéos du rapport ne sont pas reprises : leur titre ne permet pas de recouper ce que le rapport en dit. */
+const NON_REPRISES = [
+  { chaine: 'PhoneBuff', titre: 'The Fastest Phone In The World (2026)', lien: 'https://www.youtube.com/watch?v=RKIumrb4B_k', raison: 'Le titre annonce un test de vitesse ; le rapport décrit une analyse de batterie et de modem du Galaxy S26 Ultra que rien ne permet de recouper.' },
+  { chaine: 'TechNick', titre: 'iPhone 18 Pro Max vs 17 Pro Max / S26 Ultra / POCO F9 Ultra / Vivo X500 Pro Max Benchmark Test', lien: 'https://www.youtube.com/watch?v=xpXYYQ6SNdw', raison: 'Le rapport affirme un arrêt thermique du Galaxy S26 Ultra à 47 °C et cite un Pixel 11 Pro XL que le titre ne mentionne pas : affirmation trop forte pour être publiée sans l’avoir vue.' }
 ];
 
 const MODELES = [
@@ -43,7 +64,29 @@ const MODELES = [
   { id: 'samsung-galaxy-a27', nom: 'Samsung Galaxy A27', marque: 'Samsung', video: 'samsung', prix_usd: 349,
     specs: { etancheite: 'IP64 (rétrogradé)', photo: 'Ultra grand-angle de 5 MP au rabais', logiciel: 'Instabilités logicielles récurrentes' } },
   { id: 'samsung-galaxy-a17', nom: 'Samsung Galaxy A17', marque: 'Samsung', video: 'samsung', prix_usd: 199,
-    specs: { ecran: '90 Hz', ram: '4 Go', usage: 'Lenteurs occasionnelles mais suffisant pour les tâches basiques' } }
+    specs: { ecran: '90 Hz', ram: '4 Go', usage: 'Lenteurs occasionnelles mais suffisant pour les tâches basiques' } },
+  { id: 'oppo-find-x9-pro', nom: 'OPPO Find X9 Pro', marque: 'OPPO', video: 'batteries-comparees',
+    specs: { batterie_mah: 7500, atout: 'Environ deux jours complets d’autonomie (estimation du rapport)' } },
+  { id: 'vivo-v80-lite', nom: 'Vivo V80 Lite 5G', marque: 'Vivo', video: 'drain-v80-lite',
+    specs: { batterie_mah: 10000, atout: 'Vainqueur du test de décharge continue de l’écran' } },
+  { id: 'poco-x8', nom: 'POCO X8', marque: 'POCO', video: 'drain-v80-lite',
+    specs: { batterie_mah: 8340, atout: 'Deuxième du test de décharge, avec un écart notable sur le Vivo V80 Lite' } },
+  { id: 'honor-x9d', nom: 'HONOR X9d', marque: 'HONOR', video: 'drain-v80-lite',
+    specs: { batterie_mah: 8300, atout: 'Troisième du test de décharge' } },
+  { id: 'honor-600-pro', nom: 'HONOR 600 Pro', marque: 'HONOR', video: 'drain-v80-lite',
+    specs: { batterie_mah: 7000, atout: 'Quatrième du test de décharge' } },
+  { id: 'redmi-note-17-pro-max', nom: 'Xiaomi REDMI Note 17 Pro Max', marque: 'Xiaomi', video: 'robot',
+    specs: { batterie_mah: 10000, atout: 'Encore allumé, avec 22 % de charge, à la fin du cycle robotisé' } },
+  { id: 'apple-iphone-17', nom: 'Apple iPhone 17', marque: 'Apple', video: 'robot',
+    specs: { batterie_mah: 4300, point_noir: 'Éteint à l’étape 6 du cycle robotisé' } },
+  { id: 'poco-f9-pro', nom: 'POCO F9 Pro', marque: 'POCO', video: 'poco-f9',
+    specs: { puce: 'Snapdragon 8 Elite, 5e génération', ecran: 'OLED 185 Hz', ram: '16 Go LPDDR5X', stockage: '512 Go UFS 4.1', charge: '120 W filaire', atout: 'Écran 185 Hz, 16 Go de RAM et charge 120 W ; rapport qualité/prix jugé supérieur, plus équilibré que la version Ultra' } },
+  { id: 'huawei-pura-90s-pro-max', nom: 'Huawei Pura 90s Pro Max', marque: 'Huawei', video: 'pura',
+    specs: { photo: 'Capteur principal 1 pouce, téléobjectif périscope 200 MP', atout: 'Jugé « daily driver » par le testeur' } },
+  { id: 'redmi-note-15-pro-5g', nom: 'Xiaomi Redmi Note 15 Pro 5G', marque: 'Xiaomi', video: 'budget',
+    specs: { puce: 'MediaTek Dimensity 7400', batterie_mah: 6580, photo: 'Capteur 200 MP' } },
+  { id: 'honor-magic-8-lite', nom: 'Honor Magic 8 Lite', marque: 'HONOR', video: 'budget',
+    specs: { puce: 'Snapdragon 6 Gen 4', batterie_mah: 7500, etancheite: 'IP68 et IP69', atout: 'Châssis anti-chute (2,5 m), écran tactile calibré pour les doigts mouillés' } }
 ];
 
 const GAMING = {
@@ -54,6 +97,80 @@ const GAMING = {
   ]
 };
 
+/* Rapport d'octobre 2026 : seulement ce que dit le rapport, sans note chiffrée. */
+const DECHARGE = {
+  endurance: {
+    video: 'batteries-comparees',
+    lignes: [
+      { modele: 'oneplus-16', estimation: 'Jusqu’à 3 jours' },
+      { modele: 'oppo-find-x9-pro', estimation: 'Environ 2 jours complets' },
+      { nom: 'Modèles occidentaux (environ 5 000 mAh)', mah: 5000, estimation: '1 jour au maximum' }
+    ],
+    note: 'Estimations du rapport : la durée en jours n’est pas une mesure chronométrée.'
+  },
+  classement: {
+    video: 'drain-v80-lite',
+    ordre: ['vivo-v80-lite', 'poco-x8', 'honor-x9d', 'honor-600-pro'],
+    rangs: ['Vainqueur', 'Deuxième', 'Troisième', 'Quatrième'],
+    note: 'Le titre de la vidéo cite aussi des Samsung et un iPhone : le rapport ne retient que ces quatre résultats.'
+  },
+  robot: {
+    video: 'robot',
+    lignes: [
+      { modele: 'redmi-note-17-pro-max', etat: 'Encore allumé, 22 % de charge restante', ton: 'ok' },
+      { nom: 'OPPO Reno16 F', etat: 'Encore allumé (charge restante non précisée)', ton: 'ok' },
+      { modele: 'samsung-galaxy-a57', mah: 7000, etat: 'Éteint à l’étape 8', ton: 'bad' },
+      { modele: 'apple-iphone-17', etat: 'Éteint à l’étape 6', ton: 'bad' }
+    ],
+    note: 'Cycle identique d’applications, joué par un bras robotisé pour écarter les biais humains.'
+  }
+};
+
+const FICHES = [
+  { modele: 'poco-f9-pro', verdict: 'Rapport qualité/prix supérieur', note: 'Plus équilibré que la version Ultra, selon le rapport.' },
+  { modele: 'huawei-pura-90s-pro-max', verdict: 'Daily driver', note: 'Validé par le testeur pour un usage principal.' }
+];
+
+const PHOTO = {
+  video: 'photo',
+  lignes: [
+    { nom: 'OPPO Find X9 Ultra', optique: 'Double module périscopique', traitement: 'Calibrage Hasselblad' },
+    { nom: 'Xiaomi 17 Ultra', optique: 'Lentilles asphériques', traitement: 'Leica Summilux' },
+    { nom: 'Vivo X300 Ultra', optique: 'Stabilisation gimbal multi-axes', traitement: 'ISP maison de la série V' },
+    { modele: 'pixel-11-pro', optique: 'Traitement HDR computationnel', traitement: 'Tensor G6, IA embarquée' },
+    { modele: 'samsung-galaxy-s26-ultra', optique: 'Téléobjectif 5x (capteur recadré)', traitement: 'Mise au point ISOCELL' }
+  ],
+  retenir: [
+    'Le capteur principal d’un pouce est devenu la norme sur les modèles Ultra.',
+    'Alternative de milieu de gamme recommandée : le Pixel 10a (mention honorable, rapport qualité/prix).'
+  ]
+};
+
+const GAMME = {
+  milieu: {
+    video: 'milieu',
+    plafond: 'moins de 500 £',
+    lignes: [
+      { nom: 'Google Pixel 10a', point: 'Traitement d’image', mention: 'Excellent' },
+      { nom: 'OnePlus Nord 5', point: 'Vitesse de charge', mention: 'Optimal' },
+      { nom: 'OnePlus 15R', point: 'Fluidité de l’affichage', mention: 'Haut de gamme' },
+      { nom: 'Samsung Galaxy A57 5G', point: 'Stabilité logicielle', mention: 'Standard' }
+    ],
+    note: 'Le rapport relève que l’écart de performance brute avec les flagships s’est nettement réduit. Les qualificatifs sont ceux du rapport, sans note chiffrée.'
+  },
+  budget: {
+    video: 'budget',
+    plafond: 'moins de 300 £',
+    lignes: [
+      { modele: 'redmi-note-15-pro-5g', nom: 'Redmi Note 15 Pro 5G', puce: 'Dimensity 7400', mah: 6580, cle: 'Capteur 200 MP' },
+      { nom: 'Redmi Note 15 (version de base)', puce: 'Série Helio', mah: 6000, cle: 'Limité à la 4G' },
+      { modele: 'honor-magic-8-lite', nom: 'Honor Magic 8 Lite', puce: 'Snapdragon 6 Gen 4', mah: 7500, cle: 'Châssis anti-chute (2,5 m)' },
+      { nom: 'POCO M8 Pro', puce: null, mah: null, cle: 'Tarification agressive' }
+    ],
+    etancheite: { modele: 'honor-magic-8-lite', points: ['IP68 : résiste à l’immersion', 'IP69 : résiste aux jets haute pression et haute température', 'Écran tactile calibré pour les doigts mouillés'] }
+  }
+};
+
 const SAMSUNG = [
   { modele: 'samsung-galaxy-a17', verdict: 'Le budget strict', badge: 'BUDGET STRICT', ton: 'ok' },
   { modele: 'samsung-galaxy-a27', verdict: 'À éviter', badge: 'À ÉVITER', ton: 'bad' },
@@ -62,29 +179,32 @@ const SAMSUNG = [
 ];
 
 const CHOIX = {
-  etudiant: [['samsung-galaxy-a37', 'Le choix économique : l’essentiel de l’A57 pour 100 $ de moins', 'Vidéo 4'], ['samsung-galaxy-a17', 'Le budget strict : écran 90 Hz, 4 Go de RAM, suffisant pour les tâches basiques', 'Vidéo 4'], ['samsung-galaxy-a57', 'Le meilleur choix de la gamme Samsung', 'Vidéo 4']],
-  professionnel: [['pixel-11-pro', 'Intelligence logicielle, tarif plus doux, régularité photographique', 'Vidéo 1'], ['samsung-galaxy-a57', 'Aluminium, IP68, meilleure autonomie globale de la gamme (10 h 35)', 'Vidéo 4'], ['oppo-find-x10-pro-max', 'Autonomie record : 7 150 mAh en Europe', 'Vidéo 2']],
-  gamer: [['redmagic-11s-pro', 'Rapport qualité/prix pur : ventilateur 24k RPM et gâchettes, autonomie mesurée de 11 h 30', 'Vidéo 3'], ['samsung-galaxy-s26-ultra', 'Meilleur polyvalent : écran AMOLED et bypass charge, autonomie mesurée de 10 h 17', 'Vidéo 3'], ['apple-iphone-17-pro-max', 'Cher mais puissant : jeux console AAA, autonomie mesurée de 12 h 54 (la plus longue)', 'Vidéo 3']],
-  photographe: [['pixel-11-pro', 'Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement', 'Vidéo 1'], ['iphone-18-pro', 'Ouverture variable et téléobjectif 4x très polyvalent', 'Vidéo 1'], ['oppo-find-x10-pro-max', 'Triple capteur 200 MP Hasselblad et convertisseur télé magnétique 10x/20x/40x', 'Vidéo 2'], ['vivo-v80', 'Optiques Zeiss 50 MP, principal et téléobjectif', 'Vidéo 5']]
+  etudiant: [['samsung-galaxy-a37', 'Le choix économique : l’essentiel de l’A57 pour 100 $ de moins', 'Vidéo 4'], ['samsung-galaxy-a17', 'Le budget strict : écran 90 Hz, 4 Go de RAM, suffisant pour les tâches basiques', 'Vidéo 4'], ['samsung-galaxy-a57', 'Le meilleur choix de la gamme Samsung', 'Vidéo 4'], ['honor-magic-8-lite', 'Châssis anti-chute (2,5 m), IP68 et IP69, 7 500 mAh', 'Vidéo 13'], ['redmi-note-15-pro-5g', 'Capteur 200 MP et batterie de 6 580 mAh à petit prix', 'Vidéo 13']],
+  professionnel: [['pixel-11-pro', 'Intelligence logicielle, tarif plus doux, régularité photographique', 'Vidéo 1'], ['samsung-galaxy-a57', 'Aluminium, IP68, meilleure autonomie globale de la gamme (10 h 35)', 'Vidéo 4'], ['oppo-find-x10-pro-max', 'Autonomie record : 7 150 mAh en Europe', 'Vidéo 2'], ['redmi-note-17-pro-max', 'Autonomie : 10 000 mAh et encore allumé (22 %) à la fin du cycle robotisé', 'Vidéo 8']],
+  gamer: [['redmagic-11s-pro', 'Rapport qualité/prix pur : ventilateur 24k RPM et gâchettes, autonomie mesurée de 11 h 30', 'Vidéo 3'], ['samsung-galaxy-s26-ultra', 'Meilleur polyvalent : écran AMOLED et bypass charge, autonomie mesurée de 10 h 17', 'Vidéo 3'], ['apple-iphone-17-pro-max', 'Cher mais puissant : jeux console AAA, autonomie mesurée de 12 h 54 (la plus longue)', 'Vidéo 3'], ['poco-f9-pro', 'Écran 185 Hz, 16 Go de RAM et charge 120 W ; plus équilibré que la version Ultra', 'Vidéo 9']],
+  photographe: [['pixel-11-pro', 'Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement', 'Vidéo 1'], ['iphone-18-pro', 'Ouverture variable et téléobjectif 4x très polyvalent', 'Vidéo 1'], ['oppo-find-x10-pro-max', 'Triple capteur 200 MP Hasselblad et convertisseur télé magnétique 10x/20x/40x', 'Vidéo 2'], ['vivo-v80', 'Optiques Zeiss 50 MP, principal et téléobjectif', 'Vidéo 5'], ['huawei-pura-90s-pro-max', 'Capteur principal 1 pouce et téléobjectif périscope 200 MP ; verdict « daily driver »', 'Vidéo 10']]
 };
 
 const out = {
   categorie: 'smartphones-tests',
-  source: SOURCE, videos: VIDEOS, modeles: MODELES, gaming: GAMING, samsung: SAMSUNG,
-  records: { ordre: ['oneplus-16', 'vivo-v80', 'oppo-find-x10-pro-max'], echelle_mah: 9000 },
+  source: SOURCE, videos: VIDEOS, non_reprises: NON_REPRISES, modeles: MODELES, gaming: GAMING, samsung: SAMSUNG,
+  decharge: DECHARGE, fiches: FICHES, photo: PHOTO, gamme: GAMME,
+  records: { ordre: ['vivo-v80-lite', 'redmi-note-17-pro-max', 'oneplus-16', 'poco-x8', 'honor-x9d', 'honor-magic-8-lite', 'oppo-find-x9-pro', 'vivo-v80', 'oppo-find-x10-pro-max', 'honor-600-pro', 'redmi-note-15-pro-5g'], echelle_mah: 10000 },
   choix_par_profil: Object.fromEntries(Object.entries(CHOIX).map(([k, l]) => [k, l.map(([modele, raison, ref]) => ({ modele, raison, ref }))])),
   tendances: [
     { titre: 'Des batteries de 7 000 à 9 000 mAh', texte: 'Les capacités atteignent 7 000 à 9 000 mAh sans surépaisseur notable, grâce aux cellules silicium-carbone.' },
+    { titre: 'La batterie de 10 000 mAh arrive en milieu de gamme', texte: 'Le Vivo V80 Lite et le Redmi Note 17 Pro Max atteignent 10 000 mAh ; face à eux, l’iPhone 17 (4 300 mAh) s’éteint bien avant lors du cycle robotisé.' },
     { titre: 'Le logiciel fait la photo', texte: 'Le traitement logiciel, assisté par l’IA, domine : c’est lui qui rend les photos régulières d’un smartphone à l’autre.' }
   ],
   limites: [
-    'Synthèse de cinq vidéos de quatre chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.',
+    'Synthèse de treize vidéos de sept chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.',
+    'Les vidéos 6 à 13 viennent d’un rapport de synthèse (PDF d’octobre 2026) : titres et chaînes contrôlés auprès de YouTube, contenu des vidéos non relu. Deux vidéos du rapport ne sont pas reprises (voir la liste des vidéos).',
     'Le dossier ne contient aucune note chiffrée : le guide n’en invente pas et ne calcule pas de score par profil pour ces modèles.',
     'Prix en dollars (prix de sortie américain, ou reconditionné pour le S26 Ultra), non vérifiés en France.',
     'Chaque verdict vaut dans sa vidéo : « meilleur choix » se lit dans la gamme comparée, pas sur tout le marché.',
     'Certaines versions diffèrent selon les marchés (OPPO : 7 150 mAh en Europe, 8 000 mAh en Asie).'
   ],
-  meta: { derniere_verification: '2026-10-23', devise: 'USD' }
+  meta: { derniere_verification: '2026-10-30', devise: 'USD' }
 };
 fs.writeFileSync(path.join(__dirname, '..', '..', 'data', 'smartphones-tests.json'), JSON.stringify(out, null, 2) + '\n');
 console.log('écrit data/smartphones-tests.json', MODELES.length + ' modèles,', VIDEOS.length + ' vidéos');

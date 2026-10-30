@@ -492,5 +492,84 @@ OIS sur le capteur principal	OIS on the main sensor
 Énorme batterie {0} mAh	Huge {0} mAh battery
 Autonomie mesurée : {0} h {1}	Measured battery life: {0} h {1}
 Recommandés et vérifiés	Recommended and verified
-Six fiches vérifiées au plus, classées de la plus pertinente à la moins pertinente selon leur note pour ce profil. Les modèles testés pour ce profil sont dans la section Tests 2026.	Six verified sheets at most, ranked from most to least relevant by their score for this profile. Models tested for this profile are in the Tests section.
 Note {0}/10 pour ce profil	Score {0}/10 for this profile
+Décharge	Battery drain
+Fiches détaillées	Detailed profiles
+Milieu et petit budget	Mid-range and budget
+Les vidéos	The videos
+(Test de décharge)	(Drain test)
+(Décharge robotisée)	(Robotic drain)
+(Fiche : POCO F9 Pro)	(Profile: POCO F9 Pro)
+(Fiche : Huawei Pura 90s Pro Max)	(Profile: Huawei Pura 90s Pro Max)
+(Milieu de gamme)	(Mid-range)
+(Petit budget)	(Budget)
+Non reprise	Not used
+» : Le titre annonce un test de vitesse ; le rapport décrit une analyse de batterie et de modem du Galaxy S26 Ultra que rien ne permet de recouper.	» : The title announces a speed test; the report describes a battery and modem analysis of the Galaxy S26 Ultra that nothing allows us to cross-check.
+» : Le rapport affirme un arrêt thermique du Galaxy S26 Ultra à {0} °C et cite un Pixel {1} Pro XL que le titre ne mentionne pas : affirmation trop forte pour être publiée sans l’avoir vue.	» : The report claims the Galaxy S26 Ultra shut down from heat at {0} °C and cites a Pixel {1} Pro XL that the title does not mention: too strong a claim to publish without having seen it.
+Synthèse de treize vidéos de sept chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.	Summary of thirteen videos from seven channels: the figures are those reported by the reviewers; the guide did not re-measure them.
+Les vidéos {0} à {1} viennent d’un rapport de synthèse (PDF d’octobre {2}) : titres et chaînes contrôlés auprès de YouTube, contenu des vidéos non relu. Deux vidéos du rapport ne sont pas reprises (voir la liste des vidéos).	Videos {0} to {1} come from a summary report (PDF from October {2}): titles and channels checked against YouTube, video content not re-read. Two videos from the report are not used (see the list of videos).
+Six fiches vérifiées au plus, classées de la plus pertinente à la moins pertinente selon leur note pour ce profil. Les modèles testés pour ce profil sont dans la section « Les tests ».	Six verified profiles at most, ranked from most to least relevant by their score for this profile. Models tested for this profile are in the “Tests” section.
+Décharge continue de l’écran (vidéo {0}, TechNick)	Continuous screen drain (video {0}, TechNick)
+Deuxième	Second
+Troisième	Third
+Quatrième	Fourth
+Le titre de la vidéo cite aussi des Samsung et un iPhone : le rapport ne retient que ces quatre résultats.	The video title also mentions Samsung phones and an iPhone: the report keeps only these four results.
+Autonomie estimée (vidéo {0}, Techmo)	Estimated battery life (video {0}, Techmo)
+Autonomie estimée	Estimated battery life
+Jusqu’à {0} jours	Up to {0} days
+Environ {0} jours complets	About {0} full days
+{0} jour au maximum	{0} day at most
+Estimations du rapport : la durée en jours n’est pas une mesure chronométrée.	Estimates from the report: the duration in days is not a timed measurement.
+Cycle robotisé (vidéo {0}, PhoneBuff)	Robotic cycle (video {0}, PhoneBuff)
+Fin du cycle	End of cycle
+Encore allumé, {0} % de charge restante	Still on, {0}% charge left
+Encore allumé (charge restante non précisée)	Still on (remaining charge not specified)
+Éteint à l’étape {0}	Shut down at step {0}
+Cycle identique d’applications, joué par un bras robotisé pour écarter les biais humains.	Identical cycle of apps, played by a robotic arm to rule out human bias.
+Deux fiches détaillées	Two detailed profiles
+Rapport qualité/prix supérieur	Superior value for money
+Snapdragon {0} Elite, 5e génération	Snapdragon {0} Elite, 5th generation
+Vidéo	Video
+Plus équilibré que la version Ultra, selon le rapport.	More balanced than the Ultra version, according to the report.
+Capteur principal {0} pouce, téléobjectif périscope {1} MP	{0}-inch main sensor, {1} MP periscope telephoto
+Validé par le testeur pour un usage principal.	Approved by the reviewer for everyday main-phone use.
+Cinq téléphones photo cités (vidéo {0}, Tech Spurt)	Five camera phones cited (video {0}, Tech Spurt)
+Double module périscopique	Dual periscope module
+Lentilles asphériques	Aspherical lenses
+ISP maison de la série V	In-house V-series ISP
+Tensor G6, IA embarquée	Tensor G6, on-device AI
+Téléobjectif 5x (capteur recadré)	5x telephoto (cropped sensor)
+Mise au point ISOCELL	ISOCELL autofocus
+Le capteur principal d’un pouce est devenu la norme sur les modèles Ultra.	The 1-inch main sensor has become the norm on Ultra models.
+Alternative de milieu de gamme recommandée : le Pixel 10a (mention honorable, rapport qualité/prix).	Recommended mid-range alternative: the Pixel 10a (honorable mention, value for money).
+Milieu de gamme, moins de {0} £ (vidéo {1})	Mid-range, under £{0} (video {1})
+Point évalué	Point assessed
+Vitesse de charge	Charging speed
+Fluidité de l’affichage	Display smoothness
+Stabilité logicielle	Software stability
+Le rapport relève que l’écart de performance brute avec les flagships s’est nettement réduit. Les qualificatifs sont ceux du rapport, sans note chiffrée.	The report notes that the raw performance gap with flagships has narrowed considerably. The qualifiers are the report’s own, with no numerical score.
+Petit budget, moins de {0} £ (vidéo {1})	Budget, under £{0} (video {1})
+Redmi Note {0} (version de base)	Redmi Note {0} (base version)
+Série Helio	Helio series
+Limité à la 4G	Limited to 4G
+Non relevée	Not recorded
+Résistance : Honor Magic {0} Lite	Durability: Honor Magic {0} Lite
+IP68 : résiste à l’immersion	IP68: withstands immersion
+IP69 : résiste aux jets haute pression et haute température	IP69: withstands high-pressure, high-temperature jets
+Écran tactile calibré pour les doigts mouillés	Touchscreen tuned for wet fingers
+Capteur principal {0} pouce et téléobjectif périscope {1} MP ; verdict « daily driver »	{0}-inch main sensor and {1} MP periscope telephoto; verdict “daily driver”
+Mesure relevée dans la vidéo {0}.	Measured in video {0}.
+Trait pointillé : version Asie de l’OPPO ({0} mAh). Échelle : {1} mAh. Les chiffres viennent des vidéos de la liste « Les vidéos ».	Dotted line: Asian version of the OPPO ({0} mAh). Scale: {1} mAh. The figures come from the videos in the “The videos” list.
+Vivo V80 Lite 5G et Xiaomi REDMI Note {0} Pro Max	Vivo V80 Lite 5G and Xiaomi REDMI Note {0} Pro Max
+{0} mAh chacun, devant OnePlus {1} ({2} mAh)	{0} mAh each, ahead of OnePlus {1} ({2} mAh)
+Données du rapport de synthèse reçu en octobre {0} : titres et chaînes des vidéos contrôlés, contenu des vidéos non relu par le guide.	Data from the summary report received in October {0}: video titles and channels checked, video content not re-read by the guide.
+La batterie de {0} mAh arrive en milieu de gamme	{0} mAh batteries reach the mid-range
+Le Vivo V80 Lite et le Redmi Note {0} Pro Max atteignent {1} mAh ; face à eux, l’iPhone {2} ({3} mAh) s’éteint bien avant lors du cycle robotisé.	The Vivo V80 Lite and the Redmi Note {0} Pro Max reach {1} mAh; against them, the iPhone {2} ({3} mAh) shuts down much earlier in the robotic cycle.
+Châssis anti-chute ({0} m), IP68 et IP69, {1} mAh	Drop-proof chassis ({0} m), IP68 and IP69, {1} mAh
+Capteur {0} MP et batterie de {1} mAh à petit prix	{0} MP sensor and {1} mAh battery at a low price
+{0} h {1} avec {2} mAh	{0} h {1} with {2} mAh
+Modèles occidentaux (environ {0} mAh)	Western models (about {0} mAh)
+Châssis anti-chute ({0} m)	Drop-proof chassis ({0} m)
+Autonomie : {0} mAh et encore allumé ({1} %) à la fin du cycle robotisé	Battery life: {0} mAh and still on ({1}%) at the end of the robotic cycle
+Écran {0} Hz, {1} Go de RAM et charge {2} W ; plus équilibré que la version Ultra	{0} Hz screen, {1} GB of RAM and {2} W charging; more balanced than the Ultra version
+Écran {0} Hz	{0} Hz screen

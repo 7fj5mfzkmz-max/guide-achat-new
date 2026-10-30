@@ -1,6 +1,68 @@
 {
-  "mis_a_jour": "2026-10-28",
+  "mis_a_jour": "2026-10-30",
   "entrees": [
+    {
+      "id": "smartphones-nouveau-2026-10-30",
+      "date": "2026-10-30",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "nouveau",
+      "nombre": 11,
+      "noms": [
+        "OPPO Find X9 Pro",
+        "Vivo V80 Lite 5G",
+        "POCO X8",
+        "HONOR X9d",
+        "HONOR 600 Pro",
+        "Xiaomi REDMI Note 17 Pro Max",
+        "Apple iPhone 17",
+        "POCO F9 Pro",
+        "Huawei Pura 90s Pro Max",
+        "Xiaomi Redmi Note 15 Pro 5G",
+        "Honor Magic 8 Lite"
+      ],
+      "titre": "11 nouveaux smartphones",
+      "resume": "Au catalogue : OPPO Find X9 Pro, Vivo V80 Lite 5G, POCO X8, HONOR X9d et 7 autres.",
+      "lien": "smartphones.html"
+    },
+    {
+      "id": "smartphones-maj-2026-10-30",
+      "date": "2026-10-30",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "maj",
+      "nombre": 1,
+      "noms": [
+        "RedMagic 11S Pro"
+      ],
+      "titre": "1 fiche smartphone mise à jour",
+      "resume": "Prix, caractéristiques ou notes revus : RedMagic 11S Pro.",
+      "lien": "smartphones.html"
+    },
+    {
+      "id": "tests-nouveau-2026-10-30",
+      "date": "2026-10-30",
+      "cat": "smartphones",
+      "source": "tests",
+      "type": "nouveau",
+      "nombre": 11,
+      "noms": [
+        "OPPO Find X9 Pro",
+        "Vivo V80 Lite 5G",
+        "POCO X8",
+        "HONOR X9d",
+        "HONOR 600 Pro",
+        "Xiaomi REDMI Note 17 Pro Max",
+        "Apple iPhone 17",
+        "POCO F9 Pro",
+        "Huawei Pura 90s Pro Max",
+        "Xiaomi Redmi Note 15 Pro 5G",
+        "Honor Magic 8 Lite"
+      ],
+      "titre": "Tests 2026 : 11 modèles ajoutés au dossier",
+      "resume": "Au catalogue : OPPO Find X9 Pro, Vivo V80 Lite 5G, POCO X8, HONOR X9d et 7 autres.",
+      "lien": "smartphones.html#tests-2026"
+    },
     {
       "id": "smartphones-maj-2026-10-28",
       "date": "2026-10-28",

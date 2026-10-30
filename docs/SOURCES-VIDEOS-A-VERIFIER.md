@@ -29,3 +29,22 @@ Le résumé transmis par l’utilisateur provient d’une synthèse Gemini. Les 
 ## Avant toute modification des scores ou fiches
 
 Vérifier modèle, génération, CPU/GPU, RAM, TGP et mode d’alimentation de chaque test ; relever méthode et timestamp ; recouper avec la fiche constructeur et une offre française exacte. Conserver explicitement les inconnus. Tester les changements de classement par profil et par budget. Les prix et fiches déjà publiés ne sont pas modifiés par cette réception de sources.
+
+# Rapport « Rapports d’Analyses Isolées » — 30 octobre 2026
+
+PDF de 5 pages sur dix vidéos (`Rapports_Techniques_Individuels_2026.pdf`), fourni avec les liens YouTube. Contrôle fait le 30 octobre : les dix titres et chaînes ont été relus auprès de YouTube (oEmbed). Les sous-titres ne sont pas accessibles : **le contenu des vidéos n’a pas été relu**, les chiffres sont ceux du rapport.
+
+| N° site | Vidéo (chaîne) | Statut |
+|---|---|---|
+| 6 | Battery Test: OnePlus vs. Oppo, iPhone, Galaxy, Pixel, Xiaomi, vivo (Techmo) | reprise |
+| 7 | Vivo V80 Lite vs POCO / HONOR / Samsung / iPhone Battery Life DRAIN Test! (TechNick) | reprise ; le rapport ne cite que quatre modèles sur les cinq marques du titre |
+| 8 | REDMI Note 17 Pro Max vs. Reno16 F vs. Galaxy A57 vs. iPhone 17 Battery Test (PhoneBuff) | reprise |
+| 9 | POCO F9 Pro vs POCO F9 Ultra (TechNick) | reprise |
+| 10 | Huawei Pura 90s Pro Max Review: My New Daily Driver! (TechNick) | reprise, sans « Android 16 » (non recoupé) |
+| 11 | Best Camera Phones (Autumn 2026) (Tech Spurt) | reprise (5 modèles sur 15) |
+| 12 | Best Mid-Range Phones (Summer 2026) (Tech Spurt) | reprise (4 modèles sur 20), sans « cible gaming » ni « sans throttling » |
+| 13 | Best Budget Phones (Summer 2026) (Tech Spurt) | reprise (4 modèles sur 10) |
+| — | The Fastest Phone In The World (2026) (PhoneBuff) | **non reprise** : le titre annonce un test de vitesse, le rapport décrit une analyse de batterie et de modem du Galaxy S26 Ultra |
+| — | iPhone 18 Pro Max vs 17 Pro Max / S26 Ultra / POCO F9 Ultra / Vivo X500 Pro Max Benchmark Test (TechNick) | **non reprise** : le rapport affirme un arrêt thermique du S26 Ultra à 47 °C et cite un Pixel 11 Pro XL absent du titre |
+
+À relire dans les vidéos avant de lever ces réserves : les deux vidéos non reprises ; la mention « dégradation nulle, relevé sur X9 Pro d’occasion » (vidéo 6, non reprise) ; les estimations « jusqu’à 3 jours » / « environ 2 jours » (vidéo 6, présentées comme estimations) ; les plafonds « moins de 500 £ » et « moins de 300 £ » (vidéos 12 et 13).

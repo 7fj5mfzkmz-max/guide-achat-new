@@ -10,6 +10,8 @@ const server = http.createServer((req, res) => {
   if (!file.startsWith(root + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) { res.writeHead(404); return res.end(); }
   res.writeHead(200, { 'Content-Type': mime[path.extname(file)] || 'application/octet-stream' }); fs.createReadStream(file).pipe(res);
 });
+const tests = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones-tests.json'), 'utf8'));
+const catalogue = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones.json'), 'utf8'));
 let passed = 0;
 async function check(label, fn) { try { await fn(); passed++; console.log('OK    ' + label); } catch (e) { console.error('ÉCHEC ' + label + '\n      → ' + String(e.message).split('\n')[0]); process.exitCode = 1; } }
 
@@ -106,13 +108,15 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       });
       await check('records et journal des tests présents' + tag, async () => {
         assert.equal(await page.locator('#sp-records .tr-record').count(), 3);
-        assert.equal(await page.locator('#sp-log li').count(), 5);
-        assert.match(await page.locator('#sp-records').innerText(), /OnePlus 16/);
+        assert.equal(await page.locator('#sp-log li').count(), tests.videos.length);
+        assert.match(await page.locator('#sp-records').innerText(), /Vivo V80 Lite 5G et Xiaomi REDMI Note 17 Pro Max/);
         assert.match(await page.locator('#sp-log').innerText(), /Gamer/);
       });
       await check('chiffres de l’en-tête alimentés par les données' + tag, async () => {
-        assert.equal((await page.locator('[data-sp="models"]').first().innerText()).trim(), '55');
-        assert.equal((await page.locator('[data-sp="tested"]').first().innerText()).trim(), '12');
+        const eligibles = catalogue.produits.filter(p => p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== 'specs_a_verifier' && p.compatibilite).length;
+        /* Les compteurs s'animent quand le bandeau est visible : on attend la valeur finale. */
+        const final = async (k, v) => { for (let i = 0; i < 40; i++) { if ((await page.locator('[data-sp="' + k + '"]').first().textContent()).trim() === v) return; await page.waitForTimeout(100); } assert.equal((await page.locator('[data-sp="' + k + '"]').first().textContent()).trim(), v, k); };
+        await final('models', String(eligibles)); await final('tested', String(tests.modeles.length)); await final('videos', String(tests.videos.length));
       });
       await check('aucune erreur JavaScript' + tag, async () => assert.deepEqual(errors, []));
       await ctx.close();

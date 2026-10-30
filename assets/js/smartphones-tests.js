@@ -11,6 +11,12 @@
   var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var D = null, M = {}, nom = function (id) { return M[id] ? M[id].nom : id; };
   var V = function (id) { return D.videos.filter(function (v) { return v.id === id; })[0]; };
+  var CHIPS = ['puce', 'ecran', 'charge', 'photo', 'ram', 'design', 'accessoire', 'gain_puce'];
+  var label = function (l) { return l.nom || (M[l.modele] && M[l.modele].nom) || l.modele; };
+  var dd = function (k, t) { return t ? '<div><dt>' + k + '</dt><dd>' + t + '</dd></div>' : ''; };
+  var badge = function (ton, t) { return '<span class="pj-badge' + (ton === 'ok' ? ' is-lab' : ton === 'bad' ? ' is-no' : '') + '">' + esc(t) + '</span>'; };
+  var rapport = function () { return '<p class="st-src">Données du rapport de synthèse reçu en octobre 2026 : titres et chaînes des vidéos contrôlés, contenu des vidéos non relu par le guide.</p>'; };
+  var card = function (title, body) { return '<article class="st-spec"><h3>' + esc(title) + '</h3><dl>' + body + '</dl></article>'; };
 
   var animateIn = function (el) {
     var go = function () { [].forEach.call(el.querySelectorAll('[data-w]'), function (e) { e.style.width = e.getAttribute('data-w') + '%'; }); [].forEach.call(el.querySelectorAll('[data-h]'), function (e) { e.style.height = e.getAttribute('data-h') + '%'; }); };
@@ -20,17 +26,17 @@
   /* ——— Onglets ——— */
   var PANELS = {
     records: function () {
-      var r = D.records, max = r.echelle_mah, v = V('records');
+      var r = D.records, max = r.echelle_mah;
       var bars = r.ordre.map(function (id) {
         var m = M[id], s = m.specs, asia = s.batterie_mah_asie;
         return '<div class="st-batt-row"><span class="st-batt-name">' + esc(m.nom) + '</span><span class="st-batt" role="img" aria-label="' + fr(s.batterie_mah) + ' mAh sur ' + fr(max) + '"><i class="st-batt-fill" data-w="' + (s.batterie_mah / max * 100) + '" style="width:0"></i>' + (asia ? '<i class="st-batt-asia" style="left:' + (asia / max * 100) + '%" title="Version Asie : ' + fr(asia) + ' mAh"></i>' : '') + '</span><b class="st-batt-val">' + fr(s.batterie_mah) + ' mAh' + (asia ? '<small>' + fr(asia) + ' en Asie</small>' : '') + '</b></div>';
       }).join('');
       var chip = function (k, t) { return t ? '<div><dt>' + k + '</dt><dd>' + esc(t) + '</dd></div>' : ''; };
-      var cards = r.ordre.slice().reverse().map(function (id) {
+      var cards = r.ordre.slice().reverse().filter(function (id) { return CHIPS.filter(function (k) { return M[id].specs[k]; }).length >= 2; }).map(function (id) {
         var m = M[id], s = m.specs;
         return '<article class="st-spec"><h3>' + esc(m.nom) + '</h3><dl>' + chip('Puce', s.puce) + chip('Écran', s.ecran) + chip('Charge', s.charge) + chip('Photo', s.photo) + chip('RAM', s.ram) + chip('Design', s.design) + chip('Accessoire', s.accessoire) + chip('Gain annoncé', s.gain_puce) + '</dl></article>';
       }).join('');
-      return '<h3 class="st-sub">Capacité de batterie (mAh)</h3><div class="st-batts">' + bars + '</div><p class="st-src">Trait pointillé : version Asie de l’OPPO (8 000 mAh). Échelle : ' + fr(r.echelle_mah) + ' mAh. Vidéos ' + v.n + ' (The Tech Chap) et ' + V('nouveautes').n + ' (Tech Spurt).</p><div class="st-specs">' + cards + '</div>';
+      return '<h3 class="st-sub">Capacité de batterie (mAh)</h3><div class="st-batts">' + bars + '</div><p class="st-src">Trait pointillé : version Asie de l’OPPO (8 000 mAh). Échelle : ' + fr(r.echelle_mah) + ' mAh. Les chiffres viennent des vidéos de la liste « Les vidéos ».</p><div class="st-specs">' + cards + '</div>';
     },
     gaming: function () {
       var g = D.gaming.lignes, max = Math.max.apply(null, g.map(function (l) { return M[l.modele].specs.autonomie_min; }));
@@ -42,6 +48,40 @@
       var v = V('gaming');
       return '<h3 class="st-sub">Autonomie mesurée</h3><div class="st-gaming">' + cols + '</div><p class="st-src">Vidéo ' + v.n + ' · ' + esc(v.chaine) + ' — « ' + esc(v.titre) + ' ». Prix : RedMagic 799 $, S26 Ultra 988 $ (reconditionné), iPhone 17 Pro Max 1 199 $.</p>';
     },
+    decharge: function () {
+      var X = D.decharge, max = D.records.echelle_mah;
+      var bars = X.classement.ordre.map(function (id, i) {
+        var m = M[id], mah = m.specs.batterie_mah;
+        return '<div class="st-batt-row"><span class="st-batt-name">' + esc(m.nom) + '</span><span class="st-batt" role="img" aria-label="' + fr(mah) + ' mAh sur ' + fr(max) + '"><i class="st-batt-fill" data-w="' + (mah / max * 100) + '" style="width:0"></i></span><b class="st-batt-val">' + fr(mah) + ' mAh<small>' + esc(X.classement.rangs[i]) + '</small></b></div>';
+      }).join('');
+      var mah = function (l) { return l.mah || (M[l.modele] && M[l.modele].specs.batterie_mah); };
+      var est = X.endurance.lignes.map(function (l) { return card(label(l), dd('Batterie', mah(l) ? fr(mah(l)) + ' mAh' : '') + dd('Autonomie estimée', esc(l.estimation))); }).join('');
+      var rob = X.robot.lignes.map(function (l) { return card(label(l), dd('Batterie', mah(l) ? fr(mah(l)) + ' mAh' : 'Non précisée') + dd('Fin du cycle', badge(l.ton, l.etat))); }).join('');
+      return '<h3 class="st-sub">Décharge continue de l’écran (vidéo ' + V(X.classement.video).n + ', ' + esc(V(X.classement.video).chaine) + ')</h3><div class="st-batts">' + bars + '</div><p class="st-src">' + esc(X.classement.note) + '</p>' +
+        '<h3 class="st-sub st-sub-gap">Autonomie estimée (vidéo ' + V(X.endurance.video).n + ', ' + esc(V(X.endurance.video).chaine) + ')</h3><div class="st-specs">' + est + '</div><p class="st-src">' + esc(X.endurance.note) + '</p>' +
+        '<h3 class="st-sub st-sub-gap">Cycle robotisé (vidéo ' + V(X.robot.video).n + ', ' + esc(V(X.robot.video).chaine) + ')</h3><div class="st-specs">' + rob + '</div><p class="st-src">' + esc(X.robot.note) + '</p>' + rapport();
+    },
+    fiches: function () {
+      var cards = D.fiches.map(function (f) {
+        var m = M[f.modele], s = m.specs;
+        return '<article class="st-spec"><h3>' + esc(m.nom) + '</h3><p>' + badge('ok', f.verdict) + '</p><dl>' + CHIPS.map(function (k) { return dd({ puce: 'Puce', ecran: 'Écran', charge: 'Charge', photo: 'Photo', ram: 'RAM', design: 'Design', accessoire: 'Accessoire', gain_puce: 'Gain annoncé' }[k], s[k] && esc(s[k])); }).join('') + dd('Stockage', s.stockage && esc(s.stockage)) + dd('Vidéo', esc('Vidéo ' + V(m.video).n + ' · ' + V(m.video).chaine)) + dd('Verdict', esc(f.note)) + '</dl></article>';
+      }).join('');
+      return '<h3 class="st-sub">Deux fiches détaillées</h3><div class="st-specs">' + cards + '</div>' + rapport();
+    },
+    photo: function () {
+      var X = D.photo;
+      var cards = X.lignes.map(function (l) { return card(label(l), dd('Optique', esc(l.optique)) + dd('Traitement', esc(l.traitement))); }).join('');
+      return '<h3 class="st-sub">Cinq téléphones photo cités (vidéo ' + V(X.video).n + ', ' + esc(V(X.video).chaine) + ')</h3><div class="st-specs">' + cards + '</div><ul class="st-notes">' + X.retenir.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' + rapport();
+    },
+    gamme: function () {
+      var X = D.gamme, mi = X.milieu, bu = X.budget;
+      var mid = mi.lignes.map(function (l) { return card(l.nom, dd('Point évalué', esc(l.point)) + dd('Mention', esc(l.mention))); }).join('');
+      var bud = bu.lignes.map(function (l) { return card(l.nom, dd('Puce', l.puce ? esc(l.puce) : 'Non relevée') + dd('Batterie', l.mah ? fr(l.mah) + ' mAh' : 'Non relevée') + dd('À retenir', esc(l.cle))); }).join('');
+      var ip = bu.etancheite;
+      return '<h3 class="st-sub">Milieu de gamme, ' + esc(mi.plafond) + ' (vidéo ' + V(mi.video).n + ')</h3><div class="st-specs">' + mid + '</div><p class="st-src">' + esc(mi.note) + '</p>' +
+        '<h3 class="st-sub st-sub-gap">Petit budget, ' + esc(bu.plafond) + ' (vidéo ' + V(bu.video).n + ')</h3><div class="st-specs">' + bud + '</div>' +
+        '<h3 class="st-sub st-sub-gap">Résistance : ' + esc(M[ip.modele].nom) + '</h3><ul class="st-notes">' + ip.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' + rapport();
+    },
     samsung: function () {
       var v = V('samsung'), max = 549;
       var steps = D.samsung.map(function (s, i) {
@@ -51,7 +91,7 @@
       return '<h3 class="st-sub">La gamme, du moins cher au plus cher</h3><div class="st-stairs">' + steps + '</div><p class="st-src">Vidéo ' + v.n + ' · ' + esc(v.chaine) + ' — « ' + esc(v.titre) + ' ». Prix en dollars (prix de sortie).</p>';
     }
   };
-  var TABS = [['records', 'Records de batterie'], ['gaming', 'Jeu'], ['samsung', 'Gamme Samsung A']];
+  var TABS = [['records', 'Records de batterie'], ['decharge', 'Décharge'], ['gaming', 'Jeu'], ['samsung', 'Gamme Samsung A'], ['fiches', 'Fiches détaillées'], ['photo', 'Photo'], ['gamme', 'Milieu et petit budget']];
 
   function show(k) {
     var p = $('st-panel');
@@ -81,7 +121,8 @@
     profil('etudiant');
     $('st-trends').innerHTML = d.tendances.map(function (t) { return '<article class="st-trend"><h3>' + esc(t.titre) + '</h3><p>' + esc(t.texte) + '</p></article>'; }).join('');
     $('st-limites').innerHTML = d.limites.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
-    $('st-videos').innerHTML = d.videos.map(function (v) { return '<li><span class="pj-badge">Vidéo ' + v.n + '</span> <strong>' + esc(v.chaine) + '</strong> — « ' + esc(v.titre) + ' » <em>(' + esc(v.theme) + ')</em></li>'; }).join('');
+    $('st-videos').innerHTML = d.videos.map(function (v) { return '<li><span class="pj-badge">Vidéo ' + v.n + '</span> <strong>' + esc(v.chaine) + '</strong> — « ' + (v.lien ? '<a href="' + esc(v.lien) + '" rel="noopener" target="_blank">' + esc(v.titre) + '</a>' : esc(v.titre)) + ' » <em>(' + esc(v.theme) + ')</em></li>'; }).join('') +
+      (d.non_reprises || []).map(function (v) { return '<li><span class="pj-badge is-no">Non reprise</span> <strong>' + esc(v.chaine) + '</strong> — « <a href="' + esc(v.lien) + '" rel="noopener" target="_blank">' + esc(v.titre) + '</a> » : ' + esc(v.raison) + '</li>'; }).join('');
     document.documentElement.setAttribute('data-st-ready', '1');
   }
 
