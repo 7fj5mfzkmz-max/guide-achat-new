@@ -60,6 +60,28 @@ check('rapport d’octobre : vidéos 6 à 14 avec lien, autonomies et capacités
   assert.ok(d.source.rapport.verification);
   assert.ok(!('non_reprises' in d) && !/Redmi Note 17|Find X9 Pro 7 500/.test(JSON.stringify(d.modeles)), 'données du premier rapport retirées');
 });
+check('classements : un protocole par classement, aucune contradiction, profils cohérents', () => {
+  const C = d.classements, tous = C.categories.flatMap(k => k.classements.map(c => [k, c]));
+  assert.deepEqual(C.categories.map(k => k.id), ['autonomie', 'vitesse', 'puissance', 'photo', 'prix', 'batterie']);
+  assert.deepEqual(C.profils.map(p => p.id), ['etudiant', 'professionnel', 'gamer', 'photographe']);
+  assert.equal(new Set(tous.map(([, c]) => c.id)).size, tous.length, 'identifiants de classement uniques');
+  tous.forEach(([k, c]) => {
+    assert.ok(c.protocole && c.titre && c.lignes.length >= 3, c.id + ' : protocole, titre et lignes');
+    assert.ok(c.type === 'classement' || c.type === 'choix', c.id);
+    if (c.video) assert.ok(d.videos.some(v => v.id === c.video), c.id + ' : vidéo inconnue');
+    if (c.type === 'classement') {
+      assert.deepEqual(c.lignes.map(l => l.rang), c.lignes.map((l, i) => i + 1), c.id + ' : rangs 1..n');
+      assert.equal(new Set(c.lignes.map(l => l.nom)).size, c.lignes.length, c.id + ' : un modèle une seule fois');
+      const b = c.lignes.map(l => l.barre).filter(x => x != null);
+      assert.deepEqual(b, b.slice().sort((x, y) => y - x), c.id + ' : barres décroissantes');
+    } else c.lignes.forEach(l => { assert.ok(l.usage && l.nom && l.detail && l.video, c.id + ' : choix incomplet'); assert.match(c.note, /classement|segment|note/i); });
+  });
+  C.profils.forEach(p => { assert.ok(p.priorites.length >= 3 && p.situation, p.id); p.priorites.forEach(x => assert.ok(tous.some(([, c]) => c.id === x.classement), p.id + ' : ' + x.classement)); });
+  const premier = id => tous.find(([, c]) => c.id === id)[1].lignes[0].nom;
+  assert.equal(premier('autonomie-flagships'), 'OnePlus 16'); assert.equal(premier('autonomie-milieu'), 'Vivo V80 Lite 5G'); assert.equal(premier('vitesse-flagships'), 'Samsung Galaxy S26 Ultra'); assert.equal(premier('puissance-flagships'), 'Apple iPhone 18 Pro Max');
+  /* Contradiction à proscrire : une durée d'un protocole donnée comme « la plus longue » toutes vidéos confondues. */
+  const json = JSON.stringify(d); assert.ok(!/plus longue autonomie mesur/i.test(json));
+});
 check('aucune note chiffrée inventée : pas de score, ni de note par profil', () => {
   const t = JSON.stringify(d);
   assert.ok(!/"scores?"|"profil_scores"|"note10"/.test(t));
@@ -74,10 +96,10 @@ check('page smartphones : section, onglets, liens et numérotation cohérents ; 
   assert.ok(html.includes('id="tests-2026"')); assert.ok(html.includes('assets/css/smartphones-tests.css')); assert.ok(html.includes('assets/js/smartphones-tests.js'));
   ['assets/css/smartphones-tests.css', 'assets/js/smartphones-tests.js', 'data/smartphones-tests.json'].forEach(f => assert.ok(fs.existsSync(path.join(root, f)), f));
   const nav = [...html.matchAll(/<li><a href="#([a-z0-9-]+)"><small>(\d\d)<\/small>/g)].map(m => [m[1], m[2]]);
-  assert.deepEqual(nav.map(n => n[0]), ['trouver', 'tests-2026', 'sources']);
-  assert.deepEqual(nav.map(n => n[1]), ['01', '02', '03']);
+  assert.deepEqual(nav.map(n => n[0]), ['classements', 'trouver', 'tests-2026', 'sources']);
+  assert.deepEqual(nav.map(n => n[1]), ['01', '02', '03', '04']);
   nav.forEach(([id]) => assert.ok(html.includes('id="' + id + '"'), id));
-  ['01 · Sur mesure', '02 · Les tests', '03 · Aller plus loin'].forEach(t => assert.ok(html.includes(t), t));
+  ['01 · Classements', '02 · Sur mesure', '03 · Preuves', '04 · Aller plus loin'].forEach(t => assert.ok(html.includes(t), t));
   ['choisir-profil', 'audit', 'analyser-modele'].forEach(id => assert.ok(html.includes('id="' + id + '"') && html.includes('aria-controls="' + id + '"'), 'onglet ' + id));
   ['nos-choix', 'checklist', 'suite'].forEach(id => assert.ok(!html.includes('id="' + id + '"'), 'section retirée : ' + id));
   assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('phone-analyzer/ui.js'));

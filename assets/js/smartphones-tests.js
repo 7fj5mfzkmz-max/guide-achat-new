@@ -83,7 +83,7 @@
       return '<h3 class="st-sub">La gamme, du moins cher au plus cher</h3><div class="st-stairs">' + steps + '</div><p class="st-src">Vidéo ' + v.n + ' · ' + esc(v.chaine) + ' — « ' + esc(v.titre) + ' ». Prix en dollars (prix de sortie).</p>';
     }
   };
-  var TABS = [['records', 'Records de batterie'], ['autonomie', 'Autonomie'], ['vitesse', 'Vitesse et benchmarks'], ['samsung', 'Gamme Samsung A'], ['fiches', 'POCO F9 et Pura 90s'], ['photo', 'Photo'], ['gamme', 'Milieu de gamme et budget']];
+  var TABS = [['autonomie', 'Autonomie'], ['vitesse', 'Vitesse et benchmarks'], ['samsung', 'Gamme Samsung A'], ['fiches', 'POCO F9 et Pura 90s'], ['photo', 'Photo'], ['gamme', 'Milieu de gamme et budget']];
 
   function show(k) {
     var p = $('st-panel');
@@ -106,11 +106,7 @@
     var tabs = $('st-tabs');
     tabs.innerHTML = TABS.map(function (t, i) { return '<button class="pj-tab" type="button" data-k="' + t[0] + '" aria-pressed="' + (i === 0) + '">' + esc(t[1]) + '</button>'; }).join('');
     tabs.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(tabs.children, function (x) { x.setAttribute('aria-pressed', x === b); }); show(b.getAttribute('data-k')); });
-    show('records');
-    var pt = $('st-prof-tabs');
-    pt.innerHTML = Object.keys(PROFS).map(function (k, i) { return '<button class="pj-tab" type="button" data-k="' + k + '" aria-pressed="' + (i === 0) + '">' + PROFS[k] + '</button>'; }).join('');
-    pt.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; [].forEach.call(pt.children, function (x) { x.setAttribute('aria-pressed', x === b); }); profil(b.getAttribute('data-k')); });
-    profil('etudiant');
+    show(TABS[0][0]);
     $('st-trends').innerHTML = d.tendances.map(function (t) { return '<article class="st-trend"><h3>' + esc(t.titre) + '</h3><p>' + esc(t.texte) + '</p></article>'; }).join('');
     $('st-limites').innerHTML = d.limites.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
     $('st-videos').innerHTML = d.videos.map(function (v) { return '<li><span class="pj-badge">Vidéo ' + v.n + '</span> <strong>' + esc(v.chaine) + '</strong> — « ' + (v.lien ? '<a href="' + esc(v.lien) + '" rel="noopener" target="_blank">' + esc(v.titre) + '</a>' : esc(v.titre)) + ' » <em>(' + esc(v.theme) + ')</em></li>'; }).join('');

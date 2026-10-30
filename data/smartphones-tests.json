@@ -414,6 +414,586 @@
       "ton": "best"
     }
   ],
+  "classements": {
+    "categories": [
+      {
+        "id": "autonomie",
+        "label": "Autonomie",
+        "question": "Combien de temps tient-il avant de s’éteindre ?",
+        "classements": [
+          {
+            "id": "autonomie-flagships",
+            "titre": "Haut de gamme",
+            "type": "classement",
+            "video": "autonomie-flagships",
+            "protocole": "Séquence standardisée (YouTube, enregistrement vidéo 4K/30, navigation web pendant 3 h, jeu pendant 1 h, Google Meet), répétée en ordre inverse jusqu’à l’épuisement des batteries. Luminosité fixée à 500 nits, même réseau Wi-Fi, pas de carte SIM.",
+            "note": "Les Xiaomi, vivo, OPPO et OnePlus testés étaient des versions chinoises, dont les batteries dépassent celles des variantes internationales. Le OnePlus 16 doit son avance à sa batterie silicium-carbone de 9 000 mAh et à une gestion logicielle agressive des tâches en arrière-plan.",
+            "lignes": [
+              {
+                "rang": 1,
+                "nom": "OnePlus 16",
+                "modele": "oneplus-16",
+                "valeur": "14 h 03",
+                "barre": 100,
+                "detail": "9 000 mAh"
+              },
+              {
+                "rang": 2,
+                "nom": "Xiaomi 18 Pro Max",
+                "modele": null,
+                "valeur": "12 h 19",
+                "barre": 88,
+                "detail": null
+              },
+              {
+                "rang": 3,
+                "nom": "OPPO Find X10 Pro Max",
+                "modele": "oppo-find-x10-pro-max",
+                "valeur": "11 h 39",
+                "barre": 83,
+                "detail": null
+              },
+              {
+                "rang": 4,
+                "nom": "Vivo X500 Pro Max",
+                "modele": "vivo-x500-pro-max",
+                "valeur": "11 h 06",
+                "barre": 79,
+                "detail": null
+              },
+              {
+                "rang": 5,
+                "nom": "Apple iPhone 18 Pro Max",
+                "modele": "iphone-18-pro-max",
+                "valeur": "8 h 22",
+                "barre": 60,
+                "detail": null
+              },
+              {
+                "rang": 6,
+                "nom": "Google Pixel 11 Pro XL",
+                "modele": null,
+                "valeur": "8 h 04",
+                "barre": 57,
+                "detail": null
+              },
+              {
+                "rang": 7,
+                "nom": "Samsung Galaxy S26 Ultra",
+                "modele": null,
+                "valeur": "7 h 22",
+                "barre": 52,
+                "detail": null
+              }
+            ]
+          },
+          {
+            "id": "autonomie-milieu",
+            "titre": "Milieu de gamme",
+            "type": "classement",
+            "video": "drain-milieu",
+            "protocole": "Décharge de 100 % à 0 % avec 15 applications (réseaux sociaux, appareil photo, benchmarks pour simuler le jeu, jeux légers), relevés toutes les 30 minutes, luminosité identique calibrée au luxmètre (environ 425 lux).",
+            "note": "Vidéo sponsorisée par vivo Afrique du Sud, sans ingérence de la marque sur les résultats selon le créateur. Le Vivo V80 Lite a une batterie silicium-carbone de 4e génération annoncée à plus de 80 % de santé après sept ans.",
+            "lignes": [
+              {
+                "rang": 1,
+                "nom": "Vivo V80 Lite 5G",
+                "modele": "vivo-v80-lite",
+                "valeur": "18 h 43",
+                "barre": 100,
+                "detail": "10 000 mAh"
+              },
+              {
+                "rang": 2,
+                "nom": "HONOR X9d",
+                "modele": "honor-x9d",
+                "valeur": "18 h 18",
+                "barre": 98,
+                "detail": "8 300 mAh"
+              },
+              {
+                "rang": 3,
+                "nom": "HONOR 600 Pro",
+                "modele": "honor-600-pro",
+                "valeur": "17 h 42",
+                "barre": 95,
+                "detail": "7 000 mAh"
+              },
+              {
+                "rang": 4,
+                "nom": "POCO X8",
+                "modele": "poco-x8",
+                "valeur": "16 h 25",
+                "barre": 88,
+                "detail": "8 340 mAh"
+              },
+              {
+                "rang": 5,
+                "nom": "Samsung Galaxy A57",
+                "modele": null,
+                "valeur": "11 h 40",
+                "barre": 62,
+                "detail": "5 000 mAh"
+              },
+              {
+                "rang": 6,
+                "nom": "Samsung Galaxy S26",
+                "modele": null,
+                "valeur": "11 h 01",
+                "barre": 59,
+                "detail": "4 300 mAh"
+              },
+              {
+                "rang": 7,
+                "nom": "Apple iPhone 17",
+                "modele": "apple-iphone-17",
+                "valeur": "9 h 36",
+                "barre": 51,
+                "detail": "3 692 mAh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "vitesse",
+        "label": "Vitesse",
+        "question": "Les applications s’ouvrent-elles vite, sans ralentir ?",
+        "classements": [
+          {
+            "id": "vitesse-flagships",
+            "titre": "Haut de gamme",
+            "type": "classement",
+            "video": "vitesse",
+            "protocole": "Sept flagships 2026 en deux manches : une série d’applications lancées une par une, puis le « gauntlet » qui enchaîne tous les tests sans pause ni refroidissement. Écrans calibrés à 200 nits, environnement à température contrôlée.",
+            "note": "Les puces Snapdragon dominent les épreuves de traitement d’image et de jeu ; l’iPhone pâtit d’un refroidissement moins efficace dans le gauntlet ; le Pixel 10 Pro XL ferme la marche, son Tensor G5 étant décrit comme un cran derrière pour le jeu et le multitâche.",
+            "lignes": [
+              {
+                "rang": 1,
+                "nom": "Samsung Galaxy S26 Ultra",
+                "modele": null,
+                "valeur": "n° 1",
+                "barre": null,
+                "detail": "Vainqueur : premier tour bouclé en 3 min 26 s, « champion incontesté » du speed test"
+              },
+              {
+                "rang": 2,
+                "nom": "Vivo X300 Ultra",
+                "modele": null,
+                "valeur": "n° 2",
+                "barre": null,
+                "detail": "Premier tour en 3 min 33 s, 7 s derrière le Galaxy"
+              },
+              {
+                "rang": 3,
+                "nom": "OnePlus 15",
+                "modele": null,
+                "valeur": "n° 3",
+                "barre": null,
+                "detail": "Solide troisième"
+              },
+              {
+                "rang": 4,
+                "nom": "OPPO Find X9 Pro",
+                "modele": null,
+                "valeur": "n° 4",
+                "barre": null,
+                "detail": "Meilleure gestion de la RAM que le Honor"
+              },
+              {
+                "rang": 5,
+                "nom": "Honor Magic 8 Pro",
+                "modele": null,
+                "valeur": "n° 5",
+                "barre": null,
+                "detail": "4 s derrière l’Oppo"
+              },
+              {
+                "rang": 6,
+                "nom": "iPhone 17 Pro Max",
+                "modele": null,
+                "valeur": "n° 6",
+                "barre": null,
+                "detail": "La plus forte baisse de performance par rapport à sa série app par app"
+              },
+              {
+                "rang": 7,
+                "nom": "Google Pixel 10 Pro XL",
+                "modele": null,
+                "valeur": "n° 7",
+                "barre": null,
+                "detail": "Dernier ; peine à garder les applications en arrière-plan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "puissance",
+        "label": "Puissance graphique",
+        "question": "Tient-il les jeux lourds et le ray-tracing ?",
+        "classements": [
+          {
+            "id": "puissance-flagships",
+            "titre": "Haut de gamme",
+            "type": "classement",
+            "video": "benchmarks",
+            "protocole": "iPhone 18 Pro Max (puce A20 Pro) face à l’iPhone 17 Pro Max, au Galaxy S26 Ultra (Snapdragon 8 Elite Gen 5 overclocké), au POCO F9 Ultra (Snapdragon 8 Elite Gen 5) et au Vivo X500 Pro Max (Dimensity 9600 Pro), sur AnTuTu v11, Geekbench 7 et trois tests 3DMark.",
+            "note": "AnTuTu v12 indisponible sur iOS ; scores AnTuTu non comparables entre Android et iOS (API Vulkan contre Metal) ; scores Geekbench 7 non comparables à ceux de Geekbench 6.",
+            "lignes": [
+              {
+                "rang": 1,
+                "nom": "Apple iPhone 18 Pro Max",
+                "modele": "iphone-18-pro-max",
+                "valeur": "n° 1",
+                "barre": null,
+                "detail": "Meilleur GPU : gros gain en ray-tracing, températures maîtrisées"
+              },
+              {
+                "rang": 2,
+                "nom": "Vivo X500 Pro Max",
+                "modele": "vivo-x500-pro-max",
+                "valeur": "n° 2",
+                "barre": null,
+                "detail": "Scores qui dépassent à peine la génération précédente ; chauffe jusqu’à plus de 60 °C"
+              },
+              {
+                "rang": 3,
+                "nom": "POCO F9 Ultra",
+                "modele": "poco-f9-ultra",
+                "valeur": "n° 3",
+                "barre": null,
+                "detail": "Meilleure efficacité énergétique du panel Android"
+              },
+              {
+                "rang": 4,
+                "nom": "Samsung Galaxy S26 Ultra",
+                "modele": null,
+                "valeur": "n° 4",
+                "barre": null,
+                "detail": "Meilleur score CPU sur AnTuTu"
+              },
+              {
+                "rang": 5,
+                "nom": "Apple iPhone 17 Pro Max",
+                "modele": null,
+                "valeur": "n° 5",
+                "barre": null,
+                "detail": "Le plus frais en fin de test"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "photo",
+        "label": "Photo",
+        "question": "Quel téléphone choisir pour la photo ?",
+        "classements": [
+          {
+            "id": "photo-usages",
+            "titre": "Le meilleur, selon l’usage",
+            "type": "choix",
+            "video": "photo",
+            "protocole": "Pas de classement chiffré : chaque mention vaut dans sa vidéo (Tech Spurt, sauf le Huawei : TechNick).",
+            "note": "Aucune note n’est attribuée : ces choix ne se classent pas entre eux.",
+            "lignes": [
+              {
+                "usage": "Meilleur système photo, selon son testeur",
+                "nom": "Huawei Pura 90s Pro Max",
+                "modele": "huawei-pura-90s-pro-max",
+                "detail": "Salué comme « potentiellement le meilleur jamais vu sur un smartphone » ; périscope 200 MP.",
+                "video": 11
+              },
+              {
+                "usage": "Zoom",
+                "nom": "OPPO Find X9 Ultra",
+                "modele": null,
+                "detail": "Meilleur zoom 10×-20× du marché selon le testeur ; cinq caméras.",
+                "video": 12
+              },
+              {
+                "usage": "Zoom, téléobjectif",
+                "nom": "Vivo X300 Ultra",
+                "modele": null,
+                "detail": "Téléobjectif 200 MP salué comme l’un des meilleurs de 2026.",
+                "video": 12
+              },
+              {
+                "usage": "Photo de nuit et stabilisation vidéo",
+                "nom": "Samsung Galaxy S26 Ultra",
+                "modele": null,
+                "detail": "Nuit bien améliorée ; stabilisation Horizontal Lock, la référence.",
+                "video": 12
+              },
+              {
+                "usage": "Le plus simple au quotidien",
+                "nom": "Google Pixel 11 Pro",
+                "modele": "pixel-11-pro",
+                "detail": "La référence « familiale », sans effort.",
+                "video": 12
+              },
+              {
+                "usage": "Rendus naturels, commandes manuelles",
+                "nom": "Sony Xperia 1 VII",
+                "modele": null,
+                "detail": "Triple 48 MP naturelle, microSD, jack ; application lente.",
+                "video": 12
+              },
+              {
+                "usage": "Photo à petit prix",
+                "nom": "Google Pixel 10a",
+                "modele": null,
+                "detail": "Le meilleur photo à petit prix ; pas de téléobjectif.",
+                "video": 12
+              },
+              {
+                "usage": "Photophone pas cher, haut de gamme",
+                "nom": "POCO F9 Ultra",
+                "modele": "poco-f9-ultra",
+                "detail": "Principal 200 MP, télé 5× ; lumières parfois cramées la nuit.",
+                "video": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "prix",
+        "label": "Budget",
+        "question": "Que prendre selon le budget ?",
+        "classements": [
+          {
+            "id": "prix-choix",
+            "titre": "Le choix du testeur, par budget",
+            "type": "choix",
+            "video": "budget",
+            "protocole": "Choix de deux vidéos Tech Spurt (été 2026), prix en livres sterling ; ni classement ni note.",
+            "note": "Chaque choix vaut dans son segment de prix.",
+            "lignes": [
+              {
+                "usage": "Sous 100 £",
+                "nom": "Motorola Moto G06 Power",
+                "modele": null,
+                "detail": "7 000 mAh, 6,9\" : l’une des meilleures autonomies du marché.",
+                "video": 14
+              },
+              {
+                "usage": "Sous 300 £ : le plus classique",
+                "nom": "Xiaomi Redmi Note 15 Pro 5G",
+                "modele": "redmi-note-15-pro-5g",
+                "detail": "IP68, 6 580 mAh, 200 MP : le meilleur rapport du panel.",
+                "video": 14
+              },
+              {
+                "usage": "Sous 300 £ : le plus polyvalent",
+                "nom": "POCO M8 Pro",
+                "modele": null,
+                "detail": "Étanche, Snapdragon 7s Gen 4, 6 500 mAh, 256 Go.",
+                "video": 14
+              },
+              {
+                "usage": "Sous 300 £ : le plus robuste",
+                "nom": "Honor Magic 8 Lite",
+                "modele": "honor-magic-8-lite",
+                "detail": "Résiste aux chutes de 2,5 m, IP68/69, 7 500 mAh.",
+                "video": 14
+              },
+              {
+                "usage": "Milieu de gamme : le favori",
+                "nom": "POCO X8 Pro Max",
+                "modele": null,
+                "detail": "Coup de cœur : 8 500 mAh, Dimensity 9500S, rapport qualité-prix « stupéfiant ».",
+                "video": 13
+              },
+              {
+                "usage": "Milieu de gamme Samsung",
+                "nom": "Samsung Galaxy A57",
+                "modele": "samsung-galaxy-a57",
+                "detail": "Le meilleur choix de la gamme A ; l’A37 est le choix économique, l’A27 est à éviter.",
+                "video": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "batterie",
+        "label": "Batterie",
+        "question": "Quelle est la plus grosse batterie ?",
+        "classements": [
+          {
+            "id": "capacite",
+            "titre": "Capacité annoncée",
+            "type": "classement",
+            "video": null,
+            "protocole": "Capacités annoncées dans les vidéos, versions précisées. Une grosse batterie ne dit pas la durée : voir les classements d’autonomie.",
+            "note": "La capacité (mAh) n’est pas une durée : deux téléphones de même capacité peuvent tenir très différemment.",
+            "lignes": [
+              {
+                "rang": 1,
+                "nom": "Vivo V80 Lite 5G",
+                "modele": "vivo-v80-lite",
+                "valeur": "10 000 mAh",
+                "barre": 100,
+                "detail": null
+              },
+              {
+                "rang": 2,
+                "nom": "OnePlus 16",
+                "modele": "oneplus-16",
+                "valeur": "9 000 mAh",
+                "barre": 90,
+                "detail": "Batterie record"
+              },
+              {
+                "rang": 3,
+                "nom": "POCO X8",
+                "modele": "poco-x8",
+                "valeur": "8 340 mAh",
+                "barre": 83,
+                "detail": null
+              },
+              {
+                "rang": 4,
+                "nom": "HONOR X9d",
+                "modele": "honor-x9d",
+                "valeur": "8 300 mAh",
+                "barre": 83,
+                "detail": null
+              },
+              {
+                "rang": 5,
+                "nom": "POCO F9 Ultra",
+                "modele": "poco-f9-ultra",
+                "valeur": "8 050 mAh",
+                "barre": 81,
+                "detail": null
+              },
+              {
+                "rang": 6,
+                "nom": "Vivo X500 Pro Max",
+                "modele": "vivo-x500-pro-max",
+                "valeur": "8 000 mAh",
+                "barre": 80,
+                "detail": "8 000 mAh en version chinoise, 200 mAh de plus que les variantes mondiales"
+              },
+              {
+                "rang": 7,
+                "nom": "Honor Magic 8 Lite",
+                "modele": "honor-magic-8-lite",
+                "valeur": "7 500 mAh",
+                "barre": 75,
+                "detail": null
+              },
+              {
+                "rang": 8,
+                "nom": "Vivo V80",
+                "modele": "vivo-v80",
+                "valeur": "7 200 mAh",
+                "barre": 72,
+                "detail": null
+              },
+              {
+                "rang": 9,
+                "nom": "OPPO Find X10 Pro Max",
+                "modele": "oppo-find-x10-pro-max",
+                "valeur": "7 150 mAh",
+                "barre": 72,
+                "detail": "7 150 mAh en version Europe, 8 000 mAh en version Asie"
+              },
+              {
+                "rang": 10,
+                "nom": "HONOR 600 Pro",
+                "modele": "honor-600-pro",
+                "valeur": "7 000 mAh",
+                "barre": 70,
+                "detail": null
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "profils": [
+      {
+        "id": "etudiant",
+        "label": "Étudiant",
+        "situation": "Du matin au soir sans prise, un budget serré, un téléphone gardé plusieurs années.",
+        "priorites": [
+          {
+            "classement": "autonomie-milieu",
+            "pourquoi": "Tenir toute la journée de cours sans chercher une prise."
+          },
+          {
+            "classement": "prix-choix",
+            "pourquoi": "Le bon téléphone au bon prix, sans payer le haut de gamme."
+          },
+          {
+            "classement": "capacite",
+            "pourquoi": "Une grosse batterie reste la meilleure garantie de durée."
+          }
+        ]
+      },
+      {
+        "id": "professionnel",
+        "label": "Professionnel",
+        "situation": "Appels, visio, mails et documents : il doit rester réactif et tenir la journée.",
+        "priorites": [
+          {
+            "classement": "vitesse-flagships",
+            "pourquoi": "Ouvrir les documents et les applications sans attendre."
+          },
+          {
+            "classement": "autonomie-flagships",
+            "pourquoi": "Aller au bout de la journée de travail."
+          },
+          {
+            "classement": "prix-choix",
+            "pourquoi": "Un bon milieu de gamme suffit souvent."
+          }
+        ]
+      },
+      {
+        "id": "gamer",
+        "label": "Gamer",
+        "situation": "Jeux lourds : la puce compte, et sa capacité à ne pas chauffer plus encore.",
+        "priorites": [
+          {
+            "classement": "puissance-flagships",
+            "pourquoi": "GPU et ray-tracing : ce qui fait la fluidité en jeu."
+          },
+          {
+            "classement": "vitesse-flagships",
+            "pourquoi": "Gérer plusieurs applications sans ralentir."
+          },
+          {
+            "classement": "autonomie-flagships",
+            "pourquoi": "Combien de temps tient l’écran allumé."
+          }
+        ]
+      },
+      {
+        "id": "photographe",
+        "label": "Photo",
+        "situation": "Le capteur et le traitement d’image comptent plus que la fiche technique.",
+        "priorites": [
+          {
+            "classement": "photo-usages",
+            "pourquoi": "Le meilleur téléphone selon ce que vous photographiez."
+          },
+          {
+            "classement": "vitesse-flagships",
+            "pourquoi": "Retouche et export vidéo 4K : Lightroom, Adobe Scan."
+          },
+          {
+            "classement": "autonomie-flagships",
+            "pourquoi": "Une journée de prises de vues."
+          }
+        ]
+      }
+    ]
+  },
   "vitesse": {
     "video": "vitesse",
     "protocole": "Sept flagships 2026 en deux manches : une série d’applications lancées une par une, puis le « gauntlet » qui enchaîne tous les tests sans pause ni refroidissement. Écrans calibrés à 200 nits, environnement à température contrôlée.",
@@ -565,7 +1145,7 @@
           "min": 484
         },
         {
-          "modele": "samsung-galaxy-s26-ultra",
+          "nom": "Samsung Galaxy S26 Ultra",
           "min": 442
         }
       ],

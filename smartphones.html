@@ -56,28 +56,41 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <main id="main">
 <nav class="pl-sections" id="pl-sections" aria-label="Sections de la page">
 <div class="pl-sections-in">
-<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Sur mesure</b><i aria-hidden="true">▾</i></button>
-<ul id="pl-sections-list"><li><a href="#trouver"><small>01</small>Sur mesure</a></li><li><a href="#tests-2026"><small>02</small>Tests</a></li><li><a href="#sources"><small>03</small>Sources</a></li></ul>
+<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Classements</b><i aria-hidden="true">▾</i></button>
+<ul id="pl-sections-list"><li><a href="#classements"><small>01</small>Classements</a></li><li><a href="#trouver"><small>02</small>Sur mesure</a></li><li><a href="#tests-2026"><small>03</small>Preuves</a></li><li><a href="#sources"><small>04</small>Sources</a></li></ul>
 </div>
 </nav>
 <div class="hx hx-page pg sp" data-cat="smartphones" data-tone="orchid" data-motion="on">
 <div class="container-wide">
-<header class="pg-hero" id="debut">
+<header class="pg-hero cl-hero" id="debut">
 <div>
 <nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
-<span class="pg-kick">Guide pratique · à lire avant d’acheter</span>
-<h1>Choisir un smartphone <mark>à partir de votre usage</mark></h1>
-<p class="pg-lead">Partez de votre profil, de vos critères ou d’un modèle déjà repéré.</p>
-<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#trouver">Trouver mon téléphone →</a><a class="pg-btn alt" href="#analyser-modele">J’ai déjà un modèle</a></div>
+<span class="pg-kick">Classements 2026 · tests vidéo</span>
+<h1>Le bon smartphone, <mark>classé selon votre usage</mark></h1>
+<p class="pg-lead">Autonomie, vitesse, puissance, photo, prix : des classements tirés de tests vidéo, par profil et par catégorie. Chacun dit comment il a été mesuré.</p>
+<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#classements">Voir les classements →</a><a class="pg-btn alt" href="#analyser-modele">J’ai déjà un modèle</a></div>
 </div>
-<div class="pg-stage" aria-hidden="true" id="hx-stage"></div>
+<div class="cl-preview" id="cl-preview" aria-live="polite"></div>
 </header>
-<div class="pg-strip pg-strip-3"><div><b data-sp="models">75</b><span>modèles comparables</span></div><div><b data-sp="tested">24</b><span>modèles vus en test vidéo</span></div><div><b data-sp="date">30 oct. 2026</b><span>dernière mise à jour des tests</span></div></div>
+<div class="pg-strip pg-strip-3"><div><b data-sp="models">74</b><span>modèles comparables</span></div><div><b data-sp="tested">21</b><span>modèles vus en test vidéo</span></div><div><b data-sp="date">30 oct. 2026</b><span>dernière mise à jour des tests</span></div></div>
 </div>
 
 <div class="container-wide hx-body">
+<section class="section cl-section" id="classements" aria-labelledby="classements-titre">
+<h2 class="section-heading" id="classements-titre"><span class="eyebrow">01 · Classements</span>Les classements qui comptent pour vous</h2>
+<p class="section-lead">Choisissez un profil : les classements arrivent dans l’ordre de vos priorités. Ou parcourez une catégorie. Un classement ne compare que des téléphones mesurés de la même façon.</p>
+<div class="tr-tabs cl-mode" id="cl-mode" role="tablist" aria-label="Lire les classements">
+<button type="button" role="tab" class="tr-tab" data-mode="profil" aria-selected="true">Par profil</button>
+<button type="button" role="tab" class="tr-tab" data-mode="categorie" aria-selected="false" tabindex="-1">Par catégorie</button>
+</div>
+<div class="tr-chips cl-chips" id="cl-chips" role="group" aria-label="Choisir"></div>
+<div class="cl-intro" id="cl-intro"></div>
+<div class="cl-board" id="cl-board" aria-live="polite"><p class="tr-loading">Chargement des classements…</p></div>
+<p class="cl-foot">Besoin d’affiner ? <a class="hx-link" href="#trouver">Choisir avec vos propres critères →</a></p>
+</section>
+
 <section class="section trouver" data-tone="peach" id="trouver" aria-labelledby="trouver-titre">
-<h2 class="section-heading" id="trouver-titre"><span class="eyebrow">01 · Sur mesure</span>Trois façons de trouver votre téléphone</h2>
+<h2 class="section-heading" id="trouver-titre"><span class="eyebrow">02 · Sur mesure</span>Affinez avec vos critères ou un modèle précis</h2>
 <div class="tr-tabs" role="tablist" aria-label="Façon de chercher">
 <button type="button" role="tab" id="tab-profil" class="tr-tab" aria-controls="choisir-profil" aria-selected="true">Mon profil</button>
 <button type="button" role="tab" id="tab-criteres" class="tr-tab" aria-controls="audit" aria-selected="false" tabindex="-1">Mes critères</button>
@@ -355,21 +368,14 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section class="section st-section" data-tone="orchid" id="tests-2026" aria-labelledby="tests-titre">
-<h2 class="section-heading" id="tests-titre"><span class="eyebrow">02 · Les tests</span>Ce que les tests ont changé</h2>
-<p class="section-lead">Les <span data-sp="videos">14</span> vidéos de test sont intégrées au catalogue : leurs modèles apparaissent dans le classement et dans « Mes critères », avec la mesure relevée et la source. Les chiffres sont ceux des testeurs ; le guide ne les a pas refaits et n’invente aucune note.</p>
-<div class="tr-records" id="sp-records"></div>
-<details class="tr-log-fold"><summary><span>Qui a alimenté quoi</span><small>vidéo par vidéo</small></summary>
-<ul class="tr-log" id="sp-log"></ul>
-</details>
-<details class="st-fold"><summary><span>Lire le détail des 14 tests</span><small>chiffres, limites et choix par profil</small></summary>
+<h2 class="section-heading" id="tests-titre"><span class="eyebrow">03 · Preuves</span>Les mesures derrière les classements</h2>
+<p class="section-lead">Les <span data-sp="videos">13</span> vidéos de test alimentent les classements ci-dessus. Voici les mesures complètes, les protocoles et les limites. Les chiffres sont ceux des testeurs : le guide ne les a pas refaits et n’invente aucune note.</p>
+<details class="st-fold"><summary><span>Lire le détail des 13 tests</span><small>chiffres, limites et choix par profil</small></summary>
 <p class="st-error" id="st-error" hidden></p>
 <div class="pj-tabs" id="st-tabs" role="group" aria-label="Choisir un test"></div>
 <div class="st-panel" id="st-panel" aria-live="polite"></div>
 <h3 class="st-sub st-sub-gap">Ce que les tests retiennent</h3>
 <div class="st-trends" id="st-trends"></div>
-<h3 class="st-sub st-sub-gap">Choix de la source selon votre profil</h3>
-<div class="pj-tabs" id="st-prof-tabs" role="group" aria-label="Choisir un profil"></div>
-<div class="st-prof" id="st-prof" aria-live="polite"></div>
 <div class="st-method">
 <div><h3>Les vidéos</h3><ul id="st-videos"></ul></div>
 <div><h3>Limites</h3><ul id="st-limites"></ul></div>
@@ -378,7 +384,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section class="section sources-list" data-tone="orchid" id="sources" aria-labelledby="sources-titre">
-<h2 class="section-heading" id="sources-titre"><span class="eyebrow">03 · Aller plus loin</span>Comprendre une fiche, vérifier nos sources</h2>
+<h2 class="section-heading" id="sources-titre"><span class="eyebrow">04 · Aller plus loin</span>Comprendre une fiche, vérifier nos sources</h2>
 <p class="section-lead"><a class="hx-link" href="smartphones-approfondir.html">Ce qui se cache derrière les chiffres d’une fiche technique →</a></p>
 <details class="src-fold"><summary>Sources utilisées</summary><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li>Tests vidéo 2026 : Android Police, The Tech Chap, Versus, Tech Spurt</li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></details>
 </section>
@@ -433,6 +439,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/student-journey.js" defer></script>
 <script src="assets/js/smartphones-trouver.js" defer></script>
 <script src="assets/js/smartphones-tests.js" defer></script>
+<script src="assets/js/smartphones-classements.js" defer></script>
 <script src="assets/js/v88-platform.js" defer></script>
 <script src="assets/js/category-page.js" defer></script>
 <script src="assets/js/actualites.js" defer></script>

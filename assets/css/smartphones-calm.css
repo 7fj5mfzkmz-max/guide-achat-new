@@ -108,3 +108,64 @@ html.dark-theme .sp-calm .tr-log-fold > summary:focus-visible { outline-color: v
 .sp-calm .tr-log li { padding: 12px 0; border-bottom: 1px solid var(--line-soft); font-size: 14px; color: var(--ink-soft); }
 .sp-calm .tr-log li:last-child { border-bottom: 0; }
 @media (max-width: 520px) { .sp-calm .tr-log-fold > summary small { display: none; } }
+
+/* ======================================================================================================
+   Refonte : les classements sont la lecture principale de la page (section « Classements » + aperçu d'en-tête).
+   Codes repris de la référence : bandeau noir mono avec pastille jaune cerclée, cartes à bordure de 2 px,
+   grands titres lourds, une seule couleur d'accent, beaucoup d'air.
+   ====================================================================================================== */
+.cl-hero .pg-stage { display: none; }
+.cl-hero { align-items: center; gap: clamp(28px, 5vw, 64px); }
+.cl-preview { min-width: 0; }
+.cl-mode { max-width: 420px; margin-top: 8px; }
+.cl-chips { margin-top: 16px; }
+.cl-intro { margin: 28px 0 8px; display: grid; gap: 14px; }
+.cl-situation { margin: 0; max-width: 62ch; font-size: clamp(17px, 2vw, 20px); line-height: 1.6; }
+.cl-prio { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; font: 500 12px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.cl-prio b { color: var(--ink); letter-spacing: .14em; }
+.cl-prio span { display: inline-flex; align-items: center; gap: 8px; }
+.cl-prio i { display: grid; place-items: center; width: 22px; height: 22px; background: var(--accent); color: #0f1115; font: 700 12px var(--mono); font-style: normal; }
+.cl-board { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 470px), 1fr)); gap: clamp(20px, 3vw, 32px); margin-top: 24px; align-items: start; }
+.cl-foot { margin: 36px 0 0; font-size: 16px; color: var(--ink-soft); }
+
+.cl-card { border: 2px solid var(--ink); background: var(--paper-2); min-width: 0; }
+.cl-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 14px; padding: 12px 18px; background: #0f1115; color: #fff; font: 500 11.5px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+html.dark-theme .cl-head { background: #000; border-bottom: 1px solid var(--ink); }
+.cl-badge { padding: 5px 9px; border: 1px solid var(--accent); color: var(--accent); font-size: 10.5px; letter-spacing: .1em; white-space: nowrap; }
+.cl-body { padding: clamp(18px, 3vw, 28px); }
+.cl-body h3 { margin: 0; font: 800 clamp(22px, 3vw, 30px)/1.1 var(--head); letter-spacing: -.02em; text-transform: none; }
+.cl-body h3 span { display: block; margin-top: 8px; font: 500 12px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); }
+.cl-why { margin: 14px 0 0; font-size: 16.5px; line-height: 1.6; color: var(--ink-soft); }
+.cl-rows { list-style: none; margin: 20px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.cl-row { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 2px 14px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
+.cl-row[hidden] { display: none; }
+.cl-rank { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid var(--ink); font: 700 14px var(--mono); }
+.cl-row.is-first .cl-rank { background: var(--accent); border-color: var(--accent); color: #0f1115; }
+.cl-name { display: block; font: 800 18px/1.25 var(--head); letter-spacing: -.01em; }
+.cl-main small { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.5; color: var(--ink-soft); }
+.cl-val { padding-top: 3px; font: 700 16px/1.2 var(--mono); white-space: nowrap; }
+.cl-bar { grid-column: 2 / -1; height: 6px; margin-top: 8px; background: var(--paper-3); overflow: hidden; }
+.cl-bar i { display: block; height: 100%; background: var(--ink); transition: width .9s var(--ease, ease); }
+.cl-row.is-first .cl-bar i { background: var(--accent); box-shadow: inset 0 0 0 1px var(--ink); }
+.cl-row-pick { grid-template-columns: minmax(88px, 30%) minmax(0, 1fr) auto; }
+.cl-use { padding-top: 4px; font: 500 11px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); }
+.cl-src { padding-top: 4px; font: 500 11px var(--mono); letter-spacing: .08em; color: var(--ink-mute); white-space: nowrap; }
+.cl-more { margin: 14px 0 0; padding: 0; border: 0; background: none; color: var(--ink); font: 700 12.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 4px; cursor: pointer; }
+.cl-more:hover { background: var(--accent); color: #0f1115; }
+.cl-more:focus-visible, .cl-proto summary:focus-visible, .cl-link:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+html.dark-theme .cl-more:focus-visible, html.dark-theme .cl-proto summary:focus-visible, html.dark-theme .cl-link:focus-visible { outline-color: var(--accent); }
+.cl-proto { margin-top: 20px; border-top: 1px dotted var(--ink); }
+.cl-proto summary { padding: 14px 0 4px; cursor: pointer; list-style: none; font: 700 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.cl-proto summary::-webkit-details-marker { display: none; }
+.cl-proto summary::after { content: ' +'; }
+.cl-proto[open] summary::after { content: ' −'; }
+.cl-proto p { margin: 8px 0 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+.cl-link { display: inline-block; margin-top: 16px; font: 700 12.5px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 3px; text-underline-offset: 4px; }
+.cl-card-preview .cl-rows { margin-top: 0; border-top: 0; }
+.cl-card-preview .cl-body { padding-top: 6px; }
+@media (max-width: 520px) {
+  .cl-row { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 2px 10px; }
+  .cl-row-pick { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .cl-row-pick .cl-use, .cl-row-pick .cl-src { padding-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .cl-bar i { transition: none; } }

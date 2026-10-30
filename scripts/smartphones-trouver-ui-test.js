@@ -43,7 +43,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       await check('chaque besoin : une liste de six au plus pour un profil, deux colonnes sinon, sans doublon' + tag, async () => {
         for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe', 'prix', 'batterie']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
-          assert.equal(await page.locator('.tr-chip[aria-pressed="true"]').count(), 1);
+          assert.equal(await page.locator('#tr-chips .tr-chip[aria-pressed="true"]').count(), 1);
           if(id==='etudiant'){assert.ok(await page.locator('#student-journey').isVisible());assert.ok(await page.locator('#tr-podium').isHidden());continue;}
           const cols = await page.locator('#tr-podium .tr-col').count();
           if (id === 'etudiant' || id === 'professionnel' || id === 'gamer' || id === 'photographe') {
@@ -107,12 +107,21 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         await page.keyboard.press('Home');
         assert.ok(await page.locator('#choisir-profil').isVisible());
       });
-      await check('records et journal des tests présents' + tag, async () => {
-        assert.equal(await page.locator('#sp-records .tr-record').count(), 2);
-        assert.equal(await page.locator('#sp-log li').count(), tests.videos.length);
-        assert.match(await page.locator('#sp-records').innerText(), /Vivo V80 Lite 5G/);
-        await page.evaluate(() => { document.querySelector('.tr-log-fold').open = true; });
-        assert.match(await page.locator('#sp-log').innerText(), /Gamer/);
+      await check('classements : par profil, par catégorie, protocole affiché, profil partagé' + tag, async () => {
+        await page.waitForSelector('html[data-cl-ready="1"]');
+        const cartes = () => page.locator('#cl-board .cl-card');
+        assert.equal(await cartes().count(), 3, 'trois priorités par profil');
+        assert.match(await page.locator('#cl-board .cl-head').first().innerText(), /PRIORITÉ 1/i);
+        assert.equal(await page.locator('#cl-board .cl-proto summary').count(), 3, 'protocole sous chaque classement');
+        await page.click('#cl-chips [data-k="gamer"]');
+        assert.match(await page.locator('#cl-board .cl-card').first().innerText(), /Apple iPhone 18 Pro Max/);
+        assert.equal(await page.evaluate(() => localStorage.getItem('guide-profile')), 'gamer');
+        await page.click('#cl-mode [data-mode="categorie"]');
+        await page.click('#cl-chips [data-k="autonomie"]');
+        assert.equal(await cartes().count(), 2, 'deux classements d’autonomie, jamais mélangés');
+        const noms = await page.locator('#cl-board .cl-row.is-first .cl-name').allInnerTexts();
+        assert.deepEqual(noms, ['OnePlus 16', 'Vivo V80 Lite 5G']);
+        await page.click('#cl-mode [data-mode="profil"]');
       });
       await check('chiffres de l’en-tête alimentés par les données' + tag, async () => {
         const eligibles = catalogue.produits.filter(p => p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== 'specs_a_verifier' && p.compatibilite).length;

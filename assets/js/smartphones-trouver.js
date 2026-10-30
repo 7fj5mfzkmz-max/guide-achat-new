@@ -237,45 +237,6 @@
     }
   }
 
-  /* ——— Records et journal des tests (section « Ce que les tests ont changé ») ——— */
-  function renderRecords() {
-    var box = $('sp-records'); if (!box) return;
-    var withCap = DATA.produits.filter(function (p) { return p.compatibilite && p.compatibilite.batterie && p.compatibilite.batterie.capacite_mah && (p.tests || p.origine === 'test'); })
-      .sort(function (a, b) { return b.compatibilite.batterie.capacite_mah - a.compatibilite.batterie.capacite_mah; });
-    var measured = DATA.produits.filter(function (p) { return (p.tests || []).some(function (t) { return t.mesures && t.mesures.autonomie_min; }); })
-      .sort(function (a, b) { return b.tests[0].mesures.autonomie_min - a.tests[0].mesures.autonomie_min; });
-    var cards = [];
-    if (withCap[0]) {
-      var mah = function (p) { return p.compatibilite.batterie.capacite_mah; };
-      var leaders = withCap.filter(function (p) { return mah(p) === mah(withCap[0]); }), behind = withCap.filter(function (p) { return mah(p) < mah(withCap[0]); })[0];
-      cards.push('<article class="tr-record"><p class="tr-record-k">Plus grosse batterie annoncée</p><p class="tr-record-v">' + leaders.map(function (p) { return esc(p.nom); }).join(' et ') + '</p><p class="tr-record-d">' + fr(mah(withCap[0])) + ' mAh' + (leaders.length > 1 ? ' chacun' : '') + (behind ? ', devant ' + esc(behind.nom) + ' (' + fr(mah(behind)) + ' mAh)' : '') + '</p></article>');
-    }
-    if (measured[0]) {
-      var cap = measured[0].compatibilite.batterie && measured[0].compatibilite.batterie.capacite_mah;
-      cards.push('<article class="tr-record"><p class="tr-record-k">Plus longue autonomie mesurée</p><p class="tr-record-v">' + esc(measured[0].nom) + ' · ' + hours(measured[0].tests[0].mesures.autonomie_min) + '</p><p class="tr-record-d">' + (cap && withCap[0] && cap < withCap[0].compatibilite.batterie.capacite_mah ? 'Avec ' + fr(cap) + ' mAh seulement : la capacité ne dit pas la durée.' : 'Mesure relevée dans la vidéo ' + measured[0].tests[0].video + '.') + '</p></article>');
-    }
-    var best = DATA.tests.samsung.filter(function (x) { return x.ton === 'best'; })[0], bad = DATA.tests.samsung.filter(function (x) { return x.ton === 'bad'; })[0];
-    if (best && bad) cards.push('<article class="tr-record"><p class="tr-record-k">Gamme Samsung</p><p class="tr-record-v">' + esc(testById(best.modele).nom) + '</p><p class="tr-record-d">Meilleur choix de la gamme comparée ; à éviter : ' + esc(testById(bad.modele).nom) + '.</p></article>');
-    box.innerHTML = cards.join('');
-
-    var log = $('sp-log'); if (!log) return;
-    var feeds = {};
-    NEEDS.forEach(function (n) {
-      var o = build(n);
-      o.tests.concat(o.extra || []).forEach(function (r) { if (r.video) (feeds[r.video.n] = feeds[r.video.n] || {})[n.label] = 1; });
-    });
-    /* Les choix par profil (section Tests 2026) ne passent plus par la colonne « Trouver » : on les lit directement. */
-    NEEDS.forEach(function (n) {
-      if (!n.profil) return;
-      (DATA.tests.choix_par_profil[n.id] || []).forEach(function (x) { var v = Number(String(x.ref).replace(/\D/g, '')); (feeds[v] = feeds[v] || {})[n.label] = 1; });
-    });
-    log.innerHTML = DATA.tests.videos.map(function (v) {
-      var names = DATA.tests.modeles.filter(function (m) { return m.video === v.id; }).map(function (m) { return m.nom; });
-      var f = Object.keys(feeds[v.n] || {});
-      return '<li><div class="tr-log-head"><span class="tr-tag tr-tag-test">Vidéo ' + v.n + '</span> <strong>' + esc(v.chaine) + '</strong></div><div class="tr-log-names">' + names.map(function (n) { return '<span>' + esc(n) + '</span>'; }).join(', ') + '</div>' + (f.length ? '<div class="tr-feeds">' + esc(f.join(', ')) + '</div>' : '') + '</li>';
-    }).join('');
-  }
-
   function fillCounters() {
     var n = DATA.produits.filter(isEligible).length;
     [].forEach.call(document.querySelectorAll('[data-sp]'), function (el) {
@@ -301,7 +262,6 @@
     var saved = null; try { saved = localStorage.getItem('guide-profile'); } catch (e) {}
     var start = NEEDS.filter(function (n) { return n.id === saved; })[0] || NEEDS[0];
     render(start);
-    renderRecords();
     fillCounters();
     root.setAttribute('data-ready', '1');
   }

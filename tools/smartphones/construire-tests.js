@@ -134,7 +134,7 @@ const AUTONOMIE = {
       { modele: 'vivo-x500-pro-max', min: 666 },
       { modele: 'iphone-18-pro-max', min: 502 },
       { nom: 'Google Pixel 11 Pro XL', min: 484 },
-      { modele: 'samsung-galaxy-s26-ultra', min: 442 }
+      { nom: 'Samsung Galaxy S26 Ultra', min: 442 }
     ],
     note: 'Les Xiaomi, vivo, OPPO et OnePlus testés étaient des versions chinoises, dont les batteries dépassent celles des variantes internationales. Le OnePlus 16 doit son avance à sa batterie silicium-carbone de 9 000 mAh et à une gestion logicielle agressive des tâches en arrière-plan.'
   },
@@ -276,9 +276,86 @@ const CHOIX = {
   photographe: [['pixel-11-pro', 'Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement', 'Vidéo 1'], ['iphone-18-pro', 'Ouverture variable et téléobjectif 4x très polyvalent', 'Vidéo 1'], ['oppo-find-x10-pro-max', 'Triple capteur 200 MP Hasselblad et convertisseur télé magnétique 10x/20x/40x', 'Vidéo 2'], ['vivo-v80', 'Optiques Zeiss 50 MP, principal et téléobjectif', 'Vidéo 5'], ['huawei-pura-90s-pro-max', 'Principal 50 MP f/1.4 et périscope 200 MP : système photo salué comme « potentiellement le meilleur jamais vu sur un smartphone »', 'Vidéo 11']]
 };
 
+
+/* ——— Classements : la lecture principale du site. Un classement n'existe que dans UN protocole : les durées de vidéos
+   différentes ne se mélangent jamais. Tout vient des constantes ci-dessus (aucune valeur nouvelle, aucune note inventée). ——— */
+const heures = min => Math.floor(min / 60) + ' h ' + String(min % 60).padStart(2, '0');
+const nomDe = l => l.nom || MODELES.find(m => m.id === l.modele).nom;
+const numVideo = id => VIDEOS.find(v => v.id === id).n;
+const lignesDuree = lignes => lignes.map((l, i) => ({ rang: i + 1, nom: nomDe(l), modele: l.modele || null, valeur: heures(l.min), barre: Math.round(l.min / lignes[0].min * 100), detail: l.mah ? l.mah.toLocaleString('fr-FR') + ' mAh' : null }));
+const maxMah = Math.max(...['vivo-v80-lite', 'oneplus-16', 'poco-x8', 'honor-x9d', 'poco-f9-ultra', 'vivo-x500-pro-max', 'honor-magic-8-lite', 'vivo-v80', 'oppo-find-x10-pro-max', 'honor-600-pro'].map(id => MODELES.find(m => m.id === id).specs.batterie_mah));
+const CLASSEMENTS = {
+  categories: [
+    { id: 'autonomie', label: 'Autonomie', question: 'Combien de temps tient-il avant de s’éteindre ?', classements: [
+      { id: 'autonomie-flagships', titre: 'Haut de gamme', type: 'classement', video: 'autonomie-flagships', protocole: AUTONOMIE.flagships.protocole, note: AUTONOMIE.flagships.note, lignes: lignesDuree(AUTONOMIE.flagships.lignes) },
+      { id: 'autonomie-milieu', titre: 'Milieu de gamme', type: 'classement', video: 'drain-milieu', protocole: AUTONOMIE.milieu.protocole, note: AUTONOMIE.milieu.note, lignes: lignesDuree(AUTONOMIE.milieu.lignes) }
+    ] },
+    { id: 'vitesse', label: 'Vitesse', question: 'Les applications s’ouvrent-elles vite, sans ralentir ?', classements: [
+      { id: 'vitesse-flagships', titre: 'Haut de gamme', type: 'classement', video: 'vitesse', protocole: VITESSE.protocole, note: VITESSE.conclusion, lignes: VITESSE.classement.map(r => ({ rang: Number(r[0]), nom: r[1], modele: null, valeur: 'n° ' + r[0], barre: null, detail: r[2] })) }
+    ] },
+    { id: 'puissance', label: 'Puissance graphique', question: 'Tient-il les jeux lourds et le ray-tracing ?', classements: [
+      { id: 'puissance-flagships', titre: 'Haut de gamme', type: 'classement', video: 'benchmarks', protocole: BENCHMARKS.protocole, note: BENCHMARKS.reserves, lignes: [
+        { rang: 1, nom: 'Apple iPhone 18 Pro Max', modele: 'iphone-18-pro-max', valeur: 'n° 1', barre: null, detail: 'Meilleur GPU : gros gain en ray-tracing, températures maîtrisées' },
+        { rang: 2, nom: 'Vivo X500 Pro Max', modele: 'vivo-x500-pro-max', valeur: 'n° 2', barre: null, detail: 'Scores qui dépassent à peine la génération précédente ; chauffe jusqu’à plus de 60 °C' },
+        { rang: 3, nom: 'POCO F9 Ultra', modele: 'poco-f9-ultra', valeur: 'n° 3', barre: null, detail: 'Meilleure efficacité énergétique du panel Android' },
+        { rang: 4, nom: 'Samsung Galaxy S26 Ultra', modele: 'samsung-galaxy-s26-ultra', valeur: 'n° 4', barre: null, detail: 'Meilleur score CPU sur AnTuTu' },
+        { rang: 5, nom: 'Apple iPhone 17 Pro Max', modele: 'apple-iphone-17-pro-max', valeur: 'n° 5', barre: null, detail: 'Le plus frais en fin de test' }
+      ] }
+    ] },
+    { id: 'photo', label: 'Photo', question: 'Quel téléphone choisir pour la photo ?', classements: [
+      { id: 'photo-usages', titre: 'Le meilleur, selon l’usage', type: 'choix', video: 'photo', protocole: 'Pas de classement chiffré : chaque mention vaut dans sa vidéo (Tech Spurt, sauf le Huawei : TechNick).', note: 'Aucune note n’est attribuée : ces choix ne se classent pas entre eux.', lignes: [
+        { usage: 'Meilleur système photo, selon son testeur', nom: 'Huawei Pura 90s Pro Max', modele: 'huawei-pura-90s-pro-max', detail: 'Salué comme « potentiellement le meilleur jamais vu sur un smartphone » ; périscope 200 MP.', video: numVideo('pura') },
+        { usage: 'Zoom', nom: 'OPPO Find X9 Ultra', modele: null, detail: 'Meilleur zoom 10×-20× du marché selon le testeur ; cinq caméras.', video: numVideo('photo') },
+        { usage: 'Zoom, téléobjectif', nom: 'Vivo X300 Ultra', modele: null, detail: 'Téléobjectif 200 MP salué comme l’un des meilleurs de 2026.', video: numVideo('photo') },
+        { usage: 'Photo de nuit et stabilisation vidéo', nom: 'Samsung Galaxy S26 Ultra', modele: 'samsung-galaxy-s26-ultra', detail: 'Nuit bien améliorée ; stabilisation Horizontal Lock, la référence.', video: numVideo('photo') },
+        { usage: 'Le plus simple au quotidien', nom: 'Google Pixel 11 Pro', modele: 'pixel-11-pro', detail: 'La référence « familiale », sans effort.', video: numVideo('photo') },
+        { usage: 'Rendus naturels, commandes manuelles', nom: 'Sony Xperia 1 VII', modele: null, detail: 'Triple 48 MP naturelle, microSD, jack ; application lente.', video: numVideo('photo') },
+        { usage: 'Photo à petit prix', nom: 'Google Pixel 10a', modele: 'pixel-10a', detail: 'Le meilleur photo à petit prix ; pas de téléobjectif.', video: numVideo('photo') },
+        { usage: 'Photophone pas cher, haut de gamme', nom: 'POCO F9 Ultra', modele: 'poco-f9-ultra', detail: 'Principal 200 MP, télé 5× ; lumières parfois cramées la nuit.', video: numVideo('photo') }
+      ] }
+    ] },
+    { id: 'prix', label: 'Budget', question: 'Que prendre selon le budget ?', classements: [
+      { id: 'prix-choix', titre: 'Le choix du testeur, par budget', type: 'choix', video: 'budget', protocole: 'Choix de deux vidéos Tech Spurt (été 2026), prix en livres sterling ; ni classement ni note.', note: 'Chaque choix vaut dans son segment de prix.', lignes: [
+        { usage: 'Sous 100 £', nom: 'Motorola Moto G06 Power', modele: null, detail: '7 000 mAh, 6,9" : l’une des meilleures autonomies du marché.', video: numVideo('budget') },
+        { usage: 'Sous 300 £ : le plus classique', nom: 'Xiaomi Redmi Note 15 Pro 5G', modele: 'redmi-note-15-pro-5g', detail: 'IP68, 6 580 mAh, 200 MP : le meilleur rapport du panel.', video: numVideo('budget') },
+        { usage: 'Sous 300 £ : le plus polyvalent', nom: 'POCO M8 Pro', modele: null, detail: 'Étanche, Snapdragon 7s Gen 4, 6 500 mAh, 256 Go.', video: numVideo('budget') },
+        { usage: 'Sous 300 £ : le plus robuste', nom: 'Honor Magic 8 Lite', modele: 'honor-magic-8-lite', detail: 'Résiste aux chutes de 2,5 m, IP68/69, 7 500 mAh.', video: numVideo('budget') },
+        { usage: 'Milieu de gamme : le favori', nom: 'POCO X8 Pro Max', modele: null, detail: 'Coup de cœur : 8 500 mAh, Dimensity 9500S, rapport qualité-prix « stupéfiant ».', video: numVideo('milieu') },
+        { usage: 'Milieu de gamme Samsung', nom: 'Samsung Galaxy A57', modele: 'samsung-galaxy-a57', detail: 'Le meilleur choix de la gamme A ; l’A37 est le choix économique, l’A27 est à éviter.', video: numVideo('samsung') }
+      ] }
+    ] },
+    { id: 'batterie', label: 'Batterie', question: 'Quelle est la plus grosse batterie ?', classements: [
+      { id: 'capacite', titre: 'Capacité annoncée', type: 'classement', video: null, protocole: 'Capacités annoncées dans les vidéos, versions précisées. Une grosse batterie ne dit pas la durée : voir les classements d’autonomie.', note: 'La capacité (mAh) n’est pas une durée : deux téléphones de même capacité peuvent tenir très différemment.',
+        lignes: ['vivo-v80-lite', 'oneplus-16', 'poco-x8', 'honor-x9d', 'poco-f9-ultra', 'vivo-x500-pro-max', 'honor-magic-8-lite', 'vivo-v80', 'oppo-find-x10-pro-max', 'honor-600-pro'].filter(id => MODELES.some(m => m.id === id)).map(id => MODELES.find(m => m.id === id)).sort((a, b) => b.specs.batterie_mah - a.specs.batterie_mah).map((m, i) => ({ rang: i + 1, nom: m.nom, modele: m.id, valeur: m.specs.batterie_mah.toLocaleString('fr-FR') + ' mAh', barre: Math.round(m.specs.batterie_mah / maxMah * 100), detail: m.specs.batterie_note || null })) }
+    ] }
+  ],
+  profils: [
+    { id: 'etudiant', label: 'Étudiant', situation: 'Du matin au soir sans prise, un budget serré, un téléphone gardé plusieurs années.', priorites: [
+      { classement: 'autonomie-milieu', pourquoi: 'Tenir toute la journée de cours sans chercher une prise.' },
+      { classement: 'prix-choix', pourquoi: 'Le bon téléphone au bon prix, sans payer le haut de gamme.' },
+      { classement: 'capacite', pourquoi: 'Une grosse batterie reste la meilleure garantie de durée.' } ] },
+    { id: 'professionnel', label: 'Professionnel', situation: 'Appels, visio, mails et documents : il doit rester réactif et tenir la journée.', priorites: [
+      { classement: 'vitesse-flagships', pourquoi: 'Ouvrir les documents et les applications sans attendre.' },
+      { classement: 'autonomie-flagships', pourquoi: 'Aller au bout de la journée de travail.' },
+      { classement: 'prix-choix', pourquoi: 'Un bon milieu de gamme suffit souvent.' } ] },
+    { id: 'gamer', label: 'Gamer', situation: 'Jeux lourds : la puce compte, et sa capacité à ne pas chauffer plus encore.', priorites: [
+      { classement: 'puissance-flagships', pourquoi: 'GPU et ray-tracing : ce qui fait la fluidité en jeu.' },
+      { classement: 'vitesse-flagships', pourquoi: 'Gérer plusieurs applications sans ralentir.' },
+      { classement: 'autonomie-flagships', pourquoi: 'Combien de temps tient l’écran allumé.' } ] },
+    { id: 'photographe', label: 'Photo', situation: 'Le capteur et le traitement d’image comptent plus que la fiche technique.', priorites: [
+      { classement: 'photo-usages', pourquoi: 'Le meilleur téléphone selon ce que vous photographiez.' },
+      { classement: 'vitesse-flagships', pourquoi: 'Retouche et export vidéo 4K : Lightroom, Adobe Scan.' },
+      { classement: 'autonomie-flagships', pourquoi: 'Une journée de prises de vues.' } ] }
+  ]
+};
+
+/* Un modèle n'est lié que s'il existe encore dans le dossier. */
+CLASSEMENTS.categories.forEach(k => k.classements.forEach(c => c.lignes.forEach(l => { if (l.modele && !MODELES.some(m => m.id === l.modele)) l.modele = null; })));
+
 const out = {
   categorie: 'smartphones-tests',
   source: SOURCE, videos: VIDEOS, modeles: MODELES, samsung: SAMSUNG,
+  classements: CLASSEMENTS,
   vitesse: VITESSE, benchmarks: BENCHMARKS, autonomie: AUTONOMIE, fiches: FICHES, photo: PHOTO, gamme: GAMME,
   records: { ordre: ['vivo-v80-lite', 'oneplus-16', 'poco-x8', 'honor-x9d', 'poco-f9-ultra', 'vivo-x500-pro-max', 'honor-magic-8-lite', 'vivo-v80', 'oppo-find-x10-pro-max', 'honor-600-pro'], echelle_mah: 10000 },
   choix_par_profil: Object.fromEntries(Object.entries(CHOIX).map(([k, l]) => [k, l.map(([modele, raison, ref]) => ({ modele, raison, ref }))])),
