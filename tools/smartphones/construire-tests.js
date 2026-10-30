@@ -352,10 +352,59 @@ const CLASSEMENTS = {
 /* Un modèle n'est lié que s'il existe encore dans le dossier. */
 CLASSEMENTS.categories.forEach(k => k.classements.forEach(c => c.lignes.forEach(l => { if (l.modele && !MODELES.some(m => m.id === l.modele)) l.modele = null; })));
 
+
+/* ——— Banc d'essai : une fiche de mesures par modèle (comme les projecteurs). Les notes sont calculées dans le navigateur
+   par assets/js/smartphones-notes.js à partir de ces seules valeurs ; rien n'est inventé ici. ——— */
+const CAT = (() => { try { return JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'data', 'smartphones.json'), 'utf8')).produits; } catch (e) { return []; } })();
+const ALIAS = { 'iphone 17 pro max': 'Apple iPhone 17 Pro Max', 'galaxy s26 ultra': 'Samsung Galaxy S26 Ultra' };
+const canon = nom => ALIAS[nom.toLowerCase()] || nom;
+const slug = nom => nom.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const BANC_M = {};
+function fiche(nom) {
+  nom = canon(nom);
+  if (!BANC_M[nom]) {
+    const m = MODELES.find(x => x.nom === nom);
+    BANC_M[nom] = { id: m ? m.id : slug(nom), nom, marque: m ? m.marque : nom.split(' ')[0], mesures: {}, sources: [] };
+  }
+  return BANC_M[nom];
+}
+const MESURE_DE = { 'autonomie-flagships': 'autonomie', 'autonomie-milieu': 'autonomie', 'vitesse-flagships': 'vitesse', 'puissance-flagships': 'puissance' };
+CLASSEMENTS.categories.forEach(k => k.classements.forEach(c => {
+  const cle = MESURE_DE[c.id]; if (!cle) return;
+  c.lignes.forEach(l => {
+    const f = fiche(l.nom), v = VIDEOS.find(x => x.id === c.video);
+    f.mesures[cle] = { rang: l.rang, sur: c.lignes.length, test: c.id, valeur: l.valeur };
+    f.segment = c.id === 'autonomie-milieu' ? 'milieu' : 'haut';
+    if (!f.sources.some(x => x.n === v.n)) f.sources.push({ n: v.n, chaine: v.chaine });
+  });
+}));
+MODELES.forEach(m => {
+  if (!m.specs || !m.specs.batterie_mah) return;
+  const f = fiche(m.nom), v = VIDEOS.find(x => x.id === m.video);
+  f.capacite_mah = m.specs.batterie_mah;
+  if (m.specs.batterie_note) f.capacite_note = m.specs.batterie_note;
+  if (!f.sources.some(x => x.n === v.n)) f.sources.push({ n: v.n, chaine: v.chaine });
+});
+Object.values(BANC_M).forEach(f => {
+  const m = MODELES.find(x => x.id === f.id), cat = CAT.find(p => p.id === f.id) || CAT.find(p => p.nom.toLowerCase() === f.nom.toLowerCase());
+  if (m && m.prix_eur) { f.prix_eur = m.prix_eur; f.prix_origine = 'vidéo'; }
+  else if (cat && cat.prix_indicatif) { f.prix_eur = cat.prix_indicatif; f.prix_origine = 'catalogue du guide (indicatif)'; }
+  const ip = m && m.specs && m.specs.etancheite && /IP\d\d/.exec(m.specs.etancheite);
+  if (ip) f.ip = m.specs.etancheite;
+});
+const premier = id => CLASSEMENTS.categories.flatMap(k => k.classements).find(c => c.id === id).lignes[0];
+const BANC = {
+  modeles: Object.values(BANC_M).filter(f => Object.keys(f.mesures).length || f.capacite_mah),
+  mesures_cles: ['autonomie', 'vitesse', 'puissance'],
+  verdict: 'Aucun smartphone ne gagne partout : le ' + premier('autonomie-flagships').nom + ' domine l’autonomie des flagships (' + premier('autonomie-flagships').valeur + '), le ' + premier('vitesse-flagships').nom + ' la vitesse, l’' + premier('puissance-flagships').nom + ' la puissance graphique ; au milieu de gamme, le ' + premier('autonomie-milieu').nom + ' tient ' + premier('autonomie-milieu').valeur + '.',
+  constat: 'Chaque test a son protocole : une durée d’autonomie ne se compare jamais d’une vidéo à l’autre. Les barres ci-dessous restent donc dans leur test ; les notes par usage ne comparent que le rang dans le test, jamais des heures brutes.'
+};
+
 const out = {
   categorie: 'smartphones-tests',
   source: SOURCE, videos: VIDEOS, modeles: MODELES, samsung: SAMSUNG,
   classements: CLASSEMENTS,
+  banc: BANC,
   vitesse: VITESSE, benchmarks: BENCHMARKS, autonomie: AUTONOMIE, fiches: FICHES, photo: PHOTO, gamme: GAMME,
   records: { ordre: ['vivo-v80-lite', 'oneplus-16', 'poco-x8', 'honor-x9d', 'poco-f9-ultra', 'vivo-x500-pro-max', 'honor-magic-8-lite', 'vivo-v80', 'oppo-find-x10-pro-max', 'honor-600-pro'], echelle_mah: 10000 },
   choix_par_profil: Object.fromEntries(Object.entries(CHOIX).map(([k, l]) => [k, l.map(([modele, raison, ref]) => ({ modele, raison, ref }))])),

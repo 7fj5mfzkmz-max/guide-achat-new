@@ -255,3 +255,48 @@ html.dark-theme .sp-calm .brand-menu-toggle { background: var(--accent); color: 
   .sp-calm .tr-reperes { margin-top: 24px; }
   .sp-calm .tr-row { padding: 14px 4px 14px 40px; }
 }
+
+/* ======================================================================================================
+   Banc d'essai : composants repris des projecteurs (projecteurs.css), recolorés dans la charte « calme ».
+   ====================================================================================================== */
+.sp-calm .pj-pod, .sp-calm .pj-pod.is-1 { box-shadow: none; border-width: 2px; }
+.sp-calm .pj-tab[aria-pressed="true"] { box-shadow: none; }
+.sp-calm .pj-tab { border-width: 1px; }
+.sp-calm .pj-ranking, .sp-calm .pj-chart, .sp-calm .pj-prof-item, .sp-calm .pj-lcard, .sp-calm .pj-filters { border-width: 2px; background: var(--paper-2); }
+.sp-calm .pj-prof-item { grid-template-columns: 34px minmax(0, 1fr) 118px; }
+.sp-calm .pj-row small { line-height: 1.35; }
+.sp-calm .pj-row > div > b { font: 700 14.5px var(--mono); }
+.sp-mini { display: none !important; }
+.sp-calm .pj-podium { margin-top: 32px; }
+.sp-calm .pj-why { margin-top: 22px; }
+.sp-calm .pj-filters { margin: 22px 0 0; border-bottom: 0; }
+.sp-calm .pj-filters + .pj-ranking { margin-top: 0; }
+.sp-calm .pj-chart-note { margin-top: 14px; font-size: 14px; line-height: 1.6; max-width: 80ch; }
+.sp-calm .pj-prof-top { gap: 12px; }
+.sp-calm .pj-prof-item h3 { font-size: 18px; }
+.sp-calm .pj-prof-item p { font-size: 14px; line-height: 1.5; }
+.sp-calm .pj-weights { margin-top: 14px; }
+.sp-calm .pj-prof-warn { margin-top: 16px; line-height: 1.6; }
+.sp-noscore small { display: block; margin-top: 4px; letter-spacing: .04em; }
+.sp-pick .pj-n { font-size: 26px; }
+.sp-calm .pj-lcard { padding: 20px; background: var(--paper-2); }
+.sp-calm .pj-lcard h3 { font-size: 19px; }
+.sp-calm .pj-lcard p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); }
+.sp-fig { margin: 0 0 16px !important; padding: 18px 16px !important; background: var(--paper-3); border-left: 4px solid var(--accent); display: grid; gap: 6px; }
+.sp-fig b { font: 800 clamp(26px, 3.4vw, 34px)/1 var(--head); letter-spacing: -.03em; }
+.sp-fig span { font: 500 11.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); }
+.sp-calm #faq .st-fold { margin-top: 12px; }
+.sp-calm #faq .st-fold > summary span { font: 800 17px/1.3 var(--head); text-transform: none; letter-spacing: 0; }
+.sp-calm #faq .st-fold p { margin: 12px 0 4px; line-height: 1.65; color: var(--ink-soft); max-width: 70ch; }
+.sp-calm .pj-podium { align-items: end; }
+@media (max-width: 760px) {
+  .sp-mini { display: block !important; margin-top: 3px; color: var(--ink-soft); }
+  .sp-calm .pj-row { grid-template-columns: 30px minmax(0, 1fr) auto; }
+  .sp-calm .pj-row > :nth-child(n+3):nth-child(-n+5) { display: none; }
+  .sp-calm .pj-row-head > :nth-child(n+3):nth-child(-n+5) { display: none; }
+  .sp-calm .pj-prof-item { grid-template-columns: 26px minmax(0, 1fr) 76px; gap: 10px; padding: 12px; }
+  .sp-calm .pj-score { font-size: 19px; }
+  .sp-calm .pj-podium { grid-template-columns: 1fr; gap: 10px; }
+  .sp-calm .pj-lcard { padding: 16px; }
+}
+@media (max-width: 760px) { .sp-calm .pj-pod.is-1 { order: 1; } .sp-calm .pj-pod.is-2 { order: 2; } .sp-calm .pj-pod.is-3 { order: 3; } .sp-calm .pj-pod, .sp-calm .pj-pod.is-1, .sp-calm .pj-pod.is-2, .sp-calm .pj-pod.is-3 { min-height: 0; padding-top: 50px; } }

@@ -40,6 +40,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <style>html.i18n-wait body{opacity:0}</style>
 <link rel="stylesheet" href="assets/css/i18n.css">
 <link rel="stylesheet" href="assets/css/student-journey.css">
+<link rel="stylesheet" href="assets/css/projecteurs.css">
 <link rel="stylesheet" href="assets/css/smartphones-calm.css">
 </head>
 <body class="photo-editorial site-redesign sp-calm">
@@ -56,41 +57,74 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <main id="main">
 <nav class="pl-sections" id="pl-sections" aria-label="Sections de la page">
 <div class="pl-sections-in">
-<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Classements</b><i aria-hidden="true">▾</i></button>
-<ul id="pl-sections-list"><li><a href="#classements"><small>01</small>Classements</a></li><li><a href="#trouver"><small>02</small>Sur mesure</a></li><li><a href="#tests-2026"><small>03</small>Preuves</a></li><li><a href="#sources"><small>04</small>Sources</a></li></ul>
+<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Classement</b><i aria-hidden="true">▾</i></button>
+<ul id="pl-sections-list"><li><a href="#classement"><small>01</small>Classement</a></li><li><a href="#mesures"><small>02</small>Mesures</a></li><li><a href="#usages"><small>03</small>Usages</a></li><li><a href="#comprendre"><small>04</small>Comprendre</a></li><li><a href="#trouver"><small>05</small>Sur mesure</a></li><li><a href="#tests-2026"><small>06</small>Preuves</a></li><li><a href="#faq"><small>07</small>FAQ</a></li><li><a href="#sources"><small>08</small>Sources</a></li></ul>
 </div>
 </nav>
-<div class="hx hx-page pg sp" data-cat="smartphones" data-tone="orchid" data-motion="on">
+<div class="hx hx-page pg sp pj" data-cat="smartphones" data-tone="orchid" data-motion="on">
 <div class="container-wide">
 <header class="pg-hero cl-hero" id="debut">
 <div>
 <nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
-<span class="pg-kick">Classements 2026 · tests vidéo</span>
-<h1>Le bon smartphone, <mark>classé selon votre usage</mark></h1>
-<p class="pg-lead">Autonomie, vitesse, puissance, photo, prix : des classements tirés de tests vidéo, par profil et par catégorie. Chacun dit comment il a été mesuré.</p>
-<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#classements">Voir les classements →</a><a class="pg-btn alt" href="#analyser-modele">J’ai déjà un modèle</a></div>
+<span class="pg-kick">Banc d’essai · tests vidéo 2026</span>
+<h1>Le smartphone qu’il vous faut, <mark>mesuré, pas promis</mark></h1>
+<p class="pg-lead">Autonomie, vitesse, puissance : des tests vidéo recoupés, classés par usage, avec le protocole de chacun. Une donnée inconnue n’est jamais comptée comme un défaut : elle réduit la couverture.</p>
+<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#classement">Voir le classement →</a><a class="pg-skip" href="#usages">Choisir selon mon usage ↓</a></div>
+<ul class="pl-checks" aria-label="Nos engagements"><li>Protocole affiché</li><li>Aucune note photo inventée</li><li>Prix à vérifier en France</li></ul>
 </div>
 <div class="cl-preview" id="cl-preview" aria-live="polite"></div>
 </header>
+<p class="pj-error pj-warn container-wide" id="sp-error" hidden></p>
 <div class="pg-strip pg-strip-3"><div><b data-sp="models">74</b><span>modèles comparables</span></div><div><b data-sp="tested">21</b><span>modèles vus en test vidéo</span></div><div><b data-sp="date">30 oct. 2026</b><span>dernière mise à jour des tests</span></div></div>
 </div>
 
 <div class="container-wide hx-body">
-<section class="section cl-section" id="classements" aria-labelledby="classements-titre">
-<h2 class="section-heading" id="classements-titre"><span class="eyebrow">01 · Classements</span>Les classements qui comptent pour vous</h2>
-<p class="section-lead">Choisissez un profil : les classements arrivent dans l’ordre de vos priorités. Ou parcourez une catégorie. Un classement ne compare que des téléphones mesurés de la même façon.</p>
-<div class="tr-tabs cl-mode" id="cl-mode" role="tablist" aria-label="Lire les classements">
-<button type="button" role="tab" class="tr-tab" data-mode="profil" aria-selected="true">Par profil</button>
-<button type="button" role="tab" class="tr-tab" data-mode="categorie" aria-selected="false" tabindex="-1">Par catégorie</button>
-</div>
-<div class="tr-chips cl-chips" id="cl-chips" role="group" aria-label="Choisir"></div>
-<div class="cl-intro" id="cl-intro"></div>
-<div class="cl-board" id="cl-board" aria-live="polite"><p class="tr-loading">Chargement des classements…</p></div>
-<p class="cl-foot">Besoin d’affiner ? <a class="hx-link" href="#trouver">Choisir avec vos propres critères →</a></p>
+<section class="section" data-tone="amber" id="classement" aria-labelledby="classement-titre">
+<h2 class="section-heading" id="classement-titre"><span class="eyebrow">01 · Classement</span>Le podium des tests</h2>
+<p class="section-lead">Les téléphones les plus polyvalents d’après leurs mesures, puis tous les modèles mesurés. Le tableau peut être trié par critère.</p>
+<div id="sp-podium" class="pj-podium" aria-label="Podium"></div>
+<div class="pj-why"><strong>Ce que disent les tests</strong><span id="sp-verdict"></span></div>
+<div class="pj-filters"><label>Trier par <select id="sp-sort"><option value="polyvalent">Polyvalence</option><option value="autonomie">Autonomie</option><option value="vitesse">Vitesse</option><option value="puissance">Puissance graphique</option><option value="capacite">Capacité de batterie</option><option value="prix">Prix croissant</option></select></label><span id="sp-count" aria-live="polite"></span></div>
+<div id="sp-ranking" class="pj-ranking" role="table" aria-label="Tous les modèles mesurés"></div>
+<p class="pj-lead-note">« n° 1 » est le rang dans son propre test : une autonomie de milieu de gamme et une autonomie de haut de gamme ne se comparent pas. « Non mesuré » ne veut pas dire mauvais : le test n’a pas porté sur ce critère.</p>
 </section>
 
+<section class="section" data-tone="teal" id="mesures" aria-labelledby="mesures-titre">
+<h2 class="section-heading" id="mesures-titre"><span class="eyebrow">02 · Mesures</span>Ce que mesurent vraiment les tests</h2>
+<p class="section-lead" id="sp-constat"></p>
+<div class="pj-tabs" id="sp-metric-tabs" role="group" aria-label="Choisir une mesure"></div>
+<div class="pj-chart" id="sp-chart" aria-live="polite"></div>
+<p class="pj-chart-note" id="sp-chart-note"></p>
+</section>
+
+<section class="section" data-tone="coral" id="usages" aria-labelledby="usages-titre">
+<h2 class="section-heading" id="usages-titre"><span class="eyebrow">03 · Usages</span>Quel smartphone pour quel usage ?</h2>
+<p class="section-lead">Chaque usage pèse les critères différemment. Une donnée inconnue n’est jamais comptée comme un défaut : elle réduit la couverture et la note reste provisoire.</p>
+<div class="pj-tabs" id="sp-prof-tabs" role="group" aria-label="Choisir un usage"></div>
+<div class="pj-prof-top" id="sp-prof-top" aria-live="polite"></div>
+<ul class="pj-weights" id="sp-weights" aria-label="Poids des critères pour cet usage"></ul>
+<p class="pj-prof-warn" id="sp-prof-warn"></p>
+</section>
+
+<section class="section" data-tone="peach" id="comprendre" aria-labelledby="comprendre-titre">
+<h2 class="section-heading" id="comprendre-titre"><span class="eyebrow">04 · Comprendre</span>Huit notions pour lire un test</h2>
+<p class="section-lead">Ce qui explique que deux classements ne disent pas la même chose, et pourquoi c’est normal.</p>
+<div class="pj-learn">
+<article class="pj-lcard"><figure class="sp-fig"><b>14 h 03</b><span>OnePlus 16 · 9 000 mAh</span></figure><h3>Capacité n’est pas durée</h3><p>Les mAh sont la taille du réservoir. Seule une mesure donne la durée : le OnePlus 16 tient 14 h 03 sur le protocole Techmo, le Galaxy S26 Ultra 7 h 22.</p></article>
+<article class="pj-lcard"><figure class="sp-fig"><b>500 nits</b><span>contre 425 lux</span></figure><h3>Un protocole par vidéo</h3><p>Techmo enchaîne vidéo, web, jeu et visio à 500 nits ; TechNick décharge de 100 % à 0 % avec 15 applications sous 425 lux. Les durées ne se comparent pas d’une vidéo à l’autre.</p></article>
+<article class="pj-lcard"><figure class="sp-fig"><b>10 000 mAh</b><span>Vivo V80 Lite</span></figure><h3>Batterie silicium-carbone</h3><p>Des capacités de 7 000 à 10 000 mAh arrivent jusqu’au milieu de gamme : le Vivo V80 Lite tient 18 h 43 écran allumé, l’iPhone 17 (3 692 mAh) 9 h 36.</p></article>
+<article class="pj-lcard"><figure class="sp-fig"><b>CN</b><span>versions chinoises</span></figure><h3>Version chinoise, version européenne</h3><p>Les Xiaomi, vivo, OPPO et OnePlus du test Techmo étaient des versions chinoises, aux batteries plus grosses que les variantes internationales.</p></article>
+<article class="pj-lcard"><figure class="sp-fig"><b>n° 1 / n° 4</b><span>Galaxy S26 Ultra</span></figure><h3>Vitesse ou puissance ?</h3><p>Le Galaxy S26 Ultra est le plus rapide à ouvrir les applications, mais 4ᵉ en puissance graphique. Un benchmark mesure autre chose que l’usage quotidien.</p></article>
+<article class="pj-lcard"><figure class="sp-fig"><b>Metal ≠ Vulkan</b><span>iOS ≠ Android</span></figure><h3>Android et iOS</h3><p>Les scores AnTuTu ne se comparent pas entre Android et iOS (API Vulkan contre Metal), ni les scores Geekbench 7 avec ceux de Geekbench 6.</p></article>
+<article class="pj-lcard"><figure class="sp-fig"><b>+ 60 °C</b><span>Vivo X500 Pro Max</span></figure><h3>Chauffe et bridage</h3><p>Une puce puissante peut chauffer jusqu’à plus de 60 °C et ralentir (throttling). Puissance maximale et puissance tenue ne sont pas la même chose.</p></article>
+<article class="pj-lcard"><figure class="sp-fig"><b>IP68 · IP69</b><span>Honor Magic 8 Lite</span></figure><h3>Indices IP</h3><p>IP68 : résiste à l’immersion. IP69 : résiste aux jets haute pression et haute température. Les deux se lisent ensemble : l’IP68 seul ne dit pas tout.</p></article>
+</div>
+</section>
+
+
+
 <section class="section trouver" data-tone="peach" id="trouver" aria-labelledby="trouver-titre">
-<h2 class="section-heading" id="trouver-titre"><span class="eyebrow">02 · Sur mesure</span>Affinez avec vos critères ou un modèle précis</h2>
+<h2 class="section-heading" id="trouver-titre"><span class="eyebrow">05 · Sur mesure</span>Affinez avec vos critères ou un modèle précis</h2>
 <div class="tr-tabs" role="tablist" aria-label="Façon de chercher">
 <button type="button" role="tab" id="tab-profil" class="tr-tab" aria-controls="choisir-profil" aria-selected="true">Mon profil</button>
 <button type="button" role="tab" id="tab-criteres" class="tr-tab" aria-controls="audit" aria-selected="false" tabindex="-1">Mes critères</button>
@@ -368,7 +402,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section class="section st-section" data-tone="orchid" id="tests-2026" aria-labelledby="tests-titre">
-<h2 class="section-heading" id="tests-titre"><span class="eyebrow">03 · Preuves</span>Les mesures derrière les classements</h2>
+<h2 class="section-heading" id="tests-titre"><span class="eyebrow">06 · Preuves</span>Les mesures derrière les classements</h2>
 <p class="section-lead">Les <span data-sp="videos">13</span> vidéos de test alimentent les classements ci-dessus. Voici les mesures complètes, les protocoles et les limites. Les chiffres sont ceux des testeurs : le guide ne les a pas refaits et n’invente aucune note.</p>
 <details class="st-fold"><summary><span>Lire le détail des 13 tests</span><small>chiffres, limites et choix par profil</small></summary>
 <p class="st-error" id="st-error" hidden></p>
@@ -383,8 +417,18 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </details>
 </section>
 
+<section class="section" data-tone="amber" id="faq" aria-labelledby="faq-titre">
+<h2 class="section-heading" id="faq-titre"><span class="eyebrow">07 · Questions</span>Les questions qu’on se pose</h2>
+<details class="st-fold"><summary><span>Pourquoi deux classements d’autonomie ?</span></summary><p>Parce que deux vidéos, deux protocoles. Le haut de gamme (Techmo) et le milieu de gamme (TechNick) ne sont pas mesurés de la même façon : une durée de l’un ne se lit pas contre une durée de l’autre.</p></details>
+<details class="st-fold"><summary><span>Pourquoi n’y a-t-il pas de note photo ?</span></summary><p>Aucune des vidéos ne chiffre la photo : elles présentent des points forts et des réserves, sans classement. Le guide n’invente pas de note ; l’onglet « Photo » des usages reprend le choix du testeur selon l’usage.</p></details>
+<details class="st-fold"><summary><span>Que veut dire « provisoire » ?</span></summary><p>La note repose sur peu de critères mesurés. Une donnée inconnue n’est jamais comptée comme un défaut : elle réduit la couverture, et la note est plafonnée tant que le critère décisif de l’usage manque.</p></details>
+<details class="st-fold"><summary><span>Les prix sont-ils vérifiés ?</span></summary><p>Non. Ce sont des prix relevés dans les vidéos (euros ou livres) ou le prix indicatif du catalogue du guide. Vérifiez le prix et la disponibilité en France avant d’acheter.</p></details>
+<details class="st-fold"><summary><span>D’où viennent les chiffres ?</span></summary><p>De treize vidéos de sept chaînes, reprises dans un rapport de synthèse dont les titres et les chaînes ont été contrôlés. Le guide ne les a pas refaites ; la liste des vidéos et leurs limites sont dans « Preuves ».</p></details>
+<details class="st-fold"><summary><span>Mon modèle n’est pas dans le tableau : que faire ?</span></summary><p>Un modèle absent n’a pas été mesuré dans ces tests. Utilisez « Sur mesure » : l’analyseur lit sa fiche, et « Mes critères » classe les fiches vérifiées du catalogue.</p></details>
+</section>
+
 <section class="section sources-list" data-tone="orchid" id="sources" aria-labelledby="sources-titre">
-<h2 class="section-heading" id="sources-titre"><span class="eyebrow">04 · Aller plus loin</span>Comprendre une fiche, vérifier nos sources</h2>
+<h2 class="section-heading" id="sources-titre"><span class="eyebrow">08 · Aller plus loin</span>Comprendre une fiche, vérifier nos sources</h2>
 <p class="section-lead"><a class="hx-link" href="smartphones-approfondir.html">Ce qui se cache derrière les chiffres d’une fiche technique →</a></p>
 <details class="src-fold"><summary>Sources utilisées</summary><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li>Tests vidéo 2026 : Android Police, The Tech Chap, Versus, Tech Spurt</li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></details>
 </section>
@@ -439,7 +483,8 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/student-journey.js" defer></script>
 <script src="assets/js/smartphones-trouver.js" defer></script>
 <script src="assets/js/smartphones-tests.js" defer></script>
-<script src="assets/js/smartphones-classements.js" defer></script>
+<script src="assets/js/smartphones-notes.js" defer></script>
+<script src="assets/js/smartphones-banc.js" defer></script>
 <script src="assets/js/v88-platform.js" defer></script>
 <script src="assets/js/category-page.js" defer></script>
 <script src="assets/js/actualites.js" defer></script>

@@ -107,21 +107,28 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         await page.keyboard.press('Home');
         assert.ok(await page.locator('#choisir-profil').isVisible());
       });
-      await check('classements : par profil, par catégorie, protocole affiché, profil partagé' + tag, async () => {
-        await page.waitForSelector('html[data-cl-ready="1"]');
-        const cartes = () => page.locator('#cl-board .cl-card');
-        assert.equal(await cartes().count(), 3, 'trois priorités par profil');
-        assert.match(await page.locator('#cl-board .cl-head').first().innerText(), /PRIORITÉ 1/i);
-        assert.equal(await page.locator('#cl-board .cl-proto summary').count(), 3, 'protocole sous chaque classement');
-        await page.click('#cl-chips [data-k="gamer"]');
-        assert.match(await page.locator('#cl-board .cl-card').first().innerText(), /Apple iPhone 18 Pro Max/);
-        assert.equal(await page.evaluate(() => localStorage.getItem('guide-profile')), 'gamer');
-        await page.click('#cl-mode [data-mode="categorie"]');
-        await page.click('#cl-chips [data-k="autonomie"]');
-        assert.equal(await cartes().count(), 2, 'deux classements d’autonomie, jamais mélangés');
-        const noms = await page.locator('#cl-board .cl-row.is-first .cl-name').allInnerTexts();
-        assert.deepEqual(noms, ['OnePlus 16', 'Vivo V80 Lite 5G']);
-        await page.click('#cl-mode [data-mode="profil"]');
+      await check('banc d’essai : podium, tableau complet, mesures, usages avec note et couverture' + tag, async () => {
+        await page.waitForSelector('html[data-banc-ready="1"]');
+        assert.equal(await page.locator('#sp-podium .pj-pod').count(), 3);
+        assert.match(await page.locator('#sp-podium .pj-pod.is-1').innerText(), /OnePlus 16/);
+        assert.equal(await page.locator('#sp-ranking .pj-row:not(.pj-row-head)').count(), tests.banc.modeles.length);
+        await page.selectOption('#sp-sort', 'vitesse');
+        assert.match(await page.locator('#sp-ranking .pj-row:not(.pj-row-head)').first().innerText(), /Samsung Galaxy S26 Ultra/);
+        await page.click('#sp-metric-tabs [data-k="autonomie-milieu"]');
+        assert.match(await page.locator('#sp-chart-note').innerText(), /Protocole/);
+        assert.match(await page.locator('#sp-chart .pj-bar-row').first().innerText(), /Vivo V80 Lite 5G/);
+        for (const k of ['etudiant', 'pro', 'gamer', 'budget']) {
+          await page.click('#sp-prof-tabs [data-k="' + k + '"]');
+          const items = page.locator('#sp-prof-top .pj-prof-item');
+          assert.equal(await items.count(), 5, k);
+          const scores = (await page.locator('#sp-prof-top .pj-score').allInnerTexts()).map(t => Number(t.replace(',', '.').match(/[\d.]+/)[0]));
+          assert.deepEqual(scores, scores.slice().sort((a, b) => b - a), k + ' : notes décroissantes');
+          assert.ok(scores.every(x => x <= 9), k);
+          assert.ok(await page.locator('#sp-prof-top .pj-badge').count() >= 5, k + ' : couverture affichée');
+        }
+        await page.click('#sp-prof-tabs [data-k="photo"]');
+        assert.match(await page.locator('#sp-prof-warn').innerText(), /Aucune vidéo ne chiffre la photo/);
+        assert.equal(await page.locator('#sp-prof-top .pj-score').first().innerText().then(t => /pas de note/.test(t)), true);
       });
       await check('chiffres de l’en-tête alimentés par les données' + tag, async () => {
         const eligibles = catalogue.produits.filter(p => p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== 'specs_a_verifier' && p.compatibilite).length;

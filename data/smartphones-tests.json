@@ -994,6 +994,604 @@
       }
     ]
   },
+  "banc": {
+    "modeles": [
+      {
+        "id": "oneplus-16",
+        "nom": "OnePlus 16",
+        "marque": "OnePlus",
+        "mesures": {
+          "autonomie": {
+            "rang": 1,
+            "sur": 7,
+            "test": "autonomie-flagships",
+            "valeur": "14 h 03"
+          }
+        },
+        "sources": [
+          {
+            "n": 7,
+            "chaine": "Techmo"
+          },
+          {
+            "n": 5,
+            "chaine": "Tech Spurt"
+          }
+        ],
+        "segment": "haut",
+        "capacite_mah": 9000,
+        "capacite_note": "Batterie record",
+        "prix_eur": 999,
+        "prix_origine": "catalogue du guide (indicatif)"
+      },
+      {
+        "id": "xiaomi-18-pro-max",
+        "nom": "Xiaomi 18 Pro Max",
+        "marque": "Xiaomi",
+        "mesures": {
+          "autonomie": {
+            "rang": 2,
+            "sur": 7,
+            "test": "autonomie-flagships",
+            "valeur": "12 h 19"
+          }
+        },
+        "sources": [
+          {
+            "n": 7,
+            "chaine": "Techmo"
+          }
+        ],
+        "segment": "haut"
+      },
+      {
+        "id": "oppo-find-x10-pro-max",
+        "nom": "OPPO Find X10 Pro Max",
+        "marque": "OPPO",
+        "mesures": {
+          "autonomie": {
+            "rang": 3,
+            "sur": 7,
+            "test": "autonomie-flagships",
+            "valeur": "11 h 39"
+          }
+        },
+        "sources": [
+          {
+            "n": 7,
+            "chaine": "Techmo"
+          },
+          {
+            "n": 2,
+            "chaine": "The Tech Chap"
+          }
+        ],
+        "segment": "haut",
+        "capacite_mah": 7150,
+        "capacite_note": "7 150 mAh en version Europe, 8 000 mAh en version Asie",
+        "prix_eur": 1399,
+        "prix_origine": "catalogue du guide (indicatif)"
+      },
+      {
+        "id": "vivo-x500-pro-max",
+        "nom": "Vivo X500 Pro Max",
+        "marque": "Vivo",
+        "mesures": {
+          "autonomie": {
+            "rang": 4,
+            "sur": 7,
+            "test": "autonomie-flagships",
+            "valeur": "11 h 06"
+          },
+          "puissance": {
+            "rang": 2,
+            "sur": 5,
+            "test": "puissance-flagships",
+            "valeur": "n° 2"
+          }
+        },
+        "sources": [
+          {
+            "n": 7,
+            "chaine": "Techmo"
+          },
+          {
+            "n": 9,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "haut",
+        "capacite_mah": 8000,
+        "capacite_note": "8 000 mAh en version chinoise, 200 mAh de plus que les variantes mondiales"
+      },
+      {
+        "id": "iphone-18-pro-max",
+        "nom": "Apple iPhone 18 Pro Max",
+        "marque": "Apple",
+        "mesures": {
+          "autonomie": {
+            "rang": 5,
+            "sur": 7,
+            "test": "autonomie-flagships",
+            "valeur": "8 h 22"
+          },
+          "puissance": {
+            "rang": 1,
+            "sur": 5,
+            "test": "puissance-flagships",
+            "valeur": "n° 1"
+          }
+        },
+        "sources": [
+          {
+            "n": 7,
+            "chaine": "Techmo"
+          },
+          {
+            "n": 9,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "haut",
+        "capacite_mah": 5391,
+        "prix_eur": 1629,
+        "prix_origine": "catalogue du guide (indicatif)"
+      },
+      {
+        "id": "google-pixel-11-pro-xl",
+        "nom": "Google Pixel 11 Pro XL",
+        "marque": "Google",
+        "mesures": {
+          "autonomie": {
+            "rang": 6,
+            "sur": 7,
+            "test": "autonomie-flagships",
+            "valeur": "8 h 04"
+          }
+        },
+        "sources": [
+          {
+            "n": 7,
+            "chaine": "Techmo"
+          }
+        ],
+        "segment": "haut"
+      },
+      {
+        "id": "samsung-galaxy-s26-ultra",
+        "nom": "Samsung Galaxy S26 Ultra",
+        "marque": "Samsung",
+        "mesures": {
+          "autonomie": {
+            "rang": 7,
+            "sur": 7,
+            "test": "autonomie-flagships",
+            "valeur": "7 h 22"
+          },
+          "vitesse": {
+            "rang": 1,
+            "sur": 7,
+            "test": "vitesse-flagships",
+            "valeur": "n° 1"
+          },
+          "puissance": {
+            "rang": 4,
+            "sur": 5,
+            "test": "puissance-flagships",
+            "valeur": "n° 4"
+          }
+        },
+        "sources": [
+          {
+            "n": 7,
+            "chaine": "Techmo"
+          },
+          {
+            "n": 6,
+            "chaine": "PhoneBuff"
+          },
+          {
+            "n": 9,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "haut"
+      },
+      {
+        "id": "vivo-v80-lite",
+        "nom": "Vivo V80 Lite 5G",
+        "marque": "Vivo",
+        "mesures": {
+          "autonomie": {
+            "rang": 1,
+            "sur": 7,
+            "test": "autonomie-milieu",
+            "valeur": "18 h 43"
+          }
+        },
+        "sources": [
+          {
+            "n": 8,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "milieu",
+        "capacite_mah": 10000
+      },
+      {
+        "id": "honor-x9d",
+        "nom": "HONOR X9d",
+        "marque": "HONOR",
+        "mesures": {
+          "autonomie": {
+            "rang": 2,
+            "sur": 7,
+            "test": "autonomie-milieu",
+            "valeur": "18 h 18"
+          }
+        },
+        "sources": [
+          {
+            "n": 8,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "milieu",
+        "capacite_mah": 8300
+      },
+      {
+        "id": "honor-600-pro",
+        "nom": "HONOR 600 Pro",
+        "marque": "HONOR",
+        "mesures": {
+          "autonomie": {
+            "rang": 3,
+            "sur": 7,
+            "test": "autonomie-milieu",
+            "valeur": "17 h 42"
+          }
+        },
+        "sources": [
+          {
+            "n": 8,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "milieu",
+        "capacite_mah": 7000
+      },
+      {
+        "id": "poco-x8",
+        "nom": "POCO X8",
+        "marque": "POCO",
+        "mesures": {
+          "autonomie": {
+            "rang": 4,
+            "sur": 7,
+            "test": "autonomie-milieu",
+            "valeur": "16 h 25"
+          }
+        },
+        "sources": [
+          {
+            "n": 8,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "milieu",
+        "capacite_mah": 8340,
+        "prix_eur": 400,
+        "prix_origine": "vidéo"
+      },
+      {
+        "id": "samsung-galaxy-a57",
+        "nom": "Samsung Galaxy A57",
+        "marque": "Samsung",
+        "mesures": {
+          "autonomie": {
+            "rang": 5,
+            "sur": 7,
+            "test": "autonomie-milieu",
+            "valeur": "11 h 40"
+          }
+        },
+        "sources": [
+          {
+            "n": 8,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "milieu",
+        "prix_eur": 499,
+        "prix_origine": "catalogue du guide (indicatif)",
+        "ip": "IP68"
+      },
+      {
+        "id": "samsung-galaxy-s26",
+        "nom": "Samsung Galaxy S26",
+        "marque": "Samsung",
+        "mesures": {
+          "autonomie": {
+            "rang": 6,
+            "sur": 7,
+            "test": "autonomie-milieu",
+            "valeur": "11 h 01"
+          }
+        },
+        "sources": [
+          {
+            "n": 8,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "milieu"
+      },
+      {
+        "id": "apple-iphone-17",
+        "nom": "Apple iPhone 17",
+        "marque": "Apple",
+        "mesures": {
+          "autonomie": {
+            "rang": 7,
+            "sur": 7,
+            "test": "autonomie-milieu",
+            "valeur": "9 h 36"
+          }
+        },
+        "sources": [
+          {
+            "n": 8,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "milieu",
+        "capacite_mah": 3692
+      },
+      {
+        "id": "vivo-x300-ultra",
+        "nom": "Vivo X300 Ultra",
+        "marque": "Vivo",
+        "mesures": {
+          "vitesse": {
+            "rang": 2,
+            "sur": 7,
+            "test": "vitesse-flagships",
+            "valeur": "n° 2"
+          }
+        },
+        "sources": [
+          {
+            "n": 6,
+            "chaine": "PhoneBuff"
+          }
+        ],
+        "segment": "haut"
+      },
+      {
+        "id": "oneplus-15",
+        "nom": "OnePlus 15",
+        "marque": "OnePlus",
+        "mesures": {
+          "vitesse": {
+            "rang": 3,
+            "sur": 7,
+            "test": "vitesse-flagships",
+            "valeur": "n° 3"
+          }
+        },
+        "sources": [
+          {
+            "n": 6,
+            "chaine": "PhoneBuff"
+          }
+        ],
+        "segment": "haut",
+        "prix_eur": 799,
+        "prix_origine": "catalogue du guide (indicatif)"
+      },
+      {
+        "id": "oppo-find-x9-pro",
+        "nom": "OPPO Find X9 Pro",
+        "marque": "OPPO",
+        "mesures": {
+          "vitesse": {
+            "rang": 4,
+            "sur": 7,
+            "test": "vitesse-flagships",
+            "valeur": "n° 4"
+          }
+        },
+        "sources": [
+          {
+            "n": 6,
+            "chaine": "PhoneBuff"
+          }
+        ],
+        "segment": "haut"
+      },
+      {
+        "id": "honor-magic-8-pro",
+        "nom": "Honor Magic 8 Pro",
+        "marque": "Honor",
+        "mesures": {
+          "vitesse": {
+            "rang": 5,
+            "sur": 7,
+            "test": "vitesse-flagships",
+            "valeur": "n° 5"
+          }
+        },
+        "sources": [
+          {
+            "n": 6,
+            "chaine": "PhoneBuff"
+          }
+        ],
+        "segment": "haut",
+        "prix_eur": 1099,
+        "prix_origine": "catalogue du guide (indicatif)"
+      },
+      {
+        "id": "apple-iphone-17-pro-max",
+        "nom": "Apple iPhone 17 Pro Max",
+        "marque": "Apple",
+        "mesures": {
+          "vitesse": {
+            "rang": 6,
+            "sur": 7,
+            "test": "vitesse-flagships",
+            "valeur": "n° 6"
+          },
+          "puissance": {
+            "rang": 5,
+            "sur": 5,
+            "test": "puissance-flagships",
+            "valeur": "n° 5"
+          }
+        },
+        "sources": [
+          {
+            "n": 6,
+            "chaine": "PhoneBuff"
+          },
+          {
+            "n": 9,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "haut",
+        "prix_eur": 1479,
+        "prix_origine": "catalogue du guide (indicatif)"
+      },
+      {
+        "id": "google-pixel-10-pro-xl",
+        "nom": "Google Pixel 10 Pro XL",
+        "marque": "Google",
+        "mesures": {
+          "vitesse": {
+            "rang": 7,
+            "sur": 7,
+            "test": "vitesse-flagships",
+            "valeur": "n° 7"
+          }
+        },
+        "sources": [
+          {
+            "n": 6,
+            "chaine": "PhoneBuff"
+          }
+        ],
+        "segment": "haut"
+      },
+      {
+        "id": "poco-f9-ultra",
+        "nom": "POCO F9 Ultra",
+        "marque": "POCO",
+        "mesures": {
+          "puissance": {
+            "rang": 3,
+            "sur": 5,
+            "test": "puissance-flagships",
+            "valeur": "n° 3"
+          }
+        },
+        "sources": [
+          {
+            "n": 9,
+            "chaine": "TechNick"
+          },
+          {
+            "n": 10,
+            "chaine": "TechNick"
+          }
+        ],
+        "segment": "haut",
+        "capacite_mah": 8050,
+        "prix_eur": 1100,
+        "prix_origine": "vidéo"
+      },
+      {
+        "id": "vivo-v80",
+        "nom": "Vivo V80",
+        "marque": "Vivo",
+        "mesures": {},
+        "sources": [
+          {
+            "n": 5,
+            "chaine": "Tech Spurt"
+          }
+        ],
+        "capacite_mah": 7200,
+        "prix_eur": 499,
+        "prix_origine": "catalogue du guide (indicatif)"
+      },
+      {
+        "id": "poco-f9-pro",
+        "nom": "POCO F9 Pro",
+        "marque": "POCO",
+        "mesures": {},
+        "sources": [
+          {
+            "n": 10,
+            "chaine": "TechNick"
+          }
+        ],
+        "capacite_mah": 6330,
+        "prix_eur": 900,
+        "prix_origine": "vidéo"
+      },
+      {
+        "id": "huawei-pura-90s-pro-max",
+        "nom": "Huawei Pura 90s Pro Max",
+        "marque": "Huawei",
+        "mesures": {},
+        "sources": [
+          {
+            "n": 11,
+            "chaine": "TechNick"
+          }
+        ],
+        "capacite_mah": 5500,
+        "capacite_note": "6 000 mAh en Afrique du Sud, 5 500 mAh en Europe",
+        "ip": "IP68 et IP69"
+      },
+      {
+        "id": "redmi-note-15-pro-5g",
+        "nom": "Xiaomi Redmi Note 15 Pro 5G",
+        "marque": "Xiaomi",
+        "mesures": {},
+        "sources": [
+          {
+            "n": 14,
+            "chaine": "Tech Spurt"
+          }
+        ],
+        "capacite_mah": 6580,
+        "ip": "IP68"
+      },
+      {
+        "id": "honor-magic-8-lite",
+        "nom": "Honor Magic 8 Lite",
+        "marque": "HONOR",
+        "mesures": {},
+        "sources": [
+          {
+            "n": 14,
+            "chaine": "Tech Spurt"
+          }
+        ],
+        "capacite_mah": 7500,
+        "ip": "IP68 et IP69"
+      }
+    ],
+    "mesures_cles": [
+      "autonomie",
+      "vitesse",
+      "puissance"
+    ],
+    "verdict": "Aucun smartphone ne gagne partout : le OnePlus 16 domine l’autonomie des flagships (14 h 03), le Samsung Galaxy S26 Ultra la vitesse, l’Apple iPhone 18 Pro Max la puissance graphique ; au milieu de gamme, le Vivo V80 Lite 5G tient 18 h 43.",
+    "constat": "Chaque test a son protocole : une durée d’autonomie ne se compare jamais d’une vidéo à l’autre. Les barres ci-dessous restent donc dans leur test ; les notes par usage ne comparent que le rang dans le test, jamais des heures brutes."
+  },
   "vitesse": {
     "video": "vitesse",
     "protocole": "Sept flagships 2026 en deux manches : une série d’applications lancées une par une, puis le « gauntlet » qui enchaîne tous les tests sans pause ni refroidissement. Écrans calibrés à 200 nits, environnement à température contrôlée.",
