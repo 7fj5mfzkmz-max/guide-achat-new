@@ -22,7 +22,6 @@ const SOURCE = {
 const VIDEOS = [
   { id: 'duel', n: 1, chaine: 'Android Police', titre: 'The Pixel 11 Pro is in another league from the iPhone 18 Pro', theme: 'Haut de gamme', resume: 'Pixel 11 Pro contre iPhone 18 Pro : photo, logiciel et prix.' },
   { id: 'records', n: 2, chaine: 'The Tech Chap', titre: 'OPPO Find X10 Pro Max - Phone of the Year?', theme: 'Records matériels', resume: 'Un seul téléphone passé en revue : l’OPPO Find X10 Pro Max, sa batterie, son écran et ses capteurs.' },
-  { id: 'gaming', n: 3, chaine: 'Versus', titre: 'iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra', theme: 'Smart-gaming', resume: 'Trois téléphones testés : autonomie mesurée, refroidissement et prix.' },
   { id: 'samsung', n: 4, chaine: 'Versus', titre: 'Galaxy A57 vs A37 vs A27 vs A17: Don’t Waste Money!', theme: 'Gamme Samsung', resume: 'Quatre Galaxy A comparés pour savoir lequel acheter et lequel éviter.' },
   { id: 'nouveautes', n: 5, chaine: 'Tech Spurt', titre: 'Vivo V80, OnePlus 16, Smartphone Heartbreak! | TSW290', theme: 'Actualités', resume: 'Les derniers lancements : Vivo V80 et OnePlus 16, avec leurs batteries.' },
   { id: 'vitesse', n: 6, chaine: 'PhoneBuff', titre: 'The Fastest Phone In The World (2026)', theme: 'Vitesse', lien: 'https://www.youtube.com/watch?v=RKIumrb4B_k', resume: 'Sept flagships 2026 dans un test de vitesse en deux manches : applications une par une, puis « gauntlet ».' },
@@ -45,12 +44,6 @@ const MODELES = [
     specs: { ecran: 'OLED 1,5K, 144 Hz', batterie_mah: 7200, photo: 'Optiques Zeiss 50 MP (principal et téléobjectif)', ram: '8 Go au lieu de 12 Go (concession)' } },
   { id: 'oneplus-16', nom: 'OnePlus 16', marque: 'OnePlus', video: 'nouveautes',
     specs: { puce: 'Snapdragon 8 Elite Extreme Gen 6', ecran: '185 Hz', batterie_mah: 9000, batterie_note: 'Batterie record', charge: '100 W filaire, 50 W sans fil', design: 'Dos en verre intégrant un affichage matriciel LED personnalisable' } },
-  { id: 'redmagic-11s-pro', nom: 'RedMagic 11S Pro', marque: 'Nubia (RedMagic)', video: 'gaming', prix_usd: 799,
-    specs: { atout: 'Ventilateur 24k RPM + gâchettes', autonomie_min: 690, point_noir: 'Stockage max 512 Go / caméras' } },
-  { id: 'samsung-galaxy-s26-ultra', nom: 'Samsung Galaxy S26 Ultra', marque: 'Samsung', video: 'gaming', prix_usd: 988, prix_note: 'reconditionné',
-    specs: { atout: 'Écran AMOLED + bypass charge', autonomie_min: 617, point_noir: 'Prix élevé / léger throttling' } },
-  { id: 'apple-iphone-17-pro-max', nom: 'Apple iPhone 17 Pro Max', marque: 'Apple', video: 'gaming', prix_usd: 1199,
-    specs: { atout: 'Catalogue de jeux console AAA', autonomie_min: 774, point_noir: 'Pas de gâchettes / tarif très fort' } },
   { id: 'samsung-galaxy-a57', nom: 'Samsung Galaxy A57', marque: 'Samsung', video: 'samsung', prix_usd: 549,
     specs: { chassis: 'Aluminium', etancheite: 'IP68', ecran: 'AMOLED 120 Hz', photo: 'Capteur 50 MP stabilisé', autonomie_globale_min: 635 } },
   { id: 'samsung-galaxy-a37', nom: 'Samsung Galaxy A37', marque: 'Samsung', video: 'samsung', prix_usd: 449,
@@ -84,14 +77,6 @@ const MODELES = [
   { id: 'honor-magic-8-lite', nom: 'Honor Magic 8 Lite', marque: 'HONOR', video: 'budget',
     specs: { puce: 'Snapdragon 6 Gen 4', batterie_mah: 7500, charge: '66 W filaire', etancheite: 'IP68 et IP69', atout: 'Ultra-résistant aux chutes (2,5 m), batterie silicium-carbone' } }
 ];
-
-const GAMING = {
-  lignes: [
-    { modele: 'apple-iphone-17-pro-max', verdict: 'Cher mais puissant', etiquette: 'TOP autonomie' },
-    { modele: 'redmagic-11s-pro', verdict: 'Rapport qualité/prix pur', etiquette: null },
-    { modele: 'samsung-galaxy-s26-ultra', verdict: 'Meilleur polyvalent', etiquette: null }
-  ]
-};
 
 /* Rapport d'octobre 2026 : chiffres et verdicts tels que les rapporte le dossier, sans note chiffrée ajoutée par le guide. */
 const VITESSE = {
@@ -287,13 +272,13 @@ const SAMSUNG = [
 const CHOIX = {
   etudiant: [['samsung-galaxy-a37', 'Le choix économique : l’essentiel de l’A57 pour 100 $ de moins', 'Vidéo 4'], ['samsung-galaxy-a17', 'Le budget strict : écran 90 Hz, 4 Go de RAM, suffisant pour les tâches basiques', 'Vidéo 4'], ['samsung-galaxy-a57', 'Le meilleur choix de la gamme Samsung', 'Vidéo 4'], ['redmi-note-15-pro-5g', 'Le meilleur choix « classique » sous 300 £ : 6 580 mAh, 200 MP, IP68', 'Vidéo 14'], ['honor-magic-8-lite', 'Ultra-résistant aux chutes (2,5 m), IP68 et IP69, 7 500 mAh, charge 66 W', 'Vidéo 14']],
   professionnel: [['pixel-11-pro', 'Intelligence logicielle, tarif plus doux, régularité photographique', 'Vidéo 1'], ['samsung-galaxy-a57', 'Aluminium, IP68, meilleure autonomie globale de la gamme (10 h 35)', 'Vidéo 4'], ['oppo-find-x10-pro-max', 'Autonomie record : 7 150 mAh en Europe', 'Vidéo 2'], ['oneplus-16', 'Autonomie : 14 h 03 au test Techmo, la plus longue des sept flagships', 'Vidéo 7']],
-  gamer: [['redmagic-11s-pro', 'Rapport qualité/prix pur : ventilateur 24k RPM et gâchettes, autonomie mesurée de 11 h 30', 'Vidéo 3'], ['samsung-galaxy-s26-ultra', 'Meilleur polyvalent : écran AMOLED et bypass charge, autonomie mesurée de 10 h 17', 'Vidéo 3'], ['apple-iphone-17-pro-max', 'Cher mais puissant : jeux console AAA, autonomie mesurée de 12 h 54 (la plus longue)', 'Vidéo 3'], ['poco-f9-ultra', 'Snapdragon 8 Elite Gen 5 : la meilleure efficacité énergétique du panel Android aux benchmarks', 'Vidéo 9']],
+  gamer: [['poco-f9-ultra', 'Snapdragon 8 Elite Gen 5 : la meilleure efficacité énergétique du panel Android aux benchmarks', 'Vidéo 9']],
   photographe: [['pixel-11-pro', 'Téléobjectif 5x sur grand capteur, Video Boost, sujets en mouvement', 'Vidéo 1'], ['iphone-18-pro', 'Ouverture variable et téléobjectif 4x très polyvalent', 'Vidéo 1'], ['oppo-find-x10-pro-max', 'Triple capteur 200 MP Hasselblad et convertisseur télé magnétique 10x/20x/40x', 'Vidéo 2'], ['vivo-v80', 'Optiques Zeiss 50 MP, principal et téléobjectif', 'Vidéo 5'], ['huawei-pura-90s-pro-max', 'Principal 50 MP f/1.4 et périscope 200 MP : système photo salué comme « potentiellement le meilleur jamais vu sur un smartphone »', 'Vidéo 11']]
 };
 
 const out = {
   categorie: 'smartphones-tests',
-  source: SOURCE, videos: VIDEOS, modeles: MODELES, gaming: GAMING, samsung: SAMSUNG,
+  source: SOURCE, videos: VIDEOS, modeles: MODELES, samsung: SAMSUNG,
   vitesse: VITESSE, benchmarks: BENCHMARKS, autonomie: AUTONOMIE, fiches: FICHES, photo: PHOTO, gamme: GAMME,
   records: { ordre: ['vivo-v80-lite', 'oneplus-16', 'poco-x8', 'honor-x9d', 'poco-f9-ultra', 'vivo-x500-pro-max', 'honor-magic-8-lite', 'vivo-v80', 'oppo-find-x10-pro-max', 'honor-600-pro'], echelle_mah: 10000 },
   choix_par_profil: Object.fromEntries(Object.entries(CHOIX).map(([k, l]) => [k, l.map(([modele, raison, ref]) => ({ modele, raison, ref }))])),

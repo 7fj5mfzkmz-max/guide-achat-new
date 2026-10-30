@@ -46,16 +46,6 @@
       }).join('');
       return '<h3 class="st-sub">Capacité de batterie (mAh)</h3><div class="st-batts">' + bars + '</div><p class="st-src">Trait pointillé : version Asie de l’OPPO (8 000 mAh). Échelle : ' + fr(r.echelle_mah) + ' mAh. Les chiffres viennent des vidéos de la liste « Les vidéos ».</p><div class="st-specs">' + cards + '</div>';
     },
-    gaming: function () {
-      var g = D.gaming.lignes, max = Math.max.apply(null, g.map(function (l) { return M[l.modele].specs.autonomie_min; }));
-      var cols = g.map(function (l) {
-        var m = M[l.modele], s = m.specs;
-        return '<article class="st-gcol"><div class="st-gbar-wrap"><div class="st-gbar" data-h="' + (s.autonomie_min / max * 100) + '" style="height:0"><b>' + hm(s.autonomie_min) + '</b></div></div><h3>' + esc(m.nom) + '</h3><p class="st-price">' + fr(m.prix_usd) + ' $' + (m.prix_note ? ' · ' + esc(m.prix_note) : '') + '</p><span class="pj-badge' + (l.etiquette ? ' is-lab' : '') + '">' + esc(l.verdict) + '</span>' + (l.etiquette ? ' <span class="pj-badge is-lab">' + esc(l.etiquette) + '</span>' : '') +
-          '<dl class="st-gdl"><div><dt>Atout majeur</dt><dd>' + esc(s.atout) + '</dd></div><div><dt>Point noir</dt><dd>' + esc(s.point_noir) + '</dd></div></dl></article>';
-      }).join('');
-      var v = V('gaming');
-      return '<h3 class="st-sub">Autonomie mesurée</h3><div class="st-gaming">' + cols + '</div><p class="st-src">Vidéo ' + v.n + ' · ' + esc(v.chaine) + ' — « ' + esc(v.titre) + ' ». Prix : RedMagic 799 $, S26 Ultra 988 $ (reconditionné), iPhone 17 Pro Max 1 199 $.</p>';
-    },
     autonomie: function () {
       var X = D.autonomie, F = X.flagships, G = X.milieu;
       var mah = function (l) { return l.mah || (M[l.modele] && M[l.modele].specs.batterie_mah) || 0; };
@@ -93,7 +83,7 @@
       return '<h3 class="st-sub">La gamme, du moins cher au plus cher</h3><div class="st-stairs">' + steps + '</div><p class="st-src">Vidéo ' + v.n + ' · ' + esc(v.chaine) + ' — « ' + esc(v.titre) + ' ». Prix en dollars (prix de sortie).</p>';
     }
   };
-  var TABS = [['records', 'Records de batterie'], ['autonomie', 'Autonomie'], ['vitesse', 'Vitesse et benchmarks'], ['gaming', 'Jeu'], ['samsung', 'Gamme Samsung A'], ['fiches', 'POCO F9 et Pura 90s'], ['photo', 'Photo'], ['gamme', 'Milieu de gamme et budget']];
+  var TABS = [['records', 'Records de batterie'], ['autonomie', 'Autonomie'], ['vitesse', 'Vitesse et benchmarks'], ['samsung', 'Gamme Samsung A'], ['fiches', 'POCO F9 et Pura 90s'], ['photo', 'Photo'], ['gamme', 'Milieu de gamme et budget']];
 
   function show(k) {
     var p = $('st-panel');

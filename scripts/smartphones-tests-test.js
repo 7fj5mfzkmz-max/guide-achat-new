@@ -10,10 +10,10 @@ let passed = 0, failures = 0;
 function check(label, fn) { try { fn(); passed++; } catch (e) { failures++; console.error('✗ ' + label + '\n    ' + String(e.message).split('\n')[0]); } }
 const M = id => d.modeles.find(m => m.id === id);
 
-check('14 vidéos de 7 chaînes, 24 modèles aux identifiants uniques', () => {
-  assert.equal(d.videos.length, 14); assert.deepEqual(d.source.chaines, ['Android Police', 'The Tech Chap', 'Versus', 'Tech Spurt', 'PhoneBuff', 'Techmo', 'TechNick']);
-  assert.deepEqual(d.videos.map(v => v.n), [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
-  assert.equal(d.modeles.length, 24); assert.equal(new Set(d.modeles.map(m => m.id)).size, 24);
+check('13 vidéos de 7 chaînes, 21 modèles aux identifiants uniques', () => {
+  assert.equal(d.videos.length, 13); assert.deepEqual(d.source.chaines, ['Android Police', 'The Tech Chap', 'Versus', 'Tech Spurt', 'PhoneBuff', 'Techmo', 'TechNick']);
+  assert.deepEqual(d.videos.map(v => v.n), [1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+  assert.equal(d.modeles.length, 21); assert.equal(new Set(d.modeles.map(m => m.id)).size, 21);
   d.modeles.forEach(m => assert.ok(d.videos.some(v => v.id === m.video), m.id));
 });
 check('duel et rétrospective Pixel retirés des données', () => {
@@ -30,10 +30,11 @@ check('records : batteries 9 000 / 7 200 / 7 150 (8 000 en Asie), charges et éc
   assert.equal(d.records.echelle_mah, Math.max(...d.records.ordre.map(mah)));
   assert.deepEqual(d.records.ordre.slice(0, 3), ['vivo-v80-lite', 'oneplus-16', 'poco-x8']);
 });
-check('jeu : autonomies 11 h 30 / 10 h 17 / 12 h 54 et prix 799 / 988 / 1 199 $', () => {
-  assert.equal(M('redmagic-11s-pro').specs.autonomie_min, 11 * 60 + 30); assert.equal(M('samsung-galaxy-s26-ultra').specs.autonomie_min, 10 * 60 + 17); assert.equal(M('apple-iphone-17-pro-max').specs.autonomie_min, 12 * 60 + 54);
-  assert.deepEqual([M('redmagic-11s-pro').prix_usd, M('samsung-galaxy-s26-ultra').prix_usd, M('apple-iphone-17-pro-max').prix_usd], [799, 988, 1199]);
-  assert.equal(M('samsung-galaxy-s26-ultra').prix_note, 'reconditionné');
+check('comparatif retiré : aucune vidéo, mesure ou recommandation héritée', () => {
+  assert.ok(!d.gaming);
+  assert.ok(!d.videos.some(v => v.id === 'gaming' || v.n === 3));
+  ['redmagic-11s-pro', 'samsung-galaxy-s26-ultra', 'apple-iphone-17-pro-max'].forEach(id => assert.ok(!M(id)));
+  Object.values(d.choix_par_profil).flat().forEach(x => assert.notEqual(x.ref, 'Vidéo 3'));
 });
 check('gamme Samsung : prix 199 / 349 / 449 / 549 $, verdicts et autonomie A57 10 h 35', () => {
   assert.deepEqual(d.samsung.map(s => [s.modele, M(s.modele).prix_usd, s.badge]), [['samsung-galaxy-a17', 199, 'BUDGET STRICT'], ['samsung-galaxy-a27', 349, 'À ÉVITER'], ['samsung-galaxy-a37', 449, 'CHOIX ÉCONOMIQUE'], ['samsung-galaxy-a57', 549, 'MEILLEUR CHOIX']]);
@@ -67,7 +68,7 @@ check('aucune note chiffrée inventée : pas de score, ni de note par profil', (
 check('choix par profil : 4 profils, modèles existants, raison et vidéo citées', () => {
   assert.deepEqual(Object.keys(d.choix_par_profil), ['etudiant', 'professionnel', 'gamer', 'photographe']);
   Object.values(d.choix_par_profil).forEach(l => l.forEach(x => { assert.ok(M(x.modele), x.modele); assert.ok(x.raison); assert.match(x.ref, /^Vidéo (\d|1[0-4])$/); }));
-  assert.deepEqual(d.choix_par_profil.gamer.map(x => x.modele), ['redmagic-11s-pro', 'samsung-galaxy-s26-ultra', 'apple-iphone-17-pro-max', 'poco-f9-ultra']);
+  assert.deepEqual(d.choix_par_profil.gamer.map(x => x.modele), ['poco-f9-ultra']);
 });
 check('page smartphones : section, onglets, liens et numérotation cohérents ; analyseur intact', () => {
   assert.ok(html.includes('id="tests-2026"')); assert.ok(html.includes('assets/css/smartphones-tests.css')); assert.ok(html.includes('assets/js/smartphones-tests.js'));
@@ -96,17 +97,20 @@ check('catalogue : aucune note inventée pour les modèles issus des tests', () 
   cat.produits.filter(p => p.origine === 'test').forEach(p => {
     assert.equal(Object.keys(p.scores || {}).length, 0, p.id + ' : score inventé');
     assert.equal(Object.keys(p.profil_scores || {}).length, 0, p.id + ' : score par profil inventé');
-    assert.equal(p.fiche_statut, 'teste_video');
+    assert.ok(['teste_video', 'specs_a_verifier'].includes(p.fiche_statut));
     const m = M(p.id);
     if (m && m.specs && m.specs.batterie_mah && p.compatibilite.batterie) assert.equal(p.compatibilite.batterie.capacite_mah, m.specs.batterie_mah, p.id + ' : batterie différente du dossier');
   });
 });
 check('catalogue : mesures d’autonomie du dossier reportées sur les fiches', () => {
   const mesure = id => cat.produits.find(p => (p.tests || []).some(t => t.modele === id)).tests[0].mesures || {};
-  assert.equal(mesure('apple-iphone-17-pro-max').autonomie_min, 774);
-  assert.equal(mesure('redmagic-11s-pro').autonomie_min, 690);
-  assert.equal(mesure('samsung-galaxy-s26-ultra').autonomie_min, 617);
   assert.equal(mesure('samsung-galaxy-a57').autonomie_globale_min, 635);
+  ['iphone-17-pro-max', 'galaxy-s26-ultra', 'redmagic-11s-pro'].forEach(id => {
+    const p = cat.produits.find(p => p.id === id);
+    assert.ok(p, 'modèle conservé pour la reconnaissance : ' + id);
+    assert.ok(!(p.tests || []).some(t => t.video === 3));
+  });
+  assert.equal(cat.produits.find(p => p.id === 'redmagic-11s-pro').ready_for_recommendation, false);
 });
 check('classement : les modèles prêts issus des tests ont assez de données et un état de fiche explicite', () => {
   cat.produits.filter(p => p.origine === 'test' && p.ready_for_recommendation).forEach(p => {

@@ -87,7 +87,7 @@ function preuve(m) {
   if (s.autonomie_min) mesures.autonomie_min = s.autonomie_min;
   if (s.autonomie_globale_min) mesures.autonomie_globale_min = s.autonomie_globale_min;
   const verdict = ((tests.samsung || []).find(x => x.modele === m.id) || {}).verdict
-    || ((tests.gaming.lignes || []).find(x => x.modele === m.id) || {}).verdict || null;
+    || (((tests.gaming || {}).lignes || []).find(x => x.modele === m.id) || {}).verdict || null;
   const e = { modele: m.id, video: v.n, chaine: v.chaine, titre: v.titre };
   if (verdict) e.verdict = verdict;
   if (Object.keys(mesures).length) e.mesures = mesures;

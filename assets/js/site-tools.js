@@ -483,7 +483,7 @@
         if(!state.student) return;
         var a=state.student.answers;
         var active=Object.keys(a.strict).filter(function(k){return a.strict[k];}).map(function(k){return window.StudentRecommendations.STRICT[k]+(typeof a.strict[k]==='number'?' : '+a.strict[k]:'');});
-        summary.textContent='Réponses Étudiant reprises : '+(a.budget?'budget maximal '+a.budget+' €':'budget explicite du quiz conservé')+'. '+(active.join(' ; ')||'Aucune autre exigence stricte')+'. Les souhaits de jeu, photo et support restant ne sont pas convertis en critères techniques différents. Les choix explicites de Mes critères sont conservés. ';
+        summary.textContent='Vos critères actifs : '+(a.budget?'jusqu’à '+a.budget+' €':state.price&&state.price.budget?'budget choisi dans le quiz':'sans plafond de prix')+'. '+(active.join(' ; ')||'Aucune autre exigence indispensable')+'. ';
         var edit=document.createElement('button');edit.type='button';edit.textContent='Modifier dans Mon profil';
         edit.addEventListener('click',function(){document.getElementById('tab-profil').click();var b=document.querySelector('[data-need="etudiant"]');if(b)b.click();document.getElementById('tab-profil').focus();});
         summary.appendChild(edit);
