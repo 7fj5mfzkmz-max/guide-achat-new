@@ -187,7 +187,11 @@ html.dark-theme .sp-calm .brand-menu-toggle { background: var(--accent); color: 
 .sp-calm .header-cta { box-shadow: none; }
 .sp-calm .header-cta:hover { transform: none; box-shadow: none; }
 @media (max-width: 520px) {
-  .sp-calm .brand-logo::before { width: 26px; height: 26px; }
-  .sp-calm .ga-wordmark { font-size: 19px; }
-  .sp-calm .brand-menu-toggle { width: auto; padding: 0 12px; }
+  .sp-calm .header-inner { gap: 4px; }
+  .sp-calm .brand-logo { gap: 6px; }
+  .sp-calm .brand-logo::before { width: 22px; height: 22px; border-width: 2px; }
+  .sp-calm .ga-wordmark { font-size: 17.5px; }
+  .sp-calm .brand-menu-toggle { width: auto; padding: 0 9px; font-size: 11px; letter-spacing: .1em; }
+  .sp-calm .header-tool { width: 38px; }
 }
+@media (max-width: 340px) { .sp-calm .brand-logo::before { display: none; } .sp-calm .ga-wordmark { font-size: 16.5px; } }
