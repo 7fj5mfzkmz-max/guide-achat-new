@@ -881,18 +881,7 @@
           "https://www.photoworkout.com/?p=221532"
         ]
       },
-      "tests": [
-        {
-          "modele": "samsung-galaxy-s26-ultra",
-          "video": 3,
-          "chaine": "Versus",
-          "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
-          "verdict": "Meilleur polyvalent",
-          "mesures": {
-            "autonomie_min": 617
-          }
-        }
-      ],
+      "tests": [],
       "sources_verification": [
         {
           "nom": "LDLC — fiche S26 Ultra",
@@ -7438,18 +7427,7 @@
           "tele"
         ]
       },
-      "tests": [
-        {
-          "modele": "apple-iphone-17-pro-max",
-          "video": 3,
-          "chaine": "Versus",
-          "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
-          "verdict": "Cher mais puissant",
-          "mesures": {
-            "autonomie_min": 774
-          }
-        }
-      ],
+      "tests": [],
       "sources_verification": [
         "https://www.gsmarena.com/res.php3?sSearch=Apple+iPhone+17+Pro+Max",
         "https://www.kimovil.com/fr/ou-acheter-apple-iphone-17-pro-max"
@@ -7941,7 +7919,6 @@
       "nom": "RedMagic 11S Pro",
       "marque": "Nubia (RedMagic)",
       "prix_indicatif": 849,
-      "prix_usd": 799,
       "prix_note": "Prix estimé ou de lancement donné par le classeur, pas relevé en magasin.",
       "caracteristiques": {
         "ecran": "6.8 AMOLED 165Hz 2000nits",
@@ -7954,13 +7931,8 @@
         "charge": "80 W",
         "refresh": "165 Hz"
       },
-      "points_forts": [
-        "Ventilateur 24k RPM + gâchettes",
-        "Autonomie mesurée : 11 h 30"
-      ],
-      "points_faibles": [
-        "Stockage max 512 Go / caméras"
-      ],
+      "points_forts": [],
+      "points_faibles": [],
       "profil_adapte": [],
       "scores": {},
       "profil_scores": {},
@@ -8003,20 +7975,9 @@
           "mises_a_jour_ans": 2
         }
       },
-      "tests": [
-        {
-          "modele": "redmagic-11s-pro",
-          "video": 3,
-          "chaine": "Versus",
-          "titre": "iPhone 17 Pro Max vs RedMagic 11S Pro vs S26 Ultra",
-          "verdict": "Rapport qualité/prix pur",
-          "mesures": {
-            "autonomie_min": 690
-          }
-        }
-      ],
-      "ready_for_recommendation": true,
-      "fiche_statut": "teste_video",
+      "tests": [],
+      "ready_for_recommendation": false,
+      "fiche_statut": "specs_a_verifier",
       "origine": "test",
       "date_verification": "2026-10",
       "spec_provenance": {

@@ -87,7 +87,8 @@ test('tous les modèles admissibles, aucun plafond de quatre, exclusions inchang
 test('prix inconnu à vérifier et aucun résultat expliqué par une contrainte',()=>{
   let r=E.select([product('prix inconnu',{prix_indicatif:null})],base,context);assert.equal(r.verify.length,1);
   r=E.select([product('cher',{prix_indicatif:1000})],base,context);assert.match(r.excluded[0].blocked.join(),/budget/);
-  assert.ok(E.select([product('a')],{},context).needsBudget);
+  assert.equal(E.select([product('a')],{},context).needsBudget,false);
+  assert.equal(E.select([product('a')],{},context).eligible.length,1);
 });
 test('configuration minimale stockée et protocole étranger pas transposé',()=>{
   assert.equal(E.facts(product('a',{caracteristiques:{stockage:'128 ou 256 Go',ram:'8 ou 12 Go'}}),context).storage,128);
@@ -108,5 +109,9 @@ test('classement déterministe et données du catalogue conservées',()=>{
   const ps=[product('a',{caracteristiques:{stockage:'128 Go'}}),product('b'),product('c',{prix_indicatif:100})], before=JSON.stringify(ps);
   assert.deepEqual(E.select(ps,base,context).eligible.map(x=>x.p.id),E.select([...ps].reverse(),base,context).eligible.map(x=>x.p.id));
   assert.equal(JSON.stringify(ps),before);
+});
+test('sans réponse : recommandations immédiates sans plafond inventé',()=>{
+  const r=E.select([product('cher',{prix_indicatif:2000}),product('abordable',{prix_indicatif:200})],{},context);
+  assert.equal(r.eligible.length,2);assert.equal(r.excluded.length,0);assert.equal(r.answers.budget,null);assert.ok(r.eligible.every(x=>x.contributions.find(c=>c.key==='cost').note!==null));
 });
 console.log(passed+' tests de calcul et de sélection réussis.');

@@ -87,7 +87,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       await check('Grosse batterie : capacités annoncées puis autonomie mesurée' + tag, async () => {
         await page.click('.tr-chip[data-need="batterie"]');
         const t = (await page.locator('#tr-podium').innerText()).replace(/[\u202f\u00a0]/g, ' ');
-        assert.match(t, /OnePlus 16/); assert.match(t, /9 000 mAh/); assert.match(t, /12 h 54 avec 4 823 mAh/);
+        assert.match(t, /OnePlus 16/); assert.match(t, /9 000 mAh/); assert.doesNotMatch(t, /12 h 54|11 h 30|10 h 17|RedMagic 11S/);
         assert.equal(await page.locator('.profile-toggle:not([hidden])').count(), 0);
       });
       await check('Petit prix : 80 à 250 €, quatre tranches, aucun modèle hors fourchette' + tag, async () => {
@@ -108,7 +108,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         assert.ok(await page.locator('#choisir-profil').isVisible());
       });
       await check('records et journal des tests présents' + tag, async () => {
-        assert.equal(await page.locator('#sp-records .tr-record').count(), 3);
+        assert.equal(await page.locator('#sp-records .tr-record').count(), 2);
         assert.equal(await page.locator('#sp-log li').count(), tests.videos.length);
         assert.match(await page.locator('#sp-records').innerText(), /Vivo V80 Lite 5G/);
         await page.evaluate(() => { document.querySelector('.tr-log-fold').open = true; });

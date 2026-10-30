@@ -1,12 +1,9 @@
-#student-journey{max-width:100%;margin:24px 0;color:var(--ink,inherit)}
-#student-journey .student-summary,#student-form,.student-result{padding:20px;border:1px solid var(--line,#90959b);border-radius:14px;margin:16px 0}
-#student-journey label{display:flex;gap:10px;align-items:center;margin:14px 0;flex-wrap:wrap}
-#student-journey input[type=number],#student-journey select{font:inherit;max-width:100%;min-height:44px;padding:8px;border:1px solid currentColor;border-radius:7px;background:var(--bg,#fff);color:inherit}
-#student-journey fieldset{border:0;padding:0;min-width:0}#student-journey legend{font-weight:700}
-#student-journey input[type=checkbox],#student-journey input[type=radio]{width:20px;height:20px;flex-shrink:0}
-#student-journey button{font:inherit;min-height:44px;padding:9px 14px;border:1px solid currentColor;border-radius:8px;background:transparent;color:inherit;cursor:pointer}
-#student-journey button:focus-visible,#student-journey input:focus-visible,#student-journey select:focus-visible{outline:3px solid var(--accent,#ff6a20);outline-offset:3px}
-#student-journey .student-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-#student-journey summary{padding:12px 0;cursor:pointer}#student-journey table{width:100%;border-collapse:collapse;font-size:.9em;table-layout:fixed}#student-journey th,#student-journey td{padding:8px 3px;border-bottom:1px solid #90959b;overflow-wrap:anywhere;text-align:left}#student-journey th:first-child{width:44%}
-#student-journey p{line-height:1.6;overflow-wrap:anywhere}#student-journey h3,#student-journey h4{margin:12px 0}
-#student-quiz-summary{padding:14px;border:1px solid #90959b;border-radius:10px;margin:16px 0;overflow-wrap:anywhere}
+#student-journey{margin:24px 0;color:inherit}#student-journey p,#student-advanced p{line-height:1.6;overflow-wrap:anywhere}
+.student-summary{border:1px solid currentColor;padding:16px;margin-bottom:28px}.student-summary>summary{font-weight:700;cursor:pointer}.student-summary>summary span{display:block;font-weight:400;font-size:.9rem;margin-top:6px}
+.student-heading{display:flex;gap:24px;align-items:center;justify-content:space-between;margin-bottom:24px}.student-eyebrow{text-transform:uppercase;letter-spacing:.1em;font-size:.72rem;font-weight:700}.student-heading h3{font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.15;margin:8px 0}
+.student-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:20px 0}.student-result{min-width:0;display:flex;flex-direction:column;padding:22px;border:1px solid currentColor;border-radius:0;background:var(--bg,transparent)}.student-result h4{font-size:1.3rem;margin:6px 0;line-height:1.25}.student-price{font-size:1.15rem;font-weight:700}.student-result a{margin-top:auto;padding-top:18px}.student-result details{margin-bottom:18px}.student-result summary{cursor:pointer;min-height:44px;padding:10px 0}
+#student-journey button,#student-advanced button{font:inherit;min-height:44px;padding:10px 16px;border:1px solid currentColor;border-radius:0;background:transparent;color:inherit;cursor:pointer}
+#student-journey input[type=number],#student-advanced input[type=number],#student-advanced select{font:inherit;max-width:100%;min-height:44px;padding:8px;background:var(--bg,transparent);color:inherit;border:1px solid currentColor}
+#student-journey label,#student-advanced label{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:12px 0}#student-journey fieldset,#student-advanced fieldset{border:0;padding:0;min-width:0}#student-journey input[type=checkbox],#student-advanced input[type=checkbox]{width:20px;height:20px;flex-shrink:0}.student-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+#student-advanced,#student-quiz-summary{border:1px solid currentColor;padding:18px;margin:20px 0}#student-advanced>summary{cursor:pointer;font-weight:700}#student-journey :focus-visible,#student-advanced :focus-visible{outline:3px solid #ffd400;outline-offset:3px}
+@media(max-width:800px){.student-grid{grid-template-columns:1fr}.student-heading{align-items:stretch;flex-direction:column}.student-result{padding:20px}}

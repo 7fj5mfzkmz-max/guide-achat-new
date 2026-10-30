@@ -3,6 +3,7 @@
   'use strict';
   var chips = typeof module !== 'undefined' && module.exports ? require('../../phone-analyzer/chips.js') : root.PhoneChips;
   var references = typeof module !== 'undefined' && module.exports ? require('../../phone-analyzer/references.js') : root.PhoneReferences;
+  var COST_REFERENCE_EUR = 300;
   var BASE = { cost: 30, runtime: 25, support: 20, fluidity: 15, storage: 10 };
   var LABELS = { cost: 'Coût', runtime: 'Autonomie mesurée', support: 'Support restant', fluidity: 'Fluidité quotidienne (potentiel matériel)', storage: 'Stockage adapté', gaming: 'Jeu soutenu mesuré', photo: 'Qualité photo testée' };
   var PRIORITIES = { less: 'cost', battery: 'runtime', years: 'support', games: 'gaming', pictures: 'photo' };
@@ -96,7 +97,7 @@
   }
   function evaluate(p, answers, context) {
     var a = sanitize(answers), result = assess(p, a, context), f = result.facts, w = weights(a), notes = {
-      cost: f.price !== null && a.budget ? clamp(10 * (1 - f.price / a.budget)) : null,
+      cost: f.price === null ? null : a.budget ? clamp(10 * (1 - f.price / a.budget)) : 10 / (1 + f.price / COST_REFERENCE_EUR),
       runtime: f.runtime !== null ? clamp(f.runtime / 120) : null,
       support: f.support !== null ? clamp(f.support * 2) : null,
       fluidity: f.level !== null && f.ram !== null ? Math.min(10, f.level * 2, f.ram * 1.25) : null,
@@ -128,8 +129,8 @@
       if (chargeBonus && a.compromises.indexOf('charge') < 0 && x.facts.charge !== null && y.facts.charge !== null && x.facts.charge !== y.facts.charge) return y.facts.charge - x.facts.charge;
       return (x.facts.price || Infinity) - (y.facts.price || Infinity) || String(x.p.id).localeCompare(String(y.p.id));
     }
-    return { answers: a, weights: weights(a), eligible: all.filter(function (x) { return x.status === 'eligible'; }).sort(order), verify: all.filter(function (x) { return x.status === 'verify'; }).sort(order), excluded: all.filter(function (x) { return x.status === 'excluded'; }), needsBudget: !a.budget };
+    return { answers: a, weights: weights(a), eligible: all.filter(function (x) { return x.status === 'eligible'; }).sort(order), verify: all.filter(function (x) { return x.status === 'verify'; }).sort(order), excluded: all.filter(function (x) { return x.status === 'excluded'; }), needsBudget: false };
   }
-  var api = { BASE: BASE, LABELS: LABELS, PRIORITIES: PRIORITIES, STRICT: STRICT, sanitize: sanitize, weights: weights, facts: facts, assess: assess, evaluate: evaluate, select: select };
+  var api = { BASE: BASE, COST_REFERENCE_EUR: COST_REFERENCE_EUR, LABELS: LABELS, PRIORITIES: PRIORITIES, STRICT: STRICT, sanitize: sanitize, weights: weights, facts: facts, assess: assess, evaluate: evaluate, select: select };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.StudentRecommendations = api;
 })(typeof window !== 'undefined' ? window : globalThis);
