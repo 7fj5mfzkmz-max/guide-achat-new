@@ -37,6 +37,17 @@
     return null;
   }
   function clamp(v) { return Math.max(0, Math.min(10, v)); }
+  /* Année de sortie : celle de la fiche, sinon estimée d'après la version d'Android livrée (13 = 2023 … 16 = 2026) ou le numéro de l'iPhone.
+     Une estimation, jamais une date : elle sert seulement à mettre les modèles récents en avant. */
+  var ANDROID_YEAR = { 12: 2022, 13: 2023, 14: 2024, 15: 2025, 16: 2026 };
+  function releaseYear(p) {
+    var y = number(p.annee_sortie); if (y) return { year: y, estimated: false };
+    var a = number(((p.compatibilite || {}).durete || {}).android_version_sortie); if (a && ANDROID_YEAR[Math.floor(a)]) return { year: ANDROID_YEAR[Math.floor(a)], estimated: true };
+    var m = /iPhone (\d+)/.exec(p.nom || ''); if (m && Number(m[1]) >= 11) return { year: 2008 + Number(m[1]), estimated: true };
+    return { year: null, estimated: false };
+  }
+  /* 0 : sorti l'an dernier ou cette année ; 1 : l'année d'avant ; 2 : année inconnue ; 3 : plus ancien. */
+  function recencyTier(year, now) { var cur = new Date(now).getFullYear(); return year === null ? 2 : year >= cur - 1 ? 0 : year === cur - 2 ? 1 : 3; }
   function measuredScore(p, criterion) {
     // Réutilise le registre des preuves validées : ni notes éditoriales ni mégapixels.
     var evidence = references && references.scores(p.id, p.nom)[criterion];
@@ -79,11 +90,11 @@
     // Une année de sortie seule n'est pas une date suffisamment précise.
     var launch = p.date_sortie, years = number((c.durete || {}).mises_a_jour_ans);
     if (support === null && /^\d{4}-\d{2}-\d{2}$/.test(launch || '') && years !== null && Number.isFinite(Date.parse(launch))) support = Math.max(0, years - (today.getTime() - Date.parse(launch)) / (365.25 * 86400000));
-    var gaming = measuredScore(p, 'gaming'), photo = measuredScore(p, 'photo');
+    var gaming = measuredScore(p, 'gaming'), photo = measuredScore(p, 'photo'), ry = releaseYear(p);
     var photoProof = references && references.scores(p.id,p.nom).photo;
     var nights = photoProof ? photoProof.sources.filter(function(e){return typeof e.night_suitable==='boolean' && /nuit|night/i.test(e.method);}).map(function(e){return e.night_suitable;}) : [];
     var night = nights.length && nights.every(function(v){return v===nights[0];}) ? nights[0] : null;
-    return { price: price, storage: storage, ram: ram, level: level, runtime: runtime, runtimeSource: runtimeSource, protocol: protocol, support: support, supportSource: end || launch || null, gaming: gaming, photo: photo, night: night, weight: extract([specs.poids], /(\d+(?:[.,]\d+)?)\s*g\b/i), charge: number(battery.recharge_watts) || extract([specs.charge], /(\d+(?:[.,]\d+)?)\s*w\b/i) };
+    return { year: ry.year, yearEstimated: ry.estimated, recency: recencyTier(ry.year, context.now || Date.now()), price: price, storage: storage, ram: ram, level: level, runtime: runtime, runtimeSource: runtimeSource, protocol: protocol, support: support, supportSource: end || launch || null, gaming: gaming, photo: photo, night: night, weight: extract([specs.poids], /(\d+(?:[.,]\d+)?)\s*g\b/i), charge: number(battery.recharge_watts) || extract([specs.charge], /(\d+(?:[.,]\d+)?)\s*w\b/i) };
   }
   function assess(p, answers, context) {
     var a = sanitize(answers), f = facts(p, context), blocked = [], unknown = [];
@@ -122,6 +133,8 @@
     function order(x, y) {
       var diff = y.coverage - x.coverage;
       if (Math.abs(diff) > .000001) return diff;
+      /* À couverture égale, les modèles récents passent d'abord ; les points départagent ensuite. */
+      if (x.facts.recency !== y.facts.recency) return x.facts.recency - y.facts.recency;
       diff = y.documentedPoints - x.documentedPoints;
       if (Math.abs(diff) > .000001) return diff;
       // Bonus secondaires uniquement après égalité de couverture et de points.
@@ -131,6 +144,6 @@
     }
     return { answers: a, weights: weights(a), eligible: all.filter(function (x) { return x.status === 'eligible'; }).sort(order), verify: all.filter(function (x) { return x.status === 'verify'; }).sort(order), excluded: all.filter(function (x) { return x.status === 'excluded'; }), needsBudget: false };
   }
-  var api = { BASE: BASE, COST_REFERENCE_EUR: COST_REFERENCE_EUR, LABELS: LABELS, PRIORITIES: PRIORITIES, STRICT: STRICT, sanitize: sanitize, weights: weights, facts: facts, assess: assess, evaluate: evaluate, select: select };
+  var api = { releaseYear: releaseYear, BASE: BASE, COST_REFERENCE_EUR: COST_REFERENCE_EUR, LABELS: LABELS, PRIORITIES: PRIORITIES, STRICT: STRICT, sanitize: sanitize, weights: weights, facts: facts, assess: assess, evaluate: evaluate, select: select };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.StudentRecommendations = api;
 })(typeof window !== 'undefined' ? window : globalThis);

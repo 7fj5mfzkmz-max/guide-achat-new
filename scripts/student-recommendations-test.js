@@ -114,4 +114,14 @@ test('sans réponse : recommandations immédiates sans plafond inventé',()=>{
   const r=E.select([product('cher',{prix_indicatif:2000}),product('abordable',{prix_indicatif:200})],{},context);
   assert.equal(r.eligible.length,2);assert.equal(r.excluded.length,0);assert.equal(r.answers.budget,null);assert.ok(r.eligible.every(x=>x.contributions.find(c=>c.key==='cost').note!==null));
 });
+test('modèles récents d’abord à couverture égale ; année estimée d’après Android ou l’iPhone',()=>{
+  const ctx=Object.assign({},context,{now:'2026-10-30'});
+  const ancien=product('ancien',{prix_indicatif:100,annee_sortie:2023}),recent=product('recent',{prix_indicatif:250,annee_sortie:2025});
+  const r=E.select([ancien,recent],{budget:300},ctx);
+  assert.deepEqual(r.eligible.map(x=>x.p.id),['recent','ancien']);
+  assert.equal(E.facts(recent,ctx).recency,0);assert.equal(E.facts(ancien,ctx).recency,3);
+  assert.deepEqual(E.releaseYear({compatibilite:{durete:{android_version_sortie:14}}}),{year:2024,estimated:true});
+  assert.deepEqual(E.releaseYear({nom:'Apple iPhone 17 Pro'}),{year:2025,estimated:true});
+  assert.deepEqual(E.releaseYear({}),{year:null,estimated:false});
+});
 console.log(passed+' tests de calcul et de sélection réussis.');
