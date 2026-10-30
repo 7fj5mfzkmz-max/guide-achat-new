@@ -35,4 +35,36 @@
   }
   products.forEach(function (b) { b.addEventListener('click', function () { product = b.dataset.product; render(); }); });
   chips.forEach(function (b) { b.addEventListener('click', function () { usage = b.dataset.usage; render(); }); });
+
+  /* Mobile : les colonnes du pied de page se replient ; le thème passe dans le menu des catégories. */
+  var small = window.matchMedia('(max-width: 720px)');
+  function foldFooter() {
+    document.querySelectorAll('.site-footer .footer-col').forEach(function (col) {
+      var title = col.querySelector('.footer-title'), list = col.querySelector('ul');
+      if (!title || !list) return;
+      var btn = col.querySelector('.footer-toggle');
+      if (small.matches && !btn) {
+        btn = document.createElement('button'); btn.type = 'button'; btn.className = 'footer-toggle';
+        btn.setAttribute('aria-expanded', 'false');
+        while (title.firstChild) btn.appendChild(title.firstChild);
+        title.appendChild(btn); title.classList.add('is-fold');
+        list.hidden = true;
+        btn.addEventListener('click', function () { var open = btn.getAttribute('aria-expanded') !== 'true'; btn.setAttribute('aria-expanded', String(open)); list.hidden = !open; });
+      } else if (!small.matches && btn) {
+        while (btn.firstChild) title.appendChild(btn.firstChild);
+        btn.remove(); title.classList.remove('is-fold'); list.hidden = false;
+      }
+    });
+  }
+  function addPrefs() {
+    var panel = document.querySelector('#category-menu .category-menu-panel'), theme = document.getElementById('theme-toggle');
+    if (!panel || !theme || panel.querySelector('.menu-prefs')) return;
+    var box = document.createElement('div'); box.className = 'menu-prefs';
+    var b = document.createElement('button'); b.type = 'button';
+    function label() { var dark = theme.getAttribute('aria-pressed') === 'true'; b.textContent = dark ? 'Passer au thème clair' : 'Passer au thème sombre'; }
+    b.addEventListener('click', function () { theme.click(); label(); });
+    label(); box.appendChild(b); panel.appendChild(box);
+  }
+  foldFooter(); addPrefs();
+  if (small.addEventListener) small.addEventListener('change', foldFooter);
 })();

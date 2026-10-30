@@ -53,3 +53,84 @@
 @media(max-width:720px){.home .header-inner,.home .footer-inner{width:calc(100% - 32px)}.home .header-inner{height:80px;gap:6px}.home .ga-wordmark{font-size:22px}.home .brand-menu-toggle,.home .header-tool{height:44px;padding:0 14px}.home .header-tool,.home .header-tool-search{width:44px;padding:0}.category-arrow{right:12px;top:12px;width:34px;height:34px}.hx-home .category-arrow .arrow-icon{width:18px;height:18px}}
 @media(max-width:560px){.home .brand-menu-toggle{width:44px;padding:0}}
 @media(max-width:380px){.home .ga-wordmark{font-size:19px}.home .header-inner,.home .header-tools{gap:4px}.home .brand-menu-toggle,.home .header-tool,.home .header-tool-search{width:40px;height:40px}}
+
+/* Accueil mobile : premier écran, démo compacte, deux analyses distinctes, pied de page repliable. */
+.intro-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px}
+.intro-second{font-weight:600;font-size:16px;text-underline-offset:5px;text-decoration-color:var(--h-orange);text-decoration-thickness:2px}
+.route-index{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.route-ico{width:26px;height:26px;flex-shrink:0;color:var(--h-orange)}
+.route-pc{background:var(--h-orange);border-color:var(--h-orange);color:#20221e!important}
+.route-pc .route-ico,.route-pc .route-go .arrow-icon{color:#20221e}
+.route-pc:hover{background:#ff853f;border-color:#ff853f}
+.route-card:focus-visible{outline:3px solid var(--h-orange);outline-offset:4px}
+.footer-toggle{display:none}
+@media(max-width:720px){
+.home .header-tool-theme{display:none}
+.menu-prefs{margin:14px 0 0;padding-top:14px;border-top:1px solid var(--h-line)}
+.menu-prefs button{display:flex;width:100%;align-items:center;justify-content:space-between;min-height:48px;padding:0 4px;background:none;border:0;color:var(--h-ink);font:600 16px var(--sans)}
+.hx-home .intro{padding:24px 0 28px}
+.intro-label{margin-bottom:16px}
+.intro h1{font-size:clamp(34px,9.6vw,50px);line-height:1.04;letter-spacing:-.05em}
+.intro h1 br{display:none}
+.intro h1>span{display:block}
+.intro-lead{font-size:17px;margin:16px 0 20px}
+.intro-actions{flex-direction:column;align-items:stretch;gap:12px}
+.hx-home .jump-link{justify-content:space-between;gap:16px;min-height:56px;padding:0 10px 0 24px;border-radius:50px;background:var(--h-orange);color:#20221e;font-size:17px}
+.jump-link span{border-color:#20221e;height:40px;width:40px}
+.intro-second{display:flex;align-items:center;justify-content:center;min-height:44px}
+.guide-section{scroll-margin-top:12px}
+.section-heading-home{margin-bottom:18px}.section-heading-home h2{font-size:clamp(28px,8vw,36px)}.section-heading-home p{font-size:16px;margin-top:8px}
+.start-section,.guide-section{padding-top:36px}.guide-section{padding-bottom:36px}
+.photo-guides{gap:12px}
+.photo-guide,.photo-guide:nth-child(-n+2){aspect-ratio:1/1.08;border-radius:18px}
+.photo-guide:last-child{aspect-ratio:2/1}
+.photo-guide::after{background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.28) 55%,rgba(0,0,0,.86) 100%)}
+.guide-card-copy{padding:14px 12px}
+.photo-guide:last-child .guide-card-copy{padding:16px}
+.photo-guide:last-child .guide-card-copy h3{font-size:26px}
+.news-section{padding-bottom:36px}
+.news-list{gap:10px}
+.news-item{flex-basis:78%}
+.news-item a,.news-item a:hover{gap:8px;padding:16px;border-radius:18px}
+.hx-home .news-item h3{font-size:20px}
+.news-item p{font-size:15px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-item.is-new .news-meta::after{padding:4px 8px;font-size:10.5px}
+.news-all{margin-top:14px}
+.news-btn{width:100%;justify-content:space-between;min-height:52px}
+.playground{padding:18px 16px;margin-top:0}
+.play-head{display:block}.play-head h2{font-size:32px}
+.play-head>p{max-width:none;margin-top:10px;font-size:16px}
+.product-switch{margin:16px 0}
+.product-switch button{min-height:46px}
+.play-body{gap:16px}
+.product-stage{min-height:200px}
+.device{max-width:190px}.device-screen{height:100px}.device-glyph{font-size:62px}.device-phone{width:84px}.device-phone .device-screen{height:150px}.device-phone .device-glyph{font-size:54px}
+.floating-tag{font-size:12px;padding:6px 11px}.tag-one{top:38px}.tag-two{bottom:34px}.stage-caption{display:none}
+.usage-panel{padding:0}.usage-panel h3{font-size:22px;margin-bottom:12px}
+.usage-chips button{min-height:46px}
+.usage-result{margin:16px 0;padding:20px;border-radius:18px;background:var(--h-ink);color:var(--h-bg)}
+.usage-result .result-eyebrow{margin:0 0 8px;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--h-orange)}
+.usage-result h4{font-size:32px}
+.usage-result>p:not(.result-eyebrow){font-size:16px;margin:10px 0 14px;color:inherit;opacity:.85}
+.priority-pills span{background:transparent;border:1px solid currentColor;color:inherit}
+.action-button{margin-top:0;min-height:54px}
+.demo-note{margin:14px 0 0}
+.route-grid{gap:12px}
+.route-card{padding:20px;border-radius:18px}
+.route-card h3{font-size:28px;margin:18px 0 22px}
+.route-go{font-size:17px}
+.home-signoff{display:block;padding:40px 0 36px}.home-signoff p{font-size:28px}.home-signoff a{display:inline-block;margin-top:16px;min-height:44px;line-height:44px}
+.home .site-footer{padding-block:28px;margin-top:0}
+.home .footer-inner{gap:20px}
+.home .footer-slogan{margin:12px 0 8px;font-size:18px}.home .footer-note{font-size:13.5px}
+.home .footer-nav{display:block}
+.home .footer-col{border-top:1px solid var(--h-line)}
+.home .footer-col:last-child{border-bottom:1px solid var(--h-line)}
+.home .footer-title{margin:0}
+.footer-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;min-height:48px;padding:0;background:none;border:0;color:var(--h-ink);font:600 15px var(--sans);text-align:left}
+.footer-toggle::after{content:'+';font-size:22px;line-height:1;color:var(--h-orange)}
+.footer-toggle[aria-expanded=true]::after{content:'−'}
+.js-fold .footer-col ul[hidden]{display:none}
+.home .footer-col ul{gap:0;padding-bottom:10px}.home .footer-col li a{display:flex;align-items:center;min-height:44px}
+}
+@media(min-width:721px){.menu-prefs{display:none}}
