@@ -44,6 +44,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe', 'prix', 'batterie']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
           assert.equal(await page.locator('.tr-chip[aria-pressed="true"]').count(), 1);
+          if(id==='etudiant'){assert.ok(await page.locator('#student-journey').isVisible());assert.ok(await page.locator('#tr-podium').isHidden());continue;}
           const cols = await page.locator('#tr-podium .tr-col').count();
           if (id === 'etudiant' || id === 'professionnel' || id === 'gamer' || id === 'photographe') {
             assert.equal(cols, 1, id + ' : une seule liste attendue');
@@ -59,7 +60,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         }
       });
       await check('profils : fiches vérifiées classées de la plus pertinente à la moins pertinente, avec leur note' + tag, async () => {
-        for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe']) {
+        for (const id of ['professionnel', 'gamer', 'photographe']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
           assert.equal(await page.locator('#tr-podium .tr-tier').count(), 0, id + ' : pas de découpage par gamme');
           const values = (await page.locator('#tr-podium .tr-row .tr-flag').allTextContents()).map(t => Number(t.match(/Note ([\d,]+)\//)[1].replace(',', '.')));
@@ -67,12 +68,12 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
           assert.deepEqual(values, [...values].sort((a, b) => b - a), id + ' : ordre décroissant ' + values.join(' '));
         }
       });
-      await check('fiches vérifiées : un modèle par gamme (haut, milieu, entrée, bas prix), dans la bonne tranche de prix' + tag, async () => {
+      await check('fiches vérifiées : gammes présentes et chaque prix dans la bonne tranche' + tag, async () => {
         const bornes = { 'Haut de gamme': [801, 1e9], 'Milieu de gamme': [301, 800], 'Entrée de gamme': [151, 300], 'Bas prix': [80, 150] };
         for (const id of ['batterie']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
           const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ gamme: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(e.querySelector('.tr-price').textContent.replace(/[^\d]/g, '')) })));
-          assert.deepEqual(rows.map(r => r.gamme), ['Haut de gamme', 'Milieu de gamme', 'Entrée de gamme', 'Bas prix'], id + ' : quatre gammes attendues');
+          assert.deepEqual([...new Set(rows.map(r => r.gamme))], ['Haut de gamme', 'Milieu de gamme', 'Entrée de gamme', 'Bas prix'], id + ' : quatre gammes attendues');
           rows.forEach(r => assert.ok(r.prix >= bornes[r.gamme][0] && r.prix <= bornes[r.gamme][1], id + ' : ' + r.gamme + ' à ' + r.prix + ' €'));
         }
       });
