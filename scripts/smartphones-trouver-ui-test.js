@@ -111,6 +111,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         assert.equal(await page.locator('#sp-records .tr-record').count(), 3);
         assert.equal(await page.locator('#sp-log li').count(), tests.videos.length);
         assert.match(await page.locator('#sp-records').innerText(), /Vivo V80 Lite 5G/);
+        await page.evaluate(() => { document.querySelector('.tr-log-fold').open = true; });
         assert.match(await page.locator('#sp-log').innerText(), /Gamer/);
       });
       await check('chiffres de l’en-tête alimentés par les données' + tag, async () => {
