@@ -169,3 +169,25 @@ html.dark-theme .cl-more:focus-visible, html.dark-theme .cl-proto summary:focus-
   .cl-row-pick .cl-use, .cl-row-pick .cl-src { padding-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .cl-bar i { transition: none; } }
+
+/* ---------- en-tête : logo à carré jaune, filet noir épais, bouton « MENU » (codes de la référence) ---------- */
+.sp-calm .site-header { box-shadow: none; border-bottom: 3px solid var(--ink); }
+.sp-calm .header-meta { display: none; }
+.sp-calm .brand-logo { gap: 10px; }
+.sp-calm .brand-logo::before {
+  content: ''; flex: none; width: 30px; height: 30px;
+  background: var(--accent); border: 2px solid var(--ink);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 28% 100%, 0 72%);
+}
+.sp-calm .ga-wordmark { font-size: 22px; }
+.sp-calm .brand-menu-toggle { width: auto; padding: 0 18px; border-radius: 0; background: #0f1115; color: #fff; border-color: #0f1115; font: 700 12.5px var(--mono); letter-spacing: .16em; }
+.sp-calm .brand-menu-toggle > * { display: none; }
+.sp-calm .brand-menu-toggle::after { content: 'MENU'; }
+html.dark-theme .sp-calm .brand-menu-toggle { background: var(--accent); color: #0f1115; border-color: var(--accent); }
+.sp-calm .header-cta { box-shadow: none; }
+.sp-calm .header-cta:hover { transform: none; box-shadow: none; }
+@media (max-width: 520px) {
+  .sp-calm .brand-logo::before { width: 26px; height: 26px; }
+  .sp-calm .ga-wordmark { font-size: 19px; }
+  .sp-calm .brand-menu-toggle { width: auto; padding: 0 12px; }
+}
