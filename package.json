@@ -35,6 +35,7 @@
     "i18n:sync": "node tools/i18n/synchroniser.js",
     "i18n:controle": "node tools/i18n/synchroniser.js --controle",
     "i18n:accepter": "node tools/i18n/synchroniser.js --accepter",
+    "deepl:test": "node scripts/deepl-integration-test.js",
     "gabarit": "python3 tools/site/gabarit.py",
     "gabarit:test": "python3 tools/site/gabarit.py --verifier",
     "smartphones:trouver-test": "node scripts/smartphones-trouver-ui-test.js",
