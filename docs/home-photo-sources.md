@@ -1,10 +1,13 @@
 # Photos de l’accueil
 
-- Smartphones : https://images.unsplash.com/photo-1511707171634-5f897ff02aa9 (téléchargée en WebP). Licence Unsplash : https://unsplash.com/license.
-- PC portables : `assets/editorial/pc-category-v3.webp`, visuel déjà présent dans le projet.
-- Batteries externes : `assets/editorial/batteries-externes-category-v2.webp`, visuel déjà présent dans le projet.
-- Écouteurs : `assets/editorial/ecouteurs-category-v2.webp`, visuel déjà présent dans le projet.
-- Projecteurs : `assets/editorial/projecteurs-category-cinema.webp`, conservé.
+Photos authentiques téléchargées et converties en WebP, utilisées aussi par le registre des catégories :
+
+- Smartphones : `smartphones-photo.webp`, https://images.unsplash.com/photo-1511707171634-5f897ff02aa9.
+- PC portables : `pc-photo.webp`, https://images.unsplash.com/photo-1496181133206-80ce9b88a853.
+- Écouteurs : `ecouteurs-photo.webp`, https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1.
+- Licence des trois photos Unsplash : https://unsplash.com/license.
+- Batteries externes : `batteries-photo.webp`, photographie de Cybularny, https://commons.wikimedia.org/wiki/File:Powerbank_Xiaomi,_2.jpg. Licence CC0 : https://creativecommons.org/publicdomain/zero/1.0/. Conversion en WebP et redimensionnement uniquement.
+- Projecteurs : `projecteurs-category-cinema.webp`, conservée sans modification.
 
 ## Photos des familles du quiz smartphone
 
