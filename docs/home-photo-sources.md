@@ -2,11 +2,11 @@
 
 Photos authentiques téléchargées et converties en WebP, utilisées aussi par le registre des catégories :
 
-- Smartphones : `smartphones-photo.webp`, https://images.unsplash.com/photo-1511707171634-5f897ff02aa9.
-- PC portables : `pc-photo.webp`, https://images.unsplash.com/photo-1496181133206-80ce9b88a853.
-- Écouteurs : `ecouteurs-photo.webp`, https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1.
+- Smartphones : `smartphones-photo.webp`, https://images.unsplash.com/photo-1592750475338-74b7b21085ab.
+- PC portables : `pc-photo.webp`, https://images.unsplash.com/photo-1517336714731-489689fd1ca8.
+- Écouteurs : `ecouteurs-photo.webp`, https://images.unsplash.com/photo-1600294037681-c80b4cb5b434.
 - Licence des trois photos Unsplash : https://unsplash.com/license.
-- Batteries externes : `batteries-photo.webp`, photographie de Cybularny, https://commons.wikimedia.org/wiki/File:Powerbank_Xiaomi,_2.jpg. Licence CC0 : https://creativecommons.org/publicdomain/zero/1.0/. Conversion en WebP et redimensionnement uniquement.
+- Batteries externes : `batteries-photo.webp`, photographie de Jacek Halicki, https://commons.wikimedia.org/wiki/File:2023_Powerbank_Green_Cell_PowerPlay_20_(1).jpg. Licence CC BY-SA 4.0 : https://creativecommons.org/licenses/by-sa/4.0/. Crédit public dans a-propos.html. Conversion en WebP et redimensionnement uniquement.
 - Projecteurs : `projecteurs-category-cinema.webp`, conservée sans modification.
 
 ## Photos des familles du quiz smartphone
