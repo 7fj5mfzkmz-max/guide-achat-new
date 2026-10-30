@@ -474,7 +474,36 @@
       var auditStartedAt=null;
       var state={};
       try { var saved=JSON.parse(localStorage.getItem(AUDIT_KEY)||'null'); if(saved&&saved.state&&(Date.now()-(saved.updatedAt||0))<12*3600*1000) state=saved.state; } catch(e) {}
+      if(state.student && window.StudentRecommendations) state.student.answers=window.StudentRecommendations.sanitize(state.student.answers);
       window.GuideAuditState = state;
+      function studentSummary() {
+        var summary=document.getElementById('student-quiz-summary');
+        if(!summary){summary=document.createElement('div');summary.id='student-quiz-summary';board.prepend(summary);}
+        summary.hidden=!state.student;
+        if(!state.student) return;
+        var a=state.student.answers;
+        var active=Object.keys(a.strict).filter(function(k){return a.strict[k];}).map(function(k){return window.StudentRecommendations.STRICT[k]+(typeof a.strict[k]==='number'?' : '+a.strict[k]:'');});
+        summary.textContent='Réponses Étudiant reprises : '+(a.budget?'budget maximal '+a.budget+' €':'budget explicite du quiz conservé')+'. '+(active.join(' ; ')||'Aucune autre exigence stricte')+'. Les souhaits de jeu, photo et support restant ne sont pas convertis en critères techniques différents. Les choix explicites de Mes critères sont conservés. ';
+        var edit=document.createElement('button');edit.type='button';edit.textContent='Modifier dans Mon profil';
+        edit.addEventListener('click',function(){document.getElementById('tab-profil').click();var b=document.querySelector('[data-need="etudiant"]');if(b)b.click();document.getElementById('tab-profil').focus();});
+        summary.appendChild(edit);
+      }
+      window.addEventListener('guide:student-criteria',function(event){
+        var a=window.StudentRecommendations.sanitize(event.detail.answers);
+        state.price=state.price||{};
+        // Un choix de budget déjà explicite dans le quiz n'est jamais écrasé.
+        if(state.price.budget) a.budget=null;
+        state.student={answers:a};
+        if(a.budget) state.price.maxBudget=a.budget;
+        else delete state.price.maxBudget;
+        persistAudit(); studentSummary();
+        board.querySelectorAll('.audit-card').forEach(function(card){updateCard(card,card.getAttribute('data-audit-card'));});
+        window.dispatchEvent(new CustomEvent('guide:audit-change',{detail:{state:state,user:true}}));
+      });
+      window.addEventListener('guide:student-reset',function(){
+        if(state.student){delete state.student;if(state.price)delete state.price.maxBudget;persistAudit();studentSummary();board.querySelectorAll('.audit-card').forEach(function(card){updateCard(card,card.getAttribute('data-audit-card'));});window.dispatchEvent(new CustomEvent('guide:audit-change',{detail:{state:state}}));}
+      });
+      studentSummary();
       function persistAudit(){ try{ localStorage.setItem(AUDIT_KEY,JSON.stringify({state:state,updatedAt:Date.now()})); }catch(e){} }
       function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}
       function svgIcon(type){
@@ -552,13 +581,13 @@
       function updateCard(card,key){
         /* Une famille est « renseignée » dès qu'un choix y est fait — même définition
            que les recommandations (site côté scoring : au moins un groupe répondu). */
-        var cfg=configs[key], complete=cfg.groups.some(function(g){return state[key]&&state[key][g.key];});
+        var cfg=configs[key], complete=(key==='price'&&state.price&&state.price.maxBudget)||cfg.groups.some(function(g){return state[key]&&state[key][g.key];});
         card.querySelector('.audit-status').textContent=complete?'Renseignée':'À renseigner';
         card.classList.toggle('is-complete',complete);
         updateTotal();
       }
       function updateTotal(){
-        var done=Object.keys(configs).reduce(function(n,k){return n+(configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
+        var done=Object.keys(configs).reduce(function(n,k){return n+((k==='price'&&state.price&&state.price.maxBudget)||configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
         var count=document.getElementById('audit-count'),msg=document.getElementById('audit-message');
         if(count) count.textContent=done+(done===1?' / '+totalGroups+' famille renseignée':' / '+totalGroups+' familles renseignées');
         if(msg&&prunedNote) msg.textContent=prunedNote;
@@ -593,6 +622,7 @@
           if(opt.getAttribute('aria-disabled')==='true') return; // option sans modèle correspondant : on n'enregistre rien
           var group=opt.closest('.audit-control').getAttribute('data-group');
           state[key]=state[key]||{}; state[key][group]=opt.getAttribute('data-value');
+          if(group==='budget'&&state.student){delete state.price.maxBudget;state.student.answers.budget=null;studentSummary();}
           prunedNote='';
           if(group==='budget') pruneUnavailable();
           persistAudit();
@@ -624,6 +654,7 @@
           var p=card.querySelector('.audit-panel'); p.classList.remove('is-open'); p.hidden=true; p.innerHTML='';
         });
         updateTotal();
+        studentSummary();
         openFirstCard();
         window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state } }));
       }

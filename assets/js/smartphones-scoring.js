@@ -164,6 +164,10 @@
 
 
   /* Chaque règle renvoie { key, label, score, d, text } ou null si la donnée manque. */
+  function studentAllows(p,state) {
+    if(!state.student || !window.StudentRecommendations) return true;
+    return window.StudentRecommendations.assess(p,state.student.answers,window.StudentEvidenceContext).status==='eligible';
+  }
   function checks(p, state) {
     var c = p.compatibilite || {}, out = [];
     var sc = state.screen || {}, ba = state.battery || {}, pe = state.performance || {}, ph = state.photo || {}, lo = state.longevity || {};
@@ -172,6 +176,7 @@
       if (r) out.push({ key: key, score: r.score, d: r.d, text: cfg.fmt(Number(have)), delta: deltaLabel(r.d) });
     }
     var pr = state.price || {};
+    if (pr.maxBudget && p.prix_indicatif && Number(p.prix_indicatif)<=pr.maxBudget) out.push({key:'prix.budget',score:1,d:0,text:p.prix_indicatif+' € (plafond '+pr.maxBudget+' €)',delta:'pile'});
     if (pr.budget && p.prix_indicatif) { var pc = priceCheck(pr.budget, Number(p.prix_indicatif)); if (pc) out.push(pc); }
     if (sc.refresh && c.ecran) numeric("ecran.refresh", sc.refresh, c.ecran.frequence_max_hz);
     if (sc.brightness && c.ecran) numeric("ecran.brightness", sc.brightness, c.ecran.luminosite_nits);
@@ -233,7 +238,7 @@
   }
   function wantedCount(state) {
     var n = 0, sc = state.screen || {}, ba = state.battery || {}, pe = state.performance || {}, ph = state.photo || {}, lo = state.longevity || {};
-    [(state.price || {}).budget, sc.refresh, sc.brightness, sc.tech, ba.capacity, ba.chemistry, ba.charge, pe.reference, pe.gaming, ph.resolution, ph.sensor, ph.zoom, ph.stabilization === "ois" ? 1 : 0, lo.updates, lo.repair, lo.protection].forEach(function (v) { if (v) n++; });
+    [(state.price || {}).budget || (state.price || {}).maxBudget, sc.refresh, sc.brightness, sc.tech, ba.capacity, ba.chemistry, ba.charge, pe.reference, pe.gaming, ph.resolution, ph.sensor, ph.zoom, ph.stabilization === "ois" ? 1 : 0, lo.updates, lo.repair, lo.protection].forEach(function (v) { if (v) n++; });
     return n;
   }
 
@@ -241,6 +246,7 @@
   function categoryStateKey(key) { return key === "prix" ? "price" : key === "ecran" ? "screen" : key === "batterie" ? "battery" : key === "durete" ? "longevity" : key; }
   function categoryComplete(state, criterion) {
     var part = state[categoryStateKey(criterion.key)] || {};
+    if(criterion.key==="prix" && part.maxBudget) return true;
     return criterion.groups.some(function (group) { return !!part[group]; });
   }
   function completedCategories(state) { return CRITERIA.filter(function (criterion) { return categoryComplete(state, criterion); }); }
@@ -369,7 +375,7 @@
       return;
     }
 
-    var scored = products.map(function (p) {
+    var scored = products.filter(function(p){return studentAllows(p,state);}).map(function (p) {
       var m = computeMatch(p, state);
       var profile = profileScore(p, currentProfile);
       return m ? { p: p, m: m, profile: profile } : null;
@@ -401,7 +407,7 @@
       if (status) status.textContent = "Aucune correspondance assez documentée pour tous les critères choisis.";
       var showCatalog = container.querySelector("[data-audit-show-catalog]");
       if (showCatalog) showCatalog.addEventListener("click", function () {
-        var fallback = products.filter(function (p) { return p && p.nom; }).slice(0, 6);
+        var fallback = products.filter(function (p) { return p && p.nom && studentAllows(p,state); }).slice(0, 6);
         container.innerHTML = "";
         fallback.forEach(function (p) {
           var card = document.createElement("article"); card.className = "criteria-recommendation-card";

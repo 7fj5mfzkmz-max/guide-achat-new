@@ -93,7 +93,7 @@
     { label: '211 à 250 €', min: 211, max: 250 }
   ];
 
-  var DATA = null, current = null;
+  var DATA = null, current = null, studentJourney = null;
 
   function testById(id) { return DATA.tests.modeles.filter(function (m) { return m.id === id; })[0]; }
   function productOfTest(id) {
@@ -223,10 +223,14 @@
       var right = '<section class="tr-col" aria-labelledby="tr-h-fiche"><h3 id="tr-h-fiche">Dans nos fiches vérifiées</h3><ol class="tr-list">' + out.fiches.map(row).join('') + '</ol></section>';
       $('tr-podium').innerHTML = left + right + '<p class="tr-note">' + esc(note) + '</p>';
     }
+    if (studentJourney) {
+      studentJourney.activate(need.id === 'etudiant');
+      $('tr-podium').hidden = need.id === 'etudiant';
+    }
     var intro = INTRO[need.id];
     $('tr-intro').hidden = !intro; $('tr-intro').textContent = intro || '';
     /* Les cartes d'explication du profil (ce qui compte, à viser, question) suivent le choix. */
-    [].forEach.call(root.querySelectorAll('.profile-toggle'), function (d) { d.hidden = d.id !== need.id + '-toggle'; if (d.id === need.id + '-toggle') d.open = true; });
+    [].forEach.call(root.querySelectorAll('.profile-toggle'), function (d) { d.hidden = need.id === 'etudiant' || d.id !== need.id + '-toggle'; if (d.id === need.id + '-toggle') d.open = true; });
     if (need.profil) {
       try { localStorage.setItem('guide-profile', need.id); } catch (e) {}
       window.dispatchEvent(new CustomEvent('guide:profile', { detail: { profile: need.id } }));
@@ -287,6 +291,7 @@
 
   function init(produits, tests) {
     DATA = { produits: produits.produits || [], tests: tests };
+    studentJourney = window.StudentJourney.mount($('student-journey'), DATA.produits, DATA.tests);
     var chips = $('tr-chips');
     chips.innerHTML = NEEDS.map(function (n) { return '<button type="button" class="tr-chip" data-need="' + n.id + '" aria-pressed="false">' + esc(n.label) + '</button>'; }).join('');
     chips.addEventListener('click', function (e) {

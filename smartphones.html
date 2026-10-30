@@ -39,6 +39,7 @@ function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i
 l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
 <style>html.i18n-wait body{opacity:0}</style>
 <link rel="stylesheet" href="assets/css/i18n.css">
+<link rel="stylesheet" href="assets/css/student-journey.css">
 </head>
 <body class="photo-editorial site-redesign">
 <header class="site-header">
@@ -86,6 +87,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <p class="tr-lead">Choisissez ce qui vous ressemble.</p>
 <div class="tr-chips" id="tr-chips" role="group" aria-label="Votre besoin"></div>
 <p class="tr-intro" id="tr-intro" hidden></p>
+<div id="student-journey" hidden></div>
 <div class="tr-profile-cards">
 <div class="profile-toggle" hidden data-tone="teal" id="etudiant-toggle">
 
@@ -413,6 +415,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/site-tools.js"></script>
 <script src="assets/js/scoring-engine.js"></script>
 <script src="assets/js/profiles.js"></script>
+<script src="assets/js/student-recommendations.js"></script>
 <script src="assets/js/smartphones-scoring.js"></script>
 <script src="assets/js/site-motion.js"></script>
 <script src="assets/js/visual-pedagogy.js"></script>
@@ -425,6 +428,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/site-extras.js"></script>
 <script src="assets/js/category-menu.js"></script>
 <script src="assets/js/amazon-guide.js"></script>
+<script src="assets/js/student-journey.js" defer></script>
 <script src="assets/js/smartphones-trouver.js" defer></script>
 <script src="assets/js/smartphones-tests.js" defer></script>
 <script src="assets/js/v88-platform.js" defer></script>
