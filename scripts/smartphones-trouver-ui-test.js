@@ -109,7 +109,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       await check('records et journal des tests présents' + tag, async () => {
         assert.equal(await page.locator('#sp-records .tr-record').count(), 3);
         assert.equal(await page.locator('#sp-log li').count(), tests.videos.length);
-        assert.match(await page.locator('#sp-records').innerText(), /Vivo V80 Lite 5G et Xiaomi REDMI Note 17 Pro Max/);
+        assert.match(await page.locator('#sp-records').innerText(), /Vivo V80 Lite 5G/);
         assert.match(await page.locator('#sp-log').innerText(), /Gamer/);
       });
       await check('chiffres de l’en-tête alimentés par les données' + tag, async () => {

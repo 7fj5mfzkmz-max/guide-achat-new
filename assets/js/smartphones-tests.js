@@ -13,10 +13,18 @@
   var V = function (id) { return D.videos.filter(function (v) { return v.id === id; })[0]; };
   var CHIPS = ['puce', 'ecran', 'charge', 'photo', 'ram', 'design', 'accessoire', 'gain_puce'];
   var label = function (l) { return l.nom || (M[l.modele] && M[l.modele].nom) || l.modele; };
-  var dd = function (k, t) { return t ? '<div><dt>' + k + '</dt><dd>' + t + '</dd></div>' : ''; };
-  var badge = function (ton, t) { return '<span class="pj-badge' + (ton === 'ok' ? ' is-lab' : ton === 'bad' ? ' is-no' : '') + '">' + esc(t) + '</span>'; };
-  var rapport = function () { return '<p class="st-src">Données du rapport de synthèse reçu en octobre 2026 : titres et chaînes des vidéos contrôlés, contenu des vidéos non relu par le guide.</p>'; };
-  var card = function (title, body) { return '<article class="st-spec"><h3>' + esc(title) + '</h3><dl>' + body + '</dl></article>'; };
+  var src = function (id) { var v = V(id); return 'vidéo ' + v.n + ', ' + esc(v.chaine); };
+  var para = function (t) { return '<p class="st-src">' + esc(t) + '</p>'; };
+  var table = function (head, rows) {
+    return '<div class="st-table-wrap"><table class="st-table"><thead><tr>' + head.map(function (h) { return '<th scope="col">' + esc(h) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+      rows.map(function (r) { return '<tr>' + r.map(function (c, i) { return i === 0 ? '<th scope="row">' + esc(c) + '</th>' : '<td>' + esc(c) + '</td>'; }).join('') + '</tr>'; }).join('') + '</tbody></table></div>';
+  };
+  var bars = function (lignes, scale, valueOf) {
+    return '<div class="st-batts">' + lignes.map(function (l) {
+      return '<div class="st-batt-row"><span class="st-batt-name">' + esc(label(l)) + '</span><span class="st-batt" role="img" aria-label="' + esc(valueOf(l).text) + '"><i class="st-batt-fill" data-w="' + (valueOf(l).n / scale * 100) + '" style="width:0"></i></span><b class="st-batt-val">' + esc(valueOf(l).text) + (valueOf(l).small ? '<small>' + esc(valueOf(l).small) + '</small>' : '') + '</b></div>';
+    }).join('') + '</div>';
+  };
+  var rapportNote = function () { return para('Données du rapport de synthèse reçu en octobre 2026 : titres et chaînes des vidéos contrôlés, chiffres non recoupés avec les vidéos.'); };
 
   var animateIn = function (el) {
     var go = function () { [].forEach.call(el.querySelectorAll('[data-w]'), function (e) { e.style.width = e.getAttribute('data-w') + '%'; }); [].forEach.call(el.querySelectorAll('[data-h]'), function (e) { e.style.height = e.getAttribute('data-h') + '%'; }); };
@@ -48,39 +56,33 @@
       var v = V('gaming');
       return '<h3 class="st-sub">Autonomie mesurée</h3><div class="st-gaming">' + cols + '</div><p class="st-src">Vidéo ' + v.n + ' · ' + esc(v.chaine) + ' — « ' + esc(v.titre) + ' ». Prix : RedMagic 799 $, S26 Ultra 988 $ (reconditionné), iPhone 17 Pro Max 1 199 $.</p>';
     },
-    decharge: function () {
-      var X = D.decharge, max = D.records.echelle_mah;
-      var bars = X.classement.ordre.map(function (id, i) {
-        var m = M[id], mah = m.specs.batterie_mah;
-        return '<div class="st-batt-row"><span class="st-batt-name">' + esc(m.nom) + '</span><span class="st-batt" role="img" aria-label="' + fr(mah) + ' mAh sur ' + fr(max) + '"><i class="st-batt-fill" data-w="' + (mah / max * 100) + '" style="width:0"></i></span><b class="st-batt-val">' + fr(mah) + ' mAh<small>' + esc(X.classement.rangs[i]) + '</small></b></div>';
-      }).join('');
-      var mah = function (l) { return l.mah || (M[l.modele] && M[l.modele].specs.batterie_mah); };
-      var est = X.endurance.lignes.map(function (l) { return card(label(l), dd('Batterie', mah(l) ? fr(mah(l)) + ' mAh' : '') + dd('Autonomie estimée', esc(l.estimation))); }).join('');
-      var rob = X.robot.lignes.map(function (l) { return card(label(l), dd('Batterie', mah(l) ? fr(mah(l)) + ' mAh' : 'Non précisée') + dd('Fin du cycle', badge(l.ton, l.etat))); }).join('');
-      return '<h3 class="st-sub">Décharge continue de l’écran (vidéo ' + V(X.classement.video).n + ', ' + esc(V(X.classement.video).chaine) + ')</h3><div class="st-batts">' + bars + '</div><p class="st-src">' + esc(X.classement.note) + '</p>' +
-        '<h3 class="st-sub st-sub-gap">Autonomie estimée (vidéo ' + V(X.endurance.video).n + ', ' + esc(V(X.endurance.video).chaine) + ')</h3><div class="st-specs">' + est + '</div><p class="st-src">' + esc(X.endurance.note) + '</p>' +
-        '<h3 class="st-sub st-sub-gap">Cycle robotisé (vidéo ' + V(X.robot.video).n + ', ' + esc(V(X.robot.video).chaine) + ')</h3><div class="st-specs">' + rob + '</div><p class="st-src">' + esc(X.robot.note) + '</p>' + rapport();
+    autonomie: function () {
+      var X = D.autonomie, F = X.flagships, G = X.milieu;
+      var mah = function (l) { return l.mah || (M[l.modele] && M[l.modele].specs.batterie_mah) || 0; };
+      var val = function (scale) { return function (l) { var m = mah(l); return { n: l.min, text: hm(l.min), small: m ? fr(m) + ' mAh' : '' }; }; };
+      return '<h3 class="st-sub">Sept flagships, même séquence d’épreuves (' + src(F.video) + ')</h3>' + para(F.protocole) + bars(F.lignes, F.lignes[0].min, val()) + para(F.note) +
+        '<h3 class="st-sub st-sub-gap">Milieu de gamme, décharge de 100 % à 0 % (' + src(G.video) + ')</h3>' + para(G.protocole) + bars(G.lignes, G.lignes[0].min, val()) + para(G.note) + rapportNote();
+    },
+    vitesse: function () {
+      var X = D.vitesse, B = D.benchmarks;
+      return '<h3 class="st-sub">Le téléphone le plus rapide (' + src(X.video) + ')</h3>' + para(X.protocole) + table(['Rang', 'Smartphone', 'Commentaire'], X.classement) +
+        '<h3 class="st-sub st-sub-gap">Épreuves marquantes, application par application</h3>' + table(['Épreuve', 'Résultat'], X.epreuves) + para(X.conclusion) +
+        '<h3 class="st-sub st-sub-gap">Benchmarks : l’iPhone 18 Pro Max face à quatre flagships (' + src(B.video) + ')</h3>' + para(B.protocole) + table(['Test', '1er', '2e', '3e', 'Observations'], B.podiums) + para(B.general) +
+        '<ul class="st-notes">' + B.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' + para(B.reserves) + rapportNote();
     },
     fiches: function () {
-      var cards = D.fiches.map(function (f) {
-        var m = M[f.modele], s = m.specs;
-        return '<article class="st-spec"><h3>' + esc(m.nom) + '</h3><p>' + badge('ok', f.verdict) + '</p><dl>' + CHIPS.map(function (k) { return dd({ puce: 'Puce', ecran: 'Écran', charge: 'Charge', photo: 'Photo', ram: 'RAM', design: 'Design', accessoire: 'Accessoire', gain_puce: 'Gain annoncé' }[k], s[k] && esc(s[k])); }).join('') + dd('Stockage', s.stockage && esc(s.stockage)) + dd('Vidéo', esc('Vidéo ' + V(m.video).n + ' · ' + V(m.video).chaine)) + dd('Verdict', esc(f.note)) + '</dl></article>';
-      }).join('');
-      return '<h3 class="st-sub">Deux fiches détaillées</h3><div class="st-specs">' + cards + '</div>' + rapport();
+      var d = D.fiches.duel, p = D.fiches.pura;
+      return '<h3 class="st-sub">POCO F9 Pro contre POCO F9 Ultra (' + src(d.video) + ')</h3>' + table(['Caractéristique'].concat(d.colonnes), d.lignes) + para(d.verdict) +
+        '<h3 class="st-sub st-sub-gap">Huawei Pura 90s Pro Max (' + src(p.video) + ')</h3>' + table(['Domaine', 'Détails'], p.lignes) + para(p.verdict) + rapportNote();
     },
     photo: function () {
       var X = D.photo;
-      var cards = X.lignes.map(function (l) { return card(label(l), dd('Optique', esc(l.optique)) + dd('Traitement', esc(l.traitement))); }).join('');
-      return '<h3 class="st-sub">Cinq téléphones photo cités (vidéo ' + V(X.video).n + ', ' + esc(V(X.video).chaine) + ')</h3><div class="st-specs">' + cards + '</div><ul class="st-notes">' + X.retenir.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' + rapport();
+      return '<h3 class="st-sub">Les meilleurs photophones de l’automne 2026 (' + src(X.video) + ')</h3>' + para(X.intro) + table(['Modèle', 'Points forts', 'Réserves'], X.lignes) + para(X.tendances) + rapportNote();
     },
     gamme: function () {
-      var X = D.gamme, mi = X.milieu, bu = X.budget;
-      var mid = mi.lignes.map(function (l) { return card(l.nom, dd('Point évalué', esc(l.point)) + dd('Mention', esc(l.mention))); }).join('');
-      var bud = bu.lignes.map(function (l) { return card(l.nom, dd('Puce', l.puce ? esc(l.puce) : 'Non relevée') + dd('Batterie', l.mah ? fr(l.mah) + ' mAh' : 'Non relevée') + dd('À retenir', esc(l.cle))); }).join('');
-      var ip = bu.etancheite;
-      return '<h3 class="st-sub">Milieu de gamme, ' + esc(mi.plafond) + ' (vidéo ' + V(mi.video).n + ')</h3><div class="st-specs">' + mid + '</div><p class="st-src">' + esc(mi.note) + '</p>' +
-        '<h3 class="st-sub st-sub-gap">Petit budget, ' + esc(bu.plafond) + ' (vidéo ' + V(bu.video).n + ')</h3><div class="st-specs">' + bud + '</div>' +
-        '<h3 class="st-sub st-sub-gap">Résistance : ' + esc(M[ip.modele].nom) + '</h3><ul class="st-notes">' + ip.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' + rapport();
+      var m = D.gamme.milieu, b = D.gamme.budget;
+      return '<h3 class="st-sub">Milieu de gamme, été 2026 (' + src(m.video) + ')</h3>' + para(m.intro) + table(['Modèle', 'Atouts', 'Limites'], m.lignes) + para(m.avertissements) +
+        '<h3 class="st-sub st-sub-gap">Petit budget, été 2026 (' + src(b.video) + ')</h3>' + para(b.intro) + table(['Modèle', 'Prix relevé', 'Points clés'], b.lignes) + para(b.conclusion) + rapportNote();
     },
     samsung: function () {
       var v = V('samsung'), max = 549;
@@ -91,7 +93,7 @@
       return '<h3 class="st-sub">La gamme, du moins cher au plus cher</h3><div class="st-stairs">' + steps + '</div><p class="st-src">Vidéo ' + v.n + ' · ' + esc(v.chaine) + ' — « ' + esc(v.titre) + ' ». Prix en dollars (prix de sortie).</p>';
     }
   };
-  var TABS = [['records', 'Records de batterie'], ['decharge', 'Décharge'], ['gaming', 'Jeu'], ['samsung', 'Gamme Samsung A'], ['fiches', 'Fiches détaillées'], ['photo', 'Photo'], ['gamme', 'Milieu et petit budget']];
+  var TABS = [['records', 'Records de batterie'], ['autonomie', 'Autonomie'], ['vitesse', 'Vitesse et benchmarks'], ['gaming', 'Jeu'], ['samsung', 'Gamme Samsung A'], ['fiches', 'POCO F9 et Pura 90s'], ['photo', 'Photo'], ['gamme', 'Milieu de gamme et budget']];
 
   function show(k) {
     var p = $('st-panel');
@@ -121,8 +123,7 @@
     profil('etudiant');
     $('st-trends').innerHTML = d.tendances.map(function (t) { return '<article class="st-trend"><h3>' + esc(t.titre) + '</h3><p>' + esc(t.texte) + '</p></article>'; }).join('');
     $('st-limites').innerHTML = d.limites.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
-    $('st-videos').innerHTML = d.videos.map(function (v) { return '<li><span class="pj-badge">Vidéo ' + v.n + '</span> <strong>' + esc(v.chaine) + '</strong> — « ' + (v.lien ? '<a href="' + esc(v.lien) + '" rel="noopener" target="_blank">' + esc(v.titre) + '</a>' : esc(v.titre)) + ' » <em>(' + esc(v.theme) + ')</em></li>'; }).join('') +
-      (d.non_reprises || []).map(function (v) { return '<li><span class="pj-badge is-no">Non reprise</span> <strong>' + esc(v.chaine) + '</strong> — « <a href="' + esc(v.lien) + '" rel="noopener" target="_blank">' + esc(v.titre) + '</a> » : ' + esc(v.raison) + '</li>'; }).join('');
+    $('st-videos').innerHTML = d.videos.map(function (v) { return '<li><span class="pj-badge">Vidéo ' + v.n + '</span> <strong>' + esc(v.chaine) + '</strong> — « ' + (v.lien ? '<a href="' + esc(v.lien) + '" rel="noopener" target="_blank">' + esc(v.titre) + '</a>' : esc(v.titre)) + ' » <em>(' + esc(v.theme) + ')</em></li>'; }).join('');
     document.documentElement.setAttribute('data-st-ready', '1');
   }
 

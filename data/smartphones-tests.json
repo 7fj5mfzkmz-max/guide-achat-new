@@ -9,16 +9,15 @@
       "The Tech Chap",
       "Versus",
       "Tech Spurt",
+      "PhoneBuff",
       "Techmo",
-      "TechNick",
-      "PhoneBuff"
+      "TechNick"
     ],
     "rapport": {
-      "id": "rapports-tech-2026-10",
-      "titre": "Rapports d’Analyses Isolées (dossier 1/5), série d’audits techniques Q4-2026",
-      "support": "PDF de 5 pages (Rapports_Techniques_Individuels_2026.pdf) sur dix vidéos, dont huit reprises ici",
-      "recu_le": "2026-10-30",
-      "verification": "Titres et chaînes des dix vidéos contrôlés auprès de YouTube ; le contenu des vidéos n’a pas pu être relu (pas de sous-titres accessibles), les chiffres sont ceux du rapport."
+      "id": "rapport-smartphones-2026-10",
+      "titre": "Smartphones 2026 : rapport complet d’analyse (octobre 2026)",
+      "support": "PDF de 13 pages (Rapport_Smartphones_2026.pdf) : synthèse de neuf vidéos YouTube, établie d’après leurs transcriptions et descriptions",
+      "verification": "Titres et chaînes des neuf vidéos contrôlés auprès de YouTube ; durées, dates et chiffres repris du rapport, non recoupés avec les vidéos."
     }
   },
   "videos": [
@@ -63,90 +62,85 @@
       "resume": "Les derniers lancements : Vivo V80 et OnePlus 16, avec leurs batteries."
     },
     {
-      "id": "batteries-comparees",
+      "id": "vitesse",
       "n": 6,
+      "chaine": "PhoneBuff",
+      "titre": "The Fastest Phone In The World (2026)",
+      "theme": "Vitesse",
+      "lien": "https://www.youtube.com/watch?v=RKIumrb4B_k",
+      "resume": "Sept flagships 2026 dans un test de vitesse en deux manches : applications une par une, puis « gauntlet »."
+    },
+    {
+      "id": "autonomie-flagships",
+      "n": 7,
       "chaine": "Techmo",
       "titre": "Battery Test: OnePlus vs. Oppo, iPhone, Galaxy, Pixel, Xiaomi, vivo",
-      "theme": "Autonomie",
+      "theme": "Autonomie des flagships",
       "lien": "https://www.youtube.com/watch?v=xpgo8T9hhxs",
-      "resume": "Comparaison d’autonomie : OnePlus 16 (9 000 mAh) et OPPO Find X9 Pro (7 500 mAh) face aux batteries d’environ 5 000 mAh des modèles occidentaux."
+      "resume": "Sept flagships soumis à la même séquence d’épreuves, répétée jusqu’à l’extinction."
     },
     {
-      "id": "drain-v80-lite",
-      "n": 7,
+      "id": "drain-milieu",
+      "n": 8,
       "chaine": "TechNick",
       "titre": "Vivo V80 Lite vs POCO / HONOR / Samsung / iPhone Battery Life DRAIN Test!",
-      "theme": "Test de décharge",
+      "theme": "Autonomie du milieu de gamme",
       "lien": "https://www.youtube.com/watch?v=gEPCdMFG5lE",
-      "resume": "Décharge continue de l’écran : le Vivo V80 Lite (10 000 mAh) devant POCO X8, HONOR X9d et HONOR 600 Pro."
+      "resume": "Décharge de 100 % à 0 % de sept smartphones, du Vivo V80 Lite (10 000 mAh) à l’iPhone 17. Vidéo sponsorisée par vivo."
     },
     {
-      "id": "robot",
-      "n": 8,
-      "chaine": "PhoneBuff",
-      "titre": "REDMI Note 17 Pro Max vs. Reno16 F vs. Galaxy A57 vs. iPhone 17 Battery Test",
-      "theme": "Décharge robotisée",
-      "lien": "https://www.youtube.com/watch?v=yIXi7YyhvHg",
-      "resume": "Cycle d’applications identique joué par un bras robotisé sur quatre téléphones, jusqu’à l’extinction."
+      "id": "benchmarks",
+      "n": 9,
+      "chaine": "TechNick",
+      "titre": "iPhone 18 Pro Max vs 17 Pro Max / S26 Ultra / POCO F9 Ultra / Vivo X500 Pro Max Benchmark Test",
+      "theme": "Benchmarks",
+      "lien": "https://www.youtube.com/watch?v=xpXYYQ6SNdw",
+      "resume": "Cinq flagships comparés sur AnTuTu, Geekbench 7 et trois tests 3DMark."
     },
     {
       "id": "poco-f9",
-      "n": 9,
+      "n": 10,
       "chaine": "TechNick",
       "titre": "POCO F9 Pro vs POCO F9 Ultra: The ULTIMATE Comparison!",
-      "theme": "Fiche : POCO F9 Pro",
+      "theme": "Duel POCO F9",
       "lien": "https://www.youtube.com/watch?v=wDmYRIUJiGA",
-      "resume": "Le POCO F9 Pro face au F9 Ultra : écran, mémoire et charge."
+      "resume": "Les deux POCO F9 face à face : prix, écran, chipset, photo et verdict."
     },
     {
       "id": "pura",
-      "n": 10,
+      "n": 11,
       "chaine": "TechNick",
       "titre": "Huawei Pura 90s Pro Max Review: My New Daily Driver!",
-      "theme": "Fiche : Huawei Pura 90s Pro Max",
+      "theme": "Test Huawei Pura 90s Pro Max",
       "lien": "https://www.youtube.com/watch?v=Fy62KgKcIHk",
-      "resume": "Test du Huawei Pura 90s Pro Max : capteur 1 pouce et téléobjectif périscope."
+      "resume": "Test complet du Huawei Pura 90s Pro Max : photo, écran, puce, logiciel et services Google."
     },
     {
       "id": "photo",
-      "n": 11,
+      "n": 12,
       "chaine": "Tech Spurt",
       "titre": "Best Camera Phones (Autumn 2026) | Top 15 From OPPO, Vivo, Samsung & More!",
-      "theme": "Photo",
+      "theme": "Classement photo",
       "lien": "https://www.youtube.com/watch?v=gDdc9gEbg_E",
-      "resume": "Les meilleurs téléphones photo de l’automne 2026 : cinq d’entre eux sont repris par le rapport."
+      "resume": "Les meilleurs photophones de l’automne 2026, sans classement numérique."
     },
     {
       "id": "milieu",
-      "n": 12,
+      "n": 13,
       "chaine": "Tech Spurt",
       "titre": "Best Mid-Range Phones (Summer 2026) | Top 20 Reviewed",
-      "theme": "Milieu de gamme",
+      "theme": "Classement milieu de gamme",
       "lien": "https://www.youtube.com/watch?v=zw30rfxoVO4",
-      "resume": "Vingt téléphones de milieu de gamme passés en revue ; le rapport en retient quatre."
+      "resume": "Plus de vingt milieux de gamme testés comme téléphone principal."
     },
     {
       "id": "budget",
-      "n": 13,
+      "n": 14,
       "chaine": "Tech Spurt",
       "titre": "Best Budget Phones (Summer 2026) | Top 10 Tested & Reviewed",
-      "theme": "Petit budget",
+      "theme": "Classement budget",
       "lien": "https://www.youtube.com/watch?v=Oi3uzDEFflo",
-      "resume": "Dix téléphones à petit prix testés ; le rapport en retient quatre, avec leur résistance."
-    }
-  ],
-  "non_reprises": [
-    {
-      "chaine": "PhoneBuff",
-      "titre": "The Fastest Phone In The World (2026)",
-      "lien": "https://www.youtube.com/watch?v=RKIumrb4B_k",
-      "raison": "Le titre annonce un test de vitesse ; le rapport décrit une analyse de batterie et de modem du Galaxy S26 Ultra que rien ne permet de recouper."
-    },
-    {
-      "chaine": "TechNick",
-      "titre": "iPhone 18 Pro Max vs 17 Pro Max / S26 Ultra / POCO F9 Ultra / Vivo X500 Pro Max Benchmark Test",
-      "lien": "https://www.youtube.com/watch?v=xpXYYQ6SNdw",
-      "raison": "Le rapport affirme un arrêt thermique du Galaxy S26 Ultra à 47 °C et cite un Pixel 11 Pro XL que le titre ne mentionne pas : affirmation trop forte pour être publiée sans l’avoir vue."
+      "resume": "Dix smartphones à environ 300 £ ou moins, avec leurs prix relevés."
     }
   ],
   "modeles": [
@@ -291,73 +285,94 @@
       }
     },
     {
-      "id": "oppo-find-x9-pro",
-      "nom": "OPPO Find X9 Pro",
-      "marque": "OPPO",
-      "video": "batteries-comparees",
-      "specs": {
-        "batterie_mah": 7500,
-        "atout": "Environ deux jours complets d’autonomie (estimation du rapport)"
-      }
-    },
-    {
       "id": "vivo-v80-lite",
       "nom": "Vivo V80 Lite 5G",
       "marque": "Vivo",
-      "video": "drain-v80-lite",
+      "video": "drain-milieu",
       "specs": {
         "batterie_mah": 10000,
-        "atout": "Vainqueur du test de décharge continue de l’écran"
-      }
-    },
-    {
-      "id": "poco-x8",
-      "nom": "POCO X8",
-      "marque": "POCO",
-      "video": "drain-v80-lite",
-      "specs": {
-        "batterie_mah": 8340,
-        "atout": "Deuxième du test de décharge, avec un écart notable sur le Vivo V80 Lite"
+        "atout": "Vainqueur du test de décharge du milieu de gamme : 18 h 43 d’écran allumé"
       }
     },
     {
       "id": "honor-x9d",
       "nom": "HONOR X9d",
       "marque": "HONOR",
-      "video": "drain-v80-lite",
+      "video": "drain-milieu",
       "specs": {
         "batterie_mah": 8300,
-        "atout": "Troisième du test de décharge"
+        "atout": "Deuxième du test de décharge : 18 h 18 d’écran allumé"
       }
     },
     {
       "id": "honor-600-pro",
       "nom": "HONOR 600 Pro",
       "marque": "HONOR",
-      "video": "drain-v80-lite",
+      "video": "drain-milieu",
       "specs": {
         "batterie_mah": 7000,
-        "atout": "Quatrième du test de décharge"
+        "atout": "Troisième du test de décharge (17 h 42) malgré 1 340 mAh de moins que le POCO X8"
       }
     },
     {
-      "id": "redmi-note-17-pro-max",
-      "nom": "Xiaomi REDMI Note 17 Pro Max",
-      "marque": "Xiaomi",
-      "video": "robot",
+      "id": "poco-x8",
+      "nom": "POCO X8",
+      "marque": "POCO",
+      "video": "drain-milieu",
+      "prix_eur": 400,
       "specs": {
-        "batterie_mah": 10000,
-        "atout": "Encore allumé, avec 22 % de charge, à la fin du cycle robotisé"
+        "puce": "Snapdragon 6s Gen 4",
+        "batterie_mah": 8340,
+        "atout": "Quatrième du test de décharge : 16 h 25 d’écran allumé"
       }
     },
     {
       "id": "apple-iphone-17",
       "nom": "Apple iPhone 17",
       "marque": "Apple",
-      "video": "robot",
+      "video": "drain-milieu",
       "specs": {
-        "batterie_mah": 4300,
-        "point_noir": "Éteint à l’étape 6 du cycle robotisé"
+        "batterie_mah": 3692,
+        "point_noir": "La plus petite batterie du test : 9 h 36 d’écran allumé"
+      }
+    },
+    {
+      "id": "iphone-18-pro-max",
+      "nom": "Apple iPhone 18 Pro Max",
+      "marque": "Apple",
+      "video": "benchmarks",
+      "specs": {
+        "puce": "Apple A20 Pro",
+        "ram": "12 Go",
+        "batterie_mah": 5391,
+        "atout": "Premier du classement général des benchmarks : meilleur GPU et ray-tracing"
+      }
+    },
+    {
+      "id": "vivo-x500-pro-max",
+      "nom": "Vivo X500 Pro Max",
+      "marque": "Vivo",
+      "video": "benchmarks",
+      "specs": {
+        "puce": "MediaTek Dimensity 9600 Pro",
+        "batterie_mah": 8000,
+        "batterie_note": "8 000 mAh en version chinoise, 200 mAh de plus que les variantes mondiales",
+        "point_noir": "Chauffe nettement plus que les autres, jusqu’à plus de 60 °C : throttling possible"
+      }
+    },
+    {
+      "id": "poco-f9-ultra",
+      "nom": "POCO F9 Ultra",
+      "marque": "POCO",
+      "video": "poco-f9",
+      "prix_eur": 1100,
+      "specs": {
+        "puce": "Snapdragon 8 Elite Gen 5",
+        "ram": "16 Go LPDDR5X",
+        "ecran": "AMOLED 6,9\" 185 Hz",
+        "batterie_mah": 8050,
+        "charge": "100 W filaire, 50 W sans fil",
+        "atout": "Meilleure efficacité énergétique du panel Android aux benchmarks"
       }
     },
     {
@@ -365,13 +380,14 @@
       "nom": "POCO F9 Pro",
       "marque": "POCO",
       "video": "poco-f9",
+      "prix_eur": 900,
       "specs": {
-        "puce": "Snapdragon 8 Elite, 5e génération",
-        "ecran": "OLED 185 Hz",
-        "ram": "16 Go LPDDR5X",
-        "stockage": "512 Go UFS 4.1",
-        "charge": "120 W filaire",
-        "atout": "Écran 185 Hz, 16 Go de RAM et charge 120 W ; rapport qualité/prix jugé supérieur, plus équilibré que la version Ultra"
+        "puce": "Snapdragon 8 Elite Gen 5 « V » (GPU réduit)",
+        "ecran": "AMOLED 6,59\" 185 Hz",
+        "batterie_mah": 6330,
+        "charge": "100 W filaire, 50 W sans fil",
+        "photo": "100 MP, téléobjectif flottant 2,5×",
+        "atout": "Mise à niveau justifiée depuis le F8 Pro"
       }
     },
     {
@@ -380,8 +396,14 @@
       "marque": "Huawei",
       "video": "pura",
       "specs": {
-        "photo": "Capteur principal 1 pouce, téléobjectif périscope 200 MP",
-        "atout": "Jugé « daily driver » par le testeur"
+        "puce": "Kirin 9030a (5 nm)",
+        "ecran": "OLED 6,9\" LTPO 1-120 Hz, 3 000 nits",
+        "batterie_mah": 5500,
+        "batterie_note": "6 000 mAh en Afrique du Sud, 5 500 mAh en Europe",
+        "charge": "100 W filaire, 80 W sans fil",
+        "photo": "Principal 50 MP f/1.4, périscope 200 MP 4×",
+        "etancheite": "IP68 et IP69",
+        "atout": "Retour de la 5G, d’Android 16 (EMUI 16) et des services Google (Gbox)"
       }
     },
     {
@@ -392,7 +414,9 @@
       "specs": {
         "puce": "MediaTek Dimensity 7400",
         "batterie_mah": 6580,
-        "photo": "Capteur 200 MP"
+        "photo": "Capteur 200 MP",
+        "etancheite": "IP68",
+        "atout": "Meilleur choix « classique » sous 300 £"
       }
     },
     {
@@ -403,8 +427,9 @@
       "specs": {
         "puce": "Snapdragon 6 Gen 4",
         "batterie_mah": 7500,
+        "charge": "66 W filaire",
         "etancheite": "IP68 et IP69",
-        "atout": "Châssis anti-chute (2,5 m), écran tactile calibré pour les doigts mouillés"
+        "atout": "Ultra-résistant aux chutes (2,5 m), batterie silicium-carbone"
       }
     }
   ],
@@ -453,198 +478,583 @@
       "ton": "best"
     }
   ],
-  "decharge": {
-    "endurance": {
-      "video": "batteries-comparees",
+  "vitesse": {
+    "video": "vitesse",
+    "protocole": "Sept flagships 2026 en deux manches : une série d’applications lancées une par une, puis le « gauntlet » qui enchaîne tous les tests sans pause ni refroidissement. Écrans calibrés à 200 nits, environnement à température contrôlée.",
+    "classement": [
+      [
+        "1",
+        "Samsung Galaxy S26 Ultra",
+        "Vainqueur : premier tour bouclé en 3 min 26 s, « champion incontesté » du speed test"
+      ],
+      [
+        "2",
+        "Vivo X300 Ultra",
+        "Premier tour en 3 min 33 s, 7 s derrière le Galaxy"
+      ],
+      [
+        "3",
+        "OnePlus 15",
+        "Solide troisième"
+      ],
+      [
+        "4",
+        "OPPO Find X9 Pro",
+        "Meilleure gestion de la RAM que le Honor"
+      ],
+      [
+        "5",
+        "Honor Magic 8 Pro",
+        "4 s derrière l’Oppo"
+      ],
+      [
+        "6",
+        "iPhone 17 Pro Max",
+        "La plus forte baisse de performance par rapport à sa série app par app"
+      ],
+      [
+        "7",
+        "Google Pixel 10 Pro XL",
+        "Dernier ; peine à garder les applications en arrière-plan"
+      ]
+    ],
+    "epreuves": [
+      [
+        "Adobe Scan (scan de documents)",
+        "Vivo X300 Ultra 1er (22 s) ; Galaxy et iPhone 2 à 3 s derrière ; OnePlus et Oppo 28 s ; Honor 30 s ; Pixel 32 s"
+      ],
+      [
+        "Lightroom (photo de 68 MP)",
+        "S26 Ultra et Vivo en tête, environ 5 s plus rapides que l’iPhone ; Find X9 Pro 27 s ; Pixel 32 s"
+      ],
+      [
+        "Export vidéo 4K (Instagram)",
+        "Find X9 Pro 1er (10 s), puis Vivo et les autres Snapdragon ; le Pixel finit 5 s devant l’iPhone"
+      ],
+      [
+        "Décompression d’un fichier de 6 Go",
+        "Tous dans un mouchoir de poche sauf le Pixel, environ 11 s de plus que le plus rapide"
+      ],
+      [
+        "Série app par app (cumul)",
+        "1ers ex æquo : Galaxy S26 Ultra et Vivo X300 Ultra (167 s) ; iPhone 17 Pro Max 195 s ; Pixel dernier"
+      ]
+    ],
+    "conclusion": "Les puces Snapdragon dominent les épreuves de traitement d’image et de jeu ; l’iPhone pâtit d’un refroidissement moins efficace dans le gauntlet ; le Pixel 10 Pro XL ferme la marche, son Tensor G5 étant décrit comme un cran derrière pour le jeu et le multitâche."
+  },
+  "benchmarks": {
+    "video": "benchmarks",
+    "protocole": "iPhone 18 Pro Max (puce A20 Pro) face à l’iPhone 17 Pro Max, au Galaxy S26 Ultra (Snapdragon 8 Elite Gen 5 overclocké), au POCO F9 Ultra (Snapdragon 8 Elite Gen 5) et au Vivo X500 Pro Max (Dimensity 9600 Pro), sur AnTuTu v11, Geekbench 7 et trois tests 3DMark.",
+    "podiums": [
+      [
+        "AnTuTu v11 (global)",
+        "Vivo X500 Pro Max",
+        "POCO F9 Ultra",
+        "Galaxy S26 Ultra",
+        "L’iPhone 18 Pro Max est 4e ; le S26 Ultra a le meilleur score CPU ; AnTuTu ne teste pas le ray-tracing sur iOS"
+      ],
+      [
+        "Geekbench 7 mono-cœur",
+        "iPhone 18 Pro Max",
+        "iPhone 17 Pro Max",
+        "—",
+        "Le Vivo X500 Pro Max est dernier"
+      ],
+      [
+        "Geekbench 7 multi-cœur",
+        "iPhone 18 Pro Max",
+        "Vivo X500 Pro Max",
+        "—",
+        "Le POCO montre une faiblesse relative"
+      ],
+      [
+        "3DMark Wild Life Extreme",
+        "iPhone 18 Pro Max",
+        "—",
+        "—",
+        "Plus de 10 FPS d’avance sur le Vivo ; le POCO dépasse le Samsung malgré l’overclock GPU de ce dernier"
+      ],
+      [
+        "3DMark Solar Bay (ray-tracing)",
+        "iPhone 18 Pro Max (≈ 60 FPS)",
+        "Vivo X500 Pro Max",
+        "POCO F9 Ultra",
+        "Victoire nette de l’iPhone 18 en ray-tracing"
+      ],
+      [
+        "3DMark Steel Nomad Light",
+        "iPhone 18 Pro Max",
+        "Vivo X500 Pro Max",
+        "POCO F9 Ultra",
+        "Même podium que Solar Bay"
+      ]
+    ],
+    "general": "Classement général final : 1. iPhone 18 Pro Max, 2. Vivo X500 Pro Max, 3. POCO F9 Ultra, 4. Galaxy S26 Ultra, 5. iPhone 17 Pro Max.",
+    "points": [
+      "L’iPhone 18 Pro Max gagne le classement général grâce à son GPU : gros gain en ray-tracing par rapport à l’iPhone 17 Pro Max, températures bien maîtrisées (l’iPhone 17 Pro Max reste cependant le plus frais en fin de test).",
+      "Le Vivo X500 Pro Max, 2e, déçoit : ses scores dépassent à peine les puces de génération précédente et le Dimensity 9600 Pro chauffe nettement plus que les autres (jusqu’à plus de 60 °C, throttling possible).",
+      "Le POCO F9 Ultra confirme la puissance du Snapdragon 8 Elite Gen 5, avec la meilleure efficacité énergétique du panel Android (batterie de 8 050 mAh).",
+      "Fiches : iPhone 18 Pro Max 5 391 mAh (nano-SIM) et 12 Go ; POCO F9 Ultra 16 Go LPDDR5X et 8 050 mAh ; Vivo X500 Pro Max 8 000 mAh (modèle chinois, 200 mAh de plus que les variantes mondiales)."
+    ],
+    "reserves": "AnTuTu v12 indisponible sur iOS ; scores AnTuTu non comparables entre Android et iOS (API Vulkan contre Metal) ; scores Geekbench 7 non comparables à ceux de Geekbench 6."
+  },
+  "autonomie": {
+    "flagships": {
+      "video": "autonomie-flagships",
+      "protocole": "Séquence standardisée (YouTube, enregistrement vidéo 4K/30, navigation web pendant 3 h, jeu pendant 1 h, Google Meet), répétée en ordre inverse jusqu’à l’épuisement des batteries. Luminosité fixée à 500 nits, même réseau Wi-Fi, pas de carte SIM.",
       "lignes": [
         {
           "modele": "oneplus-16",
-          "estimation": "Jusqu’à 3 jours"
+          "mah": 9000,
+          "min": 843
         },
         {
-          "modele": "oppo-find-x9-pro",
-          "estimation": "Environ 2 jours complets"
+          "nom": "Xiaomi 18 Pro Max",
+          "min": 739
         },
         {
-          "nom": "Modèles occidentaux (environ 5 000 mAh)",
-          "mah": 5000,
-          "estimation": "1 jour au maximum"
+          "modele": "oppo-find-x10-pro-max",
+          "min": 699
+        },
+        {
+          "modele": "vivo-x500-pro-max",
+          "min": 666
+        },
+        {
+          "modele": "iphone-18-pro-max",
+          "min": 502
+        },
+        {
+          "nom": "Google Pixel 11 Pro XL",
+          "min": 484
+        },
+        {
+          "modele": "samsung-galaxy-s26-ultra",
+          "min": 442
         }
       ],
-      "note": "Estimations du rapport : la durée en jours n’est pas une mesure chronométrée."
+      "note": "Les Xiaomi, vivo, OPPO et OnePlus testés étaient des versions chinoises, dont les batteries dépassent celles des variantes internationales. Le OnePlus 16 doit son avance à sa batterie silicium-carbone de 9 000 mAh et à une gestion logicielle agressive des tâches en arrière-plan."
     },
-    "classement": {
-      "video": "drain-v80-lite",
-      "ordre": [
-        "vivo-v80-lite",
-        "poco-x8",
-        "honor-x9d",
-        "honor-600-pro"
-      ],
-      "rangs": [
-        "Vainqueur",
-        "Deuxième",
-        "Troisième",
-        "Quatrième"
-      ],
-      "note": "Le titre de la vidéo cite aussi des Samsung et un iPhone : le rapport ne retient que ces quatre résultats."
-    },
-    "robot": {
-      "video": "robot",
+    "milieu": {
+      "video": "drain-milieu",
+      "protocole": "Décharge de 100 % à 0 % avec 15 applications (réseaux sociaux, appareil photo, benchmarks pour simuler le jeu, jeux légers), relevés toutes les 30 minutes, luminosité identique calibrée au luxmètre (environ 425 lux).",
       "lignes": [
         {
-          "modele": "redmi-note-17-pro-max",
-          "etat": "Encore allumé, 22 % de charge restante",
-          "ton": "ok"
+          "modele": "vivo-v80-lite",
+          "mah": 10000,
+          "min": 1123
         },
         {
-          "nom": "OPPO Reno16 F",
-          "etat": "Encore allumé (charge restante non précisée)",
-          "ton": "ok"
+          "modele": "honor-x9d",
+          "mah": 8300,
+          "min": 1098
         },
         {
-          "modele": "samsung-galaxy-a57",
+          "modele": "honor-600-pro",
           "mah": 7000,
-          "etat": "Éteint à l’étape 8",
-          "ton": "bad"
+          "min": 1062
+        },
+        {
+          "modele": "poco-x8",
+          "mah": 8340,
+          "min": 985
+        },
+        {
+          "nom": "Samsung Galaxy A57",
+          "mah": 5000,
+          "min": 700
+        },
+        {
+          "nom": "Samsung Galaxy S26",
+          "mah": 4300,
+          "min": 661
         },
         {
           "modele": "apple-iphone-17",
-          "etat": "Éteint à l’étape 6",
-          "ton": "bad"
+          "mah": 3692,
+          "min": 576
         }
       ],
-      "note": "Cycle identique d’applications, joué par un bras robotisé pour écarter les biais humains."
+      "note": "Vidéo sponsorisée par vivo Afrique du Sud, sans ingérence de la marque sur les résultats selon le créateur. Le Vivo V80 Lite a une batterie silicium-carbone de 4e génération annoncée à plus de 80 % de santé après sept ans."
     }
   },
-  "fiches": [
-    {
-      "modele": "poco-f9-pro",
-      "verdict": "Rapport qualité/prix supérieur",
-      "note": "Plus équilibré que la version Ultra, selon le rapport."
+  "fiches": {
+    "duel": {
+      "video": "poco-f9",
+      "colonnes": [
+        "POCO F9 Pro",
+        "POCO F9 Ultra"
+      ],
+      "lignes": [
+        [
+          "Prix de lancement",
+          "900 € (early-bird 740 €)",
+          "1 100 € (early-bird 830 €)"
+        ],
+        [
+          "Batterie",
+          "6 330 mAh (6 210 mAh au F8 Pro)",
+          "8 050 mAh (6 500 mAh au F8 Ultra)"
+        ],
+        [
+          "Charge",
+          "100 W filaire + 50 W sans fil (nouveau)",
+          "100 W filaire + 50 W sans fil"
+        ],
+        [
+          "Écran",
+          "6,59\" AMOLED, 185 Hz max (LTPS, min. 30 Hz)",
+          "6,9\" AMOLED, 185 Hz max (LTPS, min. 30 Hz)"
+        ],
+        [
+          "Chipset",
+          "Snapdragon 8 Elite Gen 5 « V » (GPU réduit : 2 tranches, cache inférieur)",
+          "Snapdragon 8 Elite Gen 5 complet"
+        ],
+        [
+          "Photo principale",
+          "100 MP (même capteur que l’Ultra)",
+          "100 MP (rétrogradé par rapport au capteur plus grand du F8 Ultra)"
+        ],
+        [
+          "Téléobjectif",
+          "Flottant 2,5× optique, OIS, macro à 10 cm",
+          "Périscope 5× (120 mm), zoom jusqu’à 100×"
+        ],
+        [
+          "Ultra grand-angle",
+          "8 MP (plus large champ)",
+          "50 MP (meilleure qualité, notamment de nuit)"
+        ],
+        [
+          "Haut-parleurs",
+          "Doubles 1115F, sans caisson",
+          "Trois haut-parleurs dont caisson de basses 1620"
+        ],
+        [
+          "Vidéo",
+          "4K/60 (principal), ultra grand-angle limité à 1080p/30, plus de 8K",
+          "4K/60 (principal), 4K/60 ultra grand-angle, 8K caméra principale, 960 FPS Full HD"
+        ],
+        [
+          "Protection écran",
+          "Gorilla Glass 7i",
+          "Gorilla Glass 7i (rétrogradé par rapport au POCO Shield du F8 Ultra)"
+        ],
+        [
+          "Logiciel",
+          "HyperOS 3 (Android 16), 4 mises à jour majeures",
+          "Identique"
+        ]
+      ],
+      "verdict": "Verdict du testeur : l’Ultra reste le meilleur téléphone des deux, mais l’écart se resserre et la différence de prix se justifie moins bien qu’en 2025. Le F9 Ultra repose sur le même chipset et des caméras quasi identiques au F8 Ultra : il ne vaut pas la mise à niveau depuis ce dernier. En revanche, le F9 Pro est nettement meilleur que le F8 Pro : la mise à niveau se justifie. La vidéo inclut aussi un aperçu du POCO X8 (8 340 mAh, 400 €, Snapdragon 6s Gen 4)."
     },
-    {
-      "modele": "huawei-pura-90s-pro-max",
-      "verdict": "Daily driver",
-      "note": "Validé par le testeur pour un usage principal."
+    "pura": {
+      "video": "pura",
+      "lignes": [
+        [
+          "Prix",
+          "27 000 rands en Afrique du Sud (512 Go), soit 13 000 rands de moins que l’Ultra de l’an dernier au lancement"
+        ],
+        [
+          "Batterie et charge",
+          "6 000 mAh (Afrique du Sud) / 5 500 mAh (Europe) ; 100 W filaire, 80 W sans fil ; environ 1 000 mAh de plus que l’Ultra précédent"
+        ],
+        [
+          "Photo principale",
+          "50 MP RYYB à ouverture variable f/1.4 (capteur légèrement réduit, sans impact selon le testeur)"
+        ],
+        [
+          "Périscope",
+          "200 MP (premier du genre), 4× optique, stabilisation niveau « Cyber 7.0 », zoom macro jusqu’à 80×"
+        ],
+        [
+          "Ultra grand-angle",
+          "40 MP RYYB, inchangé, salué pour les couleurs et la faible distorsion"
+        ],
+        [
+          "Selfie",
+          "13 MP autofocus, 4K/60, bruit de nuit amélioré"
+        ],
+        [
+          "Écran",
+          "6,9\" OLED 10 bits, 460 PPI, 3 000 nits, LTPO 1-120 Hz, verre Kunlun amélioré, reflets réduits jusqu’à 70 %"
+        ],
+        [
+          "Puce",
+          "Kirin 9030a gravé en 5 nm, 8 cœurs / 12 threads, jusqu’à 2,7 GHz (contre 2,5 GHz), LPDDR5X + UFS 4.1"
+        ],
+        [
+          "Logiciel",
+          "EMUI 16 (Android 16), Celia améliorée, Gbox pour accéder aux services Google (Play Store, Gemini), Bluetooth 6, NFC, double SIM 5G + eSIM"
+        ],
+        [
+          "Jeux",
+          "Genshin Impact et Wuthering Waves fluides au maximum ; Call of Duty plafonné à 90 FPS malgré le support 120 FPS"
+        ],
+        [
+          "Étanchéité",
+          "IP68 et IP69"
+        ]
+      ],
+      "verdict": "Le système photo est salué comme « potentiellement le meilleur jamais vu sur un smartphone » : contrôle des hautes lumières (HDR matériel), zoom périscope 200 MP au rendu naturel jusqu’à 20× et au-delà, vidéo 4K/60 sur toutes les caméras, mode ouverture f/1.4 pour des portraits à profondeur matérielle. Défauts : pas de slow-motion 4K, quelques respirations de mise au point en vidéo, lissage de peau sur les portraits nocturnes et plafond à 90 FPS sur Call of Duty. Verdict du testeur : « j’ai maintenant un nouveau téléphone quotidien »."
     }
-  ],
+  },
   "photo": {
     "video": "photo",
+    "intro": "Les meilleurs photophones Android de l’automne 2026 : aucun classement numérique n’est attribué, l’ordre suit la présentation de la vidéo.",
     "lignes": [
-      {
-        "nom": "OPPO Find X9 Ultra",
-        "optique": "Double module périscopique",
-        "traitement": "Calibrage Hasselblad"
-      },
-      {
-        "nom": "Xiaomi 17 Ultra",
-        "optique": "Lentilles asphériques",
-        "traitement": "Leica Summilux"
-      },
-      {
-        "nom": "Vivo X300 Ultra",
-        "optique": "Stabilisation gimbal multi-axes",
-        "traitement": "ISP maison de la série V"
-      },
-      {
-        "modele": "pixel-11-pro",
-        "optique": "Traitement HDR computationnel",
-        "traitement": "Tensor G6, IA embarquée"
-      },
-      {
-        "modele": "samsung-galaxy-s26-ultra",
-        "optique": "Téléobjectif 5x (capteur recadré)",
-        "traitement": "Mise au point ISOCELL"
-      }
+      [
+        "Google Pixel 11 Pro",
+        "50 MP principal (capteur 1/1.3\"), télé 48 MP 5×, ultra grand-angle 48 MP ; Night Sight plus rapide (environ 1 s) ; Video Boost dans le cloud",
+        "Performances et autonomie sous les flagships rivaux ; zoom au-delà de 30× moyen"
+      ],
+      [
+        "Google Pixel 10a",
+        "Le meilleur photo à petit prix ; rendus naturels quasi identiques au 9a",
+        "Pas de téléobjectif ; zoom 8× basse résolution"
+      ],
+      [
+        "OPPO Find X9 Pro",
+        "Hasselblad ; principal 50 MP LYT828 ; télé 200 MP ; HDR maîtrisé ; 4K/60 Dolby Vision sur les 3 capteurs ; kit téléconvertisseur optionnel",
+        "Chute automatique de résolution en faible lumière ; bouton photo mal placé"
+      ],
+      [
+        "OPPO Find X9 Ultra",
+        "Cinq caméras : principal 200 MP LYT-901, télé 3× 200 MP, périscope 10× 50 MP ; Snapdragon ; meilleur zoom 10×-20× du marché selon le testeur",
+        "Ultra grand-angle en retrait de nuit et en fort HDR ; grain vidéo en basse lumière"
+      ],
+      [
+        "Vivo X300 / X300 Pro",
+        "Zeiss T* ; X300 Pro : principal 50 MP LYT828 + puce VS1, télé 200 MP 85 mm ; 8K (Pro) ; kit photo optionnel",
+        "Sujets en mouvement parfois ratés ; vidéo zoom au-delà de 5× meilleure sur le Pro"
+      ],
+      [
+        "Vivo X300 Ultra",
+        "Principal 200 MP LYT-901 ; télé 200 MP 3,7×/85 mm salué comme l’un des meilleurs de 2026 ; 8K/30 ; Snapdragon",
+        "Vent gênant en audio ; kit photo encombrant ; détail vidéo en baisse de nuit"
+      ],
+      [
+        "Xiaomi 17 Ultra",
+        "Leica ; principal 50 MP 1\" ; télé 200 MP à zoom optique mécanique 75-100 mm ; 8K/30 ; RAW",
+        "Artefacts IA au zoom excessif ; modes IA perfectibles"
+      ],
+      [
+        "Xiaomi 17",
+        "Compact (6,3\") ; Light Fusion 950, télé flottant GN5 ; meilleure autonomie que le 17 Ultra",
+        "Motion Track & Focus désactivé par défaut ; flou au-delà de 15×"
+      ],
+      [
+        "Xiaomi 17T Pro",
+        "Leica ; Sony Light Fusion 950, télé 5× ; slow-motion 4K/120 jusqu’à 6 min",
+        "Sujets en mouvement difficiles ; plus cher que les T précédents"
+      ],
+      [
+        "Samsung Galaxy S26 Ultra",
+        "Principal 200 MP f/1.4 ; nuit bien améliorée ; stabilisation vidéo Horizontal Lock (référence) ; Video Boost nocturne",
+        "Détail du téléobjectif sous Vivo ; sujets en mouvement flous ; ultra grand-angle faible de nuit ; 1 300 £ et plus"
+      ],
+      [
+        "Sony Xperia 1 VII",
+        "Triple 48 MP naturelle ; télé 70 mm (capteur agrandi 1/1.56\") ; commandes manuelles ; microSD, jack 3,5",
+        "Application photo lente à ouvrir et traiter ; flou de mouvement ; 4K/120 absent"
+      ],
+      [
+        "Honor Magic 8 Pro",
+        "Principal 50 MP 1/1.3\" ; télé 200 MP 3,7× ; Motion Sensor Capture excellent sur sujets en mouvement",
+        "Zoom flou au-delà de 30-40× ; IA de couleurs parfois artificielle"
+      ],
+      [
+        "POCO F9 Ultra",
+        "Le photophone pas cher : principal 200 MP HP5, télé 5×, ultra grand-angle 50 MP ; zoom correct jusqu’à 15-20× même de nuit",
+        "Lumières parfois cramées la nuit ; judder vidéo ; audio Bose"
+      ]
     ],
-    "retenir": [
-      "Le capteur principal d’un pouce est devenu la norme sur les modèles Ultra.",
-      "Alternative de milieu de gamme recommandée : le Pixel 10a (mention honorable, rapport qualité/prix)."
-    ]
+    "tendances": "Le Pixel 11 Pro reste la référence « familiale » sans effort, les OPPO Find X9 et Vivo X300 dominent le zoom et la polyvalence, Xiaomi mise sur l’architecture Leica à zoom optique mécanique, Samsung a corrigé le tir sur la nuit et la vidéo, et Sony cultive le naturel et les commandes manuelles au prix d’une application perfectible."
   },
   "gamme": {
     "milieu": {
       "video": "milieu",
-      "plafond": "moins de 500 £",
+      "intro": "Plus de vingt milieux de gamme testés comme téléphone principal. Grand favori : le POCO X8 Pro Max, « rapport qualité-prix stupéfiant ». L’ordre suit la vidéo, pas un classement chiffré.",
       "lignes": [
-        {
-          "nom": "Google Pixel 10a",
-          "point": "Traitement d’image",
-          "mention": "Excellent"
-        },
-        {
-          "nom": "OnePlus Nord 5",
-          "point": "Vitesse de charge",
-          "mention": "Optimal"
-        },
-        {
-          "nom": "OnePlus 15R",
-          "point": "Fluidité de l’affichage",
-          "mention": "Haut de gamme"
-        },
-        {
-          "nom": "Samsung Galaxy A57 5G",
-          "point": "Stabilité logicielle",
-          "mention": "Standard"
-        }
+        [
+          "Google Pixel 10a",
+          "Photo de référence du segment, 7 ans de mises à jour, écran excellent, 45 W",
+          "Tensor G4 daté ; le Pixel 9a en promo peut être meilleur"
+        ],
+        [
+          "OnePlus Nord 5",
+          "6,83\" AMOLED, haut-parleurs stéréo, autonomie correcte",
+          "Alert slider remplacé ; chauffe en jeu ; batterie en retrait par rapport au Nord 4"
+        ],
+        [
+          "OnePlus Nord CE5",
+          "Moins cher, microSD, excellente autonomie, moins chaud",
+          "Haut-parleur mono, écran moins lumineux"
+        ],
+        [
+          "OnePlus 15R (629 £)",
+          "Snapdragon 8 Gen 5, 165 Hz, 7 400 mAh, Wuthering Waves au maximum",
+          "Pas de charge sans fil ; photo décevante"
+        ],
+        [
+          "Samsung Galaxy A57 5G",
+          "6,7\" Super AMOLED 120 Hz, IP68, 6 ans de mises à jour",
+          "Performances moyennes ; pas de charge sans fil ; pas son préféré"
+        ],
+        [
+          "Samsung Galaxy A37 5G",
+          "Moins cher, IP, 120 Hz, stéréo, 6 ans de support",
+          "Stockage réduit par rapport à l’A36 ; moins puissant que l’A57"
+        ],
+        [
+          "Nothing Phone 4a / 4a Pro",
+          "Téléobjectif (rare à ce prix), Glyph, Nothing OS propre, Wuthering Waves fluide (Pro)",
+          "—"
+        ],
+        [
+          "Nothing Phone 4b",
+          "—",
+          "Recommandé à éviter : « meh », pas de télé, peu plus cher"
+        ],
+        [
+          "Motorola Edge 70 Fusion",
+          "Finesse, IP68/69, 7 000 mAh (version épaisse), 68 W",
+          "Mises à jour tardives ; écran incurvé ; pas d’upgrade majeur"
+        ],
+        [
+          "Redmi Note 15 Pro+ 5G",
+          "6 500 mAh, 100 W, 200 MP, IP68, Victus 2",
+          "HyperOS lourd ; 1 mise à jour majeure déjà consommée"
+        ],
+        [
+          "Redmi Note 15 Pro 5G",
+          "6 580 mAh, même écran et photo que le Pro+",
+          "Charge 45 W ; le Dimensity 7400 limite les jeux exigeants"
+        ],
+        [
+          "Xiaomi 17T",
+          "6,6\" compact, Dimensity 8500 Ultra, 6 500 mAh, HDR10+/Dolby Vision",
+          "Pas de charge sans fil ; cadre plastique ; attendre une promo"
+        ],
+        [
+          "POCO X8 Pro Max",
+          "Coup de cœur : 8 500 mAh (fonction powerbank), Dimensity 9500S, écran très lumineux, haut-parleurs boostés à 400 %",
+          "HyperOS clivant ; pas de téléobjectif"
+        ],
+        [
+          "POCO X8 Pro",
+          "Plus compact et moins cher, édition Iron Man",
+          "Batterie, photo et performances en retrait du Max"
+        ],
+        [
+          "POCO F8 Pro",
+          "Snapdragon 8 Elite, téléobjectif",
+          "Chauffe ; proche du X8 Pro ; le Max est préféré"
+        ],
+        [
+          "Honor 400 Lite",
+          "Bouton photo, gros stockage, look iPhone",
+          "Jeux exigeants difficiles ; couleurs sur-saturées"
+        ],
+        [
+          "Honor 600",
+          "7 000 mAh",
+          "Trop cher ; attendre une remise"
+        ],
+        [
+          "Honor Magic 8 Lite",
+          "Verre trempé ultra-résistant (chutes de 2,5 m), IP68/69, 7 500 mAh Si-C, 66 W",
+          "Snapdragon 6 Gen 4 limité ; photo « correcte » ; Magic OS lourd"
+        ],
+        [
+          "REDMAGIC 11 Air",
+          "Le gaming pas cher : triggers, 165 Hz, refroidissement",
+          "IA « douteuse » ; SoC d’une génération derrière"
+        ],
+        [
+          "Vivo V70",
+          "Zeiss, télé portrait, photos naturelles",
+          "Quasi identique au V60 ; import possible au Royaume-Uni"
+        ],
+        [
+          "OPPO Reno 16 / Pro",
+          "Bonne photo, ColorOS",
+          "Chers, précommandes seulement"
+        ]
       ],
-      "note": "Le rapport relève que l’écart de performance brute avec les flagships s’est nettement réduit. Les qualificatifs sont ceux du rapport, sans note chiffrée."
+      "avertissements": "Avertissements du testeur : éviter l’iPhone 17e (écran 60 Hz, photo basique, plus cher que presque tous les Android du panel) et le Galaxy S25 FE sauf très grosse remise. Le OnePlus Nord 4 et le Nothing Phone 3a, anciens favoris, ne sont plus vendus neufs au Royaume-Uni mais se trouvent reconditionnés. OnePlus s’est retiré du marché britannique : le Nord 5 n’y est donc plus recommandé."
     },
     "budget": {
       "video": "budget",
-      "plafond": "moins de 300 £",
+      "intro": "Smartphones à environ 300 £ ou moins au Royaume-Uni. Xiaomi, POCO, Honor et Motorola dominent les recommandations.",
       "lignes": [
-        {
-          "modele": "redmi-note-15-pro-5g",
-          "nom": "Redmi Note 15 Pro 5G",
-          "puce": "Dimensity 7400",
-          "mah": 6580,
-          "cle": "Capteur 200 MP"
-        },
-        {
-          "nom": "Redmi Note 15 (version de base)",
-          "puce": "Série Helio",
-          "mah": 6000,
-          "cle": "Limité à la 4G"
-        },
-        {
-          "modele": "honor-magic-8-lite",
-          "nom": "Honor Magic 8 Lite",
-          "puce": "Snapdragon 6 Gen 4",
-          "mah": 7500,
-          "cle": "Châssis anti-chute (2,5 m)"
-        },
-        {
-          "nom": "POCO M8 Pro",
-          "puce": null,
-          "mah": null,
-          "cle": "Tarification agressive"
-        }
-      ],
-      "etancheite": {
-        "modele": "honor-magic-8-lite",
-        "points": [
-          "IP68 : résiste à l’immersion",
-          "IP69 : résiste aux jets haute pression et haute température",
-          "Écran tactile calibré pour les doigts mouillés"
+        [
+          "Xiaomi Redmi Note 15",
+          "—",
+          "Le moins cher de la famille : grand AMOLED 6,8\", 6 000 mAh, autonomie au top ; jeux simples seulement ; HyperOS perfectible"
+        ],
+        [
+          "Xiaomi Redmi Note 15 Pro 5G",
+          "moins de 300 £",
+          "IP68 complète, 6 580 mAh, 200 MP, ultra grand-angle, Dimensity 7400 plus fluide ; meilleur rapport du panel"
+        ],
+        [
+          "Honor 400",
+          "249 £ (avec code)",
+          "Bonne affaire en promo ; compact et léger ; pas de télé (contrairement au Pro)"
+        ],
+        [
+          "Honor Magic 8 Lite",
+          "environ 300 £",
+          "Ultra-résistant aux chutes (2,5 m), IP68/69, 7 500 mAh Si-C, 66 W ; performances et photo moyennes"
+        ],
+        [
+          "Motorola Edge 60 Fusion",
+          "229 £ (promo)",
+          "Design flatteur, autonomie « stellaire », POLED incurvé, caméras surprenantes ; mises à jour lentes"
+        ],
+        [
+          "Motorola Moto G77",
+          "250 £",
+          "Android quasi-stock, AMOLED lumineux ; sans vraie signature"
+        ],
+        [
+          "Motorola Moto G06 Power",
+          "moins de 100 £",
+          "L’ultra-budget : 7 000 mAh, 6,9\" ; l’une des meilleures autonomies du marché"
+        ],
+        [
+          "POCO M8 Pro",
+          "279 £",
+          "Étanche, Snapdragon 7s Gen 4, 256 Go, 6 500 mAh, meilleur capteur (Light Fusion) ; gère Wuthering Waves et Genshin"
+        ],
+        [
+          "POCO M8",
+          "moins de 200 £",
+          "AMOLED, 256 Go + microSD, 5 500 mAh ; seulement résistant aux éclaboussures"
+        ],
+        [
+          "Reconditionnés : OnePlus Nord 5, Nothing Phone 3",
+          "moins de 300 £",
+          "D’anciens favoris toujours recommandés en occasion, plus vendus neufs"
         ]
-      }
+      ],
+      "conclusion": "Le Redmi Note 15 Pro 5G est le meilleur choix « classique » sous 300 £, le POCO M8 Pro le plus polyvalent côté performances, et le Moto G06 Power la solution radicale pour un budget de 100 £. Les batteries silicium-carbone (7 000 à 7 500 mAh) se démocratisent jusque dans l’entrée de gamme."
     }
   },
   "records": {
     "ordre": [
       "vivo-v80-lite",
-      "redmi-note-17-pro-max",
       "oneplus-16",
       "poco-x8",
       "honor-x9d",
+      "poco-f9-ultra",
+      "vivo-x500-pro-max",
       "honor-magic-8-lite",
-      "oppo-find-x9-pro",
       "vivo-v80",
       "oppo-find-x10-pro-max",
-      "honor-600-pro",
-      "redmi-note-15-pro-5g"
+      "honor-600-pro"
     ],
     "echelle_mah": 10000
   },
@@ -666,14 +1076,14 @@
         "ref": "Vidéo 4"
       },
       {
-        "modele": "honor-magic-8-lite",
-        "raison": "Châssis anti-chute (2,5 m), IP68 et IP69, 7 500 mAh",
-        "ref": "Vidéo 13"
+        "modele": "redmi-note-15-pro-5g",
+        "raison": "Le meilleur choix « classique » sous 300 £ : 6 580 mAh, 200 MP, IP68",
+        "ref": "Vidéo 14"
       },
       {
-        "modele": "redmi-note-15-pro-5g",
-        "raison": "Capteur 200 MP et batterie de 6 580 mAh à petit prix",
-        "ref": "Vidéo 13"
+        "modele": "honor-magic-8-lite",
+        "raison": "Ultra-résistant aux chutes (2,5 m), IP68 et IP69, 7 500 mAh, charge 66 W",
+        "ref": "Vidéo 14"
       }
     ],
     "professionnel": [
@@ -693,9 +1103,9 @@
         "ref": "Vidéo 2"
       },
       {
-        "modele": "redmi-note-17-pro-max",
-        "raison": "Autonomie : 10 000 mAh et encore allumé (22 %) à la fin du cycle robotisé",
-        "ref": "Vidéo 8"
+        "modele": "oneplus-16",
+        "raison": "Autonomie : 14 h 03 au test Techmo, la plus longue des sept flagships",
+        "ref": "Vidéo 7"
       }
     ],
     "gamer": [
@@ -715,8 +1125,8 @@
         "ref": "Vidéo 3"
       },
       {
-        "modele": "poco-f9-pro",
-        "raison": "Écran 185 Hz, 16 Go de RAM et charge 120 W ; plus équilibré que la version Ultra",
+        "modele": "poco-f9-ultra",
+        "raison": "Snapdragon 8 Elite Gen 5 : la meilleure efficacité énergétique du panel Android aux benchmarks",
         "ref": "Vidéo 9"
       }
     ],
@@ -743,8 +1153,8 @@
       },
       {
         "modele": "huawei-pura-90s-pro-max",
-        "raison": "Capteur principal 1 pouce et téléobjectif périscope 200 MP ; verdict « daily driver »",
-        "ref": "Vidéo 10"
+        "raison": "Principal 50 MP f/1.4 et périscope 200 MP : système photo salué comme « potentiellement le meilleur jamais vu sur un smartphone »",
+        "ref": "Vidéo 11"
       }
     ]
   },
@@ -754,8 +1164,16 @@
       "texte": "Les capacités atteignent 7 000 à 9 000 mAh sans surépaisseur notable, grâce aux cellules silicium-carbone."
     },
     {
-      "titre": "La batterie de 10 000 mAh arrive en milieu de gamme",
-      "texte": "Le Vivo V80 Lite et le Redmi Note 17 Pro Max atteignent 10 000 mAh ; face à eux, l’iPhone 17 (4 300 mAh) s’éteint bien avant lors du cycle robotisé."
+      "titre": "La batterie silicium-carbone gagne le milieu de gamme",
+      "texte": "Le Vivo V80 Lite (10 000 mAh) tient 18 h 43 écran allumé, l’iPhone 17 (3 692 mAh) 9 h 36 : l’autonomie redevient un argument d’achat, jusqu’à l’entrée de gamme (7 000 à 7 500 mAh)."
+    },
+    {
+      "titre": "Aucun fabricant ne gagne partout",
+      "texte": "Samsung règne sur la vitesse (S26 Ultra), Apple sur les benchmarks GPU et le ray-tracing (iPhone 18 Pro Max), OnePlus sur l’autonomie, Vivo, OPPO et Xiaomi sur la photo, Huawei sur la qualité d’image pure."
+    },
+    {
+      "titre": "Le Pixel en difficulté, Huawei de retour",
+      "texte": "Le Pixel ferme la marche du test de vitesse et finit avant-dernier en autonomie ; son salut reste la photo et le traitement logiciel. Huawei retrouve la 5G, Android 16 (EMUI 16) et les services Google via Gbox, à un prix de lancement en forte baisse."
     },
     {
       "titre": "Le logiciel fait la photo",
@@ -763,8 +1181,10 @@
     }
   ],
   "limites": [
-    "Synthèse de treize vidéos de sept chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.",
-    "Les vidéos 6 à 13 viennent d’un rapport de synthèse (PDF d’octobre 2026) : titres et chaînes contrôlés auprès de YouTube, contenu des vidéos non relu. Deux vidéos du rapport ne sont pas reprises (voir la liste des vidéos).",
+    "Synthèse de quatorze vidéos de sept chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.",
+    "Les vidéos 6 à 14 viennent d’un rapport de synthèse d’octobre 2026 établi d’après leurs transcriptions et descriptions : titres et chaînes contrôlés auprès de YouTube, durées, dates et chiffres non recoupés avec les vidéos.",
+    "Les durées d’autonomie dépendent du protocole de chaque vidéo : elles ne se comparent pas d’une vidéo à l’autre. Les Xiaomi, vivo, OPPO et OnePlus du test Techmo étaient des versions chinoises, aux batteries plus grosses que les variantes internationales ; le test TechNick du Vivo V80 Lite est sponsorisé par vivo.",
+    "Les scores AnTuTu ne sont pas comparables entre Android et iOS (API Vulkan contre Metal) ; les classements photo, milieu de gamme et budget de Tech Spurt suivent l’ordre de présentation de la vidéo, sans note chiffrée ; les prix des vidéos 12 à 14 sont en livres sterling (Royaume-Uni).",
     "Le dossier ne contient aucune note chiffrée : le guide n’en invente pas et ne calcule pas de score par profil pour ces modèles.",
     "Prix en dollars (prix de sortie américain, ou reconditionné pour le S26 Ultra), non vérifiés en France.",
     "Chaque verdict vaut dans sa vidéo : « meilleur choix » se lit dans la gamme comparée, pas sur tout le marché.",

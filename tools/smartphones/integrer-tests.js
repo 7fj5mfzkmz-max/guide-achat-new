@@ -32,18 +32,19 @@ const COMPAT = {
   'samsung-galaxy-a37': {},
   'redmagic-11s-pro': {},
   'pixel-11-pro': {},
-  /* Rapport du 30 octobre 2026 (vidéos 6 à 13) : seulement les capacités, écrans, puces et protections cités. */
-  'oppo-find-x9-pro': { batterie: { capacite_mah: 7500, recharge_watts: null, chimie: null } },
+  /* Rapport d'octobre 2026 (vidéos 6 à 14) : seulement les capacités, écrans, puces et protections cités. */
   'vivo-v80-lite': { batterie: { capacite_mah: 10000, recharge_watts: null, chimie: null } },
-  'poco-x8': { batterie: { capacite_mah: 8340, recharge_watts: null, chimie: null } },
   'honor-x9d': { batterie: { capacite_mah: 8300, recharge_watts: null, chimie: null } },
   'honor-600-pro': { batterie: { capacite_mah: 7000, recharge_watts: null, chimie: null } },
-  'redmi-note-17-pro-max': { batterie: { capacite_mah: 10000, recharge_watts: null, chimie: null } },
-  'apple-iphone-17': { batterie: { capacite_mah: 4300, recharge_watts: null, chimie: null } },
-  'poco-f9-pro': { ecran: { technologie: 'OLED', frequence_max_hz: 185, luminosite_nits: null }, performance: { soc: 'Snapdragon 8 Elite Gen 5', niveau: null, ram_go_max: 16 }, batterie: { capacite_mah: null, recharge_watts: 120, chimie: null } },
-  'huawei-pura-90s-pro-max': {},
-  'redmi-note-15-pro-5g': { performance: { soc: 'MediaTek Dimensity 7400', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 6580, recharge_watts: null, chimie: null } },
-  'honor-magic-8-lite': { performance: { soc: 'Snapdragon 6 Gen 4', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 7500, recharge_watts: null, chimie: null }, durete: { protection_ip: 'IP68', android_version_sortie: null } }
+  'poco-x8': { performance: { soc: 'Snapdragon 6s Gen 4', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 8340, recharge_watts: null, chimie: null } },
+  'apple-iphone-17': { batterie: { capacite_mah: 3692, recharge_watts: null, chimie: null } },
+  'iphone-18-pro-max': { performance: { soc: 'Apple A20 Pro', niveau: null, ram_go_max: 12 }, batterie: { capacite_mah: 5391, recharge_watts: null, chimie: null } },
+  'vivo-x500-pro-max': { performance: { soc: 'MediaTek Dimensity 9600 Pro', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 8000, recharge_watts: null, chimie: null } },
+  'poco-f9-ultra': { ecran: { technologie: 'AMOLED', frequence_max_hz: 185, luminosite_nits: null }, performance: { soc: 'Snapdragon 8 Elite Gen 5', niveau: null, ram_go_max: 16 }, batterie: { capacite_mah: 8050, recharge_watts: 100, chimie: null } },
+  'poco-f9-pro': { ecran: { technologie: 'AMOLED', frequence_max_hz: 185, luminosite_nits: null }, performance: { soc: 'Snapdragon 8 Elite Gen 5', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 6330, recharge_watts: 100, chimie: null } },
+  'huawei-pura-90s-pro-max': { ecran: { technologie: 'OLED', frequence_max_hz: 120, luminosite_nits: 3000 }, performance: { soc: 'Kirin 9030a', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 5500, recharge_watts: 100, chimie: null }, durete: { protection_ip: 'IP68', android_version_sortie: 16 } },
+  'redmi-note-15-pro-5g': { performance: { soc: 'MediaTek Dimensity 7400', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 6580, recharge_watts: null, chimie: null }, durete: { protection_ip: 'IP68', android_version_sortie: null } },
+  'honor-magic-8-lite': { performance: { soc: 'Snapdragon 6 Gen 4', niveau: null, ram_go_max: null }, batterie: { capacite_mah: 7500, recharge_watts: 66, chimie: null }, durete: { protection_ip: 'IP68', android_version_sortie: null } }
 };
 
 const fmt = n => Number(n).toLocaleString('fr-FR').replace(/ /g, ' ');
@@ -110,9 +111,9 @@ for (const m of tests.modeles) {
     id: m.id,
     nom: m.nom,
     marque: m.marque,
-    prix_indicatif: null,
+    prix_indicatif: m.prix_eur || null,
     prix_usd: m.prix_usd || null,
-    prix_note: m.prix_usd ? 'Prix en dollars relevé dans la vidéo ' + v.n + (m.prix_note ? ' (' + m.prix_note + ')' : ' (prix de sortie américain)') + ' : non vérifié en France.' : 'Prix non relevé dans la vidéo.',
+    prix_note: m.prix_eur ? 'Prix de lancement en euros relevé dans la vidéo ' + v.n + ' : non vérifié en magasin.' : m.prix_usd ? 'Prix en dollars relevé dans la vidéo ' + v.n + (m.prix_note ? ' (' + m.prix_note + ')' : ' (prix de sortie américain)') + ' : non vérifié en France.' : 'Prix non relevé dans la vidéo.',
     caracteristiques: caracteristiques(m),
     points_forts: pointsForts(m),
     points_faibles: pointsFaibles(m),

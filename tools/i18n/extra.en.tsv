@@ -492,84 +492,86 @@ OIS sur le capteur principal	OIS on the main sensor
 Énorme batterie {0} mAh	Huge {0} mAh battery
 Autonomie mesurée : {0} h {1}	Measured battery life: {0} h {1}
 Recommandés et vérifiés	Recommended and verified
+Six fiches vérifiées au plus, classées de la plus pertinente à la moins pertinente selon leur note pour ce profil. Les modèles testés pour ce profil sont dans la section Tests 2026.	Six verified sheets at most, ranked from most to least relevant by their score for this profile. Models tested for this profile are in the Tests section.
 Note {0}/10 pour ce profil	Score {0}/10 for this profile
-Décharge	Battery drain
-Fiches détaillées	Detailed profiles
-Milieu et petit budget	Mid-range and budget
+Vitesse et benchmarks	Speed and benchmarks
+Milieu de gamme et budget	Mid-range and budget
+POCO F9 et Pura 90s	POCO F9 and Pura 90s
 Les vidéos	The videos
-(Test de décharge)	(Drain test)
-(Décharge robotisée)	(Robotic drain)
-(Fiche : POCO F9 Pro)	(Profile: POCO F9 Pro)
-(Fiche : Huawei Pura 90s Pro Max)	(Profile: Huawei Pura 90s Pro Max)
-(Milieu de gamme)	(Mid-range)
-(Petit budget)	(Budget)
-Non reprise	Not used
-» : Le titre annonce un test de vitesse ; le rapport décrit une analyse de batterie et de modem du Galaxy S26 Ultra que rien ne permet de recouper.	» : The title announces a speed test; the report describes a battery and modem analysis of the Galaxy S26 Ultra that nothing allows us to cross-check.
-» : Le rapport affirme un arrêt thermique du Galaxy S26 Ultra à {0} °C et cite un Pixel {1} Pro XL que le titre ne mentionne pas : affirmation trop forte pour être publiée sans l’avoir vue.	» : The report claims the Galaxy S26 Ultra shut down from heat at {0} °C and cites a Pixel {1} Pro XL that the title does not mention: too strong a claim to publish without having seen it.
-Synthèse de treize vidéos de sept chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.	Summary of thirteen videos from seven channels: the figures are those reported by the reviewers; the guide did not re-measure them.
-Les vidéos {0} à {1} viennent d’un rapport de synthèse (PDF d’octobre {2}) : titres et chaînes contrôlés auprès de YouTube, contenu des vidéos non relu. Deux vidéos du rapport ne sont pas reprises (voir la liste des vidéos).	Videos {0} to {1} come from a summary report (PDF from October {2}): titles and channels checked against YouTube, video content not re-read. Two videos from the report are not used (see the list of videos).
-Six fiches vérifiées au plus, classées de la plus pertinente à la moins pertinente selon leur note pour ce profil. Les modèles testés pour ce profil sont dans la section « Les tests ».	Six verified profiles at most, ranked from most to least relevant by their score for this profile. Models tested for this profile are in the “Tests” section.
-Décharge continue de l’écran (vidéo {0}, TechNick)	Continuous screen drain (video {0}, TechNick)
-Deuxième	Second
-Troisième	Third
-Quatrième	Fourth
-Le titre de la vidéo cite aussi des Samsung et un iPhone : le rapport ne retient que ces quatre résultats.	The video title also mentions Samsung phones and an iPhone: the report keeps only these four results.
-Autonomie estimée (vidéo {0}, Techmo)	Estimated battery life (video {0}, Techmo)
-Autonomie estimée	Estimated battery life
-Jusqu’à {0} jours	Up to {0} days
-Environ {0} jours complets	About {0} full days
-{0} jour au maximum	{0} day at most
-Estimations du rapport : la durée en jours n’est pas une mesure chronométrée.	Estimates from the report: the duration in days is not a timed measurement.
-Cycle robotisé (vidéo {0}, PhoneBuff)	Robotic cycle (video {0}, PhoneBuff)
-Fin du cycle	End of cycle
-Encore allumé, {0} % de charge restante	Still on, {0}% charge left
-Encore allumé (charge restante non précisée)	Still on (remaining charge not specified)
-Éteint à l’étape {0}	Shut down at step {0}
-Cycle identique d’applications, joué par un bras robotisé pour écarter les biais humains.	Identical cycle of apps, played by a robotic arm to rule out human bias.
-Deux fiches détaillées	Two detailed profiles
-Rapport qualité/prix supérieur	Superior value for money
-Snapdragon {0} Elite, 5e génération	Snapdragon {0} Elite, 5th generation
-Vidéo	Video
-Plus équilibré que la version Ultra, selon le rapport.	More balanced than the Ultra version, according to the report.
-Capteur principal {0} pouce, téléobjectif périscope {1} MP	{0}-inch main sensor, {1} MP periscope telephoto
-Validé par le testeur pour un usage principal.	Approved by the reviewer for everyday main-phone use.
-Cinq téléphones photo cités (vidéo {0}, Tech Spurt)	Five camera phones cited (video {0}, Tech Spurt)
-Double module périscopique	Dual periscope module
-Lentilles asphériques	Aspherical lenses
-ISP maison de la série V	In-house V-series ISP
-Tensor G6, IA embarquée	Tensor G6, on-device AI
-Téléobjectif 5x (capteur recadré)	5x telephoto (cropped sensor)
-Mise au point ISOCELL	ISOCELL autofocus
-Le capteur principal d’un pouce est devenu la norme sur les modèles Ultra.	The 1-inch main sensor has become the norm on Ultra models.
-Alternative de milieu de gamme recommandée : le Pixel 10a (mention honorable, rapport qualité/prix).	Recommended mid-range alternative: the Pixel 10a (honorable mention, value for money).
-Milieu de gamme, moins de {0} £ (vidéo {1})	Mid-range, under £{0} (video {1})
-Point évalué	Point assessed
-Vitesse de charge	Charging speed
-Fluidité de l’affichage	Display smoothness
-Stabilité logicielle	Software stability
-Le rapport relève que l’écart de performance brute avec les flagships s’est nettement réduit. Les qualificatifs sont ceux du rapport, sans note chiffrée.	The report notes that the raw performance gap with flagships has narrowed considerably. The qualifiers are the report’s own, with no numerical score.
-Petit budget, moins de {0} £ (vidéo {1})	Budget, under £{0} (video {1})
-Redmi Note {0} (version de base)	Redmi Note {0} (base version)
-Série Helio	Helio series
-Limité à la 4G	Limited to 4G
-Non relevée	Not recorded
-Résistance : Honor Magic {0} Lite	Durability: Honor Magic {0} Lite
-IP68 : résiste à l’immersion	IP68: withstands immersion
-IP69 : résiste aux jets haute pression et haute température	IP69: withstands high-pressure, high-temperature jets
-Écran tactile calibré pour les doigts mouillés	Touchscreen tuned for wet fingers
-Capteur principal {0} pouce et téléobjectif périscope {1} MP ; verdict « daily driver »	{0}-inch main sensor and {1} MP periscope telephoto; verdict “daily driver”
-Mesure relevée dans la vidéo {0}.	Measured in video {0}.
+(Vitesse)	(Speed)
+(Autonomie des flagships)	(Flagship battery life)
+(Autonomie du milieu de gamme)	(Mid-range battery life)
+(Duel POCO F9)	(POCO F9 duel)
+(Test Huawei Pura 90s Pro Max)	(Huawei Pura 90s Pro Max test)
+(Classement photo)	(Camera ranking)
+(Classement milieu de gamme)	(Mid-range ranking)
+(Classement budget)	(Budget ranking)
 Trait pointillé : version Asie de l’OPPO ({0} mAh). Échelle : {1} mAh. Les chiffres viennent des vidéos de la liste « Les vidéos ».	Dotted line: Asian version of the OPPO ({0} mAh). Scale: {1} mAh. The figures come from the videos in the “The videos” list.
-Vivo V80 Lite 5G et Xiaomi REDMI Note {0} Pro Max	Vivo V80 Lite 5G and Xiaomi REDMI Note {0} Pro Max
-{0} mAh chacun, devant OnePlus {1} ({2} mAh)	{0} mAh each, ahead of OnePlus {1} ({2} mAh)
-Données du rapport de synthèse reçu en octobre {0} : titres et chaînes des vidéos contrôlés, contenu des vidéos non relu par le guide.	Data from the summary report received in October {0}: video titles and channels checked, video content not re-read by the guide.
-La batterie de {0} mAh arrive en milieu de gamme	{0} mAh batteries reach the mid-range
-Le Vivo V80 Lite et le Redmi Note {0} Pro Max atteignent {1} mAh ; face à eux, l’iPhone {2} ({3} mAh) s’éteint bien avant lors du cycle robotisé.	The Vivo V80 Lite and the Redmi Note {0} Pro Max reach {1} mAh; against them, the iPhone {2} ({3} mAh) shuts down much earlier in the robotic cycle.
-Châssis anti-chute ({0} m), IP68 et IP69, {1} mAh	Drop-proof chassis ({0} m), IP68 and IP69, {1} mAh
-Capteur {0} MP et batterie de {1} mAh à petit prix	{0} MP sensor and {1} mAh battery at a low price
+La batterie silicium-carbone gagne le milieu de gamme	Silicon-carbon batteries reach the mid-range
+Le Vivo V80 Lite ({0} mAh) tient {1} h {2} écran allumé, l’iPhone {3} ({4} mAh) {5} h {6} : l’autonomie redevient un argument d’achat, jusqu’à l’entrée de gamme ({7} à {8} mAh).	The Vivo V80 Lite ({0} mAh) lasts {1} h {2} with the screen on, the iPhone {3} ({4} mAh) {5} h {6}: battery life is a buying argument again, down to entry-level phones ({7} to {8} mAh).
+Aucun fabricant ne gagne partout	No manufacturer wins everywhere
+Samsung règne sur la vitesse (S26 Ultra), Apple sur les benchmarks GPU et le ray-tracing (iPhone {0} Pro Max), OnePlus sur l’autonomie, Vivo, OPPO et Xiaomi sur la photo, Huawei sur la qualité d’image pure.	Samsung rules speed (S26 Ultra), Apple rules GPU benchmarks and ray tracing (iPhone {0} Pro Max), OnePlus rules battery life, Vivo, OPPO and Xiaomi rule photography, and Huawei rules pure image quality.
+Le Pixel en difficulté, Huawei de retour	Pixel struggling, Huawei back
+Le Pixel ferme la marche du test de vitesse et finit avant-dernier en autonomie ; son salut reste la photo et le traitement logiciel. Huawei retrouve la 5G, Android {0} (EMUI {1}) et les services Google via Gbox, à un prix de lancement en forte baisse.	The Pixel comes last in the speed test and second to last in battery life; its saving grace remains photography and software processing. Huawei gets back 5G, Android {0} (EMUI {1}) and Google services via Gbox, at a much lower launch price.
+Le meilleur choix « classique » sous {0} £ : {1} mAh, {2} MP, IP68	The best “classic” choice under £{0}: {1} mAh, {2} MP, IP68
+Ultra-résistant aux chutes ({0} m), IP68 et IP69, {1} mAh, charge {2} W	Ultra drop-resistant ({0} m), IP68 and IP69, {1} mAh, {2} W charging
+Autonomie : {0} h {1} au test Techmo, la plus longue des sept flagships	Battery life: {0} h {1} in the Techmo test, the longest of the seven flagships
+Snapdragon {0} Elite Gen {1} : la meilleure efficacité énergétique du panel Android aux benchmarks	Snapdragon {0} Elite Gen {1}: the best energy efficiency of the Android panel in benchmarks
+Principal {0} MP f/1.{1} et périscope {2} MP : système photo salué comme « potentiellement le meilleur jamais vu sur un smartphone »	{0} MP f/1.{1} main camera and {2} MP periscope: camera system praised as “potentially the best ever seen on a smartphone”
+Synthèse de quatorze vidéos de sept chaînes : les chiffres sont ceux que rapportent les testeurs, le guide ne les a pas re-mesurés.	Summary of fourteen videos from seven channels: the figures are those reported by the reviewers; the guide did not re-measure them.
+Les vidéos {0} à {1} viennent d’un rapport de synthèse d’octobre {2} établi d’après leurs transcriptions et descriptions : titres et chaînes contrôlés auprès de YouTube, durées, dates et chiffres non recoupés avec les vidéos.	Videos {0} to {1} come from a summary report from October {2} based on their transcripts and descriptions: titles and channels checked against YouTube; durations, dates and figures not cross-checked against the videos.
+Les durées d’autonomie dépendent du protocole de chaque vidéo : elles ne se comparent pas d’une vidéo à l’autre. Les Xiaomi, vivo, OPPO et OnePlus du test Techmo étaient des versions chinoises, aux batteries plus grosses que les variantes internationales ; le test TechNick du Vivo V80 Lite est sponsorisé par vivo.	Battery-life durations depend on each video’s protocol: they cannot be compared from one video to another. The Xiaomi, vivo, OPPO and OnePlus phones in the Techmo test were Chinese versions with larger batteries than the international variants; the TechNick test of the Vivo V80 Lite is sponsored by vivo.
+Les scores AnTuTu ne sont pas comparables entre Android et iOS (API Vulkan contre Metal) ; les classements photo, milieu de gamme et budget de Tech Spurt suivent l’ordre de présentation de la vidéo, sans note chiffrée ; les prix des vidéos {0} à {1} sont en livres sterling (Royaume-Uni).	AnTuTu scores are not comparable between Android and iOS (Vulkan versus Metal API); Tech Spurt’s camera, mid-range and budget rankings follow the order of presentation in the video, with no numerical score; prices in videos {0} to {1} are in pounds sterling (UK).
+Six fiches vérifiées au plus, classées de la plus pertinente à la moins pertinente selon leur note pour ce profil. Les modèles testés pour ce profil sont dans la section « Les tests ».	Six verified profiles at most, ranked from most to least relevant by their score for this profile. Models tested for this profile are in the “Tests” section.
 {0} h {1} avec {2} mAh	{0} h {1} with {2} mAh
-Modèles occidentaux (environ {0} mAh)	Western models (about {0} mAh)
-Châssis anti-chute ({0} m)	Drop-proof chassis ({0} m)
-Autonomie : {0} mAh et encore allumé ({1} %) à la fin du cycle robotisé	Battery life: {0} mAh and still on ({1}%) at the end of the robotic cycle
-Écran {0} Hz, {1} Go de RAM et charge {2} W ; plus équilibré que la version Ultra	{0} Hz screen, {1} GB of RAM and {2} W charging; more balanced than the Ultra version
-Écran {0} Hz	{0} Hz screen
+Sept flagships, même séquence d’épreuves (vidéo {0}, Techmo)	Seven flagships, same sequence of tests (video {0}, Techmo)
+Séquence standardisée (YouTube, enregistrement vidéo 4K/30, navigation web pendant {0} h, jeu pendant {1} h, Google Meet), répétée en ordre inverse jusqu’à l’épuisement des batteries. Luminosité fixée à {2} nits, même réseau Wi-Fi, pas de carte SIM.	Standardized sequence (YouTube, 4K/30 video recording, web browsing for {0} h, gaming for {1} h, Google Meet), repeated in reverse order until the batteries run out. Brightness fixed at {2} nits, same Wi-Fi network, no SIM card.
+Les Xiaomi, vivo, OPPO et OnePlus testés étaient des versions chinoises, dont les batteries dépassent celles des variantes internationales. Le OnePlus {0} doit son avance à sa batterie silicium-carbone de {1} mAh et à une gestion logicielle agressive des tâches en arrière-plan.	The Xiaomi, vivo, OPPO and OnePlus phones tested were Chinese versions, whose batteries exceed those of the international variants. The OnePlus {0} owes its lead to its {1} mAh silicon-carbon battery and aggressive software management of background tasks.
+Milieu de gamme, décharge de {0} % à {1} % (vidéo {2}, TechNick)	Mid-range, {0}% to {1}% drain (video {2}, TechNick)
+Décharge de {0} % à {1} % avec {2} applications (réseaux sociaux, appareil photo, benchmarks pour simuler le jeu, jeux légers), relevés toutes les {3} minutes, luminosité identique calibrée au luxmètre (environ {4} lux).	Drain from {0}% to {1}% with {2} apps (social networks, camera, benchmarks to simulate gaming, light games), readings every {3} minutes, identical brightness calibrated with a light meter (about {4} lux).
+Vidéo sponsorisée par vivo Afrique du Sud, sans ingérence de la marque sur les résultats selon le créateur. Le Vivo V80 Lite a une batterie silicium-carbone de 4e génération annoncée à plus de {0} % de santé après sept ans.	Video sponsored by vivo South Africa, with no interference from the brand on the results according to the creator. The Vivo V80 Lite has a 4th-generation silicon-carbon battery advertised at over {0}% health after seven years.
+Données du rapport de synthèse reçu en octobre {0} : titres et chaînes des vidéos contrôlés, chiffres non recoupés avec les vidéos.	Data from the summary report received in October {0}: video titles and channels checked, figures not cross-checked against the videos.
+Le téléphone le plus rapide (vidéo {0}, PhoneBuff)	The fastest phone (video {0}, PhoneBuff)
+Sept flagships {0} en deux manches : une série d’applications lancées une par une, puis le « gauntlet » qui enchaîne tous les tests sans pause ni refroidissement. Écrans calibrés à {1} nits, environnement à température contrôlée.	Seven {0} flagships in two rounds: a series of apps launched one by one, then the “gauntlet” that chains all the tests with no pause or cooling. Screens calibrated at {1} nits, temperature-controlled environment.
+Épreuves marquantes, application par application	Key tests, app by app
+Les puces Snapdragon dominent les épreuves de traitement d’image et de jeu ; l’iPhone pâtit d’un refroidissement moins efficace dans le gauntlet ; le Pixel {0} Pro XL ferme la marche, son Tensor G5 étant décrit comme un cran derrière pour le jeu et le multitâche.	Snapdragon chips dominate the image-processing and gaming tests; the iPhone suffers from less effective cooling in the gauntlet; the Pixel {0} Pro XL comes last, its Tensor G5 being described as a notch behind for gaming and multitasking.
+Benchmarks : l’iPhone {0} Pro Max face à quatre flagships (vidéo {1}, TechNick)	Benchmarks: the iPhone {0} Pro Max against four flagships (video {1}, TechNick)
+iPhone {0} Pro Max (puce A20 Pro) face à l’iPhone {1} Pro Max, au Galaxy S26 Ultra (Snapdragon {2} Elite Gen {3} overclocké), au POCO F9 Ultra (Snapdragon {4} Elite Gen {5}) et au Vivo X500 Pro Max (Dimensity {6} Pro), sur AnTuTu v11, Geekbench {7} et trois tests 3DMark.	iPhone {0} Pro Max (A20 Pro chip) against the iPhone {1} Pro Max, the Galaxy S26 Ultra (overclocked Snapdragon {2} Elite Gen {3}), the POCO F9 Ultra (Snapdragon {4} Elite Gen {5}) and the Vivo X500 Pro Max (Dimensity {6} Pro), on AnTuTu v11, Geekbench {7} and three 3DMark tests.
+Classement général final : {0}. iPhone {1} Pro Max, {2}. Vivo X500 Pro Max, {3}. POCO F9 Ultra, {4}. Galaxy S26 Ultra, {5}. iPhone {6} Pro Max.	Final overall ranking: {0}. iPhone {1} Pro Max, {2}. Vivo X500 Pro Max, {3}. POCO F9 Ultra, {4}. Galaxy S26 Ultra, {5}. iPhone {6} Pro Max.
+L’iPhone {0} Pro Max gagne le classement général grâce à son GPU : gros gain en ray-tracing par rapport à l’iPhone {1} Pro Max, températures bien maîtrisées (l’iPhone {2} Pro Max reste cependant le plus frais en fin de test).	The iPhone {0} Pro Max wins the overall ranking thanks to its GPU: a big ray-tracing gain over the iPhone {1} Pro Max and well-controlled temperatures (the iPhone {2} Pro Max nevertheless stays the coolest at the end of the test).
+Le Vivo X500 Pro Max, 2e, déçoit : ses scores dépassent à peine les puces de génération précédente et le Dimensity {0} Pro chauffe nettement plus que les autres (jusqu’à plus de {1} °C, throttling possible).	The Vivo X500 Pro Max, 2nd, disappoints: its scores barely exceed previous-generation chips and the Dimensity {0} Pro runs much hotter than the others (up to over {1} °C, possible throttling).
+Le POCO F9 Ultra confirme la puissance du Snapdragon {0} Elite Gen {1}, avec la meilleure efficacité énergétique du panel Android (batterie de {2} mAh).	The POCO F9 Ultra confirms the power of the Snapdragon {0} Elite Gen {1}, with the best energy efficiency of the Android panel ({2} mAh battery).
+Fiches : iPhone {0} Pro Max {1} mAh (nano-SIM) et {2} Go ; POCO F9 Ultra {3} Go LPDDR5X et {4} mAh ; Vivo X500 Pro Max {5} mAh (modèle chinois, {6} mAh de plus que les variantes mondiales).	Specs: iPhone {0} Pro Max {1} mAh (nano-SIM) and {2} GB; POCO F9 Ultra {3} GB LPDDR5X and {4} mAh; Vivo X500 Pro Max {5} mAh (Chinese model, {6} mAh more than the global variants).
+AnTuTu v12 indisponible sur iOS ; scores AnTuTu non comparables entre Android et iOS (API Vulkan contre Metal) ; scores Geekbench {0} non comparables à ceux de Geekbench {1}.	AnTuTu v12 unavailable on iOS; AnTuTu scores not comparable between Android and iOS (Vulkan versus Metal API); Geekbench {0} scores not comparable with Geekbench {1}.
+POCO F9 Pro contre POCO F9 Ultra (vidéo {0}, TechNick)	POCO F9 Pro versus POCO F9 Ultra (video {0}, TechNick)
+Huawei Pura 90s Pro Max (vidéo {0}, TechNick)	Huawei Pura 90s Pro Max (video {0}, TechNick)
+Verdict du testeur : l’Ultra reste le meilleur téléphone des deux, mais l’écart se resserre et la différence de prix se justifie moins bien qu’en {0}. Le F9 Ultra repose sur le même chipset et des caméras quasi identiques au F8 Ultra : il ne vaut pas la mise à niveau depuis ce dernier. En revanche, le F9 Pro est nettement meilleur que le F8 Pro : la mise à niveau se justifie. La vidéo inclut aussi un aperçu du POCO X8 ({1} mAh, {2} €, Snapdragon 6s Gen {3}).	Reviewer’s verdict: the Ultra remains the better phone of the two, but the gap is narrowing and the price difference is harder to justify than in {0}. The F9 Ultra uses the same chipset and almost identical cameras to the F8 Ultra: it is not worth upgrading from the latter. By contrast, the F9 Pro is clearly better than the F8 Pro: the upgrade is justified. The video also includes a preview of the POCO X8 ({1} mAh, €{2}, Snapdragon 6s Gen {3}).
+Le système photo est salué comme « potentiellement le meilleur jamais vu sur un smartphone » : contrôle des hautes lumières (HDR matériel), zoom périscope {0} MP au rendu naturel jusqu’à {1}× et au-delà, vidéo 4K/60 sur toutes les caméras, mode ouverture f/1.{2} pour des portraits à profondeur matérielle. Défauts : pas de slow-motion 4K, quelques respirations de mise au point en vidéo, lissage de peau sur les portraits nocturnes et plafond à {3} FPS sur Call of Duty. Verdict du testeur : « j’ai maintenant un nouveau téléphone quotidien ».	The camera system is praised as “potentially the best ever seen on a smartphone”: highlight control (hardware HDR), a {0} MP periscope zoom with natural rendering up to {1}× and beyond, 4K/60 video on all cameras, and an f/1.{2} aperture mode for portraits with hardware depth. Flaws: no 4K slow motion, some focus breathing in video, skin smoothing on night portraits and a {3} FPS cap in Call of Duty. Reviewer’s verdict: “I now have a new daily phone”.
+Les meilleurs photophones de l’automne {0} (vidéo {1}, Tech Spurt)	The best camera phones of autumn {0} (video {1}, Tech Spurt)
+Les meilleurs photophones Android de l’automne {0} : aucun classement numérique n’est attribué, l’ordre suit la présentation de la vidéo.	The best Android camera phones of autumn {0}: no numerical ranking is given, the order follows the video’s presentation.
+Le Pixel {0} Pro reste la référence « familiale » sans effort, les OPPO Find X9 et Vivo X300 dominent le zoom et la polyvalence, Xiaomi mise sur l’architecture Leica à zoom optique mécanique, Samsung a corrigé le tir sur la nuit et la vidéo, et Sony cultive le naturel et les commandes manuelles au prix d’une application perfectible.	The Pixel {0} Pro remains the effortless “family” reference, the OPPO Find X9 and Vivo X300 dominate zoom and versatility, Xiaomi bets on the Leica architecture with mechanical optical zoom, Samsung has corrected course on night and video, and Sony cultivates natural rendering and manual controls at the price of an imperfect app.
+Milieu de gamme, été {0} (vidéo {1}, Tech Spurt)	Mid-range, summer {0} (video {1}, Tech Spurt)
+Plus de vingt milieux de gamme testés comme téléphone principal. Grand favori : le POCO X8 Pro Max, « rapport qualité-prix stupéfiant ». L’ordre suit la vidéo, pas un classement chiffré.	More than twenty mid-range phones tested as a main phone. Big favorite: the POCO X8 Pro Max, “stunning value for money”. The order follows the video, not a numerical ranking.
+Avertissements du testeur : éviter l’iPhone 17e (écran {0} Hz, photo basique, plus cher que presque tous les Android du panel) et le Galaxy S25 FE sauf très grosse remise. Le OnePlus Nord {1} et le Nothing Phone 3a, anciens favoris, ne sont plus vendus neufs au Royaume-Uni mais se trouvent reconditionnés. OnePlus s’est retiré du marché britannique : le Nord {2} n’y est donc plus recommandé.	Reviewer’s warnings: avoid the iPhone 17e ({0} Hz screen, basic camera, more expensive than almost every Android in the panel) and the Galaxy S25 FE unless heavily discounted. The OnePlus Nord {1} and Nothing Phone 3a, former favorites, are no longer sold new in the UK but can be found refurbished. OnePlus has withdrawn from the British market: the Nord {2} is therefore no longer recommended there.
+Petit budget, été {0} (vidéo {1}, Tech Spurt)	Budget, summer {0} (video {1}, Tech Spurt)
+Smartphones à environ {0} £ ou moins au Royaume-Uni. Xiaomi, POCO, Honor et Motorola dominent les recommandations.	Smartphones at about £{0} or less in the UK. Xiaomi, POCO, Honor and Motorola dominate the recommendations.
+Le Redmi Note {0} Pro 5G est le meilleur choix « classique » sous {1} £, le POCO M8 Pro le plus polyvalent côté performances, et le Moto G06 Power la solution radicale pour un budget de {2} £. Les batteries silicium-carbone ({3} à {4} mAh) se démocratisent jusque dans l’entrée de gamme.	The Redmi Note {0} Pro 5G is the best “classic” choice under £{1}, the POCO M8 Pro the most versatile for performance, and the Moto G06 Power the radical solution for a £{2} budget. Silicon-carbon batteries ({3} to {4} mAh) are becoming mainstream even in entry-level phones.
+Rang	Rank
+Commentaire	Comment
+Épreuve	Test
+Résultat	Result
+Test	Test
+1er	1st
+2e	2nd
+3e	3rd
+Observations	Notes
+Caractéristique	Feature
+Domaine	Area
+Détails	Details
+Modèle	Model
+Points forts	Strengths
+Réserves	Reservations
+Atouts	Strengths
+Limites	Limits
+Prix relevé	Price noted
+Points clés	Key points

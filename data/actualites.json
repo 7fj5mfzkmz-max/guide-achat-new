@@ -9,20 +9,20 @@
       "type": "nouveau",
       "nombre": 11,
       "noms": [
-        "OPPO Find X9 Pro",
         "Vivo V80 Lite 5G",
-        "POCO X8",
         "HONOR X9d",
         "HONOR 600 Pro",
-        "Xiaomi REDMI Note 17 Pro Max",
+        "POCO X8",
         "Apple iPhone 17",
+        "Vivo X500 Pro Max",
+        "POCO F9 Ultra",
         "POCO F9 Pro",
         "Huawei Pura 90s Pro Max",
         "Xiaomi Redmi Note 15 Pro 5G",
         "Honor Magic 8 Lite"
       ],
       "titre": "11 nouveaux smartphones",
-      "resume": "Au catalogue : OPPO Find X9 Pro, Vivo V80 Lite 5G, POCO X8, HONOR X9d et 7 autres.",
+      "resume": "Au catalogue : Vivo V80 Lite 5G, HONOR X9d, HONOR 600 Pro, POCO X8 et 7 autres.",
       "lien": "smartphones.html"
     },
     {
@@ -31,12 +31,13 @@
       "cat": "smartphones",
       "source": "smartphones",
       "type": "maj",
-      "nombre": 1,
+      "nombre": 2,
       "noms": [
+        "iPhone 18 Pro Max",
         "RedMagic 11S Pro"
       ],
-      "titre": "1 fiche smartphone mise à jour",
-      "resume": "Prix, caractéristiques ou notes revus : RedMagic 11S Pro.",
+      "titre": "2 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : iPhone 18 Pro Max, RedMagic 11S Pro.",
       "lien": "smartphones.html"
     },
     {
@@ -45,22 +46,23 @@
       "cat": "smartphones",
       "source": "tests",
       "type": "nouveau",
-      "nombre": 11,
+      "nombre": 12,
       "noms": [
-        "OPPO Find X9 Pro",
         "Vivo V80 Lite 5G",
-        "POCO X8",
         "HONOR X9d",
         "HONOR 600 Pro",
-        "Xiaomi REDMI Note 17 Pro Max",
+        "POCO X8",
         "Apple iPhone 17",
+        "Apple iPhone 18 Pro Max",
+        "Vivo X500 Pro Max",
+        "POCO F9 Ultra",
         "POCO F9 Pro",
         "Huawei Pura 90s Pro Max",
         "Xiaomi Redmi Note 15 Pro 5G",
         "Honor Magic 8 Lite"
       ],
-      "titre": "Tests 2026 : 11 modèles ajoutés au dossier",
-      "resume": "Au catalogue : OPPO Find X9 Pro, Vivo V80 Lite 5G, POCO X8, HONOR X9d et 7 autres.",
+      "titre": "Tests 2026 : 12 modèles ajoutés au dossier",
+      "resume": "Au catalogue : Vivo V80 Lite 5G, HONOR X9d, HONOR 600 Pro, POCO X8 et 8 autres.",
       "lien": "smartphones.html#tests-2026"
     },
     {

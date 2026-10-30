@@ -39,7 +39,7 @@ de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, d
 ## Tests vidéo smartphones : du dossier au classement
 `node tools/smartphones/construire-tests.js` écrit `data/smartphones-tests.json` (le dossier des vidéos).
 `node tools/smartphones/integrer-tests.js` fait entrer ses modèles dans `data/smartphones.json` : les fiches existantes reçoivent la preuve du test (`tests`), les autres sont ajoutées (`origine: "test"`) avec uniquement les valeurs relevées, sans note inventée.
-Le dossier compte 13 vidéos : les cinq premières viennent du « Résumé détaillé des 6 vidéos Smartphones 2026 », les huit suivantes (n° 6 à 13) du rapport « Rapports d’Analyses Isolées » reçu le 30 octobre 2026 (voir `docs/SOURCES-VIDEOS-A-VERIFIER.md`). Une fiche de test déjà au catalogue garde ses enrichissements : `integrer-tests.js` ne rafraîchit que sa preuve de test.
+Le dossier compte 14 vidéos : les cinq premières viennent du « Résumé détaillé des 6 vidéos Smartphones 2026 », les neuf suivantes (n° 6 à 14) du rapport « Smartphones 2026 » d’octobre 2026 (voir `docs/SOURCES-VIDEOS-A-VERIFIER.md`). Une fiche de test déjà au catalogue garde ses enrichissements : `integrer-tests.js` ne rafraîchit que sa preuve de test, et un modèle testé n’est classé qu’une fois prix, puce, batterie et écran connus.
 Le classement de la page smartphones (profils, « Mes critères ») lit ensuite ces deux fichiers (`assets/js/smartphones-trouver.js`, `smartphones-scoring.js`). Relancer ensuite `node tools/actualites/construire.js`.
 
 ### Échelle des puces (1 à 10) et gammes
