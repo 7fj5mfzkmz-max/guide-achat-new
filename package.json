@@ -32,6 +32,7 @@
     "actualites": "node tools/actualites/construire.js",
     "actualites:test": "node scripts/actualites-test.js",
     "i18n:test": "node scripts/i18n-test.js",
+    "i18n:sync": "node tools/i18n/synchroniser.js",
     "gabarit": "python3 tools/site/gabarit.py",
     "gabarit:test": "python3 tools/site/gabarit.py --verifier",
     "smartphones:trouver-test": "node scripts/smartphones-trouver-ui-test.js",

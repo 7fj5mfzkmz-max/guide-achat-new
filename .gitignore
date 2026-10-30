@@ -8,3 +8,4 @@ __pycache__/
 /*.png
 .cache/
 *.log
+/tools/i18n/chaines-rendu*.json
