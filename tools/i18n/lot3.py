@@ -151,9 +151,9 @@ E = [
 ("flou au zoom", "blur when zooming", "borroso al hacer zoom"),
 ("puis plus de correctifs", "then no more fixes", "luego sin más correcciones"),
 ("nuit nette et lumineuse", "sharp, bright night shots", "noche nítida y luminosa"),
-("Rapport qualité/prix pur : ventilateur 24k RPM et gâchettes, {0} h {1} de jeu", "Pure value for money: 24k RPM fan and triggers, {0} h {1} of gaming", "Pura relación calidad-precio: ventilador de 24k RPM y gatillos, {0} h {1} de juego"),
-("Meilleur polyvalent : écran AMOLED et bypass charge, {0} h {1} de jeu", "Best all-rounder: AMOLED screen and bypass charging, {0} h {1} of gaming", "Mejor polivalente: pantalla AMOLED y carga bypass, {0} h {1} de juego"),
-("Cher mais puissant : jeux console AAA, {0} h {1} de jeu (top)", "Pricey but powerful: AAA console games, {0} h {1} of gaming (top)", "Caro pero potente: juegos AAA de consola, {0} h {1} de juego (el mejor)"),
+("Rapport qualité/prix pur : ventilateur 24k RPM et gâchettes, autonomie mesurée de {0} h {1}", "Pure value for money: 24k RPM fan and triggers, measured battery life of {0} h {1}", "Pura relación calidad-precio: ventilador de 24k RPM y gatillos, autonomía medida de {0} h {1}"),
+("Meilleur polyvalent : écran AMOLED et bypass charge, autonomie mesurée de {0} h {1}", "Best all-rounder: AMOLED screen and bypass charging, measured battery life of {0} h {1}", "Mejor polivalente: pantalla AMOLED y carga bypass, autonomía medida de {0} h {1}"),
+("Cher mais puissant : jeux console AAA, autonomie mesurée de {0} h {1} (la plus longue)", "Pricey but powerful: AAA console games, measured battery life of {0} h {1} (the longest)", "Caro pero potente: juegos AAA de consola, autonomía medida de {0} h {1} (la más larga)"),
 ]
 
 M = [

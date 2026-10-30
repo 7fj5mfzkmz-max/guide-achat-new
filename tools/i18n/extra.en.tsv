@@ -236,7 +236,6 @@ Photo secondaire limitée	Limited secondary camera
 {0} mAh, charge {1} W	{0} mAh, {1} W charging
 {0} h {1} en jeu avec {2} mAh	{0} h {1} of gaming with {2} mAh
 {0} h {1} en jeu	{0} h {1} of gaming
-autonomie en jeu mesurée : {0} h {1}	battery life measured in gaming: {0} h {1}
 autonomie mesurée : {0} h {1}	measured battery life: {0} h {1}
 Meilleur polyvalent	Best all-rounder
 Rapport qualité/prix pur	Pure value for money
@@ -491,3 +490,7 @@ OIS sur le capteur principal	OIS on the main sensor
 {0} fiches smartphones mises à jour	{0} smartphone listings updated
 Écran Super AMOLED lumineux ({0} nits)	Bright Super AMOLED display ({0} nits)
 Énorme batterie {0} mAh	Huge {0} mAh battery
+Autonomie mesurée : {0} h {1}	Measured battery life: {0} h {1}
+Recommandés et vérifiés	Recommended and verified
+Six fiches vérifiées au plus, classées de la plus pertinente à la moins pertinente selon leur note pour ce profil. Les modèles testés pour ce profil sont dans la section Tests 2026.	Six verified sheets at most, ranked from most to least relevant by their score for this profile. Models tested for this profile are in the Tests section.
+Note {0}/10 pour ce profil	Score {0}/10 for this profile

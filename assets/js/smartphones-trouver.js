@@ -74,7 +74,7 @@
     batterie: 'Les mAh donnent la taille du réservoir, pas la durée : la puce et l’écran décident de la vitesse à laquelle il se vide. Seule une mesure tranche.'
   };
   var NOTE = {
-    profil: 'Les modèles vus en test passent en premier, dans l’ordre des vidéos. Dans les fiches vérifiées, un modèle par gamme, classé selon son score pour ce profil.',
+    profil: 'Six fiches vérifiées au plus, classées de la plus pertinente à la moins pertinente selon leur note pour ce profil. Les modèles testés pour ce profil sont dans la section « Les tests ».',
     prix: 'Tests : gamme Samsung, prix en dollars. Fiches vérifiées : un modèle par tranche de prix, classé sur la moyenne de ses scores performance, autonomie, photo et prix.',
     batterie: 'Tests : capacités annoncées par les constructeurs, puis autonomies mesurées. Fiches vérifiées : un modèle par gamme, classé par capacité annoncée.'
   };
@@ -159,23 +159,30 @@
     var onlyFiches = DATA.produits.filter(isEligible).filter(function (p) { return p.origine !== 'test' && p.prix_indicatif; });
     function tier(g, p, why, score) { var r = ficheRow(p, why); r.tier = g.label; r.plage = g.plage; r.score = score; return r; }
 
-    if (need.profil || need.id === 'batterie') {
-      var scoreFn = need.profil ? function (p) { return profileScore(p, need.id); } : capacity;
+    if (need.profil) {
+      /* Une seule liste : six fiches vérifiées au plus, de la plus pertinente à la moins pertinente pour ce profil. */
+      onlyFiches.map(function (p) { return { p: p, v: profileScore(p, need.id) }; })
+        .filter(function (x) { return x.v != null; })
+        .sort(function (a, b) { return b.v - a.v || a.p.prix_indicatif - b.p.prix_indicatif; })
+        .slice(0, 6)
+        .forEach(function (x) {
+          var r = ficheRow(x.p, null);
+          r.flag = 'Note ' + fr(Math.round(x.v * 10) / 10) + '/10 pour ce profil';
+          r.tone = 'ok';
+          fiches.push(r);
+        });
+    } else if (need.id === 'batterie') {
       GAMMES.forEach(function (g) {
         var items = onlyFiches.filter(function (p) { return p.prix_indicatif >= g.min && p.prix_indicatif <= g.max; })
-          .map(function (p) { return { p: p, v: scoreFn(p) }; }).filter(function (x) { return x.v != null; })
+          .map(function (p) { return { p: p, v: capacity(p) }; }).filter(function (x) { return x.v != null; })
           .sort(function (a, b) { return b.v - a.v || a.p.prix_indicatif - b.p.prix_indicatif; });
         items.forEach(function (item) {
-          var b = item.p.compatibilite && item.p.compatibilite.batterie;
-          fiches.push(tier(g, item.p, need.profil ? null : fr(b.capacite_mah) + ' mAh' + (b.recharge_watts ? ', charge ' + b.recharge_watts + ' W' : '')));
+          var b = item.p.compatibilite.batterie;
+          fiches.push(tier(g, item.p, fr(b.capacite_mah) + ' mAh' + (b.recharge_watts ? ', charge ' + b.recharge_watts + ' W' : '')));
         });
       });
     }
-    if (need.profil) {
-      (DATA.tests.choix_par_profil[need.id] || []).forEach(function (x) {
-        tests.push(testRow(x.modele, x.raison, Number(String(x.ref).replace(/\D/g, ''))));
-      });
-    } else if (need.id === 'prix') {
+    if (need.id === 'prix') {
       var tone = { best: 'ok', good: 'ok', ok: 'ok', bad: 'bad' };
       DATA.tests.samsung.forEach(function (x) {
         var m = testById(x.modele);
@@ -208,10 +215,14 @@
     [].forEach.call($('tr-chips').children, function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-need') === need.id ? 'true' : 'false'); });
     var out = build(need);
     var note = need.profil ? NOTE.profil : NOTE[need.id];
-    var left = '<section class="tr-col" aria-labelledby="tr-h-test"><h3 id="tr-h-test">Vu en test</h3><ol class="tr-list">' + out.tests.map(row).join('') + '</ol>' +
-      (out.extra && out.extra.length ? '<h3 class="tr-sub">Autonomie mesurée</h3><ol class="tr-list">' + out.extra.map(row).join('') + '</ol>' : '') + '</section>';
-    var right = '<section class="tr-col" aria-labelledby="tr-h-fiche"><h3 id="tr-h-fiche">Dans nos fiches vérifiées</h3><ol class="tr-list">' + out.fiches.map(row).join('') + '</ol></section>';
-    $('tr-podium').innerHTML = left + right + '<p class="tr-note">' + esc(note) + '</p>';
+    if (need.profil) {
+      $('tr-podium').innerHTML = '<section class="tr-col" aria-labelledby="tr-h-reco"><h3 id="tr-h-reco">Recommandés et vérifiés</h3><ol class="tr-list">' + out.fiches.map(row).join('') + '</ol></section>' + '<p class="tr-note">' + esc(note) + '</p>';
+    } else {
+      var left = '<section class="tr-col" aria-labelledby="tr-h-test"><h3 id="tr-h-test">Vu en test</h3><ol class="tr-list">' + out.tests.map(row).join('') + '</ol>' +
+        (out.extra && out.extra.length ? '<h3 class="tr-sub">Autonomie mesurée</h3><ol class="tr-list">' + out.extra.map(row).join('') + '</ol>' : '') + '</section>';
+      var right = '<section class="tr-col" aria-labelledby="tr-h-fiche"><h3 id="tr-h-fiche">Dans nos fiches vérifiées</h3><ol class="tr-list">' + out.fiches.map(row).join('') + '</ol></section>';
+      $('tr-podium').innerHTML = left + right + '<p class="tr-note">' + esc(note) + '</p>';
+    }
     var intro = INTRO[need.id];
     $('tr-intro').hidden = !intro; $('tr-intro').textContent = intro || '';
     /* Les cartes d'explication du profil (ce qui compte, à viser, question) suivent le choix. */
@@ -244,6 +255,11 @@
     NEEDS.forEach(function (n) {
       var o = build(n);
       o.tests.concat(o.extra || []).forEach(function (r) { if (r.video) (feeds[r.video.n] = feeds[r.video.n] || {})[n.label] = 1; });
+    });
+    /* Les choix par profil (section Tests 2026) ne passent plus par la colonne « Trouver » : on les lit directement. */
+    NEEDS.forEach(function (n) {
+      if (!n.profil) return;
+      (DATA.tests.choix_par_profil[n.id] || []).forEach(function (x) { var v = Number(String(x.ref).replace(/\D/g, '')); (feeds[v] = feeds[v] || {})[n.label] = 1; });
     });
     log.innerHTML = DATA.tests.videos.map(function (v) {
       var names = DATA.tests.modeles.filter(function (m) { return m.video === v.id; }).map(function (m) { return m.nom; });

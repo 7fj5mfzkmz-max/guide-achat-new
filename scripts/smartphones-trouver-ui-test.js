@@ -38,31 +38,45 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       await check('sections retirées : plus de checklist, de choix écrits à la main ni de conclusion' + tag, async () => {
         for (const sel of ['#checklist', '#nos-choix', '#suite', '.ga-ticker', '.picks']) assert.equal(await page.locator(sel).count(), 0, sel);
       });
-      await check('chaque besoin : deux colonnes (tests puis fiches), sans doublon dans une colonne' + tag, async () => {
+      await check('chaque besoin : une liste de six au plus pour un profil, deux colonnes sinon, sans doublon' + tag, async () => {
         for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe', 'prix', 'batterie']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
           assert.equal(await page.locator('.tr-chip[aria-pressed="true"]').count(), 1);
-          assert.ok(await page.locator('#tr-podium .tr-col').count() === 2, id + ' : deux colonnes attendues');
-          assert.ok(await page.locator('#tr-podium .tr-col').first().locator('.tr-tag-test').count() >= (id === 'prix' ? 1 : 3), id + ' : modèles vus en test');
-          for (const col of [0, 1]) {
+          const cols = await page.locator('#tr-podium .tr-col').count();
+          if (id === 'etudiant' || id === 'professionnel' || id === 'gamer' || id === 'photographe') {
+            assert.equal(cols, 1, id + ' : une seule liste attendue');
+            assert.ok(await page.locator('#tr-podium .tr-row').count() <= 6, id + ' : six recommandations au plus');
+          } else {
+            assert.equal(cols, 2, id + ' : deux colonnes attendues');
+            assert.ok(await page.locator('#tr-podium .tr-col').first().locator('.tr-tag-test').count() >= (id === 'prix' ? 1 : 3), id + ' : modèles vus en test');
+          }
+          for (let col = 0; col < cols; col++) {
             const names = await page.locator('#tr-podium .tr-col').nth(col).locator('.tr-row h4').allInnerTexts();
             assert.equal(new Set(names).size, names.length, id + ' : modèle répété ' + names.join(', '));
           }
         }
       });
+      await check('profils : fiches vérifiées classées de la plus pertinente à la moins pertinente, avec leur note' + tag, async () => {
+        for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe']) {
+          await page.click('.tr-chip[data-need="' + id + '"]');
+          assert.equal(await page.locator('#tr-podium .tr-tier').count(), 0, id + ' : pas de découpage par gamme');
+          const values = (await page.locator('#tr-podium .tr-row .tr-flag').allTextContents()).map(t => Number(t.match(/Note ([\d,]+)\//)[1].replace(',', '.')));
+          assert.ok(values.length >= 1 && values.length <= 6, id + ' : ' + values.length + ' lignes');
+          assert.deepEqual(values, [...values].sort((a, b) => b - a), id + ' : ordre décroissant ' + values.join(' '));
+        }
+      });
       await check('fiches vérifiées : un modèle par gamme (haut, milieu, entrée, bas prix), dans la bonne tranche de prix' + tag, async () => {
         const bornes = { 'Haut de gamme': [801, 1e9], 'Milieu de gamme': [301, 800], 'Entrée de gamme': [151, 300], 'Bas prix': [80, 150] };
-        for (const id of ['etudiant', 'professionnel', 'gamer', 'photographe', 'batterie']) {
+        for (const id of ['batterie']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
           const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ gamme: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(e.querySelector('.tr-price').textContent.replace(/[^\d]/g, '')) })));
           assert.deepEqual(rows.map(r => r.gamme), ['Haut de gamme', 'Milieu de gamme', 'Entrée de gamme', 'Bas prix'], id + ' : quatre gammes attendues');
           rows.forEach(r => assert.ok(r.prix >= bornes[r.gamme][0] && r.prix <= bornes[r.gamme][1], id + ' : ' + r.gamme + ' à ' + r.prix + ' €'));
         }
       });
-      await check('profil Gamer : les modèles du test passent en premier, le profil est mémorisé' + tag, async () => {
+      await check('profil Gamer : la liste s’intitule « Recommandés et vérifiés », le profil est mémorisé' + tag, async () => {
         await page.click('.tr-chip[data-need="gamer"]');
-        const first = await page.locator('#tr-podium .tr-col').first().locator('h4').allInnerTexts();
-        assert.deepEqual(first.slice(0, 3), ['RedMagic 11S Pro', 'Samsung Galaxy S26 Ultra', 'Apple iPhone 17 Pro Max']);
+        assert.equal(await page.locator('#tr-podium h3').first().textContent(), 'Recommandés et vérifiés');
         assert.equal(await page.locator('.profile-toggle:not([hidden])').count(), 1);
         assert.ok(await page.locator('#gamer-toggle').isVisible());
         assert.equal(await page.evaluate(() => localStorage.getItem('guide-profile')), 'gamer');
