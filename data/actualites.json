@@ -31,13 +31,15 @@
       "cat": "smartphones",
       "source": "smartphones",
       "type": "maj",
-      "nombre": 2,
+      "nombre": 4,
       "noms": [
         "iPhone 18 Pro Max",
-        "RedMagic 11S Pro"
+        "RedMagic 11S Pro",
+        "Galaxy S26 Ultra",
+        "Apple iPhone 17 Pro Max"
       ],
-      "titre": "2 fiches smartphones mises à jour",
-      "resume": "Prix, caractéristiques ou notes revus : iPhone 18 Pro Max, RedMagic 11S Pro.",
+      "titre": "4 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : iPhone 18 Pro Max, RedMagic 11S Pro, Galaxy S26 Ultra, Apple iPhone 17 Pro Max.",
       "lien": "smartphones.html"
     },
     {
