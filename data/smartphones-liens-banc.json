@@ -1,0 +1,377 @@
+{
+  "date": "2026-10-31",
+  "note": "Correspondance entre les modèles du banc d’essai (data/smartphones-tests.json → banc.modeles) et les fiches du catalogue (data/smartphones.json). Un lien désigne le même téléphone, pas un téléphone proche. Les prix du dossier de tests ne servent pas à l’identification (relevés à d’autres dates). Fichier de lecture : aucun moteur ne le charge encore.",
+  "regles": [
+    "Un lien exige un nom identique après normalisation et une seule fiche portant ce nom.",
+    "Quand le dossier et la fiche donnent la même caractéristique (batterie, puce), elles doivent concorder à 10 % près ; sinon l’écart est consigné dans « ecarts » et n’est pas arbitré.",
+    "Un modèle proche (XL, +, Pro, autre génération) n’est jamais lié par approximation : il est listé dans « sans_lien ».",
+    "« identite: nom » signifie que le nom est la seule preuve d’identité disponible."
+  ],
+  "liens": [
+    {
+      "banc": "oneplus-16",
+      "fiche": "oneplus-16",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": true,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« OnePlus 16 » = « OnePlus 16 »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 9000 mAh (dossier) / 9000 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "oppo-find-x10-pro-max",
+      "fiche": "oppo-find-x10-pro-max",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": true,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« OPPO Find X10 Pro Max » = « OPPO Find X10 Pro Max »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 7150 mAh (dossier) / 7150 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "vivo-x500-pro-max",
+      "fiche": "vivo-x500-pro-max",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [
+        "autonomie",
+        "puissance"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Vivo X500 Pro Max » = « Vivo X500 Pro Max »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 8000 mAh (dossier) / 8000 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "iphone-18-pro-max",
+      "fiche": "iphone-18-pro-max",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": true,
+      "mesures": [
+        "autonomie",
+        "puissance"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Apple iPhone 18 Pro Max » = « iPhone 18 Pro Max »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants"
+      ],
+      "ecarts": [
+        "batterie : 5391 mAh dans le dossier de tests, 4600 mAh sur la fiche (17 % d’écart) ; non tranché, les deux valeurs sont conservées"
+      ]
+    },
+    {
+      "banc": "samsung-galaxy-s26-ultra",
+      "fiche": "galaxy-s26-ultra",
+      "origine": "EXISTANT (tools/smartphones/integrer-tests.js)",
+      "identite": "nom+specs",
+      "fiche_eligible": true,
+      "mesures": [
+        "autonomie",
+        "vitesse",
+        "puissance"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Samsung Galaxy S26 Ultra » = « Galaxy S26 Ultra »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "puce concordante : « Snapdragon 8 Elite Gen 5 » (protocole de la vidéo 9 / fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "vivo-v80-lite",
+      "fiche": "vivo-v80-lite",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Vivo V80 Lite 5G » = « Vivo V80 Lite 5G »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 10000 mAh (dossier) / 10000 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "honor-x9d",
+      "fiche": "honor-x9d",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« HONOR X9d » = « HONOR X9d »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 8300 mAh (dossier) / 8300 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "honor-600-pro",
+      "fiche": "honor-600-pro",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« HONOR 600 Pro » = « HONOR 600 Pro »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 7000 mAh (dossier) / 7000 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "poco-x8",
+      "fiche": "poco-x8",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« POCO X8 » = « POCO X8 »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 8340 mAh (dossier) / 8340 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "samsung-galaxy-a57",
+      "fiche": "samsung-galaxy-a57",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom",
+      "fiche_eligible": true,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Samsung Galaxy A57 » = « Samsung Galaxy A57 »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "samsung-galaxy-s26",
+      "fiche": "galaxy-s26",
+      "origine": "nom exact vérifié (2026-10-31)",
+      "identite": "nom",
+      "fiche_eligible": true,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Samsung Galaxy S26 » = « Galaxy S26 »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "cohérence : 6e sur 7 à l’autonomie du milieu de gamme, derrière le Galaxy A57 (5 000 mAh) ; la fiche indique 4 300 mAh"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "apple-iphone-17",
+      "fiche": "apple-iphone-17",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [
+        "autonomie"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Apple iPhone 17 » = « Apple iPhone 17 »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 3692 mAh (dossier) / 3692 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "oneplus-15",
+      "fiche": "oneplus-15",
+      "origine": "nom exact vérifié (2026-10-31)",
+      "identite": "nom",
+      "fiche_eligible": true,
+      "mesures": [
+        "vitesse"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« OnePlus 15 » = « OnePlus 15 »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "honor-magic-8-pro",
+      "fiche": "honor-magic-8-pro",
+      "origine": "nom exact vérifié (2026-10-31)",
+      "identite": "nom",
+      "fiche_eligible": true,
+      "mesures": [
+        "vitesse"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Honor Magic 8 Pro » = « Honor Magic 8 Pro »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "apple-iphone-17-pro-max",
+      "fiche": "iphone-17-pro-max",
+      "origine": "EXISTANT (tools/smartphones/integrer-tests.js)",
+      "identite": "nom",
+      "fiche_eligible": true,
+      "mesures": [
+        "vitesse",
+        "puissance"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Apple iPhone 17 Pro Max » = « Apple iPhone 17 Pro Max »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "google-pixel-10-pro-xl",
+      "fiche": "pixel-10-pro-xl",
+      "origine": "nom exact vérifié (2026-10-31)",
+      "identite": "nom",
+      "fiche_eligible": true,
+      "mesures": [
+        "vitesse"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« Google Pixel 10 Pro XL » = « Pixel 10 Pro XL »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "poco-f9-ultra",
+      "fiche": "poco-f9-ultra",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": true,
+      "mesures": [
+        "puissance"
+      ],
+      "verifie": [
+        "nom identique après normalisation (« POCO F9 Ultra » = « POCO F9 Ultra »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 8050 mAh (dossier) / 8050 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "vivo-v80",
+      "fiche": "vivo-v80",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": true,
+      "mesures": [],
+      "verifie": [
+        "nom identique après normalisation (« Vivo V80 » = « Vivo V80 »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 7200 mAh (dossier) / 7200 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "poco-f9-pro",
+      "fiche": "poco-f9-pro",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": true,
+      "mesures": [],
+      "verifie": [
+        "nom identique après normalisation (« POCO F9 Pro » = « POCO F9 Pro »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 6330 mAh (dossier) / 6330 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "huawei-pura-90s-pro-max",
+      "fiche": "huawei-pura-90s-pro-max",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [],
+      "verifie": [
+        "nom identique après normalisation (« Huawei Pura 90s Pro Max » = « Huawei Pura 90s Pro Max »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 5500 mAh (dossier) / 5500 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "redmi-note-15-pro-5g",
+      "fiche": "redmi-note-15-pro-5g",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [],
+      "verifie": [
+        "nom identique après normalisation (« Xiaomi Redmi Note 15 Pro 5G » = « Xiaomi Redmi Note 15 Pro 5G »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 6580 mAh (dossier) / 6580 mAh (fiche)"
+      ],
+      "ecarts": []
+    },
+    {
+      "banc": "honor-magic-8-lite",
+      "fiche": "honor-magic-8-lite",
+      "origine": "fiche.tests[].modele",
+      "identite": "nom+specs",
+      "fiche_eligible": false,
+      "mesures": [],
+      "verifie": [
+        "nom identique après normalisation (« Honor Magic 8 Lite » = « Honor Magic 8 Lite »)",
+        "une seule fiche porte ce nom ; les variantes voisines (+, Ultra, Pro, XL) sont d’autres identifiants",
+        "batterie concordante : 7500 mAh (dossier) / 7500 mAh (fiche)"
+      ],
+      "ecarts": []
+    }
+  ],
+  "sans_lien": [
+    {
+      "banc": "xiaomi-18-pro-max",
+      "fiche_proche": null,
+      "raison": "Aucune fiche au catalogue."
+    },
+    {
+      "banc": "google-pixel-11-pro-xl",
+      "fiche_proche": "pixel-11-pro",
+      "raison": "La fiche existante est le Pixel 11 Pro, pas le XL (batterie et écran différents) : pas de lien."
+    },
+    {
+      "banc": "vivo-x300-ultra",
+      "fiche_proche": null,
+      "raison": "Aucune fiche au catalogue."
+    },
+    {
+      "banc": "oppo-find-x9-pro",
+      "fiche_proche": "oppo-find-x9",
+      "raison": "Le catalogue ne contient que l’OPPO Find X9 (autre modèle que le X9 Pro) : pas de lien."
+    }
+  ]
+}

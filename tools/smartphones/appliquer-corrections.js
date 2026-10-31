@@ -18,6 +18,7 @@ function appliquer(cat) {
     ph.mp_principal = c.mp_principal;
     p.caracteristiques = p.caracteristiques || {};
     if (c.remplace && /^\d+ ?(Mpx|MP)$/i.test(p.caracteristiques.photo || '')) p.caracteristiques.photo = c.mp_principal + ' Mpx';
+    else if (c.remplace && /^\d+ ?(Mpx|MP)\b/i.test(p.caracteristiques.photo || '')) p.caracteristiques.photo = p.caracteristiques.photo.replace(/^\d+ ?(Mpx|MP)/i, (m, u) => c.mp_principal + ' ' + u); // « 100 MP, téléobjectif… » : on corrige seulement le nombre
     p.spec_provenance = Object.assign({}, p.spec_provenance, { mp_principal: c.sources });
   });
   // L'analyseur de modèle lit « charge » et « refresh » dans les caractéristiques : on les dérive des valeurs chiffrées du catalogue.

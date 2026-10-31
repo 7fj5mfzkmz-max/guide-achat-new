@@ -8668,6 +8668,15 @@
           "capacite_mah": 8050,
           "recharge_watts": 100,
           "chimie": null
+        },
+        "photo": {
+          "mp_principal": 200,
+          "ois": true
+        },
+        "durete": {
+          "protection_ip": "IP68",
+          "android_version_sortie": 16,
+          "mises_a_jour_ans": 4
         }
       },
       "tests": [
@@ -8685,8 +8694,44 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 10,
-        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
-      }
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)",
+        "complement_web": {
+          "date": "2026-10-31",
+          "champs": [
+            "mp_principal",
+            "ois",
+            "protection_ip",
+            "android_version_sortie",
+            "mises_a_jour_ans"
+          ],
+          "sources": [
+            "https://9to5google.com/?p=728686",
+            "https://www.digit.in/mobiles/poco-f9-ultra-5g-price-in-india.html",
+            "https://www.mobiledokan.com/mobile/xiaomi-poco-f9-ultra/specification"
+          ],
+          "capteur_format": "non vérifié : aucune des pages lues ne donne la taille du capteur principal ; la note du capteur reste vide",
+          "mises_a_jour": "4 mises à jour majeures (vidéo 10 de TechNick ; digit.in). digit.in cite aussi 6 ans de mises à jour, sur deux de ses pages mais d’un seul média : non recoupé, non retenu.",
+          "ecart_video": "La vidéo 10 indique 100 MP pour le capteur principal ; les pages lues indiquent 200 MP : 200 MP retenu."
+        },
+        "mp_principal": [
+          "https://www.digit.in/mobiles/poco-f9-ultra-5g-price-in-india.html",
+          "https://9to5google.com/?p=728686"
+        ]
+      },
+      "sources_verification": [
+        {
+          "nom": "9to5google — lancement mondial POCO F9 Pro / Ultra (200 MP OIS, IP68)",
+          "url": "https://9to5google.com/?p=728686"
+        },
+        {
+          "nom": "Digit — fiche F9 Ultra (200 MP OIS, IP68, 4 mises à jour majeures)",
+          "url": "https://www.digit.in/mobiles/poco-f9-ultra-5g-price-in-india.html"
+        },
+        {
+          "nom": "MobileDokan — fiche F9 Ultra (Android 16)",
+          "url": "https://www.mobiledokan.com/mobile/xiaomi-poco-f9-ultra/specification"
+        }
+      ]
     },
     {
       "id": "poco-f9-pro",
@@ -8698,7 +8743,7 @@
         "ecran": "AMOLED 6,59\" 185 Hz",
         "processeur": "Snapdragon 8 Elite Gen 5 « V » (GPU réduit)",
         "batterie": "6 330 mAh, charge 100 W filaire, 50 W sans fil",
-        "photo": "100 MP, téléobjectif flottant 2,5×",
+        "photo": "200 MP, téléobjectif flottant 2,5×",
         "charge": "100 W",
         "refresh": "185 Hz"
       },
@@ -8726,6 +8771,15 @@
           "capacite_mah": 6330,
           "recharge_watts": 100,
           "chimie": null
+        },
+        "photo": {
+          "mp_principal": 200,
+          "ois": true
+        },
+        "durete": {
+          "protection_ip": "IP68",
+          "android_version_sortie": 16,
+          "mises_a_jour_ans": 4
         }
       },
       "tests": [
@@ -8743,8 +8797,62 @@
       "spec_provenance": {
         "compatibilite_derivee": "test_video",
         "video": 10,
-        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)"
-      }
+        "niveau_puce": "calculé d’après le nom de la puce (échelle 1-10)",
+        "complement_web": {
+          "date": "2026-10-31",
+          "champs": [
+            "mp_principal",
+            "ois",
+            "protection_ip",
+            "android_version_sortie",
+            "mises_a_jour_ans"
+          ],
+          "sources": [
+            "https://9to5google.com/?p=728686",
+            "https://www.newmobile.com/phones/poco/f9-pro/specifications",
+            "https://www.mobiledokan.com/mobile/xiaomi-poco-f9-pro/specification",
+            "https://www.pinoytechnoguide.com/smartphones/poco-f9-pro",
+            "https://www.lmt.lv/en/shop/all-phones/poco-f9-pro",
+            "https://www.digit.in/mobiles/poco-f9-pro-price-in-india.html"
+          ],
+          "capteur_format": "non vérifié : aucune des pages lues ne donne la taille du capteur principal ; la note du capteur reste vide",
+          "mises_a_jour": "4 mises à jour majeures (vidéo 10 de TechNick ; digit.in). digit.in cite aussi 6 ans de mises à jour, sur deux de ses pages mais d’un seul média : non recoupé, non retenu.",
+          "ecart_video": "La vidéo 10 indique 100 MP pour le capteur principal ; les pages lues indiquent 200 MP : 200 MP retenu."
+        },
+        "mp_principal": [
+          "https://www.newmobile.com/phones/poco/f9-pro/specifications",
+          "https://www.mobiledokan.com/mobile/xiaomi-poco-f9-pro/specification",
+          "https://www.pinoytechnoguide.com/smartphones/poco-f9-pro",
+          "https://www.lmt.lv/en/shop/all-phones/poco-f9-pro",
+          "https://9to5google.com/?p=728686"
+        ]
+      },
+      "sources_verification": [
+        {
+          "nom": "9to5google — lancement mondial POCO F9 Pro / Ultra (200 MP OIS, IP68)",
+          "url": "https://9to5google.com/?p=728686"
+        },
+        {
+          "nom": "NewMobile — fiche F9 Pro (200 MP, IP68, HyperOS 3)",
+          "url": "https://www.newmobile.com/phones/poco/f9-pro/specifications"
+        },
+        {
+          "nom": "MobileDokan — fiche F9 Pro (200 MP, IP68, Android 16)",
+          "url": "https://www.mobiledokan.com/mobile/xiaomi-poco-f9-pro/specification"
+        },
+        {
+          "nom": "PinoyTechnoGuide — fiche F9 Pro (200 MP OIS, IP68, Android 16)",
+          "url": "https://www.pinoytechnoguide.com/smartphones/poco-f9-pro"
+        },
+        {
+          "nom": "LMT — fiche F9 Pro (200 MP, IP68, Android 16)",
+          "url": "https://www.lmt.lv/en/shop/all-phones/poco-f9-pro"
+        },
+        {
+          "nom": "Digit — fiche F9 Pro (Android 16, 4 mises à jour majeures)",
+          "url": "https://www.digit.in/mobiles/poco-f9-pro-price-in-india.html"
+        }
+      ]
     },
     {
       "id": "huawei-pura-90s-pro-max",
