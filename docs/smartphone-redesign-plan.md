@@ -1,6 +1,6 @@
 # Smartphone page redesign: audit and plan (Phase 1)
 
-Status: **Phase 1 approved with adjustments (revision 2, see §9).** Branch: `feat/smartphone-redesign`, an explicit, user-approved exception to the "work on `main`, no new branches" rule in `CLAUDE.md`. Nothing is pushed, merged or deployed without the user's approval. Scope: `smartphones.html` and its own assets. No other category, no translations, no scoring or data changes.
+Status: **Phase 1 approved with adjustments (revision 2, see §9). Revision 3 adds §10, a proposed unified relevance score. It awaits approval, and Phase 2 does not start until it is approved.** Branch: `feat/smartphone-redesign`, an explicit, user-approved exception to the "work on `main`, no new branches" rule in `CLAUDE.md`. Nothing is pushed, merged or deployed without the user's approval. Scope: `smartphones.html` and its own assets. No other category, no translations, no scoring or data changes.
 
 ## 0. What exists today (facts)
 
@@ -130,3 +130,121 @@ Stylesheets to drop from this page once unused: `projecteurs.css`, `smartphones-
 - Keep these IDs and anchors working: `#classement`, `#tests-2026`, `#audit`, `#choisir-profil`, `#analyser-modele`, `#analyse-modele`, `#purchase-audit`, `#phone-analyzer-form`, `#phone-product-url`, `#phone-analyzer-result`, `#scoring-results`, `#sp-podium`, `#sp-ranking`, `#sp-chart`, `#sp-prof-top`.
 - Key facts already established: engine A = `assets/js/smartphones-notes.js` (bench ranks); engine B = `smartphones-trouver.js` `build()`; engine C = `smartphones-scoring.js` + `smartphone-quiz.js`; eligibility = `ready_for_recommendation && !exclu_reco && fiche_statut !== 'specs_a_verifier' && compatibilite` (74 sheets); bench→sheet link = `produit.tests[].modele` (7 eligible phones).
 - Tests to run at the end: `npm run smartphones:notes-test`, `smartphones:tests-test`, `smartphones:trouver-test`, `smartphones:quiz-test`, `student:test`, `analyzer:ui-test`, `pages:test`, plus the new `scripts/smartphones-conseil-test.js`, and a Playwright check at 360/390/768/1280 px (no horizontal scroll, first pick above the fold at 390 × 844). Report results concisely, then stop and wait for approval.
+
+## 10. Unified recommendation score: investigation (revision 3, awaiting approval)
+
+Question: can the existing data give each eligible phone (the 74 sheets) a comparable, profile-dependent **relevance score R out of 100**, with a separate **confidence C**? **Answer: yes, if R is built from verified sheet specs that every phone has. Bench measurements can only make a small, bounded correction inside their own test, and editorial scores are left out.** Everything below was computed on the repository data with `tools/smartphones/pertinence-prototype.js`, a read-only script that no page or engine loads. No engine and no data file was changed.
+
+### 10.1 Audit findings (new facts only; §0 still holds)
+
+| Source | What it really is | Comparable across the 74? |
+|---|---|---|
+| Bench ranks (`banc.modeles[].mesures`, engine A) | Independent measurements, but **only a rank inside one protocol** of 5 or 7 phones from one segment. Four flagship-autonomy entries were Chinese variants, and one mid-range test was sponsored. | **No.** Being last of 7 flagships ≠ being last of the market. Within-test only. |
+| Engine A notes 0–9 | Rank mapped to 9…4, then averaged with stepped mAh, IP and price scales. This already mixes rank-based and absolute scales. | No (26 bench models, mostly provisional) |
+| Editorial `scores` / `profil_scores` (engine B) | 16 sheets have `scores`. **11 of them come from the `Integral` workbook, which `catalogue_meta` labels "sans source"**, and 5 from older catalogue text. Correction to §0: 15 sheets carry the `profil_scores` key, but **only 5 are non-empty**. | **No.** Unsourced, and they cover 16 of 74 |
+| `phone-analyzer/references.js` (validated evidence registry) | Planned registry of sourced test scores. **86 phones, 0 evidence entries.** | Empty today |
+| Sheet specs (`compatibilite`, engine C) | Manufacturer specs, checked on ≥ 2 sources for 45 sheets (`sources_web`). The others come from a workbook or video sheet (13) or from unsourced files (16). `performance.niveau` and `capteur.niveau` are the guide's own classification of the chip and sensor, not measurements. | **Yes:** battery 74, chip level 74, screen 74, price 74, update years 70, sensor + tele 69, IP 56 |
+
+**Model identifiers.** The only bench→sheet link is `produit.tests[].modele`. Only **5 eligible sheets have a measurement linked through it** (OnePlus 16, OPPO Find X10 Pro Max, iPhone 18 Pro Max, Galaxy A57, POCO F9 Ultra). Vivo V80 and POCO F9 Pro are linked but have no measurement. Exact name matching finds **6 more measured bench models with an eligible sheet but no link**: `samsung-galaxy-s26-ultra`→`galaxy-s26-ultra`, `samsung-galaxy-s26`→`galaxy-s26`, `oneplus-15`, `honor-magic-8-pro`, `apple-iphone-17-pro-max`→`iphone-17-pro-max` and `google-pixel-10-pro-xl`→`pixel-10-pro-xl`. Another **6 measured models have a sheet that is not eligible yet** (`teste_video`, not `ready_for_recommendation`): Vivo V80 Lite, HONOR X9d, HONOR 600 Pro, POCO X8, iPhone 17 and Vivo X500 Pro Max.
+
+**Engine defects found (reported only, not fixed, per the brief):** engine C `repairScore()` reads `durete.reparabilite`, but the data field is `reparabilite_estimee`, so the repair criterion never matches (0 of 74). Engine C `rangScore()` gives the test bonus whenever `p.tests` is truthy, and an empty array `[]` is truthy too. Only 6 of 69 sheets have `teleobjectif.zoom`, so the "×5" choice is almost never satisfied.
+
+**Specs are not measurements, shown with our own data.** In the TechNick mid-range drain test, the POCO X8 (8,340 mAh) finishes 4th, behind the HONOR 600 Pro (7,000 mAh). In the Techmo flagship test, the Vivo X500 Pro Max (8,000 mAh) finishes behind the OPPO Find X10 Pro Max (7,150 mAh). This is why capacity and measured endurance stay two separate terms.
+
+### 10.2 What can be normalised
+
+- **Across the 74 (fixed anchors, never pool percentiles, so scores don't move when the catalogue changes):** capacity, chip level, sensor level + telephoto, price, announced update years, IP, refresh rate + panel type.
+- **Only within one test:** autonomy, speed and GPU ranks. These never become hours or a cross-test value.
+- **Not at all:** photo quality (no video scores it), editorial scores (no source), and peak nits (manufacturer peak values aren't measured the same way; nits are left out of R).
+
+### 10.3 Formulas
+
+For phone *p* and dimension *d*, the **spec value** *s_d* ∈ [0, 1] (clamped):
+
+| d | Field and anchor | Nature (label on the card) |
+|---|---|---|
+| batterie | (mAh − 4 000) / 3 500 | capacité annoncée |
+| performance | (chip `niveau` − 1) / 9 | classe de puce (classification du guide) |
+| photo | 0,75 · (sensor `niveau` − 1) / 9 + 0,25 · tele (none 0, present 0,6, ≥ ×5 1) | matériel photo, never image quality |
+| prix | ln(1 600 / price) / ln 16 (100 € → 1, 1 600 € → 0) | prix relevé (date) |
+| suivi | (update years − 2) / 5 | politique annoncée |
+| robustesse | IP69 1 · IP68 0,85 · IP67 0,7 · IP54–65 0,4 · `sans_ip` 0 | certification annoncée |
+| écran | 0,6 · (Hz − 60) / 60 + 0,4 · [not LCD] | fiche |
+
+**Measured adjustment** (bench only, centred and bounded): for each test *t* mapped to *d* (autonomie→batterie; vitesse, puissance→performance; nothing →photo), with *u_t* = 1 − (rang − 1)/(sur − 1):
+`a_d = mean_t β_t · (u_t − ½)`, where β = 0,15, halved for a Chinese-variant or sponsored test. The adjustment is at most ±7.5 points on the dimension. Inside each test its mean is zero, so **being tested neither helps nor hurts on average**. It only says how a phone did against the peers in the same protocol.
+
+**Missing data:** `x_d = clamp(s_d + a_d)` when *s_d* is known. When it is unknown, *x_d* takes the **median of that dimension within the same price tier** (haut, milieu, entrée, bas). That value is used for ordering only: it is never displayed and never labelled as a fact.
+
+**Profile weights.** The Équilibré base is batterie 20 · performance 15 · photo 15 · prix 20 · suivi 15 · robustesse 5 · écran 10. The primary priority multiplies its dimensions by 3, the optional secondary one by 2, and the weights are then rescaled to sum to 100:
+
+| Priority (maps to) | batt. | perf. | photo | prix | suivi | rob. | écran |
+|---|---|---|---|---|---|---|---|
+| Équilibré | 20 | 15 | 15 | 20 | 15 | 5 | 10 |
+| Autonomie (batterie) | **42.9** | 10.7 | 10.7 | 14.3 | 10.7 | 3.6 | 7.1 |
+| Photo (photo) | 15.4 | 11.5 | **34.6** | 15.4 | 11.5 | 3.8 | 7.7 |
+| Jeu (performance, écran) | 13.3 | **30** | 10 | 13.3 | 10 | 3.3 | **20** |
+| Petit prix (prix; ceiling **250 €**, same as engine B) | 14.3 | 10.7 | 10.7 | **42.9** | 10.7 | 3.6 | 7.1 |
+| Usage pro (performance, suivi) | 12.5 | **28.1** | 9.4 | 12.5 | **28.1** | 3.1 | 6.3 |
+
+**Relevance:** `R = Σ w_d · x_d` (0–100). **Range:** R_min and R_max are computed with every unknown set to 0 and to 1. The unknown share is `U = R_max − R_min`, the profile weight that is not documented.
+
+**Confidence (separate; never enters R):** `C = Σ w_d · q_d`. Here *q* is 0 when unknown. For a sheet spec, *q* follows provenance: `sources_web` 0.6; `classeur_2026` or `test_video` 0.5; `fichier_integral` or `caracteristiques_catalogue` 0.35. A dated price counts 1. A within-test measurement adds +0.4 (+0.25 if the test is weak), capped at 1. **Photo can never go above the spec level.** C ≥ 75 is *élevée*, 50–74 *moyenne*, < 50 *faible*.
+
+**Ordering and incomplete evidence.** Phones are sorted by R; on equal R, higher C comes first, then the lower price. **"Le choix sûr" and "Le meilleur rapport qualité-prix" require U ≤ 15.** Phones with more unknown weight stay in the full list at their own R, labelled "estimation partielle : entre R_min et R_max". They can fill only the "alternative" slot, and only with that label. A missing value is never scored as poor. It also can't win a top slot on assumptions.
+
+### 10.4 Worked examples (real data, current links, no extra matching)
+
+Top 6, shown as R [range] · C:
+
+| # | **Autonomie d'abord** | **Photo d'abord** | **Petit prix** (≤ 250 €) |
+|---|---|---|---|
+| 1 | POCO F9 Ultra 949 € · 81 [63–88] · 49 ⚠ not gated (U = 25) | OPPO Find X10 Pro Max 1 229 € · 76 · 62 | POCO C85 129 € · 57 · **44 faible** |
+| 2 | **OnePlus 16** 889 € · 79 · 68 (autonomie 1/7) | POCO F9 Ultra · 73 [38–88] · 37 ⚠ (U = 50) | Redmi Note 13 159 € · 56 · **77 élevée** |
+| 3 | OnePlus 15 689 € · 78 · 66 | OPPO Find X9 749 € · 71 · 66 | Galaxy A23 5G 144 € · 55 [54–58] · 75 |
+| 4 | OPPO Find X10 Pro Max · 77 · 68 (3/7) | Xiaomi 16 Ultra 1 389 € · 68 [65–68] · 64 | Redmi Note 15 5G 219 € · 55 · 63 |
+| 5 | OPPO Find X9 · 75 · 66 | OnePlus 16 · 68 · 62 | POCO C71 89 € · 54 · 77 |
+| 6 | Nubia Red Magic 10 Pro 650 € · 69 [66–69] · 64 | Google Pixel 11 Pro 1 199 € · 67 · 58 | POCO X6 229 € · 54 · 77 |
+
+What changes between profiles, and why:
+- **"Le choix sûr": OnePlus 16 for Autonomie, then OPPO Find X10 Pro Max for Photo.** POCO F9 Ultra ranks 1st and 2nd but is not gated, because its sheet has no sensor, update or IP data.
+- **OPPO Find X10 Pro Max, Photo:** 15.4 × 0.91 (7,150 mAh plus a weak +0.013 adjustment for 3rd of 7 in the Chinese-variant test) + 11.5 × 1 + 34.6 × 0.90 (1″ sensor plus telephoto) + 15.4 × 0.10 (1,229 €) + 11.5 × 0.6 (5 years) + 3.8 × 0.85 + 7.7 × 1 = **76**. Under Autonomie the same phone drops to 4th (77), behind phones with more mAh.
+- **Galaxy S26 Ultra:** 20th for Autonomie (52) and 12th for Photo (64). If the proposed S26 Ultra link is confirmed, its three measurements (autonomie 7/7, vitesse 1/7, GPU 4/5) move **R from 52 to 49 but C from 66 to 87**. More evidence raises confidence; it doesn't inflate relevance.
+- **Petit prix:** POCO C85 has the highest relevance but *low* confidence (unsourced catalogue sheet). Redmi Note 13 is 1 point lower with *high* confidence. The card shows both numbers, and C is never folded into R.
+- **For comparison, the legacy engines' picks:** engine B "photographe" puts the iPhone 17 Pro first (editorial 9/10 from catalogue text). Engine A "polyvalent" ranks only 26 bench models, all provisional. Agreement with engine B where they overlap (16 sheets) is Spearman 0.88 for Photo and 0.81 for Jeu. So the new score keeps the broad editorial order without relying on unsourced data.
+
+### 10.5 Coverage limitations
+
+- **Measured evidence is thin:** 5 of 74 phones today. For the battery and performance dimensions it moves R by at most about ±3 points, so for now its value is mostly in C. Only 1 of 74 phones reaches *élevée* under Équilibré; 53 are *moyenne* and 20 *faible*. That is the honest state of the evidence.
+- **Saturation:** 13 phones sit at chip level 10, and 2 at or above 7,500 mAh (the anchor is reached). Among flagships, performance is separated only by the bench adjustment, and only for tested phones.
+- **Flagships dominate every profile except Petit prix** because the spec dimensions rise together with price. The price weight alone doesn't change that; the 250 € ceiling does. This is a property of spec-only data, not a bug to tune away.
+- **Not gated under Équilibré (U > 15):** honor-9-lite, tecno-phantom-x3-pro, poco-f9-ultra and poco-f9-pro. 18 sheets have no IP data (low weight).
+- **Photo stays "matériel" for every phone:** no image-quality evidence exists.
+
+### 10.6 Would more data or matching help? (ranked by gain for cost)
+
+1. **Confirm the 6 exact-name links** (≈ 1 h, manual check of variants such as S26 vs S26+). This takes measured eligible phones from 5 to 11, adds 9 measurements, and raises C for Galaxy S26 Ultra, OnePlus 15, Honor Magic 8 Pro, etc. Links would live in a new file (`data/smartphones-liens-banc.json`, needs approval), not in the existing JSON.
+2. **Fill sensor, updates and IP for POCO F9 Ultra and F9 Pro** (≈ 1 h; the bench sheet already has sources). This removes 2 of the 4 non-gated phones, including the phone ranked 1st for Autonomie.
+3. **Verify the 6 measured `teste_video` sheets** so they can become eligible (≈ 4 h). Measured phones would rise to 17, mostly mid-range, where the autonomy test gives real separation.
+4. **Telephoto zoom factor** (63 sheets missing, ≈ 3 h). This separates ×3 and ×5 telephotos in Photo.
+5. **Populating `references.js`** with sourced measured scores is the only way to get beyond within-test evidence (open-ended). Without it, photo and cross-segment autonomy cannot be measured.
+
+### 10.7 Validation tests (before R replaces any existing output)
+
+- **Invariance:** golden snapshots of engine A `estimate()` for 26 models, engine B `build()` for 6 needs and engine C for fixed states, taken before Phase 2 and asserted equal afterwards.
+- **Missing ≠ poor (property tests):** R ∈ [R_min, R_max]. Removing a field moves *x_d* to the tier's neutral value only, makes C strictly lower and switches the label to "inconnu". No displayed value comes from imputation.
+- **Separation:** changing only provenance or measurement status changes C, and changes R by at most the bounded adjustment. Changing a spec never changes the measured term, and vice versa. No spec field can produce a "mesuré" label.
+- **Centring:** in each bench test the mean adjustment is 0 (± 1e-9).
+- **Monotonicity:** more mAh, a higher chip level, more update years or a lower price never lowers R in any profile.
+- **Gate:** no phone with U > 15 in pick 1 or 2. Every Petit prix pick is ≤ 250 €.
+- **Weight sensitivity** (±20 % per dimension, 14 runs). The prototype already gives: Autonomie, #1 stable 14/14 with top-3 overlap 1.00; Photo, 14/14 and 0.83; Petit prix, 10/14 and 0.88. Threshold: #1 stable ≥ 10/14 and overlap ≥ 0.8.
+- **Face validity, reviewed by you:** the top 10 for each of the 6 priorities, with known traps such as the S26 Ultra kept out of the Autonomie top 10.
+- **One pool, one rule:** the same pick from the top block, the presets and the criteria drawer (§4).
+
+### 10.8 Rollout and cost
+
+- **Shadow first (requirement 9):** a new pure module `assets/js/smartphones-pertinence.js` (≈ 200 lines, Node-testable) plus `scripts/smartphones-pertinence-test.js` (≈ 250 lines). The existing engines and their displays stay exactly as they are. R and C are computed but shown only behind `?pertinence=1` until you validate them against the tests and the review above. `smartphones-conseil.js` (§4, §8) then reads R and C instead of mixing evidence levels by hand.
+- **Estimate:** module and tests ≈ 1 day; review of the six top-10 lists ≈ 1 h; data items 1–2 ≈ 2 h (needs approval to add the links file and edit two sheets). Item 3 is a separate data task.
+- **Change to Phase 2:** the "evidence-level pool" in §4 becomes "R + C with gating (§10.3)". The UI deliverables are unchanged.
+
+**Decisions needed:** (a) approve the formulas and weights (or adjust them); (b) leave editorial `scores` out of R; (c) adopt the 250 € Petit prix ceiling; (d) allow the links file and the two data fixes (§10.6, items 1–2).
