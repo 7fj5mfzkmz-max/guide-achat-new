@@ -1,6 +1,6 @@
 # Smartphone page redesign: audit and plan (Phase 1)
 
-Status: **Phase 1 approved with adjustments (revision 2, see §9). Revision 4 reworks §10 (unified relevance score R and separate confidence C) after the conditional approval; the formula is not final and Phase 2 does not start until it is approved.** Branch: `feat/smartphone-redesign`, an explicit, user-approved exception to the "work on `main`, no new branches" rule in `CLAUDE.md`. Nothing is pushed, merged or deployed without the user's approval. Scope: `smartphones.html` and its own assets. No other category, no translations, no scoring or data changes.
+Status: **Phase 1 approved with adjustments (revision 2, see §9). Revision 4 reworks §10 (unified relevance score R and separate confidence C) after the conditional approval. Revision 5 adds §11, the evidence architecture for a database that keeps growing; it supersedes the "R is spec-only" wording of §10, which describes today's evidence, not a permanent rule. Neither the formula nor the architecture is final, and Phase 2 does not start until they are approved.** Branch: `feat/smartphone-redesign`, an explicit, user-approved exception to the "work on `main`, no new branches" rule in `CLAUDE.md`. Nothing is pushed, merged or deployed without the user's approval. Scope: `smartphones.html` and its own assets. No other category, no translations, no scoring or data changes.
 
 ## 0. What exists today (facts)
 
@@ -139,7 +139,7 @@ Goal: give each of the 74 eligible phones a comparable, profile-dependent **rele
 
 | Decision | Done |
 |---|---|
-| Unverified editorial scores stay out of R | Yes: R reads sheet specs only. |
+| Unverified editorial scores stay out of R | Yes. Today R reads sheet specs only because no measurement protocol in the repository is admissible and calibrated yet; §11 defines how measurements enter R as evidence arrives. |
 | "Petit prix" ceiling 250 €, adjustable | Yes: the default cap of the *Rapport qualité-prix* priority; every priority accepts a user budget. |
 | Bench→catalogue mapping file | `data/smartphones-liens-banc.json`: 22 of 26 bench models linked, 4 refused. Measured eligible phones go from **5 to 11**. |
 | Targeted POCO F9 corrections | Done from pages I actually read (see 10.2). |
@@ -162,7 +162,7 @@ Goal: give each of the 74 eligible phones a comparable, profile-dependent **rele
 
 **C (confidence)** = Σ w·q, with q = 0 for unknown, 1 for a dated price, 0.6 for a field confirmed on two web pages, 0.35–0.6 by sheet provenance otherwise, and a bench measurement adds 0.4 (0.25 for a weak protocol, 0.1 for a discarded one). **R never reads C or the provenance, C never reads a spec value.**
 
-**M (measurements)** are shown as separate lines "rank n of N, protocol X" and never merged with the sheet values or across protocols.
+**M (measurements)** are shown as separate lines "rank n of N, protocol X" and never merged with the sheet values or across protocols. (This is the state with today's evidence; §11 generalises it.)
 
 ### 10.4 What the validation showed
 
@@ -170,7 +170,7 @@ Goal: give each of the 74 eligible phones a comparable, profile-dependent **rele
 |---|---|
 | **Price sensitivity** across budgets | Share of phones above 800 € among the top 3, averaged over the five priorities: at 1 000 € **53 % → 13 %**, with no cap **60 % → 20 %** once the premium test is on; 0 % at 700 € and below. Premium test strength κ = 4 / 8 / 12 gives 53 / 20 / 7 % with no cap. The first choice moves with the budget in every priority (for example Autonomie: Redmi Note 13, then iQOO Z9 Turbo, Vivo V80, OnePlus 15, OnePlus 16). **Rejected:** pricing relative to the budget, because the same phone's R then rises with the user's wealth (POCO C85: 37 at 250 €, 42 with no cap). |
 | **Median imputation** | Leave-one-out on 55 fully documented phones: segment median has bias 0.0 and average error 2.2 points, interval contains the true R 85 % of the time, **no false promotion into the top 5**. Counting 0 biases R by −7.9; ignoring the criterion doubles the error and shifts ranks most. **But the median does not preserve rank:** 38 % of cases move 3 places or more, because R values are packed. Hence: imputation orders, the interval is shown, and the gate decides who can be recommended. |
-| **±7.5-point measurement adjustment** | **Not appropriate; R is spec-only.** Capacity already explains the measured ranks (Spearman 0.90 and 0.89), so a centred bonus double-counts. A residual adjustment moves R by 2.3 points at most (4.5 with β 0.30) and changes no top 5 in 20 priority × budget combinations. Only 1 protocol (speed) is free of reservations: the flagship autonomy test used Chinese variants, the mid-range one is sponsored, the GPU one overclocks one phone. With 5–7 phones per protocol nothing can be calibrated. Measurements raise C and stay visible in M. |
+| **±7.5-point measurement adjustment** | **Not appropriate as a fixed bonus. With today's evidence R is spec-only; §11 turns that into a data-driven state instead of a rule.** Capacity already explains the measured ranks (Spearman 0.90 and 0.89), so a centred bonus double-counts. A residual adjustment moves R by 2.3 points at most (4.5 with β 0.30) and changes no top 5 in 20 priority × budget combinations. Only 1 protocol (speed) is free of reservations: the flagship autonomy test used Chinese variants, the mid-range one is sponsored, the GPU one overclocks one phone. With 5–7 phones per protocol nothing can be calibrated. Measurements raise C and stay visible in M. |
 | **Stability** | Weights ±20 %: first choice unchanged in 14/14 runs in 12 of 15 priority × budget cells, 13/14 in two (Usage quotidien at 400 € and with no cap), 8/14 for Rapport qualité-prix at 400 €. Prices ±10 %: first choice unchanged 30–100 % of the time (lowest: Rapport qualité-prix at 400 € 30 %, Autonomie with no cap 57 %), top-3 overlap 0.68–0.97. **The first rank is not robust; the top group is.** |
 | **Confidence behaviour** | R–C correlation 0.06–0.12 (−0.20 for Rapport qualité-prix, where cheap phones are less documented): the two ideas are independent. 1 phone reaches "élevée", 56 "moyenne", 17 "faible". |
 
@@ -189,12 +189,123 @@ Goal: give each of the 74 eligible phones a comparable, profile-dependent **rele
 - **Done:** prototype (185 lines), validation harness, 24 checks, mapping file, POCO corrections.
 - **To do for production:** port the prototype into `assets/js/smartphones-pertinence.js` (pure, ≈ 250 lines) and wire `smartphones-conseil.js` to it: **≈ 1 day**, shadow mode behind `?pertinence=1` until you approve the lists. Sourcing the 16 unsourced sheets (≈ 6–8 h) and the Photo sensor grades (≈ 3 h) is separate data work.
 - Existing outputs are preserved: no engine file, display or i18n file changed; failures in `verifications:test`, `classeur-complet:test` and `smartphones:quiz-test` predate this work (same failures before and after).
-- **Phase 2 impact:** the evidence-level pool of §4 becomes "R + C with the gate of 10.3"; cards show R with budget context, the interval, C and M lines.
+- **Phase 2 impact:** the evidence-level pool of §4 becomes "R + C + U with the gate of 10.3" fed by the evidence layer of §11; cards show R with budget context, the interval, C and the evidence basis of each criterion.
 
 ### 10.7 Decisions needed before Phase 2
 
-1. Approve **R from sheet specs only**, with measurements shown in M and counted in C (not in R).
+1. ~~Approve R from sheet specs only~~ Superseded by §11.10: R is spec-only *today* as a consequence of the evidence available, not as a design rule.
 2. Approve **absolute price + cap + premium test (κ = 8)** instead of price relative to the budget.
 3. Approve the gate **U ≤ 12, C ≥ 50**, and decide whether a measurement may lift an unsourced sheet over 50.
 4. Decide a **support floor** for Rapport qualité-prix (for example 3 years).
 5. Accept that the interface shows **groups of equivalents**, not a single winner.
+
+## 11. Evidence architecture: an advisor that improves as evidence is imported (revision 5, awaiting approval)
+
+Requirement: the database keeps growing through imports of review videos and independent tests (specs, measurements, observations, conclusions, sources). Scores must move when evidence arrives, in either direction, without model-specific rules or manual ranking edits, and without rebuilding ingestion.
+
+**Principle.** *Nothing derived is stored.* R, C and U are recomputed at load from a ledger of **observations**. An import adds observations; the same code produces new scores. Corrections happen at the evidence level (an observation is flagged or rejected with a reason), never on a score. The existing ingestion (`construire-tests.js`, `integrer-tests.js`, `classer-*`, `appliquer-corrections.js`) is untouched; thin read-only adapters turn what it already produces into observations.
+
+### 11.1 Three concepts, three outputs
+
+| Concept | Question it answers | Computed from | Shown as |
+|---|---|---|---|
+| **Relevance R** | How well does the phone fit the user's priorities? | Best available estimate per criterion (declared spec, refined by compatible measurements), weighted by the user's priorities | 0–100 |
+| **Confidence C** | How strongly does evidence support what we state? | Evidence quality per criterion: source class, protocol, variant match, recency, independence, consistency. **Not the number of sources.** | Low / medium / high, with the evidence behind each criterion |
+| **Uncertainty U** | What is unknown or contradictory? | Unknown criteria (segment interval), disagreement between compatible observations, spec contradicted by a measurement | Interval [Rmin, Rmax] plus an explicit list of conflicts |
+
+Today's C is, by construction, *coverage × quality* (support = Σ w·q). Display them separately, but **keep the recommendation gate on the product (support ≥ 50) plus U ≤ 12**: gating on quality alone would admit 12 extra low-coverage cases out of 1,255 phone × priority × budget combinations (for example Honor 9 Lite at 50 % coverage).
+
+### 11.2 What the prototype keeps and what becomes extensible
+
+| Part of the prototype | Verdict |
+|---|---|
+| Spec anchors (battery, chip, photo hardware, updates, IP, screen, price) | **Keep** as the *prior* for each criterion. Becomes one entry per criterion in a registry. |
+| Priorities, weights, absolute price, budget cap, premium test (κ = 8) | **Keep unchanged.** They act on estimates, not on evidence, so new evidence never touches them. |
+| Segment-median estimate, interval, gate U ≤ 12 and support ≥ 50 | **Keep** for criteria with no evidence at all; extend the interval with conflict width. |
+| Separation of R, C, M | **Keep**, add U as the third concept. |
+| `liens` mapping file and its tests | **Keep**; becomes the product-identity resolver for every future import. |
+| Leave-one-out and stability harness | **Keep**, add evidence-arrival replays (11.8). |
+| `TESTS` table hard-coded in the prototype (which protocol is discarded and why) | **Replace** by a protocol registry (data). This is the only model-adjacent rule in the code. |
+| Fixed credits +0.4 / +0.25 / +0.1 for a measurement | **Replace** by evidence strength (11.5). |
+| `uAttendu`, which special-cases battery | **Replace** by a per-criterion spec predictor in the criteria registry. |
+| Provenance per sheet and one special field list (`complement_web`) | **Generalise** to per-observation provenance. |
+| `ajuste` modes (centred, residual) | **Replace** by one estimator (11.5), inactive until a protocol class is calibrated. |
+
+### 11.3 Observation record and what the repository already provides
+
+One atomic claim per record:
+
+```
+{ id, produit, kind: declared | measured | scored | qualitative, critere,
+  valeur: { nombre, unite } or { rang, sur } or { texte },
+  source: { id, editeur, classe, url, date, sponsorise },
+  protocole: id,                 // -> protocol registry
+  variante: { region, config },  // device actually tested
+  statut: valide | a_verifier | rejete (+ motif) }
+```
+
+`kind` is structural: *declared* specs are capped at strength 0.6 and can never exceed a comparable *measured* observation; *qualitative* observations never enter R.
+
+| Existing artifact | Becomes | Count today |
+|---|---|---|
+| Sheet `compatibilite` + `spec_provenance` (+ `complement_web`) | declared | 74 sheets |
+| `smartphones-tests.json` `banc.modeles[].mesures`, `autonomie`, `vitesse`, `benchmarks` | measured | 26 lines, 4 protocols (14 with a duration, 12 rank-only) |
+| `smartphones-tests.json` verdicts, `choix_par_profil`, `gamme`, `photo`, `tendances`, `limites` | qualitative | 6 blocks |
+| `phone-references.json` (`PhoneReferences`, used by the analyzer and the student journey) | scored (reviewer `score_10`) or measured when `kind: measured` | 86 phones, **0 evidence entries**. Its own `confidence` is count-based, so it is *not* reused. |
+
+**What an import must supply that the repository does not capture now** (audit): a **date** (0 of 13 videos have one), **structured variant and sponsorship flags** (0; two prose caveats among eight `limites` lines), a **protocol id with conditions** (the protocol is free text for 7 of 7 ranking blocks), and a **numeric value with unit** (12 of 26 lines are rank-only). Defaults when missing are conservative, never optimistic: undated ×0.8, unknown variant ×0.8, undeclared protocol → qualitative only (shown, never scored). An import is therefore never blocked, only weighted by how well it is documented.
+
+### 11.4 Three small registries (data, not code)
+
+- **Criteria** (7 entries today: the dimensions of 10.3): spec predictor, unit, direction, and for each measurable family whether a measured value has an **absolute anchor** (for example measured nits, minutes) or is **relative** (rank inside a cohort).
+- **Source classes** (initial editorial values, to review): declared spec ≤ 0.6 (the three provenance classes already in the prototype: 0.6, 0.5, 0.35); independent test with documented protocol 0.8; video test with described protocol 0.7; rank-only video 0.5; qualitative 0.3. Sponsored ×0.8.
+- **Protocols** (4 entries today, filled from the existing prose, nothing invented): criterion, `compatibilite` id (observations are comparable only inside one id), reference variant, sponsored flag, conditions (for example 500 nits), tolerance for agreement. Flagship autonomy (Techmo): Chinese variants; mid-range autonomy (TechNick): sponsored by vivo; GPU (TechNick): one phone overclocked; speed (PhoneBuff): no reservation.
+
+### 11.5 Estimation rules
+
+1. **Comparability.** Two observations are compared only if they share a criterion, a protocol `compatibilite` id and a variant. Never across ids; a different id is never converted to a common scale, it is a separate line.
+2. **Strength of one observation** `s = r(source class) × k(protocol) × k(variant) × k(recency)`, with k = 1 when documented and matching, 0.5 for ordinal-only (rank), 0.8 when unknown, 0 for a variant that differs from the sheet's (kept visible, excluded from R).
+3. **Independence.** Observations sharing a publisher and testbed form one **group** and count once (their best strength).
+4. **Support per criterion** `S = s₁ + 0.3·(1 − s₁)·m/2`, with s₁ the strongest group and m ≤ 2 the number of *independent, consistent* groups at least half as strong. Ten same-publisher reviews = one group. Ten mediocre independent sources (s = 0.5) give 0.65; two reliable ones (s = 0.7, 0.7) give 0.745. Corroboration is bounded, so count cannot buy rank.
+5. **Estimate** `x = x_spec + λ·(x_obs − x_spec)` with λ = S_measured × a, where a is the protocol class's **activation factor**: 1 for an absolute anchor; for a relative class a = 0 until the class has at least 8 phones with a spec predictor, no variant contamination, and either two independent publishers or one lab-grade source, then a ramps with cohort size and with the consistency between spec and measurement. `x_obs` is the anchored value (absolute) or `x_spec + (rank percentile − rank percentile predicted by the spec)` (relative). The prior is the declared spec, so evidence can raise or lower a phone symmetrically; when no compatible measurement exists, x is the spec value, then the segment median.
+6. **Conflicts are kept.** Two compatible observations that disagree beyond the protocol tolerance, or a measurement that contradicts the spec by more than 0.25, are both retained. The estimate follows the stronger group, the interval widens to cover both, and the conflict is **exposed** when it moves R by 3 points or more for the active priority.
+7. **Qualitative evidence** never changes R. It supplies explanation text and a "dissent" flag when two independent reviewers contradict the numeric estimate, which widens U.
+
+**Consequence today.** No relative class meets the activation rule (the largest has 7 phones, three have variant or sponsorship reservations), so **R is identical to the validated prototype**; C is recomputed from S and re-validated. The first import that completes a class changes R automatically, and the change report (11.7) shows who moved.
+
+### 11.6 Explanation contract
+
+Each recommendation carries, per criterion: the **basis** (`fiche`, `mesure`, `avis`), the winning observation ids, the value with its unit and protocol ("7 h 20 d'écran, protocole X, n° 3 sur 7, source Y, mois/année"), and any conflict. Text comes from templates keyed by basis, never from per-model prose. The card states the **compromise** (lowest-scoring criterion among those weighted by the user's priorities, and any criterion known only from specifications), and whether the conclusion rests on specifications, independent measurements or reviews.
+
+### 11.7 Minimal implementation strategy (no ingestion rebuild)
+
+| Step | Content | Size |
+|---|---|---|
+| 1 | Three registries as JSON, filled from existing prose (7 criteria, 7 source classes, 4 protocols) | ≈ 100 lines of data |
+| 2 | Adapters: sheets, `smartphones-tests.json`, `phone-references.json` → observations, via the `liens` file | ≈ 120 lines |
+| 3 | Evidence aggregation (groups, support, conflicts, estimator) replacing `mesures()` and the `ajuste` modes | ≈ 150 lines |
+| 4 | **Regression guarantee:** with today's data the new code reproduces the validated R to 1e-9 | test |
+| 5 | **Change report:** after any import, lists phones whose R, C or U moved, by how much and from which observations, for review before publishing | ≈ 60 lines |
+| 6 | Import contract: one page listing the fields in 11.3 that an import should emit | doc |
+
+Not built: ingestion, NLP of qualitative text, any UI. New importers may keep writing `smartphones-tests.json`; when convenient they can emit observation records directly into one append-only file. Estimated cost on top of the production port of §10.6: **about one more day** (total ≈ 2 days), still behind `?pertinence=1`.
+
+### 11.8 Validation additions
+
+Property tests, run on every change: (a) ten same-publisher observations never exceed one in support; ten mediocre independent sources never exceed two reliable ones; (b) a measurement can raise **and** lower R relative to the spec; (c) incompatible protocol ids are never merged; (d) a variant mismatch appears in M and changes neither R nor C; (e) a conflict keeps both observations and widens U; (f) a *declared* spec never exceeds 0.6 or outranks a comparable measurement; (g) qualitative observations change no R; (h) a new phone with only a sheet is scored by the same code, with no model-specific branch (grep-level test). Plus **evidence-arrival replays**: re-run the budget, stability and leave-one-out harness after each import, and compare with the previous snapshot.
+
+### 11.9 Limits to accept
+
+- A relative class cannot be calibrated below about 8 phones, so early imports will mostly raise C and fill M, not move R. This is intentional.
+- Independence is judged by publisher and testbed, which cannot detect two channels reusing the same footage.
+- Source-class and recency values are editorial and live in the registry so they can be revised by data; they are not calibrated.
+- Qualitative reviews stay out of R. Their value is explanation and early warning, not ranking.
+- Undated videos (all 13 today) are down-weighted until imports carry dates.
+
+### 11.10 Decisions needed
+
+1. Approve the **observation ledger computed at load, with nothing derived stored**, and the three-concept split R / C / U.
+2. Approve **three registries** (criteria, source classes, protocols), with conservative defaults for anything an import leaves undeclared.
+3. Approve the **activation rule** for relative protocols (≥ 8 phones, no contamination, independent or lab-grade source) and the bounded-corroboration formula.
+4. Approve the **change report** as the review step after each import, in place of any manual ranking adjustment.
+5. Keep the support gate (≥ 50) and U ≤ 12; decide the support floor for Rapport qualité-prix and whether a measurement may lift an unsourced sheet (open items of 10.7).
