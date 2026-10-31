@@ -30,3 +30,15 @@ s'accordent ; sinon prix de la feuille conservé et marqué « à confirmer ».
 | Xiaomi 15T | 397 | 397 | convergent | Cdiscount 396,89 € (récent) ; Kimovil 385 € |
 | ZTE Blade V70 Vita | 112 | 112 | incertain | PcComponentes 112 € (8/256) ; Kimovil 92 € (version globale) |
 | Nubia Red Magic 10 Pro | 928 | 928 | incertain | Kimovil : à partir de 928 € (Powerplanet, 16/512) |
+
+## Décisions finales (31/10/2026)
+
+Règle retenue par le propriétaire du site : prix moyen indicatif du neuf en France, arrondi à 10 €, avec une date de vérification.
+
+| Modèle | Prix enregistré | Réserve |
+|---|---|---|
+| Motorola Edge 70 Pro (256 Go) | 490 € | Offres 256 Go entre 473 et 503 € selon couleur et vendeur |
+| OnePlus 12 Hasselblad Edition (256 Go) | 570 € | Mention Hasselblad = OnePlus 12 ; offres neuves entre 500 et 638 € |
+| ZTE Blade V70 Vita (256 Go) | 180 € | Offres entre 138 et 231 € ; certaines en 4 Go de RAM, d'autres en 8 Go |
+| Nubia RedMagic 10 Pro (12/256 Go) | 650 € | Repère indicatif ; Idealo n'affiche aucune offre sur cette variante |
+| Honor Magic V3 | aucun prix 256 Go | Version 256 Go non commercialisée en France ; 512 Go autour de 870 à 900 € (non enregistré) |
