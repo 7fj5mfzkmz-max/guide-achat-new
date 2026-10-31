@@ -110,7 +110,7 @@
       "id": "xiaomi-15t",
       "nom": "Xiaomi 15T",
       "marque": "Xiaomi",
-      "prix_indicatif": 369,
+      "prix_indicatif": 397,
       "prix_note": "Prix relevé en octobre 2026.",
       "caracteristiques": {
         "ecran": "6,83\" AMOLED, 120 Hz, jusqu'à 3 200 nits",
@@ -321,7 +321,7 @@
       "nom": "OnePlus 15",
       "marque": "OnePlus",
       "prix_indicatif": 689,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "6,78\" AMOLED LTPO, 165 Hz",
         "processeur": "Snapdragon 8 Elite Gen 5 (3 nm)",
@@ -1490,7 +1490,7 @@
       "id": "iphone-duo",
       "nom": "iPhone Duo",
       "marque": "Apple",
-      "prix_indicatif": 1749,
+      "prix_indicatif": 2339,
       "prix_note": "Prix relevé en octobre 2026.",
       "caracteristiques": {
         "écran": "6,6\" écrans modulables OLED x2 (3840 x 2160 chacun, side-by-side)",
@@ -1708,7 +1708,7 @@
       "id": "honor-magic-8-pro",
       "nom": "Honor Magic 8 Pro",
       "marque": "Honor",
-      "prix_indicatif": 1039,
+      "prix_indicatif": 1299,
       "prix_note": "Prix relevé en octobre 2026.",
       "caracteristiques": {
         "ecran": "6,7\" OLED, 120 Hz",
@@ -1905,7 +1905,7 @@
       "id": "pixel-10-pro",
       "nom": "Pixel 10 Pro",
       "marque": "Google",
-      "prix_indicatif": 999,
+      "prix_indicatif": 749,
       "prix_note": "Prix relevé en octobre 2026.",
       "caracteristiques": {
         "ecran": "6,3\" OLED LTPO, 1 à 120 Hz, 3 300 nits",
@@ -2003,8 +2003,8 @@
       "id": "motorola-edge-70-pro",
       "nom": "Motorola Edge 70 Pro",
       "marque": "Motorola",
-      "prix_indicatif": 389,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_indicatif": 453,
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "6,8\" AMOLED, 144 Hz, 5 200 nits",
         "processeur": "MediaTek Dimensity 8500 Ultra (4 nm)",
@@ -2779,7 +2779,7 @@
       "nom": "realme C75",
       "marque": "realme",
       "prix_indicatif": 159,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "tranche_prix": "100-200",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -2990,7 +2990,7 @@
       "nom": "Motorola Moto G55 5G",
       "marque": "Motorola",
       "prix_indicatif": 169,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "tranche_prix": "100-200",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -3198,7 +3198,7 @@
       "nom": "POCO C85",
       "marque": "POCO",
       "prix_indicatif": 129,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "tranche_prix": "moins-100",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -3469,7 +3469,7 @@
       "nom": "Motorola Moto G06 Power",
       "marque": "Motorola",
       "prix_indicatif": 119,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "tranche_prix": "moins-100",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -3572,7 +3572,7 @@
       "nom": "Motorola Moto G06",
       "marque": "Motorola",
       "prix_indicatif": 99,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "tranche_prix": "moins-100",
       "ready_for_recommendation": true,
       "caracteristiques": {
@@ -3776,8 +3776,8 @@
       "id": "zte-blade-v70-vita",
       "nom": "ZTE Blade V70 Vita",
       "marque": "ZTE",
-      "prix_indicatif": 79,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_indicatif": 112,
+      "prix_note": "Prix indicatif à confirmer.",
       "tranche_prix": "moins-100",
       "ready_for_recommendation": false,
       "caracteristiques": {
@@ -4315,7 +4315,7 @@
       "nom": "Realme GT 7 Pro",
       "marque": "Realme",
       "prix_indicatif": 739,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "6,78\" AMOLED",
         "processeur": "Snapdragon 8 Elite (3 nm)",
@@ -4962,7 +4962,7 @@
       "nom": "Samsung Galaxy A15",
       "marque": "Samsung",
       "prix_indicatif": 169,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "6,5\" AMOLED Full HD+, 90 Hz",
         "processeur": "MediaTek Dimensity 6100+",
@@ -5245,7 +5245,7 @@
       "nom": "Realme 12 Pro",
       "marque": "Realme",
       "prix_indicatif": 199,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "6,7\" AMOLED Full HD+, 120 Hz, 950 nits",
         "processeur": "Snapdragon 6 Gen 1",
@@ -5669,7 +5669,7 @@
       "nom": "Samsung Galaxy A05",
       "marque": "Samsung",
       "prix_indicatif": 139,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "6.7 LCD 60Hz",
         "processeur": "Helio G85 (12 nm)",
@@ -5981,8 +5981,8 @@
       "id": "nubia-red-magic-10-pro",
       "nom": "Nubia Red Magic 10 Pro",
       "marque": "ZTE Nubia",
-      "prix_indicatif": 639,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_indicatif": 928,
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "OLED, 144 Hz",
         "processeur": "Snapdragon 8 Elite (3 nm)",
@@ -6218,8 +6218,8 @@
       "id": "honor-magic-v3",
       "nom": "Honor Magic V3",
       "marque": "Honor",
-      "prix_indicatif": 1799,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_indicatif": 1099,
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "ecran": "7.92 OLED 120Hz 1600nits",
         "processeur": "Snapdragon 8 Gen 3 (4 nm)",
@@ -6628,8 +6628,8 @@
       "id": "hasselblad-mobile",
       "nom": "OnePlus 12 Hasselblad Edition",
       "marque": "OnePlus",
-      "prix_indicatif": 1219,
-      "prix_note": "Prix relevé en octobre 2026.",
+      "prix_indicatif": 1099,
+      "prix_note": "Prix indicatif à confirmer.",
       "caracteristiques": {
         "écran": "6,82\" AMOLED, 120 Hz, 2800 x 1264",
         "processeur": "Snapdragon 8 Gen 3 Leading",
@@ -7546,7 +7546,7 @@
       "id": "pixel-11-pro",
       "nom": "Google Pixel 11 Pro",
       "marque": "Google",
-      "prix_indicatif": 949,
+      "prix_indicatif": 1199,
       "prix_note": "Prix relevé en octobre 2026.",
       "caracteristiques": {
         "ecran": "6.3 OLED 120Hz 3000nits",
