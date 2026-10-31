@@ -38,6 +38,17 @@ le choix du testeur selon l'usage, sans note ni classement entre les choix.
 - **Plafond de prix** : au-delà de 700 € (Étudiant) ou 500 € (Petit budget), ou pour un haut de gamme dont le prix n'est pas relevé, la note est plafonnée à 4,5.
 - Une note est une compatibilité avec un usage, jamais une note absolue.
 
+## Couche de recommandation expérimentale (`?pertinence=1`)
+
+Une seconde couche, **non active par défaut**, répond à « qu’est-ce qui compte le plus pour moi ? » sans toucher aux moteurs ci-dessus (`smartphones-notes.js`, `smartphones-trouver.js`, `smartphones-scoring.js` restent identiques). Spécification : `docs/smartphone-redesign-plan.md` §10–12 ; preuves : `docs/SMARTPHONES-IMPORT-PREUVES.md` ; validation du prototype : `docs/SMARTPHONES-PERTINENCE-VALIDATION.md`.
+
+- **R, C, U.** R (0-100) est la pertinence pour les priorités choisies, calculée à partir des caractéristiques annoncées (ancres fixes) ; C est le soutien des preuves, calculé à part ; U est l’intervalle [Rmin, Rmax] des inconnues et des désaccords. Un critère inconnu n’est jamais compté comme un défaut.
+- **Statuts.** *Confirmé* : incertitude ≤ 12, soutien des sources déclarées ≥ 50, critères importants pour la priorité sourcés (soutien ≥ 0,5), prime de prix justifiée (κ = 8). *Provisoire* : documenté à moitié au moins mais pas assez ; affiché et étiqueté, jamais dans les trois choix. *Écarté* : un modèle moins cher et fiable fait presque aussi bien, ou moins de 3 ans de mises à jour pour « rapport qualité-prix ».
+- **Plancher de suivi.** « Rapport qualité-prix » (principal ou secondaire) exige au moins 3 ans de mises à jour majeures annoncés ; seule la case explicite « prix d’achat le plus bas avant tout » lève ce plancher.
+- **Les trois choix.** Choix sûr : meilleur R confirmé (à ± 3 points, la meilleure confiance puis le prix). Meilleur rapport qualité-prix : même moteur, prix renforcé, moins cher que le choix sûr. Alternative : meilleur modèle confirmé qui fait nettement mieux (≥ 0,15) sur le critère que le choix sûr sacrifie. Toutes les cartes affichent R sous **la** priorité de l’utilisateur ; les phrases sortent de gabarits.
+- **Preuves.** Chaque carte donne, par critère, la base (fiche ou mesure), la classe de source et le soutien ; les mesures du banc apparaissent protocole par protocole (« n° 3 sur 7, protocole Techmo ») et n’entrent dans R que lorsque leur classe de protocole est calibrée.
+- Tests : `npm run smartphones:pertinence-test` (prototype), `smartphones:pertinence-moteur-test` (moteur et conseil), `smartphones:conseiller-test` (navigateur).
+
 ## Limites
 
 Treize vidéos de sept chaînes, reprises dans un rapport de synthèse (titres et chaînes contrôlés, chiffres non recoupés) ; les prix sont ceux des vidéos
