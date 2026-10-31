@@ -6218,8 +6218,8 @@
       "id": "honor-magic-v3",
       "nom": "Honor Magic V3",
       "marque": "Honor",
-      "prix_indicatif": null,
-      "prix_note": "256 Go : version non commercialisée en France. La version 512 Go est commercialisée (offres actuelles autour de 870 à 900 €).",
+      "prix_indicatif": 890,
+      "prix_note": "Prix indicatif moyen du neuf en France pour la version 512 Go (offres relevées entre 870 et 900 €), arrondi à 10 € (vérifié le 31/10/2026).",
       "caracteristiques": {
         "ecran": "7.92 OLED 120Hz 1600nits",
         "processeur": "Snapdragon 8 Gen 3 (4 nm)",

@@ -41,4 +41,4 @@ Règle retenue par le propriétaire du site : prix moyen indicatif du neuf en Fr
 | OnePlus 12 Hasselblad Edition (256 Go) | 570 € | Mention Hasselblad = OnePlus 12 ; offres neuves entre 500 et 638 € |
 | ZTE Blade V70 Vita (256 Go) | 180 € | Offres entre 138 et 231 € ; certaines en 4 Go de RAM, d'autres en 8 Go |
 | Nubia RedMagic 10 Pro (12/256 Go) | 650 € | Repère indicatif ; Idealo n'affiche aucune offre sur cette variante |
-| Honor Magic V3 | aucun prix 256 Go | Version 256 Go non commercialisée en France ; 512 Go autour de 870 à 900 € (non enregistré) |
+| Honor Magic V3 (512 Go) | 890 € | Version 256 Go non commercialisée en France ; offres 512 Go entre 870 et 900 €, milieu 885 € arrondi à 890 € |
