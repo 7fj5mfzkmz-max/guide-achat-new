@@ -58,4 +58,8 @@ node tools/smartphones/pertinence-changements.js --base=/ancien/data --apres=/no
 
 Le rapport liste les observations ajoutées, retirées ou modifiées, les protocoles dont l’activation change, les modèles dont R, C, U ou le statut bougent (avec les observations en cause) et les podiums confirmés qui changent. Il est déterministe. Pour corriger un résultat contesté, changer le **statut** d’une observation (`a_verifier`, `rejete`) avec un motif, puis relancer le rapport. Aucune note ni aucun classement ne s’édite à la main.
 
-Tests : `npm run smartphones:pertinence-moteur-test`.
+## 6. Images de produit (interface)
+
+L'interface affiche une photo à la place du schéma d'anatomie lorsque la **fiche** du catalogue porte `image_url` (https ou chemin `assets/…`) **et** `image_alt`, avec `image_credit` facultatif. Sans `image_alt`, avec une adresse `javascript:` ou `http:`, ou si le fichier ne se charge pas, le schéma reste. Le moteur ne lit jamais ces champs : une image ne change ni R, ni C, ni U. Celui qui renseigne `image_url` garantit que l'image est vérifiée (droits, bon modèle, bonne version).
+
+Tests : `npm run smartphones:pertinence-moteur-test`, `npm run smartphones:conseiller-test`.
