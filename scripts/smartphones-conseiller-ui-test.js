@@ -20,8 +20,8 @@ const noms = Object.fromEntries(moteur.pool.map(p => [p.id, p.nom])), lbat = D.l
 let passed = 0, echecs = 0;
 async function check(label, fn) { try { await fn(); passed++; console.log('OK    ' + label); } catch (e) { echecs++; console.error('ÉCHEC ' + label + '\n      → ' + String(e.message).split('\n')[0]); process.exitCode = 1; } }
 const FLAG = '?pertinence=1';
-const affiner = async page => { if (await page.locator('#adv-affiner').isHidden()) await page.locator('#adv-more').click(); };
-const prio = async (page, p) => page.locator('.adv-prios input[value="' + p + '"]').check({ force: true });
+const affiner = async page => { if (await page.locator('#gc-affiner').isHidden()) await page.locator('#gc-more').click(); };
+const prio = async (page, p) => page.locator('.gc-prios input[value="' + p + '"]').check({ force: true });
 const ouvrir = async (browser, base, q, vp, opts) => {
   const ctx = await browser.newContext(Object.assign({ locale: 'fr-FR', viewport: vp }, opts || {})), page = await ctx.newPage(), erreurs = [];
   page.on('pageerror', e => erreurs.push(e.message)); page.on('console', m => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) erreurs.push(m.text()); });
@@ -29,8 +29,8 @@ const ouvrir = async (browser, base, q, vp, opts) => {
 };
 const modifierDonnees = fn => async page => page.route('**/data/smartphones.json', async route => { const r = await route.fetch(), j = await r.json(); fn(j); await route.fulfill({ response: r, json: j }); });
 const demoActive = page => page.evaluate(() => document.querySelector('.dm-tab[aria-selected="true"]').getAttribute('data-d'));
-const lire = page => page.evaluate(() => ({ id: document.querySelector('.adv-card').dataset.id, role: document.querySelector('.adv-card').dataset.role, examen: document.querySelector('.adv-card').dataset.examen,
-  prix: Number(document.querySelector('.adv-card .adv-prix').textContent.replace(/[^\d]/g, '')), cartes: [...document.querySelectorAll('.adv-acard')].map(c => [c.dataset.role, c.dataset.id]) }));
+const lire = page => page.evaluate(() => ({ id: document.querySelector('.gc-card').dataset.id, role: document.querySelector('.gc-card').dataset.role, examen: document.querySelector('.gc-card').dataset.examen,
+  prix: Number(document.querySelector('.gc-card .gc-prix').textContent.replace(/[^\d]/g, '')), cartes: [...document.querySelectorAll('.gc-acard')].map(c => [c.dataset.role, c.dataset.id]) }));
 const attendu = (p, o) => conseil.conseiller(Object.assign({ priorite: p }, o || {}));
 const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalents.filter(e => !att.cartes.some(c => c.id === e.id)).map(e => e.id), att.provisoires.map(c => c.id));
 
@@ -70,79 +70,79 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
         assert.deepEqual(o.erreurs, []);
       });
       await check('ordre approuvé : priorités → recommandation → démonstration → Résumé/Tests/Sources → autres modèles → analyseur → Aller plus loin' + tag, async () => {
-        const ordre = await page.evaluate(() => { const els = ['.adv-hero', '.adv-prios', '#adv-card', '.dm', '#adv-det', '#adv-alt', '#adv-analyse', '#aller-plus-loin'].map(s => document.querySelector(s)); return els.every(Boolean) && els.slice(1).every((e, i) => !!(els[i].compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)); });
+        const ordre = await page.evaluate(() => { const els = ['.gc-hero', '.gc-prios', '#gc-card', '.dm', '#gc-det', '#gc-alt', '#gc-analyse', '#aller-plus-loin'].map(s => document.querySelector(s)); return els.every(Boolean) && els.slice(1).every((e, i) => !!(els[i].compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)); });
         assert.ok(ordre, 'ordre du document');
-        if (!large) { const y = await page.evaluate(() => ['.adv-hero', '.adv-prios', '#adv-card', '.dm', '#adv-det', '#adv-alt', '#adv-analyse', '#aller-plus-loin'].map(s => { const e = document.querySelector(s), r = e.getBoundingClientRect(), c = getComputedStyle(e); return c.display !== 'none' && c.visibility !== 'hidden' && Number(c.opacity) > 0 && r.width > 0 && r.height > 40 ? r.top : NaN; })); y.slice(1).forEach((v, i) => assert.ok(v > y[i], 'ordre visuel ' + i)); }
+        if (!large) { const y = await page.evaluate(() => ['.gc-hero', '.gc-prios', '#gc-card', '.dm', '#gc-det', '#gc-alt', '#gc-analyse', '#aller-plus-loin'].map(s => { const e = document.querySelector(s), r = e.getBoundingClientRect(), c = getComputedStyle(e); return c.display !== 'none' && c.visibility !== 'hidden' && Number(c.opacity) > 0 && r.width > 0 && r.height > 40 ? r.top : NaN; })); y.slice(1).forEach((v, i) => assert.ok(v > y[i], 'ordre visuel ' + i)); }
       });
       await check('hiérarchie : un seul h1, titres sans saut de niveau, un seul h2 pour le choix principal' + tag, async () => {
         assert.equal(await page.locator('#conseiller h1').count(), 1); assert.match(await page.locator('#conseiller h1').innerText(), /Qu’est-ce qui compte le plus/);
-        assert.equal(await page.locator('.adv-card h2.adv-name').count(), 1);
+        assert.equal(await page.locator('.gc-card h2.gc-name').count(), 1);
         const niveaux = await page.evaluate(() => [...document.querySelectorAll('#conseiller h1, #conseiller h2, #conseiller h3')].filter(h => h.offsetParent !== null).map(h => Number(h.tagName[1])));
         niveaux.reduce((prev, n) => { assert.ok(n <= prev + 1, 'saut de niveau ' + prev + ' → ' + n); return n; }, 1);
       });
       await check('première page : priorités visibles, nom, prix et phrase de la recommandation' + tag, async () => {
-        const t = await page.locator('.adv-tiles').boundingBox(), n = await page.locator('.adv-name').boundingBox(), v = await page.locator('.adv-verdict').boundingBox(), p = await page.locator('.adv-prix').boundingBox();
+        const t = await page.locator('.gc-tiles').boundingBox(), n = await page.locator('.gc-name').boundingBox(), v = await page.locator('.gc-verdict').boundingBox(), p = await page.locator('.gc-prix').boundingBox();
         assert.ok(t.y + t.height < height, 'priorités'); assert.ok(n.y + n.height < height && p.y + p.height < height, 'nom et prix : ' + Math.round(p.y + p.height) + ' pour ' + height);
         if (width >= 390) assert.ok(v.y + v.height <= height, 'phrase : ' + Math.round(v.y + v.height));
 
         if (large) { const d = await page.locator('.dm').boundingBox(); assert.ok(d.y > v.y + v.height, 'la démonstration suit la recommandation'); }
       });
       await check('priorités : cinq tuiles lisibles, sans texte coupé, boutons radio natifs, flèches du clavier, focus visible' + tag, async () => {
-        assert.equal(await page.locator('.adv-prios input[type=radio]').count(), 5); assert.equal(await page.locator('.adv-prios input:checked').count(), 1);
-        const coupe = await page.evaluate(() => [...document.querySelectorAll('.adv-tile .t')].filter(e => e.scrollWidth > e.parentElement.clientWidth + 0.5).map(e => e.textContent)); assert.deepEqual(coupe, []);
-        assert.deepEqual(await page.locator('.adv-tile .t').allInnerTexts(), ['Équilibré', 'Batterie', 'Photo', 'Jeu', 'Prix bas', 'Affiner']);
-        await page.locator('.adv-prios input:checked').focus(); await page.keyboard.press('ArrowRight');
+        assert.equal(await page.locator('.gc-prios input[type=radio]').count(), 5); assert.equal(await page.locator('.gc-prios input:checked').count(), 1);
+        const coupe = await page.evaluate(() => [...document.querySelectorAll('.gc-tile .t')].filter(e => e.scrollWidth > e.parentElement.clientWidth + 0.5).map(e => e.textContent)); assert.deepEqual(coupe, []);
+        assert.deepEqual(await page.locator('.gc-tile .t').allInnerTexts(), ['Équilibré', 'Batterie', 'Photo', 'Jeu', 'Prix bas', 'Affiner']);
+        await page.locator('.gc-prios input:checked').focus(); await page.keyboard.press('ArrowRight');
         assert.equal(await page.locator('#conseiller').getAttribute('data-priorite'), 'autonomie');
         const focus = await page.evaluate(() => { const i = document.activeElement; return i && i.type === 'radio' ? getComputedStyle(i.nextElementSibling).outlineStyle : null; });
         assert.notEqual(focus, 'none'); await prio(page, 'equilibre');
       });
       await check('cibles tactiles ≥ 44 px : priorités, résumé budget, lien analyseur, boutons, prix, onglets, boutons de démonstration, curseurs, flèches, liens « Voir la différence »' + tag, async () => {
         const petits = await page.evaluate(() => {
-          const sels = ['.adv-tile-in', '.adv-more', '.adv-have', '.adv-btn', '.adv-prix', '.adv-tab', '.adv-arr', '.apl-tile', '.adv-voir', '.dm-tab', '.dm-seg button', '.dm-play', '.dm-range input', '.dm-not summary', '.adv-field select', '.adv-aform input'], o = [];
+          const sels = ['.gc-tile-in', '.gc-more', '.gc-have', '.gc-btn', '.gc-prix', '.gc-tab', '.gc-arr', '.apl-tile', '.gc-voir', '.dm-tab', '.dm-seg button', '.dm-play', '.dm-range input', '.dm-not summary', '.gc-field select', '.gc-aform input'], o = [];
           sels.forEach(s => document.querySelectorAll('#conseiller ' + s + ', ' + (s.startsWith('.apl') ? s : '#nomatch')).forEach(e => { const r = e.getBoundingClientRect(); if (r.width && r.height && e.offsetParent !== null && r.height < 43.5) o.push(s + ' ' + Math.round(r.height)); }));
           return o;
         });
         assert.deepEqual(petits, []);
       });
       await check('« Affiner » ouvre budget et « puis… » ; « J’ai déjà un modèle » est à portée dès la première page' + tag, async () => {
-        assert.ok(await page.locator('#adv-affiner').isHidden()); await page.locator('#adv-more').click();
-        assert.equal(await page.locator('#adv-more').getAttribute('aria-expanded'), 'true'); assert.ok(await page.locator('#adv-bud').isVisible() && await page.locator('#adv-sec').isVisible());
-        await page.locator('#adv-more').click(); assert.ok(await page.locator('#adv-affiner').isHidden());
-        const h = await page.locator('.adv-have').boundingBox(); assert.ok(h.y + h.height < height, 'lien visible dans la première page');
+        assert.ok(await page.locator('#gc-affiner').isHidden()); await page.locator('#gc-more').click();
+        assert.equal(await page.locator('#gc-more').getAttribute('aria-expanded'), 'true'); assert.ok(await page.locator('#gc-bud').isVisible() && await page.locator('#gc-sec').isVisible());
+        await page.locator('#gc-more').click(); assert.ok(await page.locator('#gc-affiner').isHidden());
+        const h = await page.locator('.gc-have').boundingBox(); assert.ok(h.y + h.height < height, 'lien visible dans la première page');
       });
       await check('analyse : bande avec champ de saisie, barre collante seulement après avoir défilé' + (mobile ? '' : ' (jamais sur grand écran)') + tag, async () => {
-        assert.ok(await page.locator('#adv-url').count() === 1); const sticky = page.locator('#adv-sticky');
+        assert.ok(await page.locator('#gc-url').count() === 1); const sticky = page.locator('#gc-sticky');
         if (mobile) {
           assert.ok(await sticky.evaluate(e => e.classList.contains('is-hidden')), 'cachée en haut de page');
           await page.evaluate(() => window.scrollTo(0, 1100)); await page.waitForTimeout(400);
           assert.ok(await sticky.isVisible() && !(await sticky.evaluate(e => e.classList.contains('is-hidden'))), 'visible après défilement');
           const b = await sticky.boundingBox(); assert.ok(b.height <= 80 && b.y + b.height <= height + 1);
           const pad = await page.evaluate(() => parseFloat(getComputedStyle(document.body).paddingBottom)); assert.ok(pad >= b.height - 2, 'le bas de page est réservé : ' + pad);
-          await page.locator('#adv-analyse').scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
+          await page.locator('#gc-analyse').scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
           assert.ok(await sticky.evaluate(e => e.classList.contains('is-hidden')), 'retirée quand la bande d’analyse est à l’écran');
           await page.evaluate(() => window.scrollTo(0, 0));
         } else { assert.ok(await sticky.isHidden()); await page.evaluate(() => window.scrollTo(0, 1100)); await page.waitForTimeout(300); assert.ok(await sticky.isHidden()); await page.evaluate(() => window.scrollTo(0, 0)); }
       });
       await check('analyse : un lien saisi alimente l’analyseur existant (mêmes identifiants), qui s’ouvre dans « Aller plus loin », sans toucher à son code' + tag, async () => {
         await page.evaluate(() => { window.__soumis = 0; document.getElementById('phone-analyzer-form').addEventListener('submit', () => { window.__soumis++; }, true); });
-        await page.locator('#adv-url').fill('POCO F9 Ultra'); await page.locator('#adv-aform button[type=submit]').click(); await page.waitForTimeout(1200);
+        await page.locator('#gc-url').fill('POCO F9 Ultra'); await page.locator('#gc-aform button[type=submit]').click(); await page.waitForTimeout(1200);
         assert.ok(await page.locator('#analyser-modele').isVisible()); assert.equal(await page.locator('#phone-product-url').inputValue(), 'POCO F9 Ultra');
         assert.equal(await page.evaluate(() => window.__soumis), 1, 'formulaire soumis une fois');
         for (const id of ['phone-product-url', 'phone-analyzer-result', 'analyse-modele', 'phone-analyzer-form']) assert.equal(await page.locator('#' + id).count(), 1, id);
         assert.equal(await page.locator('#analyse-modele').getAttribute('data-analyzer-category'), 'smartphones');
         assert.equal(await page.locator('.apl-tile[data-g="affiner"]').getAttribute('aria-expanded'), 'true', 'le groupe qui contient l’analyseur est ouvert');
-        assert.ok(await page.locator('.adv-bridge a[href="#conseiller"]').isVisible(), 'lien « Comparer à mes conseils »');
-        await page.locator('.adv-bridge a').click(); await page.waitForTimeout(900);
+        assert.ok(await page.locator('.gc-bridge a[href="#conseiller"]').isVisible(), 'lien « Comparer à mes conseils »');
+        await page.locator('.gc-bridge a').click(); await page.waitForTimeout(900);
         assert.ok(await page.evaluate(() => document.getElementById('conseiller').getBoundingClientRect().top < innerHeight));
       });
       await check('analyse : « J’ai déjà un modèle » (première page) ouvre l’onglet de l’analyseur ; champ vide → aucune soumission' + tag, async () => {
         await page.goto(base + FLAG, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]');
         await page.evaluate(() => { window.__soumis = 0; document.getElementById('phone-analyzer-form').addEventListener('submit', () => { window.__soumis++; }, true); });
-        await page.locator('.adv-have').click(); await page.waitForTimeout(900);
+        await page.locator('.gc-have').click(); await page.waitForTimeout(900);
         assert.ok(await page.locator('#analyser-modele').isVisible()); assert.ok(await page.locator('#phone-product-url').isVisible()); assert.equal(await page.evaluate(() => window.__soumis), 0);
         await page.goto(base + FLAG, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]');
         await page.evaluate(() => { window.__soumis = 0; document.getElementById('phone-analyzer-form').addEventListener('submit', () => { window.__soumis++; }, true); });
-        await page.locator('#adv-aform button[type=submit]').click(); await page.waitForTimeout(900);
+        await page.locator('#gc-aform button[type=submit]').click(); await page.waitForTimeout(900);
         assert.ok(await page.locator('#analyser-modele').isVisible()); assert.equal(await page.evaluate(() => window.__soumis), 0);
       });
       await check('« Aller plus loin » : trois groupes, huit sections historiques conservées (une seule fois chacune) avec leurs identifiants' + tag, async () => {
@@ -275,11 +275,11 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
       });
       await check('liens « Voir la différence » : ouvrent la démonstration du critère et la mettent à l’écran ; clavier ; l’état choisi à la main tient quand le budget change mais se réinitialise avec la priorité', async () => {
         await prio(page, 'equilibre'); await page.evaluate(() => window.scrollTo(0, 0));
-        const lien = page.locator('.adv-card .adv-voir[data-demo="batterie"]'); assert.ok((await lien.count()) >= 1, 'un lien vers la batterie existe sur la carte');
+        const lien = page.locator('.gc-card .gc-voir[data-demo="batterie"]'); assert.ok((await lien.count()) >= 1, 'un lien vers la batterie existe sur la carte');
         await lien.first().focus(); await page.keyboard.press('Enter'); await page.waitForTimeout(800); assert.equal(await demoActive(page), 'batterie');
         assert.ok(await page.evaluate(() => document.querySelector('.dm').getBoundingClientRect().top < 120), 'la démonstration est amenée à l’écran');
-        for (const a of await page.locator('.adv-card .adv-voir').all()) assert.match(await a.getAttribute('aria-label'), /^Voir la différence : démonstration « /);
-        await affiner(page); await page.selectOption('#adv-bud', '800'); assert.equal(await demoActive(page), 'batterie', 'le choix manuel tient'); await page.selectOption('#adv-bud', '0');
+        for (const a of await page.locator('.gc-card .gc-voir').all()) assert.match(await a.getAttribute('aria-label'), /^Voir la différence : démonstration « /);
+        await affiner(page); await page.selectOption('#gc-bud', '800'); assert.equal(await demoActive(page), 'batterie', 'le choix manuel tient'); await page.selectOption('#gc-bud', '0');
         await prio(page, 'photo'); assert.equal(await demoActive(page), 'photo', 'la priorité reprend la main'); await prio(page, 'equilibre');
       });
       await check('mouvement : le paramètre ?demo= ouvre une démonstration précise', async () => {
@@ -302,115 +302,115 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
         }
       });
       await check('budget : plafond strict, « Sans plafond » est un vrai choix (même pour « Prix bas »), « Prix bas » démarre à 250 €', async () => {
-        await prio(page, 'prix'); await affiner(page); assert.equal(await page.locator('#adv-bud').inputValue(), '250'); assert.ok((await lire(page)).prix <= 250);
-        await page.selectOption('#adv-bud', '0'); assert.equal((await lire(page)).id, attendu('prix', { budget: 1700 }).cartes[0].id, 'sans plafond ≠ plafond par défaut');
-        await prio(page, 'autonomie'); await affiner(page); await page.selectOption('#adv-bud', '0');
-        for (const b of ['150', '400', '1000']) { await page.selectOption('#adv-bud', b); const d = await lire(page); assert.ok(d.prix <= Number(b), b); assert.equal(d.id, attendu('autonomie', { budget: Number(b) }).cartes[0].id); }
-        await page.selectOption('#adv-bud', '0');
+        await prio(page, 'prix'); await affiner(page); assert.equal(await page.locator('#gc-bud').inputValue(), '250'); assert.ok((await lire(page)).prix <= 250);
+        await page.selectOption('#gc-bud', '0'); assert.equal((await lire(page)).id, attendu('prix', { budget: 1700 }).cartes[0].id, 'sans plafond ≠ plafond par défaut');
+        await prio(page, 'autonomie'); await affiner(page); await page.selectOption('#gc-bud', '0');
+        for (const b of ['150', '400', '1000']) { await page.selectOption('#gc-bud', b); const d = await lire(page); assert.ok(d.prix <= Number(b), b); assert.equal(d.id, attendu('autonomie', { budget: Number(b) }).cartes[0].id); }
+        await page.selectOption('#gc-bud', '0');
       });
       await check('deuxième priorité (« puis… ») : recommandation recalculée, phrase en français courant, résumé du bouton à jour', async () => {
-        await prio(page, 'photo'); await affiner(page); await page.selectOption('#adv-sec', 'autonomie');
+        await prio(page, 'photo'); await affiner(page); await page.selectOption('#gc-sec', 'autonomie');
         assert.equal((await lire(page)).id, attendu('photo', { secondaire: 'autonomie' }).cartes[0].id);
-        assert.match(await page.locator('.adv-card .adv-verdict').innerText(), /de belles photos, puis une batterie qui dure/); assert.match(await page.locator('#adv-more-t').innerText(), /puis batterie/);
-        await page.selectOption('#adv-sec', '');
+        assert.match(await page.locator('.gc-card .gc-verdict').innerText(), /de belles photos, puis une batterie qui dure/); assert.match(await page.locator('#gc-more-t').innerText(), /puis batterie/);
+        await page.selectOption('#gc-sec', '');
       });
       await check('vocabulaire courant : aucun R, C, U, « adéquation », « solidité des preuves » ni « fourchette » dans la vue principale (carte, démonstration, carrousel)', async () => {
         await prio(page, 'equilibre');
-        const vue = await page.evaluate(() => [...document.querySelectorAll('#adv-card, .dm, #adv-alt, .adv-prios, .adv-hero')].map(e => e.innerText).join('\n'));
+        const vue = await page.evaluate(() => [...document.querySelectorAll('#gc-card, .dm, #gc-alt, .gc-prios, .gc-hero')].map(e => e.innerText).join('\n'));
         assert.ok(!/adéquation|solidité des preuves|fourchette|confiance|\bsoutien\b|intervalle|inconnu\b/i.test(vue), vue.match(/adéquation|solidité des preuves|fourchette|confiance|soutien|intervalle|inconnu/i) + '');
         assert.ok(!/\b[RCU]\s*[=:\/]\s*\d|\bR\/C\/U\b/.test(vue));
       });
       await check('Résumé / Tests / Sources : trois onglets reliés, Résumé par défaut, clavier, un seul panneau visible, contenu du modèle affiché', async () => {
-        assert.equal(await page.locator('.adv-det [role=tablist] .adv-tab').count(), 3); assert.equal(await page.locator('.adv-tab[aria-selected="true"]').innerText(), 'Résumé'); assert.equal(await page.locator('.adv-tp:not([hidden])').count(), 1);
-        for (const id of ['resume', 'tests', 'sources']) assert.equal(await page.locator('#adv-tab-' + id).getAttribute('aria-controls'), 'adv-tp-' + id);
+        assert.equal(await page.locator('.gc-det [role=tablist] .gc-tab').count(), 3); assert.equal(await page.locator('.gc-tab[aria-selected="true"]').innerText(), 'Résumé'); assert.equal(await page.locator('.gc-tp:not([hidden])').count(), 1);
+        for (const id of ['resume', 'tests', 'sources']) assert.equal(await page.locator('#gc-tab-' + id).getAttribute('aria-controls'), 'gc-tp-' + id);
         const c = attendu('equilibre').cartes[0], p = moteur.pool[moteur.idx[c.id]];
-        assert.match(await page.locator('#adv-det-h').innerText(), new RegExp(c.nom.replace(/[+()]/g, '.'))); assert.match(await page.locator('#adv-tp-resume').innerText(), new RegExp(String(p.caracteristiques.batterie).slice(0, 8).replace(/[+()]/g, '.')));
-        assert.ok(await page.locator('#adv-tp-resume .adv-gain').isVisible() && await page.locator('#adv-tp-resume .adv-cede').isVisible());
-        await page.locator('#adv-tab-resume').focus(); await page.keyboard.press('ArrowRight'); assert.equal(await page.locator('.adv-tab[aria-selected="true"]').innerText(), 'Tests'); assert.ok(await page.locator('#adv-tp-tests').isVisible() && await page.locator('#adv-tp-resume').isHidden());
-        await page.keyboard.press('ArrowRight'); assert.equal(await page.locator('.adv-tab[aria-selected="true"]').innerText(), 'Sources'); await page.keyboard.press('Home'); assert.equal(await page.locator('.adv-tab[aria-selected="true"]').innerText(), 'Résumé');
-        await page.locator('#adv-tab-sources').click();
+        assert.match(await page.locator('#gc-det-h').innerText(), new RegExp(c.nom.replace(/[+()]/g, '.'))); assert.match(await page.locator('#gc-tp-resume').innerText(), new RegExp(String(p.caracteristiques.batterie).slice(0, 8).replace(/[+()]/g, '.')));
+        assert.ok(await page.locator('#gc-tp-resume .gc-gain').isVisible() && await page.locator('#gc-tp-resume .gc-cede').isVisible());
+        await page.locator('#gc-tab-resume').focus(); await page.keyboard.press('ArrowRight'); assert.equal(await page.locator('.gc-tab[aria-selected="true"]').innerText(), 'Tests'); assert.ok(await page.locator('#gc-tp-tests').isVisible() && await page.locator('#gc-tp-resume').isHidden());
+        await page.keyboard.press('ArrowRight'); assert.equal(await page.locator('.gc-tab[aria-selected="true"]').innerText(), 'Sources'); await page.keyboard.press('Home'); assert.equal(await page.locator('.gc-tab[aria-selected="true"]').innerText(), 'Résumé');
+        await page.locator('#gc-tab-sources').click();
       });
       await check('Sources : preuve critère par critère (sept), schéma interactif (clavier compris) qui ouvre la ligne du critère, vue détaillée avec adéquation / solidité des preuves / inconnu séparés, « écartés »', async () => {
-        await page.locator('#adv-tab-sources').click(); const c = attendu('equilibre').cartes[0];
-        assert.equal(await page.locator('#adv-tp-sources .adv-ev').count(), 7); assert.equal(await page.locator('#adv-tp-sources .adv-part').count(), 6);
-        const parts = await page.locator('#adv-tp-sources .adv-part').evaluateAll(g => g.map(x => [x.dataset.crit, x.getAttribute('class').match(/is-(\w+)/)[1]])); const e = Object.fromEntries(c.empreinte.map(x => [x.critere, x.etat])); parts.forEach(([k, s]) => assert.equal(s, e[k], k));
-        const leg = await page.locator('#adv-tp-sources .adv-legend').innerText(); assert.match(leg, /Une preuve, pas une bonne note/); assert.match(leg, /jamais compté comme un défaut/);
-        await page.locator('#adv-tp-sources .adv-part[data-crit="photo"]').click(); assert.equal(await page.locator('#adv-tp-sources .adv-ev[data-crit="photo"]').evaluate(d => d.open), true); assert.match(await page.locator('#adv-tp-sources .adv-ev[data-crit="photo"]').innerText(), /qualité d’image/);
-        await page.locator('#adv-tp-sources .adv-part[data-crit="batterie"]').focus(); await page.keyboard.press('Enter'); assert.equal(await page.locator('#adv-tp-sources .adv-ev[data-crit="batterie"]').evaluate(d => d.open), true);
-        await page.locator('#adv-tp-sources .adv-part[data-crit="suivi"]').focus(); await page.keyboard.press(' '); assert.equal(await page.locator('#adv-tp-sources .adv-ev[data-crit="suivi"]').evaluate(d => d.open), true);
-        const det = page.locator('#adv-tp-sources .adv-tech').first(); assert.equal(await det.evaluate(d => d.open), false); await det.locator('summary').click();
-        assert.deepEqual((await det.locator('.adv-read h4').allInnerTexts()).map(x => x.toLowerCase()), ['adéquation', 'solidité des preuves', 'inconnu']);
-        const t = await det.innerText(); assert.match(t, /pas celle du téléphone/); assert.ok(t.includes(String(c.R)) && await det.locator('.adv-gauge').getAttribute('aria-label').then(x => x.includes('Adéquation ' + c.R)));
-        assert.equal(await det.locator('.adv-pips i.f').count(), c.confiance === 'élevée' ? 3 : c.confiance === 'moyenne' ? 2 : 1);
-        assert.match(await page.locator('#adv-tp-sources .adv-solid').innerText(), /Sources :/); assert.match(await page.locator('#adv-tp-sources').innerText(), /modèles écartés pour cette demande/);
-        const n = Number((await page.locator('#adv-tp-sources .adv-tech').nth(1).locator('summary').innerText()).split(/\s/)[0]); assert.equal(n, attendu('equilibre').total.ecartes);
-        assert.ok(!/NaN|undefined/.test(await page.locator('#adv-tp-sources').innerText()));
-        await page.locator('#adv-tab-resume').click();
+        await page.locator('#gc-tab-sources').click(); const c = attendu('equilibre').cartes[0];
+        assert.equal(await page.locator('#gc-tp-sources .gc-ev').count(), 7); assert.equal(await page.locator('#gc-tp-sources .gc-part').count(), 6);
+        const parts = await page.locator('#gc-tp-sources .gc-part').evaluateAll(g => g.map(x => [x.dataset.crit, x.getAttribute('class').match(/is-(\w+)/)[1]])); const e = Object.fromEntries(c.empreinte.map(x => [x.critere, x.etat])); parts.forEach(([k, s]) => assert.equal(s, e[k], k));
+        const leg = await page.locator('#gc-tp-sources .gc-legend').innerText(); assert.match(leg, /Une preuve, pas une bonne note/); assert.match(leg, /jamais compté comme un défaut/);
+        await page.locator('#gc-tp-sources .gc-part[data-crit="photo"]').click(); assert.equal(await page.locator('#gc-tp-sources .gc-ev[data-crit="photo"]').evaluate(d => d.open), true); assert.match(await page.locator('#gc-tp-sources .gc-ev[data-crit="photo"]').innerText(), /qualité d’image/);
+        await page.locator('#gc-tp-sources .gc-part[data-crit="batterie"]').focus(); await page.keyboard.press('Enter'); assert.equal(await page.locator('#gc-tp-sources .gc-ev[data-crit="batterie"]').evaluate(d => d.open), true);
+        await page.locator('#gc-tp-sources .gc-part[data-crit="suivi"]').focus(); await page.keyboard.press(' '); assert.equal(await page.locator('#gc-tp-sources .gc-ev[data-crit="suivi"]').evaluate(d => d.open), true);
+        const det = page.locator('#gc-tp-sources .gc-tech').first(); assert.equal(await det.evaluate(d => d.open), false); await det.locator('summary').click();
+        assert.deepEqual((await det.locator('.gc-read h4').allInnerTexts()).map(x => x.toLowerCase()), ['adéquation', 'solidité des preuves', 'inconnu']);
+        const t = await det.innerText(); assert.match(t, /pas celle du téléphone/); assert.ok(t.includes(String(c.R)) && await det.locator('.gc-gauge').getAttribute('aria-label').then(x => x.includes('Adéquation ' + c.R)));
+        assert.equal(await det.locator('.gc-pips i.f').count(), c.confiance === 'élevée' ? 3 : c.confiance === 'moyenne' ? 2 : 1);
+        assert.match(await page.locator('#gc-tp-sources .gc-solid').innerText(), /Sources :/); assert.match(await page.locator('#gc-tp-sources').innerText(), /modèles écartés pour cette demande/);
+        const n = Number((await page.locator('#gc-tp-sources .gc-tech').nth(1).locator('summary').innerText()).split(/\s/)[0]); assert.equal(n, attendu('equilibre').total.ecartes);
+        assert.ok(!/NaN|undefined/.test(await page.locator('#gc-tp-sources').innerText()));
+        await page.locator('#gc-tab-resume').click();
       });
       await check('Tests : autonomie mesurée et classements du moteur quand ils existent, sinon message honnête ; lien vers tous les tests', async () => {
-        await page.locator('#adv-tab-tests').click(); const c = attendu('equilibre').cartes[0], txt = await page.locator('#adv-tp-tests').innerText();
+        await page.locator('#gc-tab-tests').click(); const c = attendu('equilibre').cartes[0], txt = await page.locator('#gc-tp-tests').innerText();
         assert.match(txt, /Voir tous les tests/); if (!c.mesures.length && !c.avis.length && !Object.values(lbat).some(g => g.lignes.some(l => l.id === c.id))) assert.match(txt, /Pas de test indépendant pour ce modèle/); else assert.ok(/Classements dans les tests|Autonomie mesurée|testeurs/i.test(txt));
-        await page.locator('#adv-tp-tests .adv-more-link a').click(); await page.waitForTimeout(900); assert.ok(await page.locator('#classement').isVisible()); await page.evaluate(() => window.scrollTo(0, 0)); await page.locator('#adv-tab-resume').click();
+        await page.locator('#gc-tp-tests .gc-more-link a').click(); await page.waitForTimeout(900); assert.ok(await page.locator('#classement').isVisible()); await page.evaluate(() => window.scrollTo(0, 0)); await page.locator('#gc-tab-resume').click();
         const mesure = moteur.pool.filter(p => Object.values(lbat).some(g => g.lignes.some(l => l.id === p.id && l.min != null))).map(p => p.id)[0];
         await page.goto(base + FLAG, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]'); assert.ok(mesure, 'au moins un modèle du catalogue a une durée mesurée');
       });
       await check('carrousel : un seul défilement horizontal, cartes lisibles (nom, prix, différence principale, action), flèches, la carte suivante dépasse (défilement visible), pas de petit texte', async () => {
         await prio(page, 'equilibre'); const att = attendu('equilibre'), n = idsAutres(att).length;
-        assert.equal(await page.locator('.adv-car').count(), 1); assert.equal(await page.locator('.adv-acard').count(), n);
+        assert.equal(await page.locator('.gc-car').count(), 1); assert.equal(await page.locator('.gc-acard').count(), n);
         const mult = await page.evaluate(() => [...document.querySelectorAll('#conseiller *')].filter(e => { const c = getComputedStyle(e); return (c.overflowX === 'auto' || c.overflowX === 'scroll') && e.scrollWidth > e.clientWidth + 1; }).map(e => e.className));
-        assert.deepEqual(mult.filter(c => !/adv-car/.test(c)), [], 'aucun autre défilement horizontal');
-        for (const c of await page.locator('.adv-acard').all()) { assert.ok(await c.locator('.adv-an').innerText()); assert.match(await c.locator('.adv-ap').innerText(), /\d\s?€/); assert.match(await c.locator('.adv-ad').innerText(), /€ de (moins|plus)|Notre recommandation|Le même prix/); assert.ok(await c.locator('button[data-examiner], button[data-retour]').count() === 1); }
-        const petit = await page.evaluate(() => [...document.querySelectorAll('.adv-acard .adv-an, .adv-acard .adv-ap, .adv-acard .adv-ad, .adv-acard .adv-btn')].filter(e => parseFloat(getComputedStyle(e).fontSize) < 14.5).map(e => e.className)); assert.deepEqual(petit, []);
-        if (n >= 2) { const w = await page.evaluate(() => { const c = document.querySelector('.adv-car'), a = c.querySelector('.adv-acard'); return [c.clientWidth, a.offsetWidth, c.scrollWidth]; }); assert.ok(w[1] < w[0] - 20 && w[2] > w[0], 'la carte suivante dépasse'); }
-        const x0 = await page.locator('.adv-car').evaluate(e => e.scrollLeft); await page.locator('.adv-arr[data-dir="1"]').click(); await page.waitForTimeout(700); if (n >= 2) assert.ok(await page.locator('.adv-car').evaluate(e => e.scrollLeft) > x0, 'la flèche fait défiler');
-        await page.locator('.adv-arr[data-dir="-1"]').click(); await page.waitForTimeout(500);
+        assert.deepEqual(mult.filter(c => !/gc-car/.test(c)), [], 'aucun autre défilement horizontal');
+        for (const c of await page.locator('.gc-acard').all()) { assert.ok(await c.locator('.gc-an').innerText()); assert.match(await c.locator('.gc-ap').innerText(), /\d\s?€/); assert.match(await c.locator('.gc-ad').innerText(), /€ de (moins|plus)|Notre recommandation|Le même prix/); assert.ok(await c.locator('button[data-examiner], button[data-retour]').count() === 1); }
+        const petit = await page.evaluate(() => [...document.querySelectorAll('.gc-acard .gc-an, .gc-acard .gc-ap, .gc-acard .gc-ad, .gc-acard .gc-btn')].filter(e => parseFloat(getComputedStyle(e).fontSize) < 14.5).map(e => e.className)); assert.deepEqual(petit, []);
+        if (n >= 2) { const w = await page.evaluate(() => { const c = document.querySelector('.gc-car'), a = c.querySelector('.gc-acard'); return [c.clientWidth, a.offsetWidth, c.scrollWidth]; }); assert.ok(w[1] < w[0] - 20 && w[2] > w[0], 'la carte suivante dépasse'); }
+        const x0 = await page.locator('.gc-car').evaluate(e => e.scrollLeft); await page.locator('.gc-arr[data-dir="1"]').click(); await page.waitForTimeout(700); if (n >= 2) assert.ok(await page.locator('.gc-car').evaluate(e => e.scrollLeft) > x0, 'la flèche fait défiler');
+        await page.locator('.gc-arr[data-dir="-1"]').click(); await page.waitForTimeout(500);
       });
       await check('Examiner : le téléphone affiché change partout (carte, détail, démonstration), la différence avec notre recommandation est dite, « Revenir à notre recommandation » est visible', async () => {
         await prio(page, 'equilibre'); const att = attendu('equilibre'), alt = att.cartes[1], ref = att.cartes[0];
-        await page.locator('.adv-acard[data-id="' + alt.id + '"] button[data-examiner]').click(); await page.waitForTimeout(700);
+        await page.locator('.gc-acard[data-id="' + alt.id + '"] button[data-examiner]').click(); await page.waitForTimeout(700);
         const d = await lire(page); assert.equal(d.id, alt.id); assert.equal(d.examen, '1');
-        const kick = await page.locator('.adv-card .adv-kick').innerText(); assert.match(kick, /Alternative examinée/i);
-        const ban = await page.locator('.adv-exam').innerText(); assert.match(ban, /Vous examinez une alternative/); assert.match(ban, new RegExp('Notre recommandation reste ' + ref.nom.replace(/[+()]/g, '.')));
-        assert.ok(await page.locator('.adv-exam [data-retour]').isVisible()); assert.match(await page.locator('.adv-exam [data-retour]').innerText(), /Revenir à notre recommandation/);
-        assert.match(await page.locator('.adv-card .adv-name').innerText(), new RegExp(alt.nom.replace(/[+()]/g, '.'))); assert.match(await page.locator('#adv-det-h').innerText(), new RegExp(alt.nom.replace(/[+()]/g, '.')));
-        assert.equal(await page.locator('#conseiller').getAttribute('data-focus'), alt.id); assert.equal(await page.evaluate(() => document.activeElement.id), 'adv-card', 'le focus passe sur la carte');
-        assert.ok(await page.evaluate(() => document.querySelector('.adv-card').getBoundingClientRect().top < 200 && document.querySelector('.adv-card').getBoundingClientRect().top > -5), 'la carte est amenée à l’écran');
-        assert.match(await page.locator('#adv-statut').innerText(), /Vous examinez/);
-        const ids = await page.evaluate(() => [...document.querySelectorAll('.adv-acard')].map(c => c.dataset.id)); assert.equal(ids[0], ref.id, 'la recommandation d’origine ouvre le carrousel'); assert.ok(!ids.includes(alt.id));
-        assert.match(await page.locator('.adv-acard.is-ref').innerText(), /Revenir à notre recommandation/);
+        const kick = await page.locator('.gc-card .gc-kick').innerText(); assert.match(kick, /Alternative examinée/i);
+        const ban = await page.locator('.gc-exam').innerText(); assert.match(ban, /Vous examinez une alternative/); assert.match(ban, new RegExp('Notre recommandation reste ' + ref.nom.replace(/[+()]/g, '.')));
+        assert.ok(await page.locator('.gc-exam [data-retour]').isVisible()); assert.match(await page.locator('.gc-exam [data-retour]').innerText(), /Revenir à notre recommandation/);
+        assert.match(await page.locator('.gc-card .gc-name').innerText(), new RegExp(alt.nom.replace(/[+()]/g, '.'))); assert.match(await page.locator('#gc-det-h').innerText(), new RegExp(alt.nom.replace(/[+()]/g, '.')));
+        assert.equal(await page.locator('#conseiller').getAttribute('data-focus'), alt.id); assert.equal(await page.evaluate(() => document.activeElement.id), 'gc-card', 'le focus passe sur la carte');
+        assert.ok(await page.evaluate(() => document.querySelector('.gc-card').getBoundingClientRect().top < 200 && document.querySelector('.gc-card').getBoundingClientRect().top > -5), 'la carte est amenée à l’écran');
+        assert.match(await page.locator('#gc-statut').innerText(), /Vous examinez/);
+        const ids = await page.evaluate(() => [...document.querySelectorAll('.gc-acard')].map(c => c.dataset.id)); assert.equal(ids[0], ref.id, 'la recommandation d’origine ouvre le carrousel'); assert.ok(!ids.includes(alt.id));
+        assert.match(await page.locator('.gc-acard.is-ref').innerText(), /Revenir à notre recommandation/);
         await page.locator('#dm-tab-budget').click(); assert.match(await page.locator('.dm-brow').first().innerText(), new RegExp(alt.nom.replace(/[+()]/g, '.'))); assert.ok(await page.locator('.dm-brow.is-you').count() === 1);
         await page.locator('#dm-tab-ecran').click(); const fam = D.fiche(moteur.pool[moteur.idx[alt.id]]).famille; assert.equal(await page.locator('.dm-screen.is-you').getAttribute('data-k'), fam);
         await page.locator('#dm-tab-batterie').click(); assert.match(await page.locator('.dm-you').innerText(), new RegExp(alt.nom.replace(/[+()]/g, '.')));
-        await page.locator('.adv-exam [data-retour]').click(); await page.waitForTimeout(500); assert.equal((await lire(page)).examen, '0');
+        await page.locator('.gc-exam [data-retour]').click(); await page.waitForTimeout(500); assert.equal((await lire(page)).examen, '0');
       });
       await check('Examiner → priorité différente : l’examen est abandonné ; Revenir : retour à la recommandation d’origine, focus et annonce', async () => {
         await prio(page, 'equilibre'); assert.equal((await lire(page)).examen, '0');
-        const alt = attendu('equilibre').cartes[1]; await page.locator('.adv-acard[data-id="' + alt.id + '"] button[data-examiner]').click(); await page.waitForTimeout(500); assert.equal((await lire(page)).examen, '1');
-        await page.locator('.adv-exam [data-retour]').click(); await page.waitForTimeout(600); const d = await lire(page); assert.equal(d.id, attendu('equilibre').cartes[0].id); assert.equal(d.examen, '0'); assert.equal(await page.locator('.adv-exam').count(), 0);
-        assert.match(await page.locator('#adv-statut').innerText(), /Retour à notre recommandation/); assert.equal(await page.evaluate(() => document.activeElement.id), 'adv-card');
-        await page.locator('.adv-acard').first().locator('button[data-examiner]').click(); await page.waitForTimeout(500); await page.locator('.adv-acard.is-ref [data-retour]').click(); await page.waitForTimeout(500); assert.equal((await lire(page)).examen, '0');
-        await page.locator('.adv-acard').first().locator('button[data-examiner]').click(); await page.waitForTimeout(500); await prio(page, 'photo'); const d2 = await lire(page); assert.equal(d2.examen, '0'); assert.equal(d2.id, attendu('photo').cartes[0].id);
+        const alt = attendu('equilibre').cartes[1]; await page.locator('.gc-acard[data-id="' + alt.id + '"] button[data-examiner]').click(); await page.waitForTimeout(500); assert.equal((await lire(page)).examen, '1');
+        await page.locator('.gc-exam [data-retour]').click(); await page.waitForTimeout(600); const d = await lire(page); assert.equal(d.id, attendu('equilibre').cartes[0].id); assert.equal(d.examen, '0'); assert.equal(await page.locator('.gc-exam').count(), 0);
+        assert.match(await page.locator('#gc-statut').innerText(), /Retour à notre recommandation/); assert.equal(await page.evaluate(() => document.activeElement.id), 'gc-card');
+        await page.locator('.gc-acard').first().locator('button[data-examiner]').click(); await page.waitForTimeout(500); await page.locator('.gc-acard.is-ref [data-retour]').click(); await page.waitForTimeout(500); assert.equal((await lire(page)).examen, '0');
+        await page.locator('.gc-acard').first().locator('button[data-examiner]').click(); await page.waitForTimeout(500); await prio(page, 'photo'); const d2 = await lire(page); assert.equal(d2.examen, '0'); assert.equal(d2.id, attendu('photo').cartes[0].id);
         await prio(page, 'equilibre');
       });
       await check('examiner un modèle « à égalité » ou « à confirmer » : carte complète, avertissement pour un provisoire, jamais présenté comme un choix confirmé', async () => {
         await prio(page, 'photo'); const att = attendu('photo'); const prov = att.provisoires[0];
-        if (prov) { await page.locator('.adv-acard[data-id="' + prov.id + '"] button[data-examiner]').click(); await page.waitForTimeout(500); assert.equal(await page.locator('.adv-card').getAttribute('data-statut'), 'provisoire'); assert.match(await page.locator('.adv-card .adv-warn').innerText(), /À ne pas lire comme un choix confirmé/); assert.match(await page.locator('.adv-card .adv-status').innerText(), /À confirmer/i); await page.locator('.adv-exam [data-retour]').click(); await page.waitForTimeout(400); }
+        if (prov) { await page.locator('.gc-acard[data-id="' + prov.id + '"] button[data-examiner]').click(); await page.waitForTimeout(500); assert.equal(await page.locator('.gc-card').getAttribute('data-statut'), 'provisoire'); assert.match(await page.locator('.gc-card .gc-warn').innerText(), /À ne pas lire comme un choix confirmé/); assert.match(await page.locator('.gc-card .gc-status').innerText(), /À confirmer/i); await page.locator('.gc-exam [data-retour]').click(); await page.waitForTimeout(400); }
         await prio(page, 'prix'); const eq = attendu('prix', { budget: 250 }).equivalents.filter(e => !attendu('prix', { budget: 250 }).cartes.some(c => c.id === e.id))[0];
-        if (eq) { await page.locator('.adv-acard[data-id="' + eq.id + '"] button[data-examiner]').click(); await page.waitForTimeout(500); assert.equal(await page.locator('.adv-card').getAttribute('data-id'), eq.id); assert.match(await page.locator('.adv-card .adv-verdict').innerText(), /Presque aussi adapté/); assert.match(await page.locator('.adv-card .adv-kick').innerText(), /À égalité/i); await page.locator('.adv-exam [data-retour]').click(); }
-        assert.equal(await page.locator('.adv-card .adv-status.is-prov').count(), 0); assert.equal(await page.locator('#conseiller .adv-status').filter({ hasText: /^\s*confirmé\s*$/i }).count(), 0);
+        if (eq) { await page.locator('.gc-acard[data-id="' + eq.id + '"] button[data-examiner]').click(); await page.waitForTimeout(500); assert.equal(await page.locator('.gc-card').getAttribute('data-id'), eq.id); assert.match(await page.locator('.gc-card .gc-verdict').innerText(), /Presque aussi adapté/); assert.match(await page.locator('.gc-card .gc-kick').innerText(), /À égalité/i); await page.locator('.gc-exam [data-retour]').click(); }
+        assert.equal(await page.locator('.gc-card .gc-status.is-prov').count(), 0); assert.equal(await page.locator('#conseiller .gc-status').filter({ hasText: /^\s*confirmé\s*$/i }).count(), 0);
         await prio(page, 'equilibre');
       });
       await check('profil partagé : « Jeu » écrit guide-profile = gamer et émet guide:profile ; l’état (priorité, budget) est conservé au rechargement, pas l’examen', async () => {
         await page.evaluate(() => { window.__profils = []; window.addEventListener('guide:profile', e => window.__profils.push(e.detail.profile)); });
         await prio(page, 'jeu'); assert.equal(await page.evaluate(() => localStorage.getItem('guide-profile')), 'gamer'); assert.deepEqual(await page.evaluate(() => window.__profils), ['gamer']);
-        await page.reload({ waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]'); assert.equal(await page.locator('.adv-prios input:checked').getAttribute('value'), 'jeu');
+        await page.reload({ waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]'); assert.equal(await page.locator('.gc-prios input:checked').getAttribute('value'), 'jeu');
         assert.equal((await lire(page)).examen, '0');
       });
       await check('paramètres d’adresse (?priorite=…&budget=…) et profil existant : lus au démarrage', async () => {
         await page.goto(base + FLAG + '&priorite=photo&budget=400', { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]');
-        assert.equal(await page.locator('.adv-prios input:checked').getAttribute('value'), 'photo'); assert.equal(await page.locator('#adv-bud').inputValue(), '400'); assert.equal(await demoActive(page), 'photo');
+        assert.equal(await page.locator('.gc-prios input:checked').getAttribute('value'), 'photo'); assert.equal(await page.locator('#gc-bud').inputValue(), '400'); assert.equal(await demoActive(page), 'photo');
         await page.evaluate(() => { localStorage.removeItem('guide-conseil'); localStorage.setItem('guide-profile', 'photographe'); });
-        await page.goto(base + FLAG, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]'); assert.equal(await page.locator('.adv-prios input:checked').getAttribute('value'), 'photo');
+        await page.goto(base + FLAG, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]'); assert.equal(await page.locator('.gc-prios input:checked').getAttribute('value'), 'photo');
       });
       await check('performance : chargement, construction du moteur, rendu d’une interaction ; aucune requête de plus par interaction', async () => {
         const perf = await page.evaluate(() => window.__conseilPerf); const avant = requetes.length;
@@ -418,6 +418,13 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
         const p2 = await page.evaluate(() => window.__conseilPerf);
         console.log('  performance (navigateur) : chargement ' + perf.chargement + ' ms · construction ' + perf.construction + ' ms · rendus ' + p2.rendu.join(', ') + ' ms');
         assert.ok(perf.construction < 500 && Math.max.apply(null, p2.rendu) < 400); assert.equal(requetes.length, avant);
+      });
+      await check('bloqueurs de publicité : aucune classe ni identifiant du conseiller ne ressemble à de la publicité (EasyList et AdGuard masquaient « .adv-top » et « .adv-ad » sur iPhone)', async () => {
+        await page.locator('.gc-acard button[data-examiner]').first().click(); await page.locator('#gc-tab-sources').click();
+        const suspects = await page.evaluate(() => { const re = /^(adv|ads?|advert\w*|banner|sponsor\w*|promo\w*|pub|publicite)([-_]|$)/i, o = []; document.querySelectorAll('#conseiller *, #conseiller, #aller-plus-loin, #aller-plus-loin *, .gc-sticky, .gc-sticky *').forEach(e => { const cl = typeof e.className === 'string' ? e.className : (e.className && e.className.baseVal) || ''; cl.split(/\s+/).concat(e.id ? [e.id] : []).forEach(c => { if (c && re.test(c)) o.push(c); }); }); return [...new Set(o)]; });
+        assert.deepEqual(suspects, []);
+        for (const s of ['.adv-top', '.adv-ad', '.adv-wrap', '.adv-box', '.ad-top', '.ads']) assert.equal(await page.locator(s).count(), 0, s);
+        await page.locator('.gc-exam [data-retour]').click();
       });
       await check('aucune erreur de script pendant tout le parcours', async () => { assert.deepEqual(o.erreurs, []); });
       await o.ctx.close();
@@ -428,25 +435,25 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
       const o = await ouvrir(browser, base, FLAG, { width: 390, height: 844 }), page = o.page;
       await o.aller(FLAG, modifierDonnees(j => { const q = j.produits.find(x => x.id === 'oneplus-15'); q.image_url = 'assets/brand/guide-achat-symbole.svg'; q.image_alt = 'Face arrière du OnePlus 15'; q.image_credit = 'Photo : constructeur'; }));
       await check('photo vérifiée (image_url et image_alt) : affichée avec son crédit à la place du schéma ; sans image_alt ou hors https/assets : jamais affichée', async () => {
-        const c = page.locator('.adv-card[data-id="oneplus-15"]'); assert.ok(await c.count(), 'OnePlus 15 est le choix principal');
-        assert.equal(await c.locator('.adv-photo img').getAttribute('alt'), 'Face arrière du OnePlus 15'); assert.match(await c.locator('.adv-photo figcaption').innerText(), /constructeur/); assert.equal(await c.locator('.adv-thumb .adv-anat').count(), 0);
-        assert.equal(await page.locator('#adv-tp-sources .adv-part').count(), 6, 'le schéma des preuves reste dans Sources'); assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+        const c = page.locator('.gc-card[data-id="oneplus-15"]'); assert.ok(await c.count(), 'OnePlus 15 est le choix principal');
+        assert.equal(await c.locator('.gc-photo img').getAttribute('alt'), 'Face arrière du OnePlus 15'); assert.match(await c.locator('.gc-photo figcaption').innerText(), /constructeur/); assert.equal(await c.locator('.gc-thumb .gc-anat').count(), 0);
+        assert.equal(await page.locator('#gc-tp-sources .gc-part').count(), 6, 'le schéma des preuves reste dans Sources'); assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
       });
       await o.ctx.close();
       const o0 = await ouvrir(browser, base, FLAG, { width: 390, height: 844 }); await o0.aller(FLAG);
       await check('sans photo vérifiée (état actuel des données) : schéma de la fiche en vignette, signalé comme « pas une photo » pour les lecteurs d’écran, aucune image', async () => {
-        assert.equal(await o0.page.locator('.adv-card img').count(), 0); assert.ok(await o0.page.locator('.adv-card .adv-thumb .adv-anat').count() === 1); assert.match(await o0.page.locator('.adv-thumb figcaption').innerText(), /pas une photo/);
-        assert.equal(await o0.page.locator('.adv-thumb .adv-anat').getAttribute('aria-hidden'), 'true');
+        assert.equal(await o0.page.locator('.gc-card img').count(), 0); assert.ok(await o0.page.locator('.gc-card .gc-thumb .gc-anat').count() === 1); assert.match(await o0.page.locator('.gc-thumb figcaption').innerText(), /pas une photo/);
+        assert.equal(await o0.page.locator('.gc-thumb .gc-anat').getAttribute('aria-hidden'), 'true');
       });
       await o0.ctx.close();
       for (const [nom, mod] of [['sans image_alt', q => { q.image_url = 'assets/brand/guide-achat-symbole.svg'; delete q.image_alt; }], ['adresse javascript:', q => { q.image_url = 'javascript:alert(1)'; q.image_alt = 'x'; }], ['http non sécurisé', q => { q.image_url = 'http://exemple.test/a.jpg'; q.image_alt = 'x'; }]]) {
         const o3 = await ouvrir(browser, base, FLAG, { width: 390, height: 844 }); await o3.aller(FLAG, modifierDonnees(j => mod(j.produits.find(x => x.id === 'oneplus-15'))));
-        await check('image refusée (' + nom + ') : le schéma reste, aucune image', async () => { assert.equal(await o3.page.locator('.adv-photo').count(), 0); assert.ok((await o3.page.locator('.adv-card .adv-anat').count()) >= 1); });
+        await check('image refusée (' + nom + ') : le schéma reste, aucune image', async () => { assert.equal(await o3.page.locator('.gc-photo').count(), 0); assert.ok((await o3.page.locator('.gc-card .gc-anat').count()) >= 1); });
         await o3.ctx.close();
       }
       const o4 = await ouvrir(browser, base, FLAG, { width: 390, height: 844 }); await o4.aller(FLAG, modifierDonnees(j => { const q = j.produits.find(x => x.id === 'oneplus-15'); q.image_url = 'assets/introuvable-123.png'; q.image_alt = 'Face arrière'; }));
       await check('image introuvable : le schéma reprend la place, sans erreur de script', async () => {
-        await o4.page.waitForTimeout(700); assert.equal(await o4.page.locator('.adv-photo').count(), 0); assert.ok((await o4.page.locator('.adv-card .adv-anat').count()) >= 1); assert.deepEqual(o4.erreurs, []);
+        await o4.page.waitForTimeout(700); assert.equal(await o4.page.locator('.gc-photo').count(), 0); assert.ok((await o4.page.locator('.gc-card .gc-anat').count()) >= 1); assert.deepEqual(o4.erreurs, []);
       });
       await o4.ctx.close();
       const o5 = await ouvrir(browser, base, FLAG, { width: 390, height: 844 }); await o5.aller(FLAG);
@@ -468,7 +475,7 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
         const fond = e => { while (e) { const b = getComputedStyle(e).backgroundColor; if (b && !/rgba\\(0, 0, 0, 0\\)|transparent/.test(b)) return b; e = e.parentElement; } return 'rgb(255,255,255)'; };
         const r = e => { const a = lum(getComputedStyle(e).color), b = lum(fond(e)), h = Math.max(a, b), l = Math.min(a, b); return (h + 0.05) / (l + 0.05); };`;
       const mesure = sels => `(() => { ${lum} return ${JSON.stringify(sels)}.map(s => { const e = document.querySelector('#conseiller ' + s); return e ? [s, +r(e).toFixed(1)] : null; }).filter(Boolean); })()`;
-      const SELS = ['.adv-verdict', '.adv-pc li', '.adv-pro b', '.adv-con b', '.adv-status', '.adv-kick', '.adv-lead', '.adv-more', '.adv-have', '.adv-tile .t', '.adv-ar', '.adv-ad', '.adv-an', '.adv-eyebrow',
+      const SELS = ['.gc-verdict', '.gc-pc li', '.gc-pro b', '.gc-con b', '.gc-status', '.gc-kick', '.gc-lead', '.gc-more', '.gc-have', '.gc-tile .t', '.gc-ar', '.gc-ad', '.gc-an', '.gc-eyebrow',
         '.dm-kick', '.dm-badge', '.dm-tab', '.dm-q', '.dm-read', '.dm-you', '.dm-not summary', '.dm-seg button', '.dm-rt', '.dm-ends', '.dm-screen figcaption', '.dm-screen figcaption small'];
       for (const [scheme, opts] of [['dark', { reducedMotion: 'reduce' }], ['light', {}]]) {
         const o = await ouvrir(browser, base, FLAG, { width: 390, height: 844 }, Object.assign({ colorScheme: scheme }, opts)); await o.aller(FLAG);
@@ -479,19 +486,19 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
             rap.forEach(([s, v]) => { n++; assert.ok(v >= 4.5, d + ' ' + s + ' ' + v); });
           }
           assert.ok(n >= 40);
-          for (const id of ['resume', 'tests', 'sources']) { await o.page.locator('#adv-tab-' + id).click(); const rap = await o.page.evaluate(mesure(['.adv-tab', '#adv-tp-' + id + ' p', '#adv-tp-' + id + ' .adv-sp dt', '#adv-tp-' + id + ' .adv-sp dd', '#adv-tp-' + id + ' .adv-gain h3', '#adv-tp-' + id + ' .adv-gain li', '#adv-tp-' + id + ' .adv-cede h3', '#adv-tp-' + id + ' .adv-cede li', '#adv-tp-' + id + ' .adv-ev .f', '#adv-tp-' + id + ' .adv-legend li', '#adv-tp-' + id + ' .adv-solid', '#adv-tp-' + id + ' .adv-note-s']));
+          for (const id of ['resume', 'tests', 'sources']) { await o.page.locator('#gc-tab-' + id).click(); const rap = await o.page.evaluate(mesure(['.gc-tab', '#gc-tp-' + id + ' p', '#gc-tp-' + id + ' .gc-sp dt', '#gc-tp-' + id + ' .gc-sp dd', '#gc-tp-' + id + ' .gc-gain h3', '#gc-tp-' + id + ' .gc-gain li', '#gc-tp-' + id + ' .gc-cede h3', '#gc-tp-' + id + ' .gc-cede li', '#gc-tp-' + id + ' .gc-ev .f', '#gc-tp-' + id + ' .gc-legend li', '#gc-tp-' + id + ' .gc-solid', '#gc-tp-' + id + ' .gc-note-s']));
             rap.forEach(([s, v]) => assert.ok(v >= 4.5, id + ' ' + s + ' ' + v)); }
-          await o.page.locator('.adv-acard button[data-examiner]').first().click(); await o.page.waitForTimeout(400); const rap2 = await o.page.evaluate(mesure(['.adv-exam p', '.adv-exam .adv-btn', '.adv-kick', '.adv-verdict', '.adv-warn']));
-          rap2.forEach(([s, v]) => assert.ok(v >= 4.5, 'examen ' + s + ' ' + v)); await o.page.locator('.adv-exam [data-retour]').click();
-          const ink = await o.page.evaluate(() => { const e = document.querySelector('#adv-analyse .adv-h2'); return [getComputedStyle(e).color, getComputedStyle(document.getElementById('adv-analyse')).backgroundColor]; }); assert.notEqual(ink[0], ink[1]);
+          await o.page.locator('.gc-acard button[data-examiner]').first().click(); await o.page.waitForTimeout(400); const rap2 = await o.page.evaluate(mesure(['.gc-exam p', '.gc-exam .gc-btn', '.gc-kick', '.gc-verdict', '.gc-warn']));
+          rap2.forEach(([s, v]) => assert.ok(v >= 4.5, 'examen ' + s + ' ' + v)); await o.page.locator('.gc-exam [data-retour]').click();
+          const ink = await o.page.evaluate(() => { const e = document.querySelector('#gc-analyse .gc-h2'); return [getComputedStyle(e).color, getComputedStyle(document.getElementById('gc-analyse')).backgroundColor]; }); assert.notEqual(ink[0], ink[1]);
           assert.deepEqual(o.erreurs, []);
         });
         await check('thème ' + (scheme === 'dark' ? 'sombre' : 'clair') + ' : les trois accents restent distincts et sobres (jaune = choix, teal = point fort, corail = compromis)', async () => {
-          const c = await o.page.evaluate(() => { const g = s => getComputedStyle(document.querySelector(s)); return { sel: g('.adv-tile input:checked + .adv-tile-in').backgroundColor, pro: g('.adv-pro .adv-sign').backgroundColor, con: g('.adv-con .adv-sign').backgroundColor, bar: g('.dm-tab[aria-selected="true"]').backgroundColor }; });
+          const c = await o.page.evaluate(() => { const g = s => getComputedStyle(document.querySelector(s)); return { sel: g('.gc-tile input:checked + .gc-tile-in').backgroundColor, pro: g('.gc-pro .gc-sign').backgroundColor, con: g('.gc-con .gc-sign').backgroundColor, bar: g('.dm-tab[aria-selected="true"]').backgroundColor }; });
           assert.equal(c.sel, 'rgb(255, 212, 0)'); assert.equal(c.bar, 'rgb(255, 212, 0)'); assert.notEqual(c.pro, c.con); assert.notEqual(c.pro, c.sel); assert.notEqual(c.con, c.sel);
         });
         if (scheme === 'dark') await check('mouvement réduit : pas d’animation sur la barre collante, les dépliants, la liste de batterie ; le jeu ne démarre pas seul mais peut être lancé ; tout fonctionne', async () => {
-          assert.ok(parseFloat(await o.page.locator('#adv-sticky').evaluate(e => getComputedStyle(e).transitionDuration)) < 0.05);
+          assert.ok(parseFloat(await o.page.locator('#gc-sticky').evaluate(e => getComputedStyle(e).transitionDuration)) < 0.05);
           await o.page.locator('#dm-tab-batterie').click(); assert.ok(parseFloat(await o.page.locator('.dm-row').first().evaluate(e => getComputedStyle(e).transitionDuration)) < 0.05);
           await o.page.locator('#dm-tab-jeu').click(); assert.equal(await o.page.locator('.dm-play').getAttribute('aria-pressed'), 'false'); assert.match(await o.page.locator('.dm-play').innerText(), /Lancer/);
           const a = await o.page.locator('.dm-ball').first().evaluate(e => e.style.transform); await o.page.waitForTimeout(500); assert.equal(await o.page.locator('.dm-ball').first().evaluate(e => e.style.transform), a, 'aucun mouvement automatique');

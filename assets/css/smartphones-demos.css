@@ -2,8 +2,8 @@
    Un seul objet sombre sur la page, dans les deux thèmes : c'est ce qui le rend repérable.
    Jaune = ce que le visiteur a choisi (onglet, bouton). Teal = mesuré ou point fort. Corail = compromis. Hachuré = illustration ou inconnu. */
 html.sp-pertinence .dm {
-  --dm-bg: var(--adv-stage, #0f1115); --dm-fg: #e7eaee; --dm-mute: #aab1bb; --dm-line: rgba(231, 234, 238, .28); --dm-teal: #5fc9c1; --dm-coral: #f29a82; --dm-y: #ffd400;
-  position: relative; margin-top: 18px; background: var(--dm-bg); color: var(--dm-fg); border: 2px solid var(--adv-ink, #0f1115); font-family: var(--sans, 'Public Sans', system-ui, sans-serif);
+  --dm-bg: var(--gc-stage, #0f1115); --dm-fg: #e7eaee; --dm-mute: #aab1bb; --dm-line: rgba(231, 234, 238, .28); --dm-teal: #5fc9c1; --dm-coral: #f29a82; --dm-y: #ffd400;
+  position: relative; margin-top: 18px; background: var(--dm-bg); color: var(--dm-fg); border: 2px solid var(--gc-ink, #0f1115); font-family: var(--sans, 'Public Sans', system-ui, sans-serif);
 }
 html.sp-pertinence.dark-theme .dm { border-color: #e7eaee; }
 html.sp-pertinence .dm *, html.sp-pertinence .dm *::before, html.sp-pertinence .dm *::after { box-sizing: border-box; }
