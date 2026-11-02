@@ -272,3 +272,16 @@ html.sp-pertinence .adv-sticky { display: none; }
   html.sp-pertinence #adv-sortie.is-tick { animation: none; } html.sp-pertinence .adv-car { scroll-behavior: auto; }
 }
 html.sp-pertinence.fx-lite .adv-sticky, html.sp-pertinence.fx-lite .apl-tile i { transition: none; }
+
+/* Accueil compact du conseiller : priorités et choix dans un même cadre. */
+html.sp-pertinence .adv-frame { border: 2px solid var(--adv-ink); padding: 16px; background: var(--adv-card); }
+html.sp-pertinence .adv-frame .adv-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; max-width: none; }
+html.sp-pertinence .adv-frame .adv-tile-in { min-height: 76px; }
+html.sp-pertinence .adv-frame .adv-more { display: block; min-height: 0; padding: 0; border: 0; }
+html.sp-pertinence .adv-frame .adv-more .adv-tile-in { border-style: dashed; }
+html.sp-pertinence .adv-frame .adv-sum { align-items: flex-start; flex-wrap: wrap; font: 500 11px/1.5 var(--mono, monospace); color: var(--adv-mute); }
+html.sp-pertinence .adv-frame .adv-sum #adv-more-t { flex: 1 1 100%; }
+html.sp-pertinence .adv-frame .adv-grid { margin-top: 18px; }
+html.sp-pertinence .adv-frame .adv-card { border: 0; padding: 14px 0 0; border-top: 1px solid var(--adv-ink); }
+html.sp-pertinence .adv-frame .adv-card::after { display: none; }
+html.sp-pertinence #adv-demo { margin-top: 18px; }
