@@ -14,9 +14,9 @@
     incertitude: 'trop de caractéristiques inconnues pour une estimation fiable',
     soutien: 'sources de la fiche insuffisantes',
     provenance: 'une caractéristique importante pour votre priorité n’est pas sourcée',
-    suivi_inconnu: 'durée de suivi restante non vérifiée',
-    suivi_court: 'moins de 3 ans de suivi estimé encore disponibles',
-    suivi_termine: 'le suivi annoncé depuis sa sortie semble terminé',
+    suivi_inconnu: 'durée de mises à jour non annoncée',
+    suivi_court: 'moins de 3 ans de mises à jour (annoncés, ou restants si la date de sortie est connue)',
+    suivi_termine: 'le suivi annoncé depuis sa sortie est épuisé d’après sa date de sortie',
     photo_non_etayee: 'matériel photo limité et aucun test photo indépendant relevé',
     prime_non_justifiee: 'un modèle moins cher et fiable fait presque aussi bien',
     donnees_insuffisantes: 'trop peu de données'
@@ -60,7 +60,7 @@
         role: role, id: a.id, nom: a.nom, marque: p.marque, prix: a.prix, idealo: p.idealo_url || null, statut: a.statut,
         R: arrondi(a.R), Rmin: arrondi(a.Rmin), Rmax: arrondi(a.Rmax), U: arrondi(a.U), C: arrondi(a.C), confiance: moteur.niveauC(a.C),
         pourquoi: pourquoi, limite: limite, empreinte: empreinte, preuve: preuve, criteres: criteres, mesures: lignes, avis: moteur.avis(a.id), motifs: motifs,
-        conflits: moteur.ALL.reduce(function (n, d) { return n.concat(ev[d].conflits); }, []), annee: p.annee_sortie || null, suiviRestant: a.suiviRestant
+        conflits: moteur.ALL.reduce(function (n, d) { return n.concat(ev[d].conflits); }, []), annee: p.annee_sortie || null, suiviRestant: a.suiviRestant, suiviAnnonce: a.suiviAnnonce, suiviEtat: a.suiviEtat
       };
       c.verdict = verdict(role, c, ctx);
       return c;

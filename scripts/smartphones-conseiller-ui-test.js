@@ -305,7 +305,7 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
         }
       });
       await check('budget : plafond strict, « Sans plafond » est un vrai choix (même pour « Prix bas »), « Prix bas » démarre à 250 €', async () => {
-        await prio(page, 'prix'); await affiner(page); assert.equal(await page.locator('#gc-bud').inputValue(), '250'); assert.match(await page.locator('#gc-sortie').innerText(), /Aucun choix confirmé/);
+        await prio(page, 'prix'); await affiner(page); assert.equal(await page.locator('#gc-bud').inputValue(), '250'); const d250 = await lire(page); assert.ok(d250.prix <= 250); assert.equal(d250.id, attendu('prix', { budget: 250 }).cartes[0].id, 'Prix bas propose un choix confirmé à 250 €');
         await page.selectOption('#gc-bud', '0'); assert.equal((await lire(page)).id, attendu('prix', { budget: 1700 }).cartes[0].id, 'sans plafond ≠ plafond par défaut');
         await prio(page, 'autonomie'); await affiner(page); await page.selectOption('#gc-bud', '0');
         for (const b of ['150', '400', '1000']) { await page.selectOption('#gc-bud', b); const d = await lire(page); assert.ok(d.prix <= Number(b), b); assert.equal(d.id, attendu('autonomie', { budget: Number(b) }).cartes[0].id); }

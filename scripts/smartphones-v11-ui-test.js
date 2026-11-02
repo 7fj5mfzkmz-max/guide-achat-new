@@ -47,9 +47,9 @@ const server = http.createServer((req, res) => {
       assert.equal(await page.locator('.gc-card').count(), 0);
       assert(!/Galaxy A23 5G/.test(await page.locator('#gc-sortie').innerText()));
       await page.locator('#gc-bud').selectOption('600');
-      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), 'pixel-10a');
+      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), 'xiaomi-redmi-note-13');
       await page.locator('#dm-tab-budget').click();
-      assert.match(await page.locator('.dm-brow').first().innerText(), /Pixel 10a/);
+      assert.match(await page.locator('.dm-brow').first().innerText(), /Redmi Note 13/);
       await page.evaluate(() => { window.PhoneAnalyzerFetcher.resolveModel = async () => ({ ok: true, strategy: 'phonesdata', specs: { ecran: 'OLED' }, identity: { name: 'iPhone 17' }, product: { name: 'iPhone 17' } }); });
       await page.locator('#gc-url').fill('iPhone 17'); await page.locator('#gc-aform button').click();
       await page.waitForTimeout(600);
