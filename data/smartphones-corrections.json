@@ -185,6 +185,29 @@
     "https://www.kimovil.com/fr/ou-acheter-poco-x6"
    ],
    "note": "Capteur principal 64 Mpx."
+  },
+  {
+   "id": "poco-f9-pro",
+   "mp_principal": 200,
+   "remplace": true,
+   "sources": [
+    "https://www.newmobile.com/phones/poco/f9-pro/specifications",
+    "https://www.mobiledokan.com/mobile/xiaomi-poco-f9-pro/specification",
+    "https://www.pinoytechnoguide.com/smartphones/poco-f9-pro",
+    "https://www.lmt.lv/en/shop/all-phones/poco-f9-pro",
+    "https://9to5google.com/?p=728686"
+   ],
+   "note": "Capteur principal 200 Mpx stabilisé (OIS) ; la vidéo 10 indiquait 100 MP (écart relevé le 2026-10-31, cinq pages concordent sur 200 MP)."
+  },
+  {
+   "id": "poco-f9-ultra",
+   "mp_principal": 200,
+   "remplace": true,
+   "sources": [
+    "https://www.digit.in/mobiles/poco-f9-ultra-5g-price-in-india.html",
+    "https://9to5google.com/?p=728686"
+   ],
+   "note": "Capteur principal 200 Mpx stabilisé (OIS)."
   }
  ]
 }

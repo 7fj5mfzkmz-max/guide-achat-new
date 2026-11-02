@@ -10,7 +10,8 @@ const complet = path.join(__dirname, '..', '..', 'data', 'classeur-complet-2026.
 const { trouver } = require('./noms.js');
 const ALIAS = { 'zte nubia red magic 10 pro': 'nubia-red-magic-10-pro', 'zte nubia focus 6 air': 'nubia-focus-6-air', 'asus rog phone 9': 'rog-phone-9' };
 // Durées officielles relevées sur des sources (Google annonce 7 ans pour les Pixel 10).
-const OFFICIELLES = { 'pixel-10a': 7 };
+// POCO F9 Pro / Ultra : « 4 mises à jour majeures » (vidéo 10 de TechNick ; digit.in). digit.in cite aussi « 6 ans de mises à jour », non recoupé : on retient 4.
+const OFFICIELLES = { 'pixel-10a': 7, 'poco-f9-pro': 4, 'poco-f9-ultra': 4 };
 const norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9+ ()]/g, '').replace(/\s+/g, ' ').trim();
 
 function appliquer(cat) {
