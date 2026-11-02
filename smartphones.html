@@ -42,7 +42,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <link rel="stylesheet" href="assets/css/student-journey.css">
 <link rel="stylesheet" href="assets/css/projecteurs.css">
 <link rel="stylesheet" href="assets/css/smartphones-calm.css">
-<script id="sp-pertinence-flag">(function(){try{if(!/(^|[?&])pertinence=1(&|$)/.test(location.search))return;document.documentElement.classList.add("sp-pertinence");var l=document.createElement("link");l.rel="stylesheet";l.href="assets/css/smartphones-conseil.css";document.head.appendChild(l)}catch(e){}})()</script>
+<script id="sp-pertinence-flag">(function(){try{if(!/(^|[?&])pertinence=1(&|$)/.test(location.search))return;document.documentElement.classList.add("sp-pertinence");var l=document.createElement("link");l.rel="stylesheet";l.href="assets/css/smartphones-conseil.css";document.head.appendChild(l);var m=document.createElement("link");m.rel="stylesheet";m.href="assets/css/smartphones-demos.css";document.head.appendChild(m)}catch(e){}})()</script>
 </head>
 <body class="photo-editorial site-redesign sp-calm">
 <header class="site-header">
@@ -492,7 +492,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/category-page.js" defer></script>
 <script src="assets/js/actualites.js" defer></script>
 <script src="assets/js/i18n.js" defer></script>
-<script id="sp-pertinence-boot">(function(){if(!document.documentElement.classList.contains("sp-pertinence"))return;var c=document.getElementById("conseiller");if(c)c.hidden=false;["smartphones-pertinence","smartphones-conseil","smartphones-conseiller"].forEach(function(n){var e=document.createElement("script");e.src="assets/js/"+n+".js";e.async=false;document.body.appendChild(e)})})()</script>
+<script id="sp-pertinence-boot">(function(){if(!document.documentElement.classList.contains("sp-pertinence"))return;var c=document.getElementById("conseiller");if(c)c.hidden=false;["smartphones-pertinence","smartphones-conseil","smartphones-demos","smartphones-conseiller"].forEach(function(n){var e=document.createElement("script");e.src="assets/js/"+n+".js";e.async=false;document.body.appendChild(e)})})()</script>
 </body>
 </html>
 
