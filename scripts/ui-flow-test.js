@@ -133,8 +133,9 @@ async function main() {
       assert(!/indisponible/i.test(await stageText(page)), 'la note d’indisponibilité du secours local ne doit pas apparaître : le vrai backend a été utilisé');
       await link.click();
       await page.waitForURL(/smartphones\.html#choisir-profil/);
-      await page.waitForSelector('#tr-podium .tr-row', { timeout: 15000 });
-      assert((await page.locator('#choisir-profil').isVisible()), 'le classement doit s’ouvrir');
+      await page.waitForSelector('#tr-podium .tr-row', { state: 'attached', timeout: 15000 });
+      await page.waitForSelector('#conseiller[data-ready="1"]', { timeout: 15000 });
+      await page.waitForSelector('#choisir-profil', { state: 'visible', timeout: 5000 });
       assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
       await close(page);
     });

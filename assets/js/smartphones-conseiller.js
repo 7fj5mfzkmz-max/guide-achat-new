@@ -18,10 +18,10 @@
   var ICONES = {
     equilibre: '<path d="M3 12h18M7 7l-4 5 4 5M17 7l4 5-4 5"/>', autonomie: '<rect x="3" y="7" width="16" height="10"/><path d="M21 10v4M7 10v4M11 10v4"/>',
     photo: '<rect x="3" y="6" width="18" height="13"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8 6l1-2h6l1 2"/>', jeu: '<path d="M4 9h16v6H4zM8 12h3M9.5 10.5v3M15 11.5h.01M17 13.5h.01"/>',
-    prix: '<path d="M3 12l9-9h8v8l-9 9z"/><circle cx="16" cy="8" r="1.4"/>'
+    prix: '<path d="M3 12l9-9h8v8l-9 9z"/><circle cx="16" cy="8" r="1.4"/>', affiner: '<path d="M4 7h16M4 12h16M4 17h16"/>'
   };
   var PRIORITES = [['equilibre', 'Équilibré'], ['autonomie', 'Batterie'], ['photo', 'Photo'], ['jeu', 'Jeu'], ['prix', 'Prix bas']];
-  var PHRASE = { equilibre: 'un usage de tous les jours', autonomie: 'une batterie qui dure', photo: 'de belles photos', jeu: 'jouer sans saccades', prix: 'payer le moins possible' };
+  var PHRASE = { equilibre: 'un usage de tous les jours', autonomie: 'l’autonomie', photo: 'la photo', jeu: 'jouer', prix: 'payer le moins possible' };
   var BUDGETS = [[0, 'Sans plafond'], [150, '150 €'], [250, '250 €'], [400, '400 €'], [600, '600 €'], [800, '800 €'], [1000, '1 000 €']];
   var ROLES = { sur: 'Notre recommandation', valeur: 'Meilleur rapport qualité-prix', economique: 'Pour dépenser moins', alternative: 'À choisir plutôt si…', equivalent: 'À égalité, ou presque', provisoire: 'À confirmer' };
   var NOMS_CRIT = { batterie: 'batterie', performance: 'puissance', photo: 'photo', suivi: 'mises à jour', robustesse: 'résistance', ecran: 'écran', prix: 'prix' };
@@ -91,7 +91,7 @@
   };
   var LABELS = { photo: 'PHOTO', performance: 'PUCE', ecran: 'ÉCRAN', batterie: 'BATTERIE', suivi: 'MAJ', robustesse: 'IP' };
   function court(d, ev) {
-    var v = ev.valeur; if (!v) return '?';
+    var v = ev.valeur; if (!v) return '—';
     var dt = v.details || {};
     if (d === 'batterie') return fr(v.nombre); if (d === 'performance') return v.nombre + '/10';
     if (d === 'photo') return dt.format ? dt.format + '″' : '·'; if (d === 'suivi') return v.nombre + ' ans';
@@ -129,7 +129,7 @@
   function ligneMesure(l) {
     var v = (l.rang != null ? 'n° ' + l.rang + ' sur ' + l.sur : '') + (l.texte && String(l.texte).indexOf('n°') !== 0 ? (l.rang != null ? ' (' + l.texte + ')' : l.texte) : '');
     var etat = l.etat === 'utilisee' ? 'pris en compte dans notre analyse' : l.etat === 'non_calibre' ? 'affiché, pas encore pris en compte : ' + (l.raisons && l.raisons[0] ? l.raisons[0] : 'test trop isolé') : l.etat === 'variante_differente' ? 'écarté : ' + l.motif : l.motif || 'lu comme un avis';
-    return '<li><b>' + esc(v) + '</b> · test de ' + esc(l.editeur || '?') + '<small>' + esc(etat) + '</small></li>';
+    return '<li><b>' + esc(v) + '</b> · test de ' + esc(l.editeur || 'éditeur non indiqué') + '<small>' + esc(etat) + '</small></li>';
   }
   function preuves(c) {
     var empreinte = {}; c.empreinte.forEach(function (e) { empreinte[e.critere] = e.etat; });
@@ -149,7 +149,7 @@
     var q = r.requete, pr = PHRASE[q.priorite], sec = q.secondaire ? ', puis ' + PHRASE[q.secondaire] : '';
     var plafond = q.budgetUtilisateur && S.budget !== 0 ? ' jusqu’à ' + fr(q.budgetUtilisateur) + ' €' : '';
     if (c.statut !== 'confirmee') return 'Prometteur, mais pas assez documenté pour être recommandé.';
-    if (c.role === 'sur') return 'Le plus adapté pour ' + pr + sec + plafond + ', parmi les fiches vérifiées.';
+    if (c.role === 'sur') return (r.memeChoix ? 'Ce modèle reste notre premier choix en privilégiant ' : 'Notre premier choix pour ') + pr + sec + plafond + '. Vérifiez le prix actuel et les limites ci-dessous.';
     if (c.role === 'valeur') return 'Le meilleur rapport entre ce que vous cherchez et son prix' + (r.plancher ? ', avec au moins ' + r.plancher + ' ans de mises à jour annoncés' : '') + '.';
     if (c.role === 'economique') return 'Pour dépenser moins' + (r.plancher ? ', avec au moins ' + r.plancher + ' ans de mises à jour annoncés' : '') + '.';
     if (c.role === 'alternative') return 'À choisir plutôt que ' + ref.nom + ' si ' + (ref.limite ? NOMS_CRIT[ref.limite.critere] || ref.limite.titre.toLowerCase() : 'un autre critère') + ' compte plus pour vous.';
@@ -159,9 +159,16 @@
   var prixLien = function (c) { return '<a class="gc-prix" href="' + esc(lien(c)) + '" target="_blank" rel="noopener noreferrer" aria-label="Comparer les prix de ' + esc(c.nom) + ' (' + fr(c.prix) + ' euros), nouvel onglet">' + fr(c.prix) + ' € <span aria-hidden="true">↗</span></a>'; };
   var tagStatut = function (c) { return c.statut === 'confirmee' ? '<span class="gc-status is-conf"><span aria-hidden="true">✓</span> Fiche confirmée</span>' : '<span class="gc-status is-prov">À confirmer</span>'; };
   var voir = function (crit, nom) { var d = D.demoPourCritere(crit); return d ? ' <button type="button" class="gc-voir" data-demo="' + d + '" aria-label="Voir la différence : démonstration « ' + esc(D.DEMOS.filter(function (x) { return x.id === d; })[0].court) + ' »' + (nom ? ' (' + esc(nom) + ')' : '') + '">Voir la différence <span aria-hidden="true">→</span></button>' : ''; };
-  function force(c) { var p = c.pourquoi[0]; return p ? { texte: cap1(p.texte), crit: p.critere } : null; }
+  function force(c) { var p = c.pourquoi[0]; if (!p) return null;
+    var phrase = p.critere === 'prix' ? 'Prix indicatif de ' + fr(c.prix) + ' €' + (c.suiviRestant != null ? ' et environ ' + c.suiviRestant.toFixed(1).replace('.', ',') + ' ans de suivi annoncés encore disponibles' : ' ; suivi restant non vérifié')
+      : p.critere === 'photo' ? 'Matériel photo documenté : ' + p.texte + '. Cela ne confirme pas la qualité des images'
+      : p.critere === 'batterie' ? 'Capacité de batterie annoncée : ' + p.texte + '. La durée réelle dépend de l’usage'
+      : p.critere === 'performance' ? 'Puce documentée dans la fiche ; aucun test de jeu ne confirme ici sa fluidité'
+      : cap1(p.texte);
+    return { texte: phrase, crit: p.critere };
+  }
   function aSavoir(c, ref) {
-    var l = c.limite ? { texte: cap1(c.limite.texte), crit: c.limite.critere } : null, plus = ref && c.id !== ref.id && c.prix > ref.prix ? ecartPrix(c, ref) + ' que notre recommandation' : '';
+    var l = c.limite ? { texte: c.limite.critere === 'batterie' && !c.mesures.some(function (m) { return m.critere === 'batterie' && m.etat === 'utilisee'; }) ? 'Pas de test d’autonomie comparable dans nos sources : la capacité ne dit pas combien de temps il tiendra' : cap1(c.limite.texte), crit: c.limite.critere } : null, plus = ref && c.id !== ref.id && c.prix > ref.prix ? ecartPrix(c, ref) + ' que notre recommandation' : '';
     return { texte: [plus, l && l.texte].filter(Boolean).join(' · '), crit: plus ? 'prix' : l && l.crit };
   }
 
@@ -179,11 +186,11 @@
     var ban = exam ? '<div class="gc-exam"><p><b>Vous examinez une alternative.</b> Notre recommandation reste ' + esc(ref.nom) + ' (' + fr(ref.prix) + ' €).</p><button type="button" class="gc-btn" data-retour="1">Revenir à notre recommandation</button></div>' : '';
     var pc = prov ? '<div class="gc-warn"><b>À ne pas lire comme un choix confirmé.</b> ' + esc(cap1(c.motifs.join(' ; ') || 'preuves incomplètes')) + '.</div>' :
       '<ul class="gc-pc"><li class="gc-pro"><span class="gc-sign" aria-hidden="true">+</span><span><b>Point fort</b> ' + (f ? esc(f.texte) + '.' + voir(f.crit, c.nom) : 'Aucun point fort chiffré dans nos données.') + '</span></li>' +
-      '<li class="gc-con"><span class="gc-sign" aria-hidden="true">−</span><span><b>À savoir</b> ' + (l.texte ? esc(l.texte) + '.' + voir(l.crit, c.nom) : 'Aucune limite notable dans nos données.') + '</span></li></ul>';
+      '<li class="gc-con"><span class="gc-sign" aria-hidden="true">−</span><span><b>À savoir</b> ' + (l.texte ? esc(l.texte) + '.' + voir(l.crit, c.nom) : 'Les données disponibles ne permettent pas de vérifier tous les usages.') + '</span></li></ul>';
     return '<article class="gc-card" id="gc-card" tabindex="-1" data-id="' + esc(c.id) + '" data-role="' + c.role + '" data-statut="' + c.statut + '" data-examen="' + (exam ? '1' : '0') + '" aria-labelledby="' + id + '">' + ban +
       '<header class="gc-card-h"><span class="gc-kick">' + esc(exam ? 'Alternative examinée · ' + ROLES[c.role] : ROLES[c.role]) + '</span>' + tagStatut(c) + '</header>' +
       '<div class="gc-card-main">' + vignette(c) + '<div class="gc-id"><h2 class="gc-name" id="' + id + '">' + esc(c.nom) + '</h2><p class="gc-price">' + prixLien(c) + '</p></div></div>' +
-      '<p class="gc-verdict">' + esc(verdict(c, res, ref)) + '</p>' + pc + '</article>';
+      '<p class="gc-verdict">' + esc(verdict(c, res, ref)) + '</p>' + pc + '<p class="gc-micro">Pourquoi lui faire confiance ? ' + esc(c.preuve) + ' Prix indicatif à vérifier avant l’achat.</p></article>';
   }
 
   /* ——— Détail : Résumé / Tests / Sources ——— */
@@ -191,7 +198,7 @@
   function resume(c, ref) {
     var p = produit(c.id), car = p.caracteristiques || {}, ans = p.compatibilite && p.compatibilite.durete && p.compatibilite.durete.mises_a_jour_ans;
     var rows = SPECS.map(function (s) { var v = car[s[0]]; return '<div class="gc-sp"><dt>' + s[1] + '</dt><dd>' + (v ? esc(v) : '<i>non renseigné</i>') + (v ? voir(s[2], c.nom) : '') + '</dd></div>'; });
-    rows.push('<div class="gc-sp"><dt>Mises à jour</dt><dd>' + (ans != null ? ans + ' ans annoncés' : '<i>non renseigné</i>') + (ans != null ? voir('suivi', c.nom) : '') + '</dd></div>');
+    rows.push('<div class="gc-sp"><dt>Mises à jour</dt><dd>' + (ans != null ? ans + ' ans annoncés depuis la sortie' + (c.suiviRestant != null ? ' ; environ ' + c.suiviRestant.toFixed(1).replace('.', ',') + ' ans restants' : ' ; fin de suivi non vérifiée') : '<i>non renseigné</i>') + (ans != null ? voir('suivi', c.nom) : '') + '</dd></div>');
     var plus = c.pourquoi.map(function (x) { return cap1(x.texte); }), moins = [];
     if (c.limite) moins.push(cap1(c.limite.texte)); if (c.id !== ref.id && c.prix > ref.prix) moins.unshift(cap1(ecartPrix(c, ref)) + ' que notre recommandation');
     (p.points_forts || []).slice(0, 2).forEach(function (x) { if (plus.length < 3 && plus.indexOf(x) < 0) plus.push(x); });
@@ -212,10 +219,10 @@
   }
   function sourcesPanel(c, r) {
     var inc = c.empreinte.filter(function (e) { return e.etat === 'inconnu'; }), prov = c.statut !== 'confirmee';
-    var rez = '<p class="gc-solid"><b>Sources : ' + pips(c) + ' ' + esc(c.confiance) + '.</b> ' + (inc.length ? inc.length + ' information' + (inc.length > 1 ? 's' : '') + ' manque' + (inc.length > 1 ? 'nt' : '') + ' (' + esc(inc.map(function (e) { return e.titre.toLowerCase(); }).join(', ')) + ') : ce n’est pas un défaut, cela rend l’analyse moins sûre.' : 'Aucune information importante ne manque.') + '</p>';
+    var rez = '<p class="gc-solid"><b>Qualité des sources : ' + esc(c.confiance) + '.</b> ' + (inc.length ? inc.length + ' information' + (inc.length > 1 ? 's' : '') + ' manque' + (inc.length > 1 ? 'nt' : '') + ' (' + esc(inc.map(function (e) { return e.titre.toLowerCase(); }).join(', ')) + ') : cela rend l’analyse moins sûre.' : 'Aucune information importante ne manque.') + '</p>';
     var rr = moteur.classer(S.priorite, optsMoteur(S.priorite)), n = { prime: 0, suivi: 0, donnees: 0 };
     rr.liste.forEach(function (a) { if (a.statut !== 'ecartee') return; if (a.motifs.indexOf('suivi_court') >= 0) n.suivi++; else if (a.motifs.indexOf('prime_non_justifiee') >= 0) n.prime++; else n.donnees++; });
-    var ecart = r.total.ecartes ? '<details class="gc-tech"><summary>' + r.total.ecartes + ' modèles écartés pour cette demande</summary><ul class="gc-ecart">' + (n.prime ? '<li><b>' + n.prime + '</b> : un modèle moins cher et fiable fait presque aussi bien.</li>' : '') + (n.suivi ? '<li><b>' + n.suivi + '</b> : moins de 3 ans de mises à jour annoncés (« prix bas » l’exige).</li>' : '') + (n.donnees ? '<li><b>' + n.donnees + '</b> : trop peu de données.</li>' : '') + '</ul><p class="gc-note-s">« Écarté » ne veut pas dire « mauvais » : seulement « pas recommandé ici ».</p></details>' : '';
+    var ecart = r.total.ecartes ? '<details class="gc-tech"><summary>' + r.total.ecartes + ' modèles écartés pour cette demande</summary><ul class="gc-ecart">' + (n.prime ? '<li><b>' + n.prime + '</b> : un modèle moins cher et fiable fait presque aussi bien.</li>' : '') + (n.suivi ? '<li><b>' + n.suivi + '</b> : moins de 3 ans de suivi estimé encore disponibles (« prix bas » l’exige).</li>' : '') + (n.donnees ? '<li><b>' + n.donnees + '</b> : trop peu de données.</li>' : '') + '</ul><p class="gc-note-s">« Écarté » ne veut pas dire « mauvais » : seulement « pas recommandé ici ».</p></details>' : '';
     return rez + '<div class="gc-src-grid"><figure class="gc-fig">' + anatomie(c, true) + '<figcaption>Schéma d’après la fiche. Touchez une partie pour voir sa preuve.</figcaption>' + legende() + '</figure><div>' + preuves(c) + '</div></div>' +
       '<details class="gc-tech"><summary>Vue détaillée : adéquation, solidité des preuves, inconnu</summary>' + lectures(c, prov) + '</details>' + ecart;
   }
@@ -257,19 +264,21 @@
   }
   function render(opts) {
     opts = opts || {}; var t = performance.now();
+    var precedent = res && res.cartes[0] && res.cartes[0].id;
     res = conseil.conseiller({ priorite: S.priorite, secondaire: S.secondaire || null, budget: budgetMoteur(), prixImmediat: S.immediat });
+    res.memeChoix = !!(opts.changementPriorite && precedent && res.cartes[0] && precedent === res.cartes[0].id);
     var ref = res.cartes[0], sortie = $('#gc-sortie'), det = $('#gc-det'), alt = $('#gc-alt');
+    var bud = S.budget === 0 || (S.budget == null && !moteur.registres.priorites[S.priorite].budget) ? 'sans plafond' : 'jusqu’à ' + fr(S.budget != null ? S.budget : moteur.registres.priorites[S.priorite].budget) + ' €';
+    $('#gc-more-t').textContent = cap1(bud) + (S.secondaire ? ' · puis ' + PRIORITES.filter(function (p) { return p[0] === S.secondaire; })[0][1].toLowerCase() : '');
+    $('#gc-immediat-ligne').hidden = !(S.priorite === 'prix' || S.secondaire === 'prix');
     if (!ref) {
-      sortie.innerHTML = '<div class="gc-vide"><h2>Aucun choix confirmé pour ces critères.</h2><p>' + esc(res.notes[0] || '') + ' Essayez un budget plus large, ou une autre priorité.</p></div>';
-      det.innerHTML = ''; alt.innerHTML = ''; $('#gc-demo').hidden = false; statutRond(); root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', S.priorite); return;
+      sortie.innerHTML = '<div class="gc-vide"><h2>Aucun choix confirmé pour ces critères.</h2><p>' + (S.priorite === 'photo' ? 'Dans ce budget, le matériel photo reste limité et nous n’avons pas de test d’image indépendant pour confirmer sa qualité. ' : '') + esc(res.notes[0] || '') + '</p>' + (res.provisoires.length ? '<p>Modèles à vérifier avant achat : ' + esc(res.provisoires.map(function (c) { return c.nom; }).join(', ')) + '.</p>' : '') + '<a href="#tests-2026">Consulter les tests et leurs sources →</a></div>';
+      det.innerHTML = ''; alt.innerHTML = ''; demos.definirPriorite(S.priorite); demos.definirTelephone(null, []); derniere = S.priorite; $('#gc-demo').hidden = false; statutRond(); root.removeAttribute('data-focus'); root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', S.priorite); return;
     }
     var focus = (S.examine && carteDe(S.examine)) || ref; if (focus.id === ref.id) S.examine = null;
     sortie.innerHTML = carte(focus, ref); det.innerHTML = detail(focus, ref, res); alt.innerHTML = autres(focus, ref); alt.hidden = !alt.innerHTML;
     if (derniere !== S.priorite) { derniere = S.priorite; demos.definirPriorite(S.priorite); if (S.demo) { demos.ouvrir(S.demo, { manuel: true }); S.demo = ''; } }
     demos.definirTelephone(D.fiche(produit(focus.id)), comparables(focus, ref));
-    var bud = S.budget === 0 || (S.budget == null && !moteur.registres.priorites[S.priorite].budget) ? 'sans plafond' : 'jusqu’à ' + fr(S.budget != null ? S.budget : moteur.registres.priorites[S.priorite].budget) + ' €';
-    $('#gc-more-t').textContent = cap1(bud) + (S.secondaire ? ' · puis ' + PRIORITES.filter(function (p) { return p[0] === S.secondaire; })[0][1].toLowerCase() : '');
-    $('#gc-immediat-ligne').hidden = !(S.priorite === 'prix' || S.secondaire === 'prix');
     $('#gc-statut').textContent = (opts.annonce || '') ? opts.annonce : '';
     if (opts.anime && !reduced) { sortie.classList.remove('is-tick'); void sortie.offsetWidth; sortie.classList.add('is-tick'); }
     perf.rendu.push(+(performance.now() - t).toFixed(1));
@@ -293,7 +302,7 @@
       '<a class="gc-have" href="#analyser-modele" data-open-tab="analyser-modele"><span>J’ai <span class="gc-xs">déjà </span>un modèle</span><span aria-hidden="true">→</span></a></div>' +
       '<div class="gc-affiner is-closed" id="gc-affiner"><label class="gc-field"><span>Budget maximum</span><select id="gc-bud">' + bud + '</select></label>' +
       '<label class="gc-field"><span>Puis…</span><select id="gc-sec">' + sec + '</select></label>' +
-      '<label class="gc-immediat" id="gc-immediat-ligne" hidden><input type="checkbox" id="gc-immediat"><span>Le prix d’achat le plus bas avant tout <small>sans exiger 3 ans de mises à jour</small></span></label></div></form>' +
+      '<label class="gc-immediat" id="gc-immediat-ligne" hidden><input type="checkbox" id="gc-immediat"><span>Le prix d’achat le plus bas avant tout <small>sans exiger 3 ans de mises à jour</small></span></label><p class="gc-micro">Vos choix restent sur cet appareil.</p></div></form>' +
       '<p class="gc-visually" id="gc-statut" role="status" aria-live="polite"></p>' +
       '<div class="gc-grid"><div class="gc-col-a"><div id="gc-sortie"></div></div></div></div><div class="gc-col-b" id="gc-demo"></div></div>' +
       '<div class="gc-wrap gc-below"><section class="gc-det" id="gc-det" aria-labelledby="gc-det-h"></section><section class="gc-alt" id="gc-alt" aria-labelledby="gc-alt-h"></section></div>' +
@@ -312,11 +321,11 @@
   /* Barre collante : seulement après avoir défilé, retirée quand l'analyseur est à l'écran */
   function collant(bar) {
     var vus = {}, ticking = false;
-    var maj = function () { ticking = false; var cache = window.scrollY < Math.min(700, window.innerHeight * 0.8) || vus.a || vus.p; bar.classList.toggle('is-hidden', !!cache); };
+    var maj = function () { ticking = false; var cache = window.scrollY < Math.min(700, window.innerHeight * 0.8) || vus.a || vus.p || vus.d; bar.classList.toggle('is-hidden', !!cache); };
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(maj); } }, { passive: true });
     if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { vus[e.target.id === 'gc-analyse' ? 'a' : 'p'] = e.isIntersecting; }); maj(); });
-      io.observe($('#gc-analyse')); var an = document.getElementById('analyse-modele'); if (an) io.observe(an);
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { vus[e.target.id === 'gc-analyse' ? 'a' : e.target.id === 'gc-demo' ? 'd' : 'p'] = e.isIntersecting; }); maj(); });
+      io.observe($('#gc-analyse')); io.observe($('#gc-demo')); var an = document.getElementById('analyse-modele'); if (an) io.observe(an);
     }
     maj();
   }
@@ -335,6 +344,7 @@
       GROUPES.map(function (g) { return '<div class="apl-panel" id="apl-p-' + g.id + '" hidden></div>'; }).join('');
     corps.insertBefore(w, corps.firstChild);
     GROUPES.forEach(function (g) { var p = document.getElementById('apl-p-' + g.id); g.ids.forEach(function (id) { var s = document.getElementById(id); if (s) p.appendChild(s); }); });
+    [].slice.call(w.querySelectorAll('.apl-panel > .section > .section-heading .eyebrow')).forEach(function (e, i) { e.textContent = String(i + 1).padStart(2, '0') + ' · ' + e.textContent.replace(/^\d+\s*·\s*/, ''); });
     w.addEventListener('click', function (e) { var b = e.target.closest('.apl-tile'); if (b) basculer(b.getAttribute('data-g'), b.getAttribute('aria-expanded') !== 'true'); });
     document.addEventListener('click', function (e) {
       var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return; var id = decodeURIComponent(a.getAttribute('href').slice(1)); if (id) atteindre(id);
@@ -347,7 +357,9 @@
     GROUPES.forEach(function (g) { document.getElementById('apl-p-' + g.id).hidden = !(g.id === id && ouvert); });
   }
   function atteindre(id, defiler) {
-    var el = id && document.getElementById(id); if (!el) return; var p = el.closest('.apl-panel');
+    var el = id && document.getElementById(id); if (!el) return;
+    if (el.matches('.tr-panel') && el.hidden) { var tab = document.querySelector('[aria-controls="' + id + '"]'); if (tab) tab.click(); }
+    var p = el.closest('.apl-panel');
     if (p && p.hidden) { basculer(p.id.replace('apl-p-', ''), true); defiler = true; }
     if (defiler) setTimeout(function () { var e2 = document.getElementById(id); if (e2 && e2.offsetParent !== null) e2.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' }); }, 120);
   }
@@ -374,7 +386,7 @@
       else if (t.id === 'gc-bud') S.budget = Number(t.value);
       else if (t.id === 'gc-immediat') S.immediat = t.checked;
       else return;
-      S.examine = null; ecrire(); render({ anime: true });
+      S.examine = null; ecrire(); render({ anime: true, changementPriorite: t.name === 'gc-prio' });
     });
     root.addEventListener('click', function (e) {
       var x = e.target.closest('#gc-more'); if (x) { var a = $('#gc-affiner'), o = a.classList.contains('is-closed'); a.classList.toggle('is-closed', !o); x.setAttribute('aria-expanded', String(o)); return; }

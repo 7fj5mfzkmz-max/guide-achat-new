@@ -14,8 +14,10 @@
     incertitude: 'trop de caractéristiques inconnues pour une estimation fiable',
     soutien: 'sources de la fiche insuffisantes',
     provenance: 'une caractéristique importante pour votre priorité n’est pas sourcée',
-    suivi_inconnu: 'durée de mises à jour inconnue',
-    suivi_court: 'moins de 3 ans de mises à jour annoncés',
+    suivi_inconnu: 'durée de suivi restante non vérifiée',
+    suivi_court: 'moins de 3 ans de suivi estimé encore disponibles',
+    suivi_termine: 'le suivi annoncé depuis sa sortie semble terminé',
+    photo_non_etayee: 'matériel photo limité et aucun test photo indépendant relevé',
     prime_non_justifiee: 'un modèle moins cher et fiable fait presque aussi bien',
     donnees_insuffisantes: 'trop peu de données'
   };
@@ -32,7 +34,8 @@
 
     function carte(role, a, ctx) {
       var p = parId[a.id], det = moteur.detail(a.id), ev = moteur.evidence(a.i), poids = a.poids, lignes = moteur.lignesMesure(a.id);
-      var contrib = moteur.DIMS.filter(function (d) { return ev[d].x != null; }).map(function (d) { return { d: d, v: poids[d] * ev[d].x }; }).sort(function (x, y) { return y.v - x.v; });
+      var dimsPriorite = reg.priorites[ctx.principal].dims || [];
+      var contrib = moteur.DIMS.concat(ctx.principal === 'prix' ? ['prix'] : []).filter(function (d) { return ev[d].x != null; }).map(function (d) { return { d: d, v: poids[d] * ev[d].x, prioritaire: dimsPriorite.indexOf(d) >= 0 }; }).sort(function (x, y) { return Number(y.prioritaire) - Number(x.prioritaire) || y.v - x.v; });
       var pourquoi = contrib.slice(0, 2).map(function (c) {
         return { critere: c.d, titre: reg.criteres[c.d].titre, texte: det[c.d].texte, base: det[c.d].base, source: det[c.d].libelleClasse };
       });
@@ -44,7 +47,7 @@
         return { critere: d, titre: reg.criteres[d].titre, etat: ev[d].x == null ? 'inconnu' : (mesure ? 'mesure' : 'fiche') };
       });
       var nb = { mesure: 0, fiche: 0, inconnu: 0 }; empreinte.forEach(function (e) { nb[e.etat]++; });
-      var preuve = nb.mesure ? 'fiche + mesures' : 'fiche seule';
+      var preuve = nb.mesure ? 'Fiche et mesures disponibles ; leur portée est précisée dans les sources.' : 'Caractéristiques de la fiche seulement ; aucun test ne confirme ce point.';
       var criteres = moteur.ALL.map(function (d) {
         var x = det[d];
         return { critere: d, titre: x.titre, connu: x.connu, texte: x.texte, base: x.base, source: x.libelleClasse, soutien: Math.round(x.soutien * 100), poids: Math.round(poids[d]), conflits: x.conflits };
@@ -57,7 +60,7 @@
         role: role, id: a.id, nom: a.nom, marque: p.marque, prix: a.prix, idealo: p.idealo_url || null, statut: a.statut,
         R: arrondi(a.R), Rmin: arrondi(a.Rmin), Rmax: arrondi(a.Rmax), U: arrondi(a.U), C: arrondi(a.C), confiance: moteur.niveauC(a.C),
         pourquoi: pourquoi, limite: limite, empreinte: empreinte, preuve: preuve, criteres: criteres, mesures: lignes, avis: moteur.avis(a.id), motifs: motifs,
-        conflits: moteur.ALL.reduce(function (n, d) { return n.concat(ev[d].conflits); }, []), annee: p.annee_sortie || null
+        conflits: moteur.ALL.reduce(function (n, d) { return n.concat(ev[d].conflits); }, []), annee: p.annee_sortie || null, suiviRestant: a.suiviRestant
       };
       c.verdict = verdict(role, c, ctx);
       return c;

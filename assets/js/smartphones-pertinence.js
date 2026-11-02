@@ -180,7 +180,7 @@
   /* ——— Moteur ——— */
   function creer(data, options) {
     var reg = data.registres, R = reg.regles, REC = R.recommandation, ACT = R.activation;
-    var ref = (options && options.reference) || ((data.tests && data.tests.meta && data.tests.meta.derniere_verification) || '').slice(0, 7) || null;   // date de référence : celle des données, jamais l'horloge
+    var ref = (options && options.reference) || new Date().toISOString().slice(0, 7); // achat et soutien restant : date du jour
     var DIMS = Object.keys(reg.criteres).filter(function (d) { return d !== 'prix'; }), ALL = DIMS.concat('prix');
     var pool = (data.produits || []).filter(function (p) { return p.ready_for_recommendation && !p.exclu_reco && p.fiche_statut !== 'specs_a_verifier' && p.compatibilite; });
     var idx = {}; pool.forEach(function (p, i) { idx[p.id] = i; });
@@ -388,7 +388,12 @@
     }
 
     /* — Classement et statut de recommandation — */
-    function suiviAns(i) { var s = specDe(i, 'suivi'); return s && s.obs.valeur ? s.obs.valeur.nombre : null; }
+    function suiviAns(i) {
+      var s = specDe(i, 'suivi'), p = pool[i];
+      if (!s || !s.obs.valeur || !p.date_sortie) return null;
+      var ecoule = months(p.date_sortie, ref);
+      return ecoule == null ? null : Math.max(0, Number(s.obs.valeur.nombre) - Math.max(0, ecoule) / 12);
+    }
     function classer(principal, o) {
       o = o || {};
       var cle = JSON.stringify([principal, o.secondaire || null, o.budget || null, !!o.prixImmediat, o.kappa == null ? null : o.kappa]);
@@ -409,19 +414,27 @@
         a.critiquesFaibles = critiques.filter(function (d) { return d !== 'prix' && (ev[d].x == null || ev[d].S < REC.soutien_critere_min); });
         a.portes = { incertitude: a.U <= REC.incertitude_max, soutien: a.Cdecl >= REC.soutien_min, critiques: !a.critiquesFaibles.length };
         var ans = suiviAns(a.i);
+        a.suiviRestant = ans;
         a.plancher = plancherActif ? { requis: plancher, connu: ans != null, ans: ans, ok: ans != null && ans >= plancher } : null;
-        a.portes.plancher = !plancherActif || a.plancher.ok;
+        a.portes.plancher = ans == null || ans > 0; // un appareil dont le suivi estimé est terminé n'est jamais un achat par défaut
+        if (plancherActif) a.portes.plancher = a.portes.plancher && a.plancher.ok;
+        if (principal === 'photo' && ev.photo.x != null && ev.photo.x < 0.2 && !obsDe(a.id, null, 'qualitative').some(function (o) { return /^avis:photographe:/.test(o.id); })) {
+          a.portes.photo = false; a.critiquesFaibles.push('photo');
+        }
+        if (a.portes.photo === false) a.portes.critiques = false;
         if (!a.portes.incertitude) mot.push('incertitude');
         if (!a.portes.soutien) mot.push('soutien');
         if (!a.portes.critiques) mot.push('provenance');
-        if (plancherActif && !a.plancher.ok) mot.push(a.plancher.connu ? 'suivi_court' : 'suivi_inconnu');
+        if (ans === 0) mot.push('suivi_termine');
+        else if (plancherActif && !a.plancher.ok) mot.push(ans == null ? 'suivi_inconnu' : 'suivi_court');
+        if (a.portes.photo === false) mot.push('photo_non_etayee');
         a.motifs = mot;
         a.fiable = a.portes.incertitude && a.portes.soutien && a.portes.critiques && a.portes.plancher;
       });
       liste.forEach(function (a) {
         a.justifie = !liste.some(function (b) { return b.fiable && b.prix <= a.prix / REC.ecart_prix_prime && b.fit >= a.fit - kappa * Math.log2(a.prix / b.prix); });
         a.recommandable = a.fiable && a.justifie;
-        if (a.plancher && a.plancher.connu && !a.plancher.ok) a.statut = 'ecartee';
+        if (a.suiviRestant === 0 || (a.plancher && a.plancher.connu && !a.plancher.ok)) a.statut = 'ecartee';
         else if (!a.justifie) { a.statut = 'ecartee'; a.motifs.push('prime_non_justifiee'); }
         else if (a.fiable) a.statut = 'confirmee';
         else if (a.couverture >= REC.couverture_provisoire_min) a.statut = 'provisoire';

@@ -240,7 +240,7 @@ html.sp-pertinence .apl-panel { margin-top: 14px; } html.sp-pertinence .apl-pane
 html.sp-pertinence .gc-sticky { display: none; }
 @media (max-width: 760px) {
   html.sp-pertinence { scroll-padding-bottom: 76px; }
-  html.sp-pertinence body { padding-bottom: 64px; }
+  html.sp-pertinence body { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
   html.sp-pertinence .header-meta { display: none; }
   html.sp-pertinence .gc-sticky { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 8px 14px calc(8px + env(safe-area-inset-bottom)); background: var(--gc-card); border-top: 2px solid var(--gc-ink); transition: transform .2s ease, visibility .2s; }
   html.sp-pertinence .gc-sticky .gc-btn { width: 100%; }
