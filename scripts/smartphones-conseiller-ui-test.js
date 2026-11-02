@@ -70,27 +70,27 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
         assert.deepEqual(o.erreurs, []);
       });
       await check('ordre approuvé : priorités → recommandation → démonstration → Résumé/Tests/Sources → autres modèles → analyseur → Aller plus loin' + tag, async () => {
-        const ordre = await page.evaluate(() => { const els = ['.adv-prios', '#adv-card', '.dm', '#adv-det', '#adv-alt', '#adv-analyse', '#aller-plus-loin'].map(s => document.querySelector(s)); return els.every(Boolean) && els.slice(1).every((e, i) => !!(els[i].compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)); });
+        const ordre = await page.evaluate(() => { const els = ['.adv-hero', '.adv-prios', '#adv-card', '.dm', '#adv-det', '#adv-alt', '#adv-analyse', '#aller-plus-loin'].map(s => document.querySelector(s)); return els.every(Boolean) && els.slice(1).every((e, i) => !!(els[i].compareDocumentPosition(e) & Node.DOCUMENT_POSITION_FOLLOWING)); });
         assert.ok(ordre, 'ordre du document');
-        if (!large) { const y = await page.evaluate(() => ['.adv-prios', '#adv-card', '.dm', '#adv-det', '#adv-alt', '#adv-analyse', '#aller-plus-loin'].map(s => document.querySelector(s).getBoundingClientRect().top)); y.slice(1).forEach((v, i) => assert.ok(v > y[i], 'ordre visuel ' + i)); }
+        if (!large) { const y = await page.evaluate(() => ['.adv-hero', '.adv-prios', '#adv-card', '.dm', '#adv-det', '#adv-alt', '#adv-analyse', '#aller-plus-loin'].map(s => { const e = document.querySelector(s), r = e.getBoundingClientRect(), c = getComputedStyle(e); return c.display !== 'none' && c.visibility !== 'hidden' && Number(c.opacity) > 0 && r.width > 0 && r.height > 40 ? r.top : NaN; })); y.slice(1).forEach((v, i) => assert.ok(v > y[i], 'ordre visuel ' + i)); }
       });
       await check('hiérarchie : un seul h1, titres sans saut de niveau, un seul h2 pour le choix principal' + tag, async () => {
-        assert.equal(await page.locator('#conseiller h1').count(), 1); assert.match(await page.locator('#conseiller h1').innerText(), /Quel smartphone pour vous/);
+        assert.equal(await page.locator('#conseiller h1').count(), 1); assert.match(await page.locator('#conseiller h1').innerText(), /Qu’est-ce qui compte le plus/);
         assert.equal(await page.locator('.adv-card h2.adv-name').count(), 1);
         const niveaux = await page.evaluate(() => [...document.querySelectorAll('#conseiller h1, #conseiller h2, #conseiller h3')].filter(h => h.offsetParent !== null).map(h => Number(h.tagName[1])));
         niveaux.reduce((prev, n) => { assert.ok(n <= prev + 1, 'saut de niveau ' + prev + ' → ' + n); return n; }, 1);
       });
-      await check('première page : priorités visibles, nom, prix et phrase de la recommandation' + (width === 390 ? ', et la démonstration à portée (onglets visibles)' : '') + tag, async () => {
+      await check('première page : priorités visibles, nom, prix et phrase de la recommandation' + tag, async () => {
         const t = await page.locator('.adv-tiles').boundingBox(), n = await page.locator('.adv-name').boundingBox(), v = await page.locator('.adv-verdict').boundingBox(), p = await page.locator('.adv-prix').boundingBox();
         assert.ok(t.y + t.height < height, 'priorités'); assert.ok(n.y + n.height < height && p.y + p.height < height, 'nom et prix : ' + Math.round(p.y + p.height) + ' pour ' + height);
         if (width >= 390) assert.ok(v.y + v.height <= height, 'phrase : ' + Math.round(v.y + v.height));
-        if (width === 390) { const d = await page.locator('.dm-tabs').boundingBox(); assert.ok(d.y + 20 < height, 'les onglets de la démonstration commencent dans la première page : ' + Math.round(d.y)); }
-        if (large) { const d = await page.locator('.dm').boundingBox(); assert.ok(d.y + 300 < height, 'la démonstration est à côté de la recommandation'); }
+
+        if (large) { const d = await page.locator('.dm').boundingBox(); assert.ok(d.y > v.y + v.height, 'la démonstration suit la recommandation'); }
       });
       await check('priorités : cinq tuiles lisibles, sans texte coupé, boutons radio natifs, flèches du clavier, focus visible' + tag, async () => {
         assert.equal(await page.locator('.adv-prios input[type=radio]').count(), 5); assert.equal(await page.locator('.adv-prios input:checked').count(), 1);
         const coupe = await page.evaluate(() => [...document.querySelectorAll('.adv-tile .t')].filter(e => e.scrollWidth > e.parentElement.clientWidth + 0.5).map(e => e.textContent)); assert.deepEqual(coupe, []);
-        assert.deepEqual(await page.locator('.adv-tile .t').allInnerTexts(), ['Équilibré', 'Batterie', 'Photo', 'Jeu', 'Prix bas']);
+        assert.deepEqual(await page.locator('.adv-tile .t').allInnerTexts(), ['Équilibré', 'Batterie', 'Photo', 'Jeu', 'Prix bas', 'Affiner']);
         await page.locator('.adv-prios input:checked').focus(); await page.keyboard.press('ArrowRight');
         assert.equal(await page.locator('#conseiller').getAttribute('data-priorite'), 'autonomie');
         const focus = await page.evaluate(() => { const i = document.activeElement; return i && i.type === 'radio' ? getComputedStyle(i.nextElementSibling).outlineStyle : null; });

@@ -286,16 +286,16 @@
     var sec = '<option value="">Aucune</option>' + PRIORITES.filter(function (p) { return p[0] !== 'equilibre'; }).map(function (p) { return '<option value="' + p[0] + '">' + p[1] + '</option>'; }).join('');
     var bud = BUDGETS.map(function (b) { return '<option value="' + b[0] + '">' + b[1] + '</option>'; }).join('');
     root.innerHTML =
-      '<div class="adv-wrap adv-hero"><p class="adv-eyebrow">Conseiller · ' + moteur.pool.length + ' modèles examinés</p><h1 id="adv-titre">Quel smartphone pour <mark>vous</mark> ?</h1>' +
-      '<p class="adv-lead">Choisissez ce qui compte : on vous répond.</p></div>' +
-      '<div class="adv-wrap adv-top"><form class="adv-rail" onsubmit="return false" aria-labelledby="adv-titre"><fieldset class="adv-prios"><legend class="adv-mono">Ce qui compte le plus</legend><div class="adv-tiles">' + tuiles + '</div></fieldset>' +
-      '<div class="adv-sum"><button type="button" class="adv-more" id="adv-more" aria-expanded="false" aria-controls="adv-affiner"><span id="adv-more-t"></span><span class="adv-more-a">Affiner <span aria-hidden="true">▾</span></span></button>' +
+      '<div class="adv-wrap adv-hero"><p class="adv-eyebrow">Conseiller · ' + moteur.pool.length + ' modèles examinés</p><h1 id="adv-titre">Qu’est-ce qui compte <mark>le plus</mark> ?</h1>' +
+      '<p class="adv-lead">Une priorité, un choix, ce qu’il vous coûte et la preuve.</p></div>' +
+      '<div class="adv-wrap adv-top"><div class="adv-frame"><form class="adv-rail" onsubmit="return false" aria-labelledby="adv-titre"><fieldset class="adv-prios"><legend class="adv-mono">Ce qui compte le plus</legend><div class="adv-tiles">' + tuiles + '<button type="button" class="adv-tile adv-more" id="adv-more" aria-expanded="false" aria-controls="adv-affiner"><span class="adv-tile-in"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES.affiner + '</svg><span class="t">Affiner</span></span></button></div></fieldset>' +
+      '<div class="adv-sum"><span id="adv-more-t"></span>' +
       '<a class="adv-have" href="#analyser-modele" data-open-tab="analyser-modele"><span>J’ai <span class="adv-xs">déjà </span>un modèle</span><span aria-hidden="true">→</span></a></div>' +
       '<div class="adv-affiner is-closed" id="adv-affiner"><label class="adv-field"><span>Budget maximum</span><select id="adv-bud">' + bud + '</select></label>' +
       '<label class="adv-field"><span>Puis…</span><select id="adv-sec">' + sec + '</select></label>' +
       '<label class="adv-immediat" id="adv-immediat-ligne" hidden><input type="checkbox" id="adv-immediat"><span>Le prix d’achat le plus bas avant tout <small>sans exiger 3 ans de mises à jour</small></span></label></div></form>' +
       '<p class="adv-visually" id="adv-statut" role="status" aria-live="polite"></p>' +
-      '<div class="adv-grid"><div class="adv-col-a"><div id="adv-sortie"></div></div><div class="adv-col-b" id="adv-demo"></div></div></div>' +
+      '<div class="adv-grid"><div class="adv-col-a"><div id="adv-sortie"></div></div></div></div><div class="adv-col-b" id="adv-demo"></div></div>' +
       '<div class="adv-wrap adv-below"><section class="adv-det" id="adv-det" aria-labelledby="adv-det-h"></section><section class="adv-alt" id="adv-alt" aria-labelledby="adv-alt-h"></section></div>' +
       '<section class="adv-band adv-ink" id="adv-analyse" aria-labelledby="adv-an-h"><div class="adv-wrap"><p class="adv-eyebrow">Un modèle en tête ?</p><h2 class="adv-h2" id="adv-an-h">Collez son lien. On le passe au crible.</h2>' +
       '<form class="adv-aform" id="adv-aform" novalidate><label for="adv-url" class="adv-mono">Lien ou nom du modèle</label><div class="adv-arow"><input id="adv-url" type="text" inputmode="url" autocomplete="off" placeholder="https://… ou nom du modèle"><button type="submit" class="adv-btn adv-yellow">Analyser ce modèle</button></div>' +
