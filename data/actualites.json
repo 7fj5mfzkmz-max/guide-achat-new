@@ -1,6 +1,21 @@
 {
-  "mis_a_jour": "2026-10-31",
+  "mis_a_jour": "2026-11-02",
   "entrees": [
+    {
+      "id": "smartphones-maj-2026-11-02",
+      "date": "2026-11-02",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "maj",
+      "nombre": 2,
+      "noms": [
+        "POCO F9 Ultra",
+        "POCO F9 Pro"
+      ],
+      "titre": "2 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : POCO F9 Ultra, POCO F9 Pro.",
+      "lien": "smartphones.html"
+    },
     {
       "id": "smartphones-maj-2026-10-31",
       "date": "2026-10-31",
