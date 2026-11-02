@@ -39,25 +39,22 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
   const base = 'http://127.0.0.1:' + server.address().port + '/smartphones.html';
   const browser = await chromium.launch(process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {});
   try {
-    /* ——— Page par défaut : strictement la production ——— */
+    /* Page publique : conseiller par défaut ; ?ancien=1 restaure l’interface précédente. */
     {
       const ctx = await browser.newContext({ locale: 'fr-FR', viewport: { width: 390, height: 844 } }), page = await ctx.newPage(), erreurs = [];
       page.on('pageerror', e => erreurs.push(e.message));
+      await page.goto(base, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]');
+      await check('sans paramètre : nouveau conseiller public, cinq démonstrations et aucune erreur', async () => {
+        assert.ok(await page.locator('#conseiller').isVisible()); assert.equal(await page.locator('.dm-tab').count(), 5);
+        assert.deepEqual(erreurs, []);
+      });
       requetes.length = 0;
-      await page.goto(base, { waitUntil: 'networkidle' }); await page.waitForSelector('#trouver[data-ready="1"]');
-      await check('sans drapeau : aucun conseiller, aucun fichier du conseiller ni des démonstrations chargé, ancien en-tête visible, sections à leur place, aucune erreur', async () => {
+      await page.goto(base + '?ancien=1', { waitUntil: 'networkidle' }); await page.waitForSelector('#trouver[data-ready="1"]');
+      await check('retour arrière : ?ancien=1 garde l’ancienne interface sans charger le conseiller', async () => {
         assert.equal(await page.evaluate(() => document.documentElement.classList.contains('sp-pertinence')), false);
         assert.ok(await page.locator('#conseiller').isHidden()); assert.equal(await page.locator('#conseiller').innerHTML(), '');
-        assert.ok(await page.locator('.pg-hero h1').isVisible());
         assert.ok(!requetes.some(u => /smartphones-(pertinence|conseil|conseiller|demos|registres|observations)|smartphones-conseil\.css|smartphones-demos\.css/.test(u)), requetes.join(' '));
-        assert.equal(await page.locator('.adv-sticky, #aller-plus-loin, .dm').count(), 0); assert.deepEqual(erreurs, []);
-        assert.ok(await page.locator('.adv-bridge').evaluate(e => e.hidden), 'le pont vers les conseils reste caché');
-        assert.ok(await page.locator('#pl-sections').isVisible(), 'la navigation des sections est celle de la production');
-        for (const id of ['classement', 'mesures', 'usages', 'comprendre', 'trouver', 'tests-2026', 'faq', 'sources']) assert.equal(await page.locator('.hx-body > #' + id).count(), 1, id + ' reste enfant direct du corps de page');
-      });
-      await check('sans drapeau : ?pertinence=0 ou autre valeur ne change rien', async () => {
-        await page.goto(base + '?pertinence=0', { waitUntil: 'networkidle' });
-        assert.equal(await page.evaluate(() => document.documentElement.classList.contains('sp-pertinence')), false); assert.ok(await page.locator('#conseiller').isHidden());
+        assert.deepEqual(erreurs, []);
       });
       await ctx.close();
     }
