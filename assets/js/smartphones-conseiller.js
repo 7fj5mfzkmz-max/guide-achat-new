@@ -50,40 +50,49 @@
   var produit = function (id) { return moteur.parId[id]; };
   var nomComplet = function (c) { return c.marque && c.nom.toLowerCase().indexOf(String(c.marque).toLowerCase()) < 0 ? c.marque + ' ' + c.nom : c.nom; };
 
-  /* ——— Cartes ——— */
-  var lien = function (c) { return c.idealo ? '<a class="gc-prix" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">' + fr(Math.round(c.prix)) + ' € indicatifs ↗</a>' : '<span class="gc-prix">' + fr(Math.round(c.prix)) + ' € indicatifs · lien Idealo absent</span>'; };
-  var voir = function (crit, nom) { var d = D.demoPourCritere(crit); return d ? ' <button type="button" class="gc-voir" data-demo="' + d + '" aria-label="Voir la différence : démonstration « ' + esc(D.DEMOS.filter(function (x) { return x.id === d; })[0].court) + ' »' + (nom ? ' (' + esc(nom) + ')' : '') + '">Voir la différence <span aria-hidden="true">→</span></button>' : ''; };
+  /* ——— Cartes : une bande de quatre « tickets » à faire défiler, et le détail du modèle choisi ——— */
   var CRIT_DEMO = { performance: 'performance', ecran: 'ecran', batterie: 'batterie', recharge: 'batterie', photo: 'photo', prix: 'prix', suivi: 'suivi' };
-  function ligneForte(f, nom) { return '<li class="gc-pro"><span class="gc-sign" aria-hidden="true">+</span><span><b>' + esc(f.titre) + '</b> ' + esc(cap1(f.texte || '')) + '.' + voir(CRIT_DEMO[f.critere], nom) + '</span></li>'; }
-  function ligneCompromis(f, nom) { return '<li class="gc-con"><span class="gc-sign" aria-hidden="true">−</span><span><b>' + esc(f.titre) + '</b> ' + esc(cap1(f.texte || '')) + ' : en retrait pour ce besoin.' + voir(CRIT_DEMO[f.critere], nom) + '</span></li>'; }
-  function limite(c) {
-    if (!c.manquantes.length) return '';
-    return '<li class="gc-con gc-lim"><span class="gc-sign" aria-hidden="true">?</span><span><b>Donnée absente</b> ' + esc(c.manquantes.join(', ').toLowerCase()) + ' : non renseigné dans nos fiches. Ce n’est pas compté comme un défaut ; le score le traite comme moyen.</span></li>';
+  var NIVEAU = function (r) { return r >= 80 ? 'Excellent choix' : r >= 65 ? 'Bon choix' : 'Choix correct'; };
+  var VOIR = function (crit, nom) { var d = D.demoPourCritere(CRIT_DEMO[crit]); return d ? ' <button type="button" class="gc-voir" data-demo="' + d + '" aria-label="Voir la différence : démonstration « ' + esc(D.DEMOS.filter(function (x) { return x.id === d; })[0].court) + ' »' + (nom ? ' (' + esc(nom) + ')' : '') + '">Voir la différence <span aria-hidden="true">→</span></button>' : ''; };
+  var voir = VOIR;
+  function noteFr(n) {
+    var m = /^(marché|constructeur) ; (\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2}) ; ([^,;]+), ([A-Z]{3})\./.exec(n || '');
+    if (!m) return n || 'Prix indicatif à vérifier avant l’achat.';
+    var d = m[2], j = /^\d{4}/.test(d) ? d.split('-').reverse().join('/') : d;
+    return 'Prix indicatif d’après le ' + (m[1] === 'marché' ? 'marché' : 'constructeur') + ' (' + m[3] + ', ' + m[4] + '), relevé le ' + j + ' : à vérifier avant l’achat.';
+  }
+  function ticket(c, i, actif) {
+    var f = c.forts[0];
+    return '<li><button type="button" class="gc-ticket" data-examiner="' + esc(c.id) + '" data-id="' + esc(c.id) + '" data-rang="' + (i + 1) + '" data-r="' + c.R + '" data-prix="' + Math.round(c.prix) + '" aria-pressed="' + (actif ? 'true' : 'false') + '" aria-label="' + esc(nomComplet(c) + ', ' + c.R + ' % de compatibilité, ' + fr(Math.round(c.prix)) + ' €') + '">' +
+      '<span class="gc-tk-top"><span class="gc-tk-rank">' + (i === 0 ? 'Notre n° 1' : 'N° ' + (i + 1)) + '</span><span class="gc-tk-score"><b>' + c.R + '</b> %</span></span>' +
+      '<span class="gc-tk-name">' + esc(nomComplet(c)) + '</span><span class="gc-tk-price">' + fr(Math.round(c.prix)) + ' €</span>' +
+      '<span class="gc-tk-bar" aria-hidden="true"><i style="width:' + c.R + '%"></i></span>' +
+      '<span class="gc-tk-why">' + (f ? esc(f.phrase) : '') + '</span><span class="gc-tk-go" aria-hidden="true">' + (actif ? 'Affiché' : 'Voir ce modèle →') + '</span></button></li>';
+  }
+  function barres(c) {
+    var l = c.criteres.filter(function (x) { return x.poids; }).sort(function (a, b) { return b.poids - a.poids; }), top = {};
+    l.slice(0, 3).forEach(function (x) { top[x.critere] = 1; });
+    return '<ul class="gc-bars">' + l.map(function (x) {
+      return '<li class="' + (top[x.critere] ? 'is-key' : '') + (x.connu ? '' : ' is-unk') + '"><span class="gc-bl">' + esc(x.simple) + (top[x.critere] ? ' <em>compte pour vous</em>' : '') + '</span><span class="gc-bt" aria-hidden="true"><i style="width:' + (x.connu ? Math.round(x.x * 100) : 50) + '%"></i></span><span class="gc-bv">' + (x.connu ? '' : 'Non renseigné') + '</span></li>';
+    }).join('') + '</ul>';
   }
   function detailFiche(c) {
     var rows = c.criteres.map(function (l) { return '<div class="gc-sp"><dt>' + esc(l.titre) + '</dt><dd>' + (l.connu ? esc(cap1(l.texte || '')) : '<i>non renseigné</i>') + '</dd></div>'; }).join('');
     return '<details class="gc-tech"><summary>Toute la fiche utilisée pour le calcul</summary><dl class="gc-specs">' + rows + '</dl><p class="gc-note-s">Score calculé sur ' + c.couverture + ' % des critères importants pour « ' + esc(PHRASE[c.priorite]) + ' ».</p></details>';
   }
   function carte(c, i) {
-    var id = 'gc-n' + (++uid), examine = S.examine === c.id || (!S.examine && i === 0), nom = nomComplet(c);
-    var items = c.forts.map(function (f) { return ligneForte(f, nom); }).join('') + c.compromis.map(function (f) { return ligneCompromis(f, nom); }).join('') + limite(c);
-    if (!c.compromis.length && !c.manquantes.length) items += '<li class="gc-con"><span class="gc-sign" aria-hidden="true">−</span><span><b>Compromis</b> Aucun point faible marqué dans les données disponibles.</span></li>';
-    var ph = produit(c.id), img = ph && ph.image_url && ph.image_alt && /^(https:\/\/|assets\/)/.test(ph.image_url) ? '<figure class="gc-thumb gc-photo"><img src="' + esc(ph.image_url) + '" alt="' + esc(ph.image_alt) + '" width="96" height="128" loading="lazy" decoding="async"></figure>' : '';
-    return '<article class="gc-card" id="' + (i === 0 ? 'gc-card' : id) + '" tabindex="-1" style="--r:' + c.R + '" data-id="' + esc(c.id) + '" data-rang="' + (i + 1) + '" data-r="' + c.R + '" data-focus="' + (examine ? '1' : '0') + '" aria-labelledby="' + id + '">' +
-      '<header class="gc-card-h"><span class="gc-kick">' + (i === 0 ? 'Notre recommandation' : 'N° ' + (i + 1)) + '</span><span class="gc-status is-conf"><span class="gc-compat">' + c.R + ' %</span> de compatibilité</span></header>' +
-      '<div class="gc-card-main">' + img + '<div class="gc-ring" aria-hidden="true"><b>' + c.R + '</b><i>%</i></div><div class="gc-id"><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2><p class="gc-price">' + lien(c) + '</p></div></div>' +
-      '<div class="gc-gauge" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><i class="r" style="width:' + c.R + '%"></i></div>' +
-      '<p class="gc-verdict">Compatibilité estimée avec « ' + esc(PHRASE[c.priorite]) + ' » d’après la fiche technique, pas d’après un test.</p>' +
-      '<ul class="gc-pc">' + items + '</ul>' + detailFiche(c) +
-      '<p class="gc-micro">' + esc(noteFr(produit(c.id).prix_note)) + '</p>' +
-      '<button type="button" class="gc-btn" data-examiner="' + esc(c.id) + '" aria-pressed="' + (examine ? 'true' : 'false') + '">' + (examine ? 'Affiché dans les démonstrations' : 'Voir dans les démonstrations') + '</button></article>';
-  }
-  /* « marché ; 03/11/2026 ; Chine, CNY. Prix indicatif à vérifier. » → phrase lisible ; toute autre note est affichée telle quelle. */
-  function noteFr(n) {
-    var m = /^(marché|constructeur) ; (\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2}) ; ([^,;]+), ([A-Z]{3})\./.exec(n || '');
-    if (!m) return n || 'Prix indicatif à vérifier avant l’achat.';
-    var d = m[2], j = /^\d{4}/.test(d) ? d.split('-').reverse().join('/') : d;
-    return 'Prix indicatif d’après le ' + (m[1] === 'marché' ? 'marché' : 'constructeur') + ' (' + m[3] + ', ' + m[4] + '), relevé le ' + j + ' : à vérifier avant l’achat.';
+    var id = 'gc-n' + (++uid), nom = nomComplet(c);
+    var pros = c.forts.map(function (f) { return '<li class="gc-pro"><span class="gc-sign" aria-hidden="true">✓</span><span><b>' + esc(f.phrase) + '</b><small>' + esc(cap1(f.texte || '')) + '</small>' + voir(f.critere, nom) + '</span></li>'; }).join('');
+    var cons = c.compromis.map(function (f) { return '<li class="gc-con"><span class="gc-sign" aria-hidden="true">!</span><span><b>' + esc(f.phrase) + '</b><small>' + esc(cap1(f.texte || '')) + '</small>' + voir(f.critere, nom) + '</span></li>'; }).join('');
+    var lim = c.manquantes.length ? '<li class="gc-con gc-lim"><span class="gc-sign" aria-hidden="true">?</span><span><b>Donnée absente</b><small>' + esc(cap1(c.manquantes.join(', ').toLowerCase())) + ' : non renseigné dans nos fiches. Ce n’est pas compté comme un défaut ; le score le traite comme moyen.</small></span></li>' : '';
+    if (!cons && !lim) cons = '<li class="gc-con"><span class="gc-sign" aria-hidden="true">✓</span><span><b>Aucun point faible marqué</b><small>Dans les données disponibles.</small></span></li>';
+    return '<article class="gc-card" id="gc-card" tabindex="-1" data-id="' + esc(c.id) + '" data-rang="' + (i + 1) + '" data-r="' + c.R + '" aria-labelledby="' + id + '">' +
+      '<div class="gc-st-main"><p class="gc-kick">' + (i === 0 ? 'Notre recommandation' : 'N° ' + (i + 1) + ' de la sélection') + '</p><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2>' +
+      '<p class="gc-verdict"><b>' + NIVEAU(c.R) + '</b> pour « ' + esc(PHRASE[c.priorite]) + ' » : <span class="gc-compat">' + c.R + ' %</span> de compatibilité, d’après la fiche technique et non un test.</p>' +
+      '<div class="gc-buy"><span class="gc-price">' + (c.idealo ? '<a class="gc-prix" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">' + fr(Math.round(c.prix)) + ' € indicatifs · comparer les prix ↗</a>' : '<span class="gc-prix">' + fr(Math.round(c.prix)) + ' € indicatifs · lien Idealo absent</span>') + '</span></div>' +
+      '<div class="gc-cols"><div><h3 class="gc-h3 is-ok">Ce qu’il fait bien</h3><ul class="gc-pc">' + pros + '</ul></div><div><h3 class="gc-h3 is-no">À savoir avant d’acheter</h3><ul class="gc-pc">' + cons + lim + '</ul></div></div></div>' +
+      '<aside class="gc-st-side" aria-label="Comment le score se construit"><div class="gc-big" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><b>' + c.R + '</b><span>% compatible</span></div><h3 class="gc-h3">Comment est fait ce score</h3>' + barres(c) + detailFiche(c) + '</aside>' +
+      '<p class="gc-micro">' + esc(noteFr(produit(c.id).prix_note)) + '</p></article>';
   }
 
   /* ——— Rendu ——— */
@@ -100,12 +109,13 @@
       root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', S.priorite); root.removeAttribute('data-focus'); return;
     }
     if (S.examine && !res.cartes.some(function (c) { return c.id === S.examine; })) S.examine = null;
-    var focus = res.cartes.filter(function (c) { return c.id === S.examine; })[0] || res.cartes[0];
-    sortie.innerHTML = '<div class="gc-res-h"><h2 class="gc-res-t">Vos ' + res.cartes.length + ' meilleurs choix</h2><div class="gc-arrs"><button type="button" class="gc-arr" data-scroll="-1" aria-label="Modèle précédent"><span aria-hidden="true">‹</span></button><button type="button" class="gc-arr" data-scroll="1" aria-label="Modèle suivant"><span aria-hidden="true">›</span></button></div></div><ol class="gc-liste" tabindex="0" aria-label="Les ' + res.cartes.length + ' smartphones les plus compatibles, à faire défiler">' + res.cartes.map(function (c, i) { return '<li>' + carte(c, i) + '</li>'; }).join('') + '</ol><p class="gc-hint" aria-hidden="true">Faites glisser pour voir les autres →</p>' + (res.notes.length ? '<p class="gc-micro">' + esc(res.notes.join(' ')) + '</p>' : '');
+    var fi = Math.max(0, res.cartes.map(function (c) { return c.id; }).indexOf(S.examine)), focus = res.cartes[fi];
+    sortie.innerHTML = '<div class="gc-res-h"><h2 class="gc-res-t">Vos ' + res.cartes.length + ' meilleurs choix <small>Touchez un modèle pour le détail</small></h2><div class="gc-arrs"><button type="button" class="gc-arr" data-scroll="-1" aria-label="Modèle précédent"><span aria-hidden="true">‹</span></button><button type="button" class="gc-arr" data-scroll="1" aria-label="Modèle suivant"><span aria-hidden="true">›</span></button></div></div>' +
+      '<ol class="gc-liste" tabindex="0" aria-label="Les ' + res.cartes.length + ' smartphones les plus compatibles, à faire défiler">' + res.cartes.map(function (c, i) { return ticket(c, i, i === fi); }).join('') + '</ol>' +
+      carte(focus, fi) + (res.notes.length ? '<p class="gc-micro">' + esc(res.notes.join(' ')) + '</p>' : '');
     if (derniere !== S.priorite) { derniere = S.priorite; demos.definirPriorite(S.priorite); if (S.demo) { demos.ouvrir(S.demo, { manuel: true }); S.demo = ''; } }
     demos.definirTelephone(D.fiche(produit(focus.id)), comparables(focus));
     $('#gc-statut').textContent = opts.annonce || '';
-    if (opts.anime && !reduced) { sortie.classList.remove('is-tick'); void sortie.offsetWidth; sortie.classList.add('is-tick'); }
     perf.rendu.push(+(performance.now() - t).toFixed(1));
     root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', S.priorite); root.setAttribute('data-focus', focus.id);
   }
@@ -131,7 +141,7 @@
       '<p class="gc-micro"><b>Gratuit.</b> Sans compte. Même analyseur qu’avant : le résultat s’affiche dans l’analyseur de la page.</p></form></div></section>';
     $('#gc-bud').value = String(budgetAffiche());
     var bar = document.createElement('div'); bar.className = 'gc-sticky is-hidden'; bar.id = 'gc-sticky';
-    bar.innerHTML = '<div class="gc-dock"><a href="#analyser-modele" data-open-tab="analyser-modele"><span>01 Analyser un modèle</span><i aria-hidden="true">↗</i></a><a href="#audit" data-open-tab="audit"><span>02 Mes critères</span><i aria-hidden="true">↗</i></a></div>';
+    bar.innerHTML = '<div class="gc-dock"><a href="#analyser-modele" data-open-tab="analyser-modele"><span>Analyser un modèle</span><i aria-hidden="true">↗</i></a><a href="#audit" data-open-tab="audit"><span>Mes critères</span><i aria-hidden="true">↗</i></a></div>';
     document.body.appendChild(bar);
     $$('.gc-bridge', document).forEach(function (p) { p.hidden = false; });
     demos = D.monter($('#gc-demo'), {});
@@ -196,7 +206,7 @@
     });
     root.addEventListener('click', function (e) {
       var x = e.target.closest('#gc-more'); if (x) { var a = $('#gc-affiner'), o = a.classList.contains('is-closed'); a.classList.toggle('is-closed', !o); x.setAttribute('aria-expanded', String(o)); return; }
-      var ex = e.target.closest('[data-examiner]'); if (ex) { S.examine = ex.getAttribute('data-examiner'); render({ annonce: 'Démonstrations : ' + (res.cartes.filter(function (c) { return c.id === S.examine; })[0] || { nom: '' }).nom }); var bt = $('[data-examiner="' + S.examine + '"]'); if (bt) bt.focus({ preventScroll: true }); return; }
+      var ex = e.target.closest('[data-examiner]'); if (ex) { S.examine = ex.getAttribute('data-examiner'); var sl = $('.gc-liste'), sx = sl ? sl.scrollLeft : 0; render({ annonce: 'Détail affiché : ' + (res.cartes.filter(function (c) { return c.id === S.examine; })[0] || { nom: '' }).nom }); var sl2 = $('.gc-liste'); if (sl2) sl2.scrollLeft = sx; var bt = $('[data-examiner="' + S.examine + '"]'); if (bt) bt.focus({ preventScroll: true }); return; }
       var sc = e.target.closest('[data-scroll]'); if (sc) { var l = sc.closest('.gc-res-h') ? $('.gc-liste') : $('.dm-tabs', $('#gc-demo')); if (l) l.scrollBy({ left: Number(sc.getAttribute('data-scroll')) * Math.min(360, l.clientWidth * .85), behavior: reduced ? 'auto' : 'smooth' }); return; }
       var v = e.target.closest('.gc-voir'); if (v) { demos.ouvrir(v.getAttribute('data-demo'), { voir: true }); return; }
     });

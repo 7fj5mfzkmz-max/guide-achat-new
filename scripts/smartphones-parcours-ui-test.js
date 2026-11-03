@@ -21,7 +21,7 @@ let passed = 0;
 async function check(label, fn) { try { await fn(); passed++; console.log('OK    ' + label); } catch (e) { console.error('ÉCHEC ' + label + '\n      → ' + String(e.message).split('\n')[0]); process.exitCode = 1; } }
 const prio = (page, p) => page.locator('.gc-prios input[value="' + p + '"]').check({ force: true });
 const affiner = async page => { if (await page.locator('#gc-affiner').isHidden()) await page.locator('#gc-more').click(); };
-const cartes = page => page.locator('.gc-card').evaluateAll(els => els.map(e => ({ id: e.dataset.id, r: Number(e.dataset.r), prix: Number(e.querySelector('.gc-prix').textContent.replace(/\s*€.*/, '').replace(/[^\d]/g, '')) })));
+const cartes = page => page.locator('.gc-ticket').evaluateAll(els => els.map(e => ({ id: e.dataset.id, r: Number(e.dataset.r), prix: Number(e.dataset.prix) })));
 async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="' + g + '"]'); if ((await page.locator('.apl-tile[data-g="' + g + '"]').getAttribute('aria-expanded')) !== 'true') await page.locator('.apl-tile[data-g="' + g + '"]').click(); }
 
 (async () => {
@@ -41,9 +41,11 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
       await check('conseiller : quatre smartphones, score 0–100 %, points forts, compromis, ordre décroissant, aucun message d’absence de preuve' + tag, async () => {
         const c = await cartes(page); assert.equal(c.length, 4);
         c.forEach((x, i) => { assert.ok(x.r >= 0 && x.r <= 100); if (i) assert.ok(c[i - 1].r >= x.r); });
-        assert.equal(await page.locator('.gc-card .gc-pro').count() >= 4, true); assert.ok(await page.locator('.gc-card .gc-con').count() >= 4);
+        assert.equal(await page.locator('.gc-card').count(), 1, 'un détail affiché'); assert.ok(await page.locator('.gc-card .gc-pro').count() >= 1); assert.ok(await page.locator('.gc-card .gc-con').count() >= 1);
+        for (let i = 1; i < 4; i++) { await page.locator('.gc-ticket').nth(i).click(); assert.equal(await page.locator('.gc-card').getAttribute('data-id'), c[i].id); assert.ok(await page.locator('.gc-card .gc-pro').count() >= 1 && await page.locator('.gc-card .gc-con').count() >= 1, 'forts et compromis du n° ' + (i + 1)); }
+        await page.locator('.gc-ticket').first().click();
         const txt = await page.locator('#gc-sortie').innerText();
-        assert.match(txt, /\d+ %\s*de compatibilité/i); assert.doesNotMatch(txt, /pas assez documenté|à confirmer|preuve indépendante|aucun test/i);
+        assert.match(txt, /\d+ %\s*de compatibilité/i); assert.match(txt, /Ce qu’il fait bien/i); assert.match(txt, /À savoir avant d’acheter/i); assert.doesNotMatch(txt, /pas assez documenté|à confirmer|preuve indépendante|aucun test/i);
         assert.deepEqual(erreurs, []);
       });
       await check('conseiller : même classement que le moteur, pour les cinq priorités × budgets' + tag, async () => {
@@ -60,15 +62,15 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
       await check('conseiller : budget trop serré → message clair (sans plafond ensuite : quatre modèles)' + tag, async () => {
         await prio(page, 'equilibre'); await affiner(page);
         await page.evaluate(() => { const s = document.getElementById('gc-bud'); const o = document.createElement('option'); o.value = '20'; o.textContent = '20 €'; s.appendChild(o); s.value = '20'; s.dispatchEvent(new Event('change', { bubbles: true })); });
-        assert.match(await page.locator('#gc-sortie').innerText(), /Aucun modèle/); await page.selectOption('#gc-bud', '0'); assert.equal(await page.locator('.gc-card').count(), 4);
+        assert.match(await page.locator('#gc-sortie').innerText(), /Aucun modèle/); await page.selectOption('#gc-bud', '0'); assert.equal(await page.locator('.gc-ticket').count(), 4);
       });
       await check('conseiller : une donnée manquante est signalée comme limite, jamais comme défaut ; la fiche détaillée s’ouvre' + tag, async () => {
         const lim = page.locator('.gc-lim').first(); assert.ok(await lim.count() >= 1); assert.match(await lim.innerText(), /Donnée absente.*pas compté comme un défaut/is);
-        await page.locator('.gc-card').first().locator('details.gc-tech summary').click(); assert.ok(await page.locator('.gc-card').first().locator('.gc-sp').count() >= 8);
+        await page.locator('.gc-card details.gc-tech summary').click(); assert.ok(await page.locator('.gc-card .gc-sp').count() >= 8);
       });
       await check('démonstrations : les cinq, « Batterie » sur capacité et charge de la fiche, avec le modèle choisi' + tag, async () => {
         assert.equal(await page.locator('.dm-tab').count(), 5);
-        await page.locator('.gc-card').nth(1).locator('[data-examiner]').click();
+        await page.locator('.gc-ticket').nth(1).click();
         await page.locator('.dm-tab[data-d="batterie"]').click();
         const t = await page.locator('#dm-panel').innerText(); assert.match(t, /mAh/); assert.doesNotMatch(t, /Techmo|TechNick|protocole de test|mesurés/i);
         assert.equal(await page.locator('#dm-badge').textContent(), 'Fiche technique');

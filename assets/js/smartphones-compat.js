@@ -22,6 +22,13 @@
     performance: 'Processeur', ecran: 'Écran', batterie: 'Batterie', recharge: 'Recharge', photo: 'Photo',
     memoire: 'Mémoire et stockage', resistance: 'Résistance', suivi: 'Mises à jour', prix: 'Prix'
   };
+  /* Mots simples pour des visiteurs non initiés : le critère dit ce que ça change, la valeur technique reste en détail. */
+  var SIMPLE = {
+    performance: ['Puissance', 'Très puissant', 'Puissance modeste'], ecran: ['Écran', 'Écran fluide et net', 'Écran basique'],
+    batterie: ['Batterie', 'Grosse batterie', 'Batterie moyenne'], recharge: ['Recharge', 'Recharge rapide', 'Recharge lente'],
+    photo: ['Photo', 'Photo très complète', 'Photo plus simple'], memoire: ['Stockage', 'Beaucoup de place', 'Peu de place'],
+    resistance: ['Résistance', 'Résiste à l’eau et à la poussière', 'Peu protégé'], suivi: ['Mises à jour', 'Longtemps à jour', 'Mises à jour courtes'], prix: ['Prix', 'Petit prix', 'Plutôt cher']
+  };
   var PROFIL_VERS_PRIORITE = { etudiant: 'autonomie', professionnel: 'equilibre', gamer: 'jeu', photographe: 'photo' };
 
   function clamp(x) { return Math.max(0, Math.min(1, x)); }
@@ -103,14 +110,14 @@
     var w = (PRIORITES[priorite] || PRIORITES.equilibre).poids;
     var connus = lignes.filter(function (l) { return l.connu && l.poids; });
     var forts = connus.filter(function (l) { return l.x >= 0.65 && l.critere !== 'prix'; }).sort(function (a, b) { return b.poids * b.x - a.poids * a.x; }).slice(0, 3)
-      .map(function (l) { return { critere: l.critere, titre: l.titre, texte: l.texte }; });
-    if (!forts.length) { var m = connus.filter(function (l) { return l.critere !== 'prix'; }).sort(function (a, b) { return b.x - a.x; })[0]; if (m) forts.push({ critere: m.critere, titre: m.titre, texte: m.texte }); }
+      .map(function (l) { return { critere: l.critere, titre: l.titre, phrase: SIMPLE[l.critere][1], texte: l.texte }; });
+    if (!forts.length) { var m = connus.filter(function (l) { return l.critere !== 'prix'; }).sort(function (a, b) { return b.x - a.x; })[0]; if (m) forts.push({ critere: m.critere, titre: m.titre, phrase: SIMPLE[m.critere][1], texte: m.texte }); }
     var prix = lignes.filter(function (l) { return l.critere === 'prix' && l.connu && l.x >= 0.55 && w.prix >= 8; })[0];
-    if (prix && forts.length < 3) forts.push({ critere: 'prix', titre: 'Prix', texte: prix.texte });
+    if (prix && forts.length < 3) forts.push({ critere: 'prix', titre: 'Prix', phrase: SIMPLE.prix[1], texte: prix.texte });
     var compromis = connus.filter(function (l) { return l.x < 0.45 && l.poids >= 6 && l.critere !== 'prix'; }).sort(function (a, b) { return a.x - b.x; }).slice(0, 2)
-      .map(function (l) { return { critere: l.critere, titre: l.titre, texte: l.texte, limite: true }; });
+      .map(function (l) { return { critere: l.critere, titre: l.titre, phrase: SIMPLE[l.critere][2], texte: l.texte, limite: true }; });
     var cher = lignes.filter(function (l) { return l.critere === 'prix' && l.connu && l.x < 0.3 && w.prix >= 8; })[0];
-    if (cher && compromis.length < 3) compromis.push({ critere: 'prix', titre: 'Prix', texte: cher.texte, limite: true });
+    if (cher && compromis.length < 3) compromis.push({ critere: 'prix', titre: 'Prix', phrase: SIMPLE.prix[2], texte: cher.texte, limite: true });
     return { forts: forts, compromis: compromis };
   }
 
@@ -124,7 +131,7 @@
       return {
         id: p.id, nom: p.nom, marque: p.marque, variante: p.variante || null, prix: p.prix_indicatif, idealo: p.idealo_url || null, prix_note: p.prix_note || null,
         R: s.R, couverture: s.couverture, forts: e.forts, compromis: e.compromis, manquantes: s.manquantes.map(function (m) { return m.titre; }),
-        criteres: s.lignes, priorite: priorite
+        criteres: s.lignes.map(function (l) { return Object.assign({}, l, { simple: SIMPLE[l.critere][0] }); }), priorite: priorite
       };
     }
     /* Requête : { priorite, budget } (budget null ou 0 = sans plafond) → au plus quatre cartes, de la meilleure compatibilité à la moins bonne. */
@@ -142,6 +149,6 @@
     return { pool: pool, parId: parId, conseiller: conseiller, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
   }
 
-  var api = { creer: creer, criteres: criteres, score: score, explications: explications, lire: lire, PRIORITES: PRIORITES, CRITERES: CRITERES, PROFIL_VERS_PRIORITE: PROFIL_VERS_PRIORITE };
+  var api = { creer: creer, criteres: criteres, score: score, explications: explications, lire: lire, SIMPLE: SIMPLE, PRIORITES: PRIORITES, CRITERES: CRITERES, PROFIL_VERS_PRIORITE: PROFIL_VERS_PRIORITE };
   if (typeof module !== 'undefined' && module.exports) { if (!root.PhoneChips) { try { root.PhoneChips = require('../../phone-analyzer/chips.js'); } catch (e) {} } module.exports = api; } else root.SmartphonesCompat = api;
 })(typeof window !== 'undefined' ? window : globalThis);
