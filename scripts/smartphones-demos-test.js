@@ -57,12 +57,12 @@ t('jeu : images reçues en 1/10 de seconde, écran limité, phrase sans promesse
   assert.match(D.lectureJeu(30, 120, 120), /12 images contre 3/); assert.match(D.lectureJeu(60, 120, 60), /Même cadence/); assert.match(D.lectureJeu(60, 120, 60), /60 Hz/);
   assert.match(D.lectureJeu(60, 120, 165), /chaque jeu fixe sa limite/);
 });
-t('budget : prix ÷ années annoncées, années sans mise à jour si l’on garde plus longtemps', () => {
+t('budget : prix d’achat réparti sur la durée choisie sans coût supplémentaire', () => {
   assert.equal(D.coutAn(689, 5), 137.8); assert.equal(D.coutAn(500, 0), null); assert.equal(D.coutAn(500, null), null);
   const l = D.lignesBudget([{ id: 'a', nom: 'A', prix: 500, ans: 7 }, { id: 'b', nom: 'B', prix: 300, ans: 2 }, { id: 'c', nom: 'C', prix: 400, ans: null }], 5);
   assert.deepEqual(l.map(x => x.sansSuivi), [0, 3, null]); assert.ok(Math.abs(l[0].coutAn - 500 / 7) < 1e-9); assert.equal(l[2].coutAn, null);
-  const txt = D.lectureBudget(l, 5); assert.match(txt, /B est le moins cher à l’achat/); assert.match(txt, /A coûte moins par année/); assert.match(txt, /B passerait 3 ans sans mise à jour annoncée/); assert.match(txt, /promesse, pas une garantie/);
-  assert.match(D.lectureBudget(D.lignesBudget([{ id: 'a', nom: 'A', prix: 100, ans: 5 }, { id: 'b', nom: 'B', prix: 200, ans: 4 }], 3), 3), /à la fois le moins cher à l’achat/);
+  const txt = D.lectureBudget(l, 5); assert.match(txt, /B : 300 € à l’achat/); assert.match(txt, /60 € par an/); assert.match(txt, /ni un abonnement ni le prix des mises à jour/);
+  assert.match(D.lectureBudget(l, 3), /100 € par an/);
   const reels = [ID_A, ID_B].map(id => D.fiche(pool(id))); D.lignesBudget(reels, 5).forEach(x => { if (x.ans == null) { assert.equal(x.coutAn, null); assert.equal(x.sansSuivi, null, 'durée non annoncée : jamais « sans mise à jour »'); } else assert.equal(x.coutAn, x.prix / x.ans); });
 });
 t('écran : OLED et LCD selon la lumière et l’image ; en plein soleil, la luminosité compte ; jamais « l’OLED est meilleur »', () => {

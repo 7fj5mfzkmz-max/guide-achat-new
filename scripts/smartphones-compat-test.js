@@ -53,4 +53,14 @@ t('sans test ni preuve indépendante : aucun champ « tests », « confirmée »
 t('profils du parcours « Mon profil » : chaque profil a une priorité du moteur', () => {
   ['etudiant', 'professionnel', 'gamer', 'photographe'].forEach(p => assert.ok(K.PRIORITES[K.PROFIL_VERS_PRIORITE[p]], p));
 });
+t('gammes : minimum et plafond restent stricts, y compris quand le plafond est inférieur à la gamme', () => {
+  const r=m.conseiller({priorite:'equilibre',minPrix:800,budget:1200}); assert.ok(r.cartes.length); r.cartes.forEach(c=>assert.ok(c.prix>=800&&c.prix<=1200));
+  assert.equal(m.conseiller({minPrix:800,budget:400}).cartes.length,0);
+});
+t('priorité secondaire : poids normalisés, score et couverture bornés, choix principal inchangé sans secondaire', () => {
+  const r=m.conseiller({priorite:'photo',secondaire:'autonomie',budget:800}); assert.ok(r.cartes.length);
+  r.cartes.forEach(c=>{assert.ok(c.R>=0&&c.R<=100);assert.ok(c.couverture>=0&&c.couverture<=100);});
+  const p=produits[0], c=m.carte(p,'photo','autonomie');
+  const a=K.score(p,'photo'), b=K.score(p,'autonomie'); assert.ok(Math.abs(c.R-(2*a.R+b.R)/3)<=1);
+});
 console.log(ok + ' vérification(s) réussie(s).');

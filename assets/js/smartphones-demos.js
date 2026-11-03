@@ -13,14 +13,14 @@
     { id: 'photo', court: 'Photo', nature: 'illustration', q: 'Zoom et capteur : que voit votre photo ?' },
     { id: 'batterie', court: 'Batterie', nature: 'fiche', q: 'Capacité ou charge : que dit la fiche ?' },
     { id: 'jeu', court: 'Jeu', nature: 'illustration', q: '30, 60 ou 120 images par seconde ?' },
-    { id: 'budget', court: 'Budget', nature: 'calcul', q: 'Combien coûte chaque année de mises à jour ?' }
+    { id: 'budget', court: 'Qualité-prix', nature: 'calcul', q: 'Que vaut cet achat dans la durée ?' }
   ];
   var PAR_PRIORITE = { equilibre: 'ecran', autonomie: 'batterie', photo: 'photo', jeu: 'jeu', prix: 'budget' };
   var PAR_CRITERE = { ecran: 'ecran', batterie: 'batterie', photo: 'photo', performance: 'jeu', suivi: 'budget', prix: 'budget' };
   var NATURES = {
     illustration: { badge: 'Illustration', texte: 'Un schéma pour comprendre. Ce n’est pas une mesure.' },
     fiche: { badge: 'Fiche technique', texte: 'Valeurs annoncées par le constructeur. Ce n’est pas une durée mesurée.' },
-    calcul: { badge: 'Calcul', texte: 'Prix indicatif divisé par la durée annoncée. Ce n’est pas une mesure.' }
+    calcul: { badge: 'Calcul', texte: 'Prix d’achat réparti sur la durée d’utilisation choisie. Ce n’est pas une mesure.' }
   };
   var FORMATS = [1, 1.3, 1.56, 2, 2.76];
 
@@ -97,12 +97,9 @@
     return tels.map(function (t) { var c = coutAn(t.prix, t.ans); return { id: t.id, nom: t.nom, prix: t.prix, ans: t.ans, coutAn: c, sansSuivi: t.ans == null ? null : Math.max(0, garder - t.ans) }; });
   }
   function lectureBudget(lignes, garder) {
-    var ok = lignes.filter(function (l) { return l.coutAn != null; }); if (ok.length < 2) return 'Prix ÷ années de mises à jour annoncées : un repère de coût, pas une mesure.';
-    var bp = ok.slice().sort(function (a, b) { return a.prix - b.prix; })[0], ba = ok.slice().sort(function (a, b) { return a.coutAn - b.coutAn; })[0];
-    var t = bp.id === ba.id ? bp.nom + ' est à la fois le moins cher à l’achat (' + fr(bp.prix) + ' €) et le moins cher par année annoncée (' + fr(Math.round(bp.coutAn)) + ' €). '
-      : bp.nom + ' est le moins cher à l’achat (' + fr(bp.prix) + ' €), mais ' + ba.nom + ' coûte moins par année de mises à jour annoncée (' + fr(Math.round(ba.coutAn)) + ' € contre ' + fr(Math.round(bp.coutAn)) + ' €). ';
-    var court = ok.filter(function (l) { return l.sansSuivi > 0; }); if (court.length) t += 'Gardé ' + garder + ' ans : ' + court.map(function (l) { return l.nom + ' passerait ' + l.sansSuivi + ' an' + (l.sansSuivi > 1 ? 's' : '') + ' sans mise à jour annoncée'; }).join(' ; ') + '. ';
-    return t + 'La durée annoncée est une promesse, pas une garantie.';
+    var ok=lignes.filter(function(l){return l.prix!=null;});if(!ok.length)return 'Comparez le prix d’achat et la durée d’utilisation.';
+    var moins=ok.slice().sort(function(a,b){return a.prix-b.prix;})[0];
+    return moins.nom+' : '+fr(moins.prix)+' € à l’achat, soit environ '+fr(Math.round(moins.prix/garder))+' € par an si vous le gardez '+garder+' ans. Le prix d’achat est réparti sur votre durée d’utilisation : ce n’est ni un abonnement ni le prix des mises à jour. Comparez aussi l’écran, la batterie et le suivi annoncé.';
   }
 
   /* ——— Écran ——— */
@@ -271,9 +268,11 @@
       viz: function () {
         var l = lignesBudget(S.comp, S.budget.garder), maxA = Math.max(8, Math.max.apply(null, l.map(function (x) { return x.ans || 0; }))), g = S.budget.garder, f = S.f;
         return '<ul class="dm-bud">' + l.map(function (x) {
+          var sp=S.comp.filter(function(t){return t.id===x.id;})[0]||{};
+          var atouts=[sp.tech,sp.hz?sp.hz+' Hz':'',sp.mah?fr(sp.mah)+' mAh':'',sp.tele?'Téléobjectif':''].filter(Boolean).map(esc).join(' · ');
           var cells = ''; for (var i = 1; i <= maxA; i++) cells += '<i class="' + (x.ans != null && i <= x.ans ? 'is-ok' : i <= g ? (x.ans == null ? 'is-inc' : 'is-no') : '') + (i === g ? ' is-g' : '') + '"></i>';   // durée non annoncée : inconnue, jamais « sans mise à jour »
           return '<li class="dm-brow' + (f && x.id === f.id ? ' is-you' : '') + '"><div class="dm-bh"><b>' + esc(x.nom) + (f && x.id === f.id ? tag('Ce modèle') : '') + '</b><span>' + fr(x.prix) + ' €</span></div><div class="dm-yrs" style="--n:' + maxA + '" aria-hidden="true">' + cells + '</div>' +
-            '<p class="dm-bt">' + (x.ans == null ? 'Durée de mises à jour non annoncée.' : '<b>' + x.ans + ' ans annoncés</b> · ' + fr(Math.round(x.coutAn)) + ' € par année annoncée') + (x.sansSuivi > 0 ? ' · <em>' + x.sansSuivi + ' an' + (x.sansSuivi > 1 ? 's' : '') + ' sans mise à jour annoncée si gardé ' + g + ' ans</em>' : '') + '</p></li>';
+            '<p class="dm-bt"><b>' + fr(Math.round(x.prix / g)) + ' € / an d’utilisation</b> · achat réparti sur ' + g + ' ans<br>' + (x.ans == null ? 'Durée de mises à jour non annoncée.' : '<b>' + x.ans + ' ans de suivi annoncés</b>') + (x.sansSuivi > 0 ? ' · <em>' + x.sansSuivi + ' an' + (x.sansSuivi > 1 ? 's' : '') + ' sans mise à jour annoncée si gardé ' + g + ' ans</em>' : '') + '</p><p class="dm-bt">'+atouts+'</p></li>';
         }).join('') + '</ul>';
       },
       read: function () { return lectureBudget(lignesBudget(S.comp, S.budget.garder), S.budget.garder); },

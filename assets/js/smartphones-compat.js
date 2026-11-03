@@ -86,8 +86,9 @@
   }
 
   /* ——— Score pour une priorité ——— */
-  function score(p, priorite, crit) {
+  function score(p, priorite, crit, secondaire) {
     var def = PRIORITES[priorite] || PRIORITES.equilibre, w = def.poids, c = crit || criteres(p), total = 0, somme = 0, connu = 0, manquantes = [], lignes = [];
+    if (PRIORITES[secondaire] && secondaire !== priorite) { var w2=PRIORITES[secondaire].poids, mix={}; var total1=Object.values(w).reduce(function(a,b){return a+b;},0), total2=Object.values(w2).reduce(function(a,b){return a+b;},0); Object.keys(CRITERES).forEach(function(k){mix[k]=2*(w[k]||0)/total1+(w2[k]||0)/total2;}); w=mix; }
     Object.keys(CRITERES).forEach(function (k) {
       var poids = w[k] || 0, x = c[k].x;
       lignes.push({ critere: k, titre: CRITERES[k], poids: poids, x: x, connu: x != null, texte: c[k].texte });
@@ -119,8 +120,8 @@
     var cache = {}, parId = {};
     pool.forEach(function (p) { parId[p.id] = p; cache[p.id] = criteres(p); });
 
-    function carte(p, priorite) {
-      var s = score(p, priorite, cache[p.id]), e = explications(s.lignes, priorite);
+    function carte(p, priorite, secondaire) {
+      var s = score(p, priorite, cache[p.id], secondaire), e = explications(s.lignes, priorite);
       return {
         id: p.id, nom: p.nom, marque: p.marque, variante: p.variante || null, prix: p.prix_indicatif, idealo: p.idealo_url || null, prix_note: p.prix_note || null,
         R: s.R, couverture: s.couverture, forts: e.forts, compromis: e.compromis, manquantes: s.manquantes.map(function (m) { return m.titre; }),
@@ -131,8 +132,8 @@
     function conseiller(req) {
       req = req || {};
       var priorite = PRIORITES[req.priorite] ? req.priorite : 'equilibre', budget = req.budget ? Number(req.budget) : null;
-      var sous = pool.filter(function (p) { return budget == null || p.prix_indicatif <= budget; });
-      var cartes = sous.map(function (p) { return carte(p, priorite); }).sort(function (a, b) { return b.R - a.R || a.prix - b.prix; });
+      var sous = pool.filter(function (p) { return (budget == null || p.prix_indicatif <= budget) && p.prix_indicatif >= (req.minPrix || 0); });
+      var cartes = sous.map(function (p) { return carte(p, priorite, req.secondaire); }).sort(function (a, b) { return b.R - a.R || b.couverture - a.couverture || a.prix - b.prix; });
       var top = cartes.slice(0, 4);
       var notes = [];
       if (!sous.length) notes.push('Aucun modèle du catalogue n’est affiché à moins de ' + fr(budget) + ' € : augmentez le budget.');
