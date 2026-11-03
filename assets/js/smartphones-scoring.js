@@ -108,10 +108,13 @@
     if (r > 1.4) return { key: "prix.budget", score: 0, d: 2, out: true, text: text, delta: "nettement au-dessus" };
     return { key: "prix.budget", score: r <= 1.15 ? 0.6 : 0.3, d: 1, text: text, delta: r <= 1.15 ? "un peu au-dessus" : "au-dessus" };
   }
+  /* Valeur simple du quiz (« lcd », « oled », « ltpo ») ou description d'une fiche (« PLS LCD 6,7 pouces, 1600×720, 60 Hz », « LTPO AMOLED pliable… »). */
   function screenTechRank(t) {
-    if (t === "ltpo" || t === "LTPO") return 3;
-    if (t === "amoled" || t === "oled" || t === "AMOLED" || t === "OLED") return 2;
-    if (t === "lcd" || t === "LCD") return 1;
+    if (t == null) return null;
+    t = String(t).toLowerCase();
+    if (/ltpo/.test(t)) return 3;
+    if (/oled/.test(t)) return 2;
+    if (/lcd|\bips\b|\bpls\b/.test(t)) return 1;
     return null;
   }
   /* Code IP → rang. « IP68 / MIL-STD » vaut IP68 ; « IPX8 » (eau seulement) vaut IP68 ; plusieurs codes : le plus haut. */
@@ -469,7 +472,7 @@
 
   /* Prix : en euros quand la fiche est vérifiée en France ; en dollars quand il vient d'un test (non vérifié ici). */
   function priceText(p) {
-    if (p.prix_indicatif) return "≈ " + esc(p.prix_indicatif) + " €";
+    if (p.prix_indicatif) return "≈ " + esc(Number(p.prix_indicatif).toLocaleString("fr-FR")) + " €";
     if (p.prix_usd) return "≈ " + esc(String(p.prix_usd)) + " $ (prix US)";
     return "prix à vérifier";
   }

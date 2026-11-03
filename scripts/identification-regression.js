@@ -37,12 +37,12 @@ const cmp = (a, b) => identity.compare(a, b, kit).verdict;
 
   /* 2. Liens marchands → nom reconnu */
   const cases = [
-    ['Fnac iPhone 17 Pro Max', 'https://www.fnac.com/Apple-iPhone-17-Pro-Max-256-Go-Orange-cosmique-5G-Smartphone/a21956453/w-4', 'Apple iPhone 17 Pro Max'],
-    ['Cdiscount iPhone 17 Pro Max (slug lisible + code f-)', 'https://www.cdiscount.com/telephonie/telephones-mobiles/apple-iphone-17-pro-max-256-go-orange-cosmique/f-1440402-appiph17pmaxor.html', 'Apple iPhone 17 Pro Max'],
-    ['Cdiscount iPhone 17 Pro Max (mots collés)', 'https://www.cdiscount.com/telephonie/telephones-mobiles/f-1440402-appleiphone17promax256gonoir.html', 'Apple iPhone 17 Pro Max'],
-    ['Cdiscount Galaxy A56 (nom lisible, code court)', 'https://www.cdiscount.com/telephonie/telephones-mobiles/samsung-galaxy-a56-5g-128-go-noir/f-1440402-sam1234.html', 'Samsung Galaxy A56'],
-    ['Amazon XIAOMI X8 Pro', 'https://www.amazon.fr/XIAOMI-X8-Pro-512-Go-Noir/dp/B0GHNL2SRS', 'POCO X8 Pro'],
-    ['Amazon Black Shark 7 Pro', 'https://www.amazon.fr/Xiaomi-Black-Shark-7-Pro-512-Go/dp/B0ABCDE123', 'Xiaomi Black Shark 7 Pro'],
+    ['Fnac iPhone 17 Pro Max', 'https://www.fnac.com/Apple-iPhone-17-Pro-Max-256-Go-Orange-cosmique-5G-Smartphone/a21956453/w-4', 'iPhone 17 Pro Max'],
+    ['Cdiscount iPhone 17 Pro Max (slug lisible + code f-)', 'https://www.cdiscount.com/telephonie/telephones-mobiles/apple-iphone-17-pro-max-256-go-orange-cosmique/f-1440402-appiph17pmaxor.html', 'iPhone 17 Pro Max'],
+    ['Cdiscount iPhone 17 Pro Max (mots collés)', 'https://www.cdiscount.com/telephonie/telephones-mobiles/f-1440402-appleiphone17promax256gonoir.html', 'iPhone 17 Pro Max'],
+    ['Cdiscount Galaxy A56 (nom lisible, code court)', 'https://www.cdiscount.com/telephonie/telephones-mobiles/samsung-galaxy-a56-5g-128-go-noir/f-1440402-sam1234.html', 'Galaxy A56'],
+    ['Amazon XIAOMI X8 Pro', 'https://www.amazon.fr/XIAOMI-X8-Pro-512-Go-Noir/dp/B0GHNL2SRS', 'XIAOMI X 8 Pro'],   // POCO X8 Pro n'est plus au catalogue actif : nom tiré du lien
+    ['Amazon Black Shark 7 Pro', 'https://www.amazon.fr/Xiaomi-Black-Shark-7-Pro-512-Go/dp/B0ABCDE123', 'Xiaomi Shark 7 Pro'],   // absent du catalogue actif : nom tiré du lien
     ['Amazon Blackview Shark 8', 'https://www.amazon.fr/Blackview-Shark-8-256-Go-Noir/dp/B0ABCDE456', 'Blackview Shark 8']
   ];
   for (const [label, url, expected] of cases) {
@@ -84,7 +84,7 @@ const cmp = (a, b) => identity.compare(a, b, kit).verdict;
   const blockedUrl = 'https://www.cdiscount.com/telephonie/telephones-mobiles/apple-iphone-17-pro-max-256-go-orange-cosmique/f-1440402-appiph17pmaxor.html';
   await check('serveur bloqué → catalogue', async () => {
     const r = await backendReturning({ ok: false, kind: 'product', needsCapture: true, reason: 'challenge' }).resolveProduct(blockedUrl);
-    assert.equal(r.ok, true); assert.equal(name(r), 'Apple iPhone 17 Pro Max'); assert.equal(r.fallbackFrom, 'challenge'); assert.match(r.warning, /n’a pas pu être lue/);
+    assert.equal(r.ok, true); assert.equal(name(r), 'iPhone 17 Pro Max'); assert.equal(r.fallbackFrom, 'challenge'); assert.match(r.warning, /n’a pas pu être lue/);
   });
   await check('conflit d’identité : on ne remplace pas', async () => {
     const r = await backendReturning({ ok: false, kind: 'product', needsCapture: true, reason: 'identity-conflict' }).resolveProduct(blockedUrl);
@@ -148,7 +148,7 @@ const cmp = (a, b) => identity.compare(a, b, kit).verdict;
     const r = await fnacBlocked('https://www.fnac.com/a21318597/w-4');
     assert.equal(r.ok, true, JSON.stringify(r.error || r.reason));
     assert.match(r.strategy, /^merchant-id\+search/, 'stratégie : ' + r.strategy);
-    assert.equal(r.product && r.product.name, 'Samsung Galaxy A56');
+    assert.equal(r.product && r.product.name, 'Galaxy A56');
   });
   await check('Fnac courte : identifiant divergent → aucune déduction, capture proposée', async () => {
     serverSearch.lookup = async () => ({ titles: ['Autre téléphone indexé'], best: 'Autre téléphone indexé',

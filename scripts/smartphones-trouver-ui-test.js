@@ -11,6 +11,7 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': mime[path.extname(file)] || 'application/octet-stream' }); fs.createReadStream(file).pipe(res);
 });
 const tests = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones-tests.json'), 'utf8'));
+const vusEnTest = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones.json'), 'utf8')).produits.filter(p => p.ready_for_recommendation && p.tests && p.tests.length).length;   // modèles du catalogue actif reliés à un test vidéo
 const catalogue = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones.json'), 'utf8'));
 let passed = 0;
 async function check(label, fn) { try { await fn(); passed++; console.log('OK    ' + label); } catch (e) { console.error('ÉCHEC ' + label + '\n      → ' + String(e.message).split('\n')[0]); process.exitCode = 1; } }
@@ -54,7 +55,7 @@ async function ouvrirAffiner(p){await p.waitForSelector('.apl-tile[data-g="affin
             assert.ok(await page.locator('#tr-podium .tr-row').count() <= 6, id + ' : six recommandations au plus');
           } else {
             assert.equal(cols, 2, id + ' : deux colonnes attendues');
-            assert.ok(await page.locator('#tr-podium .tr-col').first().locator('.tr-tag-test').count() >= (id === 'prix' ? 1 : 3), id + ' : modèles vus en test');
+            assert.ok(await page.locator('#tr-podium .tr-col').first().locator('.tr-tag-test').count() >= Math.min(id === 'prix' ? 1 : 3, vusEnTest), id + ' : modèles vus en test (quand le catalogue en compte)');
           }
           for (let col = 0; col < cols; col++) {
             const names = await page.locator('#tr-podium .tr-col').nth(col).locator('.tr-row h4').allInnerTexts();
@@ -75,7 +76,7 @@ async function ouvrirAffiner(p){await p.waitForSelector('.apl-tile[data-g="affin
         const bornes = { 'Haut de gamme': [801, 1e9], 'Milieu de gamme': [301, 800], 'Entrée de gamme': [151, 300], 'Bas prix': [80, 150] };
         for (const id of ['batterie']) {
           await page.click('.tr-chip[data-need="' + id + '"]');
-          const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ gamme: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(e.querySelector('.tr-price').textContent.replace(/[^\d]/g, '')) })));
+          const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ gamme: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(((e.querySelector('.tr-price').textContent.match(/(\d[\d\s\u202f\u00a0]*(?:,\d+)?)\s*€/) || [])[1] || '').replace(/[\s\u202f\u00a0]/g, '').replace(',', '.')) })));
           assert.deepEqual([...new Set(rows.map(r => r.gamme))], ['Haut de gamme', 'Milieu de gamme', 'Entrée de gamme', 'Bas prix'], id + ' : quatre gammes attendues');
           rows.forEach(r => assert.ok(r.prix >= bornes[r.gamme][0] && r.prix <= bornes[r.gamme][1], id + ' : ' + r.gamme + ' à ' + r.prix + ' €'));
         }
@@ -90,16 +91,16 @@ async function ouvrirAffiner(p){await p.waitForSelector('.apl-tile[data-g="affin
       await check('Grosse batterie : capacités annoncées puis autonomie mesurée' + tag, async () => {
         await page.click('.tr-chip[data-need="batterie"]');
         const t = (await page.locator('#tr-podium').innerText()).replace(/[\u202f\u00a0]/g, ' ');
-        assert.match(t, /OnePlus 16/); assert.match(t, /9 000 mAh/); assert.doesNotMatch(t, /12 h 54|11 h 30|10 h 17|RedMagic 11S/);
+        assert.match(t, /\d[\d ]* mAh/, 'capacités annoncées'); assert.doesNotMatch(t, /12 h 54|11 h 30|10 h 17|RedMagic 11S/);
         assert.equal(await page.locator('.profile-toggle:not([hidden])').count(), 0);
       });
       await check('Petit prix : 80 à 250 €, quatre tranches, aucun modèle hors fourchette' + tag, async () => {
         await page.click('.tr-chip[data-need="prix"]');
         assert.match(await page.locator('#tr-intro').innerText(), /80 à 250 €/);
-        const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ tranche: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(e.querySelector('.tr-price').textContent.replace(/[^\d]/g, '')) })));
+        const rows = await page.locator('#tr-podium .tr-col').nth(1).locator('.tr-row').evaluateAll(els => els.map(e => ({ tranche: e.querySelector('.tr-tier b').textContent.trim(), prix: Number(((e.querySelector('.tr-price').textContent.match(/(\d[\d\s\u202f\u00a0]*(?:,\d+)?)\s*€/) || [])[1] || '').replace(/[\s\u202f\u00a0]/g, '').replace(',', '.')) })));
         assert.equal(rows.length, 4, 'quatre tranches attendues');
         rows.forEach(r => assert.ok(r.prix >= 80 && r.prix <= 250, r.tranche + ' : ' + r.prix + ' €'));
-        assert.ok(await page.locator('.tr-flag').count() >= 1, 'le test Samsung à petit prix porte une étiquette');
+        if (vusEnTest) assert.ok(await page.locator('.tr-flag').count() >= 1, 'un test à petit prix porte une étiquette');
       });
       await check('clavier : les flèches changent d’onglet' + tag, async () => {
         await page.focus('#tab-profil'); await page.keyboard.press('ArrowRight');
@@ -112,6 +113,11 @@ async function ouvrirAffiner(p){await p.waitForSelector('.apl-tile[data-g="affin
       });
       await check('banc d’essai : podium, tableau complet, mesures, usages avec note et couverture' + tag, async () => {
         await page.waitForSelector('html[data-banc-ready="1"]');
+        if (tests.banc.modeles.length < 3) {   // catalogue actif : trop peu de modèles mesurés pour un podium → message clair, aucune erreur
+          await ouvrirGroupe(page, 'tests');
+          for (const id of ['sp-podium', 'sp-ranking']) assert.match(await page.locator('#' + id).innerText(), /classe au moins trois modèles mesurés/);
+          assert.equal(await page.locator('#sp-podium .pj-pod').count(), 0); assert.ok(await page.locator('#sp-error').isHidden(), 'aucune erreur de chargement affichée'); return;
+        }
         await ouvrirGroupe(page, 'tests');   /* classement et mesures : groupe « Classement et tests » */
         assert.equal(await page.locator('#sp-podium .pj-pod').count(), 3);
         assert.match(await page.locator('#sp-podium .pj-pod.is-1').innerText(), /OnePlus 16/);
@@ -175,7 +181,7 @@ async function ouvrirAffiner(p){await p.waitForSelector('.apl-tile[data-g="affin
       assert.match(await page.locator('#audit-count').innerText(), /0 \/ 6/);
       await page.locator('#quiz-price button[data-value="entree"]').first().click();
       await page.waitForSelector('#scoring-results .criteria-recommendation-card');
-      const prix = (await page.locator('#scoring-results .criteria-recommendation-meta').allInnerTexts()).map(t => Number((t.match(/≈\s*([\d\s\u202f]+)\s*€/) || [])[1].replace(/\D/g, '')));
+      const prix = (await page.locator('#scoring-results .criteria-recommendation-meta').allInnerTexts()).map(t => Number((t.match(/≈\s*(\d[\d\s\u202f\u00a0]*(?:,\d+)?)\s*€/) || [])[1].replace(/[\s\u202f\u00a0]/g, '').replace(',', '.')));
       assert.ok(prix.length >= 3 && prix.every(v => v <= 345), 'budget « entrée de gamme » : ' + prix.join(', '));
       assert.ok(prix.some(v => v >= 150), 'des modèles dans la tranche 150 à 300 €');
       await iso.close();

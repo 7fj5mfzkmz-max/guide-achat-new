@@ -122,14 +122,14 @@ async function main() {
       assert(deps.refs === 'object' && deps.ins === 'object', 'PhoneReferences et PhoneSpecInsights doivent être chargés (obtenu ' + JSON.stringify(deps) + ')');
       await submitMain(page, 'Samsung Galaxy A56');
       await waitAnalysis(page);
-      assert(/Samsung Galaxy A56/.test(await page.locator('#phone-analyzer-result h3').first().innerText()), 'titre attendu : Samsung Galaxy A56');
+      assert(/Galaxy A56/.test(await page.locator('#phone-analyzer-result h3').first().innerText()), 'titre attendu : Galaxy A56 (nom du catalogue actif)');
       assert((await page.locator('#phone-analyzer-result .spec-badge').count()) > 0, 'des verdicts techniques (badges) doivent s’afficher');
       const link = page.locator('#phone-analyzer-result [data-compare-link]');
       assert((await link.getAttribute('href')) === 'smartphones.html#choisir-profil', 'lien vers le classement attendu, obtenu ' + (await link.getAttribute('href')));
       assert(page.backendResponses.length >= 1, 'le backend doit avoir réellement répondu (secours local non utilisé)');
       const resp = page.backendResponses.find(r => r.body && r.body.ok === true);
       assert(resp, 'au moins une réponse réussie du backend (ok:true) doit être observée, obtenu : ' + JSON.stringify(page.backendResponses));
-      assert(resp.body.product && resp.body.product.id === 'galaxy-a56', 'la réponse du backend doit porter l’identifiant galaxy-a56 (stratégie : ' + resp.body.strategy + ')');
+      assert(resp.body.product && resp.body.product.id === 'samsung-galaxy-a56', 'la réponse du backend doit porter l’identifiant samsung-galaxy-a56 (stratégie : ' + resp.body.strategy + ')');
       assert(!/indisponible/i.test(await stageText(page)), 'la note d’indisponibilité du secours local ne doit pas apparaître : le vrai backend a été utilisé');
       await link.click();
       await page.waitForURL(/smartphones\.html#choisir-profil/);

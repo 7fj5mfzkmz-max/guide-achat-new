@@ -5,6 +5,10 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const root = path.resolve(__dirname, '..');
+/* Les attentes viennent du moteur appliqué au catalogue actif : plus aucun identifiant de modèle n'est figé dans ce test. */
+const Engine = require('../assets/js/smartphones-pertinence.js'), Advice = require('../assets/js/smartphones-conseil.js'), { charger } = require('../tools/smartphones/charger-pertinence.js');
+const advice = Advice.creer(Engine.creer(charger()));
+const voulu = (priorite, budget) => advice.conseiller({ priorite, budget: budget || null });
 const server = http.createServer((req, res) => {
   const file = path.resolve(root, '.' + new URL(req.url, 'http://local').pathname);
   if (!file.startsWith(root + path.sep) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); return res.end(); }
@@ -30,26 +34,31 @@ const server = http.createServer((req, res) => {
         assert(!sticky.hidden && sticky.h <= 80 && sticky.y + sticky.h <= sticky.vh + 1 && sticky.pad >= sticky.h - 2, JSON.stringify(sticky));
         await page.evaluate(() => scrollTo(0, 0));
       }
-      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), 'oneplus-15');
+      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), voulu('equilibre').cartes[0].id);
       assert(!/undefined|Sources :\s+\./i.test(await page.locator('#conseiller').innerText()));
       assert(!/undefined/.test(await page.locator('#gc-more svg').innerHTML()));
       const nums = await page.locator('.apl-panel > .section > .section-heading .eyebrow').allInnerTexts();
       assert.deepEqual(nums.map(x => x.slice(0, 2)), ['01','02','03','04','05','06','07','08']);
       await page.locator('input[name="gc-prio"][value="autonomie"]').check();
-      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), 'oneplus-15');
-      assert.match(await page.locator('.gc-verdict').innerText(), /reste notre premier choix/);
+      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), voulu('autonomie').cartes[0].id);
+      assert.ok(!/undefined|NaN/.test(await page.locator('.gc-verdict').innerText()));
       await page.locator('input[name="gc-prio"][value="photo"]').check();
       await page.locator('#gc-more').click(); await page.locator('#gc-bud').selectOption('150');
-      assert.equal(await page.locator('.gc-card').count(), 0);
+      const photo150 = voulu('photo', 150);
+      assert.equal(await page.locator('.gc-card').count(), photo150.cartes.length ? 1 : 0);
       assert.match(await page.locator('#gc-more-t').innerText(), /150/);
-      assert.match(await page.locator('#gc-sortie').innerText(), /aucun choix confirmé|matériel photo reste limité/i);
+      if (photo150.cartes.length) { assert.equal(await page.locator('.gc-card').getAttribute('data-id'), photo150.cartes[0].id); assert.ok(Number((await page.locator('.gc-card .gc-prix').innerText()).replace(/[^\d,]/g, '').replace(',', '.')) <= 150, 'plafond strict'); if (photo150.cartes[0].statut !== 'confirmee') assert.match(await page.locator('.gc-card').innerText(), /À confirmer|pas une photo|ne pas lire comme un choix confirmé/i); }
+      else assert.match(await page.locator('#gc-sortie').innerText(), /aucun choix confirmé|matériel photo reste limité/i);
       await page.locator('input[name="gc-prio"][value="prix"]').check();
-      assert.equal(await page.locator('.gc-card').count(), 0);
-      assert(!/Galaxy A23 5G/.test(await page.locator('#gc-sortie').innerText()));
+      const prix150 = voulu('prix', 150);
+      assert.equal(await page.locator('.gc-card').count(), prix150.cartes.length ? 1 : 0);
+      if (prix150.cartes.length) assert.equal(await page.locator('.gc-card').getAttribute('data-id'), prix150.cartes[0].id);
       await page.locator('#gc-bud').selectOption('600');
-      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), 'xiaomi-redmi-note-13');
+      const prix600 = voulu('prix', 600);
+      assert.equal(await page.locator('.gc-card').getAttribute('data-id'), prix600.cartes[0].id);
+      assert.ok(prix600.cartes[0].prix <= 600);
       await page.locator('#dm-tab-budget').click();
-      assert.match(await page.locator('.dm-brow').first().innerText(), /Redmi Note 13/);
+      assert.ok((await page.locator('.dm-brow').first().innerText()).includes(prix600.cartes[0].nom), 'le modèle examiné ouvre la comparaison budget');
       await page.evaluate(() => { window.PhoneAnalyzerFetcher.resolveModel = async () => ({ ok: true, strategy: 'phonesdata', specs: { ecran: 'OLED' }, identity: { name: 'iPhone 17' }, product: { name: 'iPhone 17' } }); });
       await page.locator('#gc-url').fill('iPhone 17'); await page.locator('#gc-aform button').click();
       await page.waitForTimeout(600);

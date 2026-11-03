@@ -1293,6 +1293,8 @@
     {
       "id": "pixel-10a",
       "nom": "Pixel 10a",
+      "date_sortie": "2026-03",
+      "date_sortie_source": "https://en.wikipedia.org/wiki/Google_Pixel_10a",
       "marque": "Google",
       "prix_indicatif": 499,
       "prix_note": "Prix relevé en octobre 2026.",
@@ -3380,6 +3382,8 @@
     {
       "id": "galaxy-a23-5g",
       "nom": "Samsung Galaxy A23 5G",
+      "date_sortie": "2022-09",
+      "date_sortie_source": "https://en.wikipedia.org/wiki/Samsung_Galaxy_A23",
       "marque": "Samsung",
       "prix_indicatif": 144,
       "prix_note": "Prix relevé en octobre 2026.",

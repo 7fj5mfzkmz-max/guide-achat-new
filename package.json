@@ -34,7 +34,7 @@
     "smartphones:pertinence-moteur-test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/smartphones-pertinence-moteur-test.js",
     "smartphones:catalogue-actif-test": "node scripts/smartphones-catalogue-actif-test.js",
     "smartphones:demos-test": "node scripts/smartphones-demos-test.js",
-    "smartphones:conseiller-test": "node scripts/smartphones-v11-reliability-test.js && node scripts/smartphones-conseiller-ui-test.js && node scripts/smartphones-v11-ui-test.js",
+    "smartphones:conseiller-test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/smartphones-v11-reliability-test.js && node scripts/smartphones-conseiller-ui-test.js && node scripts/smartphones-v11-ui-test.js",
     "actualites": "node tools/actualites/construire.js",
     "actualites:test": "node scripts/actualites-test.js",
     "i18n:test": "node scripts/i18n-test.js",

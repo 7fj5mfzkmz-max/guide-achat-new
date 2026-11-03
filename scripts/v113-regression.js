@@ -54,10 +54,10 @@ const resolve = require('../server/resolve');
   const r = await resolve.resolveModel('Samsung Galaxy A56', { timeout: 8000 });
   assert.equal(r.ok, true);
   assert.equal(r.strategy, 'catalogue', 'le catalogue doit répondre en premier');
-  assert.equal(r.product.name, 'Samsung Galaxy A56');
+  assert.equal(r.product.name, 'Galaxy A56');
   assert.ok(Object.keys(r.specs).length >= 5, 'le catalogue doit fournir ses caractéristiques');
   assert.equal(r.identity.status, 'identified');
 
-  assert.equal(r.product.id, 'galaxy-a56', 'la réponse catalogue doit transporter l’identifiant utilisé par le comparateur');
+  assert.equal(r.product.id, 'samsung-galaxy-a56', 'la réponse catalogue doit transporter l’identifiant utilisé par le comparateur');
   console.log('Vérifications déterministes réussies (score photo calibré, URL Cdiscount, noms marchands, résolution catalogue). La résolution hors catalogue via les sources externes est testée par « npm run analyzer:live-test ».');
 })().catch(e => { console.error(e.message); process.exit(1); });

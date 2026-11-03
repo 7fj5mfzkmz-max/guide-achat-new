@@ -183,6 +183,13 @@
     if (!a) return null;
     return conseil.carte('equivalent', a, { principal: S.priorite, secondaire: res.requete.secondaire, budgetUtilisateur: res.requete.budgetUtilisateur, plancher: res.plancher, ref: res.cartes[0] });
   }
+  /* « marché ; 03/11/2026 ; Chine, CNY. Prix indicatif à vérifier. » → phrase lisible ; toute autre note est affichée telle quelle. */
+  function noteFr(n) {
+    var m = /^(marché|constructeur) ; (\d{2}\/\d{2}\/\d{4}|\d{4}-\d{2}-\d{2}) ; ([^,;]+), ([A-Z]{3})\./.exec(n || '');
+    if (!m) return n || 'Prix indicatif à vérifier avant l’achat.';
+    var d = m[2], j = /^\d{4}/.test(d) ? d.split('-').reverse().join('/') : d;
+    return 'Prix indicatif d’après le ' + (m[1] === 'marché' ? 'marché' : 'constructeur') + ' (' + m[3] + ', ' + m[4] + '), relevé le ' + j + ' : à vérifier avant l’achat.';
+  }
   function carte(c, ref) {
     var exam = c.id !== ref.id, f = force(c), l = aSavoir(c, ref), prov = c.statut !== 'confirmee', id = 'gc-n' + (++uid);
     var ban = exam ? '<div class="gc-exam"><p><b>Vous examinez une alternative.</b> Notre recommandation reste ' + esc(ref.nom) + ' (' + fr(ref.prix) + ' €).</p><button type="button" class="gc-btn" data-retour="1">Revenir à notre recommandation</button></div>' : '';
@@ -192,7 +199,7 @@
     return '<article class="gc-card" id="gc-card" tabindex="-1" data-id="' + esc(c.id) + '" data-role="' + c.role + '" data-statut="' + c.statut + '" data-examen="' + (exam ? '1' : '0') + '" aria-labelledby="' + id + '">' + ban +
       '<header class="gc-card-h"><span class="gc-kick">' + esc(exam ? 'Alternative examinée · ' + ROLES[c.role] : ROLES[c.role]) + '</span>' + tagStatut(c) + '</header>' +
       '<div class="gc-card-main">' + vignette(c) + '<div class="gc-id"><h2 class="gc-name" id="' + id + '">' + esc(c.nom) + '</h2><p class="gc-price">' + prixLien(c) + '</p></div></div>' +
-      '<p class="gc-verdict">' + esc(verdict(c, res, ref)) + ' Compatibilité estimée : ' + c.R + ' %.</p>' + pc + '<p class="gc-micro">Pourquoi lui faire confiance ? ' + esc(c.preuve) + ' ' + esc(produit(c.id).prix_note || 'Prix indicatif à vérifier avant l’achat.') + '</p></article>';
+      '<p class="gc-verdict">' + esc(verdict(c, res, ref)) + ' Compatibilité estimée : ' + c.R + ' %.</p>' + pc + '<p class="gc-micro">Pourquoi lui faire confiance ? ' + esc(c.preuve) + ' ' + esc(noteFr(produit(c.id).prix_note)) + '</p></article>';
   }
 
   /* ——— Détail : Résumé / Tests / Sources ——— */

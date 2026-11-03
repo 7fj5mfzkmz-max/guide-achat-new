@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const Engine = require('../assets/js/smartphones-pertinence');
 const Advice = require('../assets/js/smartphones-conseil');
-const read = name => JSON.parse(fs.readFileSync(require('node:path').join(__dirname, '../data', name), 'utf8'));
+const read = name => JSON.parse(fs.readFileSync(require('node:path').join(process.env.SMARTPHONES_DATA_DIR ? require('node:path').resolve(__dirname, '..', process.env.SMARTPHONES_DATA_DIR) : require('node:path').join(__dirname, '../data'), name), 'utf8'));
 const data = { produits: read('smartphones.json').produits, tests: read('smartphones-tests.json'), liens: read('smartphones-liens-banc.json'), registres: read('smartphones-registres.json'), observations: read('smartphones-observations.json').observations };
 const engine = Engine.creer(data, { reference: '2026-11' });
 const advice = Advice.creer(engine);
