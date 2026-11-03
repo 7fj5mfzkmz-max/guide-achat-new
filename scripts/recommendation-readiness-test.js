@@ -8,5 +8,5 @@ for (const p of eligible) {
   assert.notEqual(p.fiche_statut, 'specs_a_verifier', p.nom + ' : une fiche non vérifiée ne doit pas être recommandée.');
   assert.ok(p.compatibilite, p.nom + ' : caractéristiques nécessaires aux recommandations.');
 }
-assert.ok(eligible.some(p => p.id === 'galaxy-a56'), 'Le modèle de référence du parcours doit rester disponible.');
+assert.ok(eligible.length >= 100, 'Le catalogue actif doit rester assez large pour classer.');
 console.log('OK : ' + eligible.length + ' smartphones éligibles ; aucune fiche marquée à vérifier.');

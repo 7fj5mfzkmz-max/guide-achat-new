@@ -3,7 +3,7 @@
   /* « Voir la différence » : les cinq démonstrations interactives de la page Smartphones (mode expérimental ?pertinence=1).
      Chaque démonstration est d'une nature déclarée, affichée en permanence :
        - ILLUSTRATION : un schéma pour comprendre un principe (écran, photo, images par seconde). Ce n'est jamais une mesure ;
-       - MESURE DE TESTEUR : des chiffres de tests vidéo indépendants (autonomie), jamais refaits ni mélangés entre protocoles ;
+       - FICHE TECHNIQUE : des valeurs annoncées par le constructeur (capacité et puissance de charge de la batterie), jamais une durée mesurée ;
        - CALCUL : prix indicatif divisé par la durée de mises à jour annoncée. Ce n'est pas une mesure.
      Ce fichier ne calcule aucune note et ne lit que les données existantes (data/smartphones*.json). Texte en français seulement (DeepL plus tard).
      Première partie : fonctions pures (testées sous Node, scripts/smartphones-demos-test.js). Seconde partie : le module d'interface. */
@@ -11,7 +11,7 @@
   var DEMOS = [
     { id: 'ecran', court: 'Écran', nature: 'illustration', q: 'OLED ou LCD : que change le noir ?' },
     { id: 'photo', court: 'Photo', nature: 'illustration', q: 'Zoom et capteur : que voit votre photo ?' },
-    { id: 'batterie', court: 'Batterie', nature: 'mesure', q: 'Capacité ou durée : que dit le test ?' },
+    { id: 'batterie', court: 'Batterie', nature: 'fiche', q: 'Capacité ou charge : que dit la fiche ?' },
     { id: 'jeu', court: 'Jeu', nature: 'illustration', q: '30, 60 ou 120 images par seconde ?' },
     { id: 'budget', court: 'Budget', nature: 'calcul', q: 'Combien coûte chaque année de mises à jour ?' }
   ];
@@ -19,10 +19,9 @@
   var PAR_CRITERE = { ecran: 'ecran', batterie: 'batterie', photo: 'photo', performance: 'jeu', suivi: 'budget', prix: 'budget' };
   var NATURES = {
     illustration: { badge: 'Illustration', texte: 'Un schéma pour comprendre. Ce n’est pas une mesure.' },
-    mesure: { badge: 'Mesure de test', texte: 'Chiffres de tests vidéo indépendants. Guide·Achat ne les a pas refaits.' },
+    fiche: { badge: 'Fiche technique', texte: 'Valeurs annoncées par le constructeur. Ce n’est pas une durée mesurée.' },
     calcul: { badge: 'Calcul', texte: 'Prix indicatif divisé par la durée annoncée. Ce n’est pas une mesure.' }
   };
-  var PROTOCOLES = { flagships: { court: 'Haut de gamme' }, milieu: { court: 'Milieu de gamme' } };
   var FORMATS = [1, 1.3, 1.56, 2, 2.76];
 
   var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]; }); };
@@ -37,11 +36,12 @@
   function famille(t) { return /oled/i.test(t || '') ? 'oled' : /lcd|ips/i.test(t || '') ? 'lcd' : null; }
   function parseFormat(s) { if (s == null || s === '') return null; var x = String(s) === '1' ? 1 : Number(String(s).replace(/^1\//, '')); return isFinite(x) && x >= 1 ? x : null; }
   function formatTxt(x) { return x === 1 ? '1″' : '1/' + String(x).replace('.', ',') + '″'; }
+  function zoomTexte(t) { var m = /zoom optique(?: m[ée]canique)?\s*(\d+(?:[.,]\d+)?)\s*x/i.exec(t || ''); return m ? Number(m[1].replace(',', '.')) : null; }
   function fiche(p) {
     var c = p.compatibilite || {}, e = c.ecran || {}, ph = c.photo || {}, tele = ph.teleobjectif || {}, cap = ph.capteur || {}, b = c.batterie || {}, d = c.durete || {};
     var cp = (p.caracteristiques && p.caracteristiques.photo) || '';
     return { id: p.id, nom: p.nom, prix: p.prix_indicatif, tech: e.technologie || null, famille: famille(e.technologie), hz: e.frequence_max_hz || null, nits: e.luminosite_nits || null,
-      ultra: /ultra[ -]grand[ -]angle/i.test(cp), tele: !!tele.present, zoom: tele.zoom || null, format: parseFormat(cap.format), mah: b.capacite_mah || null, ans: d.mises_a_jour_ans == null ? null : d.mises_a_jour_ans };
+      ultra: /ultra[ -]grand[ -]angle/i.test(cp), tele: !!tele.present || /t[ée]l[ée]objectif/i.test(cp), zoom: tele.zoom || zoomTexte(cp), format: parseFormat(cap.format), mah: b.capacite_mah || null, watts: b.recharge_watts || null, ans: d.mises_a_jour_ans == null ? null : d.mises_a_jour_ans };
   }
 
   /* ——— Photo : objectifs, focale équivalente, champ de vision, surface des capteurs ——— */
@@ -66,40 +66,19 @@
     return base + 'Au-delà de ' + fr1(zo) + '×, le téléphone recadre l’image : on perd des détails. Le logiciel en récupère une partie, selon le modèle.';
   }
 
-  /* ——— Batterie : lignes mesurées par protocole (jamais mélangées) ——— */
-  function lignesBatterie(tests, noms) {
-    var bm = {}, out = {}; ((tests.banc && tests.banc.modeles) || []).forEach(function (m) { bm[m.id] = m; });
-    ['flagships', 'milieu'].forEach(function (k) {
-      var g = tests.autonomie && tests.autonomie[k]; if (!g) return;
-      var v = (tests.videos || []).filter(function (x) { return x.id === g.video; })[0];
-      out[k] = { id: k, court: PROTOCOLES[k].court, editeur: v ? v.chaine : '', protocole: g.protocole, note: g.note || '', lignes: g.lignes.map(function (l) {
-        var b = l.modele ? bm[l.modele] : null; if (!b) Object.keys(bm).forEach(function (i) { if (bm[i].nom === l.nom) b = bm[i]; });
-        var id = l.modele || (b && b.id) || null;
-        return { id: id, nom: l.nom || (b && b.nom) || (noms && noms[id]) || id, mah: l.mah || (b && b.capacite_mah) || null, min: l.min };
-      }) };
-    });
-    return out;
+  /* ——— Batterie : capacité et puissance de charge annoncées (fiche technique) ——— */
+  function lignesBatterie(fiches) {
+    return (fiches || []).filter(function (f) { return f && (f.mah != null || f.watts != null); }).map(function (f) { return { id: f.id, nom: f.nom, mah: f.mah, watts: f.watts }; });
   }
   function ordonner(lignes, tri) {
-    return lignes.slice().sort(function (a, b) {
-      if (tri === 'mah') { var x = a.mah == null ? -1 : a.mah, y = b.mah == null ? -1 : b.mah; return y - x || (b.min || 0) - (a.min || 0); }
-      var m = a.min == null ? -1 : a.min, n = b.min == null ? -1 : b.min; return n - m;
-    });
+    var cle = tri === 'w' ? 'watts' : 'mah', autre = tri === 'w' ? 'mah' : 'watts';
+    return lignes.slice().sort(function (a, b) { var x = a[cle] == null ? -1 : a[cle], y = b[cle] == null ? -1 : b[cle]; return y - x || (b[autre] || 0) - (a[autre] || 0); });
   }
-  function inversions(lignes) {
-    var l = lignes.filter(function (x) { return x.mah != null && x.min != null; });
-    var rc = ordonner(l, 'mah').map(function (x) { return x.nom; }), rd = ordonner(l, 'min').map(function (x) { return x.nom; });
-    return { n: rc.filter(function (nom, i) { return rd[i] !== nom; }).length, total: l.length };
-  }
-  function exemple(lignes) {
-    var l = lignes.filter(function (x) { return x.mah != null && x.min != null; }), best = null;
-    l.forEach(function (a) { l.forEach(function (b) { if (a.mah > b.mah && b.min > a.min && (!best || b.min - a.min > best.b.min - best.a.min)) best = { a: a, b: b }; }); });
-    return best;
-  }
-  function lectureBatterie(groupe, tri) {
-    var inv = inversions(groupe.lignes), ex = exemple(groupe.lignes), t = inv.total >= 3 ? 'Capacité ou durée : ' + inv.n + ' modèle' + (inv.n > 1 ? 's' : '') + ' sur ' + inv.total + ' changent de place. ' : '';
-    if (ex) t += ex.b.nom + ' (' + fr(ex.b.mah) + ' mAh) tient ' + duree(ex.b.min) + ' : plus longtemps que ' + ex.a.nom + ' (' + fr(ex.a.mah) + ' mAh, ' + duree(ex.a.min) + '). ';
-    return t + 'Une grosse batterie aide souvent, mais ne garantit pas une longue durée.';
+  function lectureBatterie(lignes, tri) {
+    var m = ordonner(lignes, 'mah')[0], w = ordonner(lignes, 'w')[0], t = '';
+    if (m && m.mah != null) t += m.nom + ' a la plus grande batterie annoncée (' + fr(m.mah) + ' mAh). ';
+    if (w && w.watts != null) t += w.nom + (m && w.id === m.id ? ' charge aussi le plus vite' : ' charge le plus vite') + ' (' + w.watts + ' W). ';
+    return t + 'La fiche donne la taille du réservoir et la vitesse de recharge, pas la durée : celle-ci dépend de la puce, de l’écran et de vos usages.';
   }
 
   /* ——— Jeu : images par seconde ——— */
@@ -139,7 +118,7 @@
 
   var pure = { DEMOS: DEMOS, PAR_PRIORITE: PAR_PRIORITE, PAR_CRITERE: PAR_CRITERE, NATURES: NATURES, FORMATS: FORMATS, demoDe: demoDe, demoPourCritere: demoPourCritere, duree: duree, famille: famille, parseFormat: parseFormat, formatTxt: formatTxt,
     fiche: fiche, objectifs: objectifs, zoptique: zoptique, focaleEq: focaleEq, champ: champ, flou: flou, surface: surface, ratioSurface: ratioSurface, lecturePhoto: lecturePhoto,
-    lignesBatterie: lignesBatterie, ordonner: ordonner, inversions: inversions, exemple: exemple, lectureBatterie: lectureBatterie, images: images, fpsEffectif: fpsEffectif, lectureJeu: lectureJeu,
+    lignesBatterie: lignesBatterie, ordonner: ordonner, lectureBatterie: lectureBatterie, images: images, fpsEffectif: fpsEffectif, lectureJeu: lectureJeu,
     coutAn: coutAn, lignesBudget: lignesBudget, lectureBudget: lectureBudget, lectureEcran: lectureEcran };
   if (typeof document === 'undefined') { if (typeof module !== 'undefined' && module.exports) module.exports = pure; return; }
 
@@ -152,9 +131,9 @@
 
   function monter(host, opt) {
     opt = opt || {};
-    var tests = opt.tests || {}, bat = lignesBatterie(tests, opt.noms || {}), lite = document.documentElement.classList.contains('fx-lite');
+    var lite = document.documentElement.classList.contains('fx-lite');
     var S = { demo: 'ecran', manuel: false, prio: 'equilibre', f: null, comp: [],
-      ecran: { scene: 'sombre', amb: 0 }, photo: { mode: 'cadrage', z: 1, fmt: 1.3 }, bat: { grp: null, tri: 'min' }, jeu: { g: 60, d: 120, joue: !(reduit || lite) }, budget: { garder: 5 } };
+      ecran: { scene: 'sombre', amb: 0 }, photo: { mode: 'cadrage', z: 1, fmt: 1.3 }, bat: { tri: 'mah' }, jeu: { g: 60, d: 120, joue: !(reduit || lite) }, budget: { garder: 5 } };
     var raf = 0, visible = true, hzEcran = 60, mesure = false, t0 = 0, piste = 0, panneau;
 
     host.innerHTML = '<section class="dm" id="voir-la-difference" aria-labelledby="dm-titre"><div class="dm-head"><h2 class="dm-kick" id="dm-titre">Voir la différence</h2><span class="dm-badge" id="dm-badge"></span></div>' +
@@ -233,34 +212,30 @@
 
     /* ——— Batterie ——— */
     var BH = 48;
-    function groupeBat() { var k = S.bat.grp; return bat[k] || bat.flagships || bat.milieu || { lignes: [], protocole: '', note: '', court: '', editeur: '' }; }
     function lignesAff() {
-      var g = groupeBat(), l = g.lignes.slice(), f = S.f;
-      var dedans = f && l.some(function (x) { return x.id === f.id; });
-      if (f && !dedans && f.mah) l.push({ id: f.id, nom: f.nom, mah: f.mah, min: null, fantome: true });
+      var f = S.f, l = lignesBatterie((S.comp || []).concat(f ? [f] : []));
+      var vus = {}; l = l.filter(function (x) { if (vus[x.id]) return false; vus[x.id] = 1; return true; });
       return ordonner(l, S.bat.tri);
     }
     var BAT = {
-      ctl: function () { var gr = Object.keys(bat).map(function (k) { return [k, bat[k].court]; }); return seg('grp', 'Protocole de test', gr) + seg('tri', 'Classer par', [['mah', 'Capacité annoncée'], ['min', 'Durée mesurée']]); },
+      ctl: function () { return seg('tri', 'Classer par', [['mah', 'Capacité annoncée'], ['w', 'Puissance de charge']]); },
       viz: function () {
-        var l = lignesAff(), g = groupeBat(), f = S.f, maxM = Math.max.apply(null, l.map(function (x) { return x.mah || 0; }).concat([1])), maxD = Math.max.apply(null, l.map(function (x) { return x.min || 0; }).concat([1])), mode = S.bat.tri;
+        var l = lignesAff(), f = S.f, maxM = Math.max.apply(null, l.map(function (x) { return x.mah || 0; }).concat([1])), maxW = Math.max.apply(null, l.map(function (x) { return x.watts || 0; }).concat([1])), mode = S.bat.tri;
         var rows = l.map(function (x, i) {
-          var vous = f && x.id === f.id, val = mode === 'mah' ? (x.mah != null ? fr(x.mah) + ' mAh' : 'non relevée') : (x.min != null ? duree(x.min) : 'non mesuré');
-          var autre = mode === 'mah' ? (x.min != null ? 'tient ' + duree(x.min) : 'non mesuré') : (x.mah != null ? fr(x.mah) + ' mAh annoncés' : 'capacité non relevée');
-          var pct = mode === 'mah' ? (x.mah != null ? x.mah / maxM * 100 : 0) : (x.min != null ? x.min / maxD * 100 : 0);
+          var vous = f && x.id === f.id, val = mode === 'mah' ? (x.mah != null ? fr(x.mah) + ' mAh' : 'non renseignée') : (x.watts != null ? x.watts + ' W' : 'non renseignée');
+          var autre = mode === 'mah' ? (x.watts != null ? 'charge ' + x.watts + ' W' : 'charge non renseignée') : (x.mah != null ? fr(x.mah) + ' mAh annoncés' : 'capacité non renseignée');
+          var pct = mode === 'mah' ? (x.mah != null ? x.mah / maxM * 100 : 0) : (x.watts != null ? x.watts / maxW * 100 : 0);
           return '<li class="dm-row' + (vous ? ' is-you' : '') + (pct === 0 ? ' is-vide' : '') + '" style="transform:translateY(' + (i * BH) + 'px)" data-n="' + esc(x.nom) + '"><span class="dm-rn">' + esc(x.nom) + (vous ? tag('Ce modèle') : '') + '</span><span class="dm-rv">' + esc(val) + '</span><span class="dm-bar dm-bar-' + mode + '"><i style="width:' + pct.toFixed(1) + '%"></i></span><span class="dm-ra">' + esc(autre) + '</span></li>';
         }).join('');
-        return '<ol class="dm-bat" data-sig="' + esc(S.bat.grp + '|' + l.map(function (x) { return x.nom; }).sort().join(',')) + '" style="height:' + (l.length * BH) + 'px" aria-label="Téléphones testés, ' + (mode === 'mah' ? 'classés par capacité annoncée' : 'classés par durée mesurée') + '">' + rows + '</ol>' +
-          '<details class="dm-proto"><summary>Comment ça a été mesuré (' + esc(g.editeur) + ')</summary><p>' + esc(g.protocole) + '</p>' + (g.note ? '<p>' + esc(g.note) + '</p>' : '') + '</details>';
+        return '<ol class="dm-bat" data-sig="' + esc(l.map(function (x) { return x.nom; }).sort().join(',')) + '" style="height:' + (l.length * BH) + 'px" aria-label="Téléphones comparés, ' + (mode === 'mah' ? 'classés par capacité annoncée' : 'classés par puissance de charge annoncée') + '">' + rows + '</ol>' +
+          '<details class="dm-proto"><summary>D’où viennent ces valeurs (fiche technique)</summary><p>Capacité et puissance de charge annoncées par le constructeur, relevées dans la fiche du catalogue.</p><p>Aucune durée n’est mesurée ici.</p></details>';
       },
-      read: function () { return lectureBatterie(groupeBat(), S.bat.tri); },
+      read: function () { return lectureBatterie(lignesAff(), S.bat.tri); },
       you: function () {
         var f = S.f; if (!f) return '';
-        var tous = Object.keys(bat).reduce(function (a, k) { return a.concat(bat[k].lignes); }, []), m = tous.filter(function (x) { return x.id === f.id && x.min != null; })[0];
-        if (m) return f.nom + ' : ' + duree(m.min) + ' mesurés' + (m.mah ? ' pour ' + fr(m.mah) + ' mAh' : '') + ', selon le protocole de ' + (Object.keys(bat).filter(function (k) { return bat[k].lignes.indexOf(m) >= 0; }).map(function (k) { return bat[k].editeur; })[0] || 'testeur') + '.';
-        return f.nom + ' : ' + (f.mah ? fr(f.mah) + ' mAh annoncés, ' : '') + 'mais aucune durée mesurée dans nos tests. La capacité seule ne dit pas la durée.';
+        return f.nom + ' : ' + (f.mah ? fr(f.mah) + ' mAh annoncés' : 'capacité non renseignée') + (f.watts ? ', charge ' + f.watts + ' W' : '') + '. La capacité seule ne dit pas la durée.';
       },
-      not: 'La durée que vous obtiendrez : elle dépend de vos usages, de la luminosité et du réseau. Les deux protocoles (haut de gamme, milieu de gamme) ne se comparent pas entre eux. Plusieurs modèles testés étaient des versions chinoises, aux batteries plus grosses que les versions internationales.',
+      not: 'La durée que vous obtiendrez : elle dépend de vos usages, de la luminosité et du réseau. Certaines versions vendues hors d’Europe ont des batteries plus grosses que les versions internationales.',
       get: function (k) { return S.bat[k]; }, set: function (k, v) { S.bat[k] = v; }
     };
 
@@ -284,8 +259,8 @@
         });
       },
       read: function () { return lectureJeu(S.jeu.g, S.jeu.d, S.f && S.f.hz); },
-      you: function () { var f = S.f; if (!f) return ''; return f.nom + ' : ' + (f.hz ? 'écran jusqu’à ' + f.hz + ' Hz. ' : 'fréquence d’écran non renseignée. ') + 'Aucune mesure d’images par seconde pour ce modèle dans nos tests.'; },
-      not: 'La cadence réelle d’un jeu sur ce téléphone : elle dépend du jeu, de la puce et de la chauffe (dans l’un de nos tests vidéo, un jeu restait limité à 90 images par seconde malgré un écran 120 Hz). Plus d’images par seconde rend le mouvement plus lisse, mais ne rend pas à lui seul le téléphone meilleur.',
+      you: function () { var f = S.f; if (!f) return ''; return f.nom + ' : ' + (f.hz ? 'écran jusqu’à ' + f.hz + ' Hz. ' : 'fréquence d’écran non renseignée. ') + 'La fiche ne donne pas d’images par seconde réelles pour les jeux.'; },
+      not: 'La cadence réelle d’un jeu sur ce téléphone : elle dépend du jeu, de la puce et de la chauffe (un jeu peut rester limité à 60 ou 90 images par seconde malgré un écran 120 Hz). Plus d’images par seconde rend le mouvement plus lisse, mais ne rend pas à lui seul le téléphone meilleur.',
       get: function (k) { return k === 'play' ? S.jeu.joue : S.jeu[k]; },
       set: function (k, v) { if (k === 'play') S.jeu.joue = !S.jeu.joue; else S.jeu[k] = Number(v); }
     };
@@ -373,14 +348,10 @@
     /* ——— Événements ——— */
     function ouvrir(id, o) {
       if (!MODULES[id]) return; o = o || {}; var change = S.demo !== id; S.demo = id; if (o.manuel !== false) S.manuel = true;
-      if (id === 'batterie') choisirGroupe(); if (id === 'jeu') jeuDefauts(); corps();
+      if (id === 'jeu') jeuDefauts(); corps();
       if (o.focus) host.querySelector('#dm-tab-' + id).focus({ preventScroll: true });
       if (o.voir) { var s = host.querySelector('.dm'); s.scrollIntoView({ block: 'start', behavior: reduit ? 'auto' : 'smooth' }); if (o.panneau) setTimeout(function () { panneau.focus({ preventScroll: true }); }, reduit ? 0 : 450); }
       return change;
-    }
-    function choisirGroupe() {
-      var f = S.f, k = null; if (f) Object.keys(bat).forEach(function (g) { if (bat[g].lignes.some(function (x) { return x.id === f.id; })) k = g; });
-      if (!k) k = f && f.prix >= 600 && bat.flagships ? 'flagships' : bat.milieu ? 'milieu' : 'flagships'; S.bat.grp = k;
     }
     function jeuDefauts() { var hz = S.f && S.f.hz; S.jeu.g = hz && hz <= 60 ? 30 : 60; S.jeu.d = hz && hz <= 60 ? 60 : hz && hz >= 120 ? 120 : 90; }
     host.querySelector('.dm-tabs').addEventListener('click', function (e) { var b = e.target.closest('.dm-tab'); if (b) ouvrir(b.getAttribute('data-d'), { focus: false }); });
@@ -400,11 +371,11 @@
       ouvrir: ouvrir,
       courant: function () { return S.demo; },
       nature: function () { return (DEMOS.filter(function (d) { return d.id === S.demo; })[0] || {}).nature; },
-      definirPriorite: function (p) { S.prio = p; S.manuel = false; S.demo = demoDe(p); if (S.demo === 'batterie') choisirGroupe(); if (S.demo === 'jeu') jeuDefauts(); corps(); },
+      definirPriorite: function (p) { S.prio = p; S.manuel = false; S.demo = demoDe(p); if (S.demo === 'jeu') jeuDefauts(); corps(); },
       definirTelephone: function (f, comparables) {
         S.f = f; S.comp = (comparables || []).slice(0, 4); if (f && !S.comp.some(function (x) { return x.id === f.id; })) S.comp.unshift(f); else if (f) S.comp.sort(function (a, b) { return a.id === f.id ? -1 : b.id === f.id ? 1 : 0; });
         var ult = f && f.ultra ? 0.5 : 1; if (S.photo.z < ult) S.photo.z = ult;
-        if (S.demo === 'batterie') choisirGroupe(); if (S.demo === 'jeu') jeuDefauts(); corps();
+        if (S.demo === 'jeu') jeuDefauts(); corps();
       },
       etat: function () { return S; }
     };

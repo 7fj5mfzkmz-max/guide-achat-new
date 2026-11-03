@@ -285,3 +285,16 @@ html.sp-pertinence .gc-frame .gc-grid { margin-top: 18px; }
 html.sp-pertinence .gc-frame .gc-card { border: 0; padding: 14px 0 0; border-top: 1px solid var(--gc-ink); }
 html.sp-pertinence .gc-frame .gc-card::after { display: none; }
 html.sp-pertinence #gc-demo { margin-top: 18px; }
+
+/* Quatre modèles classés par compatibilité (caractéristiques techniques seulement) */
+html.sp-pertinence .gc-liste { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+html.sp-pertinence .gc-liste > li { margin: 0; min-width: 0; }
+html.sp-pertinence .gc-liste .gc-card { border: 2px solid var(--gc-ink); padding: 14px 14px 16px; }
+html.sp-pertinence .gc-liste .gc-card[data-focus="1"] { box-shadow: 4px 4px 0 var(--gc-ink); }
+html.sp-pertinence .gc-compat { font-weight: 800; font-size: 1.25em; }
+html.sp-pertinence .gc-gauge { margin-top: 10px; }
+html.sp-pertinence .gc-id, html.sp-pertinence .gc-price { min-width: 0; }
+html.sp-pertinence .gc-prix { display: inline-block; max-width: 100%; overflow-wrap: anywhere; white-space: normal; font-size: 20px; line-height: 1.2; }
+html.sp-pertinence .gc-lim .gc-sign { opacity: .7; }
+html.sp-pertinence .gc-card .gc-btn { margin-top: 12px; }
+html.sp-pertinence .gc-card .gc-specs { margin: 8px 0 0; }

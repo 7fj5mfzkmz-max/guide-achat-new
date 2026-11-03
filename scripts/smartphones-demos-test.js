@@ -1,21 +1,19 @@
 'use strict';
 /* « Voir la différence » (assets/js/smartphones-demos.js), partie pure : nature de chaque démonstration, données reprises telles quelles,
-   aucun mélange de protocoles, calculs vérifiables, et aucune promesse du genre « plus grand = toujours meilleur ». Voir aussi smartphones-conseiller-ui-test.js (navigateur). */
+   aucun mélange de protocoles, calculs vérifiables, et aucune promesse du genre « plus grand = toujours meilleur ». Voir aussi smartphones-parcours-ui-test.js (navigateur). */
 const assert = require('node:assert/strict');
 const D = require('../assets/js/smartphones-demos.js');
-const { charger } = require('../tools/smartphones/charger-pertinence.js');
-const E = require('../assets/js/smartphones-pertinence.js');
-const donnees = charger(), moteur = E.creer(donnees), tests = donnees.tests;
+const produits = require('../data/smartphones.json').produits;
 let ok = 0;
 const t = (nom, fn) => { try { fn(); ok++; console.log('OK    ' + nom); } catch (e) { console.error('ÉCHEC ' + nom + '\n      → ' + String(e.message).split('\n')[0]); process.exitCode = 1; } };
 const ID_A = 'oneplus-oneplus-15', ID_B = 'google-pixel-9a';   // fiches du catalogue actif (146 modèles)
-const pool = id => moteur.pool[moteur.idx[id]], noms = Object.fromEntries(moteur.pool.map(p => [p.id, p.nom]));
+const pool = id => produits.find(p => p.id === id);
 
-t('cinq démonstrations, nature déclarée : illustration, mesure de testeur ou calcul', () => {
+t('cinq démonstrations, nature déclarée : illustration, fiche technique ou calcul', () => {
   assert.deepEqual(D.DEMOS.map(d => d.id), ['ecran', 'photo', 'batterie', 'jeu', 'budget']);
-  assert.deepEqual(D.DEMOS.map(d => d.nature), ['illustration', 'illustration', 'mesure', 'illustration', 'calcul']);
+  assert.deepEqual(D.DEMOS.map(d => d.nature), ['illustration', 'illustration', 'fiche', 'illustration', 'calcul']);
   D.DEMOS.forEach(d => { assert.ok(D.NATURES[d.nature].badge && D.NATURES[d.nature].texte, d.id); assert.match(d.q, /\?$/); });
-  assert.match(D.NATURES.illustration.texte, /pas une mesure/); assert.match(D.NATURES.calcul.texte, /pas une mesure/); assert.match(D.NATURES.mesure.texte, /pas refait|n’a pas refait|ne les a pas refaits/);
+  assert.match(D.NATURES.illustration.texte, /pas une mesure/); assert.match(D.NATURES.calcul.texte, /pas une mesure/); assert.match(D.NATURES.fiche.texte, /pas une durée mesurée/);
 });
 t('la démonstration mise en avant suit la priorité ; un critère renvoie à sa démonstration', () => {
   assert.deepEqual(['equilibre', 'autonomie', 'photo', 'jeu', 'prix'].map(D.demoDe), ['ecran', 'batterie', 'photo', 'jeu', 'budget']);
@@ -23,11 +21,11 @@ t('la démonstration mise en avant suit la priorité ; un critère renvoie à sa
   assert.deepEqual(['ecran', 'batterie', 'photo', 'performance', 'suivi', 'prix', 'robustesse'].map(D.demoPourCritere), ['ecran', 'batterie', 'photo', 'jeu', 'budget', 'budget', null]);
 });
 t('fiche : seulement ce que la fiche porte (tout le catalogue actif, aucun champ inventé)', () => {
-  moteur.pool.forEach(p => {
+  produits.forEach(p => {
     const f = D.fiche(p); assert.equal(f.id, p.id); assert.equal(f.prix, p.prix_indicatif);
     assert.ok(f.famille === 'oled' || f.famille === 'lcd', p.id + ' ' + f.tech); assert.ok(f.hz > 0 && f.mah > 0, p.id);
     assert.equal(f.mah, p.compatibilite.batterie.capacite_mah); assert.ok(f.ans == null || f.ans >= 0);
-    assert.equal(f.tele, !!(p.compatibilite.photo.teleobjectif && p.compatibilite.photo.teleobjectif.present)); assert.equal(f.zoom, (p.compatibilite.photo.teleobjectif || {}).zoom || null);
+    assert.equal(f.tele, /t[ée]l[ée]objectif/i.test(p.caracteristiques.photo)); assert.equal(f.watts, p.compatibilite.batterie.recharge_watts);
   });
   const f = D.fiche(pool(ID_A)); assert.equal(f.famille, 'oled'); assert.equal(D.famille('pOLED'), 'oled'); assert.equal(D.famille('IPS LCD'), 'lcd'); assert.equal(D.famille(null), null);
 });
@@ -45,31 +43,14 @@ t('zoom : focale équivalente et champ de vision, objectifs réels, flou seuleme
   assert.ok(D.flou(avec, 10) > D.flou(avec, 4), 'le flou croît avec le recadrage');
   assert.equal(D.zoptique(avec, 2.9), 1); assert.equal(D.zoptique(avec, 3), 3); assert.equal(D.zoptique(sans, 0.5), 1);
 });
-t('batterie : deux protocoles séparés, durées et capacités reprises du fichier de tests, jamais mélangées', () => {
-  const g = D.lignesBatterie(tests, noms); assert.deepEqual(Object.keys(g), ['flagships', 'milieu']);
-  assert.equal(g.flagships.lignes.length, tests.autonomie.flagships.lignes.length); assert.equal(g.milieu.lignes.length, tests.autonomie.milieu.lignes.length);
-  const noms1 = new Set(g.flagships.lignes.map(l => l.nom)), noms2 = g.milieu.lignes.map(l => l.nom); noms2.forEach(n => assert.ok(!noms1.has(n), n + ' dans les deux protocoles'));
-  assert.equal(g.flagships.editeur, 'Techmo'); assert.equal(g.milieu.editeur, 'TechNick'); assert.match(g.flagships.protocole, /500 nits/); assert.match(g.milieu.protocole, /425 lux/);
-  tests.autonomie.flagships.lignes.forEach((l, i) => assert.equal(g.flagships.lignes[i].min, l.min)); tests.autonomie.milieu.lignes.forEach((l, i) => assert.equal(g.milieu.lignes[i].min, l.min));
-  const banc = Object.fromEntries((tests.banc.modeles || []).map(m => [m.id, m]));
-  [].concat(tests.autonomie.flagships.lignes, tests.autonomie.milieu.lignes).forEach(l => { const e = Object.values(g).flatMap(x => x.lignes).find(x => x.nom === (l.nom || (banc[l.modele] || {}).nom || noms[l.modele]) || x.id === l.modele); const attendu = l.mah || (banc[l.modele] && banc[l.modele].capacite_mah) || null; assert.equal(e.mah, attendu, 'capacité reprise du fichier, jamais estimée : ' + e.nom); });
-  g.flagships.lignes.concat(g.milieu.lignes).forEach(l => assert.ok(l.nom && l.min > 0 && (l.mah == null || l.mah > 0)));
-  assert.equal(D.duree(843), '14 h 03'); assert.equal(D.duree(1123), '18 h 43');
-});
-t('batterie : classement par capacité ou par durée, désaccords comptés, exemple vérifiable', () => {
-  const g = D.lignesBatterie(tests, noms);
-  Object.values(g).forEach(gr => {
-    const parMin = D.ordonner(gr.lignes, 'min'), parMah = D.ordonner(gr.lignes.filter(l => l.mah), 'mah');
-    for (let i = 1; i < parMin.length; i++) assert.ok(parMin[i - 1].min >= parMin[i].min); for (let i = 1; i < parMah.length; i++) assert.ok(parMah[i - 1].mah >= parMah[i].mah);
-    assert.equal(D.ordonner(gr.lignes.concat([{ nom: 'X', mah: 9999, min: null }]), 'min').pop().nom, 'X', 'non mesuré en dernier');
-    const inv = D.inversions(gr.lignes); assert.ok(inv.n >= 0 && inv.n <= inv.total); const ex = D.exemple(gr.lignes);
-    if (ex) { assert.ok(ex.a.mah > ex.b.mah && ex.b.min > ex.a.min, 'une petite batterie qui dure plus'); assert.ok(inv.n >= 2); }
-    const l = D.lectureBatterie(gr, 'min'); assert.match(l, /ne garantit pas/); assert.ok(!/NaN|undefined/.test(l));
-  });
-  // Avec moins de trois modèles à la fois mesurés et d'une capacité connue, aucune phrase sur les « désaccords » n'est affichée (rien à comparer).
-  Object.values(g).forEach(gr => { const inv = D.inversions(gr.lignes); assert.equal(/changent de place/.test(D.lectureBatterie(gr, 'min')), inv.total >= 3, 'phrase seulement si assez de modèles comparables'); });
-  const six = { lignes: [{ nom: 'A', mah: 5000, min: 600 }, { nom: 'B', mah: 4000, min: 700 }, { nom: 'C', mah: 3000, min: 650 }] };
-  assert.equal(D.inversions(six.lignes).total, 3); assert.ok(D.inversions(six.lignes).n > 0); assert.match(D.lectureBatterie(six, 'min'), /changent de place/);
+t('batterie : capacité et charge reprises de la fiche, classement par capacité ou par charge, jamais une durée', () => {
+  const fiches = produits.slice(0, 40).map(D.fiche), l = D.lignesBatterie(fiches);
+  assert.equal(l.length, 40); l.forEach((x, i) => { assert.equal(x.mah, fiches[i].mah); assert.equal(x.watts, fiches[i].watts); });
+  const parMah = D.ordonner(l, 'mah'), parW = D.ordonner(l, 'w');
+  for (let i = 1; i < parMah.length; i++) assert.ok(parMah[i - 1].mah >= parMah[i].mah); for (let i = 1; i < parW.length; i++) assert.ok(parW[i - 1].watts >= parW[i].watts);
+  assert.equal(D.ordonner(l.concat([{ nom: 'X', mah: null, watts: null }]), 'mah').pop().nom, 'X', 'donnée absente en dernier');
+  ['mah', 'w'].forEach(m => { const t = D.lectureBatterie(l, m); assert.match(t, /pas la durée/); assert.ok(!/NaN|undefined/.test(t)); });
+  assert.deepEqual(D.lignesBatterie([{ id: 'v', nom: 'V', mah: null, watts: null }]), [], 'sans donnée : pas de ligne');
 });
 t('jeu : images reçues en 1/10 de seconde, écran limité, phrase sans promesse', () => {
   assert.equal(D.images(30, 100), 3); assert.equal(D.images(120, 100), 12); assert.equal(D.fpsEffectif(120, 60), 60); assert.equal(D.fpsEffectif(60, 120), 60); assert.equal(D.fpsEffectif(90, null), 90);
@@ -94,10 +75,10 @@ t('photo : la capacité d’un capteur ne garantit pas la photo ; le recadrage e
   assert.match(D.lecturePhoto('cadrage', { ultra: true, tele: true, zoom: 3, nom: 'X' }, 3, 1), /téléobjectif/); assert.match(D.lecturePhoto('cadrage', { ultra: false, tele: false, nom: 'X' }, 5, 1), /recadre l’image/);
 });
 t('aucune démonstration ne promet « toujours meilleur » (écran, capteur, Hz, batterie)', () => {
-  const g = D.lignesBatterie(tests, noms), f = D.fiche(pool(ID_A)), tous = [];
+  const g = D.lignesBatterie(produits.slice(0, 10).map(D.fiche)), f = D.fiche(pool(ID_A)), tous = [];
   [0, 40, 90].forEach(a => ['sombre', 'claire'].forEach(s => tous.push(D.lectureEcran(s, a, f))));
   [0.5, 1, 3, 10].forEach(z => tous.push(D.lecturePhoto('cadrage', f, z, 1))); D.FORMATS.forEach(x => tous.push(D.lecturePhoto('capteur', f, 1, x)));
-  Object.values(g).forEach(gr => ['mah', 'min'].forEach(m => tous.push(D.lectureBatterie(gr, m)))); [[30, 60], [60, 120], [120, 120]].forEach(([a, b]) => [60, 120, null].forEach(h => tous.push(D.lectureJeu(a, b, h))));
+  ['mah', 'w'].forEach(m => tous.push(D.lectureBatterie(g, m))); [[30, 60], [60, 120], [120, 120]].forEach(([a, b]) => [60, 120, null].forEach(h => tous.push(D.lectureJeu(a, b, h))));
   tous.push(D.lectureBudget(D.lignesBudget([ID_A, ID_B].map(id => D.fiche(pool(id))), 5), 5));
   tous.forEach(x => { assert.ok(x && !/NaN|undefined|null/.test(x), x); assert.ok(!/toujours|forcément|automatiquement|garantit (une|la|de)\b/i.test(x), x); });
 });

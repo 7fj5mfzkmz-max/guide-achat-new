@@ -1,5 +1,0 @@
-{
-  "version": 1,
-  "note": "Observations ajoutées par les imports (format : docs/SMARTPHONES-IMPORT-PREUVES.md). Fichier en ajout seulement : on corrige une observation en changeant son statut (valide, a_verifier, rejete) avec un motif, jamais en modifiant une note. Les importeurs existants peuvent continuer à écrire data/smartphones-tests.json.",
-  "observations": []
-}

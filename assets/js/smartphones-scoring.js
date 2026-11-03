@@ -19,7 +19,6 @@
   ];
 
   var SCORE_CAP = 9;
-  var TEST_BONUS = 0.01;      // départage seulement : un test ne doit pas faire remonter un modèle qui correspond moins bien
   var PROFILE_WEIGHT = 0.02;  // idem pour la note de profil (0 à 0,02) ; sans note : 0,01
 
   function esc(v) {
@@ -253,7 +252,7 @@
   function completedCategories(state) { return CRITERIA.filter(function (criterion) { return categoryComplete(state, criterion); }); }
 
   function rangScore(x) {
-    var bonus = (x.profile != null ? x.profile / 10 * PROFILE_WEIGHT : PROFILE_WEIGHT / 2) + (x.p.tests ? TEST_BONUS : 0);
+    var bonus = (x.profile != null ? x.profile / 10 * PROFILE_WEIGHT : PROFILE_WEIGHT / 2);
     return Math.round((x.m.score + bonus) / 0.03);
   }
   function computeMatch(p, state) {
@@ -448,12 +447,11 @@
       var verdict = pct >= 85 ? ['is-good','Très proche de votre sélection'] : pct >= 70 ? ['is-warn','Proche, avec des compromis'] : ['is-bad','Correspondance partielle'];
       var why = '<details class="criteria-why"><summary>Pourquoi ce résultat ?</summary><ul>' + rows.map(function(r){return '<li><b>'+esc(r.name)+' :</b> '+esc(r.have)+', '+esc(r.verdict.toLowerCase())+(r.want?' (votre choix : '+esc(r.want)+')':'')+'</li>';}).join('') + '</ul></details>';
       var meta = [priceText(x.p), x.p.annee_sortie ? "sortie " + esc(x.p.annee_sortie) : ""].filter(Boolean).join(" · ");
-      var proof = testProof(x.p);
       article.innerHTML =
         '<div class="criteria-recommendation-top"><span class="criteria-recommendation-brand">' + esc(x.p.marque || "") + '</span><span class="criteria-recommendation-score">' + pct + ' %</span></div>' +
         '<h4>' + esc(x.p.nom || "Modèle") + '</h4>' +
         '<span class="criteria-verdict ' + verdict[0] + '">' + esc(verdict[1]) + '</span>' +
-        '<p class="criteria-recommendation-meta">' + meta + '</p>' + proof +
+        '<p class="criteria-recommendation-meta">' + meta + '</p>' +
         '<ul class="match-chips">' + chips + '</ul>' + why +
         '<div class="criteria-recommendation-foot">' +
           (x.p.nom ? '<a class="criteria-recommendation-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="' + esc(idealoUrl(x.p)) + '" target="_blank" rel="noopener noreferrer">Acheter au meilleur prix · Idealo ↗</a>' : '') +
@@ -475,17 +473,6 @@
     if (p.prix_indicatif) return "≈ " + esc(Number(p.prix_indicatif).toLocaleString("fr-FR")) + " €";
     if (p.prix_usd) return "≈ " + esc(String(p.prix_usd)) + " $ (prix US)";
     return "prix à vérifier";
-  }
-  function hoursText(min) { return Math.floor(min / 60) + " h " + String(min % 60).padStart(2, "0"); }
-  /* Un test publié se voit dans le classement : étiquette, mesure relevée, source. */
-  function testProof(p) {
-    var t = p.tests && p.tests[0];
-    if (!t) return "";
-    var m = t.mesures || {}, line = [];
-    if (m.autonomie_min) line.push("autonomie mesurée : " + hoursText(m.autonomie_min));
-    if (m.autonomie_globale_min) line.push("autonomie mesurée : " + hoursText(m.autonomie_globale_min));
-    if (t.verdict) line.push("verdict : " + t.verdict);
-    return '<p class="criteria-test"><b>Testé</b> <span>' + esc(t.chaine) + (line.length ? " · " + esc(line.join(" · ")) : "") + '</span></p>';
   }
 
   function profileLabel(profile) {

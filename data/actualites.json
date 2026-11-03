@@ -349,31 +349,6 @@
       "lien": "smartphones.html"
     },
     {
-      "id": "tests-nouveau-2026-10-30",
-      "date": "2026-10-30",
-      "cat": "smartphones",
-      "source": "tests",
-      "type": "nouveau",
-      "nombre": 12,
-      "noms": [
-        "Vivo V80 Lite 5G",
-        "HONOR X9d",
-        "HONOR 600 Pro",
-        "POCO X8",
-        "Apple iPhone 17",
-        "Apple iPhone 18 Pro Max",
-        "Vivo X500 Pro Max",
-        "POCO F9 Ultra",
-        "POCO F9 Pro",
-        "Huawei Pura 90s Pro Max",
-        "Xiaomi Redmi Note 15 Pro 5G",
-        "Honor Magic 8 Lite"
-      ],
-      "titre": "Tests 2026 : 12 modèles ajoutés au dossier",
-      "resume": "Au catalogue : Vivo V80 Lite 5G, HONOR X9d, HONOR 600 Pro, POCO X8 et 8 autres.",
-      "lien": "smartphones.html#tests-2026"
-    },
-    {
       "id": "smartphones-maj-2026-10-28",
       "date": "2026-10-28",
       "cat": "smartphones",
@@ -590,23 +565,6 @@
       "lien": "smartphones.html"
     },
     {
-      "id": "tests-maj-2026-10-27",
-      "date": "2026-10-27",
-      "cat": "smartphones",
-      "source": "tests",
-      "type": "maj",
-      "nombre": 4,
-      "noms": [
-        "OnePlus 16",
-        "RedMagic 11S Pro",
-        "Samsung Galaxy S26 Ultra",
-        "Apple iPhone 17 Pro Max"
-      ],
-      "titre": "Tests 2026 : 4 fiches revues",
-      "resume": "Prix, caractéristiques ou notes revus : OnePlus 16, RedMagic 11S Pro, Samsung Galaxy S26 Ultra, Apple iPhone 17 Pro Max.",
-      "lien": "smartphones.html#tests-2026"
-    },
-    {
       "id": "smartphones-nouveau-2026-10-26",
       "date": "2026-10-26",
       "cat": "smartphones",
@@ -725,20 +683,6 @@
       "titre": "93 fiches smartphones mises à jour",
       "resume": "Prix, caractéristiques ou notes revus : OnePlus 15, ROG Phone 9, Galaxy Z Fold8, Pixel 10 Pro XL et 89 autres.",
       "lien": "smartphones.html"
-    },
-    {
-      "id": "tests-maj-2026-10-25",
-      "date": "2026-10-25",
-      "cat": "smartphones",
-      "source": "tests",
-      "type": "maj",
-      "nombre": 1,
-      "noms": [
-        "OnePlus 16"
-      ],
-      "titre": "Tests 2026 : 1 fiche revue",
-      "resume": "Prix, caractéristiques ou notes revus : OnePlus 16.",
-      "lien": "smartphones.html#tests-2026"
     },
     {
       "id": "article-2026-10-25-les-tests-vide-o-entrent-dans-le-classem",
@@ -995,31 +939,6 @@
       "titre": "4 nouvelles batteries externes",
       "resume": "Au catalogue : Samsung EB-P4520, Anker A1383 · 20K 87W, UGREEN Nexode · 12K 100W, UGREEN Nexode · 20K 130W.",
       "lien": "batteries-externes.html"
-    },
-    {
-      "id": "tests-nouveau-2026-10-23",
-      "date": "2026-10-23",
-      "cat": "smartphones",
-      "source": "tests",
-      "type": "nouveau",
-      "nombre": 12,
-      "noms": [
-        "Google Pixel 11 Pro",
-        "Apple iPhone 18 Pro",
-        "OPPO Find X10 Pro Max",
-        "Vivo V80",
-        "OnePlus 16",
-        "RedMagic 11S Pro",
-        "Samsung Galaxy S26 Ultra",
-        "Apple iPhone 17 Pro Max",
-        "Samsung Galaxy A57",
-        "Samsung Galaxy A37",
-        "Samsung Galaxy A27",
-        "Samsung Galaxy A17"
-      ],
-      "titre": "Tests 2026 : 12 modèles ajoutés au dossier",
-      "resume": "Au catalogue : Google Pixel 11 Pro, Apple iPhone 18 Pro, OPPO Find X10 Pro Max, Vivo V80 et 8 autres.",
-      "lien": "smartphones.html#tests-2026"
     },
     {
       "id": "smartphones-nouveau-2026-10-21",
