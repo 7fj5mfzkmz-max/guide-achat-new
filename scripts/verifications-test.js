@@ -1,9 +1,10 @@
 'use strict';
+const DD = process.env.SMARTPHONES_DATA_DIR ? require('node:path').resolve(__dirname, '..', process.env.SMARTPHONES_DATA_DIR) : require('node:path').join(__dirname, '..', 'data');   // ancien catalogue figé pour ces tests de l'ancienne chaîne d'import
 /* Fiches vérifiées sur sources : chaque fiche citée a au moins deux sources, le catalogue reflète le fichier de vérifications,
    et aucune fiche éligible ne repose sur des caractéristiques non confirmées. */
 const assert = require('node:assert/strict');
-const cat = JSON.parse(JSON.stringify(require('../data/smartphones.json')));
-const ver = require('../data/smartphones-verifications.json');
+const cat = JSON.parse(JSON.stringify(require(DD + '/smartphones.json')));
+const ver = require(DD + '/smartphones-verifications.json');
 const { appliquer } = require('../tools/smartphones/verifier-fiches.js');
 let ok = 0, ko = 0;
 function check(label, fn) { try { fn(); ok++; } catch (e) { ko++; console.error('✗ ' + label + '\n    ' + String(e.message).split('\n')[0]); } }

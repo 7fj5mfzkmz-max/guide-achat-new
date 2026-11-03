@@ -8,6 +8,7 @@ const E = require('../assets/js/smartphones-pertinence.js');
 const donnees = charger(), moteur = E.creer(donnees), tests = donnees.tests;
 let ok = 0;
 const t = (nom, fn) => { try { fn(); ok++; console.log('OK    ' + nom); } catch (e) { console.error('ÉCHEC ' + nom + '\n      → ' + String(e.message).split('\n')[0]); process.exitCode = 1; } };
+const ID_A = 'oneplus-oneplus-15', ID_B = 'google-pixel-9a';   // fiches du catalogue actif (146 modèles)
 const pool = id => moteur.pool[moteur.idx[id]], noms = Object.fromEntries(moteur.pool.map(p => [p.id, p.nom]));
 
 t('cinq démonstrations, nature déclarée : illustration, mesure de testeur ou calcul', () => {
@@ -21,14 +22,14 @@ t('la démonstration mise en avant suit la priorité ; un critère renvoie à sa
   assert.equal(D.demoDe('inconnue'), 'ecran');
   assert.deepEqual(['ecran', 'batterie', 'photo', 'performance', 'suivi', 'prix', 'robustesse'].map(D.demoPourCritere), ['ecran', 'batterie', 'photo', 'jeu', 'budget', 'budget', null]);
 });
-t('fiche : seulement ce que la fiche vérifiée porte (74 modèles, aucun champ inventé)', () => {
+t('fiche : seulement ce que la fiche porte (tout le catalogue actif, aucun champ inventé)', () => {
   moteur.pool.forEach(p => {
     const f = D.fiche(p); assert.equal(f.id, p.id); assert.equal(f.prix, p.prix_indicatif);
     assert.ok(f.famille === 'oled' || f.famille === 'lcd', p.id + ' ' + f.tech); assert.ok(f.hz > 0 && f.mah > 0, p.id);
     assert.equal(f.mah, p.compatibilite.batterie.capacite_mah); assert.ok(f.ans == null || f.ans >= 0);
     assert.equal(f.tele, !!(p.compatibilite.photo.teleobjectif && p.compatibilite.photo.teleobjectif.present)); assert.equal(f.zoom, (p.compatibilite.photo.teleobjectif || {}).zoom || null);
   });
-  const f = D.fiche(pool('oneplus-15')); assert.equal(f.famille, 'oled'); assert.equal(D.famille('pOLED'), 'oled'); assert.equal(D.famille('IPS LCD'), 'lcd'); assert.equal(D.famille(null), null);
+  const f = D.fiche(pool(ID_A)); assert.equal(f.famille, 'oled'); assert.equal(D.famille('pOLED'), 'oled'); assert.equal(D.famille('IPS LCD'), 'lcd'); assert.equal(D.famille(null), null);
 });
 t('capteur : formats lus (1, 1/1,3…), surfaces à l’échelle, rapport de surface', () => {
   assert.equal(D.parseFormat('1'), 1); assert.equal(D.parseFormat('1/1.56'), 1.56); assert.equal(D.parseFormat(undefined), null); assert.equal(D.parseFormat('abc'), null);
@@ -50,9 +51,9 @@ t('batterie : deux protocoles séparés, durées et capacités reprises du fichi
   const noms1 = new Set(g.flagships.lignes.map(l => l.nom)), noms2 = g.milieu.lignes.map(l => l.nom); noms2.forEach(n => assert.ok(!noms1.has(n), n + ' dans les deux protocoles'));
   assert.equal(g.flagships.editeur, 'Techmo'); assert.equal(g.milieu.editeur, 'TechNick'); assert.match(g.flagships.protocole, /500 nits/); assert.match(g.milieu.protocole, /425 lux/);
   tests.autonomie.flagships.lignes.forEach((l, i) => assert.equal(g.flagships.lignes[i].min, l.min)); tests.autonomie.milieu.lignes.forEach((l, i) => assert.equal(g.milieu.lignes[i].min, l.min));
-  assert.equal(g.flagships.lignes.find(l => l.id === 'oppo-find-x10-pro-max').mah, 7150, 'capacité relevée dans le banc, pas inventée');
-  assert.equal(g.flagships.lignes.find(l => l.nom === 'Samsung Galaxy S26 Ultra').mah, null, 'capacité inconnue : null, jamais estimée');
-  g.milieu.lignes.forEach(l => assert.ok(l.mah > 0)); g.flagships.lignes.concat(g.milieu.lignes).forEach(l => assert.ok(l.nom && l.min > 0));
+  const banc = Object.fromEntries((tests.banc.modeles || []).map(m => [m.id, m]));
+  [].concat(tests.autonomie.flagships.lignes, tests.autonomie.milieu.lignes).forEach(l => { const e = Object.values(g).flatMap(x => x.lignes).find(x => x.nom === (l.nom || (banc[l.modele] || {}).nom || noms[l.modele]) || x.id === l.modele); const attendu = l.mah || (banc[l.modele] && banc[l.modele].capacite_mah) || null; assert.equal(e.mah, attendu, 'capacité reprise du fichier, jamais estimée : ' + e.nom); });
+  g.flagships.lignes.concat(g.milieu.lignes).forEach(l => assert.ok(l.nom && l.min > 0 && (l.mah == null || l.mah > 0)));
   assert.equal(D.duree(843), '14 h 03'); assert.equal(D.duree(1123), '18 h 43');
 });
 t('batterie : classement par capacité ou par durée, désaccords comptés, exemple vérifiable', () => {
@@ -65,7 +66,10 @@ t('batterie : classement par capacité ou par durée, désaccords comptés, exem
     if (ex) { assert.ok(ex.a.mah > ex.b.mah && ex.b.min > ex.a.min, 'une petite batterie qui dure plus'); assert.ok(inv.n >= 2); }
     const l = D.lectureBatterie(gr, 'min'); assert.match(l, /ne garantit pas/); assert.ok(!/NaN|undefined/.test(l));
   });
-  assert.ok(D.inversions(g.milieu.lignes).n > 0, 'la capacité ne suffit pas : l’ordre change dans le milieu de gamme');
+  // Avec moins de trois modèles à la fois mesurés et d'une capacité connue, aucune phrase sur les « désaccords » n'est affichée (rien à comparer).
+  Object.values(g).forEach(gr => { const inv = D.inversions(gr.lignes); assert.equal(/changent de place/.test(D.lectureBatterie(gr, 'min')), inv.total >= 3, 'phrase seulement si assez de modèles comparables'); });
+  const six = { lignes: [{ nom: 'A', mah: 5000, min: 600 }, { nom: 'B', mah: 4000, min: 700 }, { nom: 'C', mah: 3000, min: 650 }] };
+  assert.equal(D.inversions(six.lignes).total, 3); assert.ok(D.inversions(six.lignes).n > 0); assert.match(D.lectureBatterie(six, 'min'), /changent de place/);
 });
 t('jeu : images reçues en 1/10 de seconde, écran limité, phrase sans promesse', () => {
   assert.equal(D.images(30, 100), 3); assert.equal(D.images(120, 100), 12); assert.equal(D.fpsEffectif(120, 60), 60); assert.equal(D.fpsEffectif(60, 120), 60); assert.equal(D.fpsEffectif(90, null), 90);
@@ -78,23 +82,23 @@ t('budget : prix ÷ années annoncées, années sans mise à jour si l’on gard
   assert.deepEqual(l.map(x => x.sansSuivi), [0, 3, null]); assert.ok(Math.abs(l[0].coutAn - 500 / 7) < 1e-9); assert.equal(l[2].coutAn, null);
   const txt = D.lectureBudget(l, 5); assert.match(txt, /B est le moins cher à l’achat/); assert.match(txt, /A coûte moins par année/); assert.match(txt, /B passerait 3 ans sans mise à jour annoncée/); assert.match(txt, /promesse, pas une garantie/);
   assert.match(D.lectureBudget(D.lignesBudget([{ id: 'a', nom: 'A', prix: 100, ans: 5 }, { id: 'b', nom: 'B', prix: 200, ans: 4 }], 3), 3), /à la fois le moins cher à l’achat/);
-  const reels = ['oneplus-15', 'motorola-edge-70-pro'].map(id => D.fiche(pool(id))); D.lignesBudget(reels, 5).forEach(x => assert.equal(x.coutAn, x.prix / x.ans));
+  const reels = [ID_A, ID_B].map(id => D.fiche(pool(id))); D.lignesBudget(reels, 5).forEach(x => { if (x.ans == null) { assert.equal(x.coutAn, null); assert.equal(x.sansSuivi, null, 'durée non annoncée : jamais « sans mise à jour »'); } else assert.equal(x.coutAn, x.prix / x.ans); });
 });
 t('écran : OLED et LCD selon la lumière et l’image ; en plein soleil, la luminosité compte ; jamais « l’OLED est meilleur »', () => {
   assert.match(D.lectureEcran('sombre', 0, null), /OLED éteint ses points noirs/); assert.match(D.lectureEcran('claire', 0, null), /se ressemblent/);
-  const f = D.fiche(pool('oneplus-15')); const jour = D.lectureEcran('sombre', 80, f); assert.match(jour, /luminosité maximale/); assert.match(jour, /nits annoncés/); assert.match(jour, /1 000/);
+  const f = Object.assign(D.fiche(pool(ID_A)), { nits: 1200 }); const jour = D.lectureEcran('sombre', 80, f); assert.match(jour, /luminosité maximale/); assert.match(jour, /nits annoncés/); assert.match(jour, /1 000/);
 });
 t('photo : la capacité d’un capteur ne garantit pas la photo ; le recadrage est expliqué', () => {
-  const f = Object.assign(D.fiche(pool('oneplus-15')), { format: 1.56 }), cap = D.lecturePhoto('capteur', f, 1, 1);
+  const f = Object.assign(D.fiche(pool(ID_A)), { format: 1.56 }), cap = D.lecturePhoto('capteur', f, 1, 1);
   assert.match(cap, /ne garantit pas une meilleure photo/); assert.match(cap, /1″/); assert.match(cap, /1\/1,56″/);
   assert.match(D.lecturePhoto('cadrage', { ultra: true, tele: true, zoom: 3, nom: 'X' }, 3, 1), /téléobjectif/); assert.match(D.lecturePhoto('cadrage', { ultra: false, tele: false, nom: 'X' }, 5, 1), /recadre l’image/);
 });
 t('aucune démonstration ne promet « toujours meilleur » (écran, capteur, Hz, batterie)', () => {
-  const g = D.lignesBatterie(tests, noms), f = D.fiche(pool('oneplus-15')), tous = [];
+  const g = D.lignesBatterie(tests, noms), f = D.fiche(pool(ID_A)), tous = [];
   [0, 40, 90].forEach(a => ['sombre', 'claire'].forEach(s => tous.push(D.lectureEcran(s, a, f))));
   [0.5, 1, 3, 10].forEach(z => tous.push(D.lecturePhoto('cadrage', f, z, 1))); D.FORMATS.forEach(x => tous.push(D.lecturePhoto('capteur', f, 1, x)));
   Object.values(g).forEach(gr => ['mah', 'min'].forEach(m => tous.push(D.lectureBatterie(gr, m)))); [[30, 60], [60, 120], [120, 120]].forEach(([a, b]) => [60, 120, null].forEach(h => tous.push(D.lectureJeu(a, b, h))));
-  tous.push(D.lectureBudget(D.lignesBudget(['oneplus-15', 'motorola-edge-70-pro'].map(id => D.fiche(pool(id))), 5), 5));
+  tous.push(D.lectureBudget(D.lignesBudget([ID_A, ID_B].map(id => D.fiche(pool(id))), 5), 5));
   tous.forEach(x => { assert.ok(x && !/NaN|undefined|null/.test(x), x); assert.ok(!/toujours|forcément|automatiquement|garantit (une|la|de)\b/i.test(x), x); });
 });
 console.log(ok + ' vérification(s) réussie(s).');

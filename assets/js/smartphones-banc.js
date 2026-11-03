@@ -149,6 +149,13 @@
   function setup(d) {
     D = d; M = d.banc.modeles; LB = lines();
     M.forEach(function (m) { EST[m.id] = S.estimate(m); });
+    if (M.length < 3) {   // catalogue remplacé : trop peu de modèles mesurés et reliés pour un podium ; on le dit au lieu de planter
+      var note = '<p class="pj-lead-note">Le banc d’essai classe au moins trois modèles mesurés. Le catalogue actuel n’en relie que ' + M.length + ' : le podium, le tableau et les notes par usage reviendront avec de nouvelles mesures. Les vidéos de test et leurs limites restent lisibles dans « Preuves ».</p>';
+      ['sp-podium', 'sp-ranking', 'sp-chart', 'sp-prof-top'].forEach(function (id) { var el = $(id); if (el) el.innerHTML = note; });
+      ['sp-sort', 'sp-metric-tabs', 'sp-prof-tabs'].forEach(function (id) { var el = $(id); if (el) el.hidden = true; });
+      var f = document.querySelector('.pj-filters'); if (f) f.hidden = true;
+      document.documentElement.setAttribute('data-banc-ready', '1'); return;
+    }
     preview(); renderPodium(); renderRanking(); setupChart(); setupUsages();
     $('sp-sort').addEventListener('input', renderRanking);
     document.documentElement.setAttribute('data-banc-ready', '1');

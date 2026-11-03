@@ -7,7 +7,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const ROOT = path.join(__dirname, '..');
 const P = require('../tools/smartphones/pertinence-prototype.js');
-const read = f => JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'));
+const read = f => JSON.parse(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(ROOT, process.env.SMARTPHONES_DATA_DIR) : path.join(ROOT, 'data'), f), 'utf8'));
 let passed = 0, failures = 0;
 function check(label, fn) { try { fn(); passed++; } catch (e) { failures++; console.error('✗ ' + label + '\n    ' + String(e.message).split('\n')[0]); } }
 

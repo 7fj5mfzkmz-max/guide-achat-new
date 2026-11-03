@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
-const d = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones-tests.json'), 'utf8'));
+const d = JSON.parse(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(root, process.env.SMARTPHONES_DATA_DIR) : path.join(root, 'data'), 'smartphones-tests.json'), 'utf8'));
 const html = fs.readFileSync(path.join(root, 'smartphones.html'), 'utf8');
 let passed = 0, failures = 0;
 function check(label, fn) { try { fn(); passed++; } catch (e) { failures++; console.error('✗ ' + label + '\n    ' + String(e.message).split('\n')[0]); } }
@@ -105,7 +105,7 @@ check('page smartphones : section, onglets, liens et numérotation cohérents ; 
   assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('phone-analyzer/ui.js'));
   const ids = [...html.matchAll(/ id="([^"]+)"/g)].map(m => m[1]); assert.equal(new Set(ids).size, ids.length, 'identifiants HTML dupliqués');
 });
-const cat = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphones.json'), 'utf8'));
+const cat = JSON.parse(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(root, process.env.SMARTPHONES_DATA_DIR) : path.join(root, 'data'), 'smartphones.json'), 'utf8'));
 check('catalogue : chaque modèle testé y figure, relié à son test', () => {
   d.modeles.forEach(m => {
     const p = cat.produits.find(x => (x.tests || []).some(t => t.modele === m.id));

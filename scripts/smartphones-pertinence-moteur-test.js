@@ -54,7 +54,7 @@ check('registre : identifiants uniques, types connus, classes de source déclar�
     assert.ok(reg.classes_source[o.source.classe], o.id + ' classe ' + o.source.classe);
     assert.ok(['valide', 'a_verifier', 'rejete'].includes(o.statut));
   });
-  ['smartphones-registres.json', 'smartphones-observations.json'].forEach(f => assert.ok(!/"(R|Rmin|Rmax|Cdecl|U)"\s*:/.test(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8')), f + ' : une note dérivée est stockée'));
+  ['smartphones-registres.json', 'smartphones-observations.json'].forEach(f => assert.ok(!/"(R|Rmin|Rmax|Cdecl|U)"\s*:/.test(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(ROOT, process.env.SMARTPHONES_DATA_DIR) : path.join(ROOT, 'data'), f), 'utf8')), f + ' : une note dérivée est stockée'));
 });
 check('registre : 74 fiches × 7 critères au plus ; une mesure du banc par ligne liée ; avis lus comme avis', () => {
   const d = charger(), liees = d.liens.liens.reduce((n, l) => n + (d.tests.banc.modeles.find(m => m.id === l.banc).mesures ? Object.keys(d.tests.banc.modeles.find(m => m.id === l.banc).mesures).length : 0), 0);
@@ -345,7 +345,7 @@ check('rapport : l’activation d’une classe relative apparaît dans « cohort
 /* ——— 8 bis. Outil du rapport de changements (import réel sur dossier temporaire) ——— */
 check('rapport (outil) : un import ajouté dans un dossier temporaire est audité, lisible et déterministe ; aucun fichier du dépôt n’est touché', () => {
   const os = require('node:os'), { execFileSync } = require('node:child_process');
-  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pertinence-')), data = path.join(ROOT, 'data');
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'pertinence-')), data = process.env.SMARTPHONES_DATA_DIR ? path.resolve(ROOT, process.env.SMARTPHONES_DATA_DIR) : path.join(ROOT, 'data');
   ['smartphones.json', 'smartphones-tests.json', 'smartphones-liens-banc.json', 'smartphones-registres.json'].forEach(f => fs.copyFileSync(path.join(data, f), path.join(dir, f)));
   const reg = JSON.parse(fs.readFileSync(path.join(dir, 'smartphones-registres.json'), 'utf8'));
   reg.protocoles['capacite-labo'] = { critere: 'batterie', echelle: 'absolue', compatibilite: 'capacite-labo', editeur: 'LabX', banc: 'labx', classe_source: 'test_independant', unite: 'mAh', variante_reference: 'mondiale', conditions: 'démontage et mesure', reserves: [] };

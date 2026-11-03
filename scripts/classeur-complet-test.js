@@ -1,10 +1,11 @@
 'use strict';
+const DD = process.env.SMARTPHONES_DATA_DIR ? require('node:path').resolve(__dirname, '..', process.env.SMARTPHONES_DATA_DIR) : require('node:path').join(__dirname, '..', 'data');   // ancien catalogue figé pour ces tests de l'ancienne chaîne d'import
 /* Classeur « Complet » : tous les noms sont reconnus, seules les cases vides sont remplies, chaque champ repris est tracé,
    la réparabilité (estimation) ne sert pas au classement. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
-const cat = JSON.parse(JSON.stringify(require('../data/smartphones.json')));
-const d = require('../data/classeur-complet-2026.json');
+const cat = JSON.parse(JSON.stringify(require(DD + '/smartphones.json')));
+const d = require(DD + '/classeur-complet-2026.json');
 const { trouver } = require('../tools/smartphones/noms.js');
 const { appliquer } = require('../tools/smartphones/integrer-complet.js');
 let ok = 0, ko = 0;

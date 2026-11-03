@@ -1,0 +1,2887 @@
+{
+ "classeurs": [
+  "Data_2026",
+  "Integral_2026"
+ ],
+ "data": [
+  {
+   "categorie": "Populaire (Ajout)",
+   "modele": "Nothing Phone (3)",
+   "prix_eur": 649,
+   "puce": "Snapdragon 8s Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.7 AMOLED 120Hz 2000nits",
+    "taille": 6.7,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 2000
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 45.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": "Q3 2026",
+   "prix_source_date": "Juin 2026 (Est.)",
+   "sources": [
+    "https://www.frandroid.com/marques/nothing",
+    "https://www.gsmarena.com/nothing-phones-133.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 3 (Prix manquant)",
+   "modele": "ASUS ROG Phone 9",
+   "prix_eur": 1099,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.78 AMOLED 165Hz 2500nits",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 165,
+    "nits": 2500
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5800,
+   "charge_w": 65.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui",
+    "present": true,
+    "zoom": null
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (2 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Nov 2026",
+   "prix_source_date": "Oct 2026",
+   "sources": [
+    "https://www.lesnumeriques.com/telephone-portable/asus-rog-phone.html",
+    "https://www.gsmarena.com/asus_rog_phone_9-13334.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 3 (Prix manquant)",
+   "modele": "Nokia G10",
+   "prix_eur": 149,
+   "puce": "Helio G25",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.52 LCD 60Hz",
+    "taille": 6.52,
+    "technologie": "LCD",
+    "hz": 60,
+    "nits": null
+   },
+   "ram_go": 3,
+   "stockage_go": 32,
+   "batterie_mah": 5050,
+   "charge_w": 10.0,
+   "photo_mp": 13.0,
+   "photo_texte": "13 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 11 (2 ans)",
+    "systeme": "Android",
+    "version": 11,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Avr 2021",
+   "prix_source_date": "Lancement 2021",
+   "sources": [
+    "https://www.gsmarena.com/nokia_g10-10842.php",
+    "https://www.frandroid.com/marques/nokia/909187_nokia-g10"
+   ]
+  },
+  {
+   "categorie": "Priorité 3 (Prix manquant)",
+   "modele": "Xiaomi Redmi Note 11S",
+   "prix_eur": 249,
+   "puce": "Helio G96",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.43 AMOLED 90Hz 1000nits",
+    "taille": 6.43,
+    "technologie": "AMOLED",
+    "hz": 90,
+    "nits": 1000
+   },
+   "ram_go": 6,
+   "stockage_go": 64,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP53",
+   "os": {
+    "texte": "Android 11 (2 ans)",
+    "systeme": "Android",
+    "version": 11,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Fév 2022",
+   "prix_source_date": "Lancement 2022",
+   "sources": [
+    "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-11s",
+    "https://www.lesnumeriques.com/telephone-portable/xiaomi-redmi-note-11s-p67333/test.html"
+   ]
+  },
+  {
+   "categorie": "Priorité 3 (Puce manquante)",
+   "modele": "POCO C85",
+   "prix_eur": 150,
+   "puce": "Helio G91 Ultra",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.71 LCD 90Hz",
+    "taille": 6.71,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 18.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Q1 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.kimovil.com/fr/telephones-poco",
+    "https://www.frandroid.com/marques/poco"
+   ]
+  },
+  {
+   "categorie": "Priorité 3 (Puce manquante)",
+   "modele": "Xiaomi Redmi Note 15 4G",
+   "prix_eur": 199,
+   "puce": "Snapdragon 685",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.67 AMOLED 120Hz 1800nits",
+    "taille": 6.67,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 1800
+   },
+   "ram_go": 6,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": "Q1 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.gsmarena.com/xiaomi-phones-80.php",
+    "https://www.kimovil.com/fr/telephones-xiaomi"
+   ]
+  },
+  {
+   "categorie": "Priorité 3 (Puce manquante)",
+   "modele": "ZTE Blade V70 Vita",
+   "prix_eur": 92,
+   "puce": "Unisoc T606",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.6 LCD 90Hz",
+    "taille": 6.6,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 22.5,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 14 (1 an)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 1
+   },
+   "sortie": "Mid 2025",
+   "prix_source_date": "Lancement 2025",
+   "sources": [
+    "https://www.gsmarena.com/zte-phones-62.php",
+    "https://www.kimovil.com/fr/telephones-zte"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "Google Pixel 11 Pro",
+   "prix_eur": 1099,
+   "puce": "Tensor G6",
+   "gravure_nm": 2,
+   "ecran": {
+    "texte": "6.3 OLED 120Hz 3000nits",
+    "taille": 6.3,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": 3000
+   },
+   "ram_go": 16,
+   "stockage_go": 256,
+   "batterie_mah": 4800,
+   "charge_w": 35.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x5)",
+    "present": true,
+    "zoom": "5"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 16 (7 ans)",
+    "systeme": "Android",
+    "version": 16,
+    "mises_a_jour_ans": 7
+   },
+   "sortie": "Oct 2026",
+   "prix_source_date": "Rumeur (Fin 2026)",
+   "sources": [
+    "https://www.lesnumeriques.com/telephone-portable/google-pixel.html",
+    "https://www.frandroid.com/marques/google"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "OnePlus 16 Extreme",
+   "prix_eur": 1199,
+   "puce": "Snapdragon 8 Elite Gen 5",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.82 AMOLED 144Hz 4500nits",
+    "taille": 6.82,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": 4500
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 6000,
+   "charge_w": 120.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx (1 pouce)",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3+x6)",
+    "present": true,
+    "zoom": "3"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 16 (5 ans)",
+    "systeme": "Android",
+    "version": 16,
+    "mises_a_jour_ans": 5
+   },
+   "sortie": "Q4 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.gsmarena.com/oneplus-phones-95.php",
+    "https://www.kimovil.com/fr/telephones-oneplus"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "OPPO Find X10 Pro Max",
+   "prix_eur": 1499,
+   "puce": "Dimensity 9500",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.82 AMOLED 120Hz 4500nits",
+    "taille": 6.82,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 4500
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 5500,
+   "charge_w": 100.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx (1 pouce)",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (Double périscope)",
+    "present": true,
+    "zoom": null
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 16 (5 ans)",
+    "systeme": "Android",
+    "version": 16,
+    "mises_a_jour_ans": 5
+   },
+   "sortie": "Q1 2027",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.frandroid.com/marques/oppo",
+    "https://www.gsmarena.com/oppo-phones-82.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "RedMagic 11S Pro",
+   "prix_eur": 899,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.8 AMOLED 165Hz 2000nits",
+    "taille": 6.8,
+    "technologie": "AMOLED",
+    "hz": 165,
+    "nits": 2000
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 6500,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (2 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Q3 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.gsmarena.com/zte-phones-62.php",
+    "https://www.kimovil.com/fr/telephones-nubia"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "Vivo V80",
+   "prix_eur": 499,
+   "puce": "Snapdragon 7 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.78 AMOLED 120Hz 2800nits",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 2800
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 15 (3 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": "Q3 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.frandroid.com/marques/vivo",
+    "https://www.gsmarena.com/vivo-phones-98.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "Samsung Galaxy A27",
+   "prix_eur": 299,
+   "puce": "Exynos 1380",
+   "gravure_nm": 5,
+   "ecran": {
+    "texte": "6.5 AMOLED 90Hz 1000nits",
+    "taille": 6.5,
+    "technologie": "AMOLED",
+    "hz": 90,
+    "nits": 1000
+   },
+   "ram_go": 6,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Q1 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.lesnumeriques.com/telephone-portable/samsung.html",
+    "https://www.gsmarena.com/samsung-phones-9.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "Samsung Galaxy A37",
+   "prix_eur": 399,
+   "puce": "Exynos 1480",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.6 AMOLED 120Hz 1000nits",
+    "taille": 6.6,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 1000
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Q1 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.frandroid.com/marques/samsung",
+    "https://www.gsmarena.com/samsung-phones-9.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 2 (Test Vidéo)",
+   "modele": "Samsung Galaxy A57",
+   "prix_eur": 549,
+   "puce": "Exynos 1580",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.6 AMOLED 120Hz 1200nits",
+    "taille": 6.6,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 1200
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Q1 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.frandroid.com/marques/samsung",
+    "https://www.lesnumeriques.com/telephone-portable/samsung.html"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (À vérifier)",
+   "modele": "ASUS Zenfone 12 Ultra",
+   "prix_eur": 999,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.78 AMOLED 144Hz 2500nits",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": 2500
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5500,
+   "charge_w": 65.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3)",
+    "present": true,
+    "zoom": "3"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Q2 2026",
+   "prix_source_date": "Est. 2026",
+   "sources": [
+    "https://www.gsmarena.com/asus-phones-46.php",
+    "https://www.frandroid.com/marques/asus"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (À vérifier)",
+   "modele": "Honor Magic V3",
+   "prix_eur": 1999,
+   "puce": "Snapdragon 8 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "7.92 OLED 120Hz 1600nits",
+    "taille": 7.92,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": 1600
+   },
+   "ram_go": 12,
+   "stockage_go": 512,
+   "batterie_mah": 5150,
+   "charge_w": 66.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3.5)",
+    "present": true,
+    "zoom": "3.5"
+   },
+   "ip": "IPX8",
+   "os": {
+    "texte": "Android 14 (4 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Sep 2024",
+   "prix_source_date": "Sep 2024",
+   "sources": [
+    "https://www.lesnumeriques.com/telephone-portable/honor-magic-v3-p75043/test.html",
+    "https://www.frandroid.com/marques/honor/2330656_test-honor-magic-v3"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (À vérifier)",
+   "modele": "HTC U24 Pro",
+   "prix_eur": 549,
+   "puce": "Snapdragon 7 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.8 OLED 120Hz",
+    "taille": 6.8,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 4600,
+   "charge_w": 60.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x2)",
+    "present": true,
+    "zoom": "2"
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Juin 2024",
+   "prix_source_date": "Juin 2024",
+   "sources": [
+    "https://www.gsmarena.com/htc_u24_pro-13038.php",
+    "https://www.kimovil.com/fr/ou-acheter-htc-u24-pro"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (À vérifier)",
+   "modele": "Motorola Moto Edge 50 Pro",
+   "prix_eur": 699,
+   "puce": "Snapdragon 7 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.7 pOLED 144Hz 2000nits",
+    "taille": 6.7,
+    "technologie": "pOLED",
+    "hz": 144,
+    "nits": 2000
+   },
+   "ram_go": 12,
+   "stockage_go": 512,
+   "batterie_mah": 4500,
+   "charge_w": 125.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3)",
+    "present": true,
+    "zoom": "3"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": "Avr 2024",
+   "prix_source_date": "Avril 2024",
+   "sources": [
+    "https://www.frandroid.com/marques/motorola/1990426_test-motorola-edge-50-pro",
+    "https://www.lesnumeriques.com/telephone-portable/motorola-edge-50-pro-p74542/test.html"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (À vérifier)",
+   "modele": "Samsung Galaxy A05",
+   "prix_eur": 150,
+   "puce": "Helio G85",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.7 LCD 60Hz",
+    "taille": 6.7,
+    "technologie": "LCD",
+    "hz": 60,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 64,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 13 (2 ans)",
+    "systeme": "Android",
+    "version": 13,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Oct 2023",
+   "prix_source_date": "Fin 2023",
+   "sources": [
+    "https://www.gsmarena.com/samsung_galaxy_a05-12534.php",
+    "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a05"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (À vérifier)",
+   "modele": "ZTE Nubia Red Magic 10 Pro",
+   "prix_eur": 799,
+   "puce": "Snapdragon 8 Gen 4",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.8 AMOLED 144Hz",
+    "taille": 6.8,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 6500,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (2 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Q1 2025",
+   "prix_source_date": "Rumeur 2025",
+   "sources": [
+    "https://www.gsmarena.com/zte-phones-62.php",
+    "https://www.frandroid.com/marques/nubia"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (À vérifier)",
+   "modele": "Xiaomi 16 Pro",
+   "prix_eur": 1299,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.73 AMOLED 120Hz 3000nits",
+    "taille": 6.73,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 3000
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 120.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3.2)",
+    "present": true,
+    "zoom": "3.2"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Q1 2026",
+   "prix_source_date": "Rumeur 2026",
+   "sources": [
+    "https://www.frandroid.com/marques/xiaomi",
+    "https://www.gsmarena.com/xiaomi-phones-80.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (Ancienne)",
+   "modele": "Apple iPhone 17 Pro",
+   "prix_eur": 1229,
+   "puce": "A19 Pro",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.3 OLED 120Hz 2500nits",
+    "taille": 6.3,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": 2500
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 3500,
+   "charge_w": 27.0,
+   "photo_mp": 48.0,
+   "photo_texte": "48 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x5)",
+    "present": true,
+    "zoom": "5"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "iOS 19 (6 ans)",
+    "systeme": "iOS",
+    "version": 19,
+    "mises_a_jour_ans": 6
+   },
+   "sortie": "Sep 2025",
+   "prix_source_date": "Rumeur 2025",
+   "sources": [
+    "https://www.lesnumeriques.com/telephone-portable/apple.html",
+    "https://www.gsmarena.com/apple-phones-48.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (Ancienne)",
+   "modele": "Apple iPhone 17 Pro Max",
+   "prix_eur": 1479,
+   "puce": "A19 Pro",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.9 OLED 120Hz 2500nits",
+    "taille": 6.9,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": 2500
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 4600,
+   "charge_w": 27.0,
+   "photo_mp": 48.0,
+   "photo_texte": "48 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x5)",
+    "present": true,
+    "zoom": "5"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "iOS 19 (6 ans)",
+    "systeme": "iOS",
+    "version": 19,
+    "mises_a_jour_ans": 6
+   },
+   "sortie": "Sep 2025",
+   "prix_source_date": "Rumeur 2025",
+   "sources": [
+    "https://www.lesnumeriques.com/telephone-portable/apple.html",
+    "https://www.frandroid.com/marques/apple"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (Ancienne)",
+   "modele": "Samsung Galaxy A56",
+   "prix_eur": 499,
+   "puce": "Exynos 1580",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.6 AMOLED 120Hz 1200nits",
+    "taille": 6.6,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": 1200
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Q1 2025",
+   "prix_source_date": "Rumeur 2025",
+   "sources": [
+    "https://www.gsmarena.com/samsung-phones-9.php",
+    "https://www.frandroid.com/marques/samsung"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (Ancienne)",
+   "modele": "Xiaomi 15T",
+   "prix_eur": 649,
+   "puce": "Dimensity 8400",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.67 AMOLED 144Hz 2600nits",
+    "taille": 6.67,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": 2600
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 67.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x2)",
+    "present": true,
+    "zoom": "2"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": "Sep 2025",
+   "prix_source_date": "Rumeur 2025",
+   "sources": [
+    "https://www.frandroid.com/marques/xiaomi",
+    "https://www.gsmarena.com/xiaomi-phones-80.php"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (Ancienne)",
+   "modele": "Motorola Moto G55 5G",
+   "prix_eur": 200,
+   "puce": "Dimensity 7025",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.5 LCD 120Hz",
+    "taille": 6.5,
+    "technologie": "LCD",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 30.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP52",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Août 2024",
+   "prix_source_date": "Lancement 2024",
+   "sources": [
+    "https://www.gsmarena.com/motorola_moto_g55-13295.php",
+    "https://www.lesnumeriques.com/telephone-portable/motorola.html"
+   ]
+  },
+  {
+   "categorie": "Priorité 1 (Ancienne)",
+   "modele": "realme C67",
+   "prix_eur": 150,
+   "puce": "Snapdragon 685",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.72 LCD 90Hz",
+    "taille": 6.72,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": "Déc 2023",
+   "prix_source_date": "Lancement 2023",
+   "sources": [
+    "https://www.frandroid.com/marques/realme",
+    "https://www.gsmarena.com/realme_c67_4g-12749.php"
+   ]
+  }
+ ],
+ "integral": [
+  {
+   "categorie": "À vérifier",
+   "modele": "ASUS Zenfone 12 Ultra",
+   "prix_eur": 999,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.78 AMOLED 144Hz",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5500,
+   "charge_w": 65.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3)",
+    "present": true,
+    "zoom": "3"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Honor Magic V3",
+   "prix_eur": 1999,
+   "puce": "Snapdragon 8 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "7.92 OLED 120Hz",
+    "taille": 7.92,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 512,
+   "batterie_mah": 5150,
+   "charge_w": 66.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3.5)",
+    "present": true,
+    "zoom": "3.5"
+   },
+   "ip": "IPX8",
+   "os": {
+    "texte": "Android 14 (4 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "HTC U24 Pro",
+   "prix_eur": 549,
+   "puce": "Snapdragon 7 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.8 OLED 120Hz",
+    "taille": 6.8,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 4600,
+   "charge_w": 60.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x2)",
+    "present": true,
+    "zoom": "2"
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Infinix Hot 40",
+   "prix_eur": 150,
+   "puce": "Helio G88",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.78 LCD 90Hz",
+    "taille": 6.78,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP53",
+   "os": {
+    "texte": "Android 13 (1 an)",
+    "systeme": "Android",
+    "version": 13,
+    "mises_a_jour_ans": 1
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Motorola Moto Edge 50 Pro",
+   "prix_eur": 699,
+   "puce": "Snapdragon 7 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.7 pOLED 144Hz",
+    "taille": 6.7,
+    "technologie": "pOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 512,
+   "batterie_mah": 4500,
+   "charge_w": 125.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3)",
+    "present": true,
+    "zoom": "3"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Nokia C31",
+   "prix_eur": 129,
+   "puce": "Unisoc SC9863A",
+   "gravure_nm": 28,
+   "ecran": {
+    "texte": "6.75 LCD 60Hz",
+    "taille": 6.75,
+    "technologie": "LCD",
+    "hz": 60,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 64,
+   "batterie_mah": 5050,
+   "charge_w": 10.0,
+   "photo_mp": 13.0,
+   "photo_texte": "13 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP52",
+   "os": {
+    "texte": "Android 12 (2 ans)",
+    "systeme": "Android",
+    "version": 12,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Nokia G70 5G",
+   "prix_eur": 249,
+   "puce": "Snapdragon 4 Gen 1",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.6 LCD 120Hz",
+    "taille": 6.6,
+    "technologie": "LCD",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 6,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 20.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP52",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "ZTE Nubia Focus 6 Air",
+   "prix_eur": 299,
+   "puce": "Unisoc T760",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.6 LCD 120Hz",
+    "taille": 6.6,
+    "technologie": "LCD",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 14 (1 an)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 1
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "ZTE Nubia Red Magic 10 Pro",
+   "prix_eur": 799,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.8 AMOLED 144Hz",
+    "taille": 6.8,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 6500,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (2 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Realme GT Neo 7",
+   "prix_eur": 499,
+   "puce": "Dimensity 9300+",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.78 AMOLED 144Hz",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5500,
+   "charge_w": 120.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP65",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Samsung Galaxy A05",
+   "prix_eur": 150,
+   "puce": "Helio G85",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.7 LCD 60Hz",
+    "taille": 6.7,
+    "technologie": "LCD",
+    "hz": 60,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 64,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 13 (2 ans)",
+    "systeme": "Android",
+    "version": 13,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Samsung Galaxy A23 5G",
+   "prix_eur": 319,
+   "puce": "Snapdragon 695",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.6 LCD 120Hz",
+    "taille": 6.6,
+    "technologie": "LCD",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 64,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 12 (4 ans)",
+    "systeme": "Android",
+    "version": 12,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Samsung Galaxy XCover 8 Pro",
+   "prix_eur": 649,
+   "puce": "Snapdragon 7s Gen 2",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.6 LCD 120Hz",
+    "taille": 6.6,
+    "technologie": "LCD",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 4500,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP68 / MIL-STD",
+   "os": {
+    "texte": "Android 14 (5 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 5
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Tecno Camon 40 Pro",
+   "prix_eur": 349,
+   "puce": "Dimensity 8200",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.78 AMOLED 144Hz",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 70.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP53",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Tecno Spark 20",
+   "prix_eur": 149,
+   "puce": "Helio G85",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.6 LCD 90Hz",
+    "taille": 6.6,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 18.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP53",
+   "os": {
+    "texte": "Android 13 (1 an)",
+    "systeme": "Android",
+    "version": 13,
+    "mises_a_jour_ans": 1
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Vivo iQOO Z9 Turbo",
+   "prix_eur": 350,
+   "puce": "Snapdragon 8s Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.78 AMOLED 144Hz",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 6000,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP64",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Xiaomi 16 Pro",
+   "prix_eur": 1299,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.73 AMOLED 120Hz",
+    "taille": 6.73,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 120.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3.2)",
+    "present": true,
+    "zoom": "3.2"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Xiaomi 16 Ultra",
+   "prix_eur": 1499,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.73 AMOLED 120Hz",
+    "taille": 6.73,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 5300,
+   "charge_w": 90.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (Périscope x4 + x3.2)",
+    "present": true,
+    "zoom": "4"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "Xiaomi Black Shark 7 Pro",
+   "prix_eur": 899,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.8 AMOLED 144Hz",
+    "taille": 6.8,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 6000,
+   "charge_w": 120.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (2 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "À vérifier",
+   "modele": "ZTE Nubia Z60S",
+   "prix_eur": 599,
+   "puce": "Snapdragon 8 Gen 2",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.78 AMOLED 120Hz",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5100,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x2)",
+    "present": true,
+    "zoom": "2"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "À vérifier"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Apple iPhone 17 Pro",
+   "prix_eur": 1229,
+   "puce": "A19 Pro",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.3 OLED 120Hz",
+    "taille": 6.3,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 3500,
+   "charge_w": 27.0,
+   "photo_mp": 48.0,
+   "photo_texte": "48 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x5)",
+    "present": true,
+    "zoom": "5"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "iOS 19 (6 ans)",
+    "systeme": "iOS",
+    "version": 19,
+    "mises_a_jour_ans": 6
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Apple iPhone 17 Pro Max",
+   "prix_eur": 1479,
+   "puce": "A19 Pro",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.9 OLED 120Hz",
+    "taille": 6.9,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 4600,
+   "charge_w": 27.0,
+   "photo_mp": 48.0,
+   "photo_texte": "48 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x5)",
+    "present": true,
+    "zoom": "5"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "iOS 19 (6 ans)",
+    "systeme": "iOS",
+    "version": 19,
+    "mises_a_jour_ans": 6
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Samsung Galaxy A56",
+   "prix_eur": 499,
+   "puce": "Exynos 1580",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.6 AMOLED 120Hz",
+    "taille": 6.6,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Samsung Galaxy A17 5G",
+   "prix_eur": 199,
+   "puce": "Dimensity 6100+",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.5 LCD 90Hz",
+    "taille": 6.5,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Xiaomi 15T",
+   "prix_eur": 649,
+   "puce": "Dimensity 8400",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.67 AMOLED 144Hz",
+    "taille": 6.67,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 67.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x2)",
+    "present": true,
+    "zoom": "2"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "POCO X8 Pro",
+   "prix_eur": 349,
+   "puce": "Snapdragon 7s Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.67 AMOLED 120Hz",
+    "taille": 6.67,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5100,
+   "charge_w": 67.0,
+   "photo_mp": 200.0,
+   "photo_texte": "200 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 15 (3 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Blackview Shark 8",
+   "prix_eur": 140,
+   "puce": "Helio G99",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.78 LCD 120Hz",
+    "taille": 6.78,
+    "technologie": "LCD",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 64.0,
+   "photo_texte": "64 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 13 (1 an)",
+    "systeme": "Android",
+    "version": 13,
+    "mises_a_jour_ans": 1
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "HONOR 400 Lite",
+   "prix_eur": 250,
+   "puce": "Dimensity 6080",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.7 AMOLED 90Hz",
+    "taille": 6.7,
+    "technologie": "AMOLED",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 4500,
+   "charge_w": 35.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Motorola Moto G06",
+   "prix_eur": 110,
+   "puce": "Unisoc T606",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.5 LCD 90Hz",
+    "taille": 6.5,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 64,
+   "batterie_mah": 5000,
+   "charge_w": 10.0,
+   "photo_mp": 13.0,
+   "photo_texte": "13 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP52",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Motorola Moto G06 Power",
+   "prix_eur": 130,
+   "puce": "Unisoc T606",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.5 LCD 90Hz",
+    "taille": 6.5,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 128,
+   "batterie_mah": 6000,
+   "charge_w": 15.0,
+   "photo_mp": 13.0,
+   "photo_texte": "13 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP52",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Motorola Moto G55 5G",
+   "prix_eur": 200,
+   "puce": "Dimensity 7025",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.5 LCD 120Hz",
+    "taille": 6.5,
+    "technologie": "LCD",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 30.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP52",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne/Prix",
+   "modele": "Nokia G10",
+   "prix_eur": 149,
+   "puce": "Helio G25",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.52 LCD 60Hz",
+    "taille": 6.52,
+    "technologie": "LCD",
+    "hz": 60,
+    "nits": null
+   },
+   "ram_go": 3,
+   "stockage_go": 32,
+   "batterie_mah": 5050,
+   "charge_w": 10.0,
+   "photo_mp": 13.0,
+   "photo_texte": "13 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 11 (2 ans)",
+    "systeme": "Android",
+    "version": 11,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne/Prix"
+  },
+  {
+   "categorie": "Ancienne/Puce",
+   "modele": "POCO C85",
+   "prix_eur": 150,
+   "puce": "Helio G91 Ultra",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.71 LCD 90Hz",
+    "taille": 6.71,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 18.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne/Puce"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "realme C67",
+   "prix_eur": 150,
+   "puce": "Snapdragon 685",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.72 LCD 90Hz",
+    "taille": 6.72,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "realme C75",
+   "prix_eur": 169,
+   "puce": "Unisoc T612",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.74 LCD 90Hz",
+    "taille": 6.74,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 6,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 45.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "realme P3 5G",
+   "prix_eur": 230,
+   "puce": "Dimensity 7050",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.67 AMOLED 120Hz",
+    "taille": 6.67,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 45.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 14 (2 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Xiaomi Redmi Note 14 5G",
+   "prix_eur": 250,
+   "puce": "Dimensity 7025 Ultra",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.67 OLED 120Hz",
+    "taille": 6.67,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5110,
+   "charge_w": 45.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP64",
+   "os": {
+    "texte": "Android 14 (3 ans)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne/Puce",
+   "modele": "Xiaomi Redmi Note 15 4G",
+   "prix_eur": 199,
+   "puce": "Snapdragon 685",
+   "gravure_nm": 6,
+   "ecran": {
+    "texte": "6.67 AMOLED 120Hz",
+    "taille": 6.67,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 6,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 15 (3 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne/Puce"
+  },
+  {
+   "categorie": "Ancienne Fiche",
+   "modele": "Xiaomi Redmi Note 15 5G",
+   "prix_eur": 250,
+   "puce": "Dimensity 7300",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.67 AMOLED 120Hz",
+    "taille": 6.67,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 45.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP64",
+   "os": {
+    "texte": "Android 15 (3 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne Fiche"
+  },
+  {
+   "categorie": "Ancienne/Puce",
+   "modele": "ZTE Blade V70 Vita",
+   "prix_eur": 92,
+   "puce": "Unisoc T606",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.6 LCD 90Hz",
+    "taille": 6.6,
+    "technologie": "LCD",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 4,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 22.5,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 14 (1 an)",
+    "systeme": "Android",
+    "version": 14,
+    "mises_a_jour_ans": 1
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne/Puce"
+  },
+  {
+   "categorie": "Ancienne/Prix",
+   "modele": "Xiaomi Redmi Note 11S",
+   "prix_eur": 249,
+   "puce": "Helio G96",
+   "gravure_nm": 12,
+   "ecran": {
+    "texte": "6.43 AMOLED 90Hz",
+    "taille": 6.43,
+    "technologie": "AMOLED",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 6,
+   "stockage_go": 64,
+   "batterie_mah": 5000,
+   "charge_w": 33.0,
+   "photo_mp": 108.0,
+   "photo_texte": "108 Mpx",
+   "ois": false,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP53",
+   "os": {
+    "texte": "Android 11 (2 ans)",
+    "systeme": "Android",
+    "version": 11,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Ancienne/Prix"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "Google Pixel 11 Pro",
+   "prix_eur": 1099,
+   "puce": "Tensor G6",
+   "gravure_nm": 2,
+   "ecran": {
+    "texte": "6.3 OLED 120Hz",
+    "taille": 6.3,
+    "technologie": "OLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 16,
+   "stockage_go": 256,
+   "batterie_mah": 4800,
+   "charge_w": 35.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x5)",
+    "present": true,
+    "zoom": "5"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 16 (7 ans)",
+    "systeme": "Android",
+    "version": 16,
+    "mises_a_jour_ans": 7
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "OnePlus 16 Extreme",
+   "prix_eur": 1199,
+   "puce": "Snapdragon 8 Elite Gen 5",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.82 AMOLED 144Hz",
+    "taille": 6.82,
+    "technologie": "AMOLED",
+    "hz": 144,
+    "nits": null
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 6000,
+   "charge_w": 120.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3+x6)",
+    "present": true,
+    "zoom": "3"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 16 (5 ans)",
+    "systeme": "Android",
+    "version": 16,
+    "mises_a_jour_ans": 5
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "OPPO Find X10 Pro Max",
+   "prix_eur": 1499,
+   "puce": "Dimensity 9500",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.82 AMOLED 120Hz",
+    "taille": 6.82,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 5500,
+   "charge_w": 100.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui",
+    "present": true,
+    "zoom": null
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 16 (5 ans)",
+    "systeme": "Android",
+    "version": 16,
+    "mises_a_jour_ans": 5
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "RedMagic 11S Pro",
+   "prix_eur": 899,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.8 AMOLED 165Hz",
+    "taille": 6.8,
+    "technologie": "AMOLED",
+    "hz": 165,
+    "nits": null
+   },
+   "ram_go": 16,
+   "stockage_go": 512,
+   "batterie_mah": 6500,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (2 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "Vivo V80",
+   "prix_eur": 499,
+   "puce": "Snapdragon 7 Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.78 AMOLED 120Hz",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 80.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 15 (3 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "Samsung Galaxy A27",
+   "prix_eur": 299,
+   "puce": "Exynos 1380",
+   "gravure_nm": 5,
+   "ecran": {
+    "texte": "6.5 AMOLED 90Hz",
+    "taille": 6.5,
+    "technologie": "AMOLED",
+    "hz": 90,
+    "nits": null
+   },
+   "ram_go": 6,
+   "stockage_go": 128,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "Non",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "Samsung Galaxy A37",
+   "prix_eur": 399,
+   "puce": "Exynos 1480",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.6 AMOLED 120Hz",
+    "taille": 6.6,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Test Vidéo",
+   "modele": "Samsung Galaxy A57",
+   "prix_eur": 549,
+   "puce": "Exynos 1580",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.6 AMOLED 120Hz",
+    "taille": 6.6,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 8,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 25.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP67",
+   "os": {
+    "texte": "Android 15 (4 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 4
+   },
+   "sortie": null,
+   "statut_fichier": "Test Vidéo"
+  },
+  {
+   "categorie": "Prix manquant",
+   "modele": "ASUS ROG Phone 9",
+   "prix_eur": 1099,
+   "puce": "Snapdragon 8 Elite",
+   "gravure_nm": 3,
+   "ecran": {
+    "texte": "6.78 AMOLED 165Hz",
+    "taille": 6.78,
+    "technologie": "AMOLED",
+    "hz": 165,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5800,
+   "charge_w": 65.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Oui (x3)",
+    "present": true,
+    "zoom": "3"
+   },
+   "ip": "IP68",
+   "os": {
+    "texte": "Android 15 (2 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 2
+   },
+   "sortie": null,
+   "statut_fichier": "Prix manquant"
+  },
+  {
+   "categorie": "Populaire",
+   "modele": "Nothing Phone (3)",
+   "prix_eur": 649,
+   "puce": "Snapdragon 8s Gen 3",
+   "gravure_nm": 4,
+   "ecran": {
+    "texte": "6.7 AMOLED 120Hz",
+    "taille": 6.7,
+    "technologie": "AMOLED",
+    "hz": 120,
+    "nits": null
+   },
+   "ram_go": 12,
+   "stockage_go": 256,
+   "batterie_mah": 5000,
+   "charge_w": 45.0,
+   "photo_mp": 50.0,
+   "photo_texte": "50 Mpx",
+   "ois": true,
+   "teleobjectif": {
+    "texte": "Non",
+    "present": false,
+    "zoom": null
+   },
+   "ip": "IP54",
+   "os": {
+    "texte": "Android 15 (3 ans)",
+    "systeme": "Android",
+    "version": 15,
+    "mises_a_jour_ans": 3
+   },
+   "sortie": null,
+   "statut_fichier": "Populaire"
+  }
+ ]
+}

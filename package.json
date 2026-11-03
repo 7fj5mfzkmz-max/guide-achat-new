@@ -17,7 +17,7 @@
     "pc:test": "node scripts/pc-portables-test.js",
     "analyzer:ui-test": "node scripts/ui-flow-test.js",
     "analyzer:live-test": "node scripts/live-sources-test.js",
-    "test": "npm run gabarit:test && npm run kit:check && npm run chips:test && npm run verifications:test && npm run fichier-catalogue:test && npm run sensors:test && npm run classeur-complet:test && npm run analyzer:test && npm run analyzer:routing-test && npm run analyzer:extract-test && npm run network:test && npm run analyzer:identification-test && npm run fixtures:test && npm run analyzer:v113-test && npm run references:test && npm run pages:test && npm run pc:test && npm run pc:amazon-test && npm run projecteurs:test && npm run smartphones:tests-test && npm run smartphones:notes-test && npm run smartphones:pertinence-test && npm run smartphones:pertinence-moteur-test && npm run smartphones:demos-test && npm run pc:catalogue-test && node scripts/recommendation-readiness-test.js && node scripts/resolver-contract-test.js && npm run batteries:test && npm run actualites:test",
+    "test": "npm run gabarit:test && npm run kit:check && npm run chips:test && npm run verifications:test && npm run fichier-catalogue:test && npm run sensors:test && npm run classeur-complet:test && npm run analyzer:test && npm run analyzer:routing-test && npm run analyzer:extract-test && npm run network:test && npm run analyzer:identification-test && npm run fixtures:test && npm run analyzer:v113-test && npm run references:test && npm run pages:test && npm run pc:test && npm run pc:amazon-test && npm run projecteurs:test && npm run smartphones:tests-test && npm run smartphones:notes-test && npm run smartphones:pertinence-test && npm run smartphones:pertinence-moteur-test && npm run smartphones:demos-test && npm run smartphones:catalogue-actif-test && npm run pc:catalogue-test && SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/recommendation-readiness-test.js && node scripts/resolver-contract-test.js && npm run batteries:test && npm run actualites:test",
     "test:ui": "npm run student:test && npm run smartphones:quiz-test && npm run smartphones:trouver-test && npm run smartphones:conseiller-test && npm run analyzer:ui-test && npm run pc:ui-test && npm run batteries:ui-test && npm run i18n:test",
     "test:full": "npm test && npm run test:ui && npm run analyzer:live-test",
     "pc:catalogue-test": "node scripts/pc-catalogue-test.js",
@@ -28,10 +28,11 @@
     "batteries:test": "node scripts/batteries-externes-test.js",
     "batteries:ui-test": "node scripts/batteries-externes-ui-test.js",
     "smartphones:quiz-test": "node scripts/smartphone-quiz-ui-test.js",
-    "smartphones:tests-test": "node scripts/smartphones-tests-test.js",
-    "smartphones:notes-test": "node scripts/smartphones-notes-test.js",
-    "smartphones:pertinence-test": "node scripts/smartphones-pertinence-test.js",
-    "smartphones:pertinence-moteur-test": "node scripts/smartphones-pertinence-moteur-test.js",
+    "smartphones:tests-test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/smartphones-tests-test.js",
+    "smartphones:notes-test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/smartphones-notes-test.js",
+    "smartphones:pertinence-test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/smartphones-pertinence-test.js",
+    "smartphones:pertinence-moteur-test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/smartphones-pertinence-moteur-test.js",
+    "smartphones:catalogue-actif-test": "node scripts/smartphones-catalogue-actif-test.js",
     "smartphones:demos-test": "node scripts/smartphones-demos-test.js",
     "smartphones:conseiller-test": "node scripts/smartphones-v11-reliability-test.js && node scripts/smartphones-conseiller-ui-test.js && node scripts/smartphones-v11-ui-test.js",
     "actualites": "node tools/actualites/construire.js",
@@ -46,10 +47,10 @@
     "student:test": "node scripts/student-recommendations-test.js && node scripts/student-journey-ui-test.js",
     "smartphones:trouver-test": "node scripts/smartphones-trouver-ui-test.js",
     "chips:test": "node scripts/chips-test.js",
-    "verifications:test": "node scripts/verifications-test.js",
-    "fichier-catalogue:test": "node scripts/fichier-catalogue-test.js",
+    "verifications:test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/verifications-test.js",
+    "fichier-catalogue:test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/fichier-catalogue-test.js",
     "sensors:test": "node scripts/sensors-test.js",
-    "classeur-complet:test": "node scripts/classeur-complet-test.js"
+    "classeur-complet:test": "SMARTPHONES_DATA_DIR=tests/fixtures/smartphones-catalogue-2026-10 node scripts/classeur-complet-test.js"
   },
   "engines": {
     "node": ">=20"

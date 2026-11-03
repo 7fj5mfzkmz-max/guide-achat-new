@@ -114,6 +114,7 @@ html.sp-pertinence .dm-yrs { display: grid; grid-template-columns: repeat(var(--
 html.sp-pertinence .dm-yrs i { height: 14px; border: 1.5px solid var(--dm-mute); }
 html.sp-pertinence .dm-yrs i.is-ok { background: var(--dm-teal); border-color: var(--dm-teal); }
 html.sp-pertinence .dm-yrs i.is-no { background: repeating-linear-gradient(135deg, var(--dm-coral) 0 3px, transparent 3px 6px); border-color: var(--dm-coral); }
+html.sp-pertinence .dm-yrs i.is-inc { border-style: dashed; background: transparent; }
 html.sp-pertinence .dm-yrs i.is-g { outline: 2px solid var(--dm-y); outline-offset: 1px; }
 html.sp-pertinence .dm-bt { font-size: 14px; line-height: 1.4; color: var(--dm-mute); } html.sp-pertinence .dm-bt b { color: var(--dm-fg); } html.sp-pertinence .dm-bt em { color: var(--dm-coral); font-style: normal; }
 html.sp-pertinence .dm-brow.is-you .dm-bh b { color: var(--dm-teal); }

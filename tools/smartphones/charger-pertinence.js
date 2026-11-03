@@ -9,7 +9,7 @@ const FICHIERS = { produits: 'smartphones.json', tests: 'smartphones-tests.json'
 /* `source` : null (dossier data/ de l'arbre de travail), une référence git (« git:HEAD ») ou un dossier (« /chemin »). */
 function lire(f, source, facultatif) {
   try {
-    if (!source) return JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'));
+    if (!source) return JSON.parse(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(ROOT, process.env.SMARTPHONES_DATA_DIR) : path.join(ROOT, 'data'), f), 'utf8'));
     if (/^git:/.test(source)) return JSON.parse(execFileSync('git', ['show', source.slice(4) + ':data/' + f], { cwd: ROOT, encoding: 'utf8', maxBuffer: 1 << 28, stdio: ['ignore', 'pipe', 'ignore'] }));
     return JSON.parse(fs.readFileSync(path.join(source, f), 'utf8'));
   } catch (e) { if (facultatif) return null; throw e; }

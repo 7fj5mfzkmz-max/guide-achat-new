@@ -97,7 +97,7 @@
     return best;
   }
   function lectureBatterie(groupe, tri) {
-    var inv = inversions(groupe.lignes), ex = exemple(groupe.lignes), t = inv.total ? 'Capacité ou durée : ' + inv.n + ' modèle' + (inv.n > 1 ? 's' : '') + ' sur ' + inv.total + ' changent de place. ' : '';
+    var inv = inversions(groupe.lignes), ex = exemple(groupe.lignes), t = inv.total >= 3 ? 'Capacité ou durée : ' + inv.n + ' modèle' + (inv.n > 1 ? 's' : '') + ' sur ' + inv.total + ' changent de place. ' : '';
     if (ex) t += ex.b.nom + ' (' + fr(ex.b.mah) + ' mAh) tient ' + duree(ex.b.min) + ' : plus longtemps que ' + ex.a.nom + ' (' + fr(ex.a.mah) + ' mAh, ' + duree(ex.a.min) + '). ';
     return t + 'Une grosse batterie aide souvent, mais ne garantit pas une longue durée.';
   }
@@ -296,7 +296,7 @@
       viz: function () {
         var l = lignesBudget(S.comp, S.budget.garder), maxA = Math.max(8, Math.max.apply(null, l.map(function (x) { return x.ans || 0; }))), g = S.budget.garder, f = S.f;
         return '<ul class="dm-bud">' + l.map(function (x) {
-          var cells = ''; for (var i = 1; i <= maxA; i++) cells += '<i class="' + (x.ans != null && i <= x.ans ? 'is-ok' : i <= g ? 'is-no' : '') + (i === g ? ' is-g' : '') + '"></i>';
+          var cells = ''; for (var i = 1; i <= maxA; i++) cells += '<i class="' + (x.ans != null && i <= x.ans ? 'is-ok' : i <= g ? (x.ans == null ? 'is-inc' : 'is-no') : '') + (i === g ? ' is-g' : '') + '"></i>';   // durée non annoncée : inconnue, jamais « sans mise à jour »
           return '<li class="dm-brow' + (f && x.id === f.id ? ' is-you' : '') + '"><div class="dm-bh"><b>' + esc(x.nom) + (f && x.id === f.id ? tag('Ce modèle') : '') + '</b><span>' + fr(x.prix) + ' €</span></div><div class="dm-yrs" style="--n:' + maxA + '" aria-hidden="true">' + cells + '</div>' +
             '<p class="dm-bt">' + (x.ans == null ? 'Durée de mises à jour non annoncée.' : '<b>' + x.ans + ' ans annoncés</b> · ' + fr(Math.round(x.coutAn)) + ' € par année annoncée') + (x.sansSuivi > 0 ? ' · <em>' + x.sansSuivi + ' an' + (x.sansSuivi > 1 ? 's' : '') + ' sans mise à jour annoncée si gardé ' + g + ' ans</em>' : '') + '</p></li>';
         }).join('') + '</ul>';

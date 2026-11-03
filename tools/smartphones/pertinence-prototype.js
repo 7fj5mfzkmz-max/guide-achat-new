@@ -9,7 +9,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const ROOT = path.join(__dirname, '..', '..');
-const read = f => JSON.parse(fs.readFileSync(path.join(ROOT, 'data', f), 'utf8'));
+const read = f => JSON.parse(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(ROOT, process.env.SMARTPHONES_DATA_DIR) : path.join(ROOT, 'data'), f), 'utf8'));
 
 const clamp = x => Math.max(0, Math.min(1, x));
 const DIMS = ['batterie', 'performance', 'photo', 'suivi', 'robustesse', 'ecran'];   // dimensions « fiche »

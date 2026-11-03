@@ -232,7 +232,7 @@ say('');
 /* ——— 6. Cas encore discutables ——— */
 say('## 6. Recommandations qui restent discutables');
 say('');
-const liens = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'data', 'smartphones-liens-banc.json'), 'utf8')).liens;
+const liens = JSON.parse(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(__dirname, '..', '..', process.env.SMARTPHONES_DATA_DIR) : path.join(__dirname, '..', '..', 'data'), 'smartphones-liens-banc.json'), 'utf8')).liens;
 const faibles = [], capteurs = new Set(), inconnus = new Set(), instables = [];
 PRIOS.forEach(pr => BUDGETS.forEach(b => {
   const r = recs(ctx, pr, { budget: b }).slice(0, 3), lab = NOM[pr] + ' / ' + (b === 1700 ? '∞' : b + ' €');

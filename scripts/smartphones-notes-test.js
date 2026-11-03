@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const N = require('../assets/js/smartphones-notes.js');
-const d = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'smartphones-tests.json'), 'utf8'));
+const d = JSON.parse(fs.readFileSync(path.join(process.env.SMARTPHONES_DATA_DIR ? path.resolve(__dirname, '..', process.env.SMARTPHONES_DATA_DIR) : path.join(__dirname, '..', 'data'), 'smartphones-tests.json'), 'utf8'));
 let passed = 0, failures = 0;
 function check(label, fn) { try { fn(); passed++; } catch (e) { failures++; console.error('✗ ' + label + '\n    ' + String(e.message).split('\n')[0]); } }
 const M = id => d.banc.modeles.find(m => m.id === id);

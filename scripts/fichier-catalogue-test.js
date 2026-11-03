@@ -1,7 +1,8 @@
 'use strict';
+const DD = process.env.SMARTPHONES_DATA_DIR ? require('node:path').resolve(__dirname, '..', process.env.SMARTPHONES_DATA_DIR) : require('node:path').join(__dirname, '..', 'data');   // ancien catalogue figé pour ces tests de l'ancienne chaîne d'import
 /* Classeurs « Catalogue Smartphones 2026 » intégrés : une fiche classée repose sur une source, une rumeur ne classe jamais, une puce reconnue. */
 const assert = require('node:assert/strict');
-const { produits } = require('../data/smartphones.json');
+const { produits } = require(DD + '/smartphones.json');
 let ok = 0, ko = 0;
 function check(label, fn) { try { fn(); ok++; } catch (e) { ko++; console.error('✗ ' + label + '\n    ' + String(e.message).split('\n')[0]); } }
 const classees = produits.filter(p => p.ready_for_recommendation && !p.exclu_reco);

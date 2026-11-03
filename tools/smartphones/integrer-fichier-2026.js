@@ -1,6 +1,7 @@
+#!/usr/bin/env node
+if (require.main === module) main();
 
 if (require.main === module && require('../../data/smartphones.json').catalogue_meta?.source_type === 'mashup') throw new Error('Import historique désactivé : utiliser tools/smartphones/import/mashup/convertir.py');
-#!/usr/bin/env node
 /* Intègre data/fichier-catalogue-2026.json (issu de lire-fichier-2026.py) dans data/smartphones.json.
    Règles :
    - une fiche vérifiée sur le web (verifie_web) garde ses valeurs : les écarts sont listés, rien n'est écrasé ;
@@ -184,5 +185,4 @@ function main() {
   console.log(rapport.length + ' écart(s) :');
   rapport.forEach(r => console.log('  - ' + r));
 }
-if (require.main === module) main();
 module.exports = { main };

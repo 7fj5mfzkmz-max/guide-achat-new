@@ -1,0 +1,589 @@
+{
+ "prix": {
+  "Google Pixel 11 Pro": 1099,
+  "OPPO Find X10 Pro Max": 1399,
+  "Vivo V80": 499,
+  "OnePlus 16 Extreme": 999,
+  "RedMagic 11S Pro": 849,
+  "Samsung Galaxy A57": 499,
+  "Samsung Galaxy A37": 399,
+  "Samsung Galaxy A27": 299
+ },
+ "puce": {
+  "Google Pixel 11 Pro": {
+   "puce": "Google Tensor G6",
+   "niveau": 9
+  }
+ },
+ "capteur": {
+  "Galaxy Z Fold8": "1/1.56",
+  "iPhone 18 Pro Max": "1/1.14",
+  "iPhone 18 Pro": "1/1.14",
+  "Galaxy S26+": "1/1.56",
+  "Xiaomi 16 Pro": "1/1.31",
+  "Xiaomi 16 Ultra": "1",
+  "Xiaomi Redmi Note 15 4G": "1/2.76",
+  "realme C75": "1/2.76",
+  "Samsung Galaxy A23 5G": "1/2.76",
+  "Motorola Moto G06 Power": "1/3",
+  "Motorola Moto G06": "1/3",
+  "Blackview Shark 8": "1/2.8",
+  "Xiaomi Redmi A5": "1/3",
+  "Xiaomi Redmi A3": "1/3",
+  "Vivo X200 Ultra": "1",
+  "ZTE Nubia Z60S": "1/1.49",
+  "Tecno Camon 40 Pro": "1/1.56",
+  "Nokia G70 5G": "1/2",
+  "ASUS Zenfone 12 Ultra": "1/1.56",
+  "Samsung Galaxy XCover 8 Pro": "1/2.76",
+  "Motorola Razr 60 Ultra": "1/1.56",
+  "Samsung Galaxy A15": "1/2.76",
+  "Realme 12 Pro": "1/2",
+  "Tecno Spark 20": "1/2.8",
+  "Infinix Hot 40": "1/2.8",
+  "Nokia C31": "1/3",
+  "Xiaomi Black Shark 7 Pro": "1/1.56",
+  "Nubia Red Magic 10 Pro": "1/1.57",
+  "Realme GT Neo 7": "1/1.56",
+  "Honor Magic V3": "1/1.56",
+  "Vivo iQOO Z9 Turbo": "1/1.95",
+  "Nubia Focus 6 Air": "1/2",
+  "Google Pixel 11 Pro": "1/1.31",
+  "OPPO Find X10 Pro Max": "1",
+  "OnePlus 16 Extreme": "1/1.4",
+  "RedMagic 11S Pro": "1/1.57",
+  "Samsung Galaxy A37": "1/2.76",
+  "Samsung Galaxy A27": "1/2.76"
+ },
+ "nits": {
+  "OnePlus 15": 4500,
+  "ROG Phone 9": 2500,
+  "Galaxy Z Fold8": 2600,
+  "Xperia 1 VII": 1500,
+  "iPhone 18 Pro": 3000,
+  "Pixel 10a": 2000,
+  "OnePlus Nord 5": 2100,
+  "Honor Magic 8 Pro": 5000,
+  "Galaxy S26": 2600,
+  "Xiaomi 16 Ultra": 3000,
+  "Samsung Galaxy A17 5G": 1000,
+  "Xiaomi Redmi Note 15 5G": 1800,
+  "realme P3 5G": 2000,
+  "realme C75": 900,
+  "Xiaomi Redmi Note 14 5G": 1800,
+  "Motorola Moto G55 5G": 1000,
+  "HONOR 400 Lite": 2000,
+  "POCO C85": 600,
+  "Samsung Galaxy A23 5G": 500,
+  "Motorola Moto G06 Power": 500,
+  "Motorola Moto G06": 500,
+  "Blackview Shark 8": 500,
+  "Xiaomi Redmi A5": 500,
+  "POCO C71": 500,
+  "Xiaomi Redmi A3": 500,
+  "OPPO Find X9": 4500,
+  "Realme GT 7 Pro": 6000,
+  "ZTE Nubia Z60S": 1200,
+  "Tecno Camon 40 Pro": 1300,
+  "Nokia G70 5G": 600,
+  "Samsung Galaxy XCover 8 Pro": 1000,
+  "Motorola Razr 60 Ultra": 3000,
+  "Samsung Galaxy A15": 800,
+  "Xiaomi Redmi Note 13": 1800,
+  "POCO X6": 1800,
+  "Tecno Spark 20": 500,
+  "Infinix Hot 40": 500,
+  "Samsung Galaxy A05": 500,
+  "Nokia C31": 400,
+  "Xiaomi Black Shark 7 Pro": 1500,
+  "Realme GT Neo 7": 6000,
+  "Vivo iQOO Z9 Turbo": 4500,
+  "Nubia Focus 6 Air": 600,
+  "POCO X8 Pro": 2400
+ },
+ "hz": {
+  "Realme GT 7 Pro": 120,
+  "Xiaomi Redmi Note 13": 120,
+  "POCO X6": 120
+ },
+ "ecran": {
+  "Xiaomi Redmi Note 13": "AMOLED",
+  "POCO X6": "AMOLED"
+ },
+ "mah": {
+  "iPhone 18 Pro Max": 4600,
+  "iPhone 18 Pro": 3400,
+  "Pixel 10 Pro": 4700
+ },
+ "w": {
+  "ROG Phone 9": 65.0,
+  "Pixel 10 Pro": 30.0,
+  "POCO C71": 18.0,
+  "Xiaomi Redmi A3": 10.0,
+  "Xiaomi Redmi Note 13": 33.0,
+  "Motorola Moto G85": 30.0,
+  "Nothing Phone (3)": 45.0
+ },
+ "maj": {
+  "OnePlus 15": 5,
+  "Galaxy Z Fold8": 7,
+  "Pixel 10 Pro XL": 7,
+  "Pixel 10": 7,
+  "Galaxy S26 Ultra": 7,
+  "iPhone 18 Pro Max": 5,
+  "Xperia 1 VII": 3,
+  "iPhone 18 Pro": 5,
+  "Galaxy S26+": 7,
+  "OnePlus Nord 5": 4,
+  "Honor Magic 8 Pro": 4,
+  "Galaxy S26": 7,
+  "Pixel 10 Pro": 7,
+  "Motorola Edge 70 Pro": 4,
+  "Xiaomi Redmi 15C": 2,
+  "Xiaomi Redmi A5": 2,
+  "POCO C71": 2,
+  "Xiaomi Redmi A3": 2,
+  "Vivo X200 Ultra": 3,
+  "OPPO Find X9": 4,
+  "Realme GT 7 Pro": 3,
+  "Motorola Razr 60 Ultra": 3,
+  "Samsung Galaxy A15": 4,
+  "Xiaomi Redmi Note 13": 3,
+  "Motorola Moto G85": 3,
+  "Realme 12 Pro": 2,
+  "POCO X6": 3,
+  "POCO F6 Pro": 3
+ },
+ "ip": {
+  "OnePlus 15": {
+   "ip": "IP69"
+  },
+  "ROG Phone 9": {
+   "ip": "IP68"
+  },
+  "Pixel 10": {
+   "ip": "IP68"
+  },
+  "Xperia 1 VII": {
+   "ip": "IP68"
+  },
+  "iPhone 18 Pro": {
+   "ip": "IP68"
+  },
+  "Galaxy S26+": {
+   "ip": "IP68"
+  },
+  "OnePlus Nord 5": {
+   "ip": "IP65"
+  },
+  "Galaxy S26": {
+   "ip": "IP68"
+  },
+  "Samsung Galaxy A17 5G": {
+   "ip": "IP54"
+  },
+  "Xiaomi Redmi 15C": {
+   "ip": "IP52"
+  },
+  "Blackview Shark 8": {
+   "sans_ip": true
+  },
+  "Xiaomi Redmi A5": {
+   "sans_ip": true
+  },
+  "Xiaomi Redmi A3": {
+   "sans_ip": true
+  },
+  "OPPO Find X9": {
+   "ip": "IP69"
+  },
+  "Realme GT 7 Pro": {
+   "ip": "IP69"
+  },
+  "Samsung Galaxy A15": {
+   "sans_ip": true
+  },
+  "Xiaomi Redmi Note 13": {
+   "ip": "IP54"
+  },
+  "Motorola Moto G85": {
+   "ip": "IP54"
+  },
+  "POCO X6": {
+   "ip": "IP54"
+  },
+  "Samsung Galaxy A05": {
+   "sans_ip": true
+  },
+  "Xiaomi Black Shark 7 Pro": {
+   "ip": "IP54"
+  },
+  "POCO F6 Pro": {
+   "ip": "IP54"
+  },
+  "Nubia Focus 6 Air": {
+   "sans_ip": true
+  },
+  "RedMagic 11S Pro": {
+   "ip": "IP68"
+  }
+ },
+ "ois": {
+  "OnePlus 15": true,
+  "ROG Phone 9": true,
+  "Pixel 10 Pro XL": true,
+  "Pixel 10": true,
+  "Galaxy S26 Ultra": true,
+  "iPhone 18 Pro Max": true,
+  "Xperia 1 VII": true,
+  "iPhone 18 Pro": true,
+  "Galaxy S26+": true,
+  "Pixel 10a": true,
+  "OnePlus Nord 5": true,
+  "Honor Magic 8 Pro": true,
+  "Galaxy S26": true,
+  "Pixel 10 Pro": true,
+  "Motorola Edge 70 Pro": true,
+  "Xiaomi Redmi 15C": false,
+  "Xiaomi Redmi A5": false,
+  "POCO C71": false,
+  "Xiaomi Redmi A3": false,
+  "OPPO Find X9": true,
+  "Realme GT 7 Pro": true,
+  "Samsung Galaxy A15": false,
+  "Xiaomi Redmi Note 13": false,
+  "Motorola Moto G85": true,
+  "Realme 12 Pro": true,
+  "POCO X6": true,
+  "POCO F6 Pro": true
+ },
+ "sources": {
+  "Samsung Galaxy A56": [
+   "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A56",
+   "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a56"
+  ],
+  "Xiaomi 15T": [
+   "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+15T",
+   "https://www.kimovil.com/fr/ou-acheter-xiaomi-15t"
+  ],
+  "Apple iPhone 17 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=Apple+iPhone+17+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-apple-iphone-17-pro"
+  ],
+  "Galaxy Z Fold8": [
+   "https://www.gsmarena.com/res.php3?sSearch=Galaxy+Z+Fold8",
+   "https://www.kimovil.com/fr/ou-acheter-galaxy-z-fold8"
+  ],
+  "Xiaomi 16 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+16+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-xiaomi-16-pro"
+  ],
+  "Xiaomi 16 Ultra": [
+   "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+16+Ultra",
+   "https://www.kimovil.com/fr/ou-acheter-xiaomi-16-ultra"
+  ],
+  "Samsung Galaxy A17 5G": [
+   "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A17+5G",
+   "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a17-5g"
+  ],
+  "Xiaomi Redmi Note 15 4G": [
+   "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+15+4G",
+   "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-15-4g"
+  ],
+  "Xiaomi Redmi Note 15 5G": [
+   "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+15+5G",
+   "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-15-5g"
+  ],
+  "realme P3 5G": [
+   "https://www.gsmarena.com/res.php3?sSearch=realme+P3+5G",
+   "https://www.kimovil.com/fr/ou-acheter-realme-p3-5g"
+  ],
+  "realme C75": [
+   "https://www.gsmarena.com/res.php3?sSearch=realme+C75",
+   "https://www.kimovil.com/fr/ou-acheter-realme-c75"
+  ],
+  "Xiaomi Redmi Note 14 5G": [
+   "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Redmi+Note+14+5G",
+   "https://www.kimovil.com/fr/ou-acheter-xiaomi-redmi-note-14-5g"
+  ],
+  "HONOR 400 Lite": [
+   "https://www.gsmarena.com/res.php3?sSearch=HONOR+400+Lite",
+   "https://www.kimovil.com/fr/ou-acheter-honor-400-lite"
+  ],
+  "POCO C85": [
+   "https://www.gsmarena.com/res.php3?sSearch=POCO+C85",
+   "https://www.kimovil.com/fr/ou-acheter-poco-c85"
+  ],
+  "Samsung Galaxy A23 5G": [
+   "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A23+5G",
+   "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a23-5g"
+  ],
+  "Motorola Moto G06 Power": [
+   "https://www.gsmarena.com/res.php3?sSearch=Motorola+Moto+G06+Power",
+   "https://www.kimovil.com/fr/ou-acheter-motorola-moto-g06-power"
+  ],
+  "Motorola Moto G06": [
+   "https://www.gsmarena.com/res.php3?sSearch=Motorola+Moto+G06",
+   "https://www.kimovil.com/fr/ou-acheter-motorola-moto-g06"
+  ],
+  "Blackview Shark 8": [
+   "https://www.gsmarena.com/res.php3?sSearch=Blackview+Shark+8",
+   "https://www.kimovil.com/fr/ou-acheter-blackview-shark-8"
+  ],
+  "Vivo X200 Ultra": [
+   "https://www.gsmarena.com/res.php3?sSearch=Vivo+X200+Ultra",
+   "https://www.kimovil.com/fr/ou-acheter-vivo-x200-ultra"
+  ],
+  "ZTE Nubia Z60S": [
+   "https://www.gsmarena.com/res.php3?sSearch=ZTE+Nubia+Z60S",
+   "https://www.kimovil.com/fr/ou-acheter-zte-nubia-z60s"
+  ],
+  "Tecno Camon 40 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=Tecno+Camon+40+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-tecno-camon-40-pro"
+  ],
+  "Nokia G70 5G": [
+   "https://www.gsmarena.com/res.php3?sSearch=Nokia+G70+5G",
+   "https://www.kimovil.com/fr/ou-acheter-nokia-g70-5g"
+  ],
+  "ASUS Zenfone 12 Ultra": [
+   "https://www.gsmarena.com/res.php3?sSearch=ASUS+Zenfone+12+Ultra",
+   "https://www.kimovil.com/fr/ou-acheter-asus-zenfone-12-ultra"
+  ],
+  "Samsung Galaxy XCover 8 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+XCover+8+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-xcover-8-pro"
+  ],
+  "Motorola Razr 60 Ultra": [
+   "https://www.gsmarena.com/res.php3?sSearch=Motorola+Razr+60+Ultra",
+   "https://www.kimovil.com/fr/ou-acheter-motorola-razr-60-ultra"
+  ],
+  "Tecno Spark 20": [
+   "https://www.gsmarena.com/res.php3?sSearch=Tecno+Spark+20",
+   "https://www.kimovil.com/fr/ou-acheter-tecno-spark-20"
+  ],
+  "Infinix Hot 40": [
+   "https://www.gsmarena.com/res.php3?sSearch=Infinix+Hot+40",
+   "https://www.kimovil.com/fr/ou-acheter-infinix-hot-40"
+  ],
+  "Nokia C31": [
+   "https://www.gsmarena.com/res.php3?sSearch=Nokia+C31",
+   "https://www.kimovil.com/fr/ou-acheter-nokia-c31"
+  ],
+  "Xiaomi Black Shark 7 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=Xiaomi+Black+Shark+7+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-xiaomi-black-shark-7-pro"
+  ],
+  "Nubia Red Magic 10 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=Nubia+Red+Magic+10+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-nubia-red-magic-10-pro"
+  ],
+  "Realme GT Neo 7": [
+   "https://www.gsmarena.com/res.php3?sSearch=Realme+GT+Neo+7",
+   "https://www.kimovil.com/fr/ou-acheter-realme-gt-neo-7"
+  ],
+  "Vivo iQOO Z9 Turbo": [
+   "https://www.gsmarena.com/res.php3?sSearch=Vivo+iQOO+Z9+Turbo",
+   "https://www.kimovil.com/fr/ou-acheter-vivo-iqoo-z9-turbo"
+  ],
+  "Nubia Focus 6 Air": [
+   "https://www.gsmarena.com/res.php3?sSearch=Nubia+Focus+6+Air",
+   "https://www.kimovil.com/fr/ou-acheter-nubia-focus-6-air"
+  ],
+  "Apple iPhone 17 Pro Max": [
+   "https://www.gsmarena.com/res.php3?sSearch=Apple+iPhone+17+Pro+Max",
+   "https://www.kimovil.com/fr/ou-acheter-apple-iphone-17-pro-max"
+  ],
+  "POCO X8 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=POCO+X8+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-poco-x8-pro"
+  ],
+  "Google Pixel 11 Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=Google+Pixel+11+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-google-pixel-11-pro"
+  ],
+  "OPPO Find X10 Pro Max": [
+   "https://www.gsmarena.com/res.php3?sSearch=OPPO+Find+X10+Pro+Max",
+   "https://www.kimovil.com/fr/ou-acheter-oppo-find-x10-pro-max"
+  ],
+  "Vivo V80": [
+   "https://www.gsmarena.com/res.php3?sSearch=Vivo+V80",
+   "https://www.kimovil.com/fr/ou-acheter-vivo-v80"
+  ],
+  "OnePlus 16 Extreme": [
+   "https://www.gsmarena.com/res.php3?sSearch=OnePlus+16+Extreme",
+   "https://www.kimovil.com/fr/ou-acheter-oneplus-16-extreme"
+  ],
+  "RedMagic 11S Pro": [
+   "https://www.gsmarena.com/res.php3?sSearch=RedMagic+11S+Pro",
+   "https://www.kimovil.com/fr/ou-acheter-redmagic-11s-pro"
+  ],
+  "Samsung Galaxy A57": [
+   "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A57",
+   "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a57"
+  ],
+  "Samsung Galaxy A37": [
+   "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A37",
+   "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a37"
+  ],
+  "Samsung Galaxy A27": [
+   "https://www.gsmarena.com/res.php3?sSearch=Samsung+Galaxy+A27",
+   "https://www.kimovil.com/fr/ou-acheter-samsung-galaxy-a27"
+  ]
+ },
+ "tele": {
+  "ASUS Zenfone 12 Ultra": true,
+  "Apple iPhone 17 Pro": true,
+  "Apple iPhone 17 Pro Max": true,
+  "Blackview Shark 8": false,
+  "Galaxy S26": true,
+  "Galaxy S26 Ultra": true,
+  "Galaxy S26+": true,
+  "Galaxy Z Fold8": true,
+  "Google Pixel 11 Pro": true,
+  "HONOR 400 Lite": false,
+  "Honor Magic 8 Pro": true,
+  "Honor Magic V3": true,
+  "Infinix Hot 40": false,
+  "Motorola Edge 70 Pro": true,
+  "Motorola Moto G06": false,
+  "Motorola Moto G06 Power": false,
+  "Motorola Moto G55 5G": false,
+  "Motorola Moto G85": false,
+  "Motorola Razr 60 Ultra": true,
+  "Nokia C31": false,
+  "Nokia G70 5G": false,
+  "Nothing Phone (3)": false,
+  "Nubia Focus 6 Air": false,
+  "Nubia Red Magic 10 Pro": true,
+  "OPPO Find X10 Pro Max": true,
+  "OPPO Find X9": true,
+  "OnePlus 15": false,
+  "OnePlus 16 Extreme": false,
+  "OnePlus Nord 5": false,
+  "POCO C71": false,
+  "POCO C85": false,
+  "POCO F6 Pro": false,
+  "POCO X6": false,
+  "POCO X8 Pro": false,
+  "Pixel 10": false,
+  "Pixel 10 Pro": true,
+  "Pixel 10 Pro XL": true,
+  "Pixel 10a": false,
+  "ROG Phone 9": false,
+  "Realme 12 Pro": true,
+  "Realme GT 7 Pro": true,
+  "Realme GT Neo 7": false,
+  "RedMagic 11S Pro": true,
+  "Samsung Galaxy A05": false,
+  "Samsung Galaxy A15": false,
+  "Samsung Galaxy A17 5G": false,
+  "Samsung Galaxy A23 5G": false,
+  "Samsung Galaxy A27": false,
+  "Samsung Galaxy A37": false,
+  "Samsung Galaxy A56": false,
+  "Samsung Galaxy A57": false,
+  "Samsung Galaxy XCover 8 Pro": true,
+  "Tecno Camon 40 Pro": true,
+  "Tecno Spark 20": false,
+  "Vivo V80": false,
+  "Vivo X200 Ultra": true,
+  "Vivo iQOO Z9 Turbo": false,
+  "Xiaomi 15T": false,
+  "Xiaomi 16 Pro": true,
+  "Xiaomi 16 Ultra": true,
+  "Xiaomi Black Shark 7 Pro": true,
+  "Xiaomi Redmi 15C": false,
+  "Xiaomi Redmi A3": false,
+  "Xiaomi Redmi A5": false,
+  "Xiaomi Redmi Note 13": false,
+  "Xiaomi Redmi Note 14 5G": false,
+  "Xiaomi Redmi Note 15 4G": false,
+  "Xiaomi Redmi Note 15 5G": false,
+  "Xperia 1 VII": false,
+  "ZTE Nubia Z60S": false,
+  "iPhone 18 Pro": true,
+  "iPhone 18 Pro Max": true,
+  "realme C75": false,
+  "realme P3 5G": false
+ },
+ "reparabilite": {
+  "ASUS Zenfone 12 Ultra": "6.5 à 7.5/10",
+  "Apple iPhone 17 Pro": "7.5 à 8.5/10",
+  "Apple iPhone 17 Pro Max": "7.5 à 8.5/10",
+  "Blackview Shark 8": "6.5 à 7.5/10",
+  "Galaxy S26": "6.5 à 7.5/10",
+  "Galaxy S26 Ultra": "6.5 à 7.5/10",
+  "Galaxy S26+": "6.5 à 7.5/10",
+  "Galaxy Z Fold8": "6.5 à 7.5/10",
+  "Google Pixel 11 Pro": "7.5 à 8.5/10",
+  "HONOR 400 Lite": "7.0 à 8.0/10",
+  "Honor Magic 8 Pro": "7.0 à 8.0/10",
+  "Honor Magic V3": "7.0 à 8.0/10",
+  "Infinix Hot 40": "6.5 à 7.5/10",
+  "Motorola Edge 70 Pro": "6.5 à 7.5/10",
+  "Motorola Moto G06": "6.5 à 7.5/10",
+  "Motorola Moto G06 Power": "6.5 à 7.5/10",
+  "Motorola Moto G55 5G": "6.5 à 7.5/10",
+  "Motorola Moto G85": "6.5 à 7.5/10",
+  "Motorola Razr 60 Ultra": "6.5 à 7.5/10",
+  "Nokia C31": "6.5 à 7.5/10",
+  "Nokia G70 5G": "6.5 à 7.5/10",
+  "Nothing Phone (3)": "6.5 à 7.5/10",
+  "Nubia Focus 6 Air": "6.5 à 7.5/10",
+  "Nubia Red Magic 10 Pro": "6.5 à 7.5/10",
+  "OPPO Find X10 Pro Max": "7.0 à 8.0/10",
+  "OPPO Find X9": "7.0 à 8.0/10",
+  "OnePlus 15": "7.0 à 8.0/10",
+  "OnePlus 16 Extreme": "7.0 à 8.0/10",
+  "OnePlus Nord 5": "7.0 à 8.0/10",
+  "POCO C71": "6.5 à 7.5/10",
+  "POCO C85": "6.5 à 7.5/10",
+  "POCO F6 Pro": "6.5 à 7.5/10",
+  "POCO X6": "6.5 à 7.5/10",
+  "POCO X8 Pro": "6.5 à 7.5/10",
+  "Pixel 10": "7.5 à 8.5/10",
+  "Pixel 10 Pro": "7.5 à 8.5/10",
+  "Pixel 10 Pro XL": "7.5 à 8.5/10",
+  "Pixel 10a": "7.5 à 8.5/10",
+  "ROG Phone 9": "6.5 à 7.5/10",
+  "Realme 12 Pro": "6.5 à 7.5/10",
+  "Realme GT 7 Pro": "6.5 à 7.5/10",
+  "Realme GT Neo 7": "6.5 à 7.5/10",
+  "RedMagic 11S Pro": "6.5 à 7.5/10",
+  "Samsung Galaxy A05": "7.5 à 8.5/10",
+  "Samsung Galaxy A15": "7.5 à 8.5/10",
+  "Samsung Galaxy A17 5G": "7.5 à 8.5/10",
+  "Samsung Galaxy A23 5G": "7.5 à 8.5/10",
+  "Samsung Galaxy A27": "7.5 à 8.5/10",
+  "Samsung Galaxy A37": "7.5 à 8.5/10",
+  "Samsung Galaxy A56": "7.5 à 8.5/10",
+  "Samsung Galaxy A57": "7.5 à 8.5/10",
+  "Samsung Galaxy XCover 8 Pro": "7.5 à 8.5/10",
+  "Tecno Camon 40 Pro": "6.5 à 7.5/10",
+  "Tecno Spark 20": "6.5 à 7.5/10",
+  "Vivo V80": "6.5 à 7.5/10",
+  "Vivo X200 Ultra": "6.5 à 7.5/10",
+  "Vivo iQOO Z9 Turbo": "6.5 à 7.5/10",
+  "Xiaomi 15T": "7.0 à 8.0/10",
+  "Xiaomi 16 Pro": "7.0 à 8.0/10",
+  "Xiaomi 16 Ultra": "7.0 à 8.0/10",
+  "Xiaomi Black Shark 7 Pro": "7.0 à 8.0/10",
+  "Xiaomi Redmi 15C": "7.0 à 8.0/10",
+  "Xiaomi Redmi A3": "7.0 à 8.0/10",
+  "Xiaomi Redmi A5": "7.0 à 8.0/10",
+  "Xiaomi Redmi Note 13": "7.0 à 8.0/10",
+  "Xiaomi Redmi Note 14 5G": "7.0 à 8.0/10",
+  "Xiaomi Redmi Note 15 4G": "7.0 à 8.0/10",
+  "Xiaomi Redmi Note 15 5G": "7.0 à 8.0/10",
+  "Xperia 1 VII": "6.5 à 7.5/10",
+  "ZTE Nubia Z60S": "6.5 à 7.5/10",
+  "iPhone 18 Pro": "7.5 à 8.5/10",
+  "iPhone 18 Pro Max": "7.5 à 8.5/10",
+  "realme C75": "6.5 à 7.5/10",
+  "realme P3 5G": "6.5 à 7.5/10"
+ },
+ "ignores": [
+  "IP Samsung Galaxy A23 5G : « Non / IP52 »"
+ ]
+}
