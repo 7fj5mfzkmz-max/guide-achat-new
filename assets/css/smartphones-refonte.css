@@ -271,22 +271,3 @@ html.sp-pertinence .gc .dm .dm-tab svg { color: inherit; }
 html.sp-pertinence #conseiller.gc { background: var(--wall); }
 @media (max-width: 899px) { html.sp-pertinence .gc-res-t small, html.sp-pertinence .gc-res-t::before { display: none; } html.sp-pertinence .gc-res-t { font-size: 13px; } }
 
-/* ═══════════ Onglets-illustrations flottants (démonstrations) ═══════════ */
-html.sp-pertinence .dm-tabs { padding: 14px 18px 0; gap: 6px; background: var(--bar); border-bottom: 3px solid var(--edge); align-items: flex-end; }
-html.sp-pertinence .dm-tab, html.sp-pertinence .gc .dm .dm-tab { flex: 0 0 128px; min-height: 0; padding: 0 6px 10px; border: 0; border-radius: 0; background: transparent; color: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; position: relative; font: 700 13px/1.2 var(--mono); letter-spacing: .04em; text-transform: uppercase; box-shadow: none; margin: 0; }
-html.sp-pertinence .dm-tab:hover { background: transparent; }
-html.sp-pertinence .dm-ill { display: block; width: 84px; height: 84px; filter: drop-shadow(0 10px 0 rgba(15,17,21,.16)); transition: transform .25s cubic-bezier(.3,1.6,.5,1), filter .25s; }
-html.sp-pertinence .dm-ill svg { width: 100%; height: 100%; display: block; }
-html.sp-pertinence .dm-tab:hover .dm-ill { transform: translateY(-6px) rotate(-3deg); }
-html.sp-pertinence .dm-tab[aria-selected="true"], html.sp-pertinence .gc .dm .dm-tab[aria-selected="true"] { background: transparent; color: var(--ink); margin-bottom: -3px; }
-html.sp-pertinence .dm-tab[aria-selected="true"] .dm-ill { transform: translateY(-10px) scale(1.12); filter: drop-shadow(0 16px 0 rgba(15,17,21,.2)); animation: dm-float 2.6s ease-in-out infinite; }
-html.sp-pertinence .dm-tab[aria-selected="true"]::after { content: ''; position: absolute; left: 6px; right: 6px; bottom: -3px; height: 7px; background: var(--bar-act); border: 1px solid var(--edge); border-bottom: 0; }
-html.sp-pertinence .dm-tab[aria-selected="true"] .dm-tl { background: var(--ink); color: var(--bar-act); padding: 3px 8px; }
-html.sp-pertinence .dm-tl { padding: 3px 0; }
-html.sp-pertinence .dm-you-dot { position: absolute; top: 2px; right: 22px; width: 10px; height: 10px; border-radius: 50%; background: var(--acc); border: 2px solid var(--bar); }
-@keyframes dm-float { 0%, 100% { transform: translateY(-10px) scale(1.12); } 50% { transform: translateY(-16px) scale(1.12) rotate(1.5deg); } }
-@media (prefers-reduced-motion: reduce) { html.sp-pertinence .dm-tab .dm-ill { animation: none !important; transition: none; } }
-html.sp-pertinence .dm-tabs { padding: 22px 22px 0; gap: 10px; }
-html.sp-pertinence .dm-tab, html.sp-pertinence .gc .dm .dm-tab { flex-basis: 150px; }
-html.sp-pertinence .dm-ill { width: 108px; height: 108px; }
-@media (max-width: 899px) { html.sp-pertinence .dm-ill { width: 84px; height: 84px; } html.sp-pertinence .dm-tab, html.sp-pertinence .gc .dm .dm-tab { flex-basis: 112px; } }
