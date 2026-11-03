@@ -292,6 +292,11 @@ async function main() {
     assert((await page.locator('#purchase-audit .audit-card[data-audit-card="price"] .audit-pill').count()) > 0, 'les options du premier critère doivent être visibles sans interaction');
     assert(/0 \/ 6 familles renseignées/.test(await page.locator('#audit-count').innerText()), 'compteur initial attendu : 0 / 6 familles renseignées');
     assert(await page.locator('#audit-see-results').isHidden(), 'le bouton « Voir mes recommandations » doit être masqué avant le premier choix');
+    /* Le conseiller charge ses données puis ouvre le groupe « Affiner mon choix » (lien profond #audit) : on attend cette ouverture, puis on exige la zone visible. */
+    await page.waitForSelector('#conseiller[data-ready="1"]', { state: 'attached', timeout: 10000 });
+    await page.waitForSelector('#aller-plus-loin', { state: 'attached', timeout: 5000 });
+    await page.waitForSelector('#criteria-recommendations', { state: 'visible', timeout: 5000 });
+    await page.waitForTimeout(500); /* la mise en page se stabilise (groupes replacés, défilement du lien profond) avant de mesurer un éventuel saut */
     assert(!(await page.locator('#criteria-recommendations').isHidden()), 'la zone de recommandations doit être visible dès l\u2019arrivée (emplacement d\u2019attente)');
     assert(/premier choix/.test(await page.locator('#scoring-status').innerText()), 'emplacement d\u2019attente attendu dans le statut');
     /* Premier choix : recommandations affichées sans quitter l'audit, pas de saut de page,
@@ -299,6 +304,9 @@ async function main() {
        (behavior:'instant') : le CSS html{scroll-behavior:smooth} animerait sinon la mesure. */
     await page.click('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger');
     await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]', { state: 'visible', timeout: 10000 });
+    await page.evaluate(() => document.querySelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]').scrollIntoView({ block: 'center', behavior: 'instant' }));
+    /* L'accordéon (critère précédent qui se referme) et la mise en page des groupes finissent de bouger : on mesure à hauteur de page stable. */
+    await page.waitForFunction(() => new Promise(res => { const h = () => document.documentElement.scrollHeight; const a = h(); setTimeout(() => { const b = h(); setTimeout(() => res(h() === a && b === a), 250); }, 250); }), null, { timeout: 15000, polling: 100 });
     await page.evaluate(() => document.querySelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]').scrollIntoView({ block: 'center', behavior: 'instant' }));
     await page.waitForTimeout(150);
     const y0 = await page.evaluate(() => window.scrollY);

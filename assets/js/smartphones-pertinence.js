@@ -388,6 +388,9 @@
     }
 
     /* — Classement et statut de recommandation — */
+    /* Trois états du suivi, jamais confondus : « documenté » (date de sortie connue : durée restante calculée), « terminé » (date connue et durée épuisée : seule preuve qui écarte un modèle),
+       « restant inconnu » (pas de date de sortie : on garde la durée ANNONCÉE, présentée comme annoncée, jamais comme restante ; l'absence de date n'est pas un défaut). */
+    function suiviAnnonce(i) { var s = specDe(i, 'suivi'); return s && s.obs.valeur && s.obs.valeur.nombre != null ? Number(s.obs.valeur.nombre) : null; }
     function suiviAns(i) {
       var s = specDe(i, 'suivi'), p = pool[i];
       if (!s || !s.obs.valeur || !p.date_sortie) return null;
@@ -413,11 +416,10 @@
         a.critiques = critiques;
         a.critiquesFaibles = critiques.filter(function (d) { return d !== 'prix' && (ev[d].x == null || ev[d].S < REC.soutien_critere_min); });
         a.portes = { incertitude: a.U <= REC.incertitude_max, soutien: a.Cdecl >= REC.soutien_min, critiques: !a.critiquesFaibles.length };
-        var ans = suiviAns(a.i);
-        a.suiviRestant = ans;
-        a.plancher = plancherActif ? { requis: plancher, connu: ans != null, ans: ans, ok: ans != null && ans >= plancher } : null;
-        a.portes.plancher = ans == null || ans > 0; // un appareil dont le suivi estimé est terminé n'est jamais un achat par défaut
-        if (plancherActif) a.portes.plancher = a.portes.plancher && a.plancher.ok;
+        var rest = suiviAns(a.i), ann = suiviAnnonce(a.i), ans = rest != null ? rest : ann;   // durée testée : restante si la date est connue, sinon annoncée
+        a.suiviRestant = rest; a.suiviAnnonce = ann; a.suiviEtat = rest != null ? (rest <= 0 ? 'termine' : 'documente') : (ann != null ? 'restant_inconnu' : 'inconnu');
+        a.plancher = plancherActif ? { requis: plancher, connu: ans != null, ans: ans, ok: ans != null && ans >= plancher, restantConnu: rest != null } : null;
+        a.portes.plancher = a.suiviEtat !== 'termine' && (!plancherActif || a.plancher.ok);   // un suivi prouvé terminé n'est jamais un achat par défaut ; une date inconnue ne l'est pas
         if (principal === 'photo' && ev.photo.x != null && ev.photo.x < 0.2 && !obsDe(a.id, null, 'qualitative').some(function (o) { return /^avis:photographe:/.test(o.id); })) {
           a.portes.photo = false; a.critiquesFaibles.push('photo');
         }
@@ -425,7 +427,7 @@
         if (!a.portes.incertitude) mot.push('incertitude');
         if (!a.portes.soutien) mot.push('soutien');
         if (!a.portes.critiques) mot.push('provenance');
-        if (ans === 0) mot.push('suivi_termine');
+        if (a.suiviEtat === 'termine') mot.push('suivi_termine');
         else if (plancherActif && !a.plancher.ok) mot.push(ans == null ? 'suivi_inconnu' : 'suivi_court');
         if (a.portes.photo === false) mot.push('photo_non_etayee');
         a.motifs = mot;
@@ -434,7 +436,7 @@
       liste.forEach(function (a) {
         a.justifie = !liste.some(function (b) { return b.fiable && b.prix <= a.prix / REC.ecart_prix_prime && b.fit >= a.fit - kappa * Math.log2(a.prix / b.prix); });
         a.recommandable = a.fiable && a.justifie;
-        if (a.suiviRestant === 0 || (a.plancher && a.plancher.connu && !a.plancher.ok)) a.statut = 'ecartee';
+        if (a.suiviEtat === 'termine' || (a.plancher && a.plancher.connu && !a.plancher.ok)) a.statut = 'ecartee';
         else if (!a.justifie) { a.statut = 'ecartee'; a.motifs.push('prime_non_justifiee'); }
         else if (a.fiable) a.statut = 'confirmee';
         else if (a.couverture >= REC.couverture_provisoire_min) a.statut = 'provisoire';

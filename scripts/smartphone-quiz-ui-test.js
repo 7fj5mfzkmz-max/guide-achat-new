@@ -89,11 +89,44 @@ const server = http.createServer((req, res) => {
     await dispo.locator('#quiz-price [data-value="bas"]').click();
     const perf = dispo.locator('[data-audit-card="performance"]');
     await perf.locator('.audit-card-trigger').click();
-    for (const v of ['mid', 'high', 'top']) {
+    for (const v of ['high', 'top']) {
       const pill = perf.locator(`[data-group="reference"] [data-value="${v}"]`);
       assert.equal(await pill.getAttribute('aria-disabled'), 'true', 'puce ' + v + ' grisée avec un budget de 80 à 150 €');
       assert.match(await pill.innerText(), /Aucun modèle dans ce budget/);
     }
+    // Le palier « 80 à 150 € » est indicatif (tolérance de 15 % : jusqu'à 172 €). « Milieu de gamme » reste donc proposé
+    // si un modèle de ce palier élargi l'offre (Moto G55 5G, 169 €, puce 4/10) ; un modèle plus cher que le palier doit être annoncé comme tel.
+    const catalogue = require('../data/smartphones.json').produits.filter(x => x.ready_for_recommendation && !x.exclu_reco && x.fiche_statut !== 'specs_a_verifier' && x.compatibilite);
+    const tolere = catalogue.filter(x => x.prix_indicatif <= 150 * 1.15 && x.compatibilite.performance && x.compatibilite.performance.niveau >= 4 && x.compatibilite.performance.niveau <= 6);
+    assert.ok(tolere.length >= 1 && tolere.every(x => x.prix_indicatif > 150), 'la puce milieu de gamme n\u2019existe dans ce palier que grâce à la tolérance : ' + tolere.map(x => x.id));
+    assert.equal(await perf.locator('[data-group="reference"] [data-value="mid"]').getAttribute('aria-disabled'), null, 'puce mid proposée grâce à la tolérance de 15 %');
+    await perf.locator('[data-group="reference"] [data-value="mid"]').click();
+    await dispo.waitForSelector('#scoring-results .criteria-recommendation-card');
+    const fiches = await dispo.locator('#scoring-results .criteria-recommendation-card').evaluateAll(cs => cs.map(c => c.innerText));
+    assert.ok(fiches.length >= 3);
+    let depasse = 0;
+    for (const t of fiches) {
+      const prix = Number((t.match(/≈\s*([\d\s\u202f\u00a0]+)\s*€/) || [])[1].replace(/\D/g, '')), ligne = (t.match(/PRIX\s*\n?\s*[^\n]*\n?[^\n]*/i) || [''])[0];
+      if (prix > 150) { depasse++; assert.match(t, /Un peu plus cher|Bien plus cher/, prix + ' € dépasse le palier : il doit être annoncé comme plus cher'); assert.doesNotMatch(t, /Dans votre palier/, prix + ' € ne peut pas être « dans votre palier »'); }
+      else assert.match(t, /Dans votre palier|Moins cher/, prix + ' € est dans le palier');
+    }
+    assert.ok(depasse >= 1, 'un modèle au-dessus du palier est présenté, et étiqueté');
+    assert.match(fiches.join('\n'), /Moto G55 5G/i);
+    // Plafond STRICT (budget saisi dans « Étudiant », en euros) : jamais dépassé, même avec la tolérance du palier.
+    await dispo.locator('[data-audit-reset]').first().click();   // un budget de palier déjà choisi n'est jamais écrasé : on repart de zéro
+    for (const plafond of [150, 200, 300]) {
+      await dispo.evaluate(b => window.dispatchEvent(new CustomEvent('guide:student-criteria', { detail: { answers: { budget: b } } })), plafond);
+      await dispo.waitForTimeout(500);
+      assert.equal(await dispo.evaluate(() => window.GuideAuditState.price.maxBudget), plafond);
+      if (!(await perf.locator('[data-group="reference"] [data-value="mid"][aria-pressed="true"]').count())) { if (await perf.locator('.audit-card-trigger').getAttribute('aria-expanded') !== 'true') await perf.locator('.audit-card-trigger').click(); await perf.locator('[data-group="reference"] [data-value="mid"]').click(); await dispo.waitForTimeout(500); }
+      const strict = await dispo.locator('#scoring-results .criteria-recommendation-card').evaluateAll(cs => cs.map(c => c.innerText));
+      assert.ok(strict.length >= 1, 'des modèles sous ' + plafond + ' €');
+      for (const t of strict) { const prix = Number((t.match(/≈\s*([\d\s\u202f\u00a0]+)\s*€/) || [])[1].replace(/\D/g, '')); assert.ok(prix <= plafond, 'plafond strict de ' + plafond + ' € dépassé : ' + prix + ' €'); assert.match(t, /plafond/i); }
+    }
+    await dispo.locator('[data-audit-reset]').first().click();
+    await dispo.locator('[data-audit-card="price"] .audit-card-trigger').click();
+    await dispo.locator('#quiz-price [data-value="bas"]').click();
+    if (await perf.locator('.audit-card-trigger').getAttribute('aria-expanded') !== 'true') await perf.locator('.audit-card-trigger').click();
     assert.equal(await perf.locator('[data-group="reference"] [data-value="basic"]').getAttribute('aria-disabled'), null, 'entrée de gamme disponible');
     await perf.locator('[data-group="reference"] [data-value="top"]').click({force:true});
     assert.equal(await dispo.evaluate(() => (window.GuideAuditState.performance || {}).reference), undefined, 'un clic sur une option grisée ne change rien');

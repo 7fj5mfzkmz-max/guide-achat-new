@@ -15,6 +15,9 @@ const catalogue = JSON.parse(fs.readFileSync(path.join(root, 'data', 'smartphone
 let passed = 0;
 async function check(label, fn) { try { await fn(); passed++; console.log('OK    ' + label); } catch (e) { console.error('ÉCHEC ' + label + '\n      → ' + String(e.message).split('\n')[0]); process.exitCode = 1; } }
 
+/* Depuis « Aller plus loin », la section « Sur mesure » est repliée : un visiteur ouvre d'abord le groupe « Affiner mon choix ». */
+async function ouvrirGroupe(p,g){await p.waitForSelector('.apl-tile[data-g="'+g+'"]');if((await p.locator('.apl-tile[data-g="'+g+'"]').getAttribute('aria-expanded'))!=='true')await p.locator('.apl-tile[data-g="'+g+'"]').click();}
+async function ouvrirAffiner(p){await p.waitForSelector('.apl-tile[data-g="affiner"]');if((await p.locator('.apl-tile[data-g="affiner"]').getAttribute('aria-expanded'))!=='true')await p.locator('.apl-tile[data-g="affiner"]').click();await p.waitForSelector('#trouver[data-ready="1"]');}
 (async () => {
   await new Promise(r => server.listen(0, '127.0.0.1', r));
   const base = 'http://127.0.0.1:' + server.address().port + '/smartphones.html';
@@ -25,7 +28,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       const page = await ctx.newPage(), errors = [];
       page.on('pageerror', e => errors.push(e.message));
       await page.goto(base, { waitUntil: 'networkidle' });
-      await page.waitForSelector('#trouver[data-ready="1"]');
+      await page.waitForSelector('#trouver[data-ready="1"]',{state:'attached'}); await ouvrirAffiner(page);
       const tag = ' [' + width + ' px]';
 
       await check('trois onglets, « Mon profil » ouvert, les deux autres espaces masqués' + tag, async () => {
@@ -109,6 +112,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       });
       await check('banc d’essai : podium, tableau complet, mesures, usages avec note et couverture' + tag, async () => {
         await page.waitForSelector('html[data-banc-ready="1"]');
+        await ouvrirGroupe(page, 'tests');   /* classement et mesures : groupe « Classement et tests » */
         assert.equal(await page.locator('#sp-podium .pj-pod').count(), 3);
         assert.match(await page.locator('#sp-podium .pj-pod.is-1').innerText(), /OnePlus 16/);
         assert.equal(await page.locator('#sp-ranking .pj-row:not(.pj-row-head)').count(), tests.banc.modeles.length);
@@ -117,6 +121,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
         await page.click('#sp-metric-tabs [data-k="autonomie-milieu"]');
         assert.match(await page.locator('#sp-chart-note').innerText(), /Protocole/);
         assert.match(await page.locator('#sp-chart .pj-bar-row').first().innerText(), /Vivo V80 Lite 5G/);
+        await ouvrirGroupe(page, 'affiner'); /* usages : groupe « Affiner mon choix » */
         for (const k of ['etudiant', 'pro', 'gamer', 'budget']) {
           await page.click('#sp-prof-tabs [data-k="' + k + '"]');
           const items = page.locator('#sp-prof-top .pj-prof-item');
@@ -191,7 +196,7 @@ async function check(label, fn) { try { await fn(); passed++; console.log('OK   
       const page = await dark.newPage(), errors = [];
       page.on('pageerror', e => errors.push(e.message));
       await page.goto(base, { waitUntil: 'networkidle' });
-      await page.waitForSelector('#trouver[data-ready="1"]');
+      await page.waitForSelector('#trouver[data-ready="1"]',{state:'attached'}); await ouvrirAffiner(page);
       const bg = await page.evaluate(() => getComputedStyle(document.querySelector('.tr-row')).backgroundColor);
       assert.notEqual(bg, 'rgb(255, 255, 255)', 'fond clair en thème sombre');
       assert.deepEqual(errors, []);
