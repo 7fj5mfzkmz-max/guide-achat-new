@@ -85,6 +85,22 @@
        Toutes les cartes affichent la note sous LA priorité de l'utilisateur ; les autres classements ne servent qu'à choisir. */
     function conseiller(req) {
       req = req || {};
+      if (moteur.pool.length && moteur.pool.every(function (p) { return p.import_mashup; })) {
+        var priority = reg.priorites[req.priorite] ? req.priorite : 'equilibre', budget = req.budget || reg.priorites[priority].budget || REC.prix_reference;
+        var profile = { equilibre: 'etudiant', autonomie: 'etudiant', photo: 'photographe', jeu: 'gamer', prix: 'etudiant' }[priority];
+        var selected = moteur.pool.filter(function (p) { return p.prix_indicatif != null && p.prix_indicatif <= budget; }).map(function (p) {
+          var fit = (p.compatibilites_profils || {})[profile];
+          var criterion = {autonomie:'autonomie',prix:'prix'}[priority], value = criterion && p.criteres_usage ? p.criteres_usage[criterion] : null;
+          return { p: p, fit: fit, value: value == null ? (fit ? fit.score : 0) : value };
+        }).filter(function (x) { return x.fit; }).sort(function (a,b) { return b.value-a.value || a.p.prix_indicatif-b.p.prix_indicatif; });
+        var cards = selected.slice(0,4).map(function (x,i) {
+          var a = moteur.score(moteur.idx[x.p.id], priority); a.statut = 'provisoire'; a.motifs = []; a.critiquesFaibles = [];
+          var c = carte(i === 0 ? 'sur' : 'equivalent', a, { principal: priority, budgetUtilisateur: budget });
+          c.R = Math.round(x.value*10); c.Rmin = c.Rmax = c.R; c.motifs = ['compatibilité estimée sur les caractéristiques disponibles ; les performances réelles ne sont pas garanties'];
+          return c;
+        });
+        return { requete: {priorite:priority,secondaire:null,budget:budget,budgetUtilisateur:budget}, cartes:cards, provisoires:[], equivalents:[], notes:cards.length ? [] : ['Aucun modèle à prix renseigné dans ce budget.'], total:{confirmes:0,provisoires:selected.length,ecartes:0}, plancher:0 };
+      }
       var principal = reg.priorites[req.priorite] ? req.priorite : 'equilibre', secondaire = req.secondaire && reg.priorites[req.secondaire] && req.secondaire !== principal ? req.secondaire : null;
       var opts = { secondaire: secondaire, budget: req.budget || null, prixImmediat: !!req.prixImmediat };
       var R = moteur.classer(principal, opts), conf = R.liste.filter(function (a) { return a.statut === 'confirmee'; }), parId = {};

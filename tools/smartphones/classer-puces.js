@@ -1,3 +1,4 @@
+if (require.main === module && require('../../data/smartphones.json').catalogue_meta?.source_type === 'mashup') throw new Error('Ancien pipeline désactivé pour le catalogue mashup');
 'use strict';
 /* Reclasse toutes les fiches de data/smartphones.json sur l'échelle de puces 1-10 de phone-analyzer/chips.js.
    Le niveau est calculé d'après le nom de la puce ; une puce inconnue reste sans niveau (on ne devine pas).

@@ -1,3 +1,4 @@
+if (require.main === module && require('../../data/smartphones.json').catalogue_meta?.source_type === 'mashup') throw new Error('Ancien pipeline désactivé pour le catalogue mashup');
 'use strict';
 /* Construit data/smartphones-tests.json à partir du « Résumé détaillé des 6 vidéos Smartphones 2026 »
    (Resume_Complet_Videos_Tech_2026.html.pdf, 3 pages, fourni au projet : Android Police, The Tech Chap, Versus, Tech Spurt).

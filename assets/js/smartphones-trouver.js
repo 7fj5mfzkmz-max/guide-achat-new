@@ -122,7 +122,7 @@
       '<p class="tr-price">' + esc(r.price) + '</p>' +
       '<p class="tr-why">' + esc(r.why) + '</p>' +
       (r.limit ? '<p class="tr-limit">Limite : ' + esc(r.limit) + '</p>' : '') +
-      '<p class="tr-meta">' + tag + ' · <a class="idealo-buy-link" href="' + esc(idealo(r.nom)) + '" target="_blank" rel="noopener noreferrer">Comparer les prix ↗</a></p></li>';
+      '<p class="tr-meta">' + tag + ' · <a class="idealo-buy-link" ' + (r.idealo ? 'href="' + esc(r.idealo) + '"' : 'aria-disabled="true"') + ' target="_blank" rel="noopener noreferrer">Comparer les prix ↗</a></p></li>';
   }
   function testRow(modeleId, why, n, extra) {
     var m = testById(modeleId), p = productOfTest(modeleId);
@@ -133,7 +133,7 @@
   }
   function ficheRow(p, why) {
     var l = (p.points_faibles || [])[0];
-    return { nom: p.nom, price: priceOf(p), why: why || (p.points_forts || [])[0] || '', limit: l, productId: p.id, tested: !!(p.tests && p.tests.length) };
+    return { nom: p.nom, price: priceOf(p), why: why || (p.points_forts || [])[0] || '', limit: l, idealo: p.idealo_url, productId: p.id, tested: !!(p.tests && p.tests.length) };
   }
 
   /* Score d'un modèle pour un profil : le score éditorial s'il existe, sinon la moyenne pondérée de ses scores par critère. */

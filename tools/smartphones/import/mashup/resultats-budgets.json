@@ -1,0 +1,402 @@
+[
+  {
+    "budget": 150,
+    "priorite": "equilibre",
+    "modeles": [
+      "Poco M7",
+      "Redmi 17 5G",
+      "Redmi 15C",
+      "Y04"
+    ],
+    "pourcentages": [
+      73,
+      73,
+      72,
+      71
+    ]
+  },
+  {
+    "budget": 150,
+    "priorite": "autonomie",
+    "modeles": [
+      "Pulse 2",
+      "Poco M7",
+      "C71",
+      "Redmi 15C"
+    ],
+    "pourcentages": [
+      86,
+      86,
+      86,
+      86
+    ]
+  },
+  {
+    "budget": 150,
+    "priorite": "photo",
+    "modeles": [
+      "Poco M7",
+      "Galaxy A16",
+      "Redmi 17 5G",
+      "Poco C85"
+    ],
+    "pourcentages": [
+      39,
+      39,
+      39,
+      39
+    ]
+  },
+  {
+    "budget": 150,
+    "priorite": "jeu",
+    "modeles": [
+      "Redmi 17 5G",
+      "Galaxy A16",
+      "Poco M7",
+      "Galaxy A06 5G"
+    ],
+    "pourcentages": [
+      52,
+      49,
+      48,
+      48
+    ]
+  },
+  {
+    "budget": 150,
+    "priorite": "prix",
+    "modeles": [
+      "Galaxy A06",
+      "Pulse 2",
+      "Poco M7",
+      "Redmi A5"
+    ],
+    "pourcentages": [
+      90,
+      90,
+      90,
+      90
+    ]
+  },
+  {
+    "budget": 200,
+    "priorite": "equilibre",
+    "modeles": [
+      "Poco M7",
+      "Redmi 17 5G",
+      "Redmi 15C",
+      "Y04"
+    ],
+    "pourcentages": [
+      73,
+      73,
+      72,
+      71
+    ]
+  },
+  {
+    "budget": 200,
+    "priorite": "autonomie",
+    "modeles": [
+      "Pulse 2",
+      "Poco M7",
+      "C71",
+      "Redmi 15C"
+    ],
+    "pourcentages": [
+      86,
+      86,
+      86,
+      86
+    ]
+  },
+  {
+    "budget": 200,
+    "priorite": "photo",
+    "modeles": [
+      "Poco M7",
+      "Galaxy A16",
+      "Redmi 17 5G",
+      "Poco C85"
+    ],
+    "pourcentages": [
+      39,
+      39,
+      39,
+      39
+    ]
+  },
+  {
+    "budget": 200,
+    "priorite": "jeu",
+    "modeles": [
+      "Redmi 17 5G",
+      "Redmi Note 14 5G",
+      "Galaxy A16",
+      "Poco M7"
+    ],
+    "pourcentages": [
+      52,
+      51,
+      49,
+      48
+    ]
+  },
+  {
+    "budget": 200,
+    "priorite": "prix",
+    "modeles": [
+      "Galaxy A06",
+      "Pulse 2",
+      "Poco M7",
+      "Redmi A5"
+    ],
+    "pourcentages": [
+      90,
+      90,
+      90,
+      90
+    ]
+  },
+  {
+    "budget": 300,
+    "priorite": "equilibre",
+    "modeles": [
+      "Honor 400",
+      "Poco M7",
+      "Redmi 17 5G",
+      "X7 Pro"
+    ],
+    "pourcentages": [
+      77,
+      73,
+      73,
+      73
+    ]
+  },
+  {
+    "budget": 300,
+    "priorite": "autonomie",
+    "modeles": [
+      "Pulse 2",
+      "Poco M7",
+      "C71",
+      "Redmi 15C"
+    ],
+    "pourcentages": [
+      86,
+      86,
+      86,
+      86
+    ]
+  },
+  {
+    "budget": 300,
+    "priorite": "photo",
+    "modeles": [
+      "Redmi Note 14 Pro 5G",
+      "Galaxy A26 5G",
+      "Honor 400",
+      "Galaxy A17 5G"
+    ],
+    "pourcentages": [
+      42,
+      42,
+      42,
+      42
+    ]
+  },
+  {
+    "budget": 300,
+    "priorite": "jeu",
+    "modeles": [
+      "Honor 400",
+      "X7 Pro",
+      "Redmi Note 14 Pro 5G",
+      "Edge 60 Fusion"
+    ],
+    "pourcentages": [
+      65,
+      64,
+      58,
+      58
+    ]
+  },
+  {
+    "budget": 300,
+    "priorite": "prix",
+    "modeles": [
+      "Galaxy A06",
+      "Pulse 2",
+      "Poco M7",
+      "Redmi A5"
+    ],
+    "pourcentages": [
+      90,
+      90,
+      90,
+      90
+    ]
+  },
+  {
+    "budget": 400,
+    "priorite": "equilibre",
+    "modeles": [
+      "Honor 400",
+      "GT 7",
+      "Pixel 9a",
+      "Xiaomi 15T"
+    ],
+    "pourcentages": [
+      77,
+      75,
+      75,
+      74
+    ]
+  },
+  {
+    "budget": 400,
+    "priorite": "autonomie",
+    "modeles": [
+      "Pulse 2",
+      "Poco M7",
+      "C71",
+      "Redmi 15C"
+    ],
+    "pourcentages": [
+      86,
+      86,
+      86,
+      86
+    ]
+  },
+  {
+    "budget": 400,
+    "priorite": "photo",
+    "modeles": [
+      "Redmi Note 14 Pro 5G",
+      "Galaxy A26 5G",
+      "Honor 400",
+      "Galaxy A17 5G"
+    ],
+    "pourcentages": [
+      42,
+      42,
+      42,
+      42
+    ]
+  },
+  {
+    "budget": 400,
+    "priorite": "jeu",
+    "modeles": [
+      "GT 7",
+      "Xiaomi 15T",
+      "Honor 400",
+      "Pixel 9a"
+    ],
+    "pourcentages": [
+      74,
+      68,
+      65,
+      65
+    ]
+  },
+  {
+    "budget": 400,
+    "priorite": "prix",
+    "modeles": [
+      "Galaxy A06",
+      "Pulse 2",
+      "Poco M7",
+      "Redmi A5"
+    ],
+    "pourcentages": [
+      90,
+      90,
+      90,
+      90
+    ]
+  },
+  {
+    "budget": 600,
+    "priorite": "equilibre",
+    "modeles": [
+      "Honor 400",
+      "Xiaomi 15",
+      "GT 7",
+      "Pixel 9a"
+    ],
+    "pourcentages": [
+      77,
+      76,
+      75,
+      75
+    ]
+  },
+  {
+    "budget": 600,
+    "priorite": "autonomie",
+    "modeles": [
+      "Pulse 2",
+      "Poco M7",
+      "C71",
+      "Redmi 15C"
+    ],
+    "pourcentages": [
+      86,
+      86,
+      86,
+      86
+    ]
+  },
+  {
+    "budget": 600,
+    "priorite": "photo",
+    "modeles": [
+      "Redmi Note 14 Pro 5G",
+      "Galaxy A26 5G",
+      "Honor 400",
+      "Galaxy A17 5G"
+    ],
+    "pourcentages": [
+      42,
+      42,
+      42,
+      42
+    ]
+  },
+  {
+    "budget": 600,
+    "priorite": "jeu",
+    "modeles": [
+      "GT 7",
+      "Xiaomi 15",
+      "Galaxy S25",
+      "Honor 400 Pro"
+    ],
+    "pourcentages": [
+      74,
+      74,
+      73,
+      72
+    ]
+  },
+  {
+    "budget": 600,
+    "priorite": "prix",
+    "modeles": [
+      "Galaxy A06",
+      "Pulse 2",
+      "Poco M7",
+      "Redmi A5"
+    ],
+    "pourcentages": [
+      90,
+      90,
+      90,
+      90
+    ]
+  }
+]

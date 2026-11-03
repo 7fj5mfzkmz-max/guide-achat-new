@@ -31,9 +31,7 @@
      d'entrée qui marche est « prechcat.html?q=… » : idealo y redirige vers la bonne
      catégorie (smartphones, ordinateurs portables…), parenthèses du nom acceptées. */
   function idealoUrl(p) {
-    var n = p.nom || "", m = p.marque || "";
-    var q = n.toLowerCase().indexOf(m.toLowerCase()) === -1 ? (m + " " + n).trim() : n;
-    return "https://www.idealo.fr/prechcat.html?q=" + encodeURIComponent(q).replace(/%20/g, "+");
+    return p.idealo_url || "";
   }
 
   /* ---------- Proximité : on cherche « autour » de la valeur choisie, pas « au moins » ---------- */
@@ -395,9 +393,9 @@
       var isExact = function (x) { return x.m.checks.every(function (k) { return !/^performance\./.test(k.key) || k.d === 0; }); };
       var exact = scored.filter(isExact), near = scored.filter(function (x) { return !isExact(x); });
       scored = exact.slice(0, 3).concat(near.slice(0, 3));
-      scored = scored.concat(exact.slice(3), near.slice(3)).slice(0, 6);
+      scored = scored.concat(exact.slice(3), near.slice(3)).slice(0, 4);
       scored.sort(function (a, b) { return b.m.score - a.m.score; });
-    } else scored = scored.slice(0, 6);
+    } else scored = scored.slice(0, 4);
 
     renderLive(scored);
     root.hidden = false;
@@ -407,7 +405,7 @@
       if (status) status.textContent = "Aucune correspondance assez documentée pour tous les critères choisis.";
       var showCatalog = container.querySelector("[data-audit-show-catalog]");
       if (showCatalog) showCatalog.addEventListener("click", function () {
-        var fallback = products.filter(function (p) { return p && p.nom && studentAllows(p,state); }).slice(0, 6);
+        var fallback = products.filter(function (p) { return p && p.nom && studentAllows(p,state); }).slice(0, 4);
         container.innerHTML = "";
         fallback.forEach(function (p) {
           var card = document.createElement("article"); card.className = "criteria-recommendation-card";
@@ -458,6 +456,7 @@
           (x.p.nom ? '<a class="criteria-recommendation-link idealo-buy-link" title="Acheter au meilleur prix : comparez les offres sur Idealo, puis commandez chez le marchand." href="' + esc(idealoUrl(x.p)) + '" target="_blank" rel="noopener noreferrer">Acheter au meilleur prix · Idealo ↗</a>' : '') +
           (x.p.fiche_statut === "specs_a_verifier" ? '<span class="criteria-recommendation-warn" title="Caractéristiques non confirmées par une source : à vérifier avant d’acheter.">fiche à vérifier</span>' : '') +
         '</div>';
+      if (!x.p.idealo_url) article.querySelectorAll(".idealo-buy-link").forEach(function(a){a.removeAttribute("href");a.removeAttribute("target");a.setAttribute("aria-disabled","true");a.textContent="Lien Idealo absent";});
       container.appendChild(article);
     });
     // Le conteneur peut avoir été masqué par un état précédent ou un style global.

@@ -1,3 +1,5 @@
+
+if (require.main === module && require('../../data/smartphones.json').catalogue_meta?.source_type === 'mashup') throw new Error('Import historique désactivé : utiliser tools/smartphones/import/mashup/convertir.py');
 #!/usr/bin/env node
 /* Intègre data/fichier-catalogue-2026.json (issu de lire-fichier-2026.py) dans data/smartphones.json.
    Règles :

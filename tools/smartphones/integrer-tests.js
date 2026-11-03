@@ -1,3 +1,5 @@
+
+if (require.main === module && require('../../data/smartphones.json').catalogue_meta?.source_type === 'mashup') throw new Error('Import historique désactivé : utiliser tools/smartphones/import/mashup/convertir.py');
 'use strict';
 /* Fait entrer les modèles du dossier de tests (data/smartphones-tests.json) dans le catalogue (data/smartphones.json),
    pour qu'un test change vraiment les classements du site : « Sur mesure », profils, records.

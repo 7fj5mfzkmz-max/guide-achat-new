@@ -1,3 +1,4 @@
+if (require.main === module && require('../../data/smartphones.json').catalogue_meta?.source_type === 'mashup') throw new Error('Ancien pipeline désactivé pour le catalogue mashup');
 'use strict';
 /* Applique data/smartphones-capteurs.json (taille du capteur principal, avec sa source) au catalogue :
    compatibilite.photo.capteur = { format, niveau, gamme, sources }, la note 1-10 venant de phone-analyzer/sensors.js.

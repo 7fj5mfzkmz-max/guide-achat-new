@@ -156,7 +156,7 @@
     return 'Presque aussi adapté que ' + ref.nom + ' pour ' + pr + '.';
   }
   var lien = function (c) { return c.idealo || 'https://www.idealo.fr/prechcat.html?q=' + encodeURIComponent(c.nom).replace(/%20/g, '+'); };
-  var prixLien = function (c) { return '<a class="gc-prix" href="' + esc(lien(c)) + '" target="_blank" rel="noopener noreferrer" aria-label="Comparer les prix de ' + esc(c.nom) + ' (' + fr(c.prix) + ' euros), nouvel onglet">' + fr(c.prix) + ' € <span aria-hidden="true">↗</span></a>'; };
+  var prixLien = function (c) { return c.idealo ? '<a class="gc-prix" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">' + fr(c.prix) + ' € indicatifs ↗</a>' : '<span class="gc-prix">' + fr(c.prix) + ' € indicatifs · lien Idealo absent</span>'; };
   var tagStatut = function (c) { return c.statut === 'confirmee' ? '<span class="gc-status is-conf"><span aria-hidden="true">✓</span> Fiche confirmée</span>' : '<span class="gc-status is-prov">À confirmer</span>'; };
   var voir = function (crit, nom) { var d = D.demoPourCritere(crit); return d ? ' <button type="button" class="gc-voir" data-demo="' + d + '" aria-label="Voir la différence : démonstration « ' + esc(D.DEMOS.filter(function (x) { return x.id === d; })[0].court) + ' »' + (nom ? ' (' + esc(nom) + ')' : '') + '">Voir la différence <span aria-hidden="true">→</span></button>' : ''; };
   function force(c) { var p = c.pourquoi[0]; if (!p) return null;
@@ -190,7 +190,7 @@
     return '<article class="gc-card" id="gc-card" tabindex="-1" data-id="' + esc(c.id) + '" data-role="' + c.role + '" data-statut="' + c.statut + '" data-examen="' + (exam ? '1' : '0') + '" aria-labelledby="' + id + '">' + ban +
       '<header class="gc-card-h"><span class="gc-kick">' + esc(exam ? 'Alternative examinée · ' + ROLES[c.role] : ROLES[c.role]) + '</span>' + tagStatut(c) + '</header>' +
       '<div class="gc-card-main">' + vignette(c) + '<div class="gc-id"><h2 class="gc-name" id="' + id + '">' + esc(c.nom) + '</h2><p class="gc-price">' + prixLien(c) + '</p></div></div>' +
-      '<p class="gc-verdict">' + esc(verdict(c, res, ref)) + '</p>' + pc + '<p class="gc-micro">Pourquoi lui faire confiance ? ' + esc(c.preuve) + ' Prix indicatif à vérifier avant l’achat.</p></article>';
+      '<p class="gc-verdict">' + esc(verdict(c, res, ref)) + ' Compatibilité estimée : ' + c.R + ' %.</p>' + pc + '<p class="gc-micro">Pourquoi lui faire confiance ? ' + esc(c.preuve) + ' ' + esc(produit(c.id).prix_note || 'Prix indicatif à vérifier avant l’achat.') + '</p></article>';
   }
 
   /* ——— Détail : Résumé / Tests / Sources ——— */

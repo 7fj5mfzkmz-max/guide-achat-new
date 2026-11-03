@@ -1,3 +1,5 @@
+
+if (require.main === module && require('../../data/smartphones.json').catalogue_meta?.source_type === 'mashup') throw new Error('Import historique désactivé : utiliser tools/smartphones/import/mashup/convertir.py');
 #!/usr/bin/env node
 /* Applique data/smartphones-verifications.json au catalogue : les fiches relues sur sources passent en
    « verifie_web » et deviennent éligibles aux classements ; celles dont aucune source n'existe sont écartées.
