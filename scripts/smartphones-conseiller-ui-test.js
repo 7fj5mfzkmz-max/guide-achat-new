@@ -167,7 +167,7 @@ const idsAutres = att => att.cartes.slice(1).map(c => c.id).concat(att.equivalen
       });
       await check('liens profonds : #classement, #mesures, #usages, #comprendre, #tests-2026, #faq, #sources, #audit, #choisir-profil, #analyser-modele ouvrent le bon groupe et montrent la cible' + tag, async () => {
         for (const h of ['classement', 'mesures', 'usages', 'comprendre', 'tests-2026', 'faq', 'sources', 'audit', 'choisir-profil', 'analyser-modele']) {
-          await page.goto(base + FLAG + '#' + h, { waitUntil: 'networkidle' }); await page.waitForSelector('#aller-plus-loin'); await page.waitForTimeout(700);
+          await page.goto(base + FLAG + '#' + h, { waitUntil: 'networkidle' }); await page.waitForSelector('#aller-plus-loin'); await page.waitForFunction(id => { const e = document.getElementById(id); return e && e.offsetParent !== null && e.getBoundingClientRect().top < innerHeight; }, h, { timeout: 4000 }).catch(() => {});
           assert.ok(await page.locator('#' + h).isVisible(), '#' + h + ' visible');
           const dans = await page.evaluate(id => !!document.getElementById(id).closest('.apl-panel'), h); assert.ok(dans, '#' + h + ' est dans un groupe');
           const y = await page.evaluate(id => document.getElementById(id).getBoundingClientRect().top, h); assert.ok(y < height, '#' + h + ' à l’écran : ' + Math.round(y));

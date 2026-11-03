@@ -37,6 +37,8 @@
   };
   var ETAT = { mesure: 'TEST', fiche: 'FICHE', inconnu: 'INCONNU' };
   var KEY = 'guide-conseil';
+  /* Un lien profond (#audit…) est défilé une fois les groupes prêts ; si le visiteur a déjà touché la page, on ouvre le groupe sans le déplacer. */
+  var interagi = false; ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (n) { window.addEventListener(n, function () { interagi = true; }, { once: true, passive: true, capture: true }); });
   var moteur = null, conseil = null, demos = null, tests = null, lbat = null, uid = 0, derniere = null, res = null;
   var S = { priorite: 'equilibre', secondaire: '', budget: null, immediat: false, examine: null, onglet: 'resume', demo: '' };
 
@@ -350,18 +352,18 @@
       var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return; var id = decodeURIComponent(a.getAttribute('href').slice(1)); if (id) atteindre(id);
     });
     window.addEventListener('hashchange', function () { atteindre(decodeURIComponent(location.hash.slice(1)), true); });
-    if (location.hash.length > 1) setTimeout(function () { atteindre(decodeURIComponent(location.hash.slice(1)), true); }, 60);
+    if (location.hash.length > 1) setTimeout(function () { atteindre(decodeURIComponent(location.hash.slice(1)), true, true); }, 60);
   }
   function basculer(id, ouvert) {
     $$('.apl-tile', document).forEach(function (b) { var on = b.getAttribute('data-g') === id && ouvert; b.setAttribute('aria-expanded', String(on)); });
     GROUPES.forEach(function (g) { document.getElementById('apl-p-' + g.id).hidden = !(g.id === id && ouvert); });
   }
-  function atteindre(id, defiler) {
+  function atteindre(id, defiler, initial) {
     var el = id && document.getElementById(id); if (!el) return;
     if (el.matches('.tr-panel') && el.hidden) { var tab = document.querySelector('[aria-controls="' + id + '"]'); if (tab) tab.click(); }
     var p = el.closest('.apl-panel');
     if (p && p.hidden) { basculer(p.id.replace('apl-p-', ''), true); defiler = true; }
-    if (defiler) setTimeout(function () { var e2 = document.getElementById(id); if (e2 && e2.offsetParent !== null) e2.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' }); }, 120);
+    if (defiler) setTimeout(function () { if (initial && interagi) return; var e2 = document.getElementById(id); if (e2 && e2.offsetParent !== null) e2.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' }); }, 120);
   }
 
   function ouvrirPreuve(g, crit) {
