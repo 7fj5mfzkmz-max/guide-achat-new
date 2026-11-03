@@ -1,6 +1,21 @@
 {
-  "mis_a_jour": "2026-11-02",
+  "mis_a_jour": "2026-11-03",
   "entrees": [
+    {
+      "id": "smartphones-maj-2026-11-03",
+      "date": "2026-11-03",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "maj",
+      "nombre": 2,
+      "noms": [
+        "Pixel 10a",
+        "Samsung Galaxy A23 5G"
+      ],
+      "titre": "2 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : Pixel 10a, Samsung Galaxy A23 5G.",
+      "lien": "smartphones.html"
+    },
     {
       "id": "smartphones-maj-2026-11-02",
       "date": "2026-11-02",
