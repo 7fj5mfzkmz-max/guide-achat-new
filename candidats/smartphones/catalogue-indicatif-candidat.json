@@ -1,0 +1,1590 @@
+{
+  "categorie": "smartphones",
+  "produits": [
+    {
+      "id": "GA-SM-0012",
+      "nom": "Galaxy A17 5G",
+      "marque": "Samsung",
+      "prix_indicatif": 192.9,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "4 Go",
+        "stockage": "128 Go",
+        "processeur": "Exynos 1330",
+        "batterie": "5000 mAh",
+        "ecran": "Super AMOLED 6.7 pouces",
+        "photo": "50 MP OIS + 5 MP + 2 MP; avant 13 MP",
+        "etancheite": "IP54"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5000
+        },
+        "performance": {
+          "soc": "Exynos 1330"
+        },
+        "durete": {
+          "protection_ip": "IP54"
+        },
+        "ecran": {
+          "technologie": "Super AMOLED 6.7 pouces",
+          "frequence_max_hz": 90
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a17-5g-black-128gb-sm-a176bzkaeub/",
+        "https://news.samsung.com/uk/awesome-made-easy-samsung-introduces-the-galaxy-a17-5g",
+        "https://news.samsung.com/fr/galaxy_a17_5g",
+        "https://www.idealo.fr/prix/207227652/samsung-galaxy-a17-5g-4-go-128-go-noir.html",
+        "https://images.samsung.com/is/content/samsung/assets/global/ir/docs/2025_4Q_Interim_Report.pdf"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/207227652/samsung-galaxy-a17-5g-4-go-128-go-noir.html",
+      "preuve_ids": "PREUVE-00175|PREUVE-00176|PREUVE-00177|PREUVE-00178|PREUVE-00179|PREUVE-00180|PREUVE-00181|PREUVE-00182|PREUVE-00183|PREUVE-00184|PREUVE-00185|PREUVE-00186|PREUVE-00187|PREUVE-00188|PREUVE-00189|PREUVE-00326|PREUVE-00327|PREUVE-00328|PREUVE-00329|PREUVE-00330|PREUVE-00331|PREUVE-00332|PREUVE-00333|PREUVE-00334|PREUVE-00335|PREUVE-00405|PREUVE-00406|PREUVE-00407|PREUVE-00581|PREUVE-00582|PREUVE-00583",
+      "source_work": {
+        "id_controle": "12",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0017",
+      "nom": "Redmi Note 14 5G",
+      "marque": "Xiaomi",
+      "prix_indicatif": 179.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "6 Go",
+        "stockage": "128 Go",
+        "processeur": "Dimensity 7025-Ultra",
+        "batterie": "5110 mAh",
+        "ecran": "AMOLED 6.67 pouces; 2400x1080",
+        "photo": "108 MP OIS + ultra grand-angle 8 MP + macro 2 MP; avant 20 MP",
+        "etancheite": "IP64"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5110
+        },
+        "performance": {
+          "soc": "Dimensity 7025-Ultra"
+        },
+        "durete": {
+          "protection_ip": "IP64"
+        },
+        "ecran": {
+          "technologie": "AMOLED 6.67 pouces; 2400x1080",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.mi.com/fr/product/redmi-note-14-5g/specs/",
+        "https://www.mi.com/fr/support/terms/redmi-note-14-series/",
+        "https://www.idealo.fr/prix/205565756/xiaomi-redmi-note-14-5g.html",
+        "https://trust.mi.com/misrc/updates/phone?tab=+aerdata"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/205565756/xiaomi-redmi-note-14-5g.html",
+      "preuve_ids": "PREUVE-00023|PREUVE-00024|PREUVE-00025|PREUVE-00026|PREUVE-00027|PREUVE-00028|PREUVE-00029|PREUVE-00030|PREUVE-00031|PREUVE-00032|PREUVE-00274|PREUVE-00275|PREUVE-00336|PREUVE-00337|PREUVE-00338|PREUVE-00339|PREUVE-00340|PREUVE-00341|PREUVE-00342|PREUVE-00343|PREUVE-00344|PREUVE-00345|PREUVE-00402|PREUVE-00403|PREUVE-00404|PREUVE-00584|PREUVE-00585|PREUVE-00586",
+      "source_work": {
+        "id_controle": "17",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0025",
+      "nom": "Google Pixel 9a",
+      "marque": "Google",
+      "prix_indicatif": 399.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "8 Go",
+        "stockage": "128 Go",
+        "processeur": "Google Tensor G4",
+        "batterie": "5100 mAh",
+        "ecran": "pOLED 6.3 pouces; 1080x2424",
+        "photo": "48 MP + ultra grand-angle 13 MP",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5100
+        },
+        "performance": {
+          "soc": "Google Tensor G4"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "pOLED 6.3 pouces; 1080x2424",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://store.google.com/be/product/pixel_9a_specs?hl=fr",
+        "https://support.google.com/pixelphone/answer/7158570?hl=fr",
+        "https://blog.google/intl/fr-fr/nouveautes-produits/google-pixel-9a-ia/",
+        "https://www.e.leclerc/fp/google-pixel-9a-16-cm-6-3-double-sim-android-15-5g-usb-type-c-8-go-128-go-5100-mah-gris-0840353922327"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/206115882/google-pixel-9a.html",
+      "preuve_ids": "PREUVE-00117|PREUVE-00118|PREUVE-00119|PREUVE-00120|PREUVE-00121|PREUVE-00122|PREUVE-00123|PREUVE-00124|PREUVE-00125|PREUVE-00126|PREUVE-00127|PREUVE-00128|PREUVE-00129|PREUVE-00366|PREUVE-00367|PREUVE-00368|PREUVE-00369|PREUVE-00370|PREUVE-00371|PREUVE-00372|PREUVE-00373|PREUVE-00374|PREUVE-00375|PREUVE-00376|PREUVE-00377|PREUVE-00378|PREUVE-00379|PREUVE-00602|PREUVE-00603|PREUVE-00604",
+      "source_work": {
+        "id_controle": "25",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0031",
+      "nom": "Galaxy S25",
+      "marque": "Samsung",
+      "prix_indicatif": 559.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "12 Go",
+        "stockage": "128 Go",
+        "processeur": "Snapdragon 8 Elite for Galaxy",
+        "batterie": "4000 mAh",
+        "ecran": "Dynamic AMOLED 2X 6.2 pouces FHD+",
+        "photo": "50 MP OIS + ultra grand-angle 12 MP + teleobjectif 10 MP x3; avant 12 MP",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 4000
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite for Galaxy"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "Dynamic AMOLED 2X 6.2 pouces FHD+",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://news.samsung.com/global/samsung-galaxy-s25-series-sets-the-standard-of-ai-phone-as-a-true-ai-companion",
+        "https://news.samsung.com/fr/https-news-samsung-com-fr-galaxy_s25_series",
+        "https://www.idealo.fr/prix/205569450/samsung-galaxy-s25.html"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/205569450/samsung-galaxy-s25.html",
+      "preuve_ids": "PREUVE-00130|PREUVE-00131|PREUVE-00132|PREUVE-00133|PREUVE-00134|PREUVE-00135|PREUVE-00136|PREUVE-00137|PREUVE-00138|PREUVE-00139|PREUVE-00160|PREUVE-00161|PREUVE-00162|PREUVE-00163|PREUVE-00164|PREUVE-00286|PREUVE-00287|PREUVE-00288|PREUVE-00289|PREUVE-00290|PREUVE-00291|PREUVE-00292|PREUVE-00293|PREUVE-00294|PREUVE-00295|PREUVE-00587|PREUVE-00588|PREUVE-00589",
+      "source_work": {
+        "id_controle": "31",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0037",
+      "nom": "Xiaomi 15T Pro",
+      "marque": "Xiaomi",
+      "prix_indicatif": 703.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "12 Go",
+        "stockage": "512 Go",
+        "processeur": "Dimensity 9400+",
+        "batterie": "5500 mAh",
+        "ecran": "AMOLED 6.83 pouces; 2772x1280",
+        "photo": "50 MP OIS + teleobjectif 50 MP OIS 115 mm + ultra grand-angle 12 MP; avant 32 MP",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5500
+        },
+        "performance": {
+          "soc": "Dimensity 9400+"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "AMOLED 6.83 pouces; 2772x1280",
+          "frequence_max_hz": 144
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.mi.com/fr/product/xiaomi-15t-pro/specs/",
+        "https://trust.mi.com/misrc/updates/phone?tab=+aerdata",
+        "https://www.idealo.fr/prix/207831411/xiaomi-15t-pro.html"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/207831411/xiaomi-15t-pro.html",
+      "preuve_ids": "PREUVE-00063|PREUVE-00064|PREUVE-00065|PREUVE-00066|PREUVE-00067|PREUVE-00068|PREUVE-00069|PREUVE-00070|PREUVE-00071|PREUVE-00072|PREUVE-00262|PREUVE-00263|PREUVE-00264|PREUVE-00265|PREUVE-00390|PREUVE-00391|PREUVE-00392|PREUVE-00393|PREUVE-00394|PREUVE-00395|PREUVE-00396|PREUVE-00397|PREUVE-00398|PREUVE-00399|PREUVE-00400|PREUVE-00401|PREUVE-00590|PREUVE-00591|PREUVE-00592",
+      "source_work": {
+        "id_controle": "37",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0047",
+      "nom": "HONOR Magic8 Pro",
+      "marque": "Honor",
+      "prix_indicatif": 929.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "12 Go",
+        "stockage": "512 Go",
+        "processeur": "Snapdragon 8 Elite Gen 5",
+        "batterie": "6270 mAh",
+        "ecran": "OLED 6.71 pouces; 1256x2808",
+        "photo": "50 MP OIS + ultra grand-angle 50 MP + teleobjectif 200 MP x3.7 OIS; avant 50 MP et profondeur 3D",
+        "etancheite": "IP68/IP69/IP69K"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 6270
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite Gen 5"
+        },
+        "durete": {},
+        "ecran": {
+          "technologie": "OLED 6.71 pouces; 1256x2808",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.honor.com/fr/phones/honor-magic8-pro/spec/",
+        "https://www.honor.com/fr/shop/buying-guide/introducing-honor-magic8-pro/",
+        "https://www.honor.com/fr/phones/honor-magic8-pro/buy/",
+        "https://www.idealo.fr/prix/209056272/honor-magic8-pro.html"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/209056272/honor-magic8-pro.html",
+      "preuve_ids": "PREUVE-00210|PREUVE-00211|PREUVE-00212|PREUVE-00213|PREUVE-00214|PREUVE-00412|PREUVE-00413|PREUVE-00414|PREUVE-00415|PREUVE-00416|PREUVE-00417|PREUVE-00418|PREUVE-00419|PREUVE-00420|PREUVE-00421|PREUVE-00422|PREUVE-00423|PREUVE-00424|PREUVE-00425|PREUVE-00426|PREUVE-00427|PREUVE-00428|PREUVE-00429|PREUVE-00430|PREUVE-00593|PREUVE-00594|PREUVE-00595",
+      "source_work": {
+        "id_controle": "47",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0048",
+      "nom": "Google Pixel 10 Pro",
+      "marque": "Google",
+      "prix_indicatif": 689.98,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "16 Go",
+        "stockage": "128 Go",
+        "processeur": "Google Tensor G5",
+        "batterie": "4870 mAh",
+        "ecran": "LTPO OLED 6.3 pouces; 1280x2856",
+        "photo": "50 MP OIS + ultra grand-angle 48 MP + teleobjectif 48 MP OIS x5",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 4870
+        },
+        "performance": {
+          "soc": "Google Tensor G5"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "LTPO OLED 6.3 pouces; 1280x2856",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://store.google.com/fr/product/pixel_10_pro_specs?hl=fr",
+        "https://www.idealo.fr/prix/207278643/google-pixel-10-pro.html",
+        "https://blog.google/intl/fr-fr/nouveautes-produits/appareils-services/pixel-10-pixel-10-pro-et-pixel-10-pro-xl-ils-sont-la/"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/207278643/google-pixel-10-pro.html",
+      "preuve_ids": "PREUVE-00093|PREUVE-00094|PREUVE-00095|PREUVE-00096|PREUVE-00097|PREUVE-00098|PREUVE-00099|PREUVE-00100|PREUVE-00101|PREUVE-00102|PREUVE-00113|PREUVE-00115|PREUVE-00306|PREUVE-00307|PREUVE-00308|PREUVE-00309|PREUVE-00310|PREUVE-00311|PREUVE-00312|PREUVE-00313|PREUVE-00314|PREUVE-00315|PREUVE-00596|PREUVE-00597|PREUVE-00598|PREUVE-00615|PREUVE-00617|PREUVE-00618|PREUVE-00619",
+      "source_work": {
+        "id_controle": "48",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0053",
+      "nom": "Galaxy S25 Ultra",
+      "marque": "Samsung",
+      "prix_indicatif": 836.99,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "12 Go",
+        "stockage": "256 Go",
+        "processeur": "Snapdragon 8 Elite for Galaxy",
+        "batterie": "5000 mAh",
+        "ecran": "Dynamic AMOLED 2X 6.9 pouces QHD+",
+        "photo": "200 MP OIS + ultra grand-angle 50 MP + teleobjectif 50 MP x5 OIS + teleobjectif 10 MP x3 OIS; avant 12 MP",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5000
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite for Galaxy"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "Dynamic AMOLED 2X 6.9 pouces QHD+",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://news.samsung.com/global/samsung-galaxy-s25-series-sets-the-standard-of-ai-phone-as-a-true-ai-companion",
+        "https://news.samsung.com/fr/https-news-samsung-com-fr-galaxy_s25_series",
+        "https://www.idealo.fr/prix/205569277/samsung-galaxy-s25-ultra.html"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/205569277/samsung-galaxy-s25-ultra.html",
+      "preuve_ids": "PREUVE-00140|PREUVE-00141|PREUVE-00142|PREUVE-00143|PREUVE-00144|PREUVE-00145|PREUVE-00146|PREUVE-00147|PREUVE-00148|PREUVE-00149|PREUVE-00165|PREUVE-00166|PREUVE-00167|PREUVE-00168|PREUVE-00169|PREUVE-00296|PREUVE-00297|PREUVE-00298|PREUVE-00299|PREUVE-00300|PREUVE-00301|PREUVE-00302|PREUVE-00303|PREUVE-00304|PREUVE-00305|PREUVE-00599|PREUVE-00600|PREUVE-00601",
+      "source_work": {
+        "id_controle": "53",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0054",
+      "nom": "Google Pixel 10 Pro XL",
+      "marque": "Google",
+      "prix_indicatif": 844.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "16 Go",
+        "stockage": "256 Go",
+        "processeur": "Google Tensor G5",
+        "batterie": "5200 mAh",
+        "ecran": "LTPO OLED 6.8 pouces; 1344x2992",
+        "photo": "50 MP OIS + ultra grand-angle 48 MP + teleobjectif 48 MP OIS x5",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5200
+        },
+        "performance": {
+          "soc": "Google Tensor G5"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "LTPO OLED 6.8 pouces; 1344x2992",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://store.google.com/fr/product/pixel_10_pro_specs?hl=fr",
+        "https://www.idealo.fr/prix/207279524/google-pixel-10-pro-xl.html",
+        "https://www.boulanger.com/ref/1224975",
+        "https://blog.google/intl/fr-fr/nouveautes-produits/appareils-services/pixel-10-pixel-10-pro-et-pixel-10-pro-xl-ils-sont-la/"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/207279524/google-pixel-10-pro-xl.html",
+      "preuve_ids": "PREUVE-00103|PREUVE-00104|PREUVE-00105|PREUVE-00106|PREUVE-00107|PREUVE-00108|PREUVE-00109|PREUVE-00110|PREUVE-00111|PREUVE-00112|PREUVE-00114|PREUVE-00116|PREUVE-00316|PREUVE-00317|PREUVE-00318|PREUVE-00319|PREUVE-00320|PREUVE-00321|PREUVE-00322|PREUVE-00323|PREUVE-00324|PREUVE-00325|PREUVE-00380|PREUVE-00381|PREUVE-00382|PREUVE-00383|PREUVE-00384|PREUVE-00385|PREUVE-00386|PREUVE-00387|PREUVE-00388|PREUVE-00389|PREUVE-00605|PREUVE-00606|PREUVE-00607|PREUVE-00616|PREUVE-00620|PREUVE-00621|PREUVE-00622",
+      "source_work": {
+        "id_controle": "54",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0067",
+      "nom": "Google Pixel 11 Pro",
+      "marque": "Google",
+      "prix_indicatif": 1099.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "12 Go",
+        "stockage": "256 Go",
+        "processeur": "Google Tensor G6",
+        "batterie": "4850 mAh",
+        "ecran": "LTPO OLED 6.3 pouces; 1280x2856",
+        "photo": "50 MP OIS + ultra grand-angle 48 MP + teleobjectif 48 MP x5 OIS; avant 42 MP",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 4850
+        },
+        "performance": {
+          "soc": "Google Tensor G6"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "LTPO OLED 6.3 pouces; 1280x2856",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://store.google.com/be/product/pixel_11_pro_specs?hl=fr",
+        "https://blog.google/intl/fr-fr/nouveautes-produits/appareils-services/google-pixel-11-pro-xl/",
+        "https://www.boulanger.com/ref/1243808"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/213120555/google-pixel-11-pro.html",
+      "preuve_ids": "PREUVE-00229|PREUVE-00230|PREUVE-00231|PREUVE-00232|PREUVE-00233|PREUVE-00234|PREUVE-00235|PREUVE-00236|PREUVE-00237|PREUVE-00238|PREUVE-00239|PREUVE-00240|PREUVE-00241|PREUVE-00437|PREUVE-00438|PREUVE-00439|PREUVE-00440|PREUVE-00441|PREUVE-00442|PREUVE-00443|PREUVE-00444|PREUVE-00445|PREUVE-00446|PREUVE-00447|PREUVE-00448|PREUVE-00449|PREUVE-00450|PREUVE-00608|PREUVE-00609|PREUVE-00610",
+      "source_work": {
+        "id_controle": "67",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0121",
+      "nom": "Galaxy S25 FE",
+      "marque": "Samsung",
+      "prix_indicatif": 579.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "8 Go",
+        "stockage": "128 Go",
+        "processeur": "Exynos 2400",
+        "batterie": "4900 mAh",
+        "ecran": "Dynamic AMOLED 2X 6.7 pouces FHD+",
+        "photo": "50 MP OIS + ultra grand-angle 12 MP + teleobjectif 8 MP x3 OIS; avant 12 MP",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 4900
+        },
+        "performance": {
+          "soc": "Exynos 2400"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "Dynamic AMOLED 2X 6.7 pouces FHD+",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://news.samsung.com/global/meet-samsung-galaxy-s25-fe-the-gateway-to-the-galaxy-ai-and-flagship-essentials",
+        "https://www.samsung.com/fr/offer/sorties-innovations-2025/",
+        "https://www.darty.com/nav/achat/gps_communication/telephone_mobile/telephone_portable/samsung_s25fe_8_128gb_noir.html"
+      ],
+      "idealo_url": null,
+      "preuve_ids": "PREUVE-00150|PREUVE-00151|PREUVE-00152|PREUVE-00153|PREUVE-00154|PREUVE-00155|PREUVE-00156|PREUVE-00157|PREUVE-00158|PREUVE-00159|PREUVE-00170|PREUVE-00171|PREUVE-00172|PREUVE-00173|PREUVE-00174|PREUVE-00276|PREUVE-00277|PREUVE-00278|PREUVE-00279|PREUVE-00280|PREUVE-00281|PREUVE-00282|PREUVE-00283|PREUVE-00284|PREUVE-00285|PREUVE-00611|PREUVE-00612|PREUVE-00613",
+      "source_work": {
+        "id_controle": "121",
+        "statut": "VALIDE_PUBLICATION",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0003",
+      "nom": "REDMI A5",
+      "marque": "Xiaomi",
+      "prix_indicatif": 149.9,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "4 Go",
+        "stockage": "128 Go",
+        "processeur": "UNISOC T7250",
+        "batterie": "5200 mAh",
+        "ecran": "6.88 pouces; 1640x720",
+        "photo": "32 MP; avant 8 MP",
+        "etancheite": "IP52"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5200
+        },
+        "performance": {
+          "soc": "UNISOC T7250"
+        },
+        "durete": {
+          "protection_ip": "IP52"
+        },
+        "ecran": {
+          "technologie": "6.88 pouces; 1640x720",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.mi.com/fr/product/redmi-a5/specs/",
+        "https://www.mi.com/fr/support/faq/details/KA-908475/",
+        "https://www.idealo.fr/prix/206251782/xiaomi-redmi-a5-128gb-lake-green.html"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/206251782/xiaomi-redmi-a5-128gb-lake-green.html",
+      "preuve_ids": "PREUVE-00011|PREUVE-00012|PREUVE-00013|PREUVE-00014|PREUVE-00015|PREUVE-00016|PREUVE-00017|PREUVE-00018|PREUVE-00019|PREUVE-00020|PREUVE-00021|PREUVE-00022|PREUVE-00356|PREUVE-00357|PREUVE-00358|PREUVE-00359|PREUVE-00360|PREUVE-00361|PREUVE-00362|PREUVE-00363|PREUVE-00364|PREUVE-00365",
+      "source_work": {
+        "id_controle": "3",
+        "statut": "A_VERIFIER",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0009",
+      "nom": "moto e15",
+      "marque": "Motorola",
+      "prix_indicatif": 149.99,
+      "prix_note": "Prix indicatif issu de origine_prix_eur_declare ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "2 Go",
+        "stockage": "64 Go",
+        "processeur": "Helio G81 Extreme",
+        "batterie": "5200 mAh",
+        "ecran": "HD+ 1612x720",
+        "photo": "32 MP; avant 8 MP",
+        "etancheite": "IP54"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5200
+        },
+        "performance": {
+          "soc": "Helio G81 Extreme"
+        },
+        "durete": {
+          "protection_ip": "IP54"
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://en-gb.support.motorola.com/app/answers/detail/a_id/184469/~/specifications---moto-e15"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/206128835/motorola-moto-e15.html",
+      "preuve_ids": "PREUVE-00001|PREUVE-00002|PREUVE-00003|PREUVE-00004|PREUVE-00005|PREUVE-00006|PREUVE-00007|PREUVE-00008|PREUVE-00009|PREUVE-00010",
+      "source_work": {
+        "id_controle": "9",
+        "statut": "A_VERIFIER",
+        "prix_champ": "origine_prix_eur_declare"
+      }
+    },
+    {
+      "id": "GA-SM-0010",
+      "nom": "HONOR X5c Plus",
+      "marque": "Honor",
+      "prix_indicatif": 139.0,
+      "prix_note": "Prix indicatif issu de prix_actuel_eur_ttc ; date : 2026-11-03. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "4 Go",
+        "stockage": "128 Go",
+        "processeur": "Helio G81",
+        "batterie": "5260 mAh",
+        "ecran": "6.74 pouces; technologie non confirmee",
+        "photo": "principal 50 MP"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5260
+        },
+        "performance": {
+          "soc": "Helio G81"
+        },
+        "durete": {},
+        "ecran": {
+          "technologie": "6.74 pouces; technologie non confirmee",
+          "frequence_max_hz": 90
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.honor.com/fr/phones/honor-x5c-plus/spec/",
+        "https://www.idealo.fr/prix/208052622/honor-x5c-plus-128-go-cyan.html",
+        "https://www.honor.com/fr/phones/honor-x5c-plus/"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/208052622/honor-x5c-plus-128-go-cyan.html",
+      "preuve_ids": "PREUVE-00205|PREUVE-00206|PREUVE-00207|PREUVE-00208|PREUVE-00209|PREUVE-00346|PREUVE-00347|PREUVE-00348|PREUVE-00349|PREUVE-00350|PREUVE-00351|PREUVE-00352|PREUVE-00353|PREUVE-00354|PREUVE-00355|PREUVE-00408|PREUVE-00409|PREUVE-00410|PREUVE-00411",
+      "source_work": {
+        "id_controle": "10",
+        "statut": "A_VERIFIER",
+        "prix_champ": "prix_actuel_eur_ttc"
+      }
+    },
+    {
+      "id": "GA-SM-0024",
+      "nom": "motorola edge 60",
+      "marque": "Motorola",
+      "prix_indicatif": 353.0,
+      "prix_note": "Prix indicatif issu de origine_prix_eur_declare ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "8 Go",
+        "stockage": "512 Go",
+        "processeur": "Dimensity 7300",
+        "batterie": "5200 mAh",
+        "ecran": "pOLED 6.67 pouces; 2712x1220",
+        "etancheite": "IP68/IP69"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5200
+        },
+        "performance": {
+          "soc": "Dimensity 7300"
+        },
+        "durete": {},
+        "ecran": {
+          "technologie": "pOLED 6.67 pouces; 2712x1220",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://fr-fr.support.motorola.com/app/answers/detail/a_id/187114/~/sp%C3%A9cifications--motorola-edge-60",
+        "https://motorolanews.com/news/page/6/?cat=product&dates=&show=9&sort=post_date_desc"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/206294641/motorola-edge-60.html",
+      "preuve_ids": "PREUVE-00033|PREUVE-00034|PREUVE-00035|PREUVE-00036|PREUVE-00037|PREUVE-00038|PREUVE-00039|PREUVE-00040|PREUVE-00041|PREUVE-00042|PREUVE-00269",
+      "source_work": {
+        "id_controle": "24",
+        "statut": "A_VERIFIER",
+        "prix_champ": "origine_prix_eur_declare"
+      }
+    },
+    {
+      "id": "GA-SM-0029",
+      "nom": "motorola edge 70",
+      "marque": "Motorola",
+      "prix_indicatif": 406.0,
+      "prix_note": "Prix indicatif issu de origine_prix_eur_declare ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "12 Go",
+        "stockage": "512 Go",
+        "processeur": "Snapdragon 7 Gen 4",
+        "batterie": "4800 mAh",
+        "ecran": "pOLED 6.67 pouces; 2712x1220",
+        "photo": "3 capteurs 50 MP au total, cameras avant et arriere comprises",
+        "etancheite": "IP68/IP69"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 4800
+        },
+        "performance": {
+          "soc": "Snapdragon 7 Gen 4"
+        },
+        "durete": {},
+        "ecran": {
+          "technologie": "pOLED 6.67 pouces; 2712x1220",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://fr-fr.support.motorola.com/app/answers/detail/a_id/189729/~/sp%C3%A9cifications--motorola-edge-70",
+        "https://en-us.support.motorola.com/app/software-security-update/g_id/7112/productid/12433/",
+        "https://www.motorola.com/we/en/p/phones/motorola-edge/motorola-edge-70/pmipmjc43m9",
+        "https://motorolanews.com/motorola-unveils-the-motorola-edge-70-with-an-impossibly-thin-and-incredibly-tough-design-new-moto-g-devices-and-the-moto-buds-bass/"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/208361076/motorola-edge-70.html",
+      "preuve_ids": "PREUVE-00043|PREUVE-00044|PREUVE-00045|PREUVE-00046|PREUVE-00047|PREUVE-00048|PREUVE-00049|PREUVE-00050|PREUVE-00051|PREUVE-00052|PREUVE-00271|PREUVE-00272|PREUVE-00273|PREUVE-00435|PREUVE-00436",
+      "source_work": {
+        "id_controle": "29",
+        "statut": "A_VERIFIER",
+        "prix_champ": "origine_prix_eur_declare"
+      }
+    },
+    {
+      "id": "GA-SM-0050",
+      "nom": "motorola razr 60 ultra",
+      "marque": "Motorola",
+      "prix_indicatif": 729.98,
+      "prix_note": "Prix indicatif issu de origine_prix_eur_declare ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "16 Go",
+        "stockage": "512 Go",
+        "processeur": "Snapdragon 8 Elite",
+        "batterie": "4700 mAh",
+        "ecran": "LTPO AMOLED pliable 7 pouces; 2992x1224; externe 4 pouces",
+        "etancheite": "IP48"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 4700
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite"
+        },
+        "durete": {
+          "protection_ip": "IP48"
+        },
+        "ecran": {
+          "technologie": "LTPO AMOLED pliable 7 pouces; 2992x1224; externe 4 pouces",
+          "frequence_max_hz": 165
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://fr-fr.support.motorola.com/app/answers/detail/a_id/187117/~/sp%C3%A9cifications--motorola-razr-60-ultra",
+        "https://motorolanews.com/news/page/6/?cat=product&dates=&show=9&sort=post_date_desc"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/206291731/motorola-razr-60-ultra.html",
+      "preuve_ids": "PREUVE-00053|PREUVE-00054|PREUVE-00055|PREUVE-00056|PREUVE-00057|PREUVE-00058|PREUVE-00059|PREUVE-00060|PREUVE-00061|PREUVE-00062|PREUVE-00270",
+      "source_work": {
+        "id_controle": "50",
+        "statut": "A_VERIFIER",
+        "prix_champ": "origine_prix_eur_declare"
+      }
+    },
+    {
+      "id": "GA-SM-0055",
+      "nom": "OPPO Find X9 Pro",
+      "marque": "Oppo",
+      "prix_indicatif": 777.99,
+      "prix_note": "Prix indicatif issu de origine_prix_eur_declare ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "16 Go",
+        "stockage": "512 Go",
+        "processeur": "Dimensity 9500",
+        "batterie": "7500 mAh",
+        "ecran": "AMOLED 6.78 pouces; 2772x1272",
+        "photo": "50 MP OIS + ultra grand-angle 50 MP + teleobjectif 200 MP OIS + monochrome 2 MP",
+        "etancheite": "IP68; IP69 explique dans note constructeur"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 7500
+        },
+        "performance": {
+          "soc": "Dimensity 9500"
+        },
+        "durete": {},
+        "ecran": {
+          "technologie": "AMOLED 6.78 pouces; 2772x1272",
+          "frequence_max_hz": 120
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.oppo.com/fr/smartphones/series-find-x/find-x9-pro/specs/",
+        "https://www.oppo.com/befr/newsroom/press/serie-oppo-find-x9-lancement/",
+        "https://www.oppo.com/uk/psti/",
+        "https://www.darty.com/res3/pdf/ODR_OPPO_FIND_X9%20_28102025_05112025.pdf"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/208320970/oppo-find-x9-pro.html",
+      "preuve_ids": "PREUVE-00083|PREUVE-00084|PREUVE-00085|PREUVE-00086|PREUVE-00087|PREUVE-00088|PREUVE-00089|PREUVE-00090|PREUVE-00091|PREUVE-00092|PREUVE-00431|PREUVE-00432|PREUVE-00433|PREUVE-00434|PREUVE-00614",
+      "source_work": {
+        "id_controle": "55",
+        "statut": "A_VERIFIER",
+        "prix_champ": "origine_prix_eur_declare"
+      }
+    },
+    {
+      "id": "GA-SM-0070",
+      "nom": "Xperia 1 VIII",
+      "marque": "Sony",
+      "prix_indicatif": 1499.0,
+      "prix_note": "Prix indicatif issu de prix_lancement_eur ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "12 Go",
+        "stockage": "256 Go",
+        "processeur": "Snapdragon 8 Elite Gen 5",
+        "batterie": "5000 mAh"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5000
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite Gen 5"
+        },
+        "durete": {}
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.sony.fr/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-viii-256gb/specifications",
+        "https://www.sony.fr/smartphones/products/xperia-1m8?locale=fr_FR",
+        "https://www.sony.fr/presscentre/sony-annonce-le-lancement-du-xperia-1-viii-son-dernier-smartphone-dote-dune-nouvelle-ia-integree-pour-des-photos-toujours-plus-reussies"
+      ],
+      "idealo_url": "https://www.idealo.fr/prix/210328014/sony-xperia-1-viii.html",
+      "preuve_ids": "PREUVE-00242|PREUVE-00243|PREUVE-00244|PREUVE-00245|PREUVE-00246|PREUVE-00247|PREUVE-00248|PREUVE-00249|PREUVE-00250|PREUVE-00251|PREUVE-00252|PREUVE-00253|PREUVE-00254",
+      "source_work": {
+        "id_controle": "70",
+        "statut": "A_VERIFIER",
+        "prix_champ": "prix_lancement_eur"
+      }
+    },
+    {
+      "id": "GA-SM-0104",
+      "nom": "HONOR 400 Lite",
+      "marque": "Honor",
+      "prix_indicatif": 249.0,
+      "prix_note": "Prix indicatif issu de origine_prix_eur_declare ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "8 Go",
+        "stockage": "256 Go",
+        "processeur": "Dimensity 7025-Ultra",
+        "batterie": "5230 mAh",
+        "ecran": "AMOLED 6.7 pouces; 2412x1080",
+        "photo": "108 MP + grand-angle/profondeur 5 MP; avant 16 MP",
+        "etancheite": "IP64"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 5230
+        },
+        "performance": {
+          "soc": "Dimensity 7025-Ultra"
+        },
+        "durete": {
+          "protection_ip": "IP64"
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.honor.com/fr/phones/honor-400-lite/spec/",
+        "https://www.honor.com/fr/phones/honor-400-lite/buy/?skuCode=813310001030001605",
+        "https://www.honor.com/de/phones/honor-400-lite/buy/"
+      ],
+      "idealo_url": null,
+      "preuve_ids": "PREUVE-00190|PREUVE-00191|PREUVE-00192|PREUVE-00193|PREUVE-00194|PREUVE-00195|PREUVE-00196|PREUVE-00197|PREUVE-00198|PREUVE-00199|PREUVE-00200|PREUVE-00201|PREUVE-00202|PREUVE-00203|PREUVE-00204",
+      "source_work": {
+        "id_controle": "104",
+        "statut": "A_VERIFIER",
+        "prix_champ": "origine_prix_eur_declare"
+      }
+    },
+    {
+      "id": "GA-SM-0167",
+      "nom": "POCO F9 Ultra",
+      "marque": "Xiaomi",
+      "prix_indicatif": 1387.44,
+      "prix_note": "Prix indicatif issu de origine_prix_eur_declare ; date : non précisée. À vérifier avant achat.",
+      "caracteristiques": {
+        "ram": "16 Go",
+        "stockage": "1024 Go",
+        "processeur": "Snapdragon 8 Elite Gen 5",
+        "batterie": "8050 mAh",
+        "ecran": "AMOLED 6.85 pouces (commercial 6.9); 2608x1200",
+        "photo": "200 MP OIS + teleobjectif 50 MP OIS 120 mm + ultra grand-angle 50 MP; avant 32 MP",
+        "etancheite": "IP68"
+      },
+      "compatibilite": {
+        "batterie": {
+          "capacite_mah": 8050
+        },
+        "performance": {
+          "soc": "Snapdragon 8 Elite Gen 5"
+        },
+        "durete": {
+          "protection_ip": "IP68"
+        },
+        "ecran": {
+          "technologie": "AMOLED 6.85 pouces (commercial 6.9); 2608x1200",
+          "frequence_max_hz": 185
+        }
+      },
+      "ready_for_recommendation": true,
+      "spec_provenance": {
+        "compatibilite_derivee": "sources_web"
+      },
+      "sources_verification": [
+        "https://www.mi.com/fr/product/poco-f9-ultra/specs/",
+        "https://c.mi.com/fr/post/108225",
+        "https://trust.mi.com/misrc/updates/detail?tab=phone6G",
+        "https://www.01net.com/actualites/poco-f9-ultra-f9-pro-x8-trois-smartphones-deux-monstres-dendurance-et-un-champion-du-rapport-qualite-prix.html"
+      ],
+      "idealo_url": null,
+      "preuve_ids": "PREUVE-00073|PREUVE-00074|PREUVE-00075|PREUVE-00076|PREUVE-00077|PREUVE-00078|PREUVE-00079|PREUVE-00080|PREUVE-00081|PREUVE-00082|PREUVE-00266|PREUVE-00267|PREUVE-00268|PREUVE-00451|PREUVE-00452|PREUVE-00453",
+      "source_work": {
+        "id_controle": "167",
+        "statut": "VALIDE_SANS_PRIX_ACTUEL",
+        "prix_champ": "origine_prix_eur_declare"
+      }
+    }
+  ],
+  "meta": {
+    "etat": "CANDIDAT_NON_ACTIVE",
+    "sources_sha256": {
+      "1-smartphones_sources_preuves.csv": "92678fd53a32acc895a014247243aa6c9952313c2d63ef799dbac4f9b977b4f3",
+      "2-smartphones_exclusions.csv": "f8cce27907dae7d4072c6642f72bc4e9a20d70926c3ef31c786700ef5679f0d3",
+      "3-smartphones_catalogue_valide.csv": "0d3ac1a85c0a5b2fa6c46882b6ea1abccda29321f85cac0c70cf0d0a56bb26d1",
+      "4-smartphones_attente_verification.csv": "c09d1e2bd5b3948756a16fd9a80f26b52e56fc305ea8d9bf7582cf93e500471c"
+    },
+    "exclusions": [
+      {
+        "id": "GA-SM-0001",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0002",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0004",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0005",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0006",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0007",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0008",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0011",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0013",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0014",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0015",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0016",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0018",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0019",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0020",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0021",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0022",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0023",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0026",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0027",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0028",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0030",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0032",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0033",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0034",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0035",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0036",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0038",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0039",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0040",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0041",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0042",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0043",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0044",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0045",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0046",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0049",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0051",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0052",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0056",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0057",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0058",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0059",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0060",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0061",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0062",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0063",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0064",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0065",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0066",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0068",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0069",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0071",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0072",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0073",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0074",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0075",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0076",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0077",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0078",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0079",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0080",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0081",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0082",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0083",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0085",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0086",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0087",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0088",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0089",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0090",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0092",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0094",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0095",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0096",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0097",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0098",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0099",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0100",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0101",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0102",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0103",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0105",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0106",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0107",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0108",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0109",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0111",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0112",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0113",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0114",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0115",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0117",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0118",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0119",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0120",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0122",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0123",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0125",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0126",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0127",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0128",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0129",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0131",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0132",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0133",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0134",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0135",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0136",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0137",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0138",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0139",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0140",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0141",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0143",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0144",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0145",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0146",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0148",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0149",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0152",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0153",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0155",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0156",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0157",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0158",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0159",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0160",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0161",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0162",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0163",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0164",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0165",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0168",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0173",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0174",
+        "raison": "Identité ou caractéristiques essentielles non établies"
+      },
+      {
+        "id": "GA-SM-0084",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0091",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0093",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0110",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0116",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0124",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0130",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0142",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0147",
+        "raison": "Exclusion du fichier Work : DENOMINATION_ANNEE_INCORRECTE"
+      },
+      {
+        "id": "GA-SM-0150",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0151",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0154",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0166",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0169",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0170",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0171",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      },
+      {
+        "id": "GA-SM-0172",
+        "raison": "Exclusion du fichier Work : DOUBLON_DOCUMENTAIRE"
+      }
+    ]
+  }
+}
