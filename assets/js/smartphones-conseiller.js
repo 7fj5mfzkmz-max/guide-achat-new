@@ -80,6 +80,21 @@
     var rows = c.criteres.map(function (l) { return '<div class="gc-sp"><dt>' + esc(l.titre) + '</dt><dd>' + (l.connu ? esc(cap1(l.texte || '')) : '<i>non renseigné</i>') + '</dd></div>'; }).join('');
     return '<details class="gc-tech"><summary>Toute la fiche utilisée pour le calcul</summary><dl class="gc-specs">' + rows + '</dl><p class="gc-note-s">Score calculé sur ' + c.couverture + ' % des critères importants pour « ' + esc(PHRASE[c.priorite]) + ' ».</p></details>';
   }
+  /* Schéma du téléphone : six zones lues sur la fiche. Jaune = compte pour votre priorité ; contour = valeur de la fiche ; hachuré = inconnu (jamais un défaut). */
+  var ZONES = [['photo', 'Photo', 'photo'], ['performance', 'Puce', 'performance'], ['ecran', 'Écran', 'ecran'], ['batterie', 'Batterie', 'batterie'], ['suivi', 'Maj', 'suivi'], ['resistance', 'IP', null]];
+  function anatomie(c) {
+    var sp = K.lire(produit(c.id)), top = {};
+    c.criteres.filter(function (x) { return x.poids; }).sort(function (a, b) { return b.poids - a.poids; }).slice(0, 3).forEach(function (x) { top[x.critere] = 1; });
+    var val = { photo: sp.mp != null ? sp.mp + ' MP' : null, performance: sp.niveau != null ? sp.niveau + '/10' : null, ecran: sp.hz != null ? sp.hz + ' Hz' : null, batterie: sp.mah != null ? fr(sp.mah) : null, suivi: sp.maj != null ? sp.maj + ' ans' : null, resistance: sp.ip ? String(sp.ip).replace(/\s*\/.*/, '') : null };
+    var cells = ZONES.map(function (z) {
+      var v = val[z[0]], etat = v == null ? 'inconnu' : top[z[0]] ? 'cle' : 'fiche', demo = z[2] ? D.demoPourCritere(z[2]) : null;
+      var inner = '<span class="l">' + z[1] + '</span><b>' + (v == null ? '?' : esc(v)) + '</b>';
+      var lab = z[1] + ' : ' + (v == null ? 'inconnu, jamais compté comme un défaut' : v + (top[z[0]] ? ', compte pour votre priorité' : ''));
+      return demo ? '<button type="button" class="gc-cell is-' + etat + ' z-' + z[0] + '" data-demo="' + demo + '" aria-label="' + esc(lab + '. Voir la différence.') + '">' + inner + '</button>' : '<div class="gc-cell is-' + etat + ' z-' + z[0] + '" role="img" aria-label="' + esc(lab) + '">' + inner + '</div>';
+    }).join('');
+    return '<figure class="gc-anat"><div class="gc-phone">' + cells + '</div><figcaption>Schéma d’après la fiche, pas une photo. Touchez une zone pour voir la différence.</figcaption>' +
+      '<ul class="gc-legend"><li><i class="sw is-cle"></i><span><b>Jaune</b> : compte pour votre priorité.</span></li><li><i class="sw is-fiche"></i><span><b>Contour</b> : d’après la fiche.</span></li><li><i class="sw is-inconnu"></i><span><b>Hachuré</b> : inconnu, jamais compté comme un défaut.</span></li></ul></figure>';
+  }
   function carte(c, i) {
     var id = 'gc-n' + (++uid), nom = nomComplet(c);
     var pros = c.forts.map(function (f) { return '<li class="gc-pro"><span class="gc-sign" aria-hidden="true">✓</span><span><b>' + esc(f.phrase) + '</b><small>' + esc(cap1(f.texte || '')) + '</small>' + voir(f.critere, nom) + '</span></li>'; }).join('');
@@ -90,8 +105,9 @@
       '<div class="gc-st-main"><p class="gc-kick">' + (i === 0 ? 'Notre recommandation' : 'N° ' + (i + 1) + ' de la sélection') + '</p><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2>' +
       '<p class="gc-verdict"><b>' + NIVEAU(c.R) + '</b> pour « ' + esc(PHRASE[c.priorite]) + ' » : <span class="gc-compat">' + c.R + ' %</span> de compatibilité, d’après la fiche technique et non un test.</p>' +
       '<div class="gc-buy"><span class="gc-price">' + (c.idealo ? '<a class="gc-prix" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">' + fr(Math.round(c.prix)) + ' € indicatifs · comparer les prix ↗</a>' : '<span class="gc-prix">' + fr(Math.round(c.prix)) + ' € indicatifs · lien Idealo absent</span>') + '</span></div>' +
-      '<div class="gc-cols"><div><h3 class="gc-h3 is-ok">Ce qu’il fait bien</h3><ul class="gc-pc">' + pros + '</ul></div><div><h3 class="gc-h3 is-no">À savoir avant d’acheter</h3><ul class="gc-pc">' + cons + lim + '</ul></div></div></div>' +
-      '<aside class="gc-st-side" aria-label="Comment le score se construit"><div class="gc-big" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><b>' + c.R + '</b><span>% compatible</span></div><h3 class="gc-h3">Comment est fait ce score</h3>' + barres(c) + detailFiche(c) + '</aside>' +
+      '<div class="gc-big" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><b>' + c.R + '</b><span>% compatible</span></div><h3 class="gc-h3">Comment est fait ce score</h3>' + barres(c) + detailFiche(c) + '</div>' +
+      '<aside class="gc-st-side" aria-label="Schéma du téléphone">' + anatomie(c) + '</aside>' +
+      '<div class="gc-cols"><div><h3 class="gc-h3 is-ok">Vous gagnez</h3><ul class="gc-pc">' + pros + '</ul></div><div><h3 class="gc-h3 is-no">Vous cédez</h3><ul class="gc-pc">' + cons + lim + '</ul></div></div>' +
       '<p class="gc-micro">' + esc(noteFr(produit(c.id).prix_note)) + '</p></article>';
   }
 
@@ -208,7 +224,7 @@
       var x = e.target.closest('#gc-more'); if (x) { var a = $('#gc-affiner'), o = a.classList.contains('is-closed'); a.classList.toggle('is-closed', !o); x.setAttribute('aria-expanded', String(o)); return; }
       var ex = e.target.closest('[data-examiner]'); if (ex) { S.examine = ex.getAttribute('data-examiner'); var sl = $('.gc-liste'), sx = sl ? sl.scrollLeft : 0; render({ annonce: 'Détail affiché : ' + (res.cartes.filter(function (c) { return c.id === S.examine; })[0] || { nom: '' }).nom }); var sl2 = $('.gc-liste'); if (sl2) sl2.scrollLeft = sx; var bt = $('[data-examiner="' + S.examine + '"]'); if (bt) bt.focus({ preventScroll: true }); return; }
       var sc = e.target.closest('[data-scroll]'); if (sc) { var l = sc.closest('.gc-res-h') ? $('.gc-liste') : $('.dm-tabs', $('#gc-demo')); if (l) l.scrollBy({ left: Number(sc.getAttribute('data-scroll')) * Math.min(360, l.clientWidth * .85), behavior: reduced ? 'auto' : 'smooth' }); return; }
-      var v = e.target.closest('.gc-voir'); if (v) { demos.ouvrir(v.getAttribute('data-demo'), { voir: true }); return; }
+      var v = e.target.closest('.gc-voir, .gc-cell[data-demo]'); if (v) { demos.ouvrir(v.getAttribute('data-demo'), { voir: true }); return; }
     });
     /* analyseur : le champ de la page alimente le formulaire existant, sans toucher à son code */
     $('#gc-aform').addEventListener('submit', function (e) {

@@ -45,7 +45,7 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
         for (let i = 1; i < 4; i++) { await page.locator('.gc-ticket').nth(i).click(); assert.equal(await page.locator('.gc-card').getAttribute('data-id'), c[i].id); assert.ok(await page.locator('.gc-card .gc-pro').count() >= 1 && await page.locator('.gc-card .gc-con').count() >= 1, 'forts et compromis du n° ' + (i + 1)); }
         await page.locator('.gc-ticket').first().click();
         const txt = await page.locator('#gc-sortie').innerText();
-        assert.match(txt, /\d+ %\s*de compatibilité/i); assert.match(txt, /Ce qu’il fait bien/i); assert.match(txt, /À savoir avant d’acheter/i); assert.doesNotMatch(txt, /pas assez documenté|à confirmer|preuve indépendante|aucun test/i);
+        assert.match(txt, /\d+ %\s*de compatibilité/i); assert.match(txt, /Vous gagnez/i); assert.match(txt, /Vous cédez/i); assert.doesNotMatch(txt, /pas assez documenté|à confirmer|preuve indépendante|aucun test/i);
         assert.deepEqual(erreurs, []);
       });
       await check('conseiller : même classement que le moteur, pour les cinq priorités × budgets' + tag, async () => {
