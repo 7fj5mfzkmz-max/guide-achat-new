@@ -69,9 +69,9 @@
     var items = c.forts.map(function (f) { return ligneForte(f, nom); }).join('') + c.compromis.map(function (f) { return ligneCompromis(f, nom); }).join('') + limite(c);
     if (!c.compromis.length && !c.manquantes.length) items += '<li class="gc-con"><span class="gc-sign" aria-hidden="true">−</span><span><b>Compromis</b> Aucun point faible marqué dans les données disponibles.</span></li>';
     var ph = produit(c.id), img = ph && ph.image_url && ph.image_alt && /^(https:\/\/|assets\/)/.test(ph.image_url) ? '<figure class="gc-thumb gc-photo"><img src="' + esc(ph.image_url) + '" alt="' + esc(ph.image_alt) + '" width="96" height="128" loading="lazy" decoding="async"></figure>' : '';
-    return '<article class="gc-card" id="' + (i === 0 ? 'gc-card' : id) + '" tabindex="-1" data-id="' + esc(c.id) + '" data-rang="' + (i + 1) + '" data-r="' + c.R + '" data-focus="' + (examine ? '1' : '0') + '" aria-labelledby="' + id + '">' +
+    return '<article class="gc-card" id="' + (i === 0 ? 'gc-card' : id) + '" tabindex="-1" style="--r:' + c.R + '" data-id="' + esc(c.id) + '" data-rang="' + (i + 1) + '" data-r="' + c.R + '" data-focus="' + (examine ? '1' : '0') + '" aria-labelledby="' + id + '">' +
       '<header class="gc-card-h"><span class="gc-kick">' + (i === 0 ? 'Notre recommandation' : 'N° ' + (i + 1)) + '</span><span class="gc-status is-conf"><span class="gc-compat">' + c.R + ' %</span> de compatibilité</span></header>' +
-      '<div class="gc-card-main">' + img + '<div class="gc-id"><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2><p class="gc-price">' + lien(c) + '</p></div></div>' +
+      '<div class="gc-card-main">' + img + '<div class="gc-ring" aria-hidden="true"><b>' + c.R + '</b><i>%</i></div><div class="gc-id"><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2><p class="gc-price">' + lien(c) + '</p></div></div>' +
       '<div class="gc-gauge" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><i class="r" style="width:' + c.R + '%"></i></div>' +
       '<p class="gc-verdict">Compatibilité estimée avec « ' + esc(PHRASE[c.priorite]) + ' » d’après la fiche technique, pas d’après un test.</p>' +
       '<ul class="gc-pc">' + items + '</ul>' + detailFiche(c) +
@@ -101,7 +101,7 @@
     }
     if (S.examine && !res.cartes.some(function (c) { return c.id === S.examine; })) S.examine = null;
     var focus = res.cartes.filter(function (c) { return c.id === S.examine; })[0] || res.cartes[0];
-    sortie.innerHTML = '<ol class="gc-liste" aria-label="Les ' + res.cartes.length + ' smartphones les plus compatibles">' + res.cartes.map(function (c, i) { return '<li>' + carte(c, i) + '</li>'; }).join('') + '</ol>' + (res.notes.length ? '<p class="gc-micro">' + esc(res.notes.join(' ')) + '</p>' : '');
+    sortie.innerHTML = '<div class="gc-res-h"><h2 class="gc-res-t">Vos ' + res.cartes.length + ' meilleurs choix</h2><div class="gc-arrs"><button type="button" class="gc-arr" data-scroll="-1" aria-label="Modèle précédent"><span aria-hidden="true">‹</span></button><button type="button" class="gc-arr" data-scroll="1" aria-label="Modèle suivant"><span aria-hidden="true">›</span></button></div></div><ol class="gc-liste" tabindex="0" aria-label="Les ' + res.cartes.length + ' smartphones les plus compatibles, à faire défiler">' + res.cartes.map(function (c, i) { return '<li>' + carte(c, i) + '</li>'; }).join('') + '</ol><p class="gc-hint" aria-hidden="true">Faites glisser pour voir les autres →</p>' + (res.notes.length ? '<p class="gc-micro">' + esc(res.notes.join(' ')) + '</p>' : '');
     if (derniere !== S.priorite) { derniere = S.priorite; demos.definirPriorite(S.priorite); if (S.demo) { demos.ouvrir(S.demo, { manuel: true }); S.demo = ''; } }
     demos.definirTelephone(D.fiche(produit(focus.id)), comparables(focus));
     $('#gc-statut').textContent = opts.annonce || '';
@@ -118,7 +118,7 @@
     var bud = BUDGETS.map(function (b) { return '<option value="' + b[0] + '">' + b[1] + '</option>'; }).join('');
     root.innerHTML =
       '<div class="gc-wrap gc-hero"><p class="gc-eyebrow">Conseiller · ' + moteur.pool.length + ' modèles examinés</p><h1 id="gc-titre">Qu’est-ce qui compte <mark>le plus</mark> ?</h1>' +
-      '<p class="gc-lead">Une priorité, quatre modèles, un score de compatibilité et ce qu’il vous coûte.</p></div>' +
+      '<p class="gc-lead">Choisissez ce qui compte pour vous : on vous montre les quatre téléphones les plus compatibles, avec leur score, leurs points forts et leurs compromis.</p></div>' +
       '<div class="gc-wrap gc-top"><div class="gc-frame"><form class="gc-rail" onsubmit="return false" aria-labelledby="gc-titre"><fieldset class="gc-prios"><legend class="gc-mono">Ce qui compte le plus</legend><div class="gc-tiles">' + tuiles + '<button type="button" class="gc-tile gc-more" id="gc-more" aria-expanded="false" aria-controls="gc-affiner"><span class="gc-tile-in"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES.affiner + '</svg><span class="t">Affiner</span></span></button></div></fieldset>' +
       '<div class="gc-sum"><span id="gc-more-t"></span>' +
       '<a class="gc-have" href="#analyser-modele" data-open-tab="analyser-modele"><span>J’ai <span class="gc-xs">déjà </span>un modèle</span><span aria-hidden="true">→</span></a></div>' +
@@ -135,6 +135,7 @@
     document.body.appendChild(bar);
     $$('.gc-bridge', document).forEach(function (p) { p.hidden = false; });
     demos = D.monter($('#gc-demo'), {});
+    var dh = $('.dm-head', $('#gc-demo')); if (dh) { var ar = document.createElement('div'); ar.className = 'gc-arrs gc-arrs-dm'; ar.innerHTML = '<button type="button" class="gc-arr" data-scroll="-1" aria-label="Démonstration précédente"><span aria-hidden="true">‹</span></button><button type="button" class="gc-arr" data-scroll="1" aria-label="Démonstration suivante"><span aria-hidden="true">›</span></button>'; dh.appendChild(ar); }
     return bar;
   }
 
@@ -196,6 +197,7 @@
     root.addEventListener('click', function (e) {
       var x = e.target.closest('#gc-more'); if (x) { var a = $('#gc-affiner'), o = a.classList.contains('is-closed'); a.classList.toggle('is-closed', !o); x.setAttribute('aria-expanded', String(o)); return; }
       var ex = e.target.closest('[data-examiner]'); if (ex) { S.examine = ex.getAttribute('data-examiner'); render({ annonce: 'Démonstrations : ' + (res.cartes.filter(function (c) { return c.id === S.examine; })[0] || { nom: '' }).nom }); var bt = $('[data-examiner="' + S.examine + '"]'); if (bt) bt.focus({ preventScroll: true }); return; }
+      var sc = e.target.closest('[data-scroll]'); if (sc) { var l = sc.closest('.gc-res-h') ? $('.gc-liste') : $('.dm-tabs', $('#gc-demo')); if (l) l.scrollBy({ left: Number(sc.getAttribute('data-scroll')) * Math.min(360, l.clientWidth * .85), behavior: reduced ? 'auto' : 'smooth' }); return; }
       var v = e.target.closest('.gc-voir'); if (v) { demos.ouvrir(v.getAttribute('data-demo'), { voir: true }); return; }
     });
     /* analyseur : le champ de la page alimente le formulaire existant, sans toucher à son code */
