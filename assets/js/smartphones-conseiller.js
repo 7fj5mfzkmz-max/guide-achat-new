@@ -131,7 +131,7 @@
       '<p class="gc-micro"><b>Gratuit.</b> Sans compte. Même analyseur qu’avant : le résultat s’affiche dans l’analyseur de la page.</p></form></div></section>';
     $('#gc-bud').value = String(budgetAffiche());
     var bar = document.createElement('div'); bar.className = 'gc-sticky is-hidden'; bar.id = 'gc-sticky';
-    bar.innerHTML = '<a class="gc-btn gc-yellow" href="#analyser-modele" data-open-tab="analyser-modele">J’ai déjà un modèle en tête <span aria-hidden="true">▸</span></a>';
+    bar.innerHTML = '<div class="gc-dock"><a href="#analyser-modele" data-open-tab="analyser-modele"><span>01 Analyser un modèle</span><i aria-hidden="true">↗</i></a><a href="#audit" data-open-tab="audit"><span>02 Mes critères</span><i aria-hidden="true">↗</i></a></div>';
     document.body.appendChild(bar);
     $$('.gc-bridge', document).forEach(function (p) { p.hidden = false; });
     demos = D.monter($('#gc-demo'), {});
