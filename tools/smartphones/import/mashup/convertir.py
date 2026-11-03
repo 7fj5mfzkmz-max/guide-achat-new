@@ -17,6 +17,7 @@ for line,r in enumerate(rows,2):
  if 'photo' in specs:specs['photo']=re.sub(r'OIS non', 'sans OIS', specs['photo'],flags=re.I)
  if ram:specs['ram']=str(int(ram))+' Go'
  if storage:specs['stockage']=str(int(storage))+' Go'
+ elif re.search(r'/\s*\d+\s*To',variant):specs['stockage']=re.search(r'/\s*(\d+\s*To)',variant)[1]
  price=num(r['Prix indicatif (€)'],r'(\d+(?:[.,]\d+)?)')
  if price is not None and not 0<price<10000:raise ValueError('Prix invalide ligne '+str(line))
  url=r['Lien Idealo France'].strip()

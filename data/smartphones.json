@@ -14804,7 +14804,8 @@
         "ecran": "AMOLED, 6.85\", 1216x2688, 144 Hz\"",
         "batterie": "7050 mAh, 120W",
         "photo": "50 MP, oui",
-        "ram": "24 Go"
+        "ram": "24 Go",
+        "stockage": "1 To"
       },
       "compatibilite": {
         "performance": {
@@ -14870,7 +14871,7 @@
         },
         "photographe": {
           "score": 4.2,
-          "coverage": 0.86,
+          "coverage": 0.91,
           "provisional": true
         }
       },
@@ -14881,7 +14882,7 @@
         "ecran": 7.8,
         "connectivite": null,
         "prix": 5.7,
-        "stockage": null,
+        "stockage": 8.8,
         "durabilite": null,
         "recharge": null,
         "gaming": 7.4
@@ -14893,7 +14894,7 @@
         "ecran": 7.8,
         "connectivite": null,
         "prix": 5.7,
-        "stockage": null,
+        "stockage": 8.8,
         "durabilite": null,
         "recharge": null,
         "gaming": 7.4
@@ -15255,7 +15256,8 @@
         "batterie": "5850 mAh, 100W",
         "photo": "50 MP, oui, téléobjectif 200 MP zoom 3x",
         "etancheite": "IP68",
-        "ram": "24 Go"
+        "ram": "24 Go",
+        "stockage": "1 To"
       },
       "compatibilite": {
         "performance": {
@@ -15321,7 +15323,7 @@
         },
         "photographe": {
           "score": 4.2,
-          "coverage": 0.86,
+          "coverage": 0.91,
           "provisional": true
         }
       },
@@ -15332,7 +15334,7 @@
         "ecran": 7.800000000000001,
         "connectivite": null,
         "prix": 5.3,
-        "stockage": null,
+        "stockage": 8.8,
         "durabilite": null,
         "recharge": null,
         "gaming": 7.4
@@ -15344,7 +15346,7 @@
         "ecran": 7.800000000000001,
         "connectivite": null,
         "prix": 5.3,
-        "stockage": null,
+        "stockage": 8.8,
         "durabilite": null,
         "recharge": null,
         "gaming": 7.4
@@ -16158,7 +16160,8 @@
         "batterie": "5700 mAh, 100W",
         "photo": "50 MP, oui, téléobjectif 64 MP zoom 3x",
         "etancheite": "IPX8",
-        "ram": "16 Go"
+        "ram": "16 Go",
+        "stockage": "1 To"
       },
       "compatibilite": {
         "performance": {
@@ -16224,7 +16227,7 @@
         },
         "photographe": {
           "score": 4.2,
-          "coverage": 0.86,
+          "coverage": 0.91,
           "provisional": true
         }
       },
@@ -16235,7 +16238,7 @@
         "ecran": 7.800000000000001,
         "connectivite": null,
         "prix": 4.571428571428571,
-        "stockage": null,
+        "stockage": 8.8,
         "durabilite": null,
         "recharge": null,
         "gaming": 7.4
@@ -16247,7 +16250,7 @@
         "ecran": 7.800000000000001,
         "connectivite": null,
         "prix": 4.571428571428571,
-        "stockage": null,
+        "stockage": 8.8,
         "durabilite": null,
         "recharge": null,
         "gaming": 7.4
