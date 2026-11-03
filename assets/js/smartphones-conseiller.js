@@ -105,7 +105,8 @@
       '<div class="gc-st-main"><p class="gc-kick">' + (i === 0 ? 'Notre recommandation' : 'N° ' + (i + 1) + ' de la sélection') + '</p><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2>' +
       '<p class="gc-verdict"><b>' + NIVEAU(c.R) + '</b> pour « ' + esc(PHRASE[c.priorite]) + ' » : <span class="gc-compat">' + c.R + ' %</span> de compatibilité, d’après la fiche technique et non un test.</p>' +
       '<div class="gc-buy"><span class="gc-price">' + (c.idealo ? '<a class="gc-prix" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">' + fr(Math.round(c.prix)) + ' € indicatifs · comparer les prix ↗</a>' : '<span class="gc-prix">' + fr(Math.round(c.prix)) + ' € indicatifs · lien Idealo absent</span>') + '</span></div>' +
-      '<div class="gc-big" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><b>' + c.R + '</b><span>% compatible</span></div><h3 class="gc-h3">Comment est fait ce score</h3>' + barres(c) + detailFiche(c) + '</div>' +
+      '<div class="gc-big" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><b>' + c.R + '</b><span>% compatible</span></div></div>' +
+      '<div class="gc-st-mid"><h3 class="gc-h3">Comment est fait ce score</h3>' + barres(c) + detailFiche(c) + '</div>' +
       '<aside class="gc-st-side" aria-label="Schéma du téléphone">' + anatomie(c) + '</aside>' +
       '<div class="gc-cols"><div><h3 class="gc-h3 is-ok">Vous gagnez</h3><ul class="gc-pc">' + pros + '</ul></div><div><h3 class="gc-h3 is-no">Vous cédez</h3><ul class="gc-pc">' + cons + lim + '</ul></div></div>' +
       '<p class="gc-micro">' + esc(noteFr(produit(c.id).prix_note)) + '</p></article>';
@@ -143,8 +144,9 @@
     }).join('');
     var bud = BUDGETS.map(function (b) { return '<option value="' + b[0] + '">' + b[1] + '</option>'; }).join('');
     root.innerHTML =
-      '<div class="gc-wrap gc-hero"><p class="gc-eyebrow">Conseiller · ' + moteur.pool.length + ' modèles examinés</p><h1 id="gc-titre">Qu’est-ce qui compte <mark>le plus</mark> ?</h1>' +
-      '<p class="gc-lead">Choisissez ce qui compte pour vous : on vous montre les quatre téléphones les plus compatibles, avec leur score, leurs points forts et leurs compromis.</p></div>' +
+      '<div class="gc-wrap gc-hero"><div class="gc-hero-in"><div class="gc-hero-txt"><p class="gc-eyebrow">Conseiller · ' + moteur.pool.length + ' modèles examinés</p><h1 id="gc-titre">Qu’est-ce qui compte <mark>le plus</mark> ?</h1>' +
+      '<p class="gc-lead">Choisissez ce qui compte pour vous : on vous montre les quatre téléphones les plus compatibles, avec leur score, leurs points forts et leurs compromis.</p>' +
+      '<ol class="gc-steps"><li><b>1</b> Choisissez une priorité</li><li><b>2</b> Comparez les 4 modèles</li><li><b>3</b> Voyez la différence en démo</li></ol></div><div class="gc-hero-ctl" id="gc-ctl"></div></div></div>' +
       '<div class="gc-wrap gc-top"><div class="gc-frame"><form class="gc-rail" onsubmit="return false" aria-labelledby="gc-titre"><fieldset class="gc-prios"><legend class="gc-mono">Ce qui compte le plus</legend><div class="gc-tiles">' + tuiles + '<button type="button" class="gc-tile gc-more" id="gc-more" aria-expanded="false" aria-controls="gc-affiner"><span class="gc-tile-in"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES.affiner + '</svg><span class="t">Affiner</span></span></button></div></fieldset>' +
       '<div class="gc-sum"><span id="gc-more-t"></span>' +
       '<a class="gc-have" href="#analyser-modele" data-open-tab="analyser-modele"><span>J’ai <span class="gc-xs">déjà </span>un modèle</span><span aria-hidden="true">→</span></a></div>' +
@@ -155,6 +157,7 @@
       '<section class="gc-band gc-ink" id="gc-analyse" aria-labelledby="gc-an-h"><div class="gc-wrap"><p class="gc-eyebrow">Un modèle en tête ?</p><h2 class="gc-h2" id="gc-an-h">Collez son lien. On le passe au crible.</h2>' +
       '<form class="gc-aform" id="gc-aform" novalidate><label for="gc-url" class="gc-mono">Lien ou nom du modèle</label><div class="gc-arow"><input id="gc-url" type="text" inputmode="url" autocomplete="off" placeholder="https://… ou nom du modèle"><button type="submit" class="gc-btn gc-yellow">Analyser ce modèle</button></div>' +
       '<p class="gc-micro"><b>Gratuit.</b> Sans compte. Même analyseur qu’avant : le résultat s’affiche dans l’analyseur de la page.</p></form></div></section>';
+    $('#gc-ctl').appendChild($('.gc-rail'));
     $('#gc-bud').value = String(budgetAffiche());
     var bar = document.createElement('div'); bar.className = 'gc-sticky is-hidden'; bar.id = 'gc-sticky';
     bar.innerHTML = '<div class="gc-dock"><a href="#analyser-modele" data-open-tab="analyser-modele"><span>Analyser un modèle</span><i aria-hidden="true">↗</i></a><a href="#audit" data-open-tab="audit"><span>Mes critères</span><i aria-hidden="true">↗</i></a></div>';
