@@ -8,6 +8,14 @@
      Ce fichier ne calcule aucune note et ne lit que les données existantes (data/smartphones*.json). Texte en français seulement (DeepL plus tard).
      Première partie : fonctions pures (testées sous Node, scripts/smartphones-demos-test.js). Seconde partie : le module d'interface. */
 
+  /* Onglets-illustrations : chaque démonstration est annoncée par un petit dessin qui flotte ; l'onglet actif se redresse et se souligne. */
+  var ILLUS = {
+    ecran: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><rect x="26" y="8" width="44" height="80" rx="9" fill="#1f242a"/><path d="M31 14h17v68H31a5 5 0 0 1-5-5V19a5 5 0 0 1 5-5z" fill="#60a5fa"/><path d="M48 14h16a5 5 0 0 1 5 5v58a5 5 0 0 1-5 5H48z" fill="#05070a"/><circle cx="39" cy="30" r="3" fill="#fff"/><circle cx="58" cy="52" r="3" fill="#fff"/><rect x="40" y="9" width="16" height="3" rx="1.5" fill="#0f1115"/></svg>',
+    photo: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><rect x="10" y="22" width="76" height="58" rx="12" fill="#1f242a"/><rect x="26" y="14" width="22" height="12" rx="4" fill="#1f242a"/><circle cx="48" cy="51" r="25" fill="#8b5cf6"/><circle cx="48" cy="51" r="17" fill="#3b2a78"/><circle cx="48" cy="51" r="9" fill="#a78bfa"/><circle cx="43" cy="46" r="3.5" fill="#fff" opacity=".85"/><circle cx="76" cy="32" r="4" fill="#ffd400"/></svg>',
+    batterie: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><rect x="8" y="28" width="72" height="42" rx="9" fill="#1f242a"/><rect x="80" y="40" width="8" height="18" rx="3" fill="#1f242a"/><rect x="14" y="34" width="16" height="30" rx="4" fill="#2dd4bf"/><rect x="34" y="34" width="16" height="30" rx="4" fill="#2dd4bf"/><rect x="54" y="34" width="16" height="30" rx="4" fill="#a3e635"/><path d="M52 10l-12 22h10l-6 18 16-24H48z" fill="#ffd400"/></svg>',
+    jeu: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><path d="M24 32h48c11 0 18 12 20 28 1 9-3 14-9 14-5 0-8-4-12-9H25c-4 5-7 9-12 9-6 0-10-5-9-14 2-16 9-28 20-28z" fill="#fb7a5c"/><rect x="20" y="42" width="5" height="17" rx="2" fill="#0f1115"/><rect x="14" y="48" width="17" height="5" rx="2" fill="#0f1115"/><circle cx="68" cy="45" r="4.5" fill="#ffd400"/><circle cx="77" cy="53" r="4.5" fill="#2dd4bf"/><circle cx="59" cy="53" r="4.5" fill="#60a5fa"/></svg>',
+    budget: '<svg viewBox="0 0 96 96" aria-hidden="true" focusable="false"><ellipse cx="40" cy="70" rx="28" ry="9" fill="#d9a900"/><rect x="12" y="52" width="56" height="18" fill="#ffd400"/><ellipse cx="40" cy="52" rx="28" ry="9" fill="#ffe14d"/><ellipse cx="40" cy="36" rx="28" ry="9" fill="#d9a900"/><rect x="12" y="24" width="56" height="12" fill="#ffd400"/><ellipse cx="40" cy="24" rx="28" ry="9" fill="#ffe14d"/><path d="M62 52l16-16h14v14L76 66z" fill="#8b5cf6"/><circle cx="84" cy="43" r="3" fill="#f6f8fa"/></svg>'
+  };
   var DEMOS = [
     { id: 'ecran', court: 'Écran', nature: 'illustration', q: 'OLED ou LCD : que change le noir ?' },
     { id: 'photo', court: 'Photo', nature: 'illustration', q: 'Zoom et capteur : que voit votre photo ?' },
@@ -138,7 +146,7 @@
 
     host.innerHTML = '<section class="dm" id="voir-la-difference" aria-labelledby="dm-titre"><div class="dm-head"><h2 class="dm-kick" id="dm-titre">Voir la différence</h2><span class="dm-badge" id="dm-badge"></span></div>' +
       '<div class="dm-tabs" role="tablist" aria-label="Choisir une démonstration">' + DEMOS.map(function (d) {
-        return '<button type="button" class="dm-tab" role="tab" id="dm-tab-' + d.id + '" data-d="' + d.id + '" aria-controls="dm-panel" aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES[d.id] + '</svg><span>' + d.court + '</span><i class="dm-you-dot" aria-hidden="true"></i></button>';
+        return '<button type="button" class="dm-tab" role="tab" id="dm-tab-' + d.id + '" data-d="' + d.id + '" aria-controls="dm-panel" aria-selected="false" tabindex="-1"><span class="dm-ill">' + ILLUS[d.id] + '</span><span class="dm-tl">' + d.court + '</span><i class="dm-you-dot" aria-hidden="true"></i></button>';
       }).join('') + '</div><div class="dm-panel" id="dm-panel" role="tabpanel" tabindex="-1"></div></section>';
     panneau = host.querySelector('#dm-panel');
     var $ = function (s) { return panneau.querySelector(s); };
