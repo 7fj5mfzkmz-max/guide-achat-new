@@ -12,10 +12,9 @@ SITE = 'https://guide-achat-new.vercel.app/'
 PAGES = {
     'index.html': '#essayer',
     'actualites.html': 'index.html#essayer',
-    'smartphones.html': '#conseiller',
-    'smartphones-approfondir.html': 'smartphones.html#conseiller',
     'pc-portables.html': '#audit',
     'projecteurs.html': '#profils',
+    'montres.html': '#choisir',
     'ecouteurs.html': '#usages',
     'batteries-externes.html': '#choisir',
     'a-propos.html': 'index.html#essayer',
@@ -23,15 +22,14 @@ PAGES = {
 }
 
 CATEGORIES = [
-    ('smartphones.html', 'Smartphones'),
     ('pc-portables.html', 'PC portables'),
     ('batteries-externes.html', 'Batteries externes'),
     ('ecouteurs.html', 'Écouteurs Bluetooth'),
     ('projecteurs.html', 'Projecteurs'),
+    ('montres.html', 'Montres et bracelets'),
 ]
 OUTILS = [
     ('analyseur.html', 'Analyseur de lien'),
-    ('smartphones-approfondir.html', 'Lire une fiche technique'),
     ('actualites.html', 'Mises à jour'),
     ('feed.xml', 'Flux Atom'),
 ]

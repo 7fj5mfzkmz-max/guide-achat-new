@@ -20,7 +20,7 @@
      d'une devinette sur le lien collé. Un produit de l'autre catégorie est refusé avec un renvoi vers l'autre
      analyseur (réponse « wrong-category » du serveur). */
   var OTHER = { "smartphones": { id: "pc-portables", label: "PC portable", href: "pc-portables.html#analyse-modele", noun: "un PC portable" },
-                "pc-portables": { id: "smartphones", label: "smartphone", href: "smartphones.html#analyse-modele", noun: "un smartphone" } };
+                "pc-portables": { id: "smartphones", label: "smartphone", href: "analyseur.html?cat=smartphones", noun: "un smartphone" } };
   function setCategory(cat) {
     state.category = cat === "pc-portables" ? "pc-portables" : "smartphones";
     var kit = window.GuideCategoryKit ? window.GuideCategoryKit.get(state.category) : null;

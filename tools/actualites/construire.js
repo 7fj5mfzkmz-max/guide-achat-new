@@ -20,11 +20,11 @@ const OUT = {
 
 /* Jeux de données suivis. */
 const SOURCES = [
-  { id: 'smartphones', cat: 'smartphones', label: 'Smartphones', fichier: 'data/smartphones.json', cle: 'produits', page: 'smartphones.html', nom: ['smartphone', 'smartphones'], genre: 'm' },
   { id: 'pc', cat: 'pc', label: 'PC portables', fichier: 'data/pc-portables.json', cle: 'produits', page: 'pc-portables.html', nom: ['PC portable', 'PC portables'], genre: 'm' },
   { id: 'projecteurs', cat: 'projecteurs', label: 'Projecteurs', fichier: 'data/projecteurs.json', cle: 'produits', page: 'projecteurs.html', nom: ['projecteur', 'projecteurs'], genre: 'm' },
   { id: 'ecouteurs', cat: 'ecouteurs', label: 'Écouteurs', fichier: 'data/ecouteurs.json', cle: 'produits', page: 'ecouteurs.html', nom: ['écouteur', 'écouteurs'], genre: 'm' },
   { id: 'batteries', cat: 'batteries', label: 'Batteries externes', fichier: 'data/batteries-externes.json', cle: 'products', page: 'batteries-externes.html', nom: ['batterie externe', 'batteries externes'], genre: 'f', nomcle: 'name' },
+  { id: 'montres', cat: 'montres', label: 'Montres', fichier: 'data/montres.json', cle: 'produits', page: 'montres.html', nom: ['montre ou bracelet', 'montres et bracelets'], genre: 'f' },
 ];
 const LABELS = Object.fromEntries(SOURCES.map(s => [s.cat, s.label]));
 
@@ -140,7 +140,7 @@ function main() {
   let entrees = [], ancienEtat = {};
   if (mode === '--amorcer') entrees = depuisGit();
   else {
-    if (fs.existsSync(path.join(ROOT, OUT.json))) entrees = JSON.parse(lire(OUT.json)).entrees.filter(e => e.type === 'article' || SOURCES.some(s => s.id === e.source));   /* une source retirée (ex. dossier de tests vidéo) ne laisse plus d'entrée */
+    if (fs.existsSync(path.join(ROOT, OUT.json))) entrees = JSON.parse(lire(OUT.json)).entrees.filter(e => e.type === 'article' ? e.cat in LABELS : SOURCES.some(s => s.id === e.source));   /* une source ou une catégorie retirée (ex. smartphones) ne laisse plus d'entrée */
     ancienEtat = fs.existsSync(path.join(ROOT, OUT.etat)) ? JSON.parse(lire(OUT.etat)) : etat;
     for (const k of Object.keys(ancienEtat)) if (!SOURCES.some(s => s.id === k)) delete ancienEtat[k];
     fusionner(entrees, differences(ancienEtat, etat, noms, aujourdhui()).reverse(), true);

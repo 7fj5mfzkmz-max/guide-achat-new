@@ -6,7 +6,7 @@ Site statique (HTML/CSS/JS) + petit backend Node pour l'analyse de liens marchan
 
 ```
 /                      Pages du site (les URL ne changent pas)
-  index.html  actualites.html  smartphones.html  smartphones-approfondir.html
+  index.html  actualites.html  montres.html
   pc-portables.html  batteries-externes.html  ecouteurs.html  projecteurs.html
   analyseur.html  a-propos.html
   (comparateur, lexique, lexique-pc-portables, capture et diagnostic sont retirés :
@@ -36,7 +36,13 @@ Source unique : `tools/site/gabarit.py`. Après modification : `python3 tools/si
 `npm test` échoue si une page s’en écarte (`npm run gabarit:test`). Une nouvelle page s’ajoute dans `PAGES` (avec la cible
 de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, dans `CATEGORIES`.
 
-## Smartphones : classement sur les caractéristiques techniques
+## Montres (montres.html)
+Données : `data/montres.json` (33 modèles, 10 vidéos sources : pouls contre ceinture ECG, sommeil contre EEG, GPS sur marathon, VO2 max, tension, montres Citizen). Page générée par `python3 tools/montres/construire.py` (`npm run montres:build`) : contenu en HTML statique, `assets/js/montres.js` ajoute le questionnaire (rang des tests pour l’usage, puis prix ; un prix inconnu n’apparaît qu’avec « Sans limite »), les filtres et la liste de contrôle. Contrôle : `npm run montres:test`. Les codes promotionnels et liens affiliés des vidéos ne sont pas repris.
+
+## Smartphones : catégorie mise de côté
+La page smartphones est retirée du site (redirection temporaire vers l’accueil). Le moteur de l’analyseur (`phone-analyzer/`, `category-kit/smartphones.js`, `sources/`) et le catalogue (`data/smartphones*.json`, `tools/smartphones/`) sont conservés et testés : l’analyseur smartphone reste joignable par `analyseur.html?cat=smartphones`. Pour rouvrir la catégorie : recréer la page, la remettre dans `assets/js/categories.js`, `tools/site/gabarit.py`, `sitemap.xml`, `tools/actualites/construire.js`, et retirer les redirections de `vercel.json` / `netlify.toml`. Les anciennes pages sont dans l’historique git (commit 06dbf89).
+
+### Moteur et catalogue smartphones (conservés)
 Le conseiller, « Mon profil » et les démonstrations lisent uniquement `data/smartphones.json` (146 modèles : processeur, écran, batterie, recharge, photo, mémoire et stockage, résistance, prix).
 `assets/js/smartphones-compat.js` calcule la compatibilité de 0 à 100 % selon la priorité du visiteur (équilibré, batterie, photo, jeu, prix bas) et un budget facultatif. Une donnée manquante vaut la moyenne (ni bonus ni pénalité) et est nommée dans les limites de la carte ; rien n'est écarté faute de preuve. Le conseiller affiche les quatre meilleurs modèles, avec points forts et compromis. Contrôles : `npm run smartphones:compat-test` (moteur) et `npm run smartphones:conseiller-test` (parcours dans le navigateur : conseiller, « Mon profil » par gamme, « Mes critères », « J’ai un modèle »).
 Les vidéos, tests indépendants, benchmarks et podiums de testeurs ne sont plus utilisés ; d'autres sources pourront être ajoutées plus tard comme critères supplémentaires de `smartphones-compat.js`.

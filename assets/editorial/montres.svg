@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Une montre connectée affichant un tracé de pouls, posée à côté d’une montre classique">
+  <rect width="800" height="600" fill="#cfd8e3"/>
+  <circle cx="610" cy="140" r="210" fill="#b9c6d6"/>
+  <g transform="rotate(-8 330 300)">
+    <path d="M270 40h120l-14 110h-92zM284 450h92l14 110H270z" fill="#20221e"/>
+    <rect x="200" y="140" width="260" height="320" rx="72" fill="#20221e"/>
+    <rect x="460" y="250" width="22" height="70" rx="8" fill="#ffd400" stroke="#20221e" stroke-width="5"/>
+    <rect x="226" y="166" width="208" height="268" rx="54" fill="#0f1115"/>
+    <text x="330" y="262" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="54" fill="#ffd400">62</text>
+    <text x="330" y="292" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="4" fill="#e3e7eb">BPM</text>
+    <polyline points="246,352 290,352 306,322 324,384 342,300 360,372 374,352 414,352" fill="none" stroke="#ffd400" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="rotate(10 610 380)">
+    <path d="M580 210h60l-8 70h-44zM588 480h44l8 70h-60z" fill="#8a6a3d"/>
+    <circle cx="610" cy="380" r="112" fill="#e3e7eb" stroke="#20221e" stroke-width="10"/>
+    <circle cx="610" cy="380" r="92" fill="#f6f1e6"/>
+    <g stroke="#20221e" stroke-width="5" stroke-linecap="round">
+      <path d="M610 300v14M610 446v14M530 380h14M676 380h14"/>
+      <path d="M610 380l-34-40M610 380l52 12"/>
+    </g>
+    <circle cx="610" cy="380" r="7" fill="#20221e"/>
+  </g>
+</svg>

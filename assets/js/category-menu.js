@@ -24,7 +24,7 @@
   var current = location.pathname.split("/").pop() || "index.html";
   function items() {
     var C = window.GuideCategories;
-    if (!C) return '<a class="category-menu-item is-live" href="smartphones.html"><span class="cm-txt"><strong>Smartphones</strong><small>Guide disponible</small></span></a>';
+    if (!C) return '<a class="category-menu-item is-live" href="pc-portables.html"><span class="cm-txt"><strong>PC portables</strong><small>Guide disponible</small></span></a>';
     return C.list.map(function (c) {
       var inside = '<span class="cm-ico" aria-hidden="true">' + C.icon(c) + '</span>' +
         '<span class="cm-txt"><strong>' + esc(c.label) + '</strong><small>' + (c.live ? "Guide disponible" : "Bientôt disponible") + '</small></span>' +

@@ -5,25 +5,6 @@
 (function () {
   "use strict";
   var LIST = [
-    { id: "smartphones", label: "Smartphones", live: true, href: "smartphones.html", tone: "orchid", icon: "phone",
-      photo: "assets/editorial/smartphones-photo.webp", photoAlt: "Vue rapprochée d’un smartphone sur fond sombre",
-      blurb: "Écran, autonomie, photo et performances : les points qui changent réellement l’usage.",
-      terms: ["Écran", "Batterie", "Photo", "Puce", "Autonomie", "Charge", "Étanchéité", "Mises à jour", "Stockage", "Prix"],
-      chips: [["Écran fluide", "hz"], ["Longue autonomie", "battery"], ["Résiste à l’eau", "drop"], ["Écran net", "pixels"]],
-      weights: "smartphones",
-      pairs: [
-        ["120 Hz", "À 120 Hz, l’écran peut renouveler son affichage jusqu’à 120 fois par seconde ; les mouvements paraissent généralement plus fluides."],
-        ["IP67", "IP67 correspond à une protection contre la poussière et à une immersion temporaire dans des conditions définies."],
-        ["OLED", "Chaque pixel produit sa propre lumière ; il peut donc être fortement atténué ou éteint pour afficher un noir très profond."],
-        ["5000 mAh", "La capacité de la batterie. Plus elle est haute, plus l’écran reste allumé longtemps, si le reste ne consomme pas davantage."],
-        ["8 Go de RAM", "La mémoire de travail : elle permet de garder plusieurs applications ouvertes sans qu’elles se rechargent à chaque retour."],
-        ["1 000 nits", "La luminosité maximale de l’écran. En plein soleil, elle décide si vous pouvez encore lire."],
-        ["OIS", "Stabilisation optique de l’appareil photo : la photo reste nette quand la main bouge, surtout le soir."],
-        ["200 mégapixels", "Le nombre de pixels du capteur. Plus de pixels ne donne pas plus de netteté : la taille du capteur compte autant."],
-        ["7 ans de mises à jour", "Pendant cette durée, le fabricant corrige les failles de sécurité. Ensuite, le téléphone devient plus risqué à utiliser."]
-      ],
-      example: { name: "Samsung Galaxy A56", note: "300 € indicatif", scores: [["Étudiant", 8], ["Professionnel", 8], ["Photographe", 7], ["Gamer", 6]] },
-      stage: { title: "Adapté à votre usage", bars: [89, 78, 67], labels: ["Autonomie", "Écran", "Performance"], score: 8 } },
     { id: "pc", label: "PC portables", live: true, href: "pc-portables.html", tone: "teal", icon: "laptop",
       photo: "assets/editorial/pc-photo.webp", photoAlt: "Un ordinateur portable sous un éclairage bleu et violet",
       blurb: "Choisir un PC selon les logiciels, la mobilité et le budget.", terms: ["Processeur", "RAM", "Stockage", "Écran", "Poids", "Autonomie"],
@@ -36,9 +17,9 @@
       photo: "assets/editorial/ecouteurs-photo.webp", photoAlt: "Des écouteurs sans fil blancs avec leur boîtier sur fond clair",
       blurb: "Qualité sonore, confort, autonomie et réduction de bruit.", terms: ["Son", "Confort", "Autonomie", "Réduction de bruit"],
       pairs: [["Réduction de bruit (ANC)","Des micros captent le bruit ambiant et l’écouteur émet un son inverse pour l’atténuer. C’est efficace sur les bruits graves et réguliers (train, avion), moins sur les voix."],["Codec (AAC, LDAC, aptX)","Le format utilisé pour envoyer le son. Écouteurs et téléphone doivent gérer le même pour en profiter ; un iPhone passe par l’AAC."],["Bluetooth 5.3","La version de la norme. Elle compte moins que le codec : la qualité dépend d’abord de ce que le téléphone et les écouteurs savent échanger."],["6 h + boîtier","La durée d’écoute avec les écouteurs seuls ; le boîtier ajoute plusieurs recharges. Activer la réduction de bruit la raccourcit."],["IPX4","Protection contre les projections d’eau : suffisant pour la sueur et une averse légère, pas pour une immersion."],["Latence","Le décalage entre l’image et le son. Insensible pour la musique, gênant en vidéo ou en jeu ; un mode « faible latence » aide."],["Multipoint","Connexion à deux appareils à la fois, par exemple l’ordinateur et le téléphone, sans reconnecter à la main."]] },
-    { id: "montres", label: "Montres", live: false, tone: "blue", icon: "watch",
-      photo: "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=1000", photoAlt: "Montre connectée",
-      blurb: "Fonctions utiles, suivi sportif et autonomie réelle.", terms: ["Capteurs", "GPS", "Autonomie", "Écran"],
+    { id: "montres", label: "Montres", live: true, href: "montres.html", tone: "blue", icon: "watch",
+      photo: "assets/editorial/montres.svg", photoAlt: "Une montre connectée affichant un tracé de pouls, à côté d’une montre classique",
+      blurb: "Pouls, GPS, sommeil et santé mesurés contre des références médicales.", terms: ["Pouls", "GPS", "Sommeil", "Autonomie"],
       pairs: [["AMOLED","Un écran aux couleurs vives et aux noirs profonds. Il consomme davantage quand il reste allumé en permanence."],["GPS intégré","Il permet de suivre une course sans emporter le téléphone. Sans GPS, la montre s’appuie sur celui du téléphone."],["Capteur de pouls optique","Un capteur lumineux au poignet estime le pouls. Il est fiable au repos, moins lors d’efforts très variables ou si la montre bouge."],["5 ATM","Résistance à l’eau testée pour l’équivalent de 50 m de profondeur : douche et piscine, mais pas plongée."],["Autonomie","Quelques jours pour beaucoup de montres connectées à écran vif ; plusieurs semaines pour les montres sportives plus sobres."],["eSIM / LTE","Permet d’appeler et de recevoir des messages sans le téléphone à proximité, avec un forfait en plus."],["Compatibilité","Certaines montres ne fonctionnent pleinement qu’avec un seul système : une Apple Watch ne s’utilise qu’avec un iPhone."]] },
     { id: "projecteurs", label: "Projecteurs", live: true, href: "projecteurs.html", tone: "amber", icon: "projector",
       photo: "assets/editorial/projecteurs-category-cinema.webp", photoAlt: "Photographie d’un vidéoprojecteur XGIMI en fonctionnement dans une salle de test RTINGS.com",

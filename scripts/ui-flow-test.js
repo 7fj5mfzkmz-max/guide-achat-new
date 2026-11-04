@@ -56,7 +56,8 @@ async function main() {
   const SITE = 'http://127.0.0.1:' + site.address().port;
   const backend = await startBackend();
   const browser = await chromium.launch({ headless: true, channel: process.env.PW_CHANNEL || undefined });
-  const A = '/analyseur.html', S = '/smartphones.html#analyser-modele';
+  /* Analyseur smartphones mis de côté (page smartphones retirée) : il reste testé via analyseur.html?cat=smartphones. */
+  const A = '/analyseur.html?cat=smartphones', PC = '/analyseur.html';
 
   /* mode : "real" (vrai backend, autre origine) | "stub" (réponse simulée, même origine) | "down" (réseau coupé) */
   async function open(pathname, mode, handler) {
@@ -115,7 +116,7 @@ async function main() {
     assert(/content-type/i.test(r.headers.get('access-control-allow-headers') || ''), 'Access-Control-Allow-Headers doit autoriser Content-Type');
   });
 
-  for (const pageName of [A, S]) {
+  for (const pageName of [A]) {
     await run('Saisie principale + vrai backend (autre origine) + lien vers le classement [' + pageName + ']', async () => {
       const page = await open(pageName, 'real');
       const deps = await page.evaluate(() => ({ refs: typeof window.PhoneReferences, ins: typeof window.PhoneSpecInsights }));
@@ -131,11 +132,6 @@ async function main() {
       assert(resp, 'au moins une réponse réussie du backend (ok:true) doit être observée, obtenu : ' + JSON.stringify(page.backendResponses));
       assert(resp.body.product && resp.body.product.id === 'samsung-galaxy-a56', 'la réponse du backend doit porter l’identifiant samsung-galaxy-a56 (stratégie : ' + resp.body.strategy + ')');
       assert(!/indisponible/i.test(await stageText(page)), 'la note d’indisponibilité du secours local ne doit pas apparaître : le vrai backend a été utilisé');
-      await link.click();
-      await page.waitForURL(/smartphones\.html#choisir-profil/);
-      await page.waitForSelector('html[data-sm-ready="1"]', { state: 'attached', timeout: 15000 });
-      await page.waitForSelector('#sm-report .acc-i', { state: 'attached', timeout: 15000 });
-      await page.waitForSelector('#choisir-profil', { state: 'visible', timeout: 5000 });
       assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
       await close(page);
     });
@@ -163,7 +159,7 @@ async function main() {
     await close(page);
   });
 
-  for (const pageName of [A, S]) {
+  for (const pageName of [A]) {
     await run('Capture navigateur : le nom capturé est résolu puis analysé [' + pageName + ']', async () => {
       const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.amazon.fr/Samsung-Galaxy-A56/dp/B0TEST1234', t: 'Samsung Galaxy A56' }));
       const page = await open(pageName.split('#')[0] + '#capture=' + cap, 'real');
@@ -195,7 +191,7 @@ async function main() {
     await close(page);
   });
 
-  for (const pageName of [A, S]) {
+  for (const pageName of [A]) {
     await run('Modèle introuvable : échec honnête, pas de résultat vide [' + pageName + ']', async () => {
       const page = await open(pageName, 'stub', () => NOT_FOUND);
       await submitMain(page, 'ModeleIntrouvableXYZ999');
@@ -256,7 +252,7 @@ async function main() {
       specs: PC_SPECS, specSources: Object.fromEntries(Object.keys(PC_SPECS).map(k => [k, 'notebookcheck'])),
       identity: { status: 'identified', name: 'Lenovo Legion 5 15IAX11', basis: ['fiche technique publique NotebookCheck'] },
       clues: { name: 'Lenovo Legion 5 15IAX11' }, trace: [] } });
-    const page = await open(A + '?cat=pc-portables', 'stub', pcResult);
+    const page = await open(PC, 'stub', pcResult);
     await submitMain(page, 'https://www.fnac.com/a99999999/w-4');
     assert(page.calls.length === 1 && page.calls[0].category === 'pc-portables' && page.calls[0].strict === true, 'requête PC stricte attendue (obtenu : ' + JSON.stringify(page.calls[0]) + ')');
     await waitAnalysis(page);
@@ -270,7 +266,7 @@ async function main() {
   });
   await run('Analyseur smartphone : un PC est refusé (wrong-category), renvoi vers l’analyseur PC', async () => {
     const wrong = () => ({ status: 409, body: { ok: false, kind: 'product', reason: 'wrong-category', category: 'smartphones', detectedCategory: 'pc-portables', error: 'Ce produit semble être un PC portable : il relève de l’autre analyseur.', trace: [] } });
-    const page = await open(S, 'stub', wrong);
+    const page = await open(A, 'stub', wrong);
     await submitMain(page, 'https://www.fnac.com/a99999999/w-4');
     assert(page.calls[0].category === 'smartphones' && page.calls[0].strict === true, 'requête smartphone stricte attendue');
     await page.waitForSelector('#phone-analyzer-stage [role="alert"], #phone-analyzer-result [role="alert"]', { timeout: 8000 });

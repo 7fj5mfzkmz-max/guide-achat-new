@@ -10,11 +10,11 @@
       play: ['Le jeu en premier.', 'Pour vos jeux, regardez la carte graphique avant le poids du PC.', 'Carte graphique', 'Écran', 'À la maison', 'Place au jeu.'],
       create: ['De la marge pour créer.', 'Vos montages et vos gros fichiers demandent de la mémoire et de la puissance.', 'Mémoire', 'Processeur', 'En création', 'Moins d’attente.']
     },
-    phone: {
-      labels: ['Loin d’une prise', 'Encore une partie', 'Tout en photo'],
-      mobile: ['La journée sans prise.', 'L’autonomie et la lisibilité dehors passent avant la puissance maximale.', 'Autonomie', 'Lisibilité', 'Toute la journée', 'La prise attendra.'],
-      play: ['Fluide, même en jeu.', 'La puce compte. La chauffe et la stabilité pendant une partie aussi.', 'Performances', 'Chauffe', 'En pleine partie', 'Gardez le rythme.'],
-      create: ['Vos photos, en vrai.', 'Regardez les tests photo et le rendu en basse lumière, pas seulement les mégapixels.', 'Tests photo', 'Basse lumière', 'Sur le vif', 'Au-delà des pixels.']
+    watch: {
+      labels: ['Je cours', 'Je dors mal', 'Petit budget'],
+      mobile: ['Un GPS qui suit la route.', 'Pour courir, regardez la régularité du GPS et ajoutez une ceinture pour le pouls.', 'GPS', 'Pouls', 'Sur le parcours', 'Chaque mètre compte.'],
+      play: ['Des nuits bien lues.', 'Pour le sommeil, l’autonomie compte autant que le capteur : une montre rechargée chaque jour dort sur le chargeur.', 'Sommeil', 'Autonomie', 'La nuit', 'Dormez, elle mesure.'],
+      create: ['Juste, sans se ruiner.', 'Sous 100 €, un bracelet porté au bras peut suivre le pouls aussi bien qu’une montre chère.', 'Pouls', 'Prix', 'Au quotidien', 'Moins cher, aussi juste.']
     }
   };
   function render() {
@@ -29,9 +29,9 @@
     document.getElementById('tag-two').textContent = result[5];
     var link = document.getElementById('profile-link');
     var pcAnchors = {mobile: 'profils', play: 'audit', create: 'audit'};
-    var phoneAnchors = {mobile: 'professionnel', play: 'gamer', create: 'photographe'};
-    link.href = product === 'pc' ? 'pc-portables.html#' + pcAnchors[usage] : 'smartphones.html#' + phoneAnchors[usage];
-    link.firstChild.textContent = product === 'pc' ? 'Trouver mon PC ' : 'Trouver mon smartphone ';
+    var watchAnchors = {mobile: 'marathon', play: 'sommeil', create: 'choisir'};
+    link.href = product === 'pc' ? 'pc-portables.html#' + pcAnchors[usage] : 'montres.html#' + watchAnchors[usage];
+    link.firstChild.textContent = product === 'pc' ? 'Trouver mon PC ' : 'Trouver ma montre ';
   }
   products.forEach(function (b) { b.addEventListener('click', function () { product = b.dataset.product; render(); }); });
   chips.forEach(function (b) { b.addEventListener('click', function () { usage = b.dataset.usage; render(); }); });

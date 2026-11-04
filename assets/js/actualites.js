@@ -45,7 +45,7 @@
   }
 
   /* Pages catégorie : « Mis à jour le … » sous le chapô, relié au fil. */
-  var PAGES = { 'smartphones.html': 'smartphones', 'pc-portables.html': 'pc', 'projecteurs.html': 'projecteurs', 'ecouteurs.html': 'ecouteurs', 'batteries-externes.html': 'batteries' };
+  var PAGES = { 'pc-portables.html': 'pc', 'projecteurs.html': 'projecteurs', 'ecouteurs.html': 'ecouteurs', 'batteries-externes.html': 'batteries', 'montres.html': 'montres' };
   var cat = PAGES[location.pathname.split('/').pop()], lead = cat && document.querySelector('.pg-hero .pg-lead, .pg-hero p');
   if (cat && lead) {
     fetch('data/actualites.json').then(function (r) { return r.ok ? r.json() : Promise.reject(); }).then(function (j) {

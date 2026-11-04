@@ -179,11 +179,10 @@
     var pages = [
       { url: "index.html", label: "Accueil" },
       { url: "batteries-externes.html", label: "Batteries externes" },
-      { url: "smartphones.html", label: "Smartphones" },
       { url: "pc-portables.html", label: "PC portables" },
       { url: "ecouteurs.html", label: "Écouteurs Bluetooth" },
       { url: "projecteurs.html", label: "Projecteurs" },
-      { url: "smartphones-approfondir.html", label: "Smartphones · détails techniques" },
+      { url: "montres.html", label: "Montres et bracelets" },
       { url: "actualites.html", label: "Mises à jour du site : nouveaux produits, tests et guides" }
     ];
 
@@ -227,29 +226,6 @@
       });
     }
 
-    function addProductsToIndex(data) {
-      (data.produits || []).forEach(function (p) {
-        var specs = Object.keys(p.caracteristiques || {}).map(function (key) {
-          return key + " " + p.caracteristiques[key];
-        }).join(" ");
-        var text = [
-          p.marque, p.nom, p.critere_principal, p.pour_qui,
-          (p.profil_adapte || []).join(" "),
-          (p.points_forts || []).join(" "),
-          (p.points_faibles || []).join(" "),
-          specs,
-          typeof p.prix_indicatif === "number" ? p.prix_indicatif + " euros" : ""
-        ].join(" ");
-        addRecord({
-          title: p.nom,
-          text: text,
-          page: "Smartphones · catalogue",
-          url: "smartphones.html#catalogue-" + p.id,
-          type: "product",
-          brand: p.marque || ""
-        });
-      });
-    }
 
     function loadIndex() {
       var jobs = pages.map(function (page) {
@@ -263,9 +239,6 @@
           addPageToIndex(new DOMParser().parseFromString(html, "text/html"), page);
         }).catch(function () {});
       });
-      jobs.push(fetch("data/smartphones.json").then(function (r) { return r.ok ? r.json() : null; }).then(function (data) {
-        if (data) addProductsToIndex(data);
-      }).catch(function () {}));
       return Promise.all(jobs);
     }
 
