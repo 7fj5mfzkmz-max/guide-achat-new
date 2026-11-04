@@ -5,6 +5,25 @@
 (function () {
   "use strict";
   var LIST = [
+    { id: "smartphones", label: "Smartphones", live: true, href: "smartphones.html", tone: "orchid", icon: "phone",
+      photo: "assets/editorial/smartphones-photo.webp", photoAlt: "Vue rapprochée d’un smartphone sur fond sombre",
+      blurb: "Écran, autonomie, photo et performances : les points qui changent réellement l’usage.",
+      terms: ["Écran", "Batterie", "Photo", "Puce", "Autonomie", "Charge", "Étanchéité", "Mises à jour", "Stockage", "Prix"],
+      chips: [["Écran fluide", "hz"], ["Longue autonomie", "battery"], ["Résiste à l’eau", "drop"], ["Écran net", "pixels"]],
+      weights: "smartphones",
+      pairs: [
+        ["120 Hz", "À 120 Hz, l’écran peut renouveler son affichage jusqu’à 120 fois par seconde ; les mouvements paraissent généralement plus fluides."],
+        ["IP67", "IP67 correspond à une protection contre la poussière et à une immersion temporaire dans des conditions définies."],
+        ["OLED", "Chaque pixel produit sa propre lumière ; il peut donc être fortement atténué ou éteint pour afficher un noir très profond."],
+        ["5000 mAh", "La capacité de la batterie. Plus elle est haute, plus l’écran reste allumé longtemps, si le reste ne consomme pas davantage."],
+        ["8 Go de RAM", "La mémoire de travail : elle permet de garder plusieurs applications ouvertes sans qu’elles se rechargent à chaque retour."],
+        ["1 000 nits", "La luminosité maximale de l’écran. En plein soleil, elle décide si vous pouvez encore lire."],
+        ["OIS", "Stabilisation optique de l’appareil photo : la photo reste nette quand la main bouge, surtout le soir."],
+        ["200 mégapixels", "Le nombre de pixels du capteur. Plus de pixels ne donne pas plus de netteté : la taille du capteur compte autant."],
+        ["7 ans de mises à jour", "Pendant cette durée, le fabricant corrige les failles de sécurité. Ensuite, le téléphone devient plus risqué à utiliser."]
+      ],
+      example: { name: "Samsung Galaxy A56", note: "300 € indicatif", scores: [["Étudiant", 8], ["Professionnel", 8], ["Photographe", 7], ["Gamer", 6]] },
+      stage: { title: "Adapté à votre usage", bars: [89, 78, 67], labels: ["Autonomie", "Écran", "Performance"], score: 8 } },
     { id: "pc", label: "PC portables", live: true, href: "pc-portables.html", tone: "teal", icon: "laptop",
       photo: "assets/editorial/pc-photo.webp", photoAlt: "Un ordinateur portable sous un éclairage bleu et violet",
       blurb: "Choisir un PC selon les logiciels, la mobilité et le budget.", terms: ["Processeur", "RAM", "Stockage", "Écran", "Poids", "Autonomie"],

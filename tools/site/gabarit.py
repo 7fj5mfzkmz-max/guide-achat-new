@@ -13,6 +13,7 @@ PAGES = {
     'index.html': '#essayer',
     'actualites.html': 'index.html#essayer',
     'pc-portables.html': '#audit',
+    'smartphones.html': '#choisir-profil',
     'projecteurs.html': '#profils',
     'montres.html': '#choisir',
     'ecouteurs.html': '#usages',
@@ -22,6 +23,7 @@ PAGES = {
 }
 
 CATEGORIES = [
+    ('smartphones.html', 'Smartphones'),
     ('pc-portables.html', 'PC portables'),
     ('batteries-externes.html', 'Batteries externes'),
     ('ecouteurs.html', 'Écouteurs Bluetooth'),

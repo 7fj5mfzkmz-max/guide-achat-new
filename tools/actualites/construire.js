@@ -20,6 +20,7 @@ const OUT = {
 
 /* Jeux de données suivis. */
 const SOURCES = [
+  { id: 'smartphones', cat: 'smartphones', label: 'Smartphones', fichier: 'data/smartphones-guide.json', cle: 'produits', page: 'smartphones.html', nom: ['smartphone', 'smartphones'], genre: 'm' },
   { id: 'pc', cat: 'pc', label: 'PC portables', fichier: 'data/pc-portables.json', cle: 'produits', page: 'pc-portables.html', nom: ['PC portable', 'PC portables'], genre: 'm' },
   { id: 'projecteurs', cat: 'projecteurs', label: 'Projecteurs', fichier: 'data/projecteurs.json', cle: 'produits', page: 'projecteurs.html', nom: ['projecteur', 'projecteurs'], genre: 'm' },
   { id: 'ecouteurs', cat: 'ecouteurs', label: 'Écouteurs', fichier: 'data/ecouteurs.json', cle: 'produits', page: 'ecouteurs.html', nom: ['écouteur', 'écouteurs'], genre: 'm' },

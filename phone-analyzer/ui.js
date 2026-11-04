@@ -20,7 +20,7 @@
      d'une devinette sur le lien collé. Un produit de l'autre catégorie est refusé avec un renvoi vers l'autre
      analyseur (réponse « wrong-category » du serveur). */
   var OTHER = { "smartphones": { id: "pc-portables", label: "PC portable", href: "pc-portables.html#analyse-modele", noun: "un PC portable" },
-                "pc-portables": { id: "smartphones", label: "smartphone", href: "analyseur.html?cat=smartphones", noun: "un smartphone" } };
+                "pc-portables": { id: "smartphones", label: "smartphone", href: "smartphones.html#analyser", noun: "un smartphone" } };
   function setCategory(cat) {
     state.category = cat === "pc-portables" ? "pc-portables" : "smartphones";
     var kit = window.GuideCategoryKit ? window.GuideCategoryKit.get(state.category) : null;
@@ -300,9 +300,9 @@
     var productImage = /^https?:\/\//i.test(String(imageCandidate || '')) ? String(imageCandidate) : null;
     var imageBlock = productImage ? '<div class="model-analyzer-product-visual"><img src="' + esc(productImage) + '" alt="Illustration du ' + esc(title) + '" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.hidden=true"><span>Illustration issue de la fiche produit</span></div>' : '';
     var compareHref = state.category === "pc-portables" ? "pc-portables.html#modeles" : "smartphones.html#choisir-profil";
-    var compareText = state.category === "pc-portables" ? "Voir les modèles →" : "Voir le classement →";
+    var compareText = state.category === "pc-portables" ? "Voir les modèles →" : "Voir les conseils par usage →";
     var auditHref = document.getElementById("purchase-audit") ? "#purchase-audit" : (state.category === "pc-portables" ? "pc-portables.html#audit" : "smartphones.html#purchase-audit");
-    var auditHint = state.category === "pc-portables" ? "4 questions simples : usage, budget, transport et besoin de jeux ou de montage." : "5 questions, 45 secondes : écran, batterie, performance, photo et durée de vie.";
+    var auditHint = state.category === "pc-portables" ? "4 questions simples : usage, budget, transport et besoin de jeux ou de montage." : "3 questions : votre priorité, votre système et votre budget.";
     var auditLink = '<div class="model-analyzer-next"><div><strong>Vous voulez vérifier le modèle vous-même ?</strong><span>' + auditHint + '</span></div><div class="model-analyzer-next-actions"><a class="btn btn-secondary" href="' + esc(auditHref) + '">Répondre aux questions →</a><a class="btn btn-secondary" data-compare-link href="' + esc(compareHref) + '">' + compareText + '</a></div></div>';
     show('<div class="model-analyzer-card"><span class="eyebrow">ANALYSE DU MODÈLE</span><h3>' + esc(title) + "</h3>" + imageBlock + notes +
       (price ? "<p><strong>" + (cat.prix_indicatif ? "Prix indicatif" : "Prix trouvé sur la page") + " :</strong> " + esc(formatPrice(price)) + "</p>" : "") +

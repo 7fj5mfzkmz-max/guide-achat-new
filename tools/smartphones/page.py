@@ -1,0 +1,292 @@
+#!/usr/bin/env python3
+"""Page « Smartphones » (smartphones.html) à partir de data/smartphones-guide.json.
+Contient l'analyseur de modèle (moteur phone-analyzer/, inchangé) ; le catalogue complet (data/smartphones.json)
+n'est PAS affiché ici : il sera intégré dans un second temps.
+La coque (en-tête, recherche, pied de page) vient de ecouteurs.html, puis le gabarit commun est réappliqué.
+Usage : python3 tools/smartphones/page.py"""
+import html, json, pathlib, re, subprocess, sys
+
+ROOT = pathlib.Path(__file__).resolve().parents[2]
+D = json.loads((ROOT / 'data' / 'smartphones-guide.json').read_text(encoding='utf-8'))
+esc = html.escape
+SRC = {s['id']: s for s in D['sources']}
+GAMMES = {'budget': 'Petit budget', 'milieu': 'Milieu de gamme', 'haut': 'Haut de gamme'}
+OS = {'android': 'Android', 'ios': 'iPhone', 'autre': 'Autre système'}
+RANG = {1: 'En tête des tests', 2: 'Très bon', 3: 'Correct'}
+
+SECTIONS = [('analyser', 'Analyser'), ('manuel', 'Le manuel'), ('exemples', 'Lire une fiche'), ('autonomie', 'Autonomie'), ('photo', 'Photo'),
+            ('choisir-profil', 'Sur mesure'), ('eviter', 'À éviter'), ('catalogue', 'Modèles'), ('methode', 'Méthode'), ('faq', 'FAQ')]
+CHIPS = ['Galaxy A56', 'iPhone 17 Pro', 'Magic 8 Pro']
+SCRIPTS = ['assets/js/categories.js', 'sources/catalogue.js', 'phone-analyzer/normalizer.js', 'phone-analyzer/identify.js', 'category-kit/index.js',
+           'category-kit/smartphones.js', 'category-kit/pc-portables.js', 'phone-analyzer/identity.js', 'phone-analyzer/crosscheck.js',
+           'phone-analyzer/static-resolver.js', 'phone-analyzer/fetcher.js', 'phone-analyzer/capture.js', 'phone-analyzer/profile-fit.js',
+           'phone-analyzer/references.js', 'phone-analyzer/chips.js', 'phone-analyzer/spec-insights.js', 'phone-analyzer/spec-score.js',
+           'phone-analyzer/ui.js', 'assets/js/site-tools.js', 'assets/js/scoring-engine.js', 'assets/js/profiles.js', 'assets/js/smartphones-scoring.js']
+
+
+def sections_nav():
+    lis = ''.join(f'<li><a href="#{i}"><small>{n:02d}</small>{l}</a></li>' for n, (i, l) in enumerate(SECTIONS, 1))
+    return ('<nav class="pl-sections" id="pl-sections" aria-label="Sections de la page">\n<div class="pl-sections-in">\n'
+            f'<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">{SECTIONS[0][1]}</b><i aria-hidden="true">▾</i></button>\n'
+            f'<ul id="pl-sections-list">{lis}</ul>\n</div>\n</nav>\n')
+
+
+def heading(n, eyebrow, title):
+    return f'<h2 class="section-heading"><span class="eyebrow">{n:02d} · {eyebrow}</span>{title}</h2>'
+
+
+def src_link(sid):
+    s = SRC[sid]
+    return f'<a href="{s["url"]}" target="_blank" rel="noopener noreferrer">{esc(s["chaine"])} ↗</a>'
+
+
+def idealo(nom):
+    q = re.sub(r'\s*\(.*?\)', '', nom)
+    return 'https://www.idealo.fr/prechcat.html?q=' + q.replace(' ', '+')
+
+
+def hm(minutes):
+    return f'{minutes // 60} h {minutes % 60:02d}'
+
+
+def card(p):
+    tags = f'<span class="pj-badge">{GAMMES[p["gamme"]]}</span> <span class="pj-badge">{OS[p["os"]]}</span>'
+    for u in sorted(p['usages'], key=lambda k: p['usages'][k]):
+        if p['usages'][u] == 1:
+            tags += f' <span class="pj-badge is-lab">En tête · {esc(D["usages"][u]["court"])}</span>'
+    if p.get('sponsor'):
+        tags += f' <span class="pj-badge is-no">Vidéo sponsorisée</span>'
+    mes = ''.join(f'<div><dt>{esc(a)}</dt><dd>{esc(b)}</dd></div>' for a, b in p['mesures'])
+    li = lambda xs: ''.join(f'<li>{esc(x)}</li>' for x in xs)
+    srcs = ' · '.join(src_link(s) for s in p['sources'])
+    extra = ''
+    if p.get('sponsor'):
+        extra += f'<p class="sx-sponsor">Source : {esc(p["sponsor"])}. À pondérer.</p>'
+    if p.get('dispo'):
+        extra += f'<p class="sx-sponsor">{esc(p["dispo"])}</p>'
+    attrs = f' data-gamme="{p["gamme"]}" data-os="{p["os"]}" data-usages="{" ".join(p["usages"])}"'
+    return (f'<article class="pj-card sx-card" id="m-{p["id"]}"{attrs}><header><h3>{esc(p["nom"])}</h3><span class="pj-price sx-price">{esc(p["prix"]["texte"])}</span></header>'
+            f'<div>{tags}</div><dl class="sx-metrics">{mes}</dl>'
+            f'<ul class="pj-pro">{li(p["forces"])}</ul><ul class="pj-con">{li(p["limites"])}</ul>{extra}'
+            f'<footer><span class="sx-src">Source : {srcs}</span>'
+            f'<a href="{idealo(p["nom"])}" target="_blank" rel="noopener noreferrer">Chercher en France ↗</a></footer></article>')
+
+
+def steps():
+    items = ''.join(
+        f'<li class="sx-step hx-reveal"><span class="sx-dot" aria-hidden="true">◉</span><b class="sx-n">{e["n"]}</b><h3>{esc(e["titre"])}</h3><p>{esc(e["texte"])}</p>'
+        f'<p class="sx-gate"><span>Contrôle</span>{esc(e["controle"])}</p></li>' for e in D['etapes'])
+    eng = D['engagements']
+    no = ''.join(f'<li>{esc(x)}</li>' for x in eng['non'])
+    yes = ''.join(f'<li>{esc(x)}</li>' for x in eng['oui'])
+    return (f'<p class="sx-rev">Rév. 01 · novembre 2026 · {len(D["etapes"])} étapes · {len(D["etapes"])} contrôles</p><ol class="sx-steps">{items}</ol>'
+            f'<div class="sx-vs"><div class="sx-no"><h3>Ce que nous ne faisons pas</h3><ul>{no}</ul></div><div class="sx-yes"><h3>Ce que nous faisons</h3><ul>{yes}</ul></div></div>')
+
+
+def examples():
+    out = []
+    for i, e in enumerate(D['exemples']):
+        out.append(
+            f'<details class="sx-ex"{" open" if i == 0 else ""}><summary><span class="sx-sev">Lecture {i + 1:02d}</span>{esc(e["titre"])}</summary>'
+            f'<div class="sx-ex-grid"><div><span class="sx-ex-lab">Sur la fiche</span><pre>{esc(e["fiche"])}</pre></div>'
+            f'<div><span class="sx-ex-lab">Dans les tests</span><pre>{esc(e["test"])}</pre></div></div>'
+            f'<p class="sx-ex-read"><b>Ce que ça change pour vous</b>{esc(e["lecture"])}</p>'
+            f'<p class="sx-src">Source : {src_link(e["source"])}</p></details>')
+    return ''.join(out)
+
+
+def autonomie():
+    A = D['autonomie']
+    tabs = ''.join(f'<button class="pj-tab" type="button" data-k="{s["id"]}" aria-pressed="{str(i == 0).lower()}">{esc(s["titre"])}</button>' for i, s in enumerate(A['series']))
+    panels = []
+    for i, s in enumerate(A['series']):
+        top = max(l[2] for l in s['lignes'])
+        rows = ''.join(
+            f'<div class="sx-bar-row"><span class="sx-bar-name">{esc(n)}</span><span class="sx-bar-track"><i style="width:{m / top * 100:.1f}%"></i></span>'
+            f'<b>{hm(m)}</b><span class="sx-bar-mah">{mah:,} mAh</span></div>'.replace(',', ' ') for n, mah, m in s['lignes'])
+        panels.append(f'<div class="sx-panel" data-panel="{s["id"]}"><div class="sx-bars hx-reveal" role="img" aria-label="Heures d’écran allumé, {esc(s["titre"])}">{rows}</div>'
+                      f'<p class="pj-lead-note">{esc(s["note"])} Source : {src_link(s["source"])}</p></div>')
+    stream = ''.join(
+        f'<div class="sx-bar-row sx-bar-pct"><span class="sx-bar-name">{esc(r["nom"])}</span><span class="sx-bar-track"><i style="width:{r["pct"]}%"></i></span><b>{r["pct"]} %</b><span class="sx-bar-mah">{src_link(r["source"])}</span></div>'
+        for r in A['streaming'])
+    return (f'<div class="pj-tabs sx-tabs" id="sx-tabs" role="group" aria-label="Choisir un test d’endurance">{tabs}</div>{"".join(panels)}'
+            f'<div class="pj-why"><strong>À retenir</strong><span>{esc(A["lecon"])}</span></div>'
+            f'<h3 class="sx-sub">Batterie restante après 12 h de YouTube</h3><div class="sx-bars hx-reveal">{stream}</div>'
+            f'<p class="pj-lead-note">Tests de deux chaînes différentes (The Tech Chap pour OPPO et POCO, avec le Xperia et le S25 Ultra du test Sony) : la comparaison reste indicative.</p>'
+            f'<p class="pj-lead-note">{esc(A["mise_a_jour"])}</p>')
+
+
+def photo():
+    P = D['photo']
+    rank = ''.join(
+        f'<li class="sx-rk hx-reveal"><b class="sx-rk-n">{i}</b><div><h3>{esc(r["nom"])}</h3><p>{esc(r["texte"])}</p><p class="sx-src">Source : {src_link(r["source"])}'
+        + (f' · <span class="sx-spon">{esc(r["sponsor"])}</span>' if r.get('sponsor') else '') + '</p></div></li>' for i, r in enumerate(P['classement'], 1))
+    d = P['duel']
+    head = ''.join(f'<th scope="col">{esc(c)}</th>' for c in d['colonnes'])
+    rows = ''.join(f'<tr><th scope="row">{esc(a)}</th><td>{esc(b)}</td><td>{esc(c)}</td></tr>' for a, b, c in d['lignes'])
+    return (f'<ol class="sx-rank">{rank}</ol>'
+            '<p class="pj-lead-note">Ordre issu du compte rendu des tests (verbatims des testeurs), pas d’un barème chiffré du guide. Deux des cinq modèles reposent sur une vidéo en partenariat avec la marque.</p>'
+            f'<h3 class="sx-sub">Duel : {esc(d["titre"])}</h3><div class="sx-table-wrap hx-reveal"><table class="sx-table"><caption class="visually-hidden">{esc(d["titre"])}</caption>'
+            f'<thead><tr><th scope="col">Critère</th>{head}</tr></thead><tbody>{rows}</tbody></table></div>'
+            f'<p class="pj-lead-note">Maui, plus de 1 000 photos, vidéo non sponsorisée. Source : {src_link(d["source"])}. {esc(P["labo"])}</p>')
+
+
+def questionnaire():
+    uo = ''.join(f'<option value="{k}">{esc(u["titre"])}</option>' for k, u in D['usages'].items())
+    bud = ''.join(f'<tr><th scope="row">{esc(b["palier"])}</th><td>{esc(b["choix"])}</td><td>{esc(b["prix"])}</td></tr>' for b in D['budgets'])
+    return ('<div id="purchase-audit"><form id="sx-form" class="sx-form" novalidate><div class="sx-fields">'
+            f'<label>Ce qui compte le plus<select id="sx-usage">{uo}</select></label>'
+            '<label>Mon système<select id="sx-os"><option value="any">Peu importe</option><option value="android">Android</option><option value="ios">iPhone</option></select></label>'
+            f'<label>Budget<select id="sx-gamme"><option value="budget">{D["gammes"]["budget"].capitalize()}</option><option value="milieu">{D["gammes"]["milieu"].capitalize()}</option><option value="haut" selected>Sans limite</option></select></label>'
+            '</div></form><div class="pj-prof-top sx-result" id="sx-result" aria-live="polite"></div><p class="pj-why" id="sx-conseil"><strong>Conseil</strong><span></span></p>'
+            '<noscript><p class="pj-warn">Sans JavaScript : photo → OPPO Find X9 Ultra ou iPhone 18 Pro Max ; autonomie → Vivo V80 Lite (milieu de gamme) ou Huawei Pura 90S Pro Max ; jeu → POCO F9 Ultra ; petit prix → POCO M8 Pro 5G.</p></noscript></div>'
+            f'<h3 class="sx-sub">Repères de prix des tests</h3><div class="sx-table-wrap hx-reveal"><table class="sx-table sx-table-b"><caption class="visually-hidden">Repères de prix par palier</caption><thead><tr><th scope="col">Palier</th><th scope="col">Choix des testeurs</th><th scope="col">Prix relevé</th></tr></thead><tbody>{bud}</tbody></table></div>'
+            f'<p class="pj-lead-note">Prix dans la devise de chaque vidéo : les paliers sont des ordres de grandeur.</p>')
+
+
+def avoid():
+    return '<div class="sx-avoid">' + ''.join(
+        f'<article class="sx-av hx-reveal"><span class="sx-x" aria-hidden="true">✕</span><h3>{esc(a["modele"])}</h3><p>{esc(a["pourquoi"])}</p>'
+        f'<p class="sx-alt"><b>À la place</b>{esc(a["alternative"])}</p><p class="sx-src">Source : {src_link(a["source"])}</p></article>' for a in D['eviter']) + '</div>'
+
+
+def hero_art():
+    return ('<svg class="sx-art" viewBox="0 0 400 340" role="img" aria-label="Un smartphone dont la fiche technique est lue ligne par ligne">'
+            '<rect class="sx-ph" x="130" y="22" width="140" height="296" rx="26"/><rect class="sx-ph-in" x="140" y="40" width="120" height="260" rx="16"/>'
+            '<rect class="sx-ph-cam" x="190" y="30" width="20" height="5" rx="2.5"/>'
+            '<g class="sx-lines"><rect x="152" y="70" width="64" height="8" rx="4"/><rect x="152" y="96" width="96" height="8" rx="4"/><rect x="152" y="122" width="80" height="8" rx="4"/>'
+            '<rect x="152" y="148" width="92" height="8" rx="4"/><rect x="152" y="174" width="58" height="8" rx="4"/><rect x="152" y="200" width="88" height="8" rx="4"/><rect x="152" y="226" width="70" height="8" rx="4"/></g>'
+            '<rect class="sx-beam" x="136" y="40" width="128" height="26" rx="6"/></svg>'
+            '<span class="pj-chip pj-chip-a">7 000 mAh ≠ 17 h</span><span class="pj-chip pj-chip-c">Sponsors signalés</span>')
+
+
+def build():
+    base = (ROOT / 'ecouteurs.html').read_text(encoding='utf-8')
+    produits = D['produits']
+    n_mod, n_src = len(produits), len(D['sources'])
+    ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in D['faq']]}
+    top = base[:base.index('<main')]
+    top = re.sub(r'<title>.*?</title>', '<title>Bien choisir un smartphone : analyseur, tests et pièges à éviter : Guide·Achat</title>', top, count=1)
+    top = re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="Collez le lien d’un smartphone : le guide lit la fiche, la traduit en français courant et la situe selon votre usage. Autonomie mesurée, photo, jeu et modèles à éviter, avec les sponsors signalés."/>', top, count=1)
+    top = re.sub(r'<script type="application/ld\+json">.*?</script>', '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>', top, count=1, flags=re.S)
+    top = top.replace('<link rel="stylesheet" href="assets/css/ecouteurs.css">', '<link rel="stylesheet" href="assets/css/analyzer.css">\n<link rel="stylesheet" href="assets/css/smartphones.css">')
+    top = top.replace('<script src="assets/js/categories.js" defer></script>', '<script src="assets/js/categories.js"></script>')
+    top = re.sub(r'<div class="header-meta">.*?</div></div>', f'<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide de lecture</span><span>{n_mod} modèles · Édition 2026</span></div></div>', top, count=1, flags=re.S)
+    end = base[base.index('<footer'):]
+    end = end.replace('<script src="assets/js/ecouteurs-scoring.js"></script>\n<script src="assets/js/ecouteurs.js" defer></script>\n',
+                      ''.join(f'<script src="{s}"></script>\n' for s in SCRIPTS if s != 'assets/js/categories.js') + '<script src="assets/js/smartphones-guide.js" defer></script>\n')
+    assert 'smartphones-guide.js' in end
+
+    cards = ''.join(card(p) for p in produits)
+    chips = ''.join(f'<button type="button" class="sx-chip" data-try="{esc(c)}">{esc(c)}</button>' for c in CHIPS)
+    srcs = ''.join(
+        f'<li><a href="{s["url"]}" target="_blank" rel="noopener noreferrer">{esc(s["titre"])} ↗</a><span>{esc(s["chaine"])} · {esc(s["nature"])}'
+        + (f' · <b class="sx-spon">{esc(s["sponsor"])}</b>' if s.get('sponsor') else '') + '</span></li>' for s in D['sources'])
+    limites = ''.join(f'<li>{esc(x)}</li>' for x in D['limites'])
+    faq = '<div class="pl-faq">' + ''.join(f'<details class="pl-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in D['faq']) + '</div>'
+    n_spon = sum(1 for s in D['sources'] if s.get('sponsor'))
+
+    main = f'''<main id="main">
+{sections_nav()}<div class="hx hx-page pg pj sx" data-cat="smartphones" data-tone="orchid" data-motion="on">
+<div class="container-wide">
+<header class="pg-hero" id="debut">
+<div>
+<nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
+<span class="pg-kick">Rév. 01 · novembre 2026 · {n_mod} modèles · {n_src} tests vidéo</span>
+<h1>Un smartphone, lu <mark>sans jargon</mark></h1>
+<p class="pg-lead">Collez le lien d’un modèle repéré en boutique : on lit la fiche, on la traduit en français courant et on dit ce que vous gagnez et ce que vous cédez. Plus bas, des tests d’autonomie, de photo et de jeu, et les modèles à éviter.</p>
+<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#analyser">Analyser un modèle →</a><a class="pg-skip" href="#choisir-profil">Choisir selon mon usage ↓</a></div>
+<ul class="pl-checks" aria-label="Nos engagements"><li>Fiche lue avant tout calcul</li><li>Sponsors signalés</li><li>Aucune donnée inventée</li></ul>
+</div>
+<div class="pj-stage sx-stage">{hero_art()}</div>
+</header>
+<div class="pg-strip"><div><b>{n_mod}</b><span>modèles cités</span></div><div><b>{n_src}</b><span>tests vidéo</span></div><div><b>3</b><span>tests 100 → 0 %</span></div><div><b>0</b><span>note inventée</span></div></div>
+</div>
+
+<div class="container-wide">
+<section class="section sx-scan" data-tone="orchid" id="analyser">
+{heading(1, 'Analyser', 'Collez un lien, lisez la fiche')}
+<p class="section-lead">Le nom et la référence du modèle sont lus d’abord. Les caractéristiques sont ensuite retrouvées, expliquées, puis situées selon quatre profils.</p>
+<article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
+<form class="model-analyzer-form" id="phone-analyzer-form">
+<label class="sx-scan-label" for="phone-product-url">Lien ou nom du smartphone</label>
+<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="https://… ou « Galaxy A56 »" required="" type="text"/><button class="btn" type="submit">Analyser ce modèle</button></div>
+<p class="sx-scan-note">Gratuit · Sans compte · Résultat en quelques secondes</p>
+<p class="model-analyzer-manual-entry"><button class="btn btn-secondary" type="button" id="phone-manual-toggle">Je connais déjà le modèle</button></p>
+</form>
+<div id="phone-manual-entry" hidden></div>
+<div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
+</article>
+<p class="sx-try"><span>Essayez :</span>{chips}</p>
+</section>
+
+<section class="section" data-tone="teal" id="manuel">
+{heading(2, 'Le manuel', 'Quatre étapes, quatre contrôles')}
+<p class="section-lead">Ce que fait l’analyseur, dans l’ordre, et ce qui l’empêche de se tromper.</p>
+{steps()}
+</section>
+
+<section class="section" data-tone="amber" id="exemples">
+{heading(3, 'Lire une fiche', 'Ce que la fiche cache, les tests le montrent')}
+<p class="section-lead">Cinq cas où le chiffre de la fiche ne dit pas ce qu’on croit. Dépliez-les.</p>
+<div class="sx-exs">{examples()}</div>
+</section>
+
+<section class="section" data-tone="coral" id="autonomie">
+{heading(4, 'Autonomie', 'Heures d’écran allumé, mesurées')}
+<p class="section-lead">Trois tests de 100 % à 0 %, sept téléphones chacun. Les barres montrent les heures, pas la capacité de la batterie.</p>
+{autonomie()}
+</section>
+
+<section class="section" data-tone="orchid" id="photo">
+{heading(5, 'Photo', 'Qui photographie le mieux ?')}
+{photo()}
+</section>
+
+<section class="section" data-tone="blue" id="choisir-profil">
+{heading(6, 'Sur mesure', 'Quel smartphone pour vous ?')}
+<p class="section-lead">Trois questions. Le guide trie les modèles testés selon leur rang pour votre priorité, puis par prix. Un modèle sans test pour cet usage n’apparaît pas.</p>
+{questionnaire()}
+</section>
+
+<section class="section" data-tone="coral" id="eviter">
+{heading(7, 'À éviter', 'Huit pièges repérés par les testeurs')}
+{avoid()}
+</section>
+
+<section class="section" data-tone="teal" id="catalogue">
+{heading(8, 'Modèles', f'Les {n_mod} modèles cités')}
+<p class="section-lead">Seuls les modèles réellement testés dans les vidéos figurent ici ; le catalogue complet viendra plus tard. Chaque fiche cite sa source et signale une vidéo sponsorisée.</p>
+<div class="pj-filters sx-filters">
+<label>Gamme <select id="sx-f-gamme"><option value="">Toutes</option><option value="budget">Petit budget</option><option value="milieu">Milieu de gamme</option><option value="haut">Haut de gamme</option></select></label>
+<label>Système <select id="sx-f-os"><option value="">Tous</option><option value="android">Android</option><option value="ios">iPhone</option></select></label>
+<label>Usage <select id="sx-f-usage"><option value="">Tous</option>{''.join(f'<option value="{k}">{esc(u["court"])}</option>' for k, u in D['usages'].items())}</select></label>
+<span id="sx-count" aria-live="polite">{n_mod} modèles</span>
+</div>
+<div class="pj-cards" id="sx-cards">{cards}</div>
+<p class="pj-warn" id="sx-empty" hidden>Aucun modèle ne correspond à ces filtres.</p>
+</section>
+
+<section class="section" data-tone="orchid" id="methode">
+{heading(9, 'Méthode', 'D’où viennent ces chiffres')}
+<div class="pj-method"><div><h3>Méthode</h3><p>{esc(D["methode"])}</p></div><div><h3>Limites</h3><ul>{limites}</ul></div></div>
+<h3 class="sx-sub">Les {n_src} vidéos sources ({n_spon} sponsorisées ou en partenariat)</h3>
+<ul class="sx-sources">{srcs}</ul>
+<p class="pj-warn">Données relevées le 4 novembre 2026. Les liens affiliés et codes promotionnels des vidéos ne sont pas repris.</p>
+</section>
+
+<section class="section" data-tone="coral" id="faq">
+{heading(10, 'Questions', 'Les questions qu’on se pose')}
+{faq}
+</section>
+</div>
+</div>
+</main>
+'''
+    (ROOT / 'smartphones.html').write_text(top + main + end, encoding='utf-8')
+    subprocess.run([sys.executable, str(ROOT / 'tools/site/gabarit.py')], check=True)
+    print('smartphones.html générée')
+
+
+if __name__ == '__main__':
+    build()

@@ -2,6 +2,58 @@
   "mis_a_jour": "2026-11-04",
   "entrees": [
     {
+      "id": "smartphones-maj-2026-11-04",
+      "date": "2026-11-04",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "maj",
+      "nombre": 2,
+      "noms": [
+        "OPPO Find X9 Ultra",
+        "HONOR 400"
+      ],
+      "titre": "2 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : OPPO Find X9 Ultra, HONOR 400.",
+      "lien": "smartphones.html"
+    },
+    {
+      "id": "smartphones-nouveau-2026-11-04",
+      "date": "2026-11-04",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "nouveau",
+      "nombre": 24,
+      "noms": [
+        "OPPO Find X9 Ultra",
+        "OPPO Find X10 Pro Max",
+        "iPhone 18 Pro Max",
+        "Samsung Galaxy S26 Ultra",
+        "POCO F9 Ultra",
+        "REDMAGIC 12 Pro",
+        "OnePlus 16 (version chinoise)",
+        "OnePlus 15R",
+        "HONOR Magic 8 Pro",
+        "HONOR 400 Pro",
+        "HONOR 400",
+        "POCO M8 Pro 5G",
+        "POCO M8 5G",
+        "Redmi Note 15 Pro 5G",
+        "Motorola Moto G06 Power",
+        "Samsung Galaxy A56",
+        "Samsung Galaxy A36",
+        "Vivo V80 Lite 5G",
+        "HONOR 600 Pro",
+        "POCO X8",
+        "Huawei Pura 90S Pro Max",
+        "OnePlus 13S",
+        "Google Pixel 11 Pro XL",
+        "Google Pixel 10a"
+      ],
+      "titre": "24 nouveaux smartphones",
+      "resume": "Au catalogue : OPPO Find X9 Ultra, OPPO Find X10 Pro Max, iPhone 18 Pro Max, Samsung Galaxy S26 Ultra et 20 autres.",
+      "lien": "smartphones.html"
+    },
+    {
       "id": "montres-nouveau-2026-11-04",
       "date": "2026-11-04",
       "cat": "montres",

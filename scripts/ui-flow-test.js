@@ -57,7 +57,7 @@ async function main() {
   const backend = await startBackend();
   const browser = await chromium.launch({ headless: true, channel: process.env.PW_CHANNEL || undefined });
   /* Analyseur smartphones mis de côté (page smartphones retirée) : il reste testé via analyseur.html?cat=smartphones. */
-  const A = '/analyseur.html?cat=smartphones', PC = '/analyseur.html';
+  const A = '/analyseur.html?cat=smartphones', S = '/smartphones.html#analyser', PC = '/analyseur.html?cat=pc-portables';
 
   /* mode : "real" (vrai backend, autre origine) | "stub" (réponse simulée, même origine) | "down" (réseau coupé) */
   async function open(pathname, mode, handler) {
@@ -116,7 +116,7 @@ async function main() {
     assert(/content-type/i.test(r.headers.get('access-control-allow-headers') || ''), 'Access-Control-Allow-Headers doit autoriser Content-Type');
   });
 
-  for (const pageName of [A]) {
+  for (const pageName of [A, S]) {
     await run('Saisie principale + vrai backend (autre origine) + lien vers le classement [' + pageName + ']', async () => {
       const page = await open(pageName, 'real');
       const deps = await page.evaluate(() => ({ refs: typeof window.PhoneReferences, ins: typeof window.PhoneSpecInsights }));
@@ -159,7 +159,7 @@ async function main() {
     await close(page);
   });
 
-  for (const pageName of [A]) {
+  for (const pageName of [A, S]) {
     await run('Capture navigateur : le nom capturé est résolu puis analysé [' + pageName + ']', async () => {
       const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.amazon.fr/Samsung-Galaxy-A56/dp/B0TEST1234', t: 'Samsung Galaxy A56' }));
       const page = await open(pageName.split('#')[0] + '#capture=' + cap, 'real');
@@ -191,7 +191,7 @@ async function main() {
     await close(page);
   });
 
-  for (const pageName of [A]) {
+  for (const pageName of [A, S]) {
     await run('Modèle introuvable : échec honnête, pas de résultat vide [' + pageName + ']', async () => {
       const page = await open(pageName, 'stub', () => NOT_FOUND);
       await submitMain(page, 'ModeleIntrouvableXYZ999');
@@ -239,7 +239,7 @@ async function main() {
     await waitAnalysis(page);
     const link = page.locator('#phone-analyzer-result [data-compare-link]');
     assert((await link.getAttribute('href')) === 'smartphones.html#choisir-profil', 'href attendu : smartphones.html#choisir-profil, obtenu ' + (await link.getAttribute('href')));
-    assert(/Voir le classement/i.test(await link.innerText()), 'libellé « Voir le classement » attendu');
+    assert(/Voir les conseils par usage/i.test(await link.innerText()), 'libellé « Voir les conseils par usage » attendu');
     await close(page);
   });
 
@@ -266,7 +266,7 @@ async function main() {
   });
   await run('Analyseur smartphone : un PC est refusé (wrong-category), renvoi vers l’analyseur PC', async () => {
     const wrong = () => ({ status: 409, body: { ok: false, kind: 'product', reason: 'wrong-category', category: 'smartphones', detectedCategory: 'pc-portables', error: 'Ce produit semble être un PC portable : il relève de l’autre analyseur.', trace: [] } });
-    const page = await open(A, 'stub', wrong);
+    const page = await open(S, 'stub', wrong);
     await submitMain(page, 'https://www.fnac.com/a99999999/w-4');
     assert(page.calls[0].category === 'smartphones' && page.calls[0].strict === true, 'requête smartphone stricte attendue');
     await page.waitForSelector('#phone-analyzer-stage [role="alert"], #phone-analyzer-result [role="alert"]', { timeout: 8000 });

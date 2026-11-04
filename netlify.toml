@@ -20,7 +20,7 @@
 # Pages retirées : redirections permanentes (mêmes règles que vercel.json)
 [[redirects]]
   from = "/comparateur.html"
-  to = "/index.html#categories"
+  to = "/smartphones.html#choisir-profil"
   status = 301
 
 [[redirects]]
@@ -32,17 +32,6 @@
   from = "/lexique-pc-portables.html"
   to = "/pc-portables.html#lexique"
   status = 301
-
-# Catégorie smartphones mise de côté (redirection temporaire : elle pourra revenir)
-[[redirects]]
-  from = "/smartphones.html"
-  to = "/index.html#categories"
-  status = 302
-
-[[redirects]]
-  from = "/smartphones-approfondir.html"
-  to = "/index.html#categories"
-  status = 302
 
 [[redirects]]
   from = "/capture.html"

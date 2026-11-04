@@ -16,7 +16,7 @@ Ordre de chargement = ordre dans chaque page HTML (la cascade compte).
   (libellés communs : Sur mesure, Usages, Comprendre, Modèles, Tests, Avant d’acheter, Méthode, FAQ), pages simples (`.page-simple`).
   Comportements : `assets/js/category-page.js`.
 - **PC portables** : `pc-page.css`, `pc-guide.css`, `pc-landing.css`.
-- **Smartphones** : page retirée (catégorie mise de côté) ; `smartphones.css` et `smartphones-page.css` supprimés (historique git).
+- **Smartphones** (`smartphones.html`) : `smartphones.css`, préfixe `sx-` (manuel d’étapes, barres d’autonomie, fiches), avec `analyzer.css` pour l’analyseur ; s’appuie sur `projecteurs.css` et `category-page.css`.
 - **Montres** (`montres.html`) : `montres.css`, préfixe `mw-`, s’appuie sur `projecteurs.css` et `category-page.css`.
 - **Projecteurs, écouteurs, batteries** : `projecteurs.css` (commun aux trois), puis `ecouteurs.css` / `batteries-externes.css`.
 - **Analyseur** (page dédiée et blocs intégrés) : `analyzer.css`.

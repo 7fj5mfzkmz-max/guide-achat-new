@@ -7,7 +7,7 @@ const path = require('node:path');
 const root = path.join(__dirname, '..');
 const ORDER = ['phone-analyzer/identity.js', 'phone-analyzer/static-resolver.js', 'phone-analyzer/fetcher.js', 'phone-analyzer/references.js', 'phone-analyzer/chips.js', 'phone-analyzer/spec-insights.js', 'phone-analyzer/spec-score.js', 'phone-analyzer/ui.js'];
 const pages = fs.readdirSync(root).filter(f => f.endsWith('.html')).filter(f => fs.readFileSync(path.join(root, f), 'utf8').includes('id="phone-analyzer-form"'));
-assert.ok(pages.length >= 1, 'analyseur.html héberge l’analyseur (trouvé : ' + pages.join(', ') + ')');
+assert.ok(pages.length >= 2, 'smartphones.html et analyseur.html hébergent l’analyseur (trouvé : ' + pages.join(', ') + ')');
 for (const page of pages) {
   const html = fs.readFileSync(path.join(root, page), 'utf8');
   const srcs = [...html.matchAll(/<script[^>]+src="([^"?]+)/g)].map(m => m[1]);

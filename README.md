@@ -6,7 +6,7 @@ Site statique (HTML/CSS/JS) + petit backend Node pour l'analyse de liens marchan
 
 ```
 /                      Pages du site (les URL ne changent pas)
-  index.html  actualites.html  montres.html
+  index.html  actualites.html  smartphones.html  montres.html
   pc-portables.html  batteries-externes.html  ecouteurs.html  projecteurs.html
   analyseur.html  a-propos.html
   (comparateur, lexique, lexique-pc-portables, capture et diagnostic sont retirés :
@@ -39,8 +39,8 @@ de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, d
 ## Montres (montres.html)
 Données : `data/montres.json` (33 modèles, 10 vidéos sources : pouls contre ceinture ECG, sommeil contre EEG, GPS sur marathon, VO2 max, tension, montres Citizen). Page générée par `python3 tools/montres/construire.py` (`npm run montres:build`) : contenu en HTML statique, `assets/js/montres.js` ajoute le questionnaire (rang des tests pour l’usage, puis prix ; un prix inconnu n’apparaît qu’avec « Sans limite »), les filtres et la liste de contrôle. Contrôle : `npm run montres:test`. Les codes promotionnels et liens affiliés des vidéos ne sont pas repris.
 
-## Smartphones : catégorie mise de côté
-La page smartphones est retirée du site (redirection temporaire vers l’accueil). Le moteur de l’analyseur (`phone-analyzer/`, `category-kit/smartphones.js`, `sources/`) et le catalogue (`data/smartphones*.json`, `tools/smartphones/`) sont conservés et testés : l’analyseur smartphone reste joignable par `analyseur.html?cat=smartphones`. Pour rouvrir la catégorie : recréer la page, la remettre dans `assets/js/categories.js`, `tools/site/gabarit.py`, `sitemap.xml`, `tools/actualites/construire.js`, et retirer les redirections de `vercel.json` / `netlify.toml`. Les anciennes pages sont dans l’historique git (commit 06dbf89).
+## Smartphones (smartphones.html)
+Page générée par `python3 tools/smartphones/page.py` (`npm run smartphones:build`) à partir de `data/smartphones-guide.json` : analyseur de modèle intégré (moteur `phone-analyzer/`, inchangé), manuel en quatre étapes, lectures « fiche contre test », tests d’autonomie (trois séries 100 → 0 %), photo, questionnaire `assets/js/smartphones-guide.js` (rang des tests pour l’usage, puis gamme), modèles à éviter et 24 fiches de modèles testés. Les vidéos sponsorisées sont signalées sur chaque fiche. **Le catalogue complet (`data/smartphones.json`, 146 modèles) n’est pas encore affiché** : il sera intégré dans un second temps ; l’analyseur l’utilise déjà en interne. Contrôle : `npm run smartphones:guide-test` ; parcours navigateur : `npm run analyzer:ui-test` (analyseur sur `analyseur.html` et `smartphones.html`).
 
 ### Moteur et catalogue smartphones (conservés)
 Le conseiller, « Mon profil » et les démonstrations lisent uniquement `data/smartphones.json` (146 modèles : processeur, écran, batterie, recharge, photo, mémoire et stockage, résistance, prix).

@@ -178,6 +178,7 @@
     var index = [];
     var pages = [
       { url: "index.html", label: "Accueil" },
+      { url: "smartphones.html", label: "Smartphones" },
       { url: "batteries-externes.html", label: "Batteries externes" },
       { url: "pc-portables.html", label: "PC portables" },
       { url: "ecouteurs.html", label: "Écouteurs Bluetooth" },
