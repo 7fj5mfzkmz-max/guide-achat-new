@@ -29,7 +29,7 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
   const base = 'http://127.0.0.1:' + server.address().port + '/smartphones.html';
   const browser = await chromium.launch(process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {});
   try {
-    for (const width of [390, 1280]) {
+    for (const width of [360, 390, 768, 1280]) {
       const tag = ' [' + width + ' px]';
       const ctx = await browser.newContext({ locale: 'fr-FR', viewport: { width, height: 900 }, reducedMotion: 'reduce' }), page = await ctx.newPage(), erreurs = [];
       page.on('pageerror', e => erreurs.push(e.message)); page.on('console', m => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) erreurs.push(m.text()); });
@@ -77,6 +77,12 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
             c.forEach(x => { if (b) assert.ok(x.prix <= b, pr + ' ' + b + ' : ' + x.prix); });
           }
         }
+      });
+      await check('priorité secondaire « Puis… » : mélange 2/3 – 1/3, même classement que le moteur, rayons compris' + tag, async () => {
+        await prio(page, 'photo'); await affiner(page); await page.selectOption('#gc-bud', '800'); await page.selectOption('#gc-sec', 'autonomie');
+        const att = moteur.conseiller({ priorite: 'photo', secondaire: 'autonomie', budget: 800 }).cartes, c = await cartes(page);
+        assert.deepEqual(c.map(x => x.id), att.map(x => x.id)); assert.deepEqual(c.map(x => x.r), att.map(x => x.R)); c.forEach(x => assert.ok(x.prix <= 800));
+        await page.selectOption('#gc-sec', ''); await page.selectOption('#gc-bud', '0');
       });
       await check('conseiller : budget trop serré → message clair (sans plafond ensuite : quatre modèles)' + tag, async () => {
         await prio(page, 'equilibre'); await affiner(page);

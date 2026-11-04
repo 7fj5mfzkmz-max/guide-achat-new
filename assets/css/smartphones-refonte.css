@@ -421,3 +421,5 @@ html.sp-pertinence .gc-sticky .gc-dock a.gc-dk-modele { background: var(--bar-ac
 html.sp-pertinence .gc-sticky .gc-dock a.gc-dk-criteres { background: var(--ink); color: var(--paper); }
 html.sp-pertinence .gc-sticky .gc-dock a.gc-dk-profil { background: var(--acc); color: #fff; }
 html.sp-pertinence .gc-sticky .gc-dock a i { color: inherit; }
+html.sp-pertinence .gc-hero .gc-affiner { grid-template-columns: 1fr 1fr; }
+html.sp-pertinence .gc-hero .gc-affiner .gc-micro { grid-column: 1 / -1; }

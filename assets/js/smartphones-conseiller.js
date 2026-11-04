@@ -28,7 +28,7 @@
   var PROFIL = { jeu: 'gamer', photo: 'photographe' }, PRIORITE_DE = { gamer: 'jeu', photographe: 'photo', etudiant: 'autonomie', professionnel: 'equilibre' };
   var interagi = false; ['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(function (n) { window.addEventListener(n, function () { interagi = true; }, { once: true, passive: true, capture: true }); });
   var moteur = null, demos = null, uid = 0, derniere = null, res = null, produits = [];
-  var S = { priorite: 'equilibre', budget: null, examine: null, demo: '' };
+  var S = { priorite: 'equilibre', secondaire: '', budget: null, examine: null, demo: '' };
 
   /* ——— État ——— */
   function lire() {
@@ -37,12 +37,14 @@
     var prof = null; try { prof = localStorage.getItem('guide-profile'); } catch (e2) {}
     var p = q.get('priorite') || saved.priorite || PRIORITE_DE[prof] || null;
     S.priorite = PRIORITES.some(function (x) { return x[0] === p; }) ? p : null;       // null : sélection du mois, tant que le visiteur n'a rien choisi
+    S.secondaire = q.get('secondaire') || saved.secondaire || '';
+    if (!S.priorite || S.secondaire === S.priorite || !PRIORITES.some(function (x) { return x[0] === S.secondaire; })) S.secondaire = '';
     var b = q.has('budget') ? Number(q.get('budget')) : saved.budget;
     S.budget = b != null && isFinite(b) ? b : null;
     S.demo = D.DEMOS.some(function (d) { return d.id === q.get('demo'); }) ? q.get('demo') : '';
   }
   function ecrire() {
-    try { localStorage.setItem(KEY, JSON.stringify({ priorite: S.priorite, budget: S.budget })); } catch (e) {}
+    try { localStorage.setItem(KEY, JSON.stringify({ priorite: S.priorite, secondaire: S.secondaire, budget: S.budget })); } catch (e) {}
     var profil = PROFIL[S.priorite];
     if (profil) { try { localStorage.setItem('guide-profile', profil); } catch (e2) {} window.dispatchEvent(new CustomEvent('guide:profile', { detail: { profile: profil } })); }
   }
@@ -135,7 +137,7 @@
   }
   function render(opts) {
     opts = opts || {}; var t = performance.now(), pr = S.priorite || 'equilibre', cle = S.priorite || 'decouverte', b = budgetAffiche();
-    res = S.priorite ? moteur.conseiller({ priorite: S.priorite, budget: b || null }) : moteur.decouverte({ budget: b || null });
+    res = S.priorite ? moteur.conseiller({ priorite: S.priorite, secondaire: S.secondaire || null, budget: b || null }) : moteur.decouverte({ budget: b || null });
     var sortie = $('#gc-sortie'), det = $('#gc-det'), alt = $('#gc-alt');
     $('#gc-more-t').textContent = (b ? 'Jusqu’à ' + fr(b) + ' €' : 'Sans plafond') + ' · ' + res.total + ' modèle' + (res.total > 1 ? 's' : '') + ' examiné' + (res.total > 1 ? 's' : '');
     $('#gc-reset').hidden = !S.priorite;
@@ -147,13 +149,13 @@
     }
     var ids = res.cartes.map(function (c) { return c.id; }), fi = ids.indexOf(S.examine), focus;
     if (fi >= 0) focus = res.cartes[fi];
-    else if (S.examine && moteur.parId[S.examine]) { focus = moteur.carte(produit(S.examine), pr); fi = -1; }
+    else if (S.examine && moteur.parId[S.examine]) { focus = moteur.carte(produit(S.examine), pr, S.secondaire || null); fi = -1; }
     else { S.examine = null; fi = 0; focus = res.cartes[0]; }
     var titre = S.priorite ? 'Vos ' + res.cartes.length + ' meilleurs choix' : 'Notre sélection de ' + MOIS().split(' ')[0].toLowerCase(), aide = S.priorite ? 'Touchez un modèle pour le détail' : 'Le choix du mois, puis un modèle par critère · choisissez une priorité pour affiner';
     sortie.innerHTML = '<div class="gc-res-h"><h2 class="gc-res-t">' + esc(titre) + ' <small>' + esc(aide) + '</small></h2>' + FLECHES('Modèles') + '</div>' +
       '<ol class="gc-liste" tabindex="0" aria-label="' + esc(titre) + ', à faire défiler">' + res.cartes.map(function (c, i) { return ticket(c, i, i === fi); }).join('') + '</ol>' +
       carte(focus, fi) + (res.notes.length ? '<p class="gc-micro">' + esc(res.notes.join(' ')) + '</p>' : '');
-    $('#gc-shelves').innerHTML = etagere(moteur.autres(ids, S.priorite, b || null), S.examine);
+    $('#gc-shelves').innerHTML = etagere(moteur.autres(ids, S.priorite, b || null, S.secondaire || null), S.examine);
     if (derniere !== cle) { derniere = cle; demos.definirPriorite(pr); if (S.demo) { demos.ouvrir(S.demo, { manuel: true }); S.demo = ''; } }
     demos.definirTelephone(fiche(focus), comparables(focus));
     $('#gc-statut').textContent = opts.annonce || '';
@@ -166,6 +168,7 @@
     var tuiles = PRIORITES.map(function (p) {
       return '<label class="gc-tile" data-p="' + p[0] + '"><input type="radio" name="gc-prio" value="' + p[0] + '"' + (S.priorite === p[0] ? ' checked' : '') + '><span class="gc-tile-in"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES[p[0]] + '</svg><span class="t">' + p[1] + '</span></span></label>';
     }).join('');
+    var sec = '<option value="">Aucune</option>' + PRIORITES.filter(function (p) { return p[0] !== 'equilibre'; }).map(function (p) { return '<option value="' + p[0] + '">' + p[1] + '</option>'; }).join('');
     var bud = BUDGETS.map(function (b) { return '<option value="' + b[0] + '">' + b[1] + '</option>'; }).join('');
     root.innerHTML =
       '<div class="gc-wrap gc-hero"><div class="gc-hero-in"><div class="gc-hero-txt"><p class="gc-eyebrow">Conseiller · ' + moteur.pool.length + ' modèles examinés</p><h1 id="gc-titre">Qu’est-ce qui compte <mark>le plus</mark> ?</h1>' +
@@ -174,7 +177,7 @@
       '<div class="gc-wrap gc-top"><div class="gc-frame"><form class="gc-rail" onsubmit="return false" aria-labelledby="gc-titre"><fieldset class="gc-prios"><legend class="gc-mono">Ce qui compte le plus</legend><div class="gc-tiles">' + tuiles + '<button type="button" class="gc-tile gc-more" id="gc-more" aria-expanded="false" aria-controls="gc-affiner"><span class="gc-tile-in"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES.affiner + '</svg><span class="t">Affiner</span></span></button></div></fieldset>' +
       '<div class="gc-sum"><span id="gc-more-t"></span><button type="button" class="gc-reset" id="gc-reset" hidden>← Retour à la sélection du mois</button>' +
       '<a class="gc-have" href="#analyser-modele" data-open-tab="analyser-modele"><span>J’ai <span class="gc-xs">déjà </span>un modèle</span><span aria-hidden="true">→</span></a></div>' +
-      '<div class="gc-affiner is-closed" id="gc-affiner"><label class="gc-field"><span>Budget maximum</span><select id="gc-bud">' + bud + '</select></label><p class="gc-micro">Vos choix restent sur cet appareil.</p></div></form>' +
+      '<div class="gc-affiner is-closed" id="gc-affiner"><label class="gc-field"><span>Budget maximum</span><select id="gc-bud">' + bud + '</select></label><label class="gc-field"><span>Puis…</span><select id="gc-sec">' + sec + '</select></label><p class="gc-micro">Vos choix restent sur cet appareil.</p></div></form>' +
       '<p class="gc-visually" id="gc-statut" role="status" aria-live="polite"></p>' +
       '<div class="gc-grid"><div class="gc-col-a"><div id="gc-sortie"></div></div></div><div class="gc-shelves" id="gc-shelves"></div></div><div class="gc-col-b" id="gc-demo"></div></div>' +
       '<div class="gc-wrap gc-below"><section class="gc-det" id="gc-det" aria-labelledby="gc-det-h"></section><section class="gc-alt" id="gc-alt" aria-labelledby="gc-alt-h"></section></div>' +
@@ -182,7 +185,7 @@
       '<form class="gc-aform" id="gc-aform" novalidate><label for="gc-url" class="gc-mono">Lien ou nom du modèle</label><div class="gc-arow"><input id="gc-url" type="text" inputmode="url" autocomplete="off" placeholder="https://… ou nom du modèle"><button type="submit" class="gc-btn gc-yellow">Analyser ce modèle</button></div>' +
       '<p class="gc-micro"><b>Gratuit.</b> Sans compte. Même analyseur qu’avant : le résultat s’affiche dans l’analyseur de la page.</p></form></div></section>';
     $('#gc-ctl').appendChild($('.gc-rail'));
-    $('#gc-bud').value = String(budgetAffiche());
+    $('#gc-bud').value = String(budgetAffiche()); $('#gc-sec').value = S.secondaire;
     var bar = document.createElement('div'); bar.className = 'gc-sticky is-hidden'; bar.id = 'gc-sticky';
     dock(bar); window.addEventListener('hashchange', function () { dock(bar); });
     if ('MutationObserver' in window) { var mo = new MutationObserver(function () { dock(bar); }); [].slice.call(document.querySelectorAll('.tr-tab')).forEach(function (t) { mo.observe(t, { attributes: true, attributeFilter: ['aria-selected'] }); }); }
@@ -250,14 +253,15 @@
   function brancher() {
     root.addEventListener('change', function (e) {
       var t = e.target;
-      if (t.name === 'gc-prio') { S.priorite = t.value; if (S.budget == null) $('#gc-bud').value = String(budgetAffiche()); }
+      if (t.name === 'gc-prio') { S.priorite = t.value; if (S.secondaire === S.priorite) { S.secondaire = ''; $('#gc-sec').value = ''; } if (S.budget == null) $('#gc-bud').value = String(budgetAffiche()); }
       else if (t.id === 'gc-bud') S.budget = Number(t.value);
+      else if (t.id === 'gc-sec') S.secondaire = t.value === S.priorite ? '' : t.value;
       else return;
       S.examine = null; ecrire(); render({ anime: true });
     });
     root.addEventListener('click', function (e) {
       var x = e.target.closest('#gc-more'); if (x) { var a = $('#gc-affiner'), o = a.classList.contains('is-closed'); a.classList.toggle('is-closed', !o); x.setAttribute('aria-expanded', String(o)); return; }
-      var rz = e.target.closest('#gc-reset'); if (rz) { S.priorite = null; S.examine = null; $$('.gc-prios input').forEach(function (i) { i.checked = false; }); if (S.budget == null) $('#gc-bud').value = String(budgetAffiche()); ecrire(); render({ anime: true, annonce: 'Retour à la sélection du mois' }); return; }
+      var rz = e.target.closest('#gc-reset'); if (rz) { S.priorite = null; S.secondaire = ''; $('#gc-sec').value = ''; S.examine = null; $$('.gc-prios input').forEach(function (i) { i.checked = false; }); if (S.budget == null) $('#gc-bud').value = String(budgetAffiche()); ecrire(); render({ anime: true, annonce: 'Retour à la sélection du mois' }); return; }
       var ex = e.target.closest('[data-examiner]'); if (ex) {
         var depuisRayon = !!ex.closest('.gc-shelf'), pos = $$('.gc-liste, .gc-shelf').map(function (l) { return l.scrollLeft; });
         S.examine = ex.getAttribute('data-examiner'); var pe = produit(S.examine);

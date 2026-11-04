@@ -93,8 +93,9 @@
   }
 
   /* ——— Score pour une priorité ——— */
-  function score(p, priorite, crit) {
+  function score(p, priorite, crit, secondaire) {
     var def = PRIORITES[priorite] || PRIORITES.equilibre, w = def.poids, c = crit || criteres(p), total = 0, somme = 0, connu = 0, manquantes = [], lignes = [];
+    if (PRIORITES[secondaire] && secondaire !== priorite) { var w2=PRIORITES[secondaire].poids, mix={}; var total1=Object.values(w).reduce(function(a,b){return a+b;},0), total2=Object.values(w2).reduce(function(a,b){return a+b;},0); Object.keys(CRITERES).forEach(function(k){mix[k]=2*(w[k]||0)/total1+(w2[k]||0)/total2;}); w=mix; }
     Object.keys(CRITERES).forEach(function (k) {
       var poids = w[k] || 0, x = c[k].x;
       lignes.push({ critere: k, titre: CRITERES[k], poids: poids, x: x, connu: x != null, texte: c[k].texte });
@@ -126,8 +127,8 @@
     var cache = {}, parId = {};
     pool.forEach(function (p) { parId[p.id] = p; cache[p.id] = criteres(p); });
 
-    function carte(p, priorite) {
-      var s = score(p, priorite, cache[p.id]), e = explications(s.lignes, priorite);
+    function carte(p, priorite, secondaire) {
+      var s = score(p, priorite, cache[p.id], secondaire), e = explications(s.lignes, priorite);
       return {
         id: p.id, nom: p.nom, marque: p.marque, variante: p.variante || null, prix: p.prix_indicatif, idealo: p.idealo_url || null, prix_note: p.prix_note || null,
         R: s.R, couverture: s.couverture, forts: e.forts, compromis: e.compromis, manquantes: s.manquantes.map(function (m) { return m.titre; }),
@@ -138,8 +139,8 @@
     function conseiller(req) {
       req = req || {};
       var priorite = PRIORITES[req.priorite] ? req.priorite : 'equilibre', budget = req.budget ? Number(req.budget) : null;
-      var sous = pool.filter(function (p) { return budget == null || p.prix_indicatif <= budget; });
-      var cartes = sous.map(function (p) { return carte(p, priorite); }).sort(function (a, b) { return b.R - a.R || a.prix - b.prix; });
+      var sous = pool.filter(function (p) { return (budget == null || p.prix_indicatif <= budget) && p.prix_indicatif >= (req.minPrix || 0); });
+      var cartes = sous.map(function (p) { return carte(p, priorite, req.secondaire); }).sort(function (a, b) { return b.R - a.R || b.couverture - a.couverture || a.prix - b.prix; });
       var top = cartes.slice(0, 4);
       var notes = [];
       if (!sous.length) notes.push('Aucun modèle du catalogue n’est affiché à moins de ' + fr(budget) + ' € : augmentez le budget.');
@@ -172,10 +173,10 @@
       return { requete: { priorite: null, budget: budget }, cartes: cartes, total: sous.length, notes: sous.length ? [] : ['Aucun modèle du catalogue n’est affiché à ce budget : augmentez le budget.'] };
     }
     /* Autres modèles, par gamme. Sans priorité : fiches les plus complètes d'abord ; avec priorité : les plus proches du choix d'abord. */
-    function autres(ids, priorite, budget) {
+    function autres(ids, priorite, budget, secondaire) {
       var pris = {}; (ids || []).forEach(function (i) { pris[i] = 1; });
       var pr = priorite || 'equilibre', b = budget ? Number(budget) : null;
-      var l = pool.filter(function (p) { return !pris[p.id] && (b == null || p.prix_indicatif <= b); }).map(function (p) { return carte(p, pr); });
+      var l = pool.filter(function (p) { return !pris[p.id] && (b == null || p.prix_indicatif <= b); }).map(function (p) { return carte(p, pr, priorite ? secondaire : null); });
       l.sort(function (a, c) { return priorite ? c.R - a.R || a.prix - c.prix : c.couverture - a.couverture || c.R - a.R || a.prix - c.prix; });
       return CATEGORIES.map(function (g) { var cs = l.filter(function (c) { return categorie(c.prix) === g[0]; }); return { id: g[0], label: g[1], plage: g[2], total: cs.length, cartes: cs.slice(0, 16) }; }).filter(function (g) { return g.total; });
     }
