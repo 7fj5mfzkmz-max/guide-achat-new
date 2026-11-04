@@ -49,24 +49,27 @@ def hm(minutes):
     return f'{minutes // 60} h {minutes % 60:02d}'
 
 
+def quote(p):
+    v = p.get('verbatim')
+    if not v:
+        return ''
+    return f'<blockquote class="sx-quote">« {esc(v["texte"])} »<cite>{esc(SRC[v["source"]]["chaine"])}</cite></blockquote>'
+
+
 def card(p):
     tags = f'<span class="pj-badge">{GAMMES[p["gamme"]]}</span> <span class="pj-badge">{OS[p["os"]]}</span>'
     for u in sorted(p['usages'], key=lambda k: p['usages'][k]):
         if p['usages'][u] == 1:
             tags += f' <span class="pj-badge is-lab">En tête · {esc(D["usages"][u]["court"])}</span>'
-    if p.get('sponsor'):
-        tags += f' <span class="pj-badge is-no">Vidéo sponsorisée</span>'
     mes = ''.join(f'<div><dt>{esc(a)}</dt><dd>{esc(b)}</dd></div>' for a, b in p['mesures'])
     li = lambda xs: ''.join(f'<li>{esc(x)}</li>' for x in xs)
     srcs = ' · '.join(src_link(s) for s in p['sources'])
     extra = ''
-    if p.get('sponsor'):
-        extra += f'<p class="sx-sponsor">Source : {esc(p["sponsor"])}. À pondérer.</p>'
     if p.get('dispo'):
-        extra += f'<p class="sx-sponsor">{esc(p["dispo"])}</p>'
+        extra += f'<p class="sx-note">{esc(p["dispo"])}</p>'
     attrs = f' data-gamme="{p["gamme"]}" data-os="{p["os"]}" data-usages="{" ".join(p["usages"])}"'
     return (f'<article class="pj-card sx-card" id="m-{p["id"]}"{attrs}><header><h3>{esc(p["nom"])}</h3><span class="pj-price sx-price">{esc(p["prix"]["texte"])}</span></header>'
-            f'<div>{tags}</div><dl class="sx-metrics">{mes}</dl>'
+            f'<div>{tags}</div>{quote(p)}<dl class="sx-metrics">{mes}</dl>'
             f'<ul class="pj-pro">{li(p["forces"])}</ul><ul class="pj-con">{li(p["limites"])}</ul>{extra}'
             f'<footer><span class="sx-src">Source : {srcs}</span>'
             f'<a href="{idealo(p["nom"])}" target="_blank" rel="noopener noreferrer">Chercher en France ↗</a></footer></article>')
@@ -119,16 +122,15 @@ def autonomie():
 def photo():
     P = D['photo']
     rank = ''.join(
-        f'<li class="sx-rk hx-reveal"><b class="sx-rk-n">{i}</b><div><h3>{esc(r["nom"])}</h3><p>{esc(r["texte"])}</p><p class="sx-src">Source : {src_link(r["source"])}'
-        + (f' · <span class="sx-spon">{esc(r["sponsor"])}</span>' if r.get('sponsor') else '') + '</p></div></li>' for i, r in enumerate(P['classement'], 1))
+        f'<li class="sx-rk hx-reveal"><b class="sx-rk-n">{i}</b><div><h3>{esc(r["nom"])}</h3><p>{esc(r["texte"])}</p><p class="sx-src">Source : {src_link(r["source"])}</p></div></li>' for i, r in enumerate(P['classement'], 1))
     d = P['duel']
     head = ''.join(f'<th scope="col">{esc(c)}</th>' for c in d['colonnes'])
     rows = ''.join(f'<tr><th scope="row">{esc(a)}</th><td>{esc(b)}</td><td>{esc(c)}</td></tr>' for a, b, c in d['lignes'])
     return (f'<ol class="sx-rank">{rank}</ol>'
-            '<p class="pj-lead-note">Ordre issu du compte rendu des tests (verbatims des testeurs), pas d’un barème chiffré du guide. Deux des cinq modèles reposent sur une vidéo en partenariat avec la marque.</p>'
+            '<p class="pj-lead-note">Ordre issu du compte rendu des tests (verbatims des testeurs), pas d’un barème chiffré du guide.</p>'
             f'<h3 class="sx-sub">Duel : {esc(d["titre"])}</h3><div class="sx-table-wrap hx-reveal"><table class="sx-table"><caption class="visually-hidden">{esc(d["titre"])}</caption>'
             f'<thead><tr><th scope="col">Critère</th>{head}</tr></thead><tbody>{rows}</tbody></table></div>'
-            f'<p class="pj-lead-note">Maui, plus de 1 000 photos, vidéo non sponsorisée. Source : {src_link(d["source"])}. {esc(P["labo"])}</p>')
+            f'<p class="pj-lead-note">Maui, plus de 1 000 photos. Source : {src_link(d["source"])}. {esc(P["labo"])}</p>')
 
 
 def questionnaire():
@@ -141,7 +143,7 @@ def questionnaire():
             '</div></form><div class="pj-prof-top sx-result" id="sx-result" aria-live="polite"></div><p class="pj-why" id="sx-conseil"><strong>Conseil</strong><span></span></p>'
             '<noscript><p class="pj-warn">Sans JavaScript : photo → OPPO Find X9 Ultra ou iPhone 18 Pro Max ; autonomie → Vivo V80 Lite (milieu de gamme) ou Huawei Pura 90S Pro Max ; jeu → POCO F9 Ultra ; petit prix → POCO M8 Pro 5G.</p></noscript></div>'
             f'<h3 class="sx-sub">Repères de prix des tests</h3><div class="sx-table-wrap hx-reveal"><table class="sx-table sx-table-b"><caption class="visually-hidden">Repères de prix par palier</caption><thead><tr><th scope="col">Palier</th><th scope="col">Choix des testeurs</th><th scope="col">Prix relevé</th></tr></thead><tbody>{bud}</tbody></table></div>'
-            f'<p class="pj-lead-note">Prix dans la devise de chaque vidéo : les paliers sont des ordres de grandeur.</p>')
+            f'<p class="pj-lead-note">Prix en euros, convertis au taux de la BCE du 3 novembre 2026 : les paliers sont des ordres de grandeur.</p>')
 
 
 def avoid():
@@ -157,7 +159,7 @@ def hero_art():
             '<g class="sx-lines"><rect x="152" y="70" width="64" height="8" rx="4"/><rect x="152" y="96" width="96" height="8" rx="4"/><rect x="152" y="122" width="80" height="8" rx="4"/>'
             '<rect x="152" y="148" width="92" height="8" rx="4"/><rect x="152" y="174" width="58" height="8" rx="4"/><rect x="152" y="200" width="88" height="8" rx="4"/><rect x="152" y="226" width="70" height="8" rx="4"/></g>'
             '<rect class="sx-beam" x="136" y="40" width="128" height="26" rx="6"/></svg>'
-            '<span class="pj-chip pj-chip-a">7 000 mAh ≠ 17 h</span><span class="pj-chip pj-chip-c">Sponsors signalés</span>')
+            '<span class="pj-chip pj-chip-a">7 000 mAh ≠ 17 h</span><span class="pj-chip pj-chip-c">Tests indépendants</span>')
 
 
 def build():
@@ -167,7 +169,7 @@ def build():
     ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in D['faq']]}
     top = base[:base.index('<main')]
     top = re.sub(r'<title>.*?</title>', '<title>Bien choisir un smartphone : analyseur, tests et pièges à éviter : Guide·Achat</title>', top, count=1)
-    top = re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="Collez le lien d’un smartphone : le guide lit la fiche, la traduit en français courant et la situe selon votre usage. Autonomie mesurée, photo, jeu et modèles à éviter, avec les sponsors signalés."/>', top, count=1)
+    top = re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="Collez le lien d’un smartphone : le guide lit la fiche, la traduit en français courant et la situe selon votre usage. Autonomie mesurée, photo, jeu et modèles à éviter, avec les mots des testeurs."/>', top, count=1)
     top = re.sub(r'<script type="application/ld\+json">.*?</script>', '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>', top, count=1, flags=re.S)
     top = top.replace('<link rel="stylesheet" href="assets/css/ecouteurs.css">', '<link rel="stylesheet" href="assets/css/analyzer.css">\n<link rel="stylesheet" href="assets/css/smartphones.css">')
     top = top.replace('<script src="assets/js/categories.js" defer></script>', '<script src="assets/js/categories.js"></script>')
@@ -180,11 +182,9 @@ def build():
     cards = ''.join(card(p) for p in produits)
     chips = ''.join(f'<button type="button" class="sx-chip" data-try="{esc(c)}">{esc(c)}</button>' for c in CHIPS)
     srcs = ''.join(
-        f'<li><a href="{s["url"]}" target="_blank" rel="noopener noreferrer">{esc(s["titre"])} ↗</a><span>{esc(s["chaine"])} · {esc(s["nature"])}'
-        + (f' · <b class="sx-spon">{esc(s["sponsor"])}</b>' if s.get('sponsor') else '') + '</span></li>' for s in D['sources'])
+        f'<li><a href="{s["url"]}" target="_blank" rel="noopener noreferrer">{esc(s["titre"])} ↗</a><span>{esc(s["chaine"])} · {esc(s["nature"])}</span></li>' for s in D['sources'])
     limites = ''.join(f'<li>{esc(x)}</li>' for x in D['limites'])
     faq = '<div class="pl-faq">' + ''.join(f'<details class="pl-q"><summary>{esc(q)}</summary><p>{esc(a)}</p></details>' for q, a in D['faq']) + '</div>'
-    n_spon = sum(1 for s in D['sources'] if s.get('sponsor'))
 
     main = f'''<main id="main">
 {sections_nav()}<div class="hx hx-page pg pj sx" data-cat="smartphones" data-tone="orchid" data-motion="on">
@@ -196,7 +196,7 @@ def build():
 <h1>Un smartphone, lu <mark>sans jargon</mark></h1>
 <p class="pg-lead">Collez le lien d’un modèle repéré en boutique : on lit la fiche, on la traduit en français courant et on dit ce que vous gagnez et ce que vous cédez. Plus bas, des tests d’autonomie, de photo et de jeu, et les modèles à éviter.</p>
 <div class="pg-cta"><a class="pg-btn pg-btn-main" href="#analyser">Analyser un modèle →</a><a class="pg-skip" href="#choisir-profil">Choisir selon mon usage ↓</a></div>
-<ul class="pl-checks" aria-label="Nos engagements"><li>Fiche lue avant tout calcul</li><li>Sponsors signalés</li><li>Aucune donnée inventée</li></ul>
+<ul class="pl-checks" aria-label="Nos engagements"><li>Fiche lue avant tout calcul</li><li>Les mots des testeurs</li><li>Aucune donnée inventée</li></ul>
 </div>
 <div class="pj-stage sx-stage">{hero_art()}</div>
 </header>
@@ -256,7 +256,7 @@ def build():
 
 <section class="section" data-tone="teal" id="catalogue">
 {heading(8, 'Modèles', f'Les {n_mod} modèles cités')}
-<p class="section-lead">Seuls les modèles réellement testés dans les vidéos figurent ici ; le catalogue complet viendra plus tard. Chaque fiche cite sa source et signale une vidéo sponsorisée.</p>
+<p class="section-lead">Seuls les modèles réellement testés dans les vidéos figurent ici ; le catalogue complet viendra plus tard. Chaque fiche cite sa source et les mots du testeur.</p>
 <div class="pj-filters sx-filters">
 <label>Gamme <select id="sx-f-gamme"><option value="">Toutes</option><option value="budget">Petit budget</option><option value="milieu">Milieu de gamme</option><option value="haut">Haut de gamme</option></select></label>
 <label>Système <select id="sx-f-os"><option value="">Tous</option><option value="android">Android</option><option value="ios">iPhone</option></select></label>
@@ -270,9 +270,9 @@ def build():
 <section class="section" data-tone="orchid" id="methode">
 {heading(9, 'Méthode', 'D’où viennent ces chiffres')}
 <div class="pj-method"><div><h3>Méthode</h3><p>{esc(D["methode"])}</p></div><div><h3>Limites</h3><ul>{limites}</ul></div></div>
-<h3 class="sx-sub">Les {n_src} vidéos sources ({n_spon} sponsorisées ou en partenariat)</h3>
+<h3 class="sx-sub">Les {n_src} vidéos sources</h3>
 <ul class="sx-sources">{srcs}</ul>
-<p class="pj-warn">Données relevées le 4 novembre 2026. Les liens affiliés et codes promotionnels des vidéos ne sont pas repris.</p>
+<p class="pj-warn">Données relevées le 4 novembre 2026. Prix convertis en euros au taux de référence de la BCE du 3 novembre 2026.</p>
 </section>
 
 <section class="section" data-tone="coral" id="faq">

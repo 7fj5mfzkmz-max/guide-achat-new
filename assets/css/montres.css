@@ -104,3 +104,7 @@
   .mw-classics { grid-template-columns: 1fr; }
   .mw-card .pj-price { max-width: 55%; }
 }
+
+.mw-quote { margin: 0; padding: 8px 12px; border-left: 4px solid var(--accent); background: var(--paper-3); font: 600 15px/1.45 var(--head); }
+.mw-quote cite { display: block; margin-top: 3px; font: 500 12px var(--mono); font-style: normal; letter-spacing: .04em; color: var(--ink-mute); }
+.mw-quote cite::before { content: '— '; }

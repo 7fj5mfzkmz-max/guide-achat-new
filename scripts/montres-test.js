@@ -54,7 +54,8 @@ check('page : une fiche par modèle, sections et scripts présents, aucun code p
   D.produits.forEach(p => assert.ok(html.includes('id="m-' + p.id + '"'), p.id));
   ['choisir', 'mesures', 'marathon', 'sommeil', 'sante', 'catalogue', 'classiques', 'essentiel', 'checklist', 'methode', 'faq'].forEach(id => assert.ok(html.includes('id="' + id + '"'), id));
   assert.ok(html.includes('assets/js/montres.js') && html.includes('assets/css/montres.css'));
-  assert.ok(!/JOMW10|code TQS|code promo TQS/.test(html));
+  assert.ok(!/JOMW10|code TQS|code promo TQS|sponsor/i.test(html));
+  assert.ok(!/[$]|AUD/.test(html.replace(/\(1 € = [^)]*\)/g, '')), 'prix en euros uniquement');
 });
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
 if (failures) process.exitCode = 1;

@@ -1,6 +1,6 @@
 {
   "verifie": "2026-11-04",
-  "methode": "Données reprises des comptes rendus de dix vidéos (transcriptions complètes) : neuf tests de The Quantified Scientist (références : ceinture thoracique ECG, EEG ZMax, tensiomètres de bras, laboratoire d’effort) et deux tests de montres Citizen. Prix relevés dans les vidéos, dans leur devise d’origine, non vérifiés en France. Aucune note n’est inventée : un critère non mesuré reste vide.",
+  "methode": "Données reprises des comptes rendus de dix vidéos (transcriptions complètes) : neuf tests de The Quantified Scientist (références : ceinture thoracique ECG, EEG ZMax, tensiomètres de bras, laboratoire d’effort) et deux tests de montres Citizen. Prix relevés dans les vidéos et convertis en euros au taux de référence de la BCE du 3 novembre 2026 (1 € = 1,118 $ = 1,601 AUD), arrondis, non vérifiés en France. Aucune note n’est inventée : un critère non mesuré reste vide.",
   "sources": [
     { "id": "v1", "chaine": "Just One More Watch", "titre": "Citizen Just Dropped The Wildest Dial Of The Year!", "date": "2026-10-30", "url": "https://youtu.be/Ol5vqWqF9yw", "nature": "Prise en main" },
     { "id": "v2", "chaine": "Teddy Baldassarre", "titre": "Citizen’s Luxury Watch Is Way Better Than You Think", "date": "2026-03-17", "url": "https://youtu.be/zO2ZOoKPJPE", "nature": "Test détaillé" },
@@ -23,31 +23,31 @@
     "style": { "titre": "Une belle montre, sans écran", "court": "Montre classique", "conseil": "Les deux Citizen testées fonctionnent à la lumière (Eco-Drive) : pas de pile à changer, pas de recharge." }
   },
   "produits": [
-    { "id": "fitbit-air", "nom": "Fitbit Air", "marque": "Google Fitbit", "type": "bracelet", "prix": { "repere": 99, "texte": "99 $" }, "compat": ["ios", "android"], "usages": { "polyvalent": 1, "sommeil": 1, "cardio": 1 },
+    { "id": "fitbit-air", "nom": "Fitbit Air", "marque": "Google Fitbit", "type": "bracelet", "prix": { "repere": 90, "texte": "≈ 90 €" }, "compat": ["ios", "android"], "usages": { "polyvalent": 1, "sommeil": 1, "cardio": 1 },
       "mesures": [["Pouls au biceps", "r = 1,00 spinning · 0,98 vélo · 1,00 course · 0,97 muscu"], ["Sommeil", "dans le top 5 du testeur"], ["Autonomie", "jusqu’à une semaine"]],
       "forces": ["Meilleur choix général du testeur", "Pouls excellent porté en haut du bras", "Suivi du sommeil parmi les meilleurs"], "limites": ["Pas d’écran"],
-      "pourquoi": { "polyvalent": "Meilleur choix général du testeur : pouls très juste au biceps et sommeil dans le top 5, pour 99 $.", "sommeil": "Dans le top 5 sommeil du testeur, avec une semaine d’autonomie.", "cardio": "Porté au biceps : r = 1,00 en course et en spinning." }, "sources": ["v5", "v6", "v4"] },
-    { "id": "amazfit-helio-strap", "nom": "Amazfit Helio Strap", "marque": "Amazfit", "type": "bracelet", "prix": { "repere": 99, "texte": "prix à vérifier (50-60 € ou 99 $ selon les relevés)", "incertain": true }, "compat": ["ios", "android"], "usages": { "cardio": 1, "polyvalent": 2, "sommeil": 2 },
+      "pourquoi": { "polyvalent": "Meilleur choix général du testeur : pouls très juste au biceps et sommeil dans le top 5, pour ≈ 90 €.", "sommeil": "Dans le top 5 sommeil du testeur, avec une semaine d’autonomie.", "cardio": "Porté au biceps : r = 1,00 en course et en spinning." }, "sources": ["v5", "v6", "v4"] },
+    { "id": "amazfit-helio-strap", "nom": "Amazfit Helio Strap", "marque": "Amazfit", "type": "bracelet", "prix": { "repere": 90, "texte": "prix à vérifier (50-60 € ou ≈ 90 € selon les relevés)", "incertain": true }, "compat": ["ios", "android"], "usages": { "cardio": 1, "polyvalent": 2, "sommeil": 2 },
       "mesures": [["Pouls (percentile)", "meilleur que 98 % en spinning, 95 % en course, 90 % à vélo, 81 % en muscu"], ["Sommeil", "deuxième niveau"]],
       "forces": ["Parmi les meilleurs capteurs de pouls mesurés", "Sans écran, à porter au bras"], "limites": ["Application Zepp moyenne (le testeur l’associe à Bevel)", "Prix énoncé peu clair dans la vidéo"],
       "pourquoi": { "cardio": "Parmi les meilleurs pouls mesurés : meilleur que 98 % des appareils en spinning.", "polyvalent": "Excellent capteur de pouls ; sommeil de deuxième niveau.", "sommeil": "Sommeil de deuxième niveau ; ses points forts sont le pouls." }, "sources": ["v5", "v6"] },
-    { "id": "fitbit-charge-6", "nom": "Fitbit Charge 6", "marque": "Google Fitbit", "type": "bracelet", "prix": { "repere": 85, "texte": "≈ 85 € (80-100 $)" }, "compat": ["ios", "android"], "usages": { "sommeil": 1, "polyvalent": 2, "cardio": 2 },
+    { "id": "fitbit-charge-6", "nom": "Fitbit Charge 6", "marque": "Google Fitbit", "type": "bracelet", "prix": { "repere": 85, "texte": "≈ 85 €" }, "compat": ["ios", "android"], "usages": { "sommeil": 1, "polyvalent": 2, "cardio": 2 },
       "mesures": [["Sommeil (accord avec l’EEG)", "profond 90 % · léger 78 % · paradoxal 70 %"], ["Pouls", "de niveau comparable au Mi Band 10"]],
       "forces": ["Podium « sommeil à petit prix »", "Petit écran, petit prix"], "limites": ["Pouls un cran sous Apple et Pixel"],
       "pourquoi": { "sommeil": "Premier du podium sommeil à petit prix : 90 % d’accord sur le sommeil profond.", "polyvalent": "Le bon choix si le sommeil compte : environ 85 €.", "cardio": "Pouls correct, comparable au Mi Band 10." }, "sources": ["v6", "v8"] },
-    { "id": "xiaomi-mi-band-10", "nom": "Xiaomi Mi Band 10", "marque": "Xiaomi", "type": "bracelet", "prix": { "repere": 45, "texte": "≈ 40-50 $" }, "compat": ["ios", "android"], "usages": { "cardio": 2, "polyvalent": 3, "sommeil": 4 },
+    { "id": "xiaomi-mi-band-10", "nom": "Xiaomi Mi Band 10", "marque": "Xiaomi", "type": "bracelet", "prix": { "repere": 40, "texte": "≈ 35-45 €" }, "compat": ["ios", "android"], "usages": { "cardio": 2, "polyvalent": 3, "sommeil": 4 },
       "mesures": [["Pouls (poignet gauche)", "r = 1,00 course · 0,99 spinning · 0,96 vélo · 0,89 muscu"], ["Sommeil", "≈ 53 % d’accord en moyenne ; les deux exemplaires se contredisent"]],
       "forces": ["Meilleur rapport prix / pouls du marché à ce prix", "Course : meilleure corrélation jamais mesurée par le testeur"], "limites": ["Sommeil mauvais : ne pas l’acheter pour ça", "Application Mi Fitness moyenne, export difficile, synchronisation Strava capricieuse"],
-      "pourquoi": { "cardio": "Le pouls le moins cher qui tienne la route : r = 1,00 en course.", "polyvalent": "Très bon pouls pour 40-50 $, mais sommeil peu fiable : avec 40 € de plus, le Fitbit Charge 6 fait mieux la nuit.", "sommeil": "À éviter pour le sommeil : environ 53 % d’accord avec l’EEG." }, "sources": ["v8"] },
-    { "id": "amazfit-bip-6", "nom": "Amazfit Bip 6", "marque": "Amazfit", "type": "connectee", "prix": { "repere": 75, "texte": "≈ 75 $" }, "compat": ["ios", "android"], "usages": { "sommeil": 2, "polyvalent": 3 },
+      "pourquoi": { "cardio": "Le pouls le moins cher qui tienne la route : r = 1,00 en course.", "polyvalent": "Très bon pouls pour 35-45 €, mais sommeil peu fiable : avec 45 € de plus, le Fitbit Charge 6 fait mieux la nuit.", "sommeil": "À éviter pour le sommeil : environ 53 % d’accord avec l’EEG." }, "verbatim": { "texte": "Honnêtement impressionné pour le prix", "source": "v8" }, "sources": ["v8"] },
+    { "id": "amazfit-bip-6", "nom": "Amazfit Bip 6", "marque": "Amazfit", "type": "connectee", "prix": { "repere": 65, "texte": "≈ 65 €" }, "compat": ["ios", "android"], "usages": { "sommeil": 2, "polyvalent": 3 },
       "mesures": [["Sommeil (accord avec l’EEG)", "profond 77 % · léger 66 % · paradoxal 68 %"]],
       "forces": ["Deuxième du podium sommeil à petit prix", "Application Zepp gratuite"], "limites": ["Application chargée"],
-      "pourquoi": { "sommeil": "Deuxième du podium sommeil à petit prix, avec une vraie montre à écran.", "polyvalent": "Montre à écran pour 75 $, sommeil correct." }, "sources": ["v6"] },
-    { "id": "amazfit-bip-max", "nom": "Amazfit Bip Max", "marque": "Amazfit", "type": "connectee", "prix": { "repere": 100, "texte": "≈ 100 $" }, "compat": ["ios", "android"], "usages": { "sommeil": 2 },
+      "pourquoi": { "sommeil": "Deuxième du podium sommeil à petit prix, avec une vraie montre à écran.", "polyvalent": "Montre à écran pour ≈ 65 €, sommeil correct." }, "sources": ["v6"] },
+    { "id": "amazfit-bip-max", "nom": "Amazfit Bip Max", "marque": "Amazfit", "type": "connectee", "prix": { "repere": 90, "texte": "≈ 90 €" }, "compat": ["ios", "android"], "usages": { "sommeil": 2 },
       "mesures": [["Sommeil", "phases identiques au Bip 6 (77 / 66 / 68 %)"]],
       "forces": ["Même suivi du sommeil que le Bip 6"], "limites": ["Application chargée"],
       "pourquoi": { "sommeil": "Même suivi du sommeil que le Bip 6, en plus grand." }, "sources": ["v6"] },
-    { "id": "oura-ring-4", "nom": "Oura Ring 4 (occasion)", "marque": "Oura", "type": "bague", "prix": { "repere": null, "texte": "occasion, prix non relevé · abonnement 5,99 $/mois en option" }, "compat": ["ios", "android"], "usages": { "sommeil": 1 },
+    { "id": "oura-ring-4", "nom": "Oura Ring 4 (occasion)", "marque": "Oura", "type": "bague", "prix": { "repere": null, "texte": "occasion, prix non relevé · abonnement ≈ 5,35 €/mois en option" }, "compat": ["ios", "android"], "usages": { "sommeil": 1 },
       "mesures": [["Sommeil", "dans le top 5 du testeur"], ["VFC nocturne", "la meilleure mesurée"]],
       "forces": ["Trois scores gratuits sans abonnement", "Se trouve d’occasion depuis la sortie de l’Oura 5"], "limites": ["Une bague, pas une montre", "Le reste des fonctions demande l’abonnement"],
       "pourquoi": { "sommeil": "Top 5 sommeil et meilleure VFC nocturne ; intéressante d’occasion." }, "sources": ["v6", "v4"] },
@@ -55,7 +55,7 @@
       "mesures": [["Sommeil", "dans le top 5 du testeur"]],
       "forces": ["Meilleure application et meilleure motivation selon le testeur"], "limites": ["Cher : abonnement obligatoire", "Performances brutes dépassées par des alternatives moins chères"],
       "pourquoi": { "sommeil": "Top 5 sommeil et la meilleure application, mais sur abonnement." }, "sources": ["v5", "v4"] },
-    { "id": "garmin-circa", "nom": "Garmin Circa", "marque": "Garmin", "type": "bracelet", "prix": { "repere": 200, "texte": "≈ deux fois le prix du Fitbit Air" }, "compat": ["ios", "android"], "usages": { "cardio": 2 },
+    { "id": "garmin-circa", "nom": "Garmin Circa", "marque": "Garmin", "type": "bracelet", "prix": { "repere": 180, "texte": "≈ 180 € (deux fois le prix du Fitbit Air)" }, "compat": ["ios", "android"], "usages": { "cardio": 2 },
       "mesures": [["Pouls au biceps", "percentile ≈ 75"]],
       "forces": ["Gros gain de précision porté au biceps"], "limites": ["Sommeil et pouls inférieurs au Fitbit Air, pour deux fois le prix"],
       "pourquoi": { "cardio": "Correct au biceps (percentile ≈ 75), mais le Fitbit Air fait mieux pour moitié prix." }, "sources": ["v5"] },
@@ -82,7 +82,7 @@
     { "id": "apple-watch-series-12", "nom": "Apple Watch Series 12 / Ultra 4", "marque": "Apple", "type": "connectee", "prix": { "repere": null, "texte": "prix non relevé" }, "compat": ["ios"], "usages": { "quotidien": 2 },
       "mesures": [["Nouveautés", "pouls toutes les 5 s, VFC jusqu’à 24 fois plus fréquente, score de préparation 0-10"]],
       "forces": ["Plus de mesures qu’avant"], "limites": ["« Plus de mesures, pas forcément de meilleure qualité » selon le testeur", "Pas de raison de changer depuis une Series 9 ou plus récente"],
-      "pourquoi": { "quotidien": "La plus récente ; mais depuis une Series 9 ou plus, la mise à niveau ne s’impose pas." }, "sources": ["v5"] },
+      "pourquoi": { "quotidien": "La plus récente ; mais depuis une Series 9 ou plus, la mise à niveau ne s’impose pas." }, "verbatim": { "texte": "Quantité augmentée, qualité pas forcément", "source": "v5" }, "sources": ["v5"] },
     { "id": "samsung-galaxy-watch", "nom": "Samsung Galaxy Watch 8 / 9", "marque": "Samsung", "type": "connectee", "prix": { "repere": null, "texte": "prix non relevé" }, "compat": ["android"], "samsung": true, "usages": { "quotidien": 3, "sommeil": 2 },
       "mesures": [["VO2 max (étude préliminaire)", "la plus proche de la référence sur les deux participants"]],
       "forces": ["VO2 max la plus juste de l’étude préliminaire", "Watch 9 en progrès"], "limites": ["Derrière Apple et Google pour le pouls, le sommeil et l’application"],
@@ -147,14 +147,14 @@
       "mesures": [["Marathon", "42,59 km"]],
       "forces": ["Correcte au marathon"], "limites": ["Moins régulière en randonnée"],
       "pourquoi": { "gps": "Un cran derrière Garmin et COROS ; moins régulière en montagne." }, "sources": ["v7"] },
-    { "id": "citizen-photon", "nom": "Citizen Photon BJ6560-53W", "marque": "Citizen", "type": "classique", "prix": { "repere": 1440, "texte": "1 800 AUD conseillé · ≈ 1 440 AUD en remise" }, "compat": ["ios", "android"], "usages": { "style": 2 },
+    { "id": "citizen-photon", "nom": "Citizen Photon BJ6560-53W", "marque": "Citizen", "type": "classique", "prix": { "repere": 900, "texte": "≈ 1 120 € conseillés · ≈ 900 € en remise" }, "compat": ["ios", "android"], "usages": { "style": 2 },
       "mesures": [["Boîtier", "39,4 mm · 10,1 mm d’épaisseur · 46,5 mm entre cornes · 78 g"], ["Mouvement", "Eco-Drive E036, ± 15 s/mois, 365 jours de réserve"], ["Étanchéité", "50 m seulement"]],
       "forces": ["Cadran à couleur structurelle qui change selon l’angle", "Super titane fini comme de l’acier", "Édition limitée à 5 000 exemplaires par version"], "limites": ["Fermoir trop fin, maillons à goupilles", "Luminescence qui s’éteint vite, pas de date", "Aiguilles parfois noyées dans le cadran"],
-      "pourquoi": { "style": "Un cadran unique qui change de couleur, en titane léger : très différent, peut-être trop pour certains." }, "sources": ["v1"] },
-    { "id": "the-citizen-aq4100", "nom": "The Citizen AQ4100 (57C ou 22L)", "marque": "Citizen", "type": "classique", "prix": { "repere": 3000, "texte": "≈ 3 000 $" }, "compat": ["ios", "android"], "usages": { "style": 1 },
+      "pourquoi": { "style": "Un cadran unique qui change de couleur, en titane léger : très différent, peut-être trop pour certains." }, "verbatim": { "texte": "Très différent, peut-être trop pour certains", "source": "v1" }, "sources": ["v1"] },
+    { "id": "the-citizen-aq4100", "nom": "The Citizen AQ4100 (57C ou 22L)", "marque": "Citizen", "type": "classique", "prix": { "repere": 2700, "texte": "≈ 2 700 €" }, "compat": ["ios", "android"], "usages": { "style": 1 },
       "mesures": [["Précision", "± 5 secondes par an, sans synchronisation"], ["Boîtier", "38,3 mm · 12,2 mm · 45,5 mm entre cornes · 100 m"], ["Mouvement", "Eco-Drive A060, calendrier perpétuel jusqu’en 2100, 7 mois de réserve"]],
-      "forces": ["Cadran en papier washi, unique pour chaque montre", "Super titane 5 fois plus dur que l’acier", "« Plus impressionnante qu’une Grand Seiko 9F » selon le testeur"], "limites": ["Cher pour une Citizen", "Couronne petite et encastrée", "Ne séduira pas les amateurs de mécanique"],
-      "pourquoi": { "style": "Le quartz le plus abouti des tests : ± 5 s par an et un cadran en papier washi." }, "sources": ["v2"] }
+      "forces": ["Cadran en papier washi, unique pour chaque montre", "Super titane 5 fois plus dur que l’acier", "Rivale directe de la Grand Seiko 9F selon le testeur"], "limites": ["Cher pour une Citizen", "Couronne petite et encastrée", "Ne séduira pas les amateurs de mécanique"],
+      "pourquoi": { "style": "Le quartz le plus abouti des tests : ± 5 s par an et un cadran en papier washi." }, "verbatim": { "texte": "Plus impressionnant qu’une Grand Seiko 9F", "source": "v2" }, "sources": ["v2"] }
   ],
   "cardio": {
     "colonnes": ["Spinning", "Vélo extérieur", "Course", "Musculation"],
@@ -184,7 +184,7 @@
       { "niveau": "Niveau 3", "noms": "Huawei (GT 7 Pro : 64/100)" },
       { "niveau": "Niveau 4", "noms": "Xiaomi Mi Band" }
     ],
-    "note": "Pourcentage d’accord avec un EEG (ZMax) pour chaque phase. Le Pod 6 est un surmatelas qui chauffe et refroidit le lit : il sert ici de point de comparaison. Son testeur conseille de ne pas l’acheter pour la seule mesure du sommeil : « un Fitbit Air à 100 $ fait presque aussi bien »."
+    "note": "Pourcentage d’accord avec un EEG (ZMax) pour chaque phase. Le Pod 6 est un surmatelas qui chauffe et refroidit le lit : il sert ici de point de comparaison. Son testeur conseille de ne pas l’acheter pour la seule mesure du sommeil : un Fitbit Air (≈ 90 €) « fait presque aussi bien »."
   },
   "marathon": {
     "officiel": 42.195,
@@ -224,7 +224,7 @@
     { "titre": "GPS : la régularité compte", "texte": "Deux Garmin portées ensemble ne s’écartent que de 2 m en moyenne. Les compteurs de vélo, plus grands, font mieux que toutes les montres." },
     { "titre": "La génération précédente", "texte": "Pour la plupart des marques, reculer d’une génération ne change presque rien et coûte moins. Exception : Suunto, dont le nouveau capteur de pouls est la vraie amélioration." },
     { "titre": "Quartz solaire : ± 5 s par an", "texte": "Une montre Eco-Drive se recharge à la lumière. The Citizen tient ± 5 s par an, la Photon ± 15 s par mois ; une montre mécanique dérive en général bien davantage." },
-    { "titre": "Abonnements", "texte": "WHOOP demande un abonnement ; Oura en propose un (5,99 $/mois) mais garde trois scores gratuits. L’application Bevel est gratuite et étonnamment complète." }
+    { "titre": "Abonnements", "texte": "WHOOP demande un abonnement ; Oura en propose un (≈ 5,35 €/mois) mais garde trois scores gratuits. L’application Bevel est gratuite et étonnamment complète." }
   ],
   "checklist": [
     "La montre fonctionne avec mon téléphone (Apple Watch : iPhone seulement ; Pixel Watch : Android seulement).",
@@ -238,8 +238,7 @@
   ],
   "limites": [
     "Un seul testeur (deux participants pour le VO2 max) : les résultats peuvent varier d’une personne à l’autre.",
-    "Les prix viennent des vidéos, dans leur devise d’origine (euros, dollars, dollars australiens), et ne sont pas suivis.",
-    "Pour les paliers de budget, euros et dollars sont comptés à parité : c’est un ordre de grandeur.",
+    "Les prix viennent des vidéos, sont convertis en euros au taux de la BCE du 3 novembre 2026, arrondis, et ne sont pas suivis.",
     "Les modèles sans prix relevé n’apparaissent que si vous choisissez « Sans limite »."
   ]
 }

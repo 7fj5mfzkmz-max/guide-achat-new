@@ -30,8 +30,8 @@ FAQ = [
     ("Pourquoi mon pouls est-il faux en musculation ?", "Les efforts courts et les contractions du poignet trompent le capteur optique : même les meilleurs bracelets ratent les pics. Une ceinture thoracique reste la seule mesure fiable dans ce cas."),
     ("Faut-il acheter le dernier modèle ?", "Rarement. Selon le testeur, la génération précédente mesure presque aussi bien et coûte moins cher, sauf chez Suunto où le nouveau capteur de pouls fait la différence. Une Apple Watch Series 9 ou plus récente n’a pas besoin d’être remplacée."),
     ("Pourquoi des bracelets et une bague dans un guide de montres ?", "Parce que pour le sommeil et le pouls, les meilleurs résultats à petit prix viennent souvent d’appareils sans écran (Fitbit Air, Amazfit Helio Strap) ou d’une bague (Oura). Ils sont signalés comme tels partout."),
-    ("Ces prix sont-ils valables en France ?", "Ce sont les prix relevés dans les vidéos, dans leur devise d’origine, sans suivi. Le lien « Chercher en France » ouvre une recherche Idealo sur le nom du modèle."),
-    ("Ce guide est-il rémunéré ?", "Non. Les vidéos sources contiennent des liens affiliés et des codes promotionnels : ils ne sont pas repris ici, et aucun modèle n’est classé contre rémunération."),
+    ("Ces prix sont-ils valables en France ?", "Ce sont les prix relevés dans les vidéos, convertis en euros au taux de référence de la BCE du 3 novembre 2026, sans suivi. Le lien « Chercher en France » ouvre une recherche Idealo sur le nom du modèle."),
+    ("Ce guide est-il rémunéré ?", "Non. Le guide ne vend rien et aucun modèle n’est classé contre rémunération."),
 ]
 
 SECTIONS = [('choisir', 'Sur mesure'), ('mesures', 'Mesures'), ('marathon', 'GPS'), ('sommeil', 'Sommeil'), ('sante', 'Santé'),
@@ -62,6 +62,8 @@ def card(p):
     for u in sorted(p['usages'], key=lambda k: p['usages'][k]):
         if p['usages'][u] == 1:
             tags += f' <span class="pj-badge is-lab">En tête · {esc(D["usages"][u]["court"])}</span>'
+    v = p.get('verbatim')
+    quote = f'<blockquote class="mw-quote">« {esc(v["texte"])} »<cite>{esc(SRC[v["source"]]["chaine"])}</cite></blockquote>' if v else ''
     mes = ''.join(f'<div><dt>{esc(a)}</dt><dd>{esc(b)}</dd></div>' for a, b in p['mesures']) or '<div><dt>Mesures</dt><dd class="is-na">non mesuré dans les sources</dd></div>'
     li = lambda xs: ''.join(f'<li>{esc(x)}</li>' for x in xs)
     src = ' · '.join(f'<a href="{SRC[s]["url"]}" target="_blank" rel="noopener noreferrer">{esc(SRC[s]["chaine"])}, {date_fr(SRC[s]["date"])} ↗</a>' for s in p['sources'])
@@ -70,7 +72,7 @@ def card(p):
              f' data-usages="{" ".join(p["usages"])}"')
     return (f'<article class="pj-card mw-card" id="m-{p["id"]}"{attrs}><header><h3>{esc(p["nom"])}</h3>'
             f'<span class="pj-price{" is-unsure" if prix.get("incertain") or prix["repere"] is None else ""}">{esc(prix["texte"])}</span></header>'
-            f'<div>{tags}</div><dl class="mw-metrics">{mes}</dl>'
+            f'<div>{tags}</div>{quote}<dl class="mw-metrics">{mes}</dl>'
             f'<ul class="pj-pro">{li(p["forces"])}</ul>' + (f'<ul class="pj-con">{li(p["limites"])}</ul>' if p['limites'] else '') +
             f'<footer><span class="mw-src">Source : {src}</span>'
             f'<a href="{idealo(p["nom"])}" target="_blank" rel="noopener noreferrer">Chercher en France ↗</a>'
@@ -226,7 +228,7 @@ def build():
 
 <section class="section" data-tone="teal" id="catalogue">
 {heading(6, 'catalogue', 'Catalogue', f'Les {n_mod - 2} montres et bracelets')}
-<p class="section-lead">Chaque valeur vient d’une source citée sur la fiche ; une valeur non mesurée est signalée comme telle. Prix dans la devise de la vidéo.</p>
+<p class="section-lead">Chaque valeur vient d’une source citée sur la fiche ; une valeur non mesurée est signalée comme telle. Prix en euros, convertis au taux de la BCE du 3 novembre 2026 quand la vidéo les donnait en dollars.</p>
 <div class="pj-filters mw-filters">
 <label>Type <select id="mw-f-type"><option value="">Tous</option>{type_opts}</select></label>
 <label>Téléphone <select id="mw-f-os"><option value="">Tous</option><option value="ios">iPhone</option><option value="android">Android</option></select></label>
@@ -259,7 +261,7 @@ def build():
 <div class="pj-method"><div><h3>Méthode</h3><p>{esc(D["methode"])}</p></div><div><h3>Limites</h3><ul>{limites}</ul></div></div>
 <h3 class="mw-sub">Les {n_src} vidéos sources</h3>
 <ul class="mw-sources">{srcs}</ul>
-<p class="pj-warn">Données relevées le {date_fr(D["verifie"])}. Les liens affiliés et codes promotionnels des vidéos ne sont pas repris.</p>
+<p class="pj-warn">Données relevées le {date_fr(D["verifie"])}.</p>
 </section>
 
 <section class="section" data-tone="coral" id="faq">

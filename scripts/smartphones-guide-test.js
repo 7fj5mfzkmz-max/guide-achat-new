@@ -30,10 +30,16 @@ check('autonomie : barres triées (heures décroissantes), sept téléphones par
     s.lignes.forEach((l, i) => { if (i) assert.ok(s.lignes[i - 1][2] >= l[2], s.id + ' : ordre ' + l[0]); });
   });
 });
-check('sponsors : un modèle documenté par une vidéo sponsorisée ou en partenariat le signale sur sa fiche', () => {
-  const sp = new Set(D.sources.filter(s => s.sponsor).map(s => s.id));
-  D.produits.filter(p => p.sources.some(s => sp.has(s))).forEach(p => assert.ok(p.sponsor, p.id + ' : sponsor à signaler'));
-  assert.ok(D.produits.filter(p => p.sponsor).length >= 6);
+check('prix en euros, pas de sponsors : aucune livre ou dollar, aucune mention de sponsor', () => {
+  const rate = /\(1 € = [^)]*\)/g;
+  assert.ok(!/[£$]/.test(JSON.stringify(D).replace(rate, '')), 'devise étrangère dans les données');
+  assert.ok(!/sponsor/i.test(JSON.stringify(D) + html), 'mention de sponsor');
+  assert.ok(!/[£$]/.test(html.replace(rate, '')), 'devise étrangère dans la page');
+});
+check('verbatims : citent une source existante, affichés sur la fiche', () => {
+  const src = new Set(D.sources.map(s => s.id)), v = D.produits.filter(p => p.verbatim);
+  assert.ok(v.length >= 12);
+  v.forEach(p => { assert.ok(src.has(p.verbatim.source), p.id); assert.ok(html.includes(p.verbatim.texte), p.id + ' : verbatim absent de la page'); });
 });
 check('chaque usage a au moins un modèle', () => { Object.keys(D.usages).forEach(u => assert.ok(recommander(D.produits, u, 'any', 'haut').length, u)); });
 check('petit budget : jamais de modèle plus cher que la gamme choisie', () => {
@@ -55,7 +61,6 @@ check('page : analyseur intégré, modules chargés, sections et fiches présent
   assert.ok(html.includes('phone-analyzer/ui.js') && html.includes('assets/js/smartphones-guide.js') && html.includes('assets/css/smartphones.css'));
   ['analyser', 'manuel', 'exemples', 'autonomie', 'photo', 'choisir-profil', 'purchase-audit', 'eviter', 'catalogue', 'methode', 'faq'].forEach(id => assert.ok(html.includes('id="' + id + '"'), id));
   D.produits.forEach(p => assert.ok(html.includes('id="m-' + p.id + '"'), p.id));
-  assert.ok(!/JOMW10|code promo/.test(html));
   assert.ok(!html.includes('catalogue-'), 'aucune fiche du catalogue complet sur la page');
 });
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');

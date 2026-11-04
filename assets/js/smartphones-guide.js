@@ -40,7 +40,7 @@
         return '<article class="pj-prof-item"><b class="pj-n">' + (i + 1) + '</b><div><h3>' + esc(p.nom) +
           ' <span class="pj-badge' + (r === 1 ? ' is-lab' : '') + '">' + RANG[r] + '</span></h3>' +
           '<p>' + esc(p.pourquoi[usage] || '') + ' <em>(' + esc(p.prix.texte) + ' · ' + GAMMES[p.gamme] + ')</em></p>' +
-          (p.sponsor ? '<p class="sx-sponsor">Source : ' + esc(p.sponsor) + '. À pondérer.</p>' : '') +
+          (p.verbatim ? '<blockquote class="sx-quote">« ' + esc(p.verbatim.texte) + ' »</blockquote>' : '') +
           '<a class="sx-go" href="#m-' + esc(p.id) + '">Voir la fiche ↓</a></div></article>';
       }).join('');
     }
