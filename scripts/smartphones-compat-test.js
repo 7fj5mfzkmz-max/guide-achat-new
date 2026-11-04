@@ -33,7 +33,9 @@ t('la priorité change vraiment le classement : batterie → grosse capacité, j
   c('jeu').forEach(x => assert.ok(m.parId[x.id].compatibilite.performance.niveau >= 8, 'jeu ' + x.nom));
   c('photo').forEach(x => assert.match(m.parId[x.id].caracteristiques.photo, /OIS oui/));
   assert.notDeepEqual(c('jeu').map(x => x.id), c('photo').map(x => x.id));
-  const bas = m.conseiller({ priorite: 'prix' }).cartes; assert.ok(bas[0].prix < 200, 'prix bas : ' + bas[0].prix);
+  const qp = m.conseiller({ priorite: 'qualite_prix' }).cartes, eq = m.conseiller({ priorite: 'equilibre' }).cartes, moy = l => l.reduce((s, x) => s + x.prix, 0) / l.length;
+  assert.ok(moy(qp) < moy(eq), 'rapport qualité-prix : moins cher que l’équilibré (' + Math.round(moy(qp)) + ' contre ' + Math.round(moy(eq)) + ')');
+  assert.ok(qp.every(x => x.R >= 65), 'rapport qualité-prix : modèles de bon niveau');
 });
 t('donnée manquante : jamais un défaut, nommée dans les limites, score identique à la moyenne du critère', () => {
   const base = produits.find(p => p.compatibilite.durete && p.compatibilite.durete.protection_ip && p.compatibilite.performance.niveau != null), sans = JSON.parse(JSON.stringify(base));
@@ -62,5 +64,21 @@ t('priorité secondaire : poids normalisés, score et couverture bornés, choix 
   r.cartes.forEach(c=>{assert.ok(c.R>=0&&c.R<=100);assert.ok(c.couverture>=0&&c.couverture<=100);});
   const p=produits[0], c=m.carte(p,'photo','autonomie');
   const a=K.score(p,'photo'), b=K.score(p,'autonomie'); assert.ok(Math.abs(c.R-(2*a.R+b.R)/3)<=1);
+});
+const ms = K.creer(produits, { mois: 'oneplus-oneplus-15' });
+t('sélection par défaut : OnePlus 15 choix du mois, puis un modèle par gamme (photo, rapport qualité-prix, batterie), sans doublon', () => {
+  const r = ms.selection({}).cartes;
+  assert.equal(r.length, 4); assert.equal(r[0].id, 'oneplus-oneplus-15'); assert.equal(r[0].role, 'mois');
+  assert.deepEqual(r.slice(1).map(c => c.role), ['haut', 'milieu', 'entree']);
+  assert.deepEqual(r.slice(1).map(c => ms.categorie(c.prix)), ['haut', 'milieu', 'entree']);
+  assert.deepEqual(r.slice(1).map(c => c.priorite), ['photo', 'qualite_prix', 'autonomie']);
+  assert.equal(new Set(r.map(c => c.id)).size, 4);
+  r.slice(1).forEach(c => assert.ok(c.couverture >= 80, c.nom + ' : fiche complète d’abord'));
+});
+t('sélection : chaque gamme est la meilleure de sa gamme pour son classement, et le budget est respecté', () => {
+  const r = ms.selection({}).cartes;
+  r.slice(1).forEach(c => { const best = Math.max.apply(null, produits.filter(p => ms.categorie(p.prix_indicatif) === c.role && p.id !== 'oneplus-oneplus-15' && ms.score(p, c.priorite).couverture >= 80).map(p => ms.score(p, c.priorite).R)); assert.equal(c.R, best, c.role); });
+  ms.selection({ budget: 400 }).cartes.forEach(c => assert.ok(c.prix <= 400, c.nom));
+  assert.notEqual(ms.selection({ budget: 400 }).cartes[0].id, 'oneplus-oneplus-15', 'le choix du mois respecte le budget');
 });
 console.log(ok + ' vérification(s) réussie(s).');

@@ -49,7 +49,7 @@
 
   function filtrer() {
     var g = $('sx-f-gamme').value, o = $('sx-f-os').value, u = $('sx-f-usage').value, n = 0;
-    document.querySelectorAll('#sx-cards .sx-card').forEach(function (c) {
+    document.querySelectorAll('#sx-cat-rail .sx-card').forEach(function (c) {
       var ok = (!g || c.dataset.gamme === g) && (!o || c.dataset.os === o) && (!u || c.dataset.usages.split(' ').indexOf(u) !== -1);
       c.hidden = !ok; if (ok) n++;
     });
@@ -81,7 +81,8 @@
     function fromHash() {
       var h = location.hash.slice(1);
       if (h === 'autonomie' || h === 'photo') show(h, true);
-      else if (/^m-/.test(h)) { var c = document.getElementById(h); if (c && c.tagName === 'DETAILS') { c.open = true; } }
+      else if (h === 'par-tests') show(h, true);
+      else if (/^m-/.test(h)) { var c = document.getElementById(h); if (c) c.scrollIntoView({ block: 'center', inline: 'center' }); }
       else if (h === 'manuel' || h === 'faq') { var f = document.getElementById(h); if (f && f.tagName === 'DETAILS') f.open = true; }
     }
     show('autonomie');
@@ -98,19 +99,10 @@
       var a = e.target.closest('.sx-go'); if (!a) return;
       var card = document.querySelector(a.getAttribute('href'));
       if (card && card.hidden) { ['sx-f-gamme', 'sx-f-os', 'sx-f-usage'].forEach(function (id) { $(id).value = ''; }); filtrer(); }
-      if (card) card.open = true;
+      if (card) card.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
     });
     ongletsTests();
     onglets();
-    /* Exemples : remplit le champ de l'analyseur et lance l'analyse. */
-    document.querySelectorAll('[data-try]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var input = $('phone-product-url'), form = $('phone-analyzer-form');
-        if (!input || !form || form.hidden) return;
-        input.value = b.getAttribute('data-try');
-        if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true }));
-      });
-    });
     fetch('data/smartphones-guide.json').then(function (r) { return r.json(); }).then(function (d) { DATA = d; afficher(); })
       .catch(function () { $('sx-result').innerHTML = '<p class="pj-warn">Les données n’ont pas pu être chargées. Les fiches restent consultables plus bas.</p>'; });
   }

@@ -16,7 +16,7 @@
     autonomie: { titre: 'Batterie', poids: { batterie: 42, recharge: 18, performance: 6, ecran: 6, memoire: 4, resistance: 4, suivi: 8, prix: 12 } },
     photo: { titre: 'Photo', poids: { photo: 50, ecran: 10, performance: 10, memoire: 8, batterie: 8, resistance: 3, suivi: 3, prix: 8 } },
     jeu: { titre: 'Jeu', poids: { performance: 40, ecran: 20, batterie: 12, recharge: 6, memoire: 12, resistance: 2, prix: 8 } },
-    prix: { titre: 'Prix bas', poids: { prix: 46, batterie: 14, performance: 10, ecran: 6, memoire: 6, photo: 6, suivi: 8, recharge: 4 } }
+    qualite_prix: { titre: 'Rapport qualité-prix', poids: { prix: 30, performance: 16, batterie: 16, photo: 12, ecran: 8, memoire: 6, suivi: 6, resistance: 4, recharge: 2 } }
   };
   var CRITERES = {
     performance: 'Processeur', ecran: 'Écran', batterie: 'Batterie', recharge: 'Recharge', photo: 'Photo',
@@ -172,6 +172,28 @@
       var cartes = [premier(mois, 'mois', 'Notre choix du mois', 'Choix du mois', 'equilibre'), premier(bat, 'batterie', 'Pour la batterie', 'Batterie', 'autonomie'), premier(pho, 'photo', 'Pour la photo', 'Photo', 'photo'), premier(val, 'valeur', 'Meilleur rapport qualité-prix', 'Qualité-prix', 'equilibre')].filter(Boolean);
       return { requete: { priorite: null, budget: budget }, cartes: cartes, total: sous.length, notes: sous.length ? [] : ['Aucun modèle du catalogue n’est affiché à ce budget : augmentez le budget.'] };
     }
+    /* Sélection par défaut : le choix du mois (options.mois, choisi à la main ; à défaut le modèle le plus complet et le mieux noté),
+       puis trois modèles, un par gamme de prix, qui répondent chacun à un classement général :
+       haut de gamme → photo, milieu de gamme → rapport qualité-prix, entrée de gamme → batterie.
+       Dans chaque gamme, les fiches les mieux renseignées (couverture d'au moins 80 %) passent avant les fiches lacunaires. */
+    function selection(req) {
+      req = req || {}; var budget = req.budget ? Number(req.budget) : null, utilises = {}, cartes = [];
+      var sous = pool.filter(function (p) { return budget == null || p.prix_indicatif <= budget; });
+      var moisId = req.mois || (options && options.mois), p0 = moisId ? sous.filter(function (p) { return p.id === moisId; })[0] : null, mois;
+      if (p0) mois = carte(p0, 'equilibre');
+      else {
+        var eq = sous.map(function (p) { return carte(p, 'equilibre'); }), complets = eq.filter(function (c) { return c.couverture >= 90; });
+        mois = (complets.length ? complets : eq).sort(function (a, b) { return b.R - a.R || a.prix - b.prix; })[0];
+      }
+      if (mois) { utilises[mois.id] = 1; cartes.push(Object.assign({}, mois, { role: 'mois', roleLabel: 'Notre choix du mois', roleCourt: 'Choix du mois' })); }
+      [['haut', 'photo', 'Haut de gamme', 'Photo'], ['milieu', 'qualite_prix', 'Milieu de gamme', 'Rapport qualité-prix'], ['entree', 'autonomie', 'Entrée de gamme', 'Batterie']].forEach(function (t) {
+        var l = sous.filter(function (p) { return !utilises[p.id] && categorie(p.prix_indicatif) === t[0]; }).map(function (p) { return carte(p, t[1]); });
+        var complets = l.filter(function (c) { return c.couverture >= 80; });
+        var c = (complets.length ? complets : l).sort(function (a, b) { return b.R - a.R || b.couverture - a.couverture || a.prix - b.prix; })[0];
+        if (c) { utilises[c.id] = 1; cartes.push(Object.assign({}, c, { role: t[0], roleLabel: t[2] + ' · ' + t[3], roleCourt: t[2] })); }
+      });
+      return { requete: { priorite: null, budget: budget }, cartes: cartes, total: sous.length, notes: sous.length ? [] : ['Aucun modèle du catalogue n’est affiché à ce budget : augmentez le budget.'] };
+    }
     /* Autres modèles, par gamme. Sans priorité : fiches les plus complètes d'abord ; avec priorité : les plus proches du choix d'abord. */
     function autres(ids, priorite, budget, secondaire) {
       var pris = {}; (ids || []).forEach(function (i) { pris[i] = 1; });
@@ -185,7 +207,7 @@
       var best = null; pool.forEach(function (p) { if (score(p, priorite, cache[p.id]).R >= min && (best == null || p.prix_indicatif < best)) best = p.prix_indicatif; });
       return best == null ? null : Math.ceil(best / 50) * 50;
     }
-    return { pool: pool, parId: parId, seuil: seuil, conseiller: conseiller, decouverte: decouverte, autres: autres, categorie: categorie, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
+    return { pool: pool, parId: parId, seuil: seuil, conseiller: conseiller, decouverte: decouverte, selection: selection, autres: autres, categorie: categorie, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
   }
 
   var api = { creer: creer, criteres: criteres, score: score, explications: explications, lire: lire, SIMPLE: SIMPLE, PRIORITES: PRIORITES, CRITERES: CRITERES, PROFIL_VERS_PRIORITE: PROFIL_VERS_PRIORITE };
