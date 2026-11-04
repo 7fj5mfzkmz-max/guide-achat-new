@@ -15,6 +15,7 @@
   var tabs = [].slice.call(root.querySelectorAll('[role="tab"]'));
   var panels = tabs.map(function (t) { return $(t.getAttribute('aria-controls')); });
   function select(panelId, focus) {
+    if (!panels.some(function (p) { return p && p.id === panelId; })) return;    // un lien vers l'analyseur (visible en permanence) ne doit pas masquer les onglets
     tabs.forEach(function (t, i) {
       var on = panels[i] && panels[i].id === panelId;
       t.setAttribute('aria-selected', on ? 'true' : 'false');
@@ -37,7 +38,7 @@
   /* Un lien vers #audit, #analyse-modele, #purchase-audit… ouvre l'onglet qui contient la cible. */
   function openFromHash(scroll) {
     /* Ancien signet de capture (#capture=…) : le résultat s'affiche dans l'analyseur. */
-    if (/^#capture=/.test(location.hash)) { select('analyser-modele'); return; }
+    if (/^#capture=/.test(location.hash)) { var an0 = $('analyser-modele'); if (an0) an0.scrollIntoView({ block: 'start' }); return; }
     var id = decodeURIComponent((location.hash || '').slice(1));
     var el = id && $(id);
     if (!el) return;

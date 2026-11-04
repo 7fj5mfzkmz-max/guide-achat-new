@@ -91,7 +91,7 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
       });
       await check('conseiller : une donnée manquante est signalée comme limite, jamais comme défaut ; la fiche détaillée s’ouvre' + tag, async () => {
         const lim = page.locator('.gc-lim').first(); assert.ok(await lim.count() >= 1); assert.match(await lim.innerText(), /(Information manquante|ne communique|ne publient pas).*(neutre)/is);
-        await page.evaluate(() => document.querySelectorAll('details[data-open-lg]').forEach(d => { d.open = true; })); await page.locator('.gc-card details.gc-tech summary').click(); assert.ok(await page.locator('.gc-card .gc-sp').count() >= 8);
+        await page.locator('.gc-card .gc-more-d > summary').click(); await page.locator('.gc-card details.gc-tech summary').click(); assert.ok(await page.locator('.gc-card .gc-sp').count() >= 8);
       });
       await check('ton honnête à petit budget : photo à 150 € → avertissement chiffré, pas de « bon choix » trompeur' + tag, async () => {
         await prio(page, 'photo'); await affiner(page); await page.selectOption('#gc-bud', '150');
@@ -133,11 +133,10 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
         assert.deepEqual(erreurs, []);
       });
 
-      await check('barre du bas : « Analyser » + l’autre voie, deux choix au plus, selon l’étape' + tag, async () => {
+      await check('barre du bas : « Analyser » + l’autre voie (profil ou critères), deux choix au plus' + tag, async () => {
         const dock = () => page.locator('.gc-dock a').allInnerTexts().then(t => t.map(x => x.replace(/\s*↗/, '').trim()));
         await page.click('#tab-profil'); assert.deepEqual(await dock(), ['Analyser', 'Mes critères']);
         await page.click('#tab-criteres'); assert.deepEqual(await dock(), ['Analyser', 'Mon profil']);
-        await page.click('#tab-modele'); assert.deepEqual(await dock(), ['Mon profil', 'Mes critères']);
         await page.click('#tab-profil');
       });
 
@@ -163,14 +162,18 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
 
       /* ——— Parcours 1 : recherche d'un modèle ——— */
       await check('recherche d’un modèle : un modèle du catalogue est trouvé et analysé sur sa fiche' + tag, async () => {
-        await page.click('#tab-modele'); assert.ok(await page.locator('#phone-product-url').isVisible());
+        assert.ok(await page.locator('#phone-product-url').isVisible(), 'l’analyseur est visible d’emblée, sans onglet'); assert.equal(await page.locator('#tab-modele').count(), 0);
         await page.fill('#phone-product-url', 'Samsung Galaxy A06'); await page.click('#phone-analyzer-form button[type="submit"]');
         await page.waitForFunction(() => /Galaxy A06/i.test(document.getElementById('analyser-modele').innerText) && /MediaTek Helio G85|5000 mAh|IP52/.test(document.getElementById('analyser-modele').innerText), null, { timeout: 8000 });
         assert.match(await page.locator('#analyser-modele').innerText(), /Galaxy A06/i); assert.deepEqual(erreurs, []);
       });
-      await check('recherche d’un modèle depuis le conseiller : « J’ai déjà un modèle » ouvre l’onglet' + tag, async () => {
-        await page.goto(base, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]'); await page.locator('.gc-have').click();
-        await page.waitForFunction(() => document.getElementById('tab-modele').getAttribute('aria-selected') === 'true'); assert.ok(await page.locator('#phone-product-url').isVisible());
+      await check('analyseur en vedette : visible dans le haut de page, à côté des priorités, et la porte « J’ai un modèle en tête » y mène' + tag, async () => {
+        await page.goto(base, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]');
+        const y = await page.evaluate(() => ({ a: document.getElementById('analyser-modele').getBoundingClientRect().top + scrollY, s: document.getElementById('gc-sortie').getBoundingClientRect().top + scrollY }));
+        assert.ok(y.a < y.s, 'l’analyseur est avant les résultats'); assert.ok(await page.locator('#gc-azone #phone-product-url').isVisible());
+        await page.locator('.gc-door.is-main').click(); await page.waitForTimeout(500);
+        assert.ok(await page.locator('#phone-product-url').isVisible());
+        assert.equal(await page.locator('.gc-doors .gc-door').count(), 2);
       });
       await check('aucun débordement horizontal' + tag, async () => { assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)); });
       await ctx.close();

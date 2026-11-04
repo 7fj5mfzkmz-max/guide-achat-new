@@ -113,9 +113,8 @@
       '<p class="gc-verdict"><b>' + NIVEAU(c.R) + '</b> pour « ' + esc(PHRASE[c.priorite]) + ' » : <span class="gc-compat">' + c.R + ' %</span> de compatibilité, calculé d’après la fiche technique du fabricant, pas après un test en main.</p>' +
       avert + '<div class="gc-buy"><span class="gc-price">' + (c.idealo ? '<a class="gc-prix" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">Prix repéré : ' + fr(Math.round(c.prix)) + ' € · comparer les offres ↗</a>' : '<span class="gc-prix">Prix repéré : ' + fr(Math.round(c.prix)) + ' € · comparez les offres sur Idealo</span>') + '</span></div>' +
       '<div class="gc-big" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><b>' + c.R + '</b><span>% compatible</span></div></div>' +
-      '<div class="gc-st-mid"><details class="gc-fold" data-open-lg><summary class="gc-h3">Comment est fait ce score</summary>' + barres(c) + detailFiche(c) + '</details></div>' +
-      '<aside class="gc-st-side" aria-label="Schéma du téléphone"><details class="gc-fold" data-open-lg><summary class="gc-h3">Schéma du téléphone</summary>' + anatomie(c) + '</details></aside>' +
       '<div class="gc-cols"><div><h3 class="gc-h3 is-ok">Vous gagnez</h3><ul class="gc-pc">' + pros + '</ul></div><div><h3 class="gc-h3 is-no">Vous cédez</h3><ul class="gc-pc">' + cons + lim + '</ul></div></div>' +
+      '<details class="gc-more-d"><summary>Voir le détail du score et le schéma du téléphone</summary><div class="gc-det-grid"><div class="gc-st-mid"><h3 class="gc-h3">Comment est fait ce score</h3>' + barres(c) + detailFiche(c) + '</div><aside class="gc-st-side" aria-label="Schéma du téléphone"><h3 class="gc-h3">Schéma du téléphone</h3>' + anatomie(c) + '</aside></div></details>' +
       '<p class="gc-micro">' + esc(noteFr(produit(c.id).prix_note)) + '</p></article>';
   }
 
@@ -128,11 +127,11 @@
     return '<li><button type="button" class="gc-pcard" data-examiner="' + esc(c.id) + '" data-id="' + esc(c.id) + '" data-r="' + c.R + '" aria-pressed="' + (actif ? 'true' : 'false') + '" aria-label="' + esc(nom + ', ' + c.R + ' % de compatibilité, ' + fr(Math.round(c.prix)) + ' €. Voir le détail.') + '">' +
       '<span class="gc-pc-top"><span class="gc-pc-comp' + (c.couverture >= 90 ? ' is-full' : '') + '">' + (c.couverture >= 90 ? 'Infos complètes' : 'Certaines infos manquent') + '</span><span class="gc-pc-score"><b>' + c.R + '</b> %</span></span>' +
       '<span class="gc-pc-name">' + esc(nom) + '</span><span class="gc-pc-price">' + fr(Math.round(c.prix)) + ' €</span><span class="gc-pc-bar" aria-hidden="true"><i style="width:' + c.R + '%"></i></span>' +
-      '<span class="gc-pc-why">' + (f ? esc(f.phrase) : '') + '</span></button></li>';
+      '</button></li>';
   }
   function etagere(groupes, actif) {
     if (!groupes.length) return '';
-    return '<section class="gc-shelfwin" aria-labelledby="gc-sh-t"><div class="gc-res-h gc-sh-h"><h2 class="gc-res-t" id="gc-sh-t">Les autres modèles <small>' + (S.priorite ? 'les plus proches de votre choix d’abord' : 'fiches les plus complètes d’abord') + ' · faites défiler chaque rayon</small></h2></div>' +
+    return '<section class="gc-shelfwin" aria-labelledby="gc-sh-t"><div class="gc-res-h gc-sh-h"><h2 class="gc-res-t" id="gc-sh-t">Les autres modèles <small>' + (S.priorite ? 'les plus proches de votre choix d’abord' : 'fiches les plus complètes d’abord') + '</small></h2></div>' +
       groupes.map(function (g) {
         return '<div class="gc-shelf-g"><div class="gc-rail-h"><h3>' + esc(g.label) + ' <small>' + esc(g.plage) + ' · ' + g.total + ' modèle' + (g.total > 1 ? 's' : '') + '</small></h3>' + FLECHES('Modèles') + '</div>' +
           '<ul class="gc-shelf" tabindex="0" aria-label="' + esc(g.label) + ', à faire défiler">' + g.cartes.map(function (c) { return pcard(c, c.id === actif); }).join('') + '</ul></div>';
@@ -158,7 +157,6 @@
     sortie.innerHTML = '<div class="gc-res-h"><h2 class="gc-res-t">' + esc(titre) + ' <small>' + esc(aide) + '</small></h2>' + FLECHES('Modèles') + '</div>' +
       '<ol class="gc-liste" tabindex="0" aria-label="' + esc(titre) + ', à faire défiler">' + res.cartes.map(function (c, i) { return ticket(c, i, i === fi); }).join('') + '</ol>' +
       carte(focus, fi) + (res.notes.length ? '<p class="gc-micro">' + esc(res.notes.join(' ')) + '</p>' : '');
-    $$('details[data-open-lg]').forEach(function (d) { d.open = !window.matchMedia || matchMedia('(min-width: 900px)').matches; });
     $('#gc-shelves').innerHTML = etagere(moteur.autres(ids, S.priorite, b || null, S.secondaire || null), S.examine);
     if (derniere !== cle) { derniere = cle; demos.definirPriorite(pr); if (S.demo) { demos.ouvrir(S.demo, { manuel: true }); S.demo = ''; } }
     demos.definirTelephone(fiche(focus), comparables(focus));
@@ -175,20 +173,21 @@
     var sec = '<option value="">Aucune</option>' + PRIORITES.filter(function (p) { return p[0] !== 'equilibre'; }).map(function (p) { return '<option value="' + p[0] + '">' + p[1] + '</option>'; }).join('');
     var bud = BUDGETS.map(function (b) { return '<option value="' + b[0] + '">' + b[1] + '</option>'; }).join('');
     root.innerHTML =
-      '<div class="gc-wrap gc-hero"><div class="gc-hero-in"><div class="gc-hero-txt"><p class="gc-eyebrow">Guide d’achat · ' + moteur.pool.length + ' téléphones comparés pour vous</p><h1 id="gc-titre">Qu’est-ce qui compte <mark>le plus</mark> ?</h1>' +
-      '<p class="gc-lead">Voici le choix du mois et trois modèles qui brillent chacun sur un critère. Dites-nous ce qui compte pour vous : on affine avec les quatre téléphones les plus compatibles, leurs points forts et leurs compromis.</p>' +
-      '<ol class="gc-steps"><li><b>1</b> Choisissez une priorité</li><li><b>2</b> Comparez les 4 modèles</li><li><b>3</b> Voyez la différence en démo</li></ol></div><div class="gc-hero-ctl" id="gc-ctl"></div></div></div>' +
-      '<div class="gc-wrap gc-top"><div class="gc-frame"><form class="gc-rail" onsubmit="return false" aria-labelledby="gc-titre"><fieldset class="gc-prios"><legend class="gc-mono">Ce qui compte le plus</legend><div class="gc-tiles">' + tuiles + '<button type="button" class="gc-tile gc-more" id="gc-more" aria-expanded="false" aria-controls="gc-affiner"><span class="gc-tile-in"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES.affiner + '</svg><span class="t">Affiner</span></span></button></div></fieldset>' +
-      '<div class="gc-sum"><span id="gc-more-t"></span><button type="button" class="gc-reset" id="gc-reset" hidden>← Retour à la sélection du mois</button>' +
-      '<a class="gc-have" href="#analyser-modele" data-open-tab="analyser-modele"><span>J’ai <span class="gc-xs">déjà </span>un modèle</span><span aria-hidden="true">→</span></a></div>' +
-      '<div class="gc-affiner is-closed" id="gc-affiner"><label class="gc-field"><span>Mon budget maximum</span><select id="gc-bud">' + bud + '</select></label><label class="gc-field"><span>Et aussi, si possible</span><select id="gc-sec">' + sec + '</select></label><p class="gc-micro">Vos réponses restent sur votre appareil : rien n’est envoyé.</p></div></form>' +
+      '<div class="gc-wrap gc-hero"><div class="gc-hero-in"><div class="gc-hero-txt"><p class="gc-eyebrow">Guide d’achat · smartphones</p><h1 id="gc-titre">Le bon téléphone, <mark>sans jargon</mark>.</h1>' +
+      '<p class="gc-lead">Dites-nous ce qui compte pour vous, ou collez le lien d’un modèle qui vous tente : on vous explique, avec des mots simples, ce que vous gagnez et ce que vous cédez.</p>' +
+      '<div class="gc-doors"><a class="gc-door is-main" href="#analyser-modele"><b>J’ai un modèle en tête</b><span>Collez un lien, on l’analyse</span><i aria-hidden="true">↓</i></a><a class="gc-door" href="#gc-trouver"><b>Je cherche un téléphone</b><span>Dites-nous ce qui compte</span><i aria-hidden="true">↓</i></a></div></div></div>' +
+      '<ul class="gc-strip" aria-label="Le guide en chiffres"><li><b>' + moteur.pool.length + '</b><span>téléphones comparés</span></li><li><b>5</b><span>priorités au choix</span></li><li><b>4</b><span>recommandations</span></li><li><b>0</b><span>pub, 0 commission</span></li></ul></div>' +
+      '<div class="gc-wrap gc-top"><div class="gc-frame"><div class="gc-duo"><div class="gc-col-p" id="gc-trouver"><form class="gc-rail" onsubmit="return false" aria-labelledby="gc-titre"><fieldset class="gc-prios"><legend class="gc-mono">Ce qui compte le plus</legend><div class="gc-tiles">' + tuiles + '</div></fieldset>' +
+      '<div class="gc-budget"><label class="gc-field"><span>Mon budget maximum</span><select id="gc-bud">' + bud + '</select></label><button type="button" class="gc-more" id="gc-more" aria-expanded="false" aria-controls="gc-affiner">Affiner ▾</button></div>' +
+      '<div class="gc-affiner is-closed" id="gc-affiner"><label class="gc-field"><span>Et aussi, si possible</span><select id="gc-sec">' + sec + '</select></label><p class="gc-micro">Vos réponses restent sur votre appareil : rien n’est envoyé.</p></div>' +
+      '<div class="gc-sum"><span id="gc-more-t"></span><button type="button" class="gc-reset" id="gc-reset" hidden>← Retour à la sélection du mois</button></div></form></div>' +
+      '<div class="gc-col-q" id="gc-azone"></div></div>' +
       '<p class="gc-visually" id="gc-statut" role="status" aria-live="polite"></p>' +
-      '<div class="gc-grid"><div class="gc-col-a"><div id="gc-sortie"></div></div></div><div class="gc-shelves" id="gc-shelves"></div></div><div class="gc-col-b" id="gc-demo"></div></div>' +
-      '<div class="gc-wrap gc-below"><section class="gc-det" id="gc-det" aria-labelledby="gc-det-h"></section><section class="gc-alt" id="gc-alt" aria-labelledby="gc-alt-h"></section></div>' +
-      '<section class="gc-band gc-ink" id="gc-analyse" aria-labelledby="gc-an-h"><div class="gc-wrap"><p class="gc-eyebrow">Un modèle en tête ?</p><h2 class="gc-h2" id="gc-an-h">Collez son lien. On le passe au crible.</h2>' +
-      '<form class="gc-aform" id="gc-aform" novalidate><label for="gc-url" class="gc-mono">Lien ou nom du modèle</label><div class="gc-arow"><input id="gc-url" type="text" inputmode="url" autocomplete="off" placeholder="https://… ou nom du modèle"><button type="submit" class="gc-btn gc-yellow">Analyser ce modèle</button></div>' +
-      '<p class="gc-micro"><b>Gratuit.</b> Sans compte. Même analyseur qu’avant : le résultat s’affiche dans l’analyseur de la page.</p></form></div></section>';
-    $('#gc-ctl').appendChild($('.gc-rail'));
+      '<p class="gc-sec-k"><b>01</b> Votre sélection</p><div class="gc-grid"><div class="gc-col-a"><div id="gc-sortie"></div></div></div></div>' +
+      '<div class="gc-col-b"><div class="gc-wrap"><p class="gc-sec-k is-light"><b>02</b> Voir la différence</p><div id="gc-demo"></div></div></div></div>' +
+      '<div class="gc-wrap gc-shelfzone"><p class="gc-sec-k"><b>03</b> Les autres modèles</p><div class="gc-shelves" id="gc-shelves"></div></div>' +
+      '<div class="gc-wrap gc-below"><section class="gc-det" id="gc-det"></section><section class="gc-alt" id="gc-alt"></section></div>';
+    var an = document.getElementById('analyser-modele'); if (an) { var az = $('#gc-azone'); az.appendChild(an); }       // l'analyseur sort de l'onglet caché : il est en vedette dès le haut de page
     $('#gc-bud').value = String(budgetAffiche()); $('#gc-sec').value = S.secondaire;
     var bar = document.createElement('div'); bar.className = 'gc-sticky is-hidden'; bar.id = 'gc-sticky';
     dock(bar); window.addEventListener('hashchange', function () { dock(bar); });
@@ -205,7 +204,7 @@
   var VOIES = { profil: ['Mon profil', '#choisir-profil', 'choisir-profil'], criteres: ['Mes critères', '#audit', 'audit'], modele: ['Analyser', '#analyser-modele', 'analyser-modele'] };
   function dock(bar) {
     var t = document.querySelector('.tr-tab[aria-selected="true"]'), actif = t ? t.id.replace('tab-', '') : 'profil';
-    var ordre = actif === 'modele' ? ['profil', 'criteres'] : actif === 'criteres' ? ['modele', 'profil'] : ['modele', 'criteres'];
+    var ordre = actif === 'criteres' ? ['modele', 'profil'] : ['modele', 'criteres'];
     bar.innerHTML = '<div class="gc-dock" data-actif="' + actif + '">' + ordre.map(function (k, i) { var v = VOIES[k]; return '<a class="gc-dk-' + k + '" href="' + v[1] + '" data-open-tab="' + v[2] + '"><span>' + v[0] + '</span><i aria-hidden="true">↗</i></a>'; }).join('') + '</div>';
   }
   /* Barre collante : seulement après avoir défilé, retirée quand l'analyseur est à l'écran */
@@ -214,8 +213,8 @@
     var maj = function () { ticking = false; var cache = window.scrollY < Math.min(700, window.innerHeight * 0.8) || vus.a || vus.p || vus.d; bar.classList.toggle('is-hidden', !!cache); };
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(maj); } }, { passive: true });
     if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { vus[e.target.id === 'gc-analyse' ? 'a' : e.target.id === 'gc-demo' ? 'd' : 'p'] = e.isIntersecting; }); maj(); });
-      io.observe($('#gc-analyse')); io.observe($('#gc-demo')); var an = document.getElementById('analyse-modele'); if (an) io.observe(an);
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { vus[e.target.id === 'analyser-modele' ? 'a' : e.target.id === 'gc-demo' ? 'd' : 'p'] = e.isIntersecting; }); maj(); });
+      io.observe($('#gc-demo')); var an = document.getElementById('analyser-modele'); if (an) io.observe(an);
     }
     maj();
   }
@@ -278,19 +277,6 @@
       }
       var sc = e.target.closest('[data-scroll]'); if (sc) { var l = sc.closest('.gc-rail-h') ? sc.closest('.gc-shelf-g').querySelector('.gc-shelf') : sc.closest('.gc-res-h') ? $('.gc-liste') : $('.dm-tabs', $('#gc-demo')); if (l) l.scrollBy({ left: Number(sc.getAttribute('data-scroll')) * Math.min(360, l.clientWidth * .85), behavior: reduced ? 'auto' : 'smooth' }); return; }
       var v = e.target.closest('.gc-voir, .gc-cell[data-demo]'); if (v) { demos.ouvrir(v.getAttribute('data-demo'), { voir: true }); return; }
-    });
-    /* analyseur : le champ de la page alimente le formulaire existant, sans toucher à son code */
-    $('#gc-aform').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var v = $('#gc-url').value.trim();
-      try { history.replaceState(null, '', '#analyser-modele'); } catch (x) {}
-      window.dispatchEvent(new HashChangeEvent('hashchange'));
-      setTimeout(function () {
-        var f = document.getElementById('phone-analyzer-form'), i = document.getElementById('phone-product-url');
-        var an = document.getElementById('analyse-modele'); if (an) an.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' });
-        if (v && f && i) { i.value = v; i.dispatchEvent(new Event('input', { bubbles: true })); if (f.requestSubmit) f.requestSubmit(); else f.dispatchEvent(new Event('submit', { cancelable: true })); }
-        else if (i) i.focus({ preventScroll: true });
-      }, 320);
     });
   }
 
