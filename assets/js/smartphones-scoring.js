@@ -433,7 +433,7 @@
     var summary=summaryParts.length?'Vous avez précisé : '+summaryParts.join(', ')+'.':'';
     var notes = neighbourNotes(state);
     if(unevaluated.length) notes.push('Critère(s) choisi(s) mais non documenté(s) dans le catalogue : ' + unevaluated.join(', ') + '. Ils ne sont ni bonifiés ni pénalisés.');
-    if (status) status.textContent = (summary ? summary + " " : "") + (done === CRITERIA.length ? "Les six familles sont renseignées. " : "Chaque critère ajouté resserre la liste. ") + "Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « " + profileLabel(currentProfile) + " » départage." + (notes.length ? " " + notes.join(" ") : "");
+    if (status) status.textContent = (summary ? summary + " " : "") + (done === CRITERIA.length ? "Vous avez répondu aux six questions. " : "Chaque réponse resserre la liste. ") + "Du plus proche au moins proche de vos choix ; à égalité, un modèle vu en test passe devant, puis le profil « " + profileLabel(currentProfile) + " » départage." + (notes.length ? " " + notes.join(" ") : "");
 
     scored.forEach(function (x, i) {
       var article = document.createElement("article");

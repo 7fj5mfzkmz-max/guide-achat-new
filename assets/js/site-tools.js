@@ -582,16 +582,16 @@
         /* Une famille est « renseignée » dès qu'un choix y est fait — même définition
            que les recommandations (site côté scoring : au moins un groupe répondu). */
         var cfg=configs[key], complete=(key==='price'&&state.price&&state.price.maxBudget)||cfg.groups.some(function(g){return state[key]&&state[key][g.key];});
-        card.querySelector('.audit-status').textContent=complete?'Renseignée':'À renseigner';
+        card.querySelector('.audit-status').textContent=complete?'Répondu':'À répondre';
         card.classList.toggle('is-complete',complete);
         updateTotal();
       }
       function updateTotal(){
         var done=Object.keys(configs).reduce(function(n,k){return n+((k==='price'&&state.price&&state.price.maxBudget)||configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
         var count=document.getElementById('audit-count'),msg=document.getElementById('audit-message');
-        if(count) count.textContent=done+(done===1?' / '+totalGroups+' famille renseignée':' / '+totalGroups+' familles renseignées');
+        if(count) count.textContent=done+(done<=1?' réponse sur '+totalGroups:' réponses sur '+totalGroups);
         if(msg&&prunedNote) msg.textContent=prunedNote;
-        else if(msg) msg.textContent=done===totalGroups?'Les six familles sont renseignées : voici les modèles les plus proches de vos choix.':done?'Chaque famille renseignée resserre la liste. Les autres peuvent rester vides.':'Une famille peut rester sans réponse.';
+        else if(msg) msg.textContent=done===totalGroups?'Vous avez répondu aux six questions : voici les modèles les plus proches de vos choix.':done?'Chaque réponse resserre la liste. Les autres questions peuvent rester vides.':'Une question peut rester sans réponse.';
         var see=document.getElementById('audit-see-results');
         if(see) see.hidden=done<1;
       }

@@ -12,8 +12,8 @@ SITE = 'https://guide-achat-new.vercel.app/'
 PAGES = {
     'index.html': '#essayer',
     'actualites.html': 'index.html#essayer',
-    'smartphones.html': '#audit',
-    'smartphones-approfondir.html': 'smartphones.html#audit',
+    'smartphones.html': '#conseiller',
+    'smartphones-approfondir.html': 'smartphones.html#conseiller',
     'pc-portables.html': '#audit',
     'projecteurs.html': '#profils',
     'ecouteurs.html': '#usages',

@@ -180,7 +180,12 @@
       l.sort(function (a, c) { return priorite ? c.R - a.R || a.prix - c.prix : c.couverture - a.couverture || c.R - a.R || a.prix - c.prix; });
       return CATEGORIES.map(function (g) { var cs = l.filter(function (c) { return categorie(c.prix) === g[0]; }); return { id: g[0], label: g[1], plage: g[2], total: cs.length, cartes: cs.slice(0, 16) }; }).filter(function (g) { return g.total; });
     }
-    return { pool: pool, parId: parId, conseiller: conseiller, decouverte: decouverte, autres: autres, categorie: categorie, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
+    /* Prix à partir duquel un modèle atteint `min` % pour cette priorité (arrondi aux 50 € supérieurs), ou null. */
+    function seuil(priorite, min) {
+      var best = null; pool.forEach(function (p) { if (score(p, priorite, cache[p.id]).R >= min && (best == null || p.prix_indicatif < best)) best = p.prix_indicatif; });
+      return best == null ? null : Math.ceil(best / 50) * 50;
+    }
+    return { pool: pool, parId: parId, seuil: seuil, conseiller: conseiller, decouverte: decouverte, autres: autres, categorie: categorie, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
   }
 
   var api = { creer: creer, criteres: criteres, score: score, explications: explications, lire: lire, SIMPLE: SIMPLE, PRIORITES: PRIORITES, CRITERES: CRITERES, PROFIL_VERS_PRIORITE: PROFIL_VERS_PRIORITE };

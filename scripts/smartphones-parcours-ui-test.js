@@ -49,7 +49,7 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
         assert.ok(await page.locator('#gc-reset').isHidden());
         // un modèle d'un rayon ouvre son détail, qui compte forts et compromis
         const idR = await page.locator('.gc-shelf .gc-pcard').first().getAttribute('data-id'); await page.locator('.gc-shelf .gc-pcard').first().click();
-        assert.equal(await page.locator('.gc-card').getAttribute('data-id'), idR); assert.match(await page.locator('.gc-card .gc-kick').innerText(), /examiné/i);
+        assert.equal(await page.locator('.gc-card').getAttribute('data-id'), idR); assert.match(await page.locator('.gc-card .gc-kick').innerText(), /analysé/i);
         assert.ok(await page.locator('.gc-card .gc-pro').count() >= 1); assert.equal(await page.locator('.gc-ticket[aria-pressed="true"]').count(), 0);
         assert.deepEqual(erreurs, []);
       });
@@ -90,8 +90,15 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
         assert.match(await page.locator('#gc-sortie').innerText(), /Aucun modèle/); await page.selectOption('#gc-bud', '0'); assert.equal(await page.locator('.gc-ticket').count(), 4);
       });
       await check('conseiller : une donnée manquante est signalée comme limite, jamais comme défaut ; la fiche détaillée s’ouvre' + tag, async () => {
-        const lim = page.locator('.gc-lim').first(); assert.ok(await lim.count() >= 1); assert.match(await lim.innerText(), /Donnée absente.*pas compté comme un défaut/is);
-        await page.locator('.gc-card details.gc-tech summary').click(); assert.ok(await page.locator('.gc-card .gc-sp').count() >= 8);
+        const lim = page.locator('.gc-lim').first(); assert.ok(await lim.count() >= 1); assert.match(await lim.innerText(), /(Information manquante|ne communique|ne publient pas).*(neutre)/is);
+        await page.evaluate(() => document.querySelectorAll('details[data-open-lg]').forEach(d => { d.open = true; })); await page.locator('.gc-card details.gc-tech summary').click(); assert.ok(await page.locator('.gc-card .gc-sp').count() >= 8);
+      });
+      await check('ton honnête à petit budget : photo à 150 € → avertissement chiffré, pas de « bon choix » trompeur' + tag, async () => {
+        await prio(page, 'photo'); await affiner(page); await page.selectOption('#gc-bud', '150');
+        const r = moteur.conseiller({ priorite: 'photo', budget: 150 }).cartes[0], seuil = moteur.seuil('photo', 75);
+        const txt = await page.locator('.gc-card .gc-st-main').innerText();
+        if (r.R < 70) { assert.match(txt, /limit/i); assert.ok(seuil > r.prix); assert.match(txt, new RegExp(String(seuil).replace(/(\d)(?=(\d{3})$)/, '$1[\\s\u202f\u00a0]?'))); assert.doesNotMatch(txt, /Bon choix|Excellent choix/i); }
+        await page.selectOption('#gc-bud', '0'); await page.locator('#gc-reset').click();
       });
       await check('démonstrations : les cinq, « Batterie » sur capacité et charge de la fiche, avec le modèle choisi' + tag, async () => {
         assert.equal(await page.locator('.dm-tab').count(), 5);
