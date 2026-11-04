@@ -3,20 +3,19 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-<title>Bien choisir un smartphone à partir de votre usage : Guide·Achat</title>
+<title>Smartphones : le bon choix, argumenté : Guide·Achat</title>
 <meta name="color-scheme" content="light dark"/>
 <meta name="theme-color" content="#e3e7eb" media="(prefers-color-scheme: light)"/>
 <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
 <link rel="canonical" href="https://guide-achat-new.vercel.app/smartphones.html"/>
-<meta name="description" content="Choisir un smartphone selon votre usage : cinq critères (écran, batterie, performance, photo, durée de vie) illustrés en animation, quatre profils, cinq choix 2026 et un analyseur de fiche produit."/>
+<meta name="description" content="Choisissez un smartphone selon ce qui compte pour vous : une sélection du mois, un rapport clair (ce que vous gagnez, ce que vous cédez) et un analyseur de fiche produit. 146 fiches techniques comparées."/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/design-system.css">
 <link rel="stylesheet" href="assets/css/analyzer.css">
-<link rel="stylesheet" href="assets/css/smartphones-art.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
@@ -29,9 +28,11 @@ function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i
 l=p==="auto"?"fr":p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
 <style>html.i18n-wait body{opacity:0}</style>
 <link rel="stylesheet" href="assets/css/i18n.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/smartphones.css">
+
 </head>
-<body class="sp2">
+<body class="sm">
 <header class="site-header">
 <div class="header-inner">
 <a class="brand-logo" href="index.html" aria-label="Guide·Achat, accueil" translate="no"><span class="ga-wordmark">Guide<i class="ga-dot">·</i>Achat</span></a>
@@ -43,306 +44,153 @@ l=p==="auto"?"fr":p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-
 <div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide pratique</span><span>Android et iOS · Édition 2026</span></div></div>
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker" translate="no">Guide·Achat</span><p class="drawer-title" id="search-panel-title">Rechercher</p></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main">
-<div class="hx hx-page pg sp pj" data-cat="smartphones" data-tone="orchid" data-motion="on">
-<div class="container-wide">
-<div id="conseiller" class="gc" hidden aria-live="off"></div>
-</div>
 
-<div class="container-wide hx-body">
-<section class="section trouver" data-tone="peach" id="trouver" aria-labelledby="trouver-titre">
-<h2 class="section-heading" id="trouver-titre"><span class="eyebrow">01 · Sur mesure</span>Affinez avec votre profil ou vos critères</h2>
-<div class="tr-tabs" role="tablist" aria-label="Façon de chercher">
-<button type="button" role="tab" id="tab-profil" class="tr-tab" aria-controls="choisir-profil" aria-selected="true">Mon profil</button>
-<button type="button" role="tab" id="tab-criteres" class="tr-tab" aria-controls="audit" aria-selected="false" tabindex="-1">Mes critères</button>
-</div>
+<!-- 01 · ACCUEIL : formulaire d'analyse en tête (façon accessibilitychecking), puis la sélection -->
+<section class="hero" id="debut" aria-labelledby="hero-titre">
+<div class="wrap">
+<p class="mono hero-tag"><span>Guide d’achat</span><span>Smartphones</span><span data-sm="edition">Novembre 2026</span></p>
+<h1 id="hero-titre">Le meilleur smartphone n’existe pas. <em>Le vôtre, si.</em></h1>
+<p class="lead">Dites ce qui compte pour vous, ou collez le lien d’un modèle repéré en boutique. On lit la fiche technique, on la traduit en français courant, et on vous dit ce que vous gagnez et ce que vous cédez.</p>
 
-<div role="tabpanel" id="choisir-profil" class="tr-panel" aria-labelledby="tab-profil">
-<p class="tr-lead">Choisissez ce qui vous ressemble.</p>
-<div class="tr-chips" id="tr-chips" role="group" aria-label="Votre besoin"></div>
-<p class="tr-intro" id="tr-intro" hidden></p>
-<div id="student-journey" hidden></div>
-<div class="tr-profile-cards">
-<div class="profile-toggle" hidden data-tone="teal" id="etudiant-toggle">
-
-<section class="section profile-section" id="etudiant"><div class="profile-header"><h3>Étudiant</h3><p class="profile-situation">Le téléphone sert du matin au soir : notes, transports, visio, réseaux. Il doit tenir sans prise et rester à jour jusqu’à la fin des études. Inutile de payer le haut de gamme : la batterie et la durée des mises à jour pèsent plus que la puissance.</p></div>
-<div class="profile-grid">
-<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Batterie 5 000 mAh ou plus</strong> : une journée de cours et de transports sans chercher une prise.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>256 Go</strong> si vous gardez photos et vidéos plusieurs années ; 128 Go suffit sinon.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>4 ans de mises à jour annoncés</strong> : pas besoin de racheter avant la fin des études.</p></div>
-<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>64 Go non extensible</strong> : plein dès la deuxième année.</p></div>
-</div></article>
-<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Batterie</span><strong>5 000 mAh+</strong><span>Stockage</span><strong>128–256 Go</strong><span>Écran</span><strong>OLED · 90–120 Hz</strong><span>Suivi</span><strong>4–5 ans annoncés</strong></div></article>
-<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Tiendra-t-il toute ma journée, et sera-t-il encore à jour dans 4 ans ? »</p></article>
-</div>
-</section>
-</div>
-<div class="profile-toggle" hidden data-tone="blue" id="professionnel-toggle">
-
-<section class="section profile-section" id="professionnel"><div class="profile-header"><h3>Professionnel</h3><p class="profile-situation">Appels, visio, mails, PDF et plans, souvent en déplacement. Une batterie qui dure, un écran lisible dehors (1 600 nits ou plus) et une puce de niveau 5 ou plus comptent plus que la puissance maximale.</p></div>
-<div class="profile-grid">
-<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Batterie 5 000 mAh ou plus</strong> : une journée d’appels et de trajets sans recharge.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Puce de niveau 5 ou plus</strong> (sur 10, repères ci-dessus) : PDF, tableurs et visio s’ouvrent sans attendre.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Écran 1 600 nits ou plus</strong> : lisible en plein soleil, sur un chantier ou en gare. Sous 1 000 nits, on le lit mal dehors.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>IP68</strong> : résiste à la poussière et aux éclaboussures.</p></div>
-</div></article>
-<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Batterie</span><strong>5 000 mAh+</strong><span>Puce</span><strong>Niveau 5 à 8 sur 10</strong><span>Écran</span><strong>1 600 nits ou plus</strong><span>Protection</span><strong>IP67/IP68</strong></div></article>
-<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Tiendra-t-il mes appels et mes déplacements, sans ramer avec mes fichiers ? »</p></article>
-</div>
-</section>
-</div>
-<div class="profile-toggle" hidden data-tone="orchid" id="gamer-toggle">
-
-<section class="section profile-section" id="gamer"><div class="profile-header"><h3>Gamer</h3><p class="profile-situation">Les jeux lourds font chauffer la puce. Un téléphone puissant mais mal refroidi ralentit au bout de 20 minutes : lisez les tests de chauffe autant que la fiche technique.</p></div>
-<div class="profile-grid">
-<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Puce de niveau 7 ou plus</strong> (sur 10) : Snapdragon 8s Gen 3 et au-dessus, Dimensity 8400 et au-dessus, Apple A16 et au-dessus.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Refroidissement documenté</strong> : les performances baissent moins après 20 à 30 minutes de jeu.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Écran 120 Hz ou plus</strong> : l’image reste fluide pendant l’action.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>12 Go de RAM</strong> : le jeu reste en mémoire quand vous changez d’appli.</p></div>
-<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>Puce puissante sans test de chauffe</strong> : les images par seconde peuvent chuter quand le téléphone chauffe.</p></div>
-</div></article>
-<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Puce</span><strong>Niveau 7 ou plus sur 10</strong><span>Refroidissement</span><strong>Test thermique favorable</strong><span>Écran</span><strong>120 Hz+</strong><span>RAM</span><strong>12 Go+</strong></div></article>
-<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Gardera-t-il ses FPS après une longue partie, ou va-t-il chauffer et ralentir ? »</p></article>
-</div>
-</section>
-</div>
-<div class="profile-toggle" hidden data-tone="coral" id="photographe-toggle">
-
-<section class="section profile-section" id="photographe"><div class="profile-header"><h3>Photo</h3><p class="profile-situation">Un bon capteur vaut plus qu’un grand nombre de mégapixels. Regardez la taille du capteur, la stabilisation optique, un vrai téléobjectif et le traitement logiciel.</p></div>
-<div class="profile-grid">
-<article class="profile-card profile-card-signal"><h4>Ce qui compte</h4><div class="signal-table signal-table-compact" role="table">
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Capteur de note 7 ou plus sur 10</strong> (1/1,56″ ou plus grand) : plus de lumière captée, surtout le soir.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>OIS</strong> (stabilisation optique) : photos nettes le soir, vidéos moins tremblées.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>Téléobjectif réel</strong> : portraits et zoom nets, contrairement à un simple recadrage.</p></div>
-<div class="signal-row" role="row"><span class="signal-plus" role="cell">+</span><p role="cell"><strong>256 Go</strong> : les photos et la vidéo 4K remplissent vite la mémoire.</p></div>
-<div class="signal-row" role="row"><span class="signal-minus" role="cell">−</span><p role="cell"><strong>Beaucoup de mégapixels sur un petit capteur</strong> : ne garantit pas de bonnes photos de nuit.</p></div>
-</div></article>
-<article class="profile-card profile-card-buy"><h4>À viser</h4><div class="buy-spec-grid"><span>Capteur</span><strong>Note 7 ou plus sur 10</strong><span>Stabilisation</span><strong>OIS</strong><span>Zoom</span><strong>Téléobjectif réel</strong><span>Stockage</span><strong>256 Go+</strong></div></article>
-<article class="profile-card profile-card-demo"><h4>La question à se poser</h4><p class="demo-caption">« Les photos de nuit, les portraits et le zoom restent-ils propres ? »</p></article>
-</div>
-<div class="profile-extra" id="a-lire-photo"><div class="profile-extra-head"><span class="eyebrow">À retenir</span><h3>Le capteur compte plus que les mégapixels</h3></div>
-<div class="sensor-demo" role="img" aria-label="Comparaison animée entre un grand capteur avec peu de gros pixels et un petit capteur avec beaucoup de pixels minuscules : chaque gros pixel reçoit bien plus de lumière">
-<svg viewBox="0 0 720 360" aria-hidden="true" focusable="false">
-<defs>
-<linearGradient id="sdBig" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a8"/><stop offset="1" stop-color="#f3b23a"/></linearGradient>
-<linearGradient id="sdSmall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff2c8"/><stop offset="1" stop-color="#f7cf6a"/></linearGradient>
-</defs>
-<g class="sd-panel">
-<text class="sd-title" x="180" y="30" text-anchor="middle">Grand capteur · 50 MP</text>
-<text class="sd-sub" x="180" y="52" text-anchor="middle">1/1,3 pouce · gros pixels</text>
-<g class="sd-rain"><circle class="sd-ph" cx="107.1" cy="80" r="4" style="--d:0.00s"/><circle class="sd-ph" cx="131.4" cy="80" r="4" style="--d:0.37s"/><circle class="sd-ph" cx="155.7" cy="80" r="4" style="--d:0.74s"/><circle class="sd-ph" cx="180.0" cy="80" r="4" style="--d:1.11s"/><circle class="sd-ph" cx="204.3" cy="80" r="4" style="--d:1.48s"/><circle class="sd-ph" cx="228.6" cy="80" r="4" style="--d:0.05s"/><circle class="sd-ph" cx="252.9" cy="80" r="4" style="--d:0.42s"/></g>
-<rect class="sd-sensor" x="75" y="118" width="210" height="150" rx="18" fill="url(#sdBig)"/>
-<rect class="sd-px is-big" x="83.0" y="124.0" width="34.0" height="30.0" rx="6.6" style="--i:0"/><rect class="sd-px is-big" x="123.0" y="124.0" width="34.0" height="30.0" rx="6.6" style="--i:1"/><rect class="sd-px is-big" x="163.0" y="124.0" width="34.0" height="30.0" rx="6.6" style="--i:2"/><rect class="sd-px is-big" x="203.0" y="124.0" width="34.0" height="30.0" rx="6.6" style="--i:3"/><rect class="sd-px is-big" x="243.0" y="124.0" width="34.0" height="30.0" rx="6.6" style="--i:4"/><rect class="sd-px is-big" x="83.0" y="160.0" width="34.0" height="30.0" rx="6.6" style="--i:5"/><rect class="sd-px is-big" x="123.0" y="160.0" width="34.0" height="30.0" rx="6.6" style="--i:6"/><rect class="sd-px is-big" x="163.0" y="160.0" width="34.0" height="30.0" rx="6.6" style="--i:7"/><rect class="sd-px is-big" x="203.0" y="160.0" width="34.0" height="30.0" rx="6.6" style="--i:8"/><rect class="sd-px is-big" x="243.0" y="160.0" width="34.0" height="30.0" rx="6.6" style="--i:9"/><rect class="sd-px is-big" x="83.0" y="196.0" width="34.0" height="30.0" rx="6.6" style="--i:10"/><rect class="sd-px is-big" x="123.0" y="196.0" width="34.0" height="30.0" rx="6.6" style="--i:11"/><rect class="sd-px is-big" x="163.0" y="196.0" width="34.0" height="30.0" rx="6.6" style="--i:12"/><rect class="sd-px is-big" x="203.0" y="196.0" width="34.0" height="30.0" rx="6.6" style="--i:13"/><rect class="sd-px is-big" x="243.0" y="196.0" width="34.0" height="30.0" rx="6.6" style="--i:14"/><rect class="sd-px is-big" x="83.0" y="232.0" width="34.0" height="30.0" rx="6.6" style="--i:15"/><rect class="sd-px is-big" x="123.0" y="232.0" width="34.0" height="30.0" rx="6.6" style="--i:16"/><rect class="sd-px is-big" x="163.0" y="232.0" width="34.0" height="30.0" rx="6.6" style="--i:17"/><rect class="sd-px is-big" x="203.0" y="232.0" width="34.0" height="30.0" rx="6.6" style="--i:18"/><rect class="sd-px is-big" x="243.0" y="232.0" width="34.0" height="30.0" rx="6.6" style="--i:19"/>
-<text class="sd-cap" x="180" y="306" text-anchor="middle">Pixels larges : beaucoup de lumière chacun</text>
-<text class="sd-cap sd-cap-strong" x="180" y="328" text-anchor="middle">→ nuit plus propre</text>
-</g>
-<g class="sd-panel">
-<text class="sd-title" x="540" y="30" text-anchor="middle">Petit capteur · 200 MP</text>
-<text class="sd-sub" x="540" y="52" text-anchor="middle">1/2,76 pouce · pixels minuscules</text>
-<g class="sd-rain"><circle class="sd-ph" cx="501.4" cy="80" r="4" style="--d:0.00s"/><circle class="sd-ph" cx="514.3" cy="80" r="4" style="--d:0.37s"/><circle class="sd-ph" cx="527.1" cy="80" r="4" style="--d:0.74s"/><circle class="sd-ph" cx="540.0" cy="80" r="4" style="--d:1.11s"/><circle class="sd-ph" cx="552.9" cy="80" r="4" style="--d:1.48s"/><circle class="sd-ph" cx="565.7" cy="80" r="4" style="--d:0.05s"/><circle class="sd-ph" cx="578.6" cy="80" r="4" style="--d:0.42s"/></g>
-<rect class="sd-sensor" x="490" y="157" width="100" height="72" rx="12" fill="url(#sdSmall)"/>
-<rect class="sd-px is-small" x="494.8" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:0"/><rect class="sd-px is-small" x="503.2" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:1"/><rect class="sd-px is-small" x="511.6" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:2"/><rect class="sd-px is-small" x="520.0" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:3"/><rect class="sd-px is-small" x="528.4" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:4"/><rect class="sd-px is-small" x="536.8" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:5"/><rect class="sd-px is-small" x="545.2" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:6"/><rect class="sd-px is-small" x="553.6" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:7"/><rect class="sd-px is-small" x="562.0" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:8"/><rect class="sd-px is-small" x="570.4" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:9"/><rect class="sd-px is-small" x="578.8" y="160.4" width="6.4" height="6.4" rx="1.4" style="--i:10"/><rect class="sd-px is-small" x="494.8" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:11"/><rect class="sd-px is-small" x="503.2" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:12"/><rect class="sd-px is-small" x="511.6" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:13"/><rect class="sd-px is-small" x="520.0" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:14"/><rect class="sd-px is-small" x="528.4" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:15"/><rect class="sd-px is-small" x="536.8" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:16"/><rect class="sd-px is-small" x="545.2" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:17"/><rect class="sd-px is-small" x="553.6" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:18"/><rect class="sd-px is-small" x="562.0" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:19"/><rect class="sd-px is-small" x="570.4" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:20"/><rect class="sd-px is-small" x="578.8" y="168.8" width="6.4" height="6.4" rx="1.4" style="--i:21"/><rect class="sd-px is-small" x="494.8" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:22"/><rect class="sd-px is-small" x="503.2" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:23"/><rect class="sd-px is-small" x="511.6" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:24"/><rect class="sd-px is-small" x="520.0" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:25"/><rect class="sd-px is-small" x="528.4" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:26"/><rect class="sd-px is-small" x="536.8" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:27"/><rect class="sd-px is-small" x="545.2" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:28"/><rect class="sd-px is-small" x="553.6" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:29"/><rect class="sd-px is-small" x="562.0" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:30"/><rect class="sd-px is-small" x="570.4" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:31"/><rect class="sd-px is-small" x="578.8" y="177.2" width="6.4" height="6.4" rx="1.4" style="--i:32"/><rect class="sd-px is-small" x="494.8" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:33"/><rect class="sd-px is-small" x="503.2" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:34"/><rect class="sd-px is-small" x="511.6" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:35"/><rect class="sd-px is-small" x="520.0" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:36"/><rect class="sd-px is-small" x="528.4" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:37"/><rect class="sd-px is-small" x="536.8" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:38"/><rect class="sd-px is-small" x="545.2" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:39"/><rect class="sd-px is-small" x="553.6" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:40"/><rect class="sd-px is-small" x="562.0" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:41"/><rect class="sd-px is-small" x="570.4" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:42"/><rect class="sd-px is-small" x="578.8" y="185.6" width="6.4" height="6.4" rx="1.4" style="--i:43"/><rect class="sd-px is-small" x="494.8" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:44"/><rect class="sd-px is-small" x="503.2" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:45"/><rect class="sd-px is-small" x="511.6" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:46"/><rect class="sd-px is-small" x="520.0" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:47"/><rect class="sd-px is-small" x="528.4" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:48"/><rect class="sd-px is-small" x="536.8" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:49"/><rect class="sd-px is-small" x="545.2" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:50"/><rect class="sd-px is-small" x="553.6" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:51"/><rect class="sd-px is-small" x="562.0" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:52"/><rect class="sd-px is-small" x="570.4" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:53"/><rect class="sd-px is-small" x="578.8" y="194.0" width="6.4" height="6.4" rx="1.4" style="--i:54"/><rect class="sd-px is-small" x="494.8" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:55"/><rect class="sd-px is-small" x="503.2" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:56"/><rect class="sd-px is-small" x="511.6" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:57"/><rect class="sd-px is-small" x="520.0" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:58"/><rect class="sd-px is-small" x="528.4" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:59"/><rect class="sd-px is-small" x="536.8" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:60"/><rect class="sd-px is-small" x="545.2" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:61"/><rect class="sd-px is-small" x="553.6" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:62"/><rect class="sd-px is-small" x="562.0" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:63"/><rect class="sd-px is-small" x="570.4" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:64"/><rect class="sd-px is-small" x="578.8" y="202.4" width="6.4" height="6.4" rx="1.4" style="--i:65"/><rect class="sd-px is-small" x="494.8" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:66"/><rect class="sd-px is-small" x="503.2" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:67"/><rect class="sd-px is-small" x="511.6" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:68"/><rect class="sd-px is-small" x="520.0" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:69"/><rect class="sd-px is-small" x="528.4" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:70"/><rect class="sd-px is-small" x="536.8" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:71"/><rect class="sd-px is-small" x="545.2" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:72"/><rect class="sd-px is-small" x="553.6" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:73"/><rect class="sd-px is-small" x="562.0" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:74"/><rect class="sd-px is-small" x="570.4" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:75"/><rect class="sd-px is-small" x="578.8" y="210.8" width="6.4" height="6.4" rx="1.4" style="--i:76"/><rect class="sd-px is-small" x="494.8" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:77"/><rect class="sd-px is-small" x="503.2" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:78"/><rect class="sd-px is-small" x="511.6" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:79"/><rect class="sd-px is-small" x="520.0" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:80"/><rect class="sd-px is-small" x="528.4" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:81"/><rect class="sd-px is-small" x="536.8" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:82"/><rect class="sd-px is-small" x="545.2" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:83"/><rect class="sd-px is-small" x="553.6" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:84"/><rect class="sd-px is-small" x="562.0" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:85"/><rect class="sd-px is-small" x="570.4" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:86"/><rect class="sd-px is-small" x="578.8" y="219.2" width="6.4" height="6.4" rx="1.4" style="--i:87"/>
-<text class="sd-cap" x="540" y="306" text-anchor="middle">Pixels minuscules : peu de lumière chacun</text>
-<text class="sd-cap sd-cap-strong" x="540" y="328" text-anchor="middle">→ la nuit dépend du logiciel</text>
-</g>
-<path class="sd-divider" d="M360 66V335"/>
-</svg>
-</div>
-<p class="profile-extra-rule">Plus le capteur est grand, plus chaque pixel reçoit de lumière : un capteur de 1/1,3″ à 50 MP peut battre un 1/2,76″ à 200 MP de nuit.</p></div>
-</section>
-</div>
-</div>
-<div class="tr-podium" id="tr-podium" aria-live="polite"><p class="tr-loading">Chargement du classement…</p></div>
-<details class="tr-reperes"><summary><span>Repères pour lire les chiffres</span><small>puces, nits, pouces, batterie</small></summary>
-<p>Les noms de puces, les nits et les pouces ressemblent à des codes. Voici comment les lire.</p>
-
-<h5 class="rp-title">Lire un nom de puce</h5>
-<div class="decode-grid">
-<figure class="decode"><figcaption>Qualcomm · Snapdragon</figcaption>
-<div class="decode-name" role="img" aria-label="Snapdragon 8 Elite Gen 5, décodé en quatre parties : marque, série, nom premium, génération">
-<div class="seg brand"><b>Snapdragon</b><i>La marque de la puce</i></div>
-<div class="seg"><b>8</b><i>La série : 8 haut de gamme, 7 milieu, 6 et 4 entrée</i></div>
-<div class="seg"><b>Elite</b><i>Le nom premium, depuis 2024</i></div>
-<div class="seg"><b>Gen 5</b><i>La génération : une de plus chaque année</i></div>
-</div><p class="decode-note">Un « s » (8s Gen 3) veut dire version allégée : un cran sous la série 8.</p></figure>
-<figure class="decode"><figcaption>MediaTek · Dimensity</figcaption>
-<div class="decode-name" role="img" aria-label="Dimensity 9500, décodé en quatre parties : marque, série, génération, variante">
-<div class="seg brand"><b>Dimensity</b><i>La marque de la puce</i></div>
-<div class="seg"><b>9</b><i>La série : 9 haut de gamme, 8 milieu haut, 7 milieu, 6 entrée</i></div>
-<div class="seg"><b>5</b><i>La génération : 9300, 9400, 9500…</i></div>
-<div class="seg"><b>00</b><i>« + » ou « Ultra » après le nombre : version poussée</i></div>
-</div></figure>
-<figure class="decode"><figcaption>Samsung · Exynos</figcaption>
-<div class="decode-name" role="img" aria-label="Exynos 2600, décodé en quatre parties : marque, série, génération, variante">
-<div class="seg brand"><b>Exynos</b><i>La marque de la puce</i></div>
-<div class="seg"><b>2</b><i>La série : 2 haut de gamme, 1 milieu et entrée</i></div>
-<div class="seg"><b>6</b><i>La génération : 2400, 2500, 2600 (2024, 2025, 2026)</i></div>
-<div class="seg"><b>00</b><i>Variante du même modèle</i></div>
-</div></figure>
-<figure class="decode"><figcaption>Apple · iPhone</figcaption>
-<div class="decode-name" role="img" aria-label="A20 Pro, décodé en trois parties : famille, génération, version">
-<div class="seg"><b>A</b><i>La famille de puces des iPhone</i></div>
-<div class="seg"><b>20</b><i>La génération : A18, A19, A20 (2024, 2025, 2026)</i></div>
-<div class="seg"><b>Pro</b><i>La version des iPhone Pro : plus de puissance graphique</i></div>
-</div></figure>
-<figure class="decode"><figcaption>Google · Pixel</figcaption>
-<div class="decode-name" role="img" aria-label="Tensor G5, décodé en deux parties : marque, génération">
-<div class="seg brand"><b>Tensor</b><i>La marque de la puce</i></div>
-<div class="seg"><b>G5</b><i>La génération : G3 (Pixel 8), G4 (Pixel 9), G5 (Pixel 10)</i></div>
-</div></figure>
-</div>
-<p class="rp-rule">Dans une même famille, plus la génération est grande, plus la puce est récente. Pour comparer des marques entre elles, on utilise la note de 1 à 10.</p>
-
-<h5 class="rp-title">La note de puce, de 1 à 10</h5>
-<div class="rp-scale">
-<ol class="rp-cells" aria-label="Échelle de 1 à 10"><li class="g1">1</li><li class="g1">2</li><li class="g1">3</li><li class="g2">4</li><li class="g2">5</li><li class="g2">6</li><li class="g3">7</li><li class="g3">8</li><li class="g4">9</li><li class="g4">10</li></ol>
-<div class="rp-bands">
-<div class="g1"><b>1 à 3</b><span>Entrée de gamme</span><i>Helio G99, Snapdragon 685</i></div>
-<div class="g2"><b>4 à 6</b><span>Milieu de gamme</span><i>Snapdragon 6 Gen 3, Exynos 1580, Snapdragon 7 Gen 3</i></div>
-<div class="g3"><b>7 à 8</b><span>Haut de gamme</span><i>Snapdragon 8s Gen 3, Dimensity 8500, Tensor G5, Apple A17 Pro</i></div>
-<div class="g4"><b>9 à 10</b><span>Sommet</span><i>Snapdragon 8 Elite, Exynos 2600, Apple A19 Pro et A20 Pro</i></div>
-</div></div>
-
-<h5 class="rp-title">Capteur photo : plus il est grand, plus la note monte</h5>
-<div class="rp-sensor">
-<div class="rp-sensor-draw" role="img" aria-label="Cinq rectangles à l’échelle : un capteur d’un pouce, puis 1/1,3, 1/1,56, 1/2 et 1/2,76 pouce, de plus en plus petits"><span class="s s10"></span><span class="s s8"></span><span class="s s7"></span><span class="s s5"></span><span class="s s3"></span></div>
-<ul class="rp-sensor-list">
-<li><b>1″</b><span>Note 10 : le sommet des photophones</span></li>
-<li><b>1/1,3″</b><span>Note 8 : Pixel 10 Pro, Galaxy S26 Ultra</span></li>
-<li><b>1/1,56″</b><span>Note 7 : Galaxy A56, OnePlus 15</span></li>
-<li><b>1/2″</b><span>Note 5 : Pixel 10, POCO X6</span></li>
-<li><b>1/2,76″</b><span>Note 3 : Galaxy A17 5G, Redmi 15C</span></li>
-</ul></div>
-<p class="rp-rule">Plus le second chiffre est petit, plus le capteur est grand : 1/1,3″ est bien plus grand que 1/2,8″.</p>
-
-<h5 class="rp-title">Luminosité de l’écran</h5>
-<div class="rp-bars">
-<div class="rp-bar" style="--w:24%"><b>600 nits</b><span class="bar"></span><i>Lisible à l’ombre</i></div>
-<div class="rp-bar" style="--w:40%"><b>1 000 nits</b><span class="bar"></span><i>Correct dehors, sauf sous un soleil fort</i></div>
-<div class="rp-bar" style="--w:64%"><b>1 600 nits</b><span class="bar"></span><i>Lisible en plein soleil</i></div>
-<div class="rp-bar" style="--w:100%"><b>2 500 nits et plus</b><span class="bar"></span><i>Très lumineux</i></div>
-</div>
-
-<h5 class="rp-title">Batterie</h5>
-<div class="rp-bars">
-<div class="rp-bar" style="--w:67%"><b>4 000 mAh</b><span class="bar"></span><i>Une journée d’usage normal</i></div>
-<div class="rp-bar" style="--w:83%"><b>5 000 mAh</b><span class="bar"></span><i>La norme : une bonne journée, parfois plus</i></div>
-<div class="rp-bar" style="--w:100%"><b>6 000 mAh et plus</b><span class="bar"></span><i>Plus d’une journée, téléphone plus lourd</i></div>
-</div>
-</details>
-<p class="tr-next">Aucun n’est le meilleur pour tout le monde. <a href="#audit" data-open-tab="audit">Affinez avec vos propres critères →</a></p>
-</div>
-
-<div role="tabpanel" id="audit" class="tr-panel" aria-labelledby="tab-criteres" hidden>
-<p class="tr-lead">Six questions simples, dans l’ordre que vous voulez. Vous pouvez en laisser de côté : le classement se met à jour à chaque choix.</p>
-<div class="audit-board audit-board-interactive" data-audit="" id="purchase-audit">
-<article class="audit-card" data-audit-card="price"><button aria-expanded="false" aria-controls="quiz-price" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><svg viewBox="0 0 800 130" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><rect width="800" height="130" fill="#2b2e28"/><rect x="470" y="86" width="52" height="30" rx="6" fill="#4a4d45"/><rect x="530" y="66" width="52" height="50" rx="6" fill="#5f6257"/><rect x="590" y="42" width="52" height="74" rx="6" fill="#8d907f"/><rect class="sq-charge" x="650" y="16" width="52" height="100" rx="6" fill="#ff651b"/><circle cx="740" cy="50" r="22" fill="#ffc94d" stroke="#20221e" stroke-width="4"/><text x="740" y="60" text-anchor="middle" font-size="28" font-weight="800" fill="#20221e">€</text></svg></span><span class="audit-no">01</span><span class="audit-card-copy"><strong>Prix</strong><small>Bas prix, entrée, milieu ou haut de gamme</small></span><span class="audit-status">À répondre</span><span class="audit-chevron">⌄</span></button><div id="quiz-price" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="screen"><button aria-expanded="false" aria-controls="quiz-screen" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-1.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">02</span><span class="audit-card-copy"><strong>Écran</strong><small>Fluidité, luminosité, type de dalle</small></span><span class="audit-status">À répondre</span><span class="audit-chevron">⌄</span></button><div id="quiz-screen" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="battery"><button aria-expanded="false" aria-controls="quiz-battery" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><svg viewBox="0 0 800 130" preserveAspectRatio="xMaxYMid slice" aria-hidden="true"><rect width="800" height="130" fill="#2b2e28"/><rect x="470" y="14" width="290" height="102" rx="22" fill="#171916" stroke="#8d907f" stroke-width="4"/><rect x="494" y="38" width="170" height="54" rx="10" fill="none" stroke="#fff" stroke-width="4" opacity=".85"/><rect x="666" y="54" width="9" height="22" rx="3" fill="#fff" opacity=".85"/><rect class="sq-charge" x="501" y="45" width="156" height="40" rx="6" fill="#ff651b"/><path class="sq-bolt" d="m722 32-20 34h16l-6 32 26-40h-16z" fill="#ffb38c"/></svg></span><span class="audit-no">03</span><span class="audit-card-copy"><strong>Batterie</strong><small>Capacité et vitesse de recharge</small></span><span class="audit-status">À répondre</span><span class="audit-chevron">⌄</span></button><div id="quiz-battery" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="performance"><button aria-expanded="false" aria-controls="quiz-performance" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/smartphones-photo.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">04</span><span class="audit-card-copy"><strong>Performance</strong><small>Puce, jeux, multitâche</small></span><span class="audit-status">À répondre</span><span class="audit-chevron">⌄</span></button><div id="quiz-performance" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="photo"><button aria-expanded="false" aria-controls="quiz-photo" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-2.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">05</span><span class="audit-card-copy"><strong>Photo</strong><small>Capteur, zoom, stabilisation</small></span><span class="audit-status">À répondre</span><span class="audit-chevron">⌄</span></button><div id="quiz-photo" class="audit-panel" hidden=""></div></article>
-<article class="audit-card" data-audit-card="longevity"><button aria-expanded="false" aria-controls="quiz-longevity" class="audit-card-trigger" type="button"><span class="sq-family-photo" aria-hidden="true"><img src="assets/editorial/quiz-phone-3.webp" alt="" width="1000" height="750" loading="lazy" decoding="async"></span><span class="audit-no">06</span><span class="audit-card-copy"><strong>Durée de vie</strong><small>Mises à jour, réparation, étanchéité</small></span><span class="audit-status">À répondre</span><span class="audit-chevron">⌄</span></button><div id="quiz-longevity" class="audit-panel" hidden=""></div></article>
-</div>
-<div aria-live="polite" class="audit-result audit-result-live"><strong id="audit-count">0 réponse sur 6</strong><span id="audit-message">Une question peut rester sans réponse.</span><button type="button" class="btn audit-see-btn" id="audit-see-results" hidden>Voir ma sélection →</button><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button></div>
-<div class="audit-next-step"><p>Pour acheter : trouvez le meilleur prix sur <strong>Idealo</strong>, puis choisissez votre marchand.</p><p class="audit-learn">Un terme vous échappe ? <a href="smartphones-approfondir.html">Chaque critère est expliqué ici.</a></p></div>
-<div aria-live="polite" class="criteria-recommendations" id="criteria-recommendations">
-<div class="criteria-recommendations-head">
-<div><span class="eyebrow">Votre sélection</span><h3>Les modèles qui correspondent à vos réponses</h3><p>Du plus proche de vos choix au moins proche.</p></div><button type="button" class="audit-reset-btn" data-audit-reset>↺ Recommencer</button>
-</div>
-<p class="match-legend">Pour chaque critère : la valeur <b>du modèle</b>, comparée à <b>votre choix</b>. <span class="lg lg-ok">✓ comme votre choix</span> <span class="lg lg-up">▲ au-dessus</span> <span class="lg lg-low">▼ en dessous</span></p>
-<div class="criteria-recommendation-grid" id="scoring-results"></div>
-<p class="criteria-recommendations-note" id="scoring-status">Vos premiers modèles apparaîtront ici dès votre premier choix.</p>
-</div>
-</div>
-
-<div id="analyser-modele" class="analyseur-bloc">
-<article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
-<h3>Analyser un téléphone</h3>
+<div id="analyser-modele" class="scan">
+<article class="sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
 <form class="model-analyzer-form" id="phone-analyzer-form">
-<p>Collez un lien produit ou saisissez un modèle, par exemple « POCO F9 Ultra ». Le guide recherche ensuite ses caractéristiques dans le catalogue, PhonesData, Kimovil et GSMArena.</p>
-<label class="visually-hidden" for="phone-product-url">Lien produit ou nom du modèle</label>
-<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="Collez un lien ou saisissez un modèle" required="" type="text"/><button class="btn" type="submit">Analyser</button></div><div class="v88-platform-choice" role="group" aria-label="Écosystème souhaité"><span>Écosystème</span><button type="button" class="is-active" data-platform="auto" aria-pressed="true">Peu importe</button><button type="button" data-platform="android" aria-pressed="false">Android</button><button type="button" data-platform="ios" aria-pressed="false">iPhone / iOS</button></div>
+<label class="scan-label mono" for="phone-product-url">Un modèle en tête ? Analysez-le</label>
+<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="Lien ou nom : « Galaxy S25 »" required="" type="text"/><button class="btn" type="submit">Analyser ce modèle</button></div>
+<p class="scan-note mono">Gratuit · Sans compte · Résultat en quelques secondes</p>
+<div class="v88-platform-choice" role="group" aria-label="Écosystème souhaité"><span>Écosystème</span><button type="button" class="is-active" data-platform="auto" aria-pressed="true">Peu importe</button><button type="button" data-platform="android" aria-pressed="false">Android</button><button type="button" data-platform="ios" aria-pressed="false">iPhone / iOS</button></div>
 </form>
 <div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
 </article>
-<p class="gc-bridge" hidden><a href="#conseiller">Comparer à mes conseils ↑</a></p>
-<details class="deep-dive fiche-fold" id="plus-fiche-produit"><summary><span class="deep-num">3 étapes</span><span class="deep-title">Où lire les caractéristiques sur une fiche produit</span><span class="deep-sub">Un petit jeu guidé · environ 2 minutes</span><span class="deep-cta" aria-hidden="true"></span></summary>
-<div class="fiche-layout">
-<div class="amazon-guide" data-amazon-guide>
-  <div class="amazon-device-wrap">
-    <div class="amazon-device" aria-label="Simulation interactive d’une fiche Amazon mobile">
-      <div class="amazon-device-screen">
-        <div class="amazon-top"><span class="amazon-brand">amazon</span><span class="amazon-search">Rechercher Amazon.fr</span><span class="amazon-cart">🛒</span></div>
-        <div class="amazon-subnav"><span>☰</span><span>Livraison à votre adresse</span><span>Compte</span></div>
-        <div class="amazon-page">
-          <div class="amazon-step amazon-step-1 is-active">
-            <div class="amazon-breadcrumb">Amazon.fr › Téléphones</div>
-            <div class="amazon-result"><div class="amazon-thumb"><div class="amazon-thumb-phone"></div></div><div><div class="amazon-title">Samsung Galaxy S25 — 256 Go, écran AMOLED, 5G</div><div><span class="amazon-stars">★★★★★</span><span class="amazon-reviews">4,5 · 1 284 avis</span></div><div class="amazon-price">699,99 €</div><div class="amazon-delivery">Livraison rapide · En stock</div><span class="amazon-btn">Voir le produit</span></div></div>
-            <div class="amazon-highlight"></div>
-          </div>
-          <div class="amazon-step amazon-step-2">
-            <div class="amazon-breadcrumb">Accueil › Smartphone › Fiche produit</div>
-            <div class="amazon-product-hero"><div class="amazon-product-image"><div class="amazon-big-phone"></div></div><div><div class="amazon-title">Samsung Galaxy S25 5G</div><div><span class="amazon-stars">★★★★★</span><span class="amazon-reviews">4,5 · 1 284 avis</span></div><ul class="amazon-bullets"><li>Écran AMOLED 6,2 pouces</li><li>Batterie 4 000 mAh</li><li>256 Go de stockage</li><li>5G, Wi-Fi, NFC</li></ul><span class="amazon-btn">Ajouter au panier</span></div></div>
-            <div class="amazon-highlight"></div>
-          </div>
-          <div class="amazon-step amazon-step-3">
-            <div class="amazon-breadcrumb">Fiche produit › Informations</div>
-            <div class="amazon-title">Spécifications du produit</div>
-            <div class="amazon-specs"><div class="amazon-specs-head">Informations sur le produit</div><div class="amazon-spec-row"><b>Système</b><span>Android</span></div><div class="amazon-spec-row"><b>Processeur</b><span>Snapdragon</span></div><div class="amazon-spec-row"><b>Stockage</b><span>256 Go</span></div><div class="amazon-spec-row"><b>Écran</b><span>AMOLED · 120 Hz</span></div><div class="amazon-spec-row"><b>Batterie</b><span>4 000 mAh</span></div><div class="amazon-spec-row"><b>Réseau</b><span>5G · Wi-Fi · NFC</span></div></div>
-            <div class="amazon-highlight"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="amazon-guide-copy">
-    <span class="eyebrow">SIMULATION INTERACTIVE</span>
-    <h3>Où chercher les informations utiles ?</h3>
-    <p>Au lieu d’une capture fixe, cette fiche reproduit les trois endroits à regarder sur une page mobile de vendeur. Le contenu est une démonstration : il ne s’agit pas d’une connexion à Amazon.</p>
-    <ol class="amazon-guide-steps">
-      <li class="is-active" data-amazon-step="0" tabindex="0"><i>1</i><div><strong>Trouvez le bon modèle</strong><span>Nom exact, stockage, prix et note. Ne vous fiez pas seulement à la photo.</span></div></li>
-      <li data-amazon-step="1" tabindex="0"><i>2</i><div><strong>Ouvrez la fiche</strong><span>Les points forts donnent une première idée, mais ils ne remplacent pas les spécifications.</span></div></li>
-      <li data-amazon-step="2" tabindex="0"><i>3</i><div><strong>Descendez aux spécifications</strong><span>C’est ici que vous relevez les cinq informations utiles.</span></div></li>
-    </ol>
-    <div class="amazon-guide-hint"><span class="pulse-dot"></span><span>Le repère orange montre où regarder.</span></div>
-    <button class="btn amazon-guide-continue" type="button" data-amazon-next>Étape suivante →</button>
-  </div>
 </div>
-<div id="amazon-characteristics-target" class="amazon-guide-target"></div>
-<article class="fiche-reading-card">
-<h3>Les cinq infos à repérer</h3>
-<div class="reading-list">
-<div><strong>Écran</strong><span>Taille, type de dalle (OLED ou LCD), fréquence en Hz, luminosité.</span></div>
-<div><strong>Batterie</strong><span>Les mAh donnent la capacité, les watts la vitesse de recharge. La durée réelle se lit dans les tests.</span></div>
-<div><strong>Performance</strong><span>La puce calcule, la RAM garde les applis ouvertes, le stockage conserve vos fichiers.</span></div>
-<div><strong>Photo</strong><span>La taille du capteur, la stabilisation, le téléobjectif. Les mégapixels viennent après.</span></div>
-<div><strong>Durée de vie</strong><span>Années de mises à jour, batterie remplaçable, réparabilité : c’est ce qui décide de la durée de vie.</span></div>
+
+<p class="hero-next">Pas de modèle en tête ? <a href="#selection">Voir la sélection du mois ↓</a> <a href="#conseiller">Choisir selon mes priorités ↓</a></p>
 </div>
-</article>
+</section>
+
+<!-- 02 · SÉLECTION DU MOIS : grands visuels pleine largeur à faire défiler (façon huawei.com) -->
+<section class="stage" id="selection" aria-labelledby="selection-titre" aria-roledescription="carrousel">
+<div class="wrap stage-head">
+<p class="mono kicker">Sélection · <span data-sm="mois">novembre 2026</span></p>
+<h2 id="selection-titre">Quatre téléphones. <em>Quatre bonnes raisons.</em></h2>
+</div>
+<div class="stage-track" id="sm-slides" tabindex="0" aria-label="Sélection du mois, à faire défiler"><p class="stage-wait wrap">Chargement de la sélection…</p></div>
+<div class="wrap stage-ctl"><div class="stage-dots" id="sm-dots" role="group" aria-label="Choisir une diapositive"></div><div class="stage-arrows"><button type="button" class="sq" data-slide="-1" aria-label="Diapositive précédente">←</button><button type="button" class="sq" data-slide="1" aria-label="Diapositive suivante">→</button></div></div>
+</section>
+
+<!-- 03 · UN CHIFFRE (façon accessibilitychecking) -->
+<section class="bignum" aria-labelledby="bignum-titre">
+<div class="wrap">
+<p class="mono kicker">Le chiffre à retenir</p>
+<p class="bignum-n" id="sm-ecart" aria-hidden="true">×20</p>
+<h2 id="bignum-titre" class="bignum-t">d’écart de prix entre le moins cher et le plus cher de nos <span data-sm="n">146</span> fiches.</h2>
+<p class="bignum-p">Le plus cher n’est pas vingt fois meilleur pour autant. C’est pour cela que le guide ne classe jamais « au meilleur téléphone », mais au plus compatible avec <em>votre</em> besoin et <em>votre</em> budget.</p>
+<p class="mono note"><span data-sm="bas">90 €</span> → <span data-sm="haut">1 800 €</span> · prix indicatifs relevés en France le <span data-sm="date">3 nov. 2026</span>, à vérifier avant d’acheter.</p>
+</div>
+</section>
+
+<!-- 04 · MANUEL D'ACHAT : le moteur de recommandation, en trois étapes (façon crox.framer.website/process) -->
+<section class="manual" id="conseiller" aria-labelledby="manuel-titre">
+<div class="wrap">
+<header class="manual-head">
+<p class="mono kicker">Manuel d’achat · Rév. <span data-sm="rev">11/2026</span> · 3 réglages / 1 verdict</p>
+<h2 id="manuel-titre">Trois réglages. <em>Un verdict argumenté.</em></h2>
+<p class="lead">Aucune idée de ce qu’il vous faut ? Le rapport ci-dessous commence par la sélection du mois. Choisissez une priorité, un budget, et il se recalcule sous vos yeux.</p>
+</header>
+
+<ol class="rail" id="sm-rail" aria-label="Les trois étapes"><li data-step="1"><b>01</b><span>Priorité</span></li><li data-step="2"><b>02</b><span>Budget</span></li><li data-step="3"><b>03</b><span>Rapport</span></li></ol>
+
+<div class="step" id="choisir-profil">
+<h3 class="step-t"><b class="mono">01</b> Ce qui compte le plus pour vous</h3>
+<div class="prio" id="sm-prio" role="radiogroup" aria-label="Priorité principale"></div>
+</div>
+
+<div class="step" id="sm-step-budget">
+<h3 class="step-t"><b class="mono">02</b> Votre budget maximum</h3>
+<div class="chips" id="sm-budget" role="radiogroup" aria-label="Budget maximum"></div>
+</div>
+
+<div id="audit" class="step">
+<details class="criteria" id="purchase-audit">
+<summary><span><b class="mono">+</b> Mes critères</span><small>priorité secondaire, écosystème, marque</small></summary>
+<div class="criteria-body">
+<fieldset><legend class="mono">Et aussi, si possible</legend><div class="chips" id="sm-sec" role="radiogroup" aria-label="Priorité secondaire"></div></fieldset>
+<fieldset><legend class="mono">Écosystème</legend><div class="chips" id="sm-os" role="radiogroup" aria-label="Écosystème"></div></fieldset>
+<label class="sel"><span class="mono">Marque</span><select id="sm-marque"><option value="">Toutes les marques</option></select></label>
+<p class="micro">Vos réglages restent sur votre appareil : rien n’est envoyé.</p>
 </div>
 </details>
 </div>
-</section>
 
-<section class="section" data-tone="amber" id="faq" aria-labelledby="faq-titre">
-<h2 class="section-heading" id="faq-titre"><span class="eyebrow">02 · Questions</span>Les questions qu’on se pose</h2>
-<details class="st-fold"><summary><span>Comment est calculé le score de compatibilité ?</span></summary><p>Chaque critère de la fiche technique (processeur, écran, batterie, recharge, photo, mémoire et stockage, résistance, mises à jour, prix) reçoit une valeur de 0 à 1. Le score est la moyenne de ces valeurs, pondérée selon ce qui compte pour vous (batterie, photo, jeu, prix…). Ce n’est pas une note de test : c’est une estimation à partir des caractéristiques.</p></details>
-<details class="st-fold"><summary><span>Que se passe-t-il quand une donnée manque ?</span></summary><p>Elle n’est jamais comptée comme un défaut : le critère vaut la moyenne et la carte du modèle l’indique dans ses limites.</p></details>
-<details class="st-fold"><summary><span>Les prix sont-ils vérifiés ?</span></summary><p>Non. Ce sont des prix indicatifs relevés sur le marché, avec un lien Idealo pour comparer. Vérifiez le prix et la disponibilité en France avant d’acheter.</p></details>
-<details class="st-fold"><summary><span>Une grosse batterie veut-elle dire une longue autonomie ?</span></summary><p>Pas forcément : la capacité (mAh) donne la taille du réservoir, pas la durée. La puce et l’écran décident de la vitesse à laquelle il se vide. Notre score s’appuie sur la fiche, pas sur une mesure de durée.</p></details>
-<details class="st-fold"><summary><span>Mon modèle n’est pas dans la liste : que faire ?</span></summary><p>Utilisez « J’ai un modèle » dans « Sur mesure » : l’analyseur lit sa fiche. « Mes critères » classe ensuite les modèles du catalogue selon vos besoins.</p></details>
-</section>
-
-<section class="section sources-list" data-tone="orchid" id="sources" aria-labelledby="sources-titre">
-<h2 class="section-heading" id="sources-titre"><span class="eyebrow">03 · Aller plus loin</span>Comprendre une fiche, vérifier nos sources</h2>
-<p class="section-lead"><a class="hx-link" href="smartphones-approfondir.html">Ce qui se cache derrière les chiffres d’une fiche technique →</a></p>
-<details class="src-fold"><summary>Sources utilisées</summary><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></details>
-</section>
-
+<div class="step step-report" id="rapport" aria-live="polite" aria-labelledby="rapport-titre">
+<h3 class="step-t"><b class="mono">03</b> <span id="rapport-titre">Votre rapport</span></h3>
+<div id="sm-report"><p class="stage-wait">Calcul du rapport…</p></div>
 </div>
 </div>
+</section>
+
+<!-- 05 · PAR GAMME : cartes verticales (façon « À la une » de huawei.com) -->
+<section class="gammes" id="gammes" aria-labelledby="gammes-titre">
+<div class="wrap">
+<p class="mono kicker">À la une · par gamme de prix</p>
+<h2 id="gammes-titre">Le meilleur choix <em>dans votre gamme.</em></h2>
+</div>
+<div class="gammes-track" id="sm-gammes" tabindex="0" aria-label="Choix par gamme de prix, à faire défiler"></div>
+</section>
+
+<!-- 06 · CINQ REPÈRES POUR LIRE UNE FICHE (façon « quality gates » de Crox) -->
+<section class="reperes" id="reperes" aria-labelledby="reperes-titre">
+<div class="wrap">
+<p class="mono kicker">Lire une fiche technique · 5 repères</p>
+<h2 id="reperes-titre">Cinq lignes à lire. <em>Le reste est du marketing.</em></h2>
+<ol class="gates">
+<li><b class="mono">01</b><h3>Écran</h3><p><span class="mono">À lire</span>Le type de dalle (OLED = vrais noirs), la fréquence en Hz (90 à 120 pour la fluidité), la luminosité (1 600 nits pour le plein soleil).</p><p class="trap"><span class="mono">Le piège</span>Plus de pouces ne veut pas dire plus net.</p></li>
+<li><b class="mono">02</b><h3>Batterie</h3><p><span class="mono">À lire</span>La capacité en mAh et la puissance de charge en watts. Les deux, pas l’une sans l’autre.</p><p class="trap"><span class="mono">Le piège</span>Les mAh sont la taille du réservoir, pas la durée. La puce et l’écran décident de la vitesse à laquelle il se vide.</p></li>
+<li><b class="mono">03</b><h3>Performance</h3><p><span class="mono">À lire</span>Le nom de la puce : la marque, la série (8 haut de gamme, 6 et 4 entrée de gamme) et la génération.</p><p class="trap"><span class="mono">Le piège</span>Une puce très puissante sans refroidissement documenté ralentit au bout de vingt minutes de jeu.</p></li>
+<li><b class="mono">04</b><h3>Photo</h3><p><span class="mono">À lire</span>La taille du capteur, la stabilisation optique (OIS), la présence d’un vrai téléobjectif.</p><p class="trap"><span class="mono">Le piège</span>Les mégapixels ne font pas la qualité : un grand capteur à 50 MP bat souvent un petit à 200 MP de nuit.</p></li>
+<li><b class="mono">05</b><h3>Durée de vie</h3><p><span class="mono">À lire</span>Les années de mises à jour annoncées, la résistance à l’eau (IP68), le stockage.</p><p class="trap"><span class="mono">Le piège</span>Une durée de suivi non publiée est une information manquante, pas une garantie.</p></li>
+</ol>
+<p class="more"><a class="lnk" href="smartphones-approfondir.html">Ce qui se cache derrière les chiffres d’une fiche →</a></p>
+</div>
+</section>
+
+<!-- 07 · CE QU'ON NE VOUS VEND PAS (façon accessibilitychecking) -->
+<section class="versus" aria-labelledby="versus-titre">
+<div class="wrap">
+<p class="mono kicker">Ce qu’on ne fait pas</p>
+<h2 id="versus-titre">La partie dont personne ne parle <em>en page d’accueil.</em></h2>
+<div class="versus-grid">
+<div class="vs vs-no"><h3 class="mono">Les comparateurs classiques</h3><ul><li>Classent au plus offrant</li><li>Donnent un score magique, sans l’expliquer</li><li>Comptent une donnée manquante comme un défaut</li><li>Cachent les compromis</li></ul></div>
+<div class="vs vs-yes"><h3 class="mono">Guide·Achat</h3><ul><li>Ne vend rien et n’est pas rémunéré pour classer un modèle</li><li>Explique chaque score, critère par critère</li><li>Donne à une donnée manquante la valeur moyenne : ni bonus, ni malus</li><li>Montre toujours « vous gagnez » et « vous cédez » côte à côte</li></ul></div>
+</div>
+<p class="micro">Le score est calculé d’après la fiche technique du fabricant. Ce n’est ni un test en main, ni une mesure d’autonomie.</p>
+</div>
+</section>
+
+<!-- 08 · QUESTIONS -->
+<section class="faq" id="faq" aria-labelledby="faq-titre">
+<div class="wrap">
+<p class="mono kicker">Questions fréquentes</p>
+<h2 id="faq-titre">Ce qu’on nous demande <em>le plus.</em></h2>
+<div class="faq-list">
+<details><summary>Comment est calculé le score de compatibilité ?</summary><p>Chaque critère de la fiche (processeur, écran, batterie, recharge, photo, mémoire et stockage, résistance, mises à jour, prix) reçoit une valeur de 0 à 1. Le score est la moyenne de ces valeurs, pondérée selon votre priorité. C’est une estimation d’après la fiche, pas une note de test.</p></details>
+<details><summary>Que se passe-t-il quand une donnée manque ?</summary><p>Elle n’est jamais comptée comme un défaut : le critère vaut la moyenne, et le rapport nomme l’information manquante dans « vous cédez ».</p></details>
+<details><summary>Les prix sont-ils vérifiés ?</summary><p>Non. Ce sont des prix indicatifs relevés sur le marché, avec un lien Idealo pour comparer les offres. Vérifiez le prix et la disponibilité en France avant d’acheter.</p></details>
+<details><summary>Une grosse batterie veut-elle dire une longue autonomie ?</summary><p>Pas forcément : la capacité (mAh) donne la taille du réservoir, pas la durée. La puce et l’écran décident de la vitesse à laquelle il se vide. Notre score s’appuie sur la fiche, pas sur une mesure de durée.</p></details>
+<details><summary>Mon modèle n’est pas dans la liste : que faire ?</summary><p>Collez son lien, ou tapez son nom, dans l’analyseur en haut de page : il lit la fiche et l’explique.</p></details>
+</div>
+<details class="src"><summary>Sources utilisées</summary><ul><li><a href="https://www.samsung.com/fr/smartphones/" rel="noopener" target="_blank">Samsung : fiches techniques officielles</a></li><li><a href="https://www.apple.com/fr/iphone/" rel="noopener" target="_blank">Apple : fiches techniques officielles</a></li><li><a href="https://www.mi.com/fr/phone/" rel="noopener" target="_blank">Xiaomi : fiches techniques officielles</a></li><li><a href="https://www.kimovil.com/fr/" rel="noopener" target="_blank">Kimovil : comparaison de caractéristiques</a></li><li><a href="https://www.idealo.fr/cat/19116/smartphones.html" rel="noopener" target="_blank">Idealo : comparaison de prix</a></li></ul></details>
+</div>
+</section>
+
+<!-- 09 · APPEL FINAL -->
+<section class="final" aria-labelledby="final-titre">
+<div class="wrap">
+<h2 id="final-titre">Un modèle en tête, <em>ou une priorité ?</em> Commencez par là.</h2>
+<div class="final-cta"><a class="btn btn-lime" href="#debut" data-focus-scan>Analyser un modèle</a><a class="btn btn-line" href="#conseiller">Choisir selon mes priorités</a></div>
+</div>
+</section>
+
 </main>
 <footer class="site-footer">
 <div class="footer-inner">
@@ -368,34 +216,16 @@ l=p==="auto"?"fr":p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-
 <script src="phone-analyzer/spec-insights.js"></script>
 <script src="phone-analyzer/spec-score.js"></script>
 <script src="phone-analyzer/ui.js"></script>
-<script src="assets/js/audit-visuals.js"></script>
-<script src="assets/js/visuals-extra.js"></script>
-<script src="assets/js/smartphone-quiz-art.js"></script>
-<script src="assets/js/smartphone-quiz.js"></script>
 <script src="assets/js/site-tools.js"></script>
 <script src="assets/js/scoring-engine.js"></script>
 <script src="assets/js/profiles.js"></script>
-<script src="assets/js/student-recommendations.js"></script>
 <script src="assets/js/smartphones-compat.js"></script>
 <script src="assets/js/smartphones-scoring.js"></script>
-<script src="assets/js/site-motion.js"></script>
-<script src="assets/js/visual-pedagogy.js"></script>
 <script src="assets/js/theme.js"></script>
-<script src="assets/js/quiz-usage.js"></script>
-<script src="assets/js/progression-reveal.js"></script>
-<script src="assets/js/glossaire-hover.js"></script>
-<script src="assets/js/comparateur-visual.js"></script>
-<script src="assets/js/concept-visuals.js"></script>
-<script src="assets/js/site-extras.js"></script>
 <script src="assets/js/category-menu.js"></script>
-<script src="assets/js/amazon-guide.js"></script>
-<script src="assets/js/student-journey.js" defer></script>
-<script src="assets/js/smartphones-trouver.js" defer></script>
 <script src="assets/js/v88-platform.js" defer></script>
-<script src="assets/js/category-page.js" defer></script>
 <script src="assets/js/actualites.js" defer></script>
+<script src="assets/js/smartphones-page.js" defer></script>
 <script src="assets/js/i18n.js" defer></script>
-<script id="sp-boot">(function(){var c=document.getElementById("conseiller");if(c)c.hidden=false;["smartphones-demos","smartphones-conseiller"].forEach(function(n){var e=document.createElement("script");e.src="assets/js/"+n+".js";e.async=false;document.body.appendChild(e)})})()</script>
 </body>
 </html>
-

@@ -17,9 +17,10 @@ Inspirations : accessibilitychecking.org (hiérarchie, explications directes), c
 ## Validation
 `npm test` ; `npm run smartphones:conseiller-test` (360, 390, 768 et 1280 px : sélection du mois, rayons, priorité, secondaire, budget, barre du bas, questionnaire, analyseur, débordements).
 
-## Refonte graphique mobile (novembre 2026, 2e passe)
-Ancien habillage supprimé (fenêtres « .app », ombres décalées, jaune/noir à angles droits, 11 feuilles CSS). Nouveau : `assets/css/smartphones.css` + `smartphones-art.css`.
-- **Langage visuel** : fond gris clair à pastilles (dots), cartes blanches très arrondies, un bleu d'action, le jaune de la marque en surligneur, panneaux de nuit sombres (démonstrations, analyseur), titres Plus Jakarta Sans 800, sections numérotées façon « process » (01, 02, 03).
-- **Conservés à la demande** : le fond à pastilles, et la barre du bas « Analyser | Mes critères » (flottante, arrondie).
-- **Parcours** : inchangé (sélection du mois pour qui n'a pas d'idée, priorités + budget pour affiner, analyseur, questionnaire « Mes critères »), amélioré visuellement : jauge circulaire de compatibilité, tuiles de priorités, rayons par gamme qui défilent.
-- Mode sombre complet, 360 px à 1280 px, mouvement réduit respecté. Les textes restent en français (traductions par DeepL).
+## Reconstruction complète de la page (novembre 2026, 3e passe)
+Tout l'ancien habillage et l'ancienne interface ont été supprimés (conseiller, démonstrations, questionnaire, parcours profil, 14 feuilles CSS, 15 scripts, leurs tests). La page est réécrite de zéro, avec trois références seulement : huawei.com/fr, crox.framer.website/process, accessibilitychecking.org.
+- **Structure** : accueil à formulaire d'analyse (accessibilitychecking) → sélection du mois en visuels pleine largeur à faire défiler (Huawei) → un grand chiffre (écart de prix, calculé sur le catalogue) → manuel d'achat en trois réglages 01 Priorité / 02 Budget / 03 Rapport (Crox) → rapport en accordéons avec blocs « vous gagnez / vous cédez » → cartes verticales par gamme (« À la une » Huawei) → cinq repères pour lire une fiche → ce qu'on ne fait pas (✕ / ✓) → questions → appel final.
+- **Conservés à la demande** : le fond à pastilles et la barre du bas « Analyser | Mes critères ».
+- **Moteur et analyseur inchangés** : `smartphones-compat.js` (score, tri, gammes) et `phone-analyzer/`. « Mes critères » (priorité secondaire, écosystème, marque) filtre le catalogue avant le calcul.
+- **Fichiers** : `smartphones.html`, `assets/css/smartphones.css`, `assets/js/smartphones-page.js`, test `npm run smartphones:page-test` (360, 390, 768, 1280 px).
+- Textes en français seulement (traductions par DeepL).

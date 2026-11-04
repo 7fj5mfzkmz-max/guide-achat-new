@@ -56,7 +56,7 @@ async function main() {
   const SITE = 'http://127.0.0.1:' + site.address().port;
   const backend = await startBackend();
   const browser = await chromium.launch({ headless: true, channel: process.env.PW_CHANNEL || undefined });
-  const A = '/analyseur.html', S = '/smartphones.html#analyser-modele', SA = '/smartphones.html#audit';
+  const A = '/analyseur.html', S = '/smartphones.html#analyser-modele';
 
   /* mode : "real" (vrai backend, autre origine) | "stub" (réponse simulée, même origine) | "down" (réseau coupé) */
   async function open(pathname, mode, handler) {
@@ -133,8 +133,8 @@ async function main() {
       assert(!/indisponible/i.test(await stageText(page)), 'la note d’indisponibilité du secours local ne doit pas apparaître : le vrai backend a été utilisé');
       await link.click();
       await page.waitForURL(/smartphones\.html#choisir-profil/);
-      await page.waitForSelector('#tr-podium .tr-row', { state: 'attached', timeout: 15000 });
-      await page.waitForSelector('#conseiller[data-ready="1"]', { timeout: 15000 });
+      await page.waitForSelector('html[data-sm-ready="1"]', { state: 'attached', timeout: 15000 });
+      await page.waitForSelector('#sm-report .acc-i', { state: 'attached', timeout: 15000 });
       await page.waitForSelector('#choisir-profil', { state: 'visible', timeout: 5000 });
       assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
       await close(page);
@@ -280,66 +280,6 @@ async function main() {
     await close(page);
   });
 
-  /* Audit smartphone guidé : premier critère ouvert à l'arrivée (les options sont
-     visibles sans rien faire), zone de recommandations visible avec son emplacement
-     d'attente, premier choix → recommandations affichées sans saut de page, bouton
-     « Voir mes recommandations » qui y conduit, réinitialisation cohérente. */
-  await run('Audit smartphone : guidé de bout en bout (critère ouvert, attente visible, accès aux résultats)', async () => {
-    const page = await open(SA, 'stub', () => NOT_FOUND);
-    /* État initial : premier critère (Écran) ouvert, options visibles, emplacement d'attente visible,
-       bouton d'accès aux recommandations masqué tant qu'aucun choix n'est fait. */
-    await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="price"] .audit-card-trigger[aria-expanded="true"]', { timeout: 10000 });
-    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="price"] .audit-pill').count()) > 0, 'les options du premier critère doivent être visibles sans interaction');
-    assert(/0 réponse sur 6/.test(await page.locator('#audit-count').innerText()), 'compteur initial attendu : 0 réponse sur 6');
-    assert(await page.locator('#audit-see-results').isHidden(), 'le bouton « Voir mes recommandations » doit être masqué avant le premier choix');
-    /* Le conseiller charge ses données puis ouvre le groupe « Affiner mon choix » (lien profond #audit) : on attend cette ouverture, puis on exige la zone visible. */
-    await page.waitForSelector('#conseiller[data-ready="1"]', { state: 'attached', timeout: 10000 });
-    await page.waitForSelector('#aller-plus-loin', { state: 'attached', timeout: 5000 });
-    await page.waitForSelector('#criteria-recommendations', { state: 'visible', timeout: 5000 });
-    await page.waitForTimeout(500); /* la mise en page se stabilise (groupes replacés, défilement du lien profond) avant de mesurer un éventuel saut */
-    assert(!(await page.locator('#criteria-recommendations').isHidden()), 'la zone de recommandations doit être visible dès l\u2019arrivée (emplacement d\u2019attente)');
-    assert(/premier choix/.test(await page.locator('#scoring-status').innerText()), 'emplacement d\u2019attente attendu dans le statut');
-    /* Premier choix : recommandations affichées sans quitter l'audit, pas de saut de page,
-       focus clavier rendu à l'option choisie. Le défilement du test est instantané
-       (behavior:'instant') : le CSS html{scroll-behavior:smooth} animerait sinon la mesure. */
-    await page.click('#purchase-audit .audit-card[data-audit-card="screen"] .audit-card-trigger');
-    await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]', { state: 'visible', timeout: 10000 });
-    await page.evaluate(() => document.querySelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]').scrollIntoView({ block: 'center', behavior: 'instant' }));
-    /* L'accordéon (critère précédent qui se referme) et la mise en page des groupes finissent de bouger : on mesure à hauteur de page stable. */
-    await page.waitForFunction(() => new Promise(res => { const h = () => document.documentElement.scrollHeight; const a = h(); setTimeout(() => { const b = h(); setTimeout(() => res(h() === a && b === a), 250); }, 250); }), null, { timeout: 15000, polling: 100 });
-    await page.evaluate(() => document.querySelector('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]').scrollIntoView({ block: 'center', behavior: 'instant' }));
-    await page.waitForTimeout(150);
-    const y0 = await page.evaluate(() => window.scrollY);
-    await page.click('#purchase-audit .audit-card[data-audit-card="screen"] .audit-pill[data-value="120"]');
-    await page.waitForSelector('#scoring-results .criteria-recommendation-card', { timeout: 10000 });
-    const y1 = await page.evaluate(() => window.scrollY);
-    assert(Math.abs(y1 - y0) < 60, 'le premier choix ne doit pas faire sauter la page (écart : ' + Math.round(Math.abs(y1 - y0)) + 'px)');
-    assert(!(await page.locator('#audit-see-results').isHidden()), 'le bouton « Voir mes recommandations » doit apparaître dès le premier choix');
-    assert(/1 réponse sur 6/.test(await page.locator('#audit-count').innerText()), 'compteur attendu après le premier choix : 1 réponse sur 6');
-    assert(await page.evaluate(() => { const a = document.activeElement; return !!a && a.classList.contains('audit-pill') && a.getAttribute('data-value') === '120'; }), 'le focus clavier doit revenir sur l\u2019option choisie après le re-rendu');
-    /* Batterie : les critères avancés restent repliés dans leur <details> après un choix. */
-    await page.click('#purchase-audit .audit-card[data-audit-card="battery"] .audit-card-trigger');
-    await page.waitForSelector('#purchase-audit .audit-card[data-audit-card="battery"] .audit-pill', { timeout: 10000 });
-    await page.click('#purchase-audit .audit-card[data-audit-card="battery"] .audit-control[data-group="capacity"] .audit-pill[data-value="5000"]');
-    await page.waitForFunction(() => { const c = document.getElementById('audit-count'); return c && /2 réponses sur 6/.test(c.textContent); }, null, { timeout: 5000 });
-    const adv = await page.evaluate(() => {
-      const d = document.querySelector('#purchase-audit .audit-card[data-audit-card="battery"] details.audit-advanced');
-      return d ? { present: true, open: d.open, hasChemistry: !!d.querySelector('.audit-control[data-group="chemistry"]') } : { present: false };
-    });
-    assert(adv.present && adv.hasChemistry, 'les critères avancés (chimie) doivent rester dans le bloc replié');
-    assert(!adv.open, 'le bloc « Critères avancés » doit rester replié après un choix');
-    /* Le bouton conduit bien à la zone de recommandations. */
-    await page.click('#audit-see-results');
-    await page.waitForFunction(() => { const r = document.getElementById('criteria-recommendations').getBoundingClientRect(); return r.top > -60 && r.top < window.innerHeight * 0.6; }, null, { timeout: 5000 });
-    /* Réinitialisation : retour à zéro, premier critère rouvert, bouton re-masqué. */
-    await page.click('.audit-result-live [data-audit-reset]');
-    await page.waitForFunction(() => /0 réponse sur 6/.test((document.getElementById('audit-count') || {}).innerText || ''), null, { timeout: 5000 });
-    assert((await page.locator('#purchase-audit .audit-card[data-audit-card="price"] .audit-card-trigger').getAttribute('aria-expanded')) === 'true', 'après réinitialisation, le premier critère (le prix) doit être rouvert');
-    assert((await page.locator('#scoring-results .criteria-recommendation-card').count()) === 0, 'les recommandations doivent être vidées après réinitialisation');
-    assert(await page.locator('#audit-see-results').isHidden(), 'le bouton d\u2019accès aux recommandations doit être re-masqué après réinitialisation');
-    assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
-    await close(page);
-  });
 
   await browser.close(); backend.child.kill(); site.close();
 }
