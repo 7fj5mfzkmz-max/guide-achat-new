@@ -38,7 +38,23 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
       await page.goto(base, { waitUntil: 'networkidle' }); await page.waitForSelector('#conseiller[data-ready="1"]');
 
       /* ——— Classement du conseiller ——— */
+      await check('arrivée : sélection du mois (un choix du mois + batterie, photo, qualité-prix), aucune priorité cochée, rayons par gamme' + tag, async () => {
+        assert.equal(await page.locator('.gc-prios input:checked').count(), 0); assert.equal(await page.locator('#conseiller').getAttribute('data-priorite'), 'decouverte');
+        const att = moteur.decouverte().cartes, c = await cartes(page); assert.equal(c.length, 4); assert.deepEqual(c.map(x => x.id), att.map(x => x.id));
+        assert.deepEqual(await page.locator('.gc-tk-rank').allInnerTexts().then(t => t.map(x => x.toLowerCase())), ['choix du mois', 'batterie', 'photo', 'qualité-prix']);
+        assert.match(await page.locator('.gc-card .gc-kick').innerText(), /choix du mois/i);
+        const rayons = await page.locator('.gc-shelf-g').evaluateAll(els => els.map(e => ({ t: e.querySelector('h3').textContent, n: e.querySelectorAll('.gc-pcard').length, cov: [...e.querySelectorAll('.gc-pc-comp')].map(x => x.classList.contains('is-full')) })));
+        assert.deepEqual(rayons.map(r => r.t.split(' ·')[0].trim().replace(/\s+\S+\s*$/, '')).length, 3); assert.ok(rayons.every(r => r.n >= 5), JSON.stringify(rayons));
+        rayons.forEach(r => { const i = r.cov.indexOf(false); if (i >= 0) assert.ok(!r.cov.slice(i).includes(true), 'fiches complètes d’abord : ' + r.t); });
+        assert.ok(await page.locator('#gc-reset').isHidden());
+        // un modèle d'un rayon ouvre son détail, qui compte forts et compromis
+        const idR = await page.locator('.gc-shelf .gc-pcard').first().getAttribute('data-id'); await page.locator('.gc-shelf .gc-pcard').first().click();
+        assert.equal(await page.locator('.gc-card').getAttribute('data-id'), idR); assert.match(await page.locator('.gc-card .gc-kick').innerText(), /examiné/i);
+        assert.ok(await page.locator('.gc-card .gc-pro').count() >= 1); assert.equal(await page.locator('.gc-ticket[aria-pressed="true"]').count(), 0);
+        assert.deepEqual(erreurs, []);
+      });
       await check('conseiller : quatre smartphones, score 0–100 %, points forts, compromis, ordre décroissant, aucun message d’absence de preuve' + tag, async () => {
+        await prio(page, 'equilibre'); assert.ok(await page.locator('#gc-reset').isVisible());
         const c = await cartes(page); assert.equal(c.length, 4);
         c.forEach((x, i) => { assert.ok(x.r >= 0 && x.r <= 100); if (i) assert.ok(c[i - 1].r >= x.r); });
         assert.equal(await page.locator('.gc-card').count(), 1, 'un détail affiché'); assert.ok(await page.locator('.gc-card .gc-pro').count() >= 1); assert.ok(await page.locator('.gc-card .gc-con').count() >= 1);
@@ -46,6 +62,9 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
         await page.locator('.gc-ticket').first().click();
         const txt = await page.locator('#gc-sortie').innerText();
         assert.match(txt, /\d+ %\s*de compatibilité/i); assert.match(txt, /Vous gagnez/i); assert.match(txt, /Vous cédez/i); assert.doesNotMatch(txt, /pas assez documenté|à confirmer|preuve indépendante|aucun test/i);
+        // rayons : plus proches du choix d'abord, dans chaque gamme
+        const sc = await page.locator('.gc-shelf-g').evaluateAll(els => els.map(e => [...e.querySelectorAll('.gc-pcard')].map(x => Number(x.dataset.r)))); sc.forEach(v => assert.deepEqual(v, [...v].sort((a, b) => b - a)));
+        await page.locator('#gc-reset').click(); assert.equal(await page.locator('#conseiller').getAttribute('data-priorite'), 'decouverte');
         assert.deepEqual(erreurs, []);
       });
       await check('conseiller : même classement que le moteur, pour les cinq priorités × budgets' + tag, async () => {
@@ -99,6 +118,14 @@ async function groupe(page, g) { await page.waitForSelector('.apl-tile[data-g="'
         for (const id of ['prix', 'batterie']) { await page.click('.tr-chip[data-need="' + id + '"]'); assert.ok(await page.locator('#tr-podium .tr-row').count() >= 3, id); }
         await page.click('.tr-chip[data-need="prix"]'); (await page.locator('#tr-podium .tr-price').allInnerTexts()).forEach(t => { const n = Number(t.replace(/[^\d]/g, '')); assert.ok(n >= 80 && n <= 250, 'petit prix ' + n); });
         assert.deepEqual(erreurs, []);
+      });
+
+      await check('barre du bas : « Analyser » + l’autre voie, deux choix au plus, selon l’étape' + tag, async () => {
+        const dock = () => page.locator('.gc-dock a').allInnerTexts().then(t => t.map(x => x.replace(/\s*↗/, '').trim()));
+        await page.click('#tab-profil'); assert.deepEqual(await dock(), ['Analyser', 'Mes critères']);
+        await page.click('#tab-criteres'); assert.deepEqual(await dock(), ['Analyser', 'Mon profil']);
+        await page.click('#tab-modele'); assert.deepEqual(await dock(), ['Mon profil', 'Mes critères']);
+        await page.click('#tab-profil');
       });
 
       /* ——— Parcours 3 : questionnaire personnalisé (« Mes critères ») ——— */

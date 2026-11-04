@@ -12,6 +12,6 @@ t('lecture des caractéristiques : batterie, charge, écran, mémoire et prix pr
   produits.forEach(p => { const s = K.lire(p); assert.ok(s.mah > 0 && s.watts > 0 && s.hz > 0 && s.stockage > 0 && s.ram > 0 && s.prix > 0, p.id); });
 });
 t('démonstrations : chaque fiche se lit sans erreur ; une donnée absente (luminosité, capteur, durée de suivi) reste « inconnue »', () => {
-  produits.forEach(p => { const f = D.fiche(p); assert.ok(f.id && f.nom); assert.ok(f.famille === 'oled' || f.famille === 'lcd' || f.famille === null, p.id); assert.ok(f.mah == null || f.mah > 0); assert.equal(D.lignesBudget([f], 5)[0].sansSuivi, f.ans == null ? null : Math.max(0, 5 - f.ans)); });
+  produits.forEach(p => { const f = D.fiche(p); assert.ok(f.id && f.nom); assert.ok(f.famille === 'oled' || f.famille === 'lcd' || f.famille === null, p.id); assert.ok(f.mah == null || f.mah > 0); });
 });
 console.log(ok + ' vérification(s) réussie(s).');

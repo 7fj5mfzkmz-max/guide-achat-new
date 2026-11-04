@@ -13,14 +13,14 @@
     { id: 'photo', court: 'Photo', nature: 'illustration', q: 'Zoom et capteur : que voit votre photo ?' },
     { id: 'batterie', court: 'Batterie', nature: 'fiche', q: 'Capacité ou charge : que dit la fiche ?' },
     { id: 'jeu', court: 'Jeu', nature: 'illustration', q: '30, 60 ou 120 images par seconde ?' },
-    { id: 'budget', court: 'Budget', nature: 'calcul', q: 'Combien coûte chaque année de mises à jour ?' }
+    { id: 'budget', court: 'Qualité-prix', nature: 'calcul', q: 'Qu’est-ce qui vaut vraiment son prix ?' }
   ];
   var PAR_PRIORITE = { equilibre: 'ecran', autonomie: 'batterie', photo: 'photo', jeu: 'jeu', prix: 'budget' };
   var PAR_CRITERE = { ecran: 'ecran', batterie: 'batterie', photo: 'photo', performance: 'jeu', suivi: 'budget', prix: 'budget' };
   var NATURES = {
     illustration: { badge: 'Illustration', texte: 'Un schéma pour comprendre. Ce n’est pas une mesure.' },
     fiche: { badge: 'Fiche technique', texte: 'Valeurs annoncées par le constructeur. Ce n’est pas une durée mesurée.' },
-    calcul: { badge: 'Calcul', texte: 'Prix indicatif divisé par la durée annoncée. Ce n’est pas une mesure.' }
+    calcul: { badge: 'Calcul', texte: 'Score de compatibilité rapporté au prix. Ce n’est pas une mesure.' }
   };
   var FORMATS = [1, 1.3, 1.56, 2, 2.76];
 
@@ -92,17 +92,20 @@
   }
 
   /* ——— Budget : prix et années de mises à jour annoncées ——— */
-  var coutAn = function (prix, ans) { return ans > 0 && prix != null ? prix / ans : null; };
-  function lignesBudget(tels, garder) {
-    return tels.map(function (t) { var c = coutAn(t.prix, t.ans); return { id: t.id, nom: t.nom, prix: t.prix, ans: t.ans, coutAn: c, sansSuivi: t.ans == null ? null : Math.max(0, garder - t.ans) }; });
+  /* ——— Rapport qualité-prix : points de compatibilité pour 100 € ——— */
+  function lignesValeur(tels) {
+    return (tels || []).filter(function (t) { return t && t.r != null && t.prix > 0; }).map(function (t) { return { id: t.id, nom: t.nom, prix: t.prix, r: t.r, par100: t.r / t.prix * 100 }; });
   }
-  function lectureBudget(lignes, garder) {
-    var ok = lignes.filter(function (l) { return l.coutAn != null; }); if (ok.length < 2) return 'Prix ÷ années de mises à jour annoncées : un repère de coût, pas une mesure.';
-    var bp = ok.slice().sort(function (a, b) { return a.prix - b.prix; })[0], ba = ok.slice().sort(function (a, b) { return a.coutAn - b.coutAn; })[0];
-    var t = bp.id === ba.id ? bp.nom + ' est à la fois le moins cher à l’achat (' + fr(bp.prix) + ' €) et le moins cher par année annoncée (' + fr(Math.round(bp.coutAn)) + ' €). '
-      : bp.nom + ' est le moins cher à l’achat (' + fr(bp.prix) + ' €), mais ' + ba.nom + ' coûte moins par année de mises à jour annoncée (' + fr(Math.round(ba.coutAn)) + ' € contre ' + fr(Math.round(bp.coutAn)) + ' €). ';
-    var court = ok.filter(function (l) { return l.sansSuivi > 0; }); if (court.length) t += 'Gardé ' + garder + ' ans : ' + court.map(function (l) { return l.nom + ' passerait ' + l.sansSuivi + ' an' + (l.sansSuivi > 1 ? 's' : '') + ' sans mise à jour annoncée'; }).join(' ; ') + '. ';
-    return t + 'La durée annoncée est une promesse, pas une garantie.';
+  function ordonnerValeur(l, tri) {
+    return l.slice().sort(function (a, b) { return tri === 'r' ? b.r - a.r || a.prix - b.prix : tri === 'prix' ? a.prix - b.prix || b.r - a.r : b.par100 - a.par100 || a.prix - b.prix; });
+  }
+  function lectureValeur(l) {
+    if (l.length < 2) return 'Compatibilité divisée par le prix : un repère pour comparer, pas une mesure.';
+    var bv = ordonnerValeur(l, 'val')[0], bs = ordonnerValeur(l, 'r')[0], bp = ordonnerValeur(l, 'prix')[0];
+    var t = bv.nom + ' offre le plus de compatibilité pour chaque euro dépensé (' + fr1(bv.par100) + ' points pour 100 €). ';
+    if (bs.id !== bv.id) t += bs.nom + ' va plus haut (' + bs.r + ' %), pour ' + fr(Math.round(bs.prix - bv.prix)) + ' € de plus que ' + bv.nom + '. ';
+    else if (bp.id !== bv.id) t += bp.nom + ' est le moins cher (' + fr(Math.round(bp.prix)) + ' €). ';
+    return t + 'Le rapport qualité-prix ne dit pas si le téléphone répond à votre besoin : cela dépend de ce qui compte pour vous.';
   }
 
   /* ——— Écran ——— */
@@ -119,7 +122,7 @@
   var pure = { DEMOS: DEMOS, PAR_PRIORITE: PAR_PRIORITE, PAR_CRITERE: PAR_CRITERE, NATURES: NATURES, FORMATS: FORMATS, demoDe: demoDe, demoPourCritere: demoPourCritere, duree: duree, famille: famille, parseFormat: parseFormat, formatTxt: formatTxt,
     fiche: fiche, objectifs: objectifs, zoptique: zoptique, focaleEq: focaleEq, champ: champ, flou: flou, surface: surface, ratioSurface: ratioSurface, lecturePhoto: lecturePhoto,
     lignesBatterie: lignesBatterie, ordonner: ordonner, lectureBatterie: lectureBatterie, images: images, fpsEffectif: fpsEffectif, lectureJeu: lectureJeu,
-    coutAn: coutAn, lignesBudget: lignesBudget, lectureBudget: lectureBudget, lectureEcran: lectureEcran };
+    lignesValeur: lignesValeur, ordonnerValeur: ordonnerValeur, lectureValeur: lectureValeur, lectureEcran: lectureEcran };
   if (typeof document === 'undefined') { if (typeof module !== 'undefined' && module.exports) module.exports = pure; return; }
 
   /* ═══════════════════════ Interface ═══════════════════════ */
@@ -133,7 +136,7 @@
     opt = opt || {};
     var lite = document.documentElement.classList.contains('fx-lite');
     var S = { demo: 'ecran', manuel: false, prio: 'equilibre', f: null, comp: [],
-      ecran: { scene: 'sombre', amb: 0 }, photo: { mode: 'cadrage', z: 1, fmt: 1.3 }, bat: { tri: 'mah' }, jeu: { g: 60, d: 120, joue: !(reduit || lite) }, budget: { garder: 5 } };
+      ecran: { scene: 'sombre', amb: 0 }, photo: { mode: 'cadrage', z: 1, fmt: 1.3 }, bat: { tri: 'mah' }, jeu: { g: 60, d: 120, joue: !(reduit || lite) }, budget: { tri: 'val' } };
     var raf = 0, visible = true, hzEcran = 60, mesure = false, t0 = 0, piste = 0, panneau;
 
     host.innerHTML = '<section class="dm" id="voir-la-difference" aria-labelledby="dm-titre"><div class="dm-head"><h2 class="dm-kick" id="dm-titre">Voir la différence</h2><span class="dm-badge" id="dm-badge"></span></div>' +
@@ -266,20 +269,24 @@
     };
 
     /* ——— Budget ——— */
+    function lignesVal() {
+      var f = S.f, l = lignesValeur((S.comp || []).concat(f ? [f] : [])), vus = {};
+      return ordonnerValeur(l.filter(function (x) { if (vus[x.id]) return false; vus[x.id] = 1; return true; }), S.budget.tri);
+    }
     var BUD = {
-      ctl: function () { return plage('garder', 'Je le garde', '1 an', '8 ans', 1, 8, 1); },
+      ctl: function () { return seg('tri', 'Classer par', [['val', 'Rapport qualité-prix'], ['r', 'Compatibilité'], ['prix', 'Prix']]); },
       viz: function () {
-        var l = lignesBudget(S.comp, S.budget.garder), maxA = Math.max(8, Math.max.apply(null, l.map(function (x) { return x.ans || 0; }))), g = S.budget.garder, f = S.f;
+        var l = lignesVal(), f = S.f, meilleur = ordonnerValeur(l, 'val')[0];
         return '<ul class="dm-bud">' + l.map(function (x) {
-          var cells = ''; for (var i = 1; i <= maxA; i++) cells += '<i class="' + (x.ans != null && i <= x.ans ? 'is-ok' : i <= g ? (x.ans == null ? 'is-inc' : 'is-no') : '') + (i === g ? ' is-g' : '') + '"></i>';   // durée non annoncée : inconnue, jamais « sans mise à jour »
-          return '<li class="dm-brow' + (f && x.id === f.id ? ' is-you' : '') + '"><div class="dm-bh"><b>' + esc(x.nom) + (f && x.id === f.id ? tag('Ce modèle') : '') + '</b><span>' + fr(x.prix) + ' €</span></div><div class="dm-yrs" style="--n:' + maxA + '" aria-hidden="true">' + cells + '</div>' +
-            '<p class="dm-bt">' + (x.ans == null ? 'Durée de mises à jour non annoncée.' : '<b>' + x.ans + ' ans annoncés</b> · ' + fr(Math.round(x.coutAn)) + ' € par année annoncée') + (x.sansSuivi > 0 ? ' · <em>' + x.sansSuivi + ' an' + (x.sansSuivi > 1 ? 's' : '') + ' sans mise à jour annoncée si gardé ' + g + ' ans</em>' : '') + '</p></li>';
+          var vous = f && x.id === f.id;
+          return '<li class="dm-brow' + (vous ? ' is-you' : '') + '"><div class="dm-bh"><b>' + esc(x.nom) + (vous ? tag('Ce modèle') : '') + (meilleur && x.id === meilleur.id ? tag('Meilleur rapport') : '') + '</b><span>' + fr(Math.round(x.prix)) + ' €</span></div>' +
+            '<div class="dm-vbar" aria-hidden="true"><i style="width:' + x.r + '%"></i></div><p class="dm-bt"><b>' + x.r + ' %</b> de compatibilité · ' + fr1(x.par100) + ' points pour 100 €</p></li>';
         }).join('') + '</ul>';
       },
-      read: function () { return lectureBudget(lignesBudget(S.comp, S.budget.garder), S.budget.garder); },
+      read: function () { return lectureValeur(lignesVal()); },
       you: function () { return ''; },
-      not: 'Ce que vous paierez vraiment : les prix varient selon le marchand et la date. La durée est celle annoncée par le fabricant, qui peut la modifier. Le téléphone peut aussi ne plus convenir avant la fin des mises à jour.',
-      get: function (k) { return S.budget[k]; }, set: function (k, v) { S.budget[k] = Number(v); }
+      not: 'La qualité réelle du téléphone et son prix exact chez le marchand : le prix est indicatif et le score vient de la fiche technique. Un téléphone peu cher n’est pas un bon choix s’il ne répond pas à votre besoin.',
+      get: function (k) { return S.budget[k]; }, set: function (k, v) { S.budget[k] = v; }
     };
     var MODULES = { ecran: ECRAN, photo: PHOTO, batterie: BAT, jeu: JEU, budget: BUD };
 

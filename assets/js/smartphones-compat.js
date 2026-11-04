@@ -146,7 +146,40 @@
       else if (top.length < 4) notes.push('Seulement ' + top.length + ' modèle' + (top.length > 1 ? 's' : '') + ' dans ce budget.');
       return { requete: { priorite: priorite, budget: budget }, cartes: top, total: sous.length, notes: notes };
     }
-    return { pool: pool, parId: parId, conseiller: conseiller, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
+
+    /* Gamme de prix : haut de gamme dès 800 €, milieu de gamme de 300 à 800 €, entrée de gamme en dessous. */
+    function categorie(prix) { return prix >= 800 ? 'haut' : prix >= 300 ? 'milieu' : 'entree'; }
+    var CATEGORIES = [['haut', 'Haut de gamme', '800 € et plus'], ['milieu', 'Milieu de gamme', '300 à 800 €'], ['entree', 'Entrée de gamme', 'moins de 300 €']];
+
+    /* Par défaut (aucune priorité choisie) : le choix du mois, puis trois modèles qui répondent chacun à un critère général
+       (batterie, photo, rapport qualité-prix). Fiches les plus complètes d'abord pour le choix du mois. */
+    function decouverte(req) {
+      req = req || {}; var budget = req.budget ? Number(req.budget) : null, utilises = {};
+      var sous = pool.filter(function (p) { return budget == null || p.prix_indicatif <= budget; });
+      var eq = sous.map(function (p) { return carte(p, 'equilibre'); });
+      function premier(liste, role, label, court, priorite) {
+        var c = liste.filter(function (x) { return !utilises[x.id]; })[0]; if (!c) return null;
+        utilises[c.id] = 1; var r = priorite && priorite !== 'equilibre' ? carte(parId[c.id], priorite) : c;
+        return Object.assign({}, r, { role: role, roleLabel: label, roleCourt: court });
+      }
+      var complets = eq.filter(function (c) { return c.couverture >= 90; });
+      var mois = (complets.length ? complets : eq).slice().sort(function (a, b) { return b.R - a.R || a.prix - b.prix; });
+      var bat = sous.map(function (p) { return carte(p, 'autonomie'); }).sort(function (a, b) { return b.R - a.R || a.prix - b.prix; });
+      var pho = sous.map(function (p) { return carte(p, 'photo'); }).sort(function (a, b) { return b.R - a.R || a.prix - b.prix; });
+      var bons = eq.filter(function (c) { return c.R >= 70; }); if (bons.length < 4) bons = eq.slice().sort(function (a, b) { return b.R - a.R; }).slice(0, Math.max(4, Math.ceil(eq.length / 3)));
+      var val = bons.slice().sort(function (a, b) { return a.prix - b.prix || b.R - a.R; });
+      var cartes = [premier(mois, 'mois', 'Notre choix du mois', 'Choix du mois', 'equilibre'), premier(bat, 'batterie', 'Pour la batterie', 'Batterie', 'autonomie'), premier(pho, 'photo', 'Pour la photo', 'Photo', 'photo'), premier(val, 'valeur', 'Meilleur rapport qualité-prix', 'Qualité-prix', 'equilibre')].filter(Boolean);
+      return { requete: { priorite: null, budget: budget }, cartes: cartes, total: sous.length, notes: sous.length ? [] : ['Aucun modèle du catalogue n’est affiché à ce budget : augmentez le budget.'] };
+    }
+    /* Autres modèles, par gamme. Sans priorité : fiches les plus complètes d'abord ; avec priorité : les plus proches du choix d'abord. */
+    function autres(ids, priorite, budget) {
+      var pris = {}; (ids || []).forEach(function (i) { pris[i] = 1; });
+      var pr = priorite || 'equilibre', b = budget ? Number(budget) : null;
+      var l = pool.filter(function (p) { return !pris[p.id] && (b == null || p.prix_indicatif <= b); }).map(function (p) { return carte(p, pr); });
+      l.sort(function (a, c) { return priorite ? c.R - a.R || a.prix - c.prix : c.couverture - a.couverture || c.R - a.R || a.prix - c.prix; });
+      return CATEGORIES.map(function (g) { var cs = l.filter(function (c) { return categorie(c.prix) === g[0]; }); return { id: g[0], label: g[1], plage: g[2], total: cs.length, cartes: cs.slice(0, 16) }; }).filter(function (g) { return g.total; });
+    }
+    return { pool: pool, parId: parId, conseiller: conseiller, decouverte: decouverte, autres: autres, categorie: categorie, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
   }
 
   var api = { creer: creer, criteres: criteres, score: score, explications: explications, lire: lire, SIMPLE: SIMPLE, PRIORITES: PRIORITES, CRITERES: CRITERES, PROFIL_VERS_PRIORITE: PROFIL_VERS_PRIORITE };

@@ -57,13 +57,13 @@ t('jeu : images reçues en 1/10 de seconde, écran limité, phrase sans promesse
   assert.match(D.lectureJeu(30, 120, 120), /12 images contre 3/); assert.match(D.lectureJeu(60, 120, 60), /Même cadence/); assert.match(D.lectureJeu(60, 120, 60), /60 Hz/);
   assert.match(D.lectureJeu(60, 120, 165), /chaque jeu fixe sa limite/);
 });
-t('budget : prix ÷ années annoncées, années sans mise à jour si l’on garde plus longtemps', () => {
-  assert.equal(D.coutAn(689, 5), 137.8); assert.equal(D.coutAn(500, 0), null); assert.equal(D.coutAn(500, null), null);
-  const l = D.lignesBudget([{ id: 'a', nom: 'A', prix: 500, ans: 7 }, { id: 'b', nom: 'B', prix: 300, ans: 2 }, { id: 'c', nom: 'C', prix: 400, ans: null }], 5);
-  assert.deepEqual(l.map(x => x.sansSuivi), [0, 3, null]); assert.ok(Math.abs(l[0].coutAn - 500 / 7) < 1e-9); assert.equal(l[2].coutAn, null);
-  const txt = D.lectureBudget(l, 5); assert.match(txt, /B est le moins cher à l’achat/); assert.match(txt, /A coûte moins par année/); assert.match(txt, /B passerait 3 ans sans mise à jour annoncée/); assert.match(txt, /promesse, pas une garantie/);
-  assert.match(D.lectureBudget(D.lignesBudget([{ id: 'a', nom: 'A', prix: 100, ans: 5 }, { id: 'b', nom: 'B', prix: 200, ans: 4 }], 3), 3), /à la fois le moins cher à l’achat/);
-  const reels = [ID_A, ID_B].map(id => D.fiche(pool(id))); D.lignesBudget(reels, 5).forEach(x => { if (x.ans == null) { assert.equal(x.coutAn, null); assert.equal(x.sansSuivi, null, 'durée non annoncée : jamais « sans mise à jour »'); } else assert.equal(x.coutAn, x.prix / x.ans); });
+t('qualité-prix : points de compatibilité pour 100 €, classements par rapport, compatibilité ou prix, phrase sans promesse', () => {
+  assert.equal(D.DEMOS.find(d => d.id === 'budget').court, 'Qualité-prix'); assert.ok(!/mises à jour/i.test(D.DEMOS.find(d => d.id === 'budget').q));
+  const l = D.lignesValeur([{ id: 'a', nom: 'A', prix: 500, r: 80 }, { id: 'b', nom: 'B', prix: 200, r: 60 }, { id: 'c', nom: 'C', prix: 800, r: 90 }, { id: 'd', nom: 'D', prix: 300 }]);
+  assert.equal(l.length, 3, 'sans score : pas de ligne'); assert.ok(Math.abs(l[1].par100 - 30) < 1e-9);
+  assert.deepEqual(D.ordonnerValeur(l, 'val').map(x => x.id), ['b', 'a', 'c']); assert.deepEqual(D.ordonnerValeur(l, 'r').map(x => x.id), ['c', 'a', 'b']); assert.deepEqual(D.ordonnerValeur(l, 'prix').map(x => x.id), ['b', 'a', 'c']);
+  const t = D.lectureValeur(l); assert.match(t, /B offre le plus de compatibilité pour chaque euro/); assert.match(t, /C va plus haut \(90 %\)/); assert.ok(!/NaN|undefined/.test(t));
+  assert.match(D.lectureValeur([]), /pas une mesure/);
 });
 t('écran : OLED et LCD selon la lumière et l’image ; en plein soleil, la luminosité compte ; jamais « l’OLED est meilleur »', () => {
   assert.match(D.lectureEcran('sombre', 0, null), /OLED éteint ses points noirs/); assert.match(D.lectureEcran('claire', 0, null), /se ressemblent/);
@@ -79,7 +79,7 @@ t('aucune démonstration ne promet « toujours meilleur » (écran, capteur, Hz,
   [0, 40, 90].forEach(a => ['sombre', 'claire'].forEach(s => tous.push(D.lectureEcran(s, a, f))));
   [0.5, 1, 3, 10].forEach(z => tous.push(D.lecturePhoto('cadrage', f, z, 1))); D.FORMATS.forEach(x => tous.push(D.lecturePhoto('capteur', f, 1, x)));
   ['mah', 'w'].forEach(m => tous.push(D.lectureBatterie(g, m))); [[30, 60], [60, 120], [120, 120]].forEach(([a, b]) => [60, 120, null].forEach(h => tous.push(D.lectureJeu(a, b, h))));
-  tous.push(D.lectureBudget(D.lignesBudget([ID_A, ID_B].map(id => D.fiche(pool(id))), 5), 5));
+  tous.push(D.lectureValeur(D.lignesValeur([ID_A, ID_B].map(id => Object.assign(D.fiche(pool(id)), { r: 80 })))));
   tous.forEach(x => { assert.ok(x && !/NaN|undefined|null/.test(x), x); assert.ok(!/toujours|forcément|automatiquement|garantit (une|la|de)\b/i.test(x), x); });
 });
 console.log(ok + ' vérification(s) réussie(s).');

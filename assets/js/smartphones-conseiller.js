@@ -35,8 +35,8 @@
     var q = new URLSearchParams(location.search), saved = {};
     try { saved = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { saved = {}; }
     var prof = null; try { prof = localStorage.getItem('guide-profile'); } catch (e2) {}
-    var p = q.get('priorite') || saved.priorite || PRIORITE_DE[prof] || 'equilibre';
-    S.priorite = PRIORITES.some(function (x) { return x[0] === p; }) ? p : 'equilibre';
+    var p = q.get('priorite') || saved.priorite || PRIORITE_DE[prof] || null;
+    S.priorite = PRIORITES.some(function (x) { return x[0] === p; }) ? p : null;       // null : sélection du mois, tant que le visiteur n'a rien choisi
     var b = q.has('budget') ? Number(q.get('budget')) : saved.budget;
     S.budget = b != null && isFinite(b) ? b : null;
     S.demo = D.DEMOS.some(function (d) { return d.id === q.get('demo'); }) ? q.get('demo') : '';
@@ -46,7 +46,8 @@
     var profil = PROFIL[S.priorite];
     if (profil) { try { localStorage.setItem('guide-profile', profil); } catch (e2) {} window.dispatchEvent(new CustomEvent('guide:profile', { detail: { profile: profil } })); }
   }
-  var budgetAffiche = function () { return S.budget != null ? S.budget : BUDGET_DEFAUT[S.priorite]; };
+  var budgetAffiche = function () { return S.budget != null ? S.budget : BUDGET_DEFAUT[S.priorite || 'equilibre']; };
+  var fiche = function (c) { return Object.assign(D.fiche(produit(c.id)), { r: c.R }); };
   var produit = function (id) { return moteur.parId[id]; };
   var nomComplet = function (c) { return c.marque && c.nom.toLowerCase().indexOf(String(c.marque).toLowerCase()) < 0 ? c.marque + ' ' + c.nom : c.nom; };
 
@@ -64,7 +65,7 @@
   function ticket(c, i, actif) {
     var f = c.forts[0];
     return '<li><button type="button" class="gc-ticket" data-examiner="' + esc(c.id) + '" data-id="' + esc(c.id) + '" data-rang="' + (i + 1) + '" data-r="' + c.R + '" data-prix="' + Math.round(c.prix) + '" aria-pressed="' + (actif ? 'true' : 'false') + '" aria-label="' + esc(nomComplet(c) + ', ' + c.R + ' % de compatibilité, ' + fr(Math.round(c.prix)) + ' €') + '">' +
-      '<span class="gc-tk-top"><span class="gc-tk-rank">' + (i === 0 ? 'Notre n° 1' : 'N° ' + (i + 1)) + '</span><span class="gc-tk-score"><b>' + c.R + '</b> %</span></span>' +
+      '<span class="gc-tk-top"><span class="gc-tk-rank">' + (c.roleCourt || (i === 0 ? 'Notre n° 1' : 'N° ' + (i + 1))) + '</span><span class="gc-tk-score"><b>' + c.R + '</b> %</span></span>' +
       '<span class="gc-tk-name">' + esc(nomComplet(c)) + '</span><span class="gc-tk-price">' + fr(Math.round(c.prix)) + ' €</span>' +
       '<span class="gc-tk-bar" aria-hidden="true"><i style="width:' + c.R + '%"></i></span>' +
       '<span class="gc-tk-why">' + (f ? esc(f.phrase) : '') + '</span><span class="gc-tk-go" aria-hidden="true">' + (actif ? 'Affiché' : 'Voir ce modèle →') + '</span></button></li>';
@@ -95,6 +96,7 @@
     return '<figure class="gc-anat"><div class="gc-phone">' + cells + '</div><figcaption>Schéma d’après la fiche, pas une photo. Touchez une zone pour voir la différence.</figcaption>' +
       '<ul class="gc-legend"><li><i class="sw is-cle"></i><span><b>Jaune</b> : compte pour votre priorité.</span></li><li><i class="sw is-fiche"></i><span><b>Contour</b> : d’après la fiche.</span></li><li><i class="sw is-inconnu"></i><span><b>Hachuré</b> : inconnu, jamais compté comme un défaut.</span></li></ul></figure>';
   }
+  var MOIS = function () { try { var m = new Date().toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }); return m.charAt(0).toUpperCase() + m.slice(1); } catch (e) { return ''; } };
   function carte(c, i) {
     var id = 'gc-n' + (++uid), nom = nomComplet(c);
     var pros = c.forts.map(function (f) { return '<li class="gc-pro"><span class="gc-sign" aria-hidden="true">✓</span><span><b>' + esc(f.phrase) + '</b><small>' + esc(cap1(f.texte || '')) + '</small>' + voir(f.critere, nom) + '</span></li>'; }).join('');
@@ -102,7 +104,7 @@
     var lim = c.manquantes.length ? '<li class="gc-con gc-lim"><span class="gc-sign" aria-hidden="true">?</span><span><b>Donnée absente</b><small>' + esc(cap1(c.manquantes.join(', ').toLowerCase())) + ' : non renseigné dans nos fiches. Ce n’est pas compté comme un défaut ; le score le traite comme moyen.</small></span></li>' : '';
     if (!cons && !lim) cons = '<li class="gc-con"><span class="gc-sign" aria-hidden="true">✓</span><span><b>Aucun point faible marqué</b><small>Dans les données disponibles.</small></span></li>';
     return '<article class="gc-card" id="gc-card" tabindex="-1" data-id="' + esc(c.id) + '" data-rang="' + (i + 1) + '" data-r="' + c.R + '" aria-labelledby="' + id + '">' +
-      '<div class="gc-st-main"><p class="gc-kick">' + (i === 0 ? 'Notre recommandation' : 'N° ' + (i + 1) + ' de la sélection') + '</p><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2>' +
+      '<div class="gc-st-main"><p class="gc-kick">' + (c.roleLabel ? c.roleLabel + (c.role === 'mois' ? ' · ' + MOIS() : '') : i < 0 ? 'Modèle examiné' : i === 0 ? 'Notre recommandation' : 'N° ' + (i + 1) + ' de la sélection') + '</p><h2 class="gc-name" id="' + id + '">' + esc(nom) + '</h2>' +
       '<p class="gc-verdict"><b>' + NIVEAU(c.R) + '</b> pour « ' + esc(PHRASE[c.priorite]) + ' » : <span class="gc-compat">' + c.R + ' %</span> de compatibilité, d’après la fiche technique et non un test.</p>' +
       '<div class="gc-buy"><span class="gc-price">' + (c.idealo ? '<a class="gc-prix" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">' + fr(Math.round(c.prix)) + ' € indicatifs · comparer les prix ↗</a>' : '<span class="gc-prix">' + fr(Math.round(c.prix)) + ' € indicatifs · lien Idealo absent</span>') + '</span></div>' +
       '<div class="gc-big" role="img" aria-label="Compatibilité ' + c.R + ' sur 100"><b>' + c.R + '</b><span>% compatible</span></div></div>' +
@@ -113,28 +115,50 @@
   }
 
   /* ——— Rendu ——— */
-  function comparables(focus) { return res.cartes.filter(function (c) { return c.id !== focus.id; }).map(function (c) { return D.fiche(produit(c.id)); }); }
+  function comparables(focus) { return res.cartes.filter(function (c) { return c.id !== focus.id; }).map(fiche); }
+  var FLECHES = function (sens) { return '<div class="gc-arrs"><button type="button" class="gc-arr" data-scroll="-1" aria-label="' + sens + ' précédents"><span aria-hidden="true">‹</span></button><button type="button" class="gc-arr" data-scroll="1" aria-label="' + sens + ' suivants"><span aria-hidden="true">›</span></button></div>'; };
+  /* Rayons « autres modèles », à la façon d'un magasin : une rangée par gamme, qui défile à l'horizontale sans dépasser l'écran. */
+  function pcard(c, actif) {
+    var f = c.forts[0], nom = nomComplet(c);
+    return '<li><button type="button" class="gc-pcard" data-examiner="' + esc(c.id) + '" data-id="' + esc(c.id) + '" data-r="' + c.R + '" aria-pressed="' + (actif ? 'true' : 'false') + '" aria-label="' + esc(nom + ', ' + c.R + ' % de compatibilité, ' + fr(Math.round(c.prix)) + ' €. Voir le détail.') + '">' +
+      '<span class="gc-pc-top"><span class="gc-pc-comp' + (c.couverture >= 90 ? ' is-full' : '') + '">' + (c.couverture >= 90 ? 'Fiche complète' : 'Fiche partielle') + '</span><span class="gc-pc-score"><b>' + c.R + '</b> %</span></span>' +
+      '<span class="gc-pc-name">' + esc(nom) + '</span><span class="gc-pc-price">' + fr(Math.round(c.prix)) + ' €</span><span class="gc-pc-bar" aria-hidden="true"><i style="width:' + c.R + '%"></i></span>' +
+      '<span class="gc-pc-why">' + (f ? esc(f.phrase) : '') + '</span></button></li>';
+  }
+  function etagere(groupes, actif) {
+    if (!groupes.length) return '';
+    return '<section class="gc-shelfwin" aria-labelledby="gc-sh-t"><div class="gc-res-h gc-sh-h"><h2 class="gc-res-t" id="gc-sh-t">Les autres modèles <small>' + (S.priorite ? 'les plus proches de votre choix d’abord' : 'fiches les plus complètes d’abord') + ' · faites défiler chaque rayon</small></h2></div>' +
+      groupes.map(function (g) {
+        return '<div class="gc-shelf-g"><div class="gc-rail-h"><h3>' + esc(g.label) + ' <small>' + esc(g.plage) + ' · ' + g.total + ' modèle' + (g.total > 1 ? 's' : '') + '</small></h3>' + FLECHES('Modèles') + '</div>' +
+          '<ul class="gc-shelf" tabindex="0" aria-label="' + esc(g.label) + ', à faire défiler">' + g.cartes.map(function (c) { return pcard(c, c.id === actif); }).join('') + '</ul></div>';
+      }).join('') + '</section>';
+  }
   function render(opts) {
-    opts = opts || {}; var t = performance.now();
-    res = moteur.conseiller({ priorite: S.priorite, budget: S.budget != null ? S.budget : BUDGET_DEFAUT[S.priorite] });
-    var sortie = $('#gc-sortie'), det = $('#gc-det'), alt = $('#gc-alt'), b = budgetAffiche();
+    opts = opts || {}; var t = performance.now(), pr = S.priorite || 'equilibre', cle = S.priorite || 'decouverte', b = budgetAffiche();
+    res = S.priorite ? moteur.conseiller({ priorite: S.priorite, budget: b || null }) : moteur.decouverte({ budget: b || null });
+    var sortie = $('#gc-sortie'), det = $('#gc-det'), alt = $('#gc-alt');
     $('#gc-more-t').textContent = (b ? 'Jusqu’à ' + fr(b) + ' €' : 'Sans plafond') + ' · ' + res.total + ' modèle' + (res.total > 1 ? 's' : '') + ' examiné' + (res.total > 1 ? 's' : '');
+    $('#gc-reset').hidden = !S.priorite;
     det.innerHTML = ''; alt.innerHTML = ''; alt.hidden = true;
     if (!res.cartes.length) {
-      sortie.innerHTML = '<div class="gc-vide"><h2>Aucun modèle dans ce budget.</h2><p>' + esc(res.notes[0] || '') + '</p></div>';
-      demos.definirPriorite(S.priorite); demos.definirTelephone(null, []); derniere = S.priorite; $('#gc-demo').hidden = false;
-      root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', S.priorite); root.removeAttribute('data-focus'); return;
+      sortie.innerHTML = '<div class="gc-vide"><h2>Aucun modèle dans ce budget.</h2><p>' + esc(res.notes[0] || '') + '</p></div>'; $('#gc-shelves').innerHTML = '';
+      demos.definirPriorite(pr); demos.definirTelephone(null, []); derniere = cle; $('#gc-demo').hidden = false;
+      root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', cle); root.removeAttribute('data-focus'); return;
     }
-    if (S.examine && !res.cartes.some(function (c) { return c.id === S.examine; })) S.examine = null;
-    var fi = Math.max(0, res.cartes.map(function (c) { return c.id; }).indexOf(S.examine)), focus = res.cartes[fi];
-    sortie.innerHTML = '<div class="gc-res-h"><h2 class="gc-res-t">Vos ' + res.cartes.length + ' meilleurs choix <small>Touchez un modèle pour le détail</small></h2><div class="gc-arrs"><button type="button" class="gc-arr" data-scroll="-1" aria-label="Modèle précédent"><span aria-hidden="true">‹</span></button><button type="button" class="gc-arr" data-scroll="1" aria-label="Modèle suivant"><span aria-hidden="true">›</span></button></div></div>' +
-      '<ol class="gc-liste" tabindex="0" aria-label="Les ' + res.cartes.length + ' smartphones les plus compatibles, à faire défiler">' + res.cartes.map(function (c, i) { return ticket(c, i, i === fi); }).join('') + '</ol>' +
+    var ids = res.cartes.map(function (c) { return c.id; }), fi = ids.indexOf(S.examine), focus;
+    if (fi >= 0) focus = res.cartes[fi];
+    else if (S.examine && moteur.parId[S.examine]) { focus = moteur.carte(produit(S.examine), pr); fi = -1; }
+    else { S.examine = null; fi = 0; focus = res.cartes[0]; }
+    var titre = S.priorite ? 'Vos ' + res.cartes.length + ' meilleurs choix' : 'Notre sélection de ' + MOIS().split(' ')[0].toLowerCase(), aide = S.priorite ? 'Touchez un modèle pour le détail' : 'Le choix du mois, puis un modèle par critère · choisissez une priorité pour affiner';
+    sortie.innerHTML = '<div class="gc-res-h"><h2 class="gc-res-t">' + esc(titre) + ' <small>' + esc(aide) + '</small></h2>' + FLECHES('Modèles') + '</div>' +
+      '<ol class="gc-liste" tabindex="0" aria-label="' + esc(titre) + ', à faire défiler">' + res.cartes.map(function (c, i) { return ticket(c, i, i === fi); }).join('') + '</ol>' +
       carte(focus, fi) + (res.notes.length ? '<p class="gc-micro">' + esc(res.notes.join(' ')) + '</p>' : '');
-    if (derniere !== S.priorite) { derniere = S.priorite; demos.definirPriorite(S.priorite); if (S.demo) { demos.ouvrir(S.demo, { manuel: true }); S.demo = ''; } }
-    demos.definirTelephone(D.fiche(produit(focus.id)), comparables(focus));
+    $('#gc-shelves').innerHTML = etagere(moteur.autres(ids, S.priorite, b || null), S.examine);
+    if (derniere !== cle) { derniere = cle; demos.definirPriorite(pr); if (S.demo) { demos.ouvrir(S.demo, { manuel: true }); S.demo = ''; } }
+    demos.definirTelephone(fiche(focus), comparables(focus));
     $('#gc-statut').textContent = opts.annonce || '';
     perf.rendu.push(+(performance.now() - t).toFixed(1));
-    root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', S.priorite); root.setAttribute('data-focus', focus.id);
+    root.setAttribute('data-ready', '1'); root.setAttribute('data-priorite', cle); root.setAttribute('data-focus', focus.id);
   }
 
   /* ——— Structure de la page ——— */
@@ -145,14 +169,14 @@
     var bud = BUDGETS.map(function (b) { return '<option value="' + b[0] + '">' + b[1] + '</option>'; }).join('');
     root.innerHTML =
       '<div class="gc-wrap gc-hero"><div class="gc-hero-in"><div class="gc-hero-txt"><p class="gc-eyebrow">Conseiller · ' + moteur.pool.length + ' modèles examinés</p><h1 id="gc-titre">Qu’est-ce qui compte <mark>le plus</mark> ?</h1>' +
-      '<p class="gc-lead">Choisissez ce qui compte pour vous : on vous montre les quatre téléphones les plus compatibles, avec leur score, leurs points forts et leurs compromis.</p>' +
+      '<p class="gc-lead">Voici le choix du mois et trois modèles qui brillent chacun sur un critère. Dites-nous ce qui compte pour vous : on affine avec les quatre téléphones les plus compatibles, leurs points forts et leurs compromis.</p>' +
       '<ol class="gc-steps"><li><b>1</b> Choisissez une priorité</li><li><b>2</b> Comparez les 4 modèles</li><li><b>3</b> Voyez la différence en démo</li></ol></div><div class="gc-hero-ctl" id="gc-ctl"></div></div></div>' +
       '<div class="gc-wrap gc-top"><div class="gc-frame"><form class="gc-rail" onsubmit="return false" aria-labelledby="gc-titre"><fieldset class="gc-prios"><legend class="gc-mono">Ce qui compte le plus</legend><div class="gc-tiles">' + tuiles + '<button type="button" class="gc-tile gc-more" id="gc-more" aria-expanded="false" aria-controls="gc-affiner"><span class="gc-tile-in"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICONES.affiner + '</svg><span class="t">Affiner</span></span></button></div></fieldset>' +
-      '<div class="gc-sum"><span id="gc-more-t"></span>' +
+      '<div class="gc-sum"><span id="gc-more-t"></span><button type="button" class="gc-reset" id="gc-reset" hidden>← Retour à la sélection du mois</button>' +
       '<a class="gc-have" href="#analyser-modele" data-open-tab="analyser-modele"><span>J’ai <span class="gc-xs">déjà </span>un modèle</span><span aria-hidden="true">→</span></a></div>' +
       '<div class="gc-affiner is-closed" id="gc-affiner"><label class="gc-field"><span>Budget maximum</span><select id="gc-bud">' + bud + '</select></label><p class="gc-micro">Vos choix restent sur cet appareil.</p></div></form>' +
       '<p class="gc-visually" id="gc-statut" role="status" aria-live="polite"></p>' +
-      '<div class="gc-grid"><div class="gc-col-a"><div id="gc-sortie"></div></div></div></div><div class="gc-col-b" id="gc-demo"></div></div>' +
+      '<div class="gc-grid"><div class="gc-col-a"><div id="gc-sortie"></div></div></div><div class="gc-shelves" id="gc-shelves"></div></div><div class="gc-col-b" id="gc-demo"></div></div>' +
       '<div class="gc-wrap gc-below"><section class="gc-det" id="gc-det" aria-labelledby="gc-det-h"></section><section class="gc-alt" id="gc-alt" aria-labelledby="gc-alt-h"></section></div>' +
       '<section class="gc-band gc-ink" id="gc-analyse" aria-labelledby="gc-an-h"><div class="gc-wrap"><p class="gc-eyebrow">Un modèle en tête ?</p><h2 class="gc-h2" id="gc-an-h">Collez son lien. On le passe au crible.</h2>' +
       '<form class="gc-aform" id="gc-aform" novalidate><label for="gc-url" class="gc-mono">Lien ou nom du modèle</label><div class="gc-arow"><input id="gc-url" type="text" inputmode="url" autocomplete="off" placeholder="https://… ou nom du modèle"><button type="submit" class="gc-btn gc-yellow">Analyser ce modèle</button></div>' +
@@ -160,7 +184,8 @@
     $('#gc-ctl').appendChild($('.gc-rail'));
     $('#gc-bud').value = String(budgetAffiche());
     var bar = document.createElement('div'); bar.className = 'gc-sticky is-hidden'; bar.id = 'gc-sticky';
-    bar.innerHTML = '<div class="gc-dock"><a href="#analyser-modele" data-open-tab="analyser-modele"><span>Analyser un modèle</span><i aria-hidden="true">↗</i></a><a href="#audit" data-open-tab="audit"><span>Mes critères</span><i aria-hidden="true">↗</i></a></div>';
+    dock(bar); window.addEventListener('hashchange', function () { dock(bar); });
+    if ('MutationObserver' in window) { var mo = new MutationObserver(function () { dock(bar); }); [].slice.call(document.querySelectorAll('.tr-tab')).forEach(function (t) { mo.observe(t, { attributes: true, attributeFilter: ['aria-selected'] }); }); }
     document.body.appendChild(bar);
     $$('.gc-bridge', document).forEach(function (p) { p.hidden = false; });
     demos = D.monter($('#gc-demo'), {});
@@ -168,6 +193,13 @@
     return bar;
   }
 
+  /* Barre du bas : « Analyser » plus l'autre voie de recherche ; deux choix au plus, celui de l'étape en cours n'est pas proposé. */
+  var VOIES = { profil: ['Mon profil', '#choisir-profil', 'choisir-profil'], criteres: ['Mes critères', '#audit', 'audit'], modele: ['Analyser', '#analyser-modele', 'analyser-modele'] };
+  function dock(bar) {
+    var t = document.querySelector('.tr-tab[aria-selected="true"]'), actif = t ? t.id.replace('tab-', '') : 'profil';
+    var ordre = actif === 'modele' ? ['profil', 'criteres'] : actif === 'criteres' ? ['modele', 'profil'] : ['modele', 'criteres'];
+    bar.innerHTML = '<div class="gc-dock" data-actif="' + actif + '">' + ordre.map(function (k, i) { var v = VOIES[k]; return '<a class="gc-dk-' + k + '" href="' + v[1] + '" data-open-tab="' + v[2] + '"><span>' + v[0] + '</span><i aria-hidden="true">↗</i></a>'; }).join('') + '</div>';
+  }
   /* Barre collante : seulement après avoir défilé, retirée quand l'analyseur est à l'écran */
   function collant(bar) {
     var vus = {}, ticking = false;
@@ -225,8 +257,17 @@
     });
     root.addEventListener('click', function (e) {
       var x = e.target.closest('#gc-more'); if (x) { var a = $('#gc-affiner'), o = a.classList.contains('is-closed'); a.classList.toggle('is-closed', !o); x.setAttribute('aria-expanded', String(o)); return; }
-      var ex = e.target.closest('[data-examiner]'); if (ex) { S.examine = ex.getAttribute('data-examiner'); var sl = $('.gc-liste'), sx = sl ? sl.scrollLeft : 0; render({ annonce: 'Détail affiché : ' + (res.cartes.filter(function (c) { return c.id === S.examine; })[0] || { nom: '' }).nom }); var sl2 = $('.gc-liste'); if (sl2) sl2.scrollLeft = sx; var bt = $('[data-examiner="' + S.examine + '"]'); if (bt) bt.focus({ preventScroll: true }); return; }
-      var sc = e.target.closest('[data-scroll]'); if (sc) { var l = sc.closest('.gc-res-h') ? $('.gc-liste') : $('.dm-tabs', $('#gc-demo')); if (l) l.scrollBy({ left: Number(sc.getAttribute('data-scroll')) * Math.min(360, l.clientWidth * .85), behavior: reduced ? 'auto' : 'smooth' }); return; }
+      var rz = e.target.closest('#gc-reset'); if (rz) { S.priorite = null; S.examine = null; $$('.gc-prios input').forEach(function (i) { i.checked = false; }); if (S.budget == null) $('#gc-bud').value = String(budgetAffiche()); ecrire(); render({ anime: true, annonce: 'Retour à la sélection du mois' }); return; }
+      var ex = e.target.closest('[data-examiner]'); if (ex) {
+        var depuisRayon = !!ex.closest('.gc-shelf'), pos = $$('.gc-liste, .gc-shelf').map(function (l) { return l.scrollLeft; });
+        S.examine = ex.getAttribute('data-examiner'); var pe = produit(S.examine);
+        render({ annonce: 'Détail affiché : ' + (pe ? pe.nom : '') });
+        $$('.gc-liste, .gc-shelf').forEach(function (l, i) { if (pos[i] != null) l.scrollLeft = pos[i]; });
+        var bt = $('[data-examiner="' + S.examine + '"]'); if (bt) bt.focus({ preventScroll: true });
+        if (depuisRayon) { var h = $('#gc-sortie'); if (h) h.scrollIntoView({ block: 'start', behavior: reduced ? 'auto' : 'smooth' }); }
+        return;
+      }
+      var sc = e.target.closest('[data-scroll]'); if (sc) { var l = sc.closest('.gc-rail-h') ? sc.closest('.gc-shelf-g').querySelector('.gc-shelf') : sc.closest('.gc-res-h') ? $('.gc-liste') : $('.dm-tabs', $('#gc-demo')); if (l) l.scrollBy({ left: Number(sc.getAttribute('data-scroll')) * Math.min(360, l.clientWidth * .85), behavior: reduced ? 'auto' : 'smooth' }); return; }
       var v = e.target.closest('.gc-voir, .gc-cell[data-demo]'); if (v) { demos.ouvrir(v.getAttribute('data-demo'), { voir: true }); return; }
     });
     /* analyseur : le champ de la page alimente le formulaire existant, sans toucher à son code */
