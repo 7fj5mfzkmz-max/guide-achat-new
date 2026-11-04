@@ -16,3 +16,10 @@ Inspirations : accessibilitychecking.org (hiérarchie, explications directes), c
 
 ## Validation
 `npm test` ; `npm run smartphones:conseiller-test` (360, 390, 768 et 1280 px : sélection du mois, rayons, priorité, secondaire, budget, barre du bas, questionnaire, analyseur, débordements).
+
+## Refonte graphique mobile (novembre 2026, 2e passe)
+Ancien habillage supprimé (fenêtres « .app », ombres décalées, jaune/noir à angles droits, 11 feuilles CSS). Nouveau : `assets/css/smartphones.css` + `smartphones-art.css`.
+- **Langage visuel** : fond gris clair à pastilles (dots), cartes blanches très arrondies, un bleu d'action, le jaune de la marque en surligneur, panneaux de nuit sombres (démonstrations, analyseur), titres Plus Jakarta Sans 800, sections numérotées façon « process » (01, 02, 03).
+- **Conservés à la demande** : le fond à pastilles, et la barre du bas « Analyser | Mes critères » (flottante, arrondie).
+- **Parcours** : inchangé (sélection du mois pour qui n'a pas d'idée, priorités + budget pour affiner, analyseur, questionnaire « Mes critères »), amélioré visuellement : jauge circulaire de compatibilité, tuiles de priorités, rayons par gamme qui défilent.
+- Mode sombre complet, 360 px à 1280 px, mouvement réduit respecté. Les textes restent en français (traductions par DeepL).

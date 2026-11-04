@@ -16,8 +16,9 @@ Ordre de chargement = ordre dans chaque page HTML (la cascade compte).
   (libellés communs : Sur mesure, Usages, Comprendre, Modèles, Tests, Avant d’acheter, Méthode, FAQ), pages simples (`.page-simple`).
   Comportements : `assets/js/category-page.js`.
 - **PC portables** : `pc-page.css`, `pc-guide.css`, `pc-landing.css`.
-- **Smartphones** : `smartphones-page.css`, précédé de `audit-visuals.css` et `concept-visuals.css`. Pour `smartphones.html` seulement :
-  `smartphone-quiz.css`, `smartphones-tests.css`, et `smartphones-flow.css` en dernier.
+- **Smartphones** (`smartphones.html`) : une identité propre, indépendante des autres pages. `smartphones.css` (jetons clair/sombre, fond à pastilles,
+  hero, conseiller, démonstrations, rayons, « Aller plus loin », analyseur, questionnaire, barre du bas) et `smartphones-art.css` (dessins animés
+  des schémas, capteur, simulation de fiche). Tout est préfixé `body.sp2`. `smartphones-page.css` ne sert plus qu'à `smartphones-approfondir.html`.
 - **Projecteurs, écouteurs, batteries** : `projecteurs.css` (commun aux trois), puis `ecouteurs.css` / `batteries-externes.css`.
 - **Analyseur** (page dédiée et blocs intégrés) : `analyzer.css`.
 

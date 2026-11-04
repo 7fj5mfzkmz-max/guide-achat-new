@@ -15,12 +15,8 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="assets/css/design-system.css">
-<link rel="stylesheet" href="assets/css/category-page.css">
-<link rel="stylesheet" href="assets/css/audit-visuals.css">
-<link rel="stylesheet" href="assets/css/concept-visuals.css">
 <link rel="stylesheet" href="assets/css/analyzer.css">
-<link rel="stylesheet" href="assets/css/smartphones-page.css">
-<link rel="stylesheet" href="assets/css/sp-illustrations.css">
+<link rel="stylesheet" href="assets/css/smartphones-art.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
 <script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}
@@ -28,22 +24,14 @@ if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"d
 if(t==="dark")r.classList.add("dark-theme");
 var n=navigator,c=n.connection||{};
 if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
-<link rel="stylesheet" href="assets/css/photo-editorial.css">
-<link rel="stylesheet" href="assets/css/smartphone-quiz.css">
-<link rel="stylesheet" href="assets/css/smartphones-flow.css">
-<link rel="stylesheet" href="assets/css/smartphones-trouver.css">
-<link rel="stylesheet" href="assets/css/actualites.css">
 <script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
 function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
 l=p==="auto"?"fr":p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
 <style>html.i18n-wait body{opacity:0}</style>
 <link rel="stylesheet" href="assets/css/i18n.css">
-<link rel="stylesheet" href="assets/css/student-journey.css">
-<link rel="stylesheet" href="assets/css/projecteurs.css">
-<link rel="stylesheet" href="assets/css/smartphones-calm.css">
-<script id="sp-pertinence-flag">(function(){try{if(/(^|[?&])ancien=1(&|$)/.test(location.search))return;document.documentElement.classList.add("sp-pertinence");var l=document.createElement("link");l.rel="stylesheet";l.href="assets/css/smartphones-conseil.css";document.head.appendChild(l);var m=document.createElement("link");m.rel="stylesheet";m.href="assets/css/smartphones-demos.css";document.head.appendChild(m);var n=document.createElement("link");n.rel="stylesheet";n.href="assets/css/smartphones-refonte.css";document.head.appendChild(n)}catch(e){}})()</script>
+<link rel="stylesheet" href="assets/css/smartphones.css">
 </head>
-<body class="photo-editorial site-redesign sp-calm">
+<body class="sp2">
 <header class="site-header">
 <div class="header-inner">
 <a class="brand-logo" href="index.html" aria-label="Guide·Achat, accueil" translate="no"><span class="ga-wordmark">Guide<i class="ga-dot">·</i>Achat</span></a>
@@ -55,28 +43,9 @@ l=p==="auto"?"fr":p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-
 <div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide pratique</span><span>Android et iOS · Édition 2026</span></div></div>
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker" translate="no">Guide·Achat</span><p class="drawer-title" id="search-panel-title">Rechercher</p></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main">
-<nav class="pl-sections" id="pl-sections" aria-label="Sections de la page">
-<div class="pl-sections-in">
-<button type="button" class="pl-sections-btn" id="pl-sections-btn" aria-expanded="false" aria-controls="pl-sections-list"><span>Sections</span><b id="pl-sections-cur">Sur mesure</b><i aria-hidden="true">▾</i></button>
-<ul id="pl-sections-list"><li><a href="#trouver"><small>01</small>Sur mesure</a></li><li><a href="#faq"><small>02</small>FAQ</a></li><li><a href="#sources"><small>03</small>Sources</a></li></ul>
-</div>
-</nav>
 <div class="hx hx-page pg sp pj" data-cat="smartphones" data-tone="orchid" data-motion="on">
 <div class="container-wide">
 <div id="conseiller" class="gc" hidden aria-live="off"></div>
-<header class="pg-hero cl-hero" id="debut">
-<div>
-<nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
-<span class="pg-kick">Guide d’achat · fiches techniques</span>
-<h1>Le smartphone qu’il vous faut, <mark>comparé sur ses caractéristiques</mark></h1>
-<p class="pg-lead">Processeur, écran, batterie, recharge, photo, stockage, résistance, mises à jour et prix : un score de compatibilité de 0 à 100 % selon votre besoin, calculé sur les caractéristiques techniques. Une donnée manquante n’est jamais comptée comme un défaut.</p>
-<div class="pg-cta"><a class="pg-btn pg-btn-main" href="#trouver">Trouver mon smartphone →</a><a class="pg-skip" href="#faq">Les questions fréquentes ↓</a></div>
-<ul class="pl-checks" aria-label="Nos engagements"><li>Score expliqué</li><li>Limites des données indiquées</li><li>Prix à vérifier en France</li></ul>
-</div>
-<div class="cl-preview" id="cl-preview" aria-live="polite"></div>
-</header>
-<p class="pj-error pj-warn container-wide" id="sp-error" hidden></p>
-<div class="pg-strip pg-strip-3"><div><b data-sp="models">74</b><span>modèles comparables</span></div><div><b data-sp="brands">0</b><span>marques</span></div><div><b data-sp="date">3 nov. 2026</b><span>dernière mise à jour des prix</span></div></div>
 </div>
 
 <div class="container-wide hx-body">
@@ -289,7 +258,6 @@ l=p==="auto"?"fr":p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-
 </div>
 
 <div id="analyser-modele" class="analyseur-bloc">
-<p class="tr-lead">Un modèle repéré dans une boutique ? Collez son lien ou tapez son nom : l’analyseur retrouve ses caractéristiques, les explique et signale ce qui manque ou ce qui est survendu.</p>
 <article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
 <h3>Analyser un téléphone</h3>
 <form class="model-analyzer-form" id="phone-analyzer-form">
@@ -427,7 +395,7 @@ l=p==="auto"?"fr":p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-
 <script src="assets/js/category-page.js" defer></script>
 <script src="assets/js/actualites.js" defer></script>
 <script src="assets/js/i18n.js" defer></script>
-<script id="sp-pertinence-boot">(function(){if(!document.documentElement.classList.contains("sp-pertinence"))return;var c=document.getElementById("conseiller");if(c)c.hidden=false;["smartphones-demos","smartphones-conseiller"].forEach(function(n){var e=document.createElement("script");e.src="assets/js/"+n+".js";e.async=false;document.body.appendChild(e)})})()</script>
+<script id="sp-boot">(function(){var c=document.getElementById("conseiller");if(c)c.hidden=false;["smartphones-demos","smartphones-conseiller"].forEach(function(n){var e=document.createElement("script");e.src="assets/js/"+n+".js";e.async=false;document.body.appendChild(e)})})()</script>
 </body>
 </html>
 
