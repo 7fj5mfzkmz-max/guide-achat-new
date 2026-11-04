@@ -173,6 +173,7 @@
       { "nom": "POCO M8 5G", "pct": 32, "source": "t9" },
       { "nom": "Samsung Galaxy S26 Ultra", "pct": 30, "source": "t7" }
     ],
+    "lecon_court": "Plus de mAh ne veut pas dire plus d’heures. L’Honor 600 Pro (7 000 mAh) tient 17 h 42, plus d’une heure de plus que le POCO X8 (8 340 mAh) ; le Huawei Pura 90S Pro Max (6 000 mAh) devance le POCO F9 Ultra (8 050 mAh).",
     "lecon": "L’optimisation logicielle bat la capacité brute. L’Honor 600 Pro (7 000 mAh) tient 17 h 42, plus d’une heure de plus que le POCO X8 (8 340 mAh). Le Huawei Pura 90S Pro Max (6 000 mAh) devance le POCO F9 Ultra (8 050 mAh) et le Vivo X500 Pro Max (8 000 mAh). Ramenés à une même batterie de 8 050 mAh, le Galaxy S26 passerait à 18 h 38, l’iPhone 18 Pro Max à 17 h 49 et le Huawei à 16 h 45.",
     "mise_a_jour": "Les mises à jour logicielles changent aussi l’autonomie : One UI 9 a gagné 37 minutes au Galaxy S26 et 27 minutes au Galaxy A57 ; iOS 27 a gagné 29 minutes à l’iPhone 17. Le gain annuel d’un iPhone Pro à l’autre est d’environ 40 à 45 minutes."
   },

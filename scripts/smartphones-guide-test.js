@@ -62,6 +62,10 @@ check('page : analyseur intégré, modules chargés, sections et fiches présent
   ['analyser', 'manuel', 'exemples', 'autonomie', 'photo', 'choisir-profil', 'purchase-audit', 'eviter', 'catalogue', 'methode', 'faq'].forEach(id => assert.ok(html.includes('id="' + id + '"'), id));
   D.produits.forEach(p => assert.ok(html.includes('id="m-' + p.id + '"'), p.id));
   assert.ok(!html.includes('catalogue-'), 'aucune fiche du catalogue complet sur la page');
+  const at = id => html.indexOf('id="' + id + '"');
+  assert.ok(at('choisir-profil') < at('eviter') && at('eviter') < at('tests') && at('tests') < at('analyser') && at('analyser') < at('catalogue') && at('catalogue') < at('methode'), 'ordre des sections');
+  assert.ok(at('autonomie') > at('tests') && at('photo') > at('autonomie') && at('manuel') > at('methode') && at('faq') > at('manuel'), 'ordre interne');
+  assert.equal((html.match(/class="sx-card sx-acc"|sx-card sx-acc"/g) || []).length, D.produits.length, 'une ligne repliable par modèle');
 });
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
 if (failures) process.exitCode = 1;

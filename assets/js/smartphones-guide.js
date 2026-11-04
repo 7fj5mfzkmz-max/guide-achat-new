@@ -68,6 +68,28 @@
     show(wrap.querySelector('.pj-tab').getAttribute('data-k'));
   }
 
+  /* Onglets « Les tests » : Autonomie / Photo. Sans JavaScript, les deux blocs restent visibles. */
+  function ongletsTests() {
+    var wrap = $('sx-ttabs'); if (!wrap) return;
+    var panels = document.querySelectorAll('.sx-tp');
+    function show(k, scroll) {
+      panels.forEach(function (p) { p.hidden = p.getAttribute('data-tp') !== k; });
+      wrap.querySelectorAll('.pj-tab').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-t') === k)); });
+      if (scroll) wrap.scrollIntoView({ block: 'start' });
+    }
+    wrap.addEventListener('click', function (e) { var b = e.target.closest('.pj-tab'); if (b) show(b.getAttribute('data-t')); });
+    function fromHash() {
+      var h = location.hash.slice(1);
+      if (h === 'autonomie' || h === 'photo') show(h, true);
+      else if (/^m-/.test(h)) { var c = document.getElementById(h); if (c && c.tagName === 'DETAILS') { c.open = true; } }
+      else if (h === 'manuel' || h === 'faq') { var f = document.getElementById(h); if (f && f.tagName === 'DETAILS') f.open = true; }
+    }
+    show('autonomie');
+    window.addEventListener('hashchange', fromHash);
+    document.querySelectorAll('a[href="#autonomie"], a[href="#photo"]').forEach(function (a) { a.addEventListener('click', function () { show(a.getAttribute('href').slice(1), false); }); });
+    if (location.hash) setTimeout(fromHash, 50);
+  }
+
   function init() {
     ['sx-usage', 'sx-os', 'sx-gamme'].forEach(function (id) { $(id).addEventListener('change', afficher); });
     $('sx-form').addEventListener('submit', function (e) { e.preventDefault(); afficher(); });
@@ -76,7 +98,9 @@
       var a = e.target.closest('.sx-go'); if (!a) return;
       var card = document.querySelector(a.getAttribute('href'));
       if (card && card.hidden) { ['sx-f-gamme', 'sx-f-os', 'sx-f-usage'].forEach(function (id) { $(id).value = ''; }); filtrer(); }
+      if (card) card.open = true;
     });
+    ongletsTests();
     onglets();
     /* Exemples : remplit le champ de l'analyseur et lance l'analyse. */
     document.querySelectorAll('[data-try]').forEach(function (b) {
