@@ -41,17 +41,17 @@
           ' <span class="pj-badge' + (r === 1 ? ' is-lab' : '') + '">' + RANG[r] + '</span></h3>' +
           '<p>' + esc(p.pourquoi[usage] || '') + ' <em>(' + esc(p.prix.texte) + ' · ' + GAMMES[p.gamme] + ')</em></p>' +
           (p.verbatim ? '<blockquote class="sx-quote">« ' + esc(p.verbatim.texte) + ' »</blockquote>' : '') +
-          '<a class="sx-go" href="#m-' + esc(p.id) + '">Voir la fiche ↓</a></div></article>';
+          '<button type="button" class="sx-mini" data-fiche="' + esc(p.id) + '">Voir la fiche</button></div></article>';
       }).join('');
     }
     $('sx-conseil').querySelector('span').textContent = DATA.usages[usage].conseil;
   }
 
   function filtrer() {
-    var g = $('sx-f-gamme').value, o = $('sx-f-os').value, u = $('sx-f-usage').value, n = 0;
-    document.querySelectorAll('#sx-cat-rail .sx-card').forEach(function (c) {
-      var ok = (!g || c.dataset.gamme === g) && (!o || c.dataset.os === o) && (!u || c.dataset.usages.split(' ').indexOf(u) !== -1);
-      c.hidden = !ok; if (ok) n++;
+    var g = $('sx-f-gamme').value, u = $('sx-f-usage').value, n = 0;
+    document.querySelectorAll('#sx-testes tbody tr').forEach(function (r) {
+      var ok = (!g || r.dataset.gamme === g) && (!u || r.dataset.usages.split(' ').indexOf(u) !== -1);
+      r.hidden = !ok; if (ok) n++;
     });
     $('sx-count').textContent = n + (n > 1 ? ' modèles' : ' modèle');
     $('sx-empty').hidden = n !== 0;
@@ -82,7 +82,6 @@
       var h = location.hash.slice(1);
       if (h === 'autonomie' || h === 'photo') show(h, true);
       else if (h === 'par-tests') show(h, true);
-      else if (/^m-/.test(h)) { var c = document.getElementById(h); if (c) c.scrollIntoView({ block: 'center', inline: 'center' }); }
       else if (h === 'manuel' || h === 'faq') { var f = document.getElementById(h); if (f && f.tagName === 'DETAILS') f.open = true; }
     }
     show('autonomie');
@@ -94,13 +93,7 @@
   function init() {
     ['sx-usage', 'sx-os', 'sx-gamme'].forEach(function (id) { $(id).addEventListener('change', afficher); });
     $('sx-form').addEventListener('submit', function (e) { e.preventDefault(); afficher(); });
-    ['sx-f-gamme', 'sx-f-os', 'sx-f-usage'].forEach(function (id) { $(id).addEventListener('change', filtrer); });
-    $('sx-result').addEventListener('click', function (e) {
-      var a = e.target.closest('.sx-go'); if (!a) return;
-      var card = document.querySelector(a.getAttribute('href'));
-      if (card && card.hidden) { ['sx-f-gamme', 'sx-f-os', 'sx-f-usage'].forEach(function (id) { $(id).value = ''; }); filtrer(); }
-      if (card) card.scrollIntoView({ block: 'center', inline: 'center', behavior: 'smooth' });
-    });
+    ['sx-f-gamme', 'sx-f-usage'].forEach(function (id) { $(id).addEventListener('change', filtrer); });
     ongletsTests();
     onglets();
     fetch('data/smartphones-guide.json').then(function (r) { return r.json(); }).then(function (d) { DATA = d; afficher(); })

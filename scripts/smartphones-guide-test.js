@@ -59,16 +59,20 @@ check('jeu : POCO F9 Ultra ou REDMAGIC en tête (rang 1)', () => { assert.equal(
 check('page : analyseur intégré, modules chargés, sections et fiches présentes, catalogue complet absent', () => {
   assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('id="analyse-modele"') && html.includes('data-analyzer-category="smartphones"'));
   assert.ok(html.includes('phone-analyzer/ui.js') && html.includes('assets/js/smartphones-guide.js') && html.includes('assets/css/smartphones.css'));
-  ['analyser', 'manuel', 'exemples', 'autonomie', 'photo', 'choisir-profil', 'purchase-audit', 'eviter', 'catalogue', 'methode', 'faq'].forEach(id => assert.ok(html.includes('id="' + id + '"'), id));
+  ['analyser', 'manuel', 'demos', 'autonomie', 'photo', 'choisir-profil', 'purchase-audit', 'eviter', 'catalogue', 'methode', 'faq', 'sx-win', 'sx-map', 'sx-demo', 'sx-testes'].forEach(id => assert.ok(html.includes('id="' + id + '"'), id));
   D.produits.forEach(p => assert.ok(html.includes('id="m-' + p.id + '"'), p.id));
   assert.ok(!html.includes('catalogue-'), 'aucune fiche du catalogue complet sur la page');
   const at = id => html.indexOf('id="' + id + '"');
-  assert.ok(at('choisir-profil') < at('eviter') && at('eviter') < at('tests') && at('tests') < at('exemples') && at('exemples') < at('catalogue') && at('catalogue') < at('methode'), 'ordre des sections');
+  assert.ok(at('choisir-profil') < at('catalogue') && at('catalogue') < at('demos') && at('demos') < at('tests') && at('tests') < at('eviter') && at('eviter') < at('methode'), 'ordre des onglets');
   assert.ok(at('choisir-profil') < at('mode-profil') && at('mode-profil') < at('purchase-audit') && at('purchase-audit') < at('analyser') && at('analyser') < at('sx-reco'), 'modes dans la section de sélection');
   assert.ok(at('autonomie') > at('tests') && at('photo') > at('autonomie') && at('par-tests') > at('photo') && at('manuel') > at('methode') && at('faq') > at('manuel'), 'ordre interne');
   assert.equal((html.match(/class="pj-card sx-card"/g) || []).length, D.produits.length, 'une fiche par modèle dans le rail');
+  D.produits.filter(p => p.catalogue).forEach(p => assert.ok(require('../data/smartphones.json').produits.some(c => c.id === p.catalogue), p.id + ' : modèle du catalogue introuvable'));
   assert.ok(html.includes('id="sx-dock"') && html.includes('smartphones-conseiller.js') && html.includes('smartphones-compat.js'), 'barre du bas et conseiller');
-  assert.ok(html.includes('sx-rail-reco') && html.includes('sx-rail-cat'), 'rails horizontaux');
+  assert.ok(html.includes('sx-rail-reco'), 'rail des recommandations');
+  assert.equal((html.match(/role="tab"/g) || []).length, 6, 'six onglets de fenêtre');
+  assert.ok(html.includes('smartphones-fenetre.js') && html.includes('smartphones-carte.js') && html.includes('smartphones-demos.js'), 'scripts de la fenêtre');
+  assert.equal((html.match(/<tr data-gamme/g) || []).length, D.produits.length, 'une ligne par modèle testé');
 });
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
 if (failures) process.exitCode = 1;

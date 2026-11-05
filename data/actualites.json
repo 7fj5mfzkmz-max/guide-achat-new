@@ -1,6 +1,28 @@
 {
-  "mis_a_jour": "2026-11-04",
+  "mis_a_jour": "2026-11-05",
   "entrees": [
+    {
+      "id": "smartphones-maj-2026-11-05",
+      "date": "2026-11-05",
+      "cat": "smartphones",
+      "source": "smartphones",
+      "type": "maj",
+      "nombre": 9,
+      "noms": [
+        "OPPO Find X9 Ultra",
+        "Samsung Galaxy S26 Ultra",
+        "HONOR Magic 8 Pro",
+        "HONOR 400 Pro",
+        "HONOR 400",
+        "Redmi Note 15 Pro 5G",
+        "Samsung Galaxy A56",
+        "Samsung Galaxy A36",
+        "Google Pixel 10a"
+      ],
+      "titre": "9 fiches smartphones mises à jour",
+      "resume": "Prix, caractéristiques ou notes revus : OPPO Find X9 Ultra, Samsung Galaxy S26 Ultra, HONOR Magic 8 Pro, HONOR 400 Pro et 5 autres.",
+      "lien": "smartphones.html"
+    },
     {
       "id": "montres-maj-2026-11-04",
       "date": "2026-11-04",

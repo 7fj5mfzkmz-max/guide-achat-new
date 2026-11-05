@@ -42,6 +42,7 @@
       '<div class="sx-rec-score" role="img" aria-label="Compatibilité ' + c.R + ' %"><b>' + c.R + '<small>%</small></b><i style="width:' + c.R + '%"></i></div>' +
       '<ul class="sx-rec-pro">' + forts + '</ul>' + (comp ? '<ul class="sx-rec-con">' + comp + '</ul>' : '') +
       '<p class="sx-rec-cov">Fiche renseignée à ' + c.couverture + ' %' + (c.manquantes.length ? ' · manque : ' + esc(c.manquantes.slice(0, 2).join(', ').toLowerCase()) : '') + '</p>' +
+      '<button type="button" class="sx-mini" data-map="' + esc(c.id) + '">Voir sur la carte</button>' +
       (c.idealo ? '<a class="sx-rec-go" href="' + esc(c.idealo) + '" target="_blank" rel="noopener noreferrer">Voir le prix en France ↗</a>' : '') +
       '</article>';
   }
@@ -80,7 +81,7 @@
     document.querySelectorAll('#sx-modes [data-mode]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-mode') === m)); });
     $('sx-reco').hidden = m === 'analyser';
     dock();
-    if (scroll) { var s = $('choisir-profil'); if (s) s.scrollIntoView({ block: 'start' }); }
+    if (scroll) { if (window.SxFenetre) window.SxFenetre.show('choisir-profil', { scroll: true }); else { var s = $('choisir-profil'); if (s) s.scrollIntoView({ block: 'start' }); } }
     if (m === 'analyser') { var inp = $('phone-product-url'); if (inp && !$('phone-analyzer-form').hidden) inp.focus({ preventScroll: true }); }
   }
   /* Deux options au plus : les deux modes qui ne sont pas ouverts. */
@@ -94,9 +95,9 @@
     var d = $('sx-dock'), s = $('choisir-profil'); if (!d || !s) return;
     document.body.appendChild(d);   /* hors du conteneur animé : position fixe fiable */
     var tick = false;
-    function maj() { tick = false; var r = s.getBoundingClientRect(); var visible = r.top < window.innerHeight * 0.55 && r.bottom > window.innerHeight * 0.25; d.classList.toggle('is-hidden', window.scrollY < 420 || visible); }
+    function maj() { tick = false; var ailleurs = window.SxFenetre && window.SxFenetre.current() !== 'choisir-profil'; var r = s.getBoundingClientRect(); var visible = !ailleurs && r.top < window.innerHeight * 0.55 && r.bottom > window.innerHeight * 0.25; d.classList.toggle('is-hidden', !ailleurs && (window.scrollY < 420 || visible)); }
     window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(maj); } }, { passive: true });
-    window.addEventListener('resize', maj); maj();
+    window.addEventListener('resize', maj); document.addEventListener('sx:tab', function () { setTimeout(maj, 0); setTimeout(function () { document.querySelectorAll('.sx-rail').forEach(fleches); }, 0); }); maj();
   }
 
   /* ——— Rails horizontaux : fleches visibles seulement si le contenu déborde ——— */
