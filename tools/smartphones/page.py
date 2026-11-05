@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Page « Smartphones » (smartphones.html) à partir de data/smartphones-guide.json.
-Contient l'analyseur de modèle (moteur phone-analyzer/, inchangé) ; le catalogue complet (data/smartphones.json)
-n'est PAS affiché ici : il sera intégré dans un second temps.
+Génère le bureau de sélection, le catalogue, les comparaisons et les ressources.
+L’analyseur de modèle (moteur phone-analyzer/) reste inchangé.
 La coque (en-tête, recherche, pied de page) vient de ecouteurs.html, puis le gabarit commun est réappliqué.
 Usage : python3 tools/smartphones/page.py"""
 import html, json, pathlib, re, subprocess, sys
@@ -14,7 +14,7 @@ GAMMES = {'budget': 'Petit budget', 'milieu': 'Milieu de gamme', 'haut': 'Haut d
 OS = {'android': 'Android', 'ios': 'iPhone', 'autre': 'Autre système'}
 RANG = {1: 'En tête des tests', 2: 'Très bon', 3: 'Correct'}
 
-SECTIONS = [('choisir-profil', 'Ma sélection'), ('eviter', 'À éviter'), ('tests', 'Les tests'), ('exemples', 'Lire une fiche'),
+SECTIONS = [('choisir-profil', 'Choisir'), ('eviter', 'À éviter'), ('tests', 'Les tests'), ('exemples', 'Lire une fiche'),
             ('catalogue', 'Modèles testés'), ('methode', 'Méthode et FAQ')]
 PRIO = ['Samsung Galaxy S26 FE', 'iPhone 17e', 'Sony Xperia 1 VII à ≈ 1 500 €', 'Changer d’iPhone chaque année']
 CHIPS = ['Galaxy A56', 'iPhone 17 Pro', 'Magic 8 Pro']
@@ -86,19 +86,20 @@ def rail(id_, label, inner, cls=''):
 
 def conseiller(chips):
     budgets = '<option value="">Sans limite</option><option value="300">Jusqu’à 300 €</option><option value="500">Jusqu’à 500 €</option><option value="800">Jusqu’à 800 €</option><option value="1200">Jusqu’à 1 200 €</option>'
-    return f'''<div class="sx-modes sx-wt sx-wt-in" id="sx-modes" role="group" aria-label="Choisir une façon de chercher"><button type="button" data-mode="profil" aria-pressed="true">Mon profil</button><button type="button" data-mode="criteres" aria-pressed="false">Mes critères</button><button type="button" data-mode="analyser" aria-pressed="false">Analyser</button></div>
+    return f'''<header class="sx-welcome"><div><p class="sx-kicker">CHOISIR, TOUT SIMPLEMENT</p><h2>Un bon point de départ.</h2><p>Notre sélection du mois, à adapter à vos envies.</p></div><div class="sx-start-actions"><button class="btn" type="button" data-open-editor="profil">Trouver le mien <span aria-hidden="true">→</span></button><button class="btn btn-secondary" type="button" data-open-editor="analyser">Analyser un modèle</button></div></header>
+<div class="sx-editor" id="sx-editor" hidden><div class="sx-editor-title"><h3>Ce qui compte pour vous</h3><button type="button" class="sx-editor-close" id="sx-editor-close" aria-label="Fermer la personnalisation">×</button></div><div class="sx-modes sx-wt sx-wt-in" id="sx-modes" role="group" aria-label="Choisir une façon de chercher"><button type="button" data-mode="profil" aria-pressed="true">Mon profil</button><button type="button" data-mode="criteres" aria-pressed="false">Mes critères</button><button type="button" data-mode="analyser" aria-pressed="false">Analyser</button></div>
 <div class="sx-mp" data-mp="profil" id="mode-profil">
-<p class="sx-mp-lead">Qui êtes-vous ? Le guide classe les modèles du catalogue selon ce qui compte pour ce profil.</p>
+<p class="sx-mp-lead">Votre quotidien ressemble plutôt à…</p>
 <div class="sx-chips" id="sx-profils" role="group" aria-label="Votre profil"></div>
 <div class="sx-mp-row"><label>Budget <select id="sx-budget-p">{budgets}</select></label><button class="btn" type="button" id="sx-go-p" disabled>Voir mes recommandations</button></div>
 </div>
 <div class="sx-mp" data-mp="criteres" id="purchase-audit" hidden>
-<p class="sx-mp-lead">Qu’est-ce qui compte le plus ? Choisissez une priorité, un budget et, si vous y tenez, un système.</p>
+<p class="sx-mp-lead">Votre priorité, puis le budget que vous souhaitez y consacrer.</p>
 <div class="sx-chips" id="sx-priorites" role="group" aria-label="Votre priorité"></div>
 <div class="sx-mp-row"><label>Budget <select id="sx-budget-c">{budgets}</select></label><label>Système <select id="sx-os-c"><option value="any">Peu importe</option><option value="android">Android</option><option value="ios">iPhone</option></select></label><button class="btn" type="button" id="sx-go-c" disabled>Voir mes recommandations</button></div>
 </div>
 <div class="sx-mp sx-scan" data-mp="analyser" id="analyser" hidden>
-<p class="sx-mp-lead">Collez un lien : le nom et la référence sont lus d’abord, puis les caractéristiques sont retrouvées, expliquées et situées selon quatre profils.</p>
+<p class="sx-mp-lead">Un téléphone vous plaît ? Voyez ce que sa fiche veut dire pour vous.</p>
 <article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
 <form class="model-analyzer-form" id="phone-analyzer-form">
 <label class="sx-scan-label" for="phone-product-url">Lien ou nom du smartphone</label>
@@ -111,10 +112,10 @@ def conseiller(chips):
 </article>
 <p class="sx-try"><span>Essayez :</span>{chips}</p>
 </div>
-<div class="sx-reco" id="sx-reco">
+</div><div class="sx-reco" id="sx-reco">
 <div class="sx-reco-head"><div><h3 id="sx-reco-t">Notre sélection du mois</h3><p id="sx-reco-s"></p></div><button class="btn btn-secondary" type="button" id="sx-reco-reset" hidden>Revenir à la sélection du mois</button></div>
 {rail('sx-reco-rail', 'Recommandations', '<p class="pj-lead-note">Chargement du catalogue…</p>', 'sx-rail-reco')}
-<p class="pj-lead-note" id="sx-reco-note"></p>
+<p class="pj-lead-note" id="sx-reco-note"></p><div class="sx-next-step"><span>Une fiche vous laisse perplexe ?</span><button type="button" class="sx-text-button" data-open-understand>Voir ce qui fait la différence <span aria-hidden="true">→</span></button></div>
 <noscript><p class="pj-warn">Le conseiller demande JavaScript. Sélection du mois : OnePlus 15 ; photo : OPPO Find X9 Ultra ; rapport qualité-prix : Realme GT 7 ; batterie : POCO X7 Pro.</p></noscript>
 </div>'''
 
@@ -200,7 +201,7 @@ def avoid():
             + fold(f'{len(rest)} autres pièges', f'<div class="sx-avoid">{"".join(one(a) for a in rest)}</div>', 'sx-more'))
 
 
-TABS = [('choisir-profil', 'Ma sélection', '#a855c8'), ('catalogue', 'Catalogue', '#1aa6a0'), ('demos', 'Démonstrations', '#f0a81e'),
+TABS = [('choisir-profil', 'Choisir', '#a855c8'), ('catalogue', 'Catalogue', '#1aa6a0'), ('demos', 'Comprendre', '#f0a81e'),
         ('tests', 'Les tests', '#3b82d6'), ('eviter', 'À éviter', '#ee6a55'), ('methode', 'Méthode', '#f19a6b')]
 DEMOS = [('ecran', 'Écran', 'OLED ou LCD, 60 ou 144 Hz'), ('photo', 'Photo', 'La taille du capteur'), ('batterie', 'Batterie', 'mAh, heures et recharge'),
          ('jeu', 'Jeu', '30, 60 ou 120 images par seconde'), ('budget', 'Budget', 'Le coût de chaque année')]
@@ -225,15 +226,15 @@ def testes_table():
 
 
 def catalogue_panel(n_mod):
-    return (f'''<div class="sx-wt sx-wt-in" id="sx-cattabs" role="group" aria-label="Façon de parcourir le catalogue"><button type="button" data-ct="carte" aria-pressed="true">Carte des 146 modèles</button><button type="button" data-ct="testes" aria-pressed="false">Testés en vidéo ({n_mod})</button></div>
+    return (f'''<header class="sx-panel-head"><p class="sx-kicker">EXPLORER À VOTRE RYTHME</p><h2>Tout le catalogue.</h2><p>Cherchez un modèle ou partez des meilleurs choix pour votre usage.</p></header><div class="sx-wt sx-wt-in" id="sx-cattabs" role="group" aria-label="Façon de parcourir le catalogue"><button type="button" data-ct="carte" aria-pressed="true">Tous les modèles</button><button type="button" data-ct="testes" aria-pressed="false">Testés en vidéo</button></div>
 <div class="sx-cp" data-cp="carte">
-<p class="sx-mp-lead">Chaque point est un téléphone. Plus il est <b>haut</b>, mieux il correspond au classement choisi ; plus il est à <b>gauche</b>, moins il est cher. Cliquez un point pour le lire.</p>
+
 <div class="sx-map-tools"><div class="sx-prios" id="sx-map-prios" role="group" aria-label="Classement affiché"></div>
 <label class="sx-map-search">Chercher<input id="sx-map-q" list="sx-map-list" placeholder="Nom d’un modèle" autocomplete="off"/><datalist id="sx-map-list"></datalist></label>
-<button class="btn" type="button" id="sx-tour-go">Visite guidée</button></div>
+<button class="btn btn-secondary" type="button" id="sx-tour-go">Visite guidée</button></div>
 <div class="sx-map-body" id="sx-map-body" data-tour="0">
-<div class="sx-map-wrap" id="sx-map-wrap"><svg id="sx-map" role="img" aria-label="Carte des modèles : le prix en abscisse, la compatibilité avec le classement choisi en ordonnée"></svg><div class="sx-tip" id="sx-tip" hidden></div>
-<div class="sx-tour" id="sx-tour" hidden role="dialog" aria-label="Visite guidée"><p id="sx-tour-t"></p><div class="sx-tour-b"><button type="button" class="sx-mini" id="sx-tour-prev">Précédent</button><span id="sx-tour-n"></span><button type="button" class="sx-mini is-main" id="sx-tour-next">Suivant</button><button type="button" class="sx-mini" id="sx-tour-x">Fermer</button></div></div></div>
+<details class="sx-map-disclosure" id="sx-map-disclosure" open><summary>Afficher la carte des prix et des modèles</summary><div class="sx-map-wrap" id="sx-map-wrap"><svg id="sx-map" role="img" aria-label="Carte des modèles : le prix en abscisse, la compatibilité avec le classement choisi en ordonnée"></svg><div class="sx-tip" id="sx-tip" hidden></div>
+<div class="sx-tour" id="sx-tour" hidden role="dialog" aria-label="Visite guidée"><p id="sx-tour-t"></p><div class="sx-tour-b"><button type="button" class="sx-mini" id="sx-tour-prev">Précédent</button><span id="sx-tour-n"></span><button type="button" class="sx-mini is-main" id="sx-tour-next">Suivant</button><button type="button" class="sx-mini" id="sx-tour-x">Fermer</button></div></div></div></details>
 <aside class="sx-insp" id="sx-insp" aria-live="polite"><p class="pj-lead-note">Chargement du catalogue…</p></aside></div>
 <noscript><p class="pj-warn">La carte demande JavaScript. Les modèles testés en vidéo sont listés dans l’onglet voisin.</p></noscript>
 </div>
@@ -244,42 +245,38 @@ def catalogue_panel(n_mod):
 
 
 def demos_panel():
-    tabs = ''.join(f'<button type="button" data-d="{k}" aria-pressed="{str(i == 0).lower()}"><b>{t}</b><span>{s}</span></button>' for i, (k, t, s) in enumerate(DEMOS))
-    return (f'<p class="sx-mp-lead">Voyez la différence au lieu de la lire. Chaque démonstration part d’une mesure réelle ou du catalogue.</p>'
-            f'<div class="sx-wt sx-wt-in sx-demotabs" id="sx-demotabs" role="group" aria-label="Choisir une démonstration">{tabs}</div>'
-            '<div class="sx-demo" id="sx-demo" aria-live="polite"><p class="pj-lead-note">Chargement…</p></div>'
-            '<noscript><p class="pj-warn">Les démonstrations demandent JavaScript.</p></noscript>'
-            f'<h3 class="sx-sub">Cas concrets : ce que la fiche cache</h3>{examples()}')
+    return ('<header class="sx-panel-head"><p class="sx-kicker">LES BONS REPÈRES</p><h2>Ce qui change vraiment.</h2><p>Trois questions concrètes pour mieux choisir.</p></header>'
+            '<div class="sx-demotabs" id="sx-demotabs" role="group" aria-label="Choisir une expérience"><button type="button" data-d="batterie" aria-pressed="true">Autonomie</button><button type="button" data-d="photo" aria-pressed="false">Photo</button><button type="button" data-d="budget" aria-pressed="false">Budget</button></div>'
+            '<div class="sx-demo" id="sx-demo"><p class="pj-lead-note" role="status">Chargement…</p></div>'
+            '<noscript><p>Ces comparaisons demandent JavaScript. Retrouvez les mesures dans Les tests.</p></noscript>')
 
 
 def window(panels):
-    tabs = ''.join(f'<button type="button" role="tab" id="tab-{i}" data-wt="{i}" aria-controls="{i}" aria-selected="{str(n == 0).lower()}"><i class="sx-fav" style="--c:{c}" aria-hidden="true"></i><span>{l}</span></button>' for n, (i, l, c) in enumerate(TABS))
+    icons = {'choisir-profil': 'home', 'catalogue': 'grid', 'demos': 'light', 'tests': 'chart', 'eviter': 'flag', 'methode': 'book'}
+    paths = {'home': '<path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/>', 'grid': '<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>', 'light':'<path d="M8 16c-6-5-2-13 4-13s10 8 4 13l-1 2H9zM9 22h6"/>','chart':'<path d="M4 20V9m8 11V3m8 17v-7"/>','flag':'<path d="M5 22V3h13l-3 4 3 4H5"/>','book':'<path d="M12 5Q7 2 3 4v15q5-2 9 1 4-3 9-1V4q-4-2-9 1v15"/>'}
+    def tab(i, l):
+        icon = f'<svg viewBox="0 0 24 24" aria-hidden="true">{paths[icons[i]]}</svg>'
+        return f'<button type="button" role="tab" id="tab-{i}" data-wt="{i}" aria-controls="{i}" aria-selected="{str(i == "choisir-profil").lower()}">{icon}<span>{l}</span></button>'
+    tabs = ''.join(tab(i, l) for i,l,_ in TABS[:3])
+    more = ''.join(tab(i,l) for i,l,_ in TABS[3:])
     body = ''.join(f'<section class="sx-wp" role="tabpanel" aria-labelledby="tab-{i}" id="{i}" data-wp="{i}">{panels[i]}</section>' for i, _, _ in TABS)
-    return (f'<div class="sx-win" id="sx-win"><div class="sx-win-bar"><span class="sx-win-dots" aria-hidden="true"><i></i><i></i><i></i></span>'
-            f'<span class="sx-win-title">Guide·Achat — Smartphones</span><span class="sx-win-path" id="sx-win-path" aria-hidden="true">Ma sélection</span></div>'
-            f'<div class="sx-wtabs" id="sx-wtabs" role="tablist" aria-label="Rubriques">{tabs}</div><div class="sx-wpanels">{body}</div></div>')
-
-
-def hero_art():
-    return ('<svg class="sx-art" viewBox="0 0 400 340" role="img" aria-label="Un smartphone dont la fiche technique est lue ligne par ligne">'
-            '<rect class="sx-ph" x="130" y="22" width="140" height="296" rx="26"/><rect class="sx-ph-in" x="140" y="40" width="120" height="260" rx="16"/>'
-            '<rect class="sx-ph-cam" x="190" y="30" width="20" height="5" rx="2.5"/>'
-            '<g class="sx-lines"><rect x="152" y="70" width="64" height="8" rx="4"/><rect x="152" y="96" width="96" height="8" rx="4"/><rect x="152" y="122" width="80" height="8" rx="4"/>'
-            '<rect x="152" y="148" width="92" height="8" rx="4"/><rect x="152" y="174" width="58" height="8" rx="4"/><rect x="152" y="200" width="88" height="8" rx="4"/><rect x="152" y="226" width="70" height="8" rx="4"/></g>'
-            '<rect class="sx-beam" x="136" y="40" width="128" height="26" rx="6"/></svg>'
-            '<span class="pj-chip pj-chip-a">7 000 mAh ≠ 17 h</span><span class="pj-chip pj-chip-c">Tests indépendants</span>')
+    return (f'<div class="sx-win" id="sx-win"><div class="sx-win-bar"><span class="sx-app-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sx-win-title">Guide·Achat <span>/ Smartphones</span></span><span class="sx-win-path" id="sx-win-path" aria-hidden="true">Ma sélection</span><span class="sx-win-controls" aria-hidden="true"><i>−</i><i>□</i><i>×</i></span></div>'
+            f'<div class="sx-desktop"><div class="sx-sidebar"><p class="sx-sidebar-label">VOTRE ESPACE</p><div class="sx-wtabs" id="sx-wtabs" role="tablist" aria-label="Rubriques" aria-orientation="vertical">{tabs}<details class="sx-nav-more"><summary>Pour aller plus loin</summary>{more}</details></div><p class="sx-sidebar-note">Choisir avec confiance.<br>À votre rythme.</p></div><div class="sx-wpanels">{body}</div></div></div>')
 
 
 def build():
     base = (ROOT / 'ecouteurs.html').read_text(encoding='utf-8')
     produits = D['produits']
     n_mod, n_src = len(produits), len(D['sources'])
+    for qa in D['faq']:
+        if qa[0] == 'Où est le catalogue complet ?':
+            qa[1] = 'Ouvrez Catalogue dans la fenêtre : les 146 modèles sont consultables par nom, prix et usage. Les modèles testés en vidéo ont leur propre liste.'
     ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in D['faq']]}
     top = base[:base.index('<main')]
     top = re.sub(r'<title>.*?</title>', '<title>Bien choisir un smartphone : analyseur, tests et pièges à éviter : Guide·Achat</title>', top, count=1)
     top = re.sub(r'<meta name="description"[^>]*>', '<meta name="description" content="Collez le lien d’un smartphone : le guide lit la fiche, la traduit en français courant et la situe selon votre usage. Autonomie mesurée, photo, jeu et modèles à éviter, avec les mots des testeurs."/>', top, count=1)
     top = re.sub(r'<script type="application/ld\+json">.*?</script>', '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False) + '</script>', top, count=1, flags=re.S)
-    top = top.replace('<link rel="stylesheet" href="assets/css/ecouteurs.css">', '<link rel="stylesheet" href="assets/css/analyzer.css">\n<link rel="stylesheet" href="assets/css/smartphones.css">')
+    top = top.replace('<link rel="stylesheet" href="assets/css/ecouteurs.css">', '<link rel="stylesheet" href="assets/css/analyzer.css">\n<link rel="stylesheet" href="assets/css/smartphones.css">\n<link rel="stylesheet" href="assets/css/smartphones-workspace.css">')
     top = top.replace('<script src="assets/js/categories.js" defer></script>', '<script src="assets/js/categories.js"></script>')
     top = re.sub(r'<div class="header-meta">.*?</div></div>', f'<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide de lecture</span><span>{n_mod} modèles · Édition 2026</span></div></div>', top, count=1, flags=re.S)
     end = base[base.index('<footer'):]
@@ -314,16 +311,7 @@ def build():
     main = f'''<main id="main">
 <div class="hx hx-page pg pj sx" data-cat="smartphones" data-tone="orchid" data-motion="on">
 <div class="container-wide">
-<header class="pg-hero sx-hero" id="debut">
-<div>
-<nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
-<span class="pg-kick">Rév. 01 · novembre 2026 · catalogue et tests indépendants</span>
-<h1>Un smartphone, lu <mark>sans jargon</mark></h1>
-<p class="pg-lead">Un choix du mois, puis un modèle par gamme de prix. Dites qui vous êtes ou ce qui compte pour vous : le guide affiche les modèles les plus proches. Un modèle en tête ? Analysez-le.</p>
-<ul class="sx-nums" aria-label="Chiffres clés"><li><b>146</b> modèles classés</li><li><b>{n_src}</b> tests vidéo</li><li><b>0</b> note inventée</li></ul>
-</div>
-<div class="pj-stage sx-stage">{hero_art()}</div>
-</header>
+<header class="sx-hero" id="debut"><div><nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span>/</span>Smartphones</nav><h1>Le bon téléphone.<br><span>Le choix devient simple.</span></h1><p>Une sélection courte. Des raisons claires. À vous de choisir.</p></div><span class="sx-edition">LE BUREAU DES SMARTPHONES<span>Novembre 2026</span></span></header>
 </div>
 <div class="container-wide sx-wide">
 {window(panels)}

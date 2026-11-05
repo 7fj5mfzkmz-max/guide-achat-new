@@ -24,6 +24,8 @@
 
   var eng, pts = [], byId = {}, tested = {}, prio = 'equilibre', sel = null, dims = null, built = false, tour = 0;
   var svg = $('sx-map'), wrap = $('sx-map-wrap'), insp = $('sx-insp'), tip = $('sx-tip'), body = $('sx-map-body');
+  var mapDetails=$('sx-map-disclosure');
+  if(mapDetails){mapDetails.open=window.innerWidth>720;var mapMedia=window.matchMedia('(min-width:721px)');mapMedia.addEventListener('change',function(e){mapDetails.open=e.matches;});mapDetails.addEventListener('toggle',function(){if(mapDetails.open)setTimeout(construire,0);});}
   var G = {};   // éléments SVG : dots, frontier
 
   /* ——— Données ——— */
@@ -152,7 +154,7 @@
     if (!sel) {
       var top = pts.slice().sort(function (a, b) { return b.sc[prio] - a.sc[prio] || b.cov - a.cov || a.prix - b.prix; }).slice(0, 5);
       insp.innerHTML = '<h3>Les cinq premiers : ' + COURT[prio] + '</h3><ol class="sx-top">' + top.map(function (t) { return '<li><button type="button" data-sel="' + t.id + '"><b>' + esc(t.nom) + '</b><span>' + fr(Math.round(t.prix)) + ' € · ' + t.sc[prio] + ' %</span></button></li>'; }).join('') + '</ol>' +
-        '<p class="pj-lead-note">Cliquez un point de la carte, un nom ci-dessus ou lancez la visite guidée pour comprendre comment lire cette carte.</p>';
+        '<p class="pj-lead-note">Choisissez un nom pour lire ses points forts et ses limites. La carte permet aussi de comparer les prix.</p>';
       return;
     }
     var t = byId[sel], c = eng.carte(t.p, prio), best = G.best && G.best.indexOf(t) !== -1;
@@ -177,7 +179,7 @@
     $('sx-tour').hidden = !n;
     if (n) { $('sx-tour-t').textContent = TOUR[n - 1]; $('sx-tour-n').textContent = n + ' / ' + TOUR.length; $('sx-tour-next').textContent = n === TOUR.length ? 'Terminer' : 'Suivant'; $('sx-tour-prev').disabled = n === 1; }
   }
-  $('sx-tour-go').addEventListener('click', function () { visite(1); });
+  $('sx-tour-go').addEventListener('click', function () { if(mapDetails){mapDetails.open=true;construire();mapDetails.scrollIntoView({block:'start'});} visite(1); });
   $('sx-tour-x').addEventListener('click', function () { visite(0); });
   $('sx-tour-prev').addEventListener('click', function () { if (tour > 1) visite(tour - 1); });
   $('sx-tour-next').addEventListener('click', function () { visite(tour >= TOUR.length ? 0 : tour + 1); });

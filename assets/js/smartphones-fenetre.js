@@ -26,6 +26,7 @@
     tabs.forEach(function (t) { var on = t.getAttribute('data-wt') === id; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; if (on) label = t.textContent.trim(); });
     var path = document.getElementById('sx-win-path'); if (path) path.textContent = label;
     cur = id;
+    var selected=win.querySelector('[data-wt="'+id+'"]');var more=selected&&selected.closest('details');if(more)more.open=true;
     if (o.scroll) { var r = win.getBoundingClientRect(); if (r.top < 60 || r.top > window.innerHeight * 0.6) win.scrollIntoView({ block: 'start' }); }
     if (o.hash && window.history && history.replaceState) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
     document.dispatchEvent(new CustomEvent('sx:tab', { detail: { id: id } }));
@@ -36,8 +37,8 @@
   win.querySelector('#sx-wtabs').addEventListener('click', function (e) { var b = e.target.closest('[data-wt]'); if (b) show(b.getAttribute('data-wt'), { scroll: true, hash: true }); });
   win.querySelector('#sx-wtabs').addEventListener('keydown', function (e) {
     var i = tabs.indexOf(document.activeElement); if (i < 0) return;
-    var n = e.key === 'ArrowRight' ? (i + 1) % tabs.length : e.key === 'ArrowLeft' ? (i - 1 + tabs.length) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
-    if (n < 0) return; e.preventDefault(); tabs[n].focus(); show(tabs[n].getAttribute('data-wt'), { scroll: false, hash: true });
+    var n = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? (i + 1) % tabs.length : (e.key === 'ArrowLeft' || e.key === 'ArrowUp') ? (i - 1 + tabs.length) % tabs.length : e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : -1;
+    if (n < 0) return; e.preventDefault(); show(tabs[n].getAttribute('data-wt'), { scroll: false, hash: true }); tabs[n].focus();
   });
   /* Liens internes (#eviter, #photo…) : on ouvre l'onglet puis on remonte en haut de la fenêtre. */
   function depuisHash(premier) {
