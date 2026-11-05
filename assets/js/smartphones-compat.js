@@ -122,6 +122,54 @@
     return { forts: forts, compromis: compromis };
   }
 
+
+  /* ——— Sur mesure : le visiteur règle des valeurs visées, famille par famille (écran, batterie, puissance, photo, mémoire, résistance) ———
+     Règle : atteindre ou dépasser la valeur visée vaut 100 % ; en dessous, la note baisse en proportion de l'écart. Une famille laissée vide
+     n'entre pas dans le calcul, donc avec une seule famille un modèle peut afficher 100 % : c'est voulu, la liste montre alors ce qui convient,
+     puis le meilleur rapport spécifications/prix les départage. Une donnée absente de la fiche n'est ni bonifiée ni pénalisée. */
+  var FAMILLES = {
+    ecran: { titre: 'Écran', sous: 'Netteté, fluidité', cles: ['tech', 'hz'] },
+    batterie: { titre: 'Batterie', sous: 'Autonomie, vitesse de recharge', cles: ['mah', 'watts'] },
+    puissance: { titre: 'Puissance', sous: 'Rapidité, jeux', cles: ['niveau'] },
+    photo: { titre: 'Photo', sous: 'Détail, stabilité, zoom', cles: ['mp', 'ois', 'zoom'] },
+    memoire: { titre: 'Mémoire', sous: 'Stockage, applis ouvertes', cles: ['go', 'ram'] },
+    resistance: { titre: 'Résistance', sous: 'Eau et poussière', cles: ['ip'] }
+  };
+  var PROFILS_CHOIX = {
+    etudiant: { batterie: { mah: 5000, watts: 45 }, puissance: { niveau: 5 }, memoire: { go: 128 } },
+    professionnel: { ecran: { tech: 'oled', hz: 90 }, batterie: { mah: 5000 }, puissance: { niveau: 5 }, resistance: { ip: 7 } },
+    gamer: { ecran: { hz: 120 }, batterie: { watts: 45 }, puissance: { niveau: 7 }, memoire: { ram: 8 } },
+    photographe: { ecran: { tech: 'oled' }, photo: { mp: 50, ois: true, zoom: 'tele' }, memoire: { go: 256 } }
+  };
+  function atteint(want, have, k) { return have >= want ? 1 : Math.max(0, 1 - (want - have) / want * k); }
+  function ipChiffre(ip) { var m = ip ? (String(ip).match(/IP\s?(\d)(\d)/gi) || []).map(function (x) { return Number(x.replace(/\D/g, '').charAt(1)); }) : []; return m.length ? Math.max.apply(null, m) : null; }
+  function statut(score) { return score >= 0.999 ? 'ok' : score >= 0.6 ? 'proche' : 'loin'; }
+  /* Les contrôles d'un modèle pour les choix donnés : { famille, cle, voulu, trouve, score, statut } ; une donnée absente est listée à part. */
+  function controles(p, choix) {
+    var s = lire(p), out = [], inconnus = [];
+    function add(fam, cle, voulu, trouve, score) { if (score == null) inconnus.push({ famille: fam, cle: cle }); else out.push({ famille: fam, cle: cle, voulu: voulu, trouve: trouve, score: score, statut: statut(score) }); }
+    var e = choix.ecran || {}, b = choix.batterie || {}, pu = choix.puissance || {}, ph = choix.photo || {}, me = choix.memoire || {}, re = choix.resistance || {};
+    if (e.tech) { var rg = { lcd: 1, oled: 2, ltpo: 3 }[e.tech], have = s.techno ? (/ltpo/i.test(s.techno) ? 3 : /oled/i.test(s.techno) ? 2 : 1) : null;
+      add('ecran', 'tech', e.tech, s.techno ? ({ 3: 'LTPO', 2: 'OLED', 1: 'LCD' })[have] : null, have == null ? null : (have >= rg ? 1 : 1 - (rg - have) * 0.5)); }
+    if (e.hz) add('ecran', 'hz', e.hz, s.hz != null ? s.hz + ' Hz' : null, s.hz == null ? null : atteint(e.hz, s.hz, 1.7));
+    if (b.mah) add('batterie', 'mah', b.mah, s.mah != null ? fr(s.mah) + ' mAh' : null, s.mah == null ? null : atteint(b.mah, s.mah, 2.2));
+    if (b.watts) add('batterie', 'watts', b.watts, s.watts != null ? s.watts + ' W' : null, s.watts == null ? null : atteint(b.watts, s.watts, 1.6));
+    if (pu.niveau) add('puissance', 'niveau', pu.niveau, s.niveau != null ? 'niveau ' + s.niveau + '/10' : null, s.niveau == null ? null : (s.niveau >= pu.niveau ? 1 : Math.max(0, 1 - (pu.niveau - s.niveau) * 0.3)));
+    if (ph.mp) add('photo', 'mp', ph.mp, s.mp != null ? s.mp + ' MP' : null, s.mp == null ? null : atteint(ph.mp, s.mp, 1.2));
+    if (ph.ois) add('photo', 'ois', true, s.ois == null ? null : (s.ois ? 'stabilisation optique' : 'sans stabilisation optique'), s.ois == null ? null : (s.ois ? 1 : 0.2));
+    if (ph.zoom) {
+      var tel = s.tele, per = s.periscope || (s.zoom || 0) >= 5, sc = null, tx = null;
+      if (ph.zoom === 'periscope') { if (per) { sc = 1; tx = 'téléobjectif périscope'; } else if (tel === true) { sc = 0.6; tx = 'téléobjectif'; } else if (tel === false) { sc = 0.1; tx = 'sans téléobjectif'; } }
+      else if (tel === true || per) { sc = 1; tx = per ? 'téléobjectif périscope' : 'téléobjectif'; } else if (tel === false) { sc = 0.2; tx = 'sans téléobjectif'; }
+      add('photo', 'zoom', ph.zoom, tx, sc);
+    }
+    if (me.go) add('memoire', 'go', me.go, s.stockage != null ? (s.stockage >= 1024 ? s.stockage / 1024 + ' To' : s.stockage + ' Go') : null, s.stockage == null ? null : clamp(s.stockage / me.go));
+    if (me.ram) add('memoire', 'ram', me.ram, s.ram != null ? s.ram + ' Go de RAM' : null, s.ram == null ? null : clamp(s.ram / me.ram));
+    if (re.ip) { var d = ipChiffre(s.ip); add('resistance', 'ip', re.ip, s.ip ? String(s.ip) : null, d == null ? null : (d >= re.ip ? 1 : d >= re.ip - 1 ? 0.6 : 0.25)); }
+    return { liste: out, inconnus: inconnus };
+  }
+  function familles(choix) { return Object.keys(FAMILLES).filter(function (f) { return choix && choix[f] && Object.keys(choix[f]).some(function (k) { return choix[f][k]; }); }); }
+
   function creer(produits, options) {
     var pool = (produits || []).filter(function (p) { return p && p.prix_indicatif != null && !p.exclu_reco && p.compatibilite; });
     var cache = {}, parId = {};
@@ -146,6 +194,30 @@
       if (!sous.length) notes.push('Aucun modèle du catalogue n’est affiché à moins de ' + fr(budget) + ' € : augmentez le budget.');
       else if (top.length < 4) notes.push('Seulement ' + top.length + ' modèle' + (top.length > 1 ? 's' : '') + ' dans ce budget.');
       return { requete: { priorite: priorite, budget: budget }, cartes: top, total: sous.length, notes: notes };
+    }
+
+
+    /* Requête : { choix, budget, os } → les modèles du catalogue classés par adéquation aux valeurs visées ; à égalité, le meilleur rapport
+       spécifications/prix (priorité « rapport qualité-prix ») puis le prix le plus bas. */
+    function surMesure(req) {
+      req = req || {}; var choix = req.choix || {}, fam = familles(choix), budget = req.budget ? Number(req.budget) : null, os = req.os || 'any';
+      if (!fam.length) return { familles: fam, cartes: [], total: 0, exacts: 0, evalues: 0, notes: [] };
+      var sous = pool.filter(function (p) { return (budget == null || p.prix_indicatif <= budget) && (os === 'ios' ? p.marque === 'Apple' : os === 'android' ? p.marque !== 'Apple' : true); });
+      var evalues = [];
+      sous.forEach(function (p) {
+        var c = controles(p, choix); if (!c.liste.length) return;
+        var moy = c.liste.reduce(function (a, x) { return a + x.score; }, 0) / c.liste.length;
+        evalues.push({ p: p, c: c, R: Math.round(100 * moy), valeur: score(p, 'qualite_prix', cache[p.id]).R });
+      });
+      evalues.sort(function (a, b) { return b.R - a.R || b.valeur - a.valeur || a.p.prix_indicatif - b.p.prix_indicatif; });
+      var cartes = evalues.slice(0, 6).map(function (x) {
+        var p = x.p;
+        return { id: p.id, nom: p.nom, marque: p.marque, prix: p.prix_indicatif, idealo: p.idealo_url || null, R: x.R, valeur: x.valeur, controles: x.c.liste, inconnus: x.c.inconnus, familles: fam };
+      });
+      var exacts = evalues.filter(function (x) { return x.R >= 100; }).length, notes = [];
+      if (!sous.length) notes.push('Aucun modèle du catalogue n’est affiché dans ce budget et ce système : élargissez-les.');
+      else if (!evalues.length) notes.push('Les fiches ne renseignent pas ces caractéristiques : choisissez une autre famille.');
+      return { familles: fam, cartes: cartes, total: sous.length, exacts: exacts, evalues: evalues.length, notes: notes };
     }
 
     /* Gamme de prix : haut de gamme dès 800 €, milieu de gamme de 300 à 800 €, entrée de gamme en dessous. */
@@ -207,9 +279,9 @@
       var best = null; pool.forEach(function (p) { if (score(p, priorite, cache[p.id]).R >= min && (best == null || p.prix_indicatif < best)) best = p.prix_indicatif; });
       return best == null ? null : Math.ceil(best / 50) * 50;
     }
-    return { pool: pool, parId: parId, seuil: seuil, conseiller: conseiller, decouverte: decouverte, selection: selection, autres: autres, categorie: categorie, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
+    return { pool: pool, parId: parId, seuil: seuil, conseiller: conseiller, surMesure: surMesure, decouverte: decouverte, selection: selection, autres: autres, categorie: categorie, carte: carte, score: function (p, pr) { return score(p, pr, cache[p.id] || criteres(p)); } };
   }
 
-  var api = { creer: creer, criteres: criteres, score: score, explications: explications, lire: lire, SIMPLE: SIMPLE, PRIORITES: PRIORITES, CRITERES: CRITERES, PROFIL_VERS_PRIORITE: PROFIL_VERS_PRIORITE };
+  var api = { FAMILLES: FAMILLES, PROFILS_CHOIX: PROFILS_CHOIX, familles: familles, controles: controles, creer: creer, criteres: criteres, score: score, explications: explications, lire: lire, SIMPLE: SIMPLE, PRIORITES: PRIORITES, CRITERES: CRITERES, PROFIL_VERS_PRIORITE: PROFIL_VERS_PRIORITE };
   if (typeof module !== 'undefined' && module.exports) { if (!root.PhoneChips) { try { root.PhoneChips = require('../../phone-analyzer/chips.js'); } catch (e) {} } module.exports = api; } else root.SmartphonesCompat = api;
 })(typeof window !== 'undefined' ? window : globalThis);

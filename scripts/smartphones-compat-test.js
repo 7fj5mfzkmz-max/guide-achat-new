@@ -81,4 +81,33 @@ t('sélection : chaque gamme est la meilleure de sa gamme pour son classement, e
   ms.selection({ budget: 400 }).cartes.forEach(c => assert.ok(c.prix <= 400, c.nom));
   assert.notEqual(ms.selection({ budget: 400 }).cartes[0].id, 'oneplus-oneplus-15', 'le choix du mois respecte le budget');
 });
+
+/* ——— Sur mesure : valeurs visées famille par famille ——— */
+t('sur mesure : sans choix, aucune carte ; une famille vide ne compte pas', () => {
+  assert.equal(m.surMesure({}).cartes.length, 0); assert.equal(m.surMesure({ choix: {} }).cartes.length, 0);
+  assert.equal(m.surMesure({ choix: { ecran: {} } }).cartes.length, 0); assert.deepEqual(K.familles({ ecran: {}, batterie: { mah: 5000 } }), ['batterie']);
+});
+t('sur mesure : un seul critère suffit, des modèles affichent 100 % et atteindre la valeur visée vaut 100', () => {
+  const r = m.surMesure({ choix: { ecran: { hz: 120 } } });
+  assert.ok(r.exacts > 0 && r.cartes[0].R === 100 && r.cartes.length === 6);
+  r.cartes.forEach(c => { const p = produits.find(x => x.id === c.id); assert.ok(p.compatibilite.ecran.frequence_max_hz >= 120, c.id); assert.equal(c.controles.length, 1); });
+});
+t('sur mesure : en dessous de la valeur visée, la note baisse en proportion ; une donnée absente n’est ni bonifiée ni pénalisée', () => {
+  const p = produits.find(x => x.compatibilite.ecran.frequence_max_hz === 60), c = K.controles(p, { ecran: { hz: 120 } }).liste[0];
+  assert.ok(c.score > 0 && c.score < 0.5 && c.statut === 'loin', String(c.score));
+  const sans = Object.assign({}, p, { compatibilite: Object.assign({}, p.compatibilite, { ecran: { technologie: 'LCD' } }) }), r = K.controles(sans, { ecran: { hz: 120 } });
+  assert.equal(r.liste.length, 0); assert.equal(r.inconnus.length, 1);
+});
+t('sur mesure : tri par adéquation puis meilleur rapport spécifications/prix ; budget et système filtrent', () => {
+  [{ ecran: { hz: 90 } }, { batterie: { mah: 5000, watts: 45 } }, K.PROFILS_CHOIX.gamer, K.PROFILS_CHOIX.photographe].forEach(choix => [[null, 'any'], [400, 'android'], [900, 'ios']].forEach(([b, os]) => {
+    const r = m.surMesure({ choix, budget: b, os }); assert.ok(r.cartes.length <= 6);
+    r.cartes.forEach((c, i) => { if (b) assert.ok(c.prix <= b); if (os === 'ios') assert.equal(c.marque, 'Apple'); if (os === 'android') assert.notEqual(c.marque, 'Apple');
+      assert.ok(Number.isInteger(c.R) && c.R >= 0 && c.R <= 100); if (i) { const a = r.cartes[i - 1]; assert.ok(a.R > c.R || (a.R === c.R && (a.valeur > c.valeur || (a.valeur === c.valeur && a.prix <= c.prix))), 'ordre ' + c.id); } });
+  }));
+});
+t('sur mesure : plus on précise, moins il y a de modèles à 100 % ; profils-types : mêmes familles que le moteur', () => {
+  const a = m.surMesure({ choix: { batterie: { mah: 5000 } } }).exacts, b = m.surMesure({ choix: { batterie: { mah: 5000, watts: 67 } } }).exacts, c = m.surMesure({ choix: { batterie: { mah: 5000, watts: 67 }, puissance: { niveau: 9 } } }).exacts;
+  assert.ok(a >= b && b >= c, a + ' ' + b + ' ' + c);
+  Object.keys(K.PROFILS_CHOIX).forEach(k => { const f = K.familles(K.PROFILS_CHOIX[k]); assert.ok(f.length >= 3 && f.every(x => K.FAMILLES[x]), k); assert.ok(m.surMesure({ choix: K.PROFILS_CHOIX[k] }).cartes.length > 0, k); });
+});
 console.log(ok + ' vérification(s) réussie(s).');

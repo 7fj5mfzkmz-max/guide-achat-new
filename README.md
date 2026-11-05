@@ -40,10 +40,10 @@ de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, d
 Données : `data/montres.json` (33 modèles, 10 vidéos sources : pouls contre ceinture ECG, sommeil contre EEG, GPS sur marathon, VO2 max, tension, montres Citizen). Page générée par `python3 tools/montres/construire.py` (`npm run montres:build`) : contenu en HTML statique, `assets/js/montres.js` ajoute le questionnaire (rang des tests pour l’usage, puis prix ; un prix inconnu n’apparaît qu’avec « Sans limite »), les filtres et la liste de contrôle. Contrôle : `npm run montres:test`. Prix convertis en euros (taux BCE du 3 novembre 2026) ; les codes promotionnels et liens affiliés des vidéos ne sont pas repris.
 
 ## Smartphones (smartphones.html)
-Page générée par `npm run smartphones:build` depuis `tools/smartphones/template.html`. Le guide se lit par défilement, comme la page PC portable : questionnaire, critères expliqués, catalogue, analyseur, FAQ.
+Page générée par `npm run smartphones:build` depuis `tools/smartphones/template.html`. Le guide est une fenêtre à onglets : Mon choix (valeurs visées, sélection en direct), Choix du moment, Comprendre, Catalogue, Analyser, Questions.
 
-- `assets/js/smartphones-page.js` : quatre questions, sélection du mois, classement technique personnalisé, catalogue filtrable et paginé, explications et raccourcis.
-- `assets/js/smartphones-compat.js` : interprétation des 146 fiches techniques ; budget et système filtrent les modèles, usage et priorité secondaire pondèrent les caractéristiques. Une vidéo n’ajoute aucun bonus aux recommandations.
+- `assets/js/smartphones-page.js` : onglets, familles de critères illustrées (`smartphones-visuels.js`), sélection en direct, choix du moment, catalogue filtrable et paginé, explications.
+- `assets/js/smartphones-compat.js` : interprétation des 146 fiches techniques ; budget et système filtrent les modèles, les valeurs visées par le visiteur (`surMesure`) ou les priorités (`conseiller`) pondèrent les caractéristiques. Une vidéo n’ajoute aucun bonus aux recommandations.
 - Catalogue : 24 modèles documentés en vidéo en tête, puis les autres fiches techniques. Neuf correspondances explicites sont fusionnées, soit 161 entrées consultables. Les vidéos et citations restent dans leurs détails.
 - `phone-analyzer/` : moteur et contrats de l’analyseur conservés.
 

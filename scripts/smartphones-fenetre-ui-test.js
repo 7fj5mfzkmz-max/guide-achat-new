@@ -1,5 +1,5 @@
 'use strict';
-/* Guide linéaire : questionnaire technique, catalogue avec vidéos, mobile et indépendance des sources. */
+/* Guide à onglets : Mon choix (valeurs visées, classement en direct), choix du moment sans pourcentage, catalogue avec vidéos, mobile. */
 const http = require('node:http'), fs = require('node:fs'), path = require('node:path');
 const { chromium } = require('playwright');
 const root = path.resolve(__dirname, '..');
@@ -13,69 +13,90 @@ async function run(name, fn) { try { await fn(); ok++; console.log('OK    ' + na
   const browser = await chromium.launch({executablePath:process.env.BROWSER_PATH || (fs.existsSync('/usr/bin/chromium')?'/usr/bin/chromium':undefined),args:['--no-sandbox']});
   async function open(hash, w) { const p = await browser.newPage({ viewport: { width: w || 1280, height: 900 }, locale: 'fr-FR' }); p.errors = []; p.on('pageerror', e => p.errors.push(e.message)); await p.route(u => !u.toString().startsWith(base), r => r.abort()); await p.goto(base + '/smartphones.html' + (hash || ''), { waitUntil: 'networkidle' }); return p; }
 
-  await run('parcours linéaire, vidéos en tête du catalogue et aucun bonus vidéo dans la sélection', async()=>{
-    const p=await open(); await p.waitForSelector('#sp-recommendations .sp-product');
-    assert(await p.locator('#sp-recommendations .sp-product').count()===4,'quatre choix initiaux');
-    assert(await p.locator('#sp-recommendations .sp-score').count()===0&&!(await p.locator('#sp-recommendations').evaluate(e=>e.textContent)).includes('%'),'aucun pourcentage avant les réponses');
-    assert(await p.locator('#sp-catalogue .is-video').count()===9,'vidéos en premier');
-    assert(await p.locator('#sx-win').count()===0,'ancienne fenêtre supprimée');
-    assert(await p.locator('#sp-recommendations .sp-video-link').count()===0,'vidéos réservées au catalogue');
-    await p.locator('#sp-catalogue details summary').first().click();
-    assert(await p.locator('#sp-catalogue .sp-video-link:visible').count()>0,'sources vidéo consultables');
-    assert(p.errors.length===0,p.errors.join(' | ')); await p.close();
+  const data=require('../data/smartphones.json').produits,K=require('../assets/js/smartphones-compat.js'),guide=require('../data/smartphones-guide.json');
+  const ids=p=>p.locator('#sp-results [data-model]').evaluateAll(es=>es.map(e=>e.dataset.model));
+
+  await run('onglets : six rubriques, un seul panneau visible, clavier, ancres et anciens liens',async()=>{
+    const p=await open();await p.waitForSelector('.sp-fam');
+    assert(await p.locator('#sp-tabs [role=tab]').count()===6,'six onglets');
+    assert(await p.locator('.sp-panel:visible').count()===1&&await p.isVisible('#choisir-profil'),'Mon choix ouvert au départ');
+    await p.focus('#tab-choisir-profil');await p.keyboard.press('ArrowRight');assert(await p.isVisible('#choix')&&await p.getAttribute('#tab-choix','aria-selected')==='true','flèche droite');
+    await p.keyboard.press('End');assert(await p.isVisible('#faq'),'touche Fin');
+    await p.click('#tab-catalogue');assert(await p.isVisible('#sp-catalogue')&&!await p.isVisible('#faq'),'clic sur un onglet');
+    assert((await p.textContent('#sp-path')).includes('Catalogue'),'titre de la fenêtre');
+    await p.close();
+    for(const [h,t] of [['#analyser','analyser'],['#tests','catalogue'],['#methode','faq'],['#purchase-audit','choisir-profil'],['#demos','comprendre']]){const q=await open(h);assert(await q.isVisible('#'+t),h+' ouvre '+t);assert(q.errors.length===0,q.errors.join(' | '));await q.close();}
   });
-  await run('questionnaire : validation, budget strict, Android, priorité secondaire et modification',async()=>{
-    const p=await open();await p.waitForSelector('[data-answer]');
-    const initial=await p.locator('#sp-recommendations').innerHTML();
-    for(const a of ['jeu','300','android','qualite_prix']){
-      await p.click('[data-answer="'+a+'"]');
-      assert(await p.locator('#sp-recommendations').innerHTML()===initial,'pas de recalcul avant validation');
-      await p.click('#sp-next');
-    }
-    const actual=await p.locator('#sp-recommendations [data-model]').evaluateAll(es=>es.map(e=>e.dataset.model));
-    const data=require('../data/smartphones.json').produits,K=require('../assets/js/smartphones-compat.js');
-    const expected=K.creer(data.filter(x=>x.marque!=='Apple')).conseiller({priorite:'jeu',budget:300,secondaire:'qualite_prix'}).cartes.map(c=>c.id);
-    assert(JSON.stringify(actual)===JSON.stringify(expected),'classement technique exact sur toutes les fiches');
-    assert(actual.some(id=>!require('../data/smartphones-guide.json').produits.some(v=>v.catalogue===id)),'des téléphones sans vidéo sont recommandés');
-    assert(actual.every(id=>data.find(x=>x.id===id).prix_indicatif<=300),'plafond respecté');
-    assert(await p.locator('#sp-recommendations .sp-score').count()===actual.length,'pourcentage affiché après les réponses');
-    await p.click('#sp-edit');assert(await p.getAttribute('[data-answer="jeu"]','aria-pressed')==='true','réponses conservées');
-    await p.click('#sp-reset');assert(await p.locator('#sp-recommendations .sp-product').count()===4,'retour au mois');
+  await run('avant tout choix : aucun pourcentage, quatre choix du moment, vidéos réservées au catalogue',async()=>{
+    const p=await open();await p.waitForSelector('#sp-recommendations .sp-product',{state:'attached'});
+    assert(await p.locator('#sp-results [data-model]').count()===0&&!(await p.textContent('#sp-live')).includes('%'),'Mon choix : pas de pourcentage');
+    await p.click('#tab-choix');assert(await p.locator('#sp-recommendations .sp-product').count()===4,'quatre choix du moment');
+    assert(!(await p.textContent('#sp-recommendations')).includes('%'),'choix du moment : pas de pourcentage');
+    assert(await p.locator('#sp-recommendations .sp-video-link').count()===0,'vidéos réservées au catalogue');
+    await p.click('#tab-catalogue');assert(await p.locator('#sp-catalogue .is-video').count()===9,'vidéos en premier');
+    await p.locator('#sp-catalogue details summary').first().click();assert(await p.locator('#sp-catalogue .sp-video-link:visible').count()>0,'sources vidéo consultables');
     assert(p.errors.length===0,p.errors.join(' | '));await p.close();
   });
-  await run('système iPhone, retour en arrière, résultat vide explicite',async()=>{
-    const p=await open();await p.waitForSelector('[data-answer]');
-    for(const a of ['photo','800','ios','equilibre']){await p.click('[data-answer="'+a+'"]');await p.click('#sp-next');}
-    const ids=await p.locator('#sp-recommendations [data-model]').evaluateAll(es=>es.map(e=>e.dataset.model));
-    const data=require('../data/smartphones.json').produits;assert(ids.length>0&&ids.every(id=>data.find(x=>x.id===id).marque==='Apple'),'iPhone uniquement');
-    await p.click('#sp-edit');await p.click('#sp-next');await p.click('#sp-back');assert(await p.getAttribute('[data-answer="photo"]','aria-pressed')==='true','retour garde la réponse');
-    await p.click('#sp-next');await p.click('[data-answer="300"]');await p.click('#sp-next');await p.click('#sp-next');await p.click('#sp-next');
-    assert(await p.locator('#sp-recommendations .sp-empty').count()===1,'aucun iPhone sous le plafond : message utile');await p.close();
+  await run('sur mesure : un seul critère suffit, 100 % possible, classement identique au moteur, budget et système respectés',async()=>{
+    const p=await open();await p.waitForSelector('.sp-opt');
+    await p.click('.sp-opt[data-k="hz"][data-v="120"]');
+    const e1=K.creer(data,{}).surMesure({choix:{ecran:{hz:120}}});
+    assert(JSON.stringify(await ids(p))===JSON.stringify(e1.cartes.map(c=>c.id)),'classement du moteur');
+    assert((await p.locator('#sp-results .sp-res-pct').first().textContent()).startsWith('100'),'100 % avec un seul critère');
+    assert(await p.locator('#sp-results .sp-res').count()===6&&(await p.textContent('#sp-badge'))==='1'&&(await p.textContent('#sp-count-fam')).startsWith('1 /'),'six résultats, compteur et pastille');
+    assert(e1.cartes.every((c,i,a)=>!i||a[i-1].R>c.R||(a[i-1].R===c.R&&a[i-1].valeur>=c.valeur)),'à égalité : meilleur rapport spécifications/prix d’abord');
+    await p.click('[data-fam="batterie"] .sp-fam-head');await p.click('.sp-opt[data-k="mah"][data-v="6000"]');
+    await p.selectOption('#sp-budget','500');await p.selectOption('#sp-os','android');
+    const ch={ecran:{hz:120},batterie:{mah:6000}},e2=K.creer(data,{}).surMesure({choix:ch,budget:500,os:'android'}),got=await ids(p);
+    assert(JSON.stringify(got)===JSON.stringify(e2.cartes.map(c=>c.id)),'deux familles, budget 500 €, Android');
+    assert(got.every(id=>{const x=data.find(d=>d.id===id);return x.prix_indicatif<=500&&x.marque!=='Apple';}),'budget et système respectés');
+    await p.click('.sp-opt[data-k="hz"][data-v="120"]');await p.click('.sp-opt[data-k="mah"][data-v="6000"]');
+    assert(await p.locator('#sp-results [data-model]').count()===0&&await p.isHidden('#sp-clear'),'tout désélectionné : retour à l’attente');
+    assert(p.errors.length===0,p.errors.join(' | '));await p.close();
+  });
+  await run('profils : point de départ modifiable, recommencer',async()=>{
+    const p=await open();await p.waitForSelector('[data-preset]');
+    for(const k of ['etudiant','gamer','photographe']){await p.click('[data-preset="'+k+'"]');
+      const exp=K.creer(data,{}).surMesure({choix:K.PROFILS_CHOIX[k]});assert(JSON.stringify(await ids(p))===JSON.stringify(exp.cartes.map(c=>c.id)),'profil '+k);
+      assert(await p.getAttribute('[data-preset="'+k+'"]','aria-pressed')==='true','profil actif '+k);}
+    await p.click('.sp-opt[data-k="hz"][data-v="144"]');assert(await p.getAttribute('[data-preset="photographe"]','aria-pressed')==='false','le profil n’est plus actif après une modification');
+    await p.click('#sp-clear');assert(await p.locator('#sp-results [data-model]').count()===0,'recommencer');
+    assert(p.errors.length===0,p.errors.join(' | '));await p.close();
   });
   await run('catalogue : totalité accessible, dédoublonnage, recherche, filtres et lien analyseur',async()=>{
-    const p=await open();await p.waitForSelector('#sp-catalogue .sp-product');
+    const p=await open('#catalogue');await p.waitForSelector('#sp-catalogue .sp-product');
     while(await p.isVisible('#sp-more'))await p.click('#sp-more');
-    const ids=await p.locator('[data-catalog-model]').evaluateAll(es=>es.map(e=>e.dataset.catalogModel));assert(ids.length===161&&new Set(ids).size===161,'161 entrées uniques');
+    const all=await p.locator('[data-catalog-model]').evaluateAll(es=>es.map(e=>e.dataset.catalogModel));assert(all.length===161&&new Set(all).size===161,'161 entrées uniques');
     await p.fill('#sp-search','Galaxy A56');assert(await p.locator('#sp-catalogue .sp-product').count()===1,'recherche');
-    await p.locator('#sp-catalogue summary').click();await p.click('[data-analyze]');assert((await p.inputValue('#phone-product-url')).includes('Galaxy A56'),'modèle transmis à l’analyseur');
-    await p.fill('#sp-search','inexistant-xyz');assert(await p.isVisible('#sp-catalogue .sp-empty'),'recherche vide');
+    await p.locator('#sp-catalogue summary').click();await p.click('[data-analyze]');assert(await p.isVisible('#analyser')&&(await p.inputValue('#phone-product-url')).includes('Galaxy A56'),'modèle transmis à l’analyseur, onglet Analyser ouvert');
+    await p.click('#tab-catalogue');await p.fill('#sp-search','inexistant-xyz');assert(await p.isVisible('#sp-catalogue .sp-empty'),'recherche vide');
     await p.fill('#sp-search','');await p.selectOption('#sp-source','spec');await p.selectOption('#sp-range','entree');
-    const filtered=await p.locator('[data-catalog-model]').evaluateAll(es=>es.map(e=>e.dataset.catalogModel));const data=require('../data/smartphones.json').produits;assert(filtered.every(id=>data.find(x=>x.id===id).prix_indicatif<300),'filtre de gamme');
+    const filtered=await p.locator('[data-catalog-model]').evaluateAll(es=>es.map(e=>e.dataset.catalogModel));assert(filtered.every(id=>data.find(x=>x.id===id).prix_indicatif<300),'filtre de gamme');
     assert(p.errors.length===0,p.errors.join(' | '));await p.close();
   });
-  await run('mobile 360/390, tablette 768 et ordinateur 1440 : pas de débordement, deux raccourcis, explications et saisie compacte',async()=>{
-    for(const w of [360,390,768,1440]){const p=await open('',w);await p.waitForSelector('[data-answer]');
-      await p.click('[data-topic="ecran"]');assert((await p.locator('#sp-explanation').innerText()).includes('120'),'explication écran');
-      await p.locator('#analyser').scrollIntoViewIfNeeded();await p.waitForTimeout(150);
-      assert(await p.locator('#sp-dock a').count()===2,'deux raccourcis');
+  await run('résultat → fiche : « Voir la fiche » ouvre le catalogue sur ce modèle',async()=>{
+    const p=await open();await p.waitForSelector('.sp-opt');await p.click('.sp-opt[data-k="hz"][data-v="120"]');
+    const first=(await ids(p))[0];await p.click('#sp-results [data-explore]');
+    assert(await p.isVisible('#sp-catalogue')&&await p.locator('[data-catalog-model="'+first+'"] details[open]').count()===1,'fiche du premier résultat ouverte dans le catalogue');
+    assert(p.errors.length===0,p.errors.join(' | '));await p.close();
+  });
+  await run('mobile 360/390, tablette 768 et ordinateur 1440 : pas de débordement, onglets accessibles, barre « Voir ma sélection » sur mobile',async()=>{
+    for(const w of [360,390,768,1440]){const p=await open('',w);await p.waitForSelector('.sp-opt');
+      await p.click('.sp-opt[data-k="hz"][data-v="120"]');await p.waitForTimeout(150);
       assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'débordement '+w);
-      assert((await p.locator('#phone-product-url').boundingBox()).height<80,'hauteur saisie '+w);
-      if(w<650)assert(await p.locator('#sp-catalogue .sp-product').count()===3,'trois cartes mobiles');
+      const barre=w<=900;await p.locator('.sp-fam').first().scrollIntoViewIfNeeded();await p.waitForTimeout(250);
+      assert((await p.isVisible('#sp-livebar'))===barre||!barre,'barre mobile '+w);
+      for(const t of ['comprendre','analyser','faq']){await p.click('#tab-'+t);assert(await p.isVisible('#'+t),'onglet '+t+' '+w);assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'débordement '+t+' '+w);}
+      await p.click('#tab-comprendre');await p.click('[data-topic="ecran"]');assert((await p.locator('#sp-explanation').innerText()).includes('120'),'explication écran');
+      await p.click('#tab-analyser');assert((await p.locator('#phone-product-url').boundingBox()).height<80,'hauteur saisie '+w);
+      await p.click('#tab-catalogue');if(w<650)assert(await p.locator('#sp-catalogue .sp-product').count()===3,'trois cartes mobiles');
       await p.evaluate(()=>document.documentElement.classList.add('dark-theme'));assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mode sombre');
       assert(p.errors.length===0,p.errors.join(' | '));await p.close();}
   });
   await run('le conseiller fonctionne sans le fichier des vidéos',async()=>{
-    const p=await browser.newPage({locale:'fr-FR'});await p.route('**/data/smartphones-guide.json',r=>r.abort());await p.goto(base+'/smartphones.html');await p.waitForSelector('#sp-recommendations .sp-product');assert(await p.locator('#sp-recommendations .sp-product').count()===4,'recommandations indépendantes des vidéos');await p.close();
+    const p=await browser.newPage({locale:'fr-FR'});await p.route('**/data/smartphones-guide.json',r=>r.abort());await p.goto(base+'/smartphones.html');await p.waitForSelector('.sp-opt',{state:'attached'});
+    await p.click('[data-fam="batterie"] .sp-fam-head');await p.click('.sp-opt[data-k="mah"][data-v="5000"]');assert(await p.locator('#sp-results [data-model]').count()>0,'classement indépendant des vidéos');
+    await p.click('#tab-choix');assert(await p.locator('#sp-recommendations .sp-product').count()===4,'choix du moment indépendants des vidéos');await p.close();
   });
   await browser.close();srv.close();console.log(ok+' scénarios réussis, '+ko+' échec(s).');if(ko)process.exitCode=1;
 })().catch(e=>{console.error(e);srv.close();process.exitCode=1;});

@@ -55,13 +55,15 @@ check('iPhone : seul un iPhone est proposé ; jeu sans iPhone testé : aucun ré
   assert.equal(recommander(D.produits, 'jeu', 'ios', 'haut', 10).length, 0);
 });
 check('jeu : POCO F9 Ultra ou REDMAGIC en tête (rang 1)', () => { assert.equal(recommander(D.produits, 'jeu', 'any', 'haut')[0].usages.jeu, 1); });
-check('page : parcours linéaire, catalogue complet et analyseur indépendant', () => {
+check('page : fenêtre à onglets, six panneaux, catalogue complet et analyseur indépendant', () => {
   assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('data-analyzer-category="smartphones"'));
-  ['phone-analyzer/ui.js', 'assets/js/smartphones-page.js', 'assets/js/smartphones-compat.js', 'assets/css/smartphones.css'].forEach(s => assert.ok(html.includes(s), s));
-  const sections = ['choisir-profil','comprendre','catalogue','analyser','faq'];
-  sections.forEach((id,i) => { assert.ok(html.includes('id="'+id+'"')); if(i)assert.ok(html.indexOf('id="'+sections[i-1]+'"')<html.indexOf('id="'+id+'"')); });
-  assert.ok(!html.includes('id="sx-win"'), 'ancienne fenêtre supprimée');
-  assert.ok(!html.includes('role="tabpanel"'), 'les sections se lisent par défilement');
+  ['phone-analyzer/ui.js', 'assets/js/smartphones-page.js', 'assets/js/smartphones-visuels.js', 'assets/js/smartphones-compat.js', 'assets/css/smartphones.css'].forEach(s => assert.ok(html.includes(s), s));
+  assert.ok(html.indexOf('assets/js/smartphones-visuels.js') < html.indexOf('assets/js/smartphones-page.js'), 'les illustrations se chargent avant la page');
+  const onglets = ['choisir-profil','choix','comprendre','catalogue','analyser','faq'];
+  onglets.forEach((id,i) => { assert.ok(html.includes('id="tab-'+id+'"'), 'onglet '+id); assert.ok(html.includes('role="tabpanel"') && new RegExp('role="tabpanel"[^>]*id="'+id+'"').test(html), 'panneau '+id); if(i)assert.ok(html.indexOf('id="'+onglets[i-1]+'" data-panel')<html.indexOf('id="'+id+'" data-panel')); });
+  assert.equal((html.match(/role="tabpanel"/g)||[]).length, 6);
+  assert.ok(html.includes('id="sp-families"') && html.includes('id="sp-live"') && html.includes('id="sp-livebar"'));
+  assert.ok(!html.includes('id="sx-win"') && !html.includes('id="sp-questionnaire"'), 'ancienne fenêtre et questionnaire supprimés');
   D.produits.filter(p=>p.catalogue).forEach(p=>assert.ok(require('../data/smartphones.json').produits.some(c=>c.id===p.catalogue)));
 });
 
