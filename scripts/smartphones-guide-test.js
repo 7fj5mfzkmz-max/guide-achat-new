@@ -1,6 +1,5 @@
 'use strict';
-/* Smartphones (guide de tests + analyseur) : cohérence des données, moteur du questionnaire, page générée.
-   Le catalogue complet (data/smartphones.json) n'est volontairement pas affiché sur cette page. */
+/* Sources vidéo conservées, ancien classement de référence et contrat du nouveau guide linéaire. */
 const assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const root = path.resolve(__dirname, '..');
@@ -36,10 +35,10 @@ check('prix en euros, pas de sponsors : aucune livre ou dollar, aucune mention d
   assert.ok(!/sponsor/i.test(JSON.stringify(D) + html), 'mention de sponsor');
   assert.ok(!/[£$]/.test(html.replace(rate, '')), 'devise étrangère dans la page');
 });
-check('verbatims : citent une source existante, affichés sur la fiche', () => {
+check('verbatims : citent une source existante, disponibles pour les fiches dynamiques', () => {
   const src = new Set(D.sources.map(s => s.id)), v = D.produits.filter(p => p.verbatim);
   assert.ok(v.length >= 12);
-  v.forEach(p => { assert.ok(src.has(p.verbatim.source), p.id); assert.ok(html.includes(p.verbatim.texte), p.id + ' : verbatim absent de la page'); });
+  v.forEach(p => { assert.ok(src.has(p.verbatim.source), p.id); assert.ok(p.verbatim.texte.length > 0, p.id + ' : citation vide'); });
 });
 check('chaque usage a au moins un modèle', () => { Object.keys(D.usages).forEach(u => assert.ok(recommander(D.produits, u, 'any', 'haut').length, u)); });
 check('petit budget : jamais de modèle plus cher que la gamme choisie', () => {
@@ -56,23 +55,15 @@ check('iPhone : seul un iPhone est proposé ; jeu sans iPhone testé : aucun ré
   assert.equal(recommander(D.produits, 'jeu', 'ios', 'haut', 10).length, 0);
 });
 check('jeu : POCO F9 Ultra ou REDMAGIC en tête (rang 1)', () => { assert.equal(recommander(D.produits, 'jeu', 'any', 'haut')[0].usages.jeu, 1); });
-check('page : analyseur intégré, modules chargés, sections et fiches présentes, catalogue complet absent', () => {
-  assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('id="analyse-modele"') && html.includes('data-analyzer-category="smartphones"'));
-  assert.ok(html.includes('phone-analyzer/ui.js') && html.includes('assets/js/smartphones-guide.js') && html.includes('assets/css/smartphones.css'));
-  ['analyser', 'manuel', 'demos', 'autonomie', 'photo', 'choisir-profil', 'purchase-audit', 'eviter', 'catalogue', 'methode', 'faq', 'sx-win', 'sx-map', 'sx-demo', 'sx-testes'].forEach(id => assert.ok(html.includes('id="' + id + '"'), id));
-  D.produits.forEach(p => assert.ok(html.includes('id="m-' + p.id + '"'), p.id));
-  assert.ok(!html.includes('catalogue-'), 'aucune fiche du catalogue complet sur la page');
-  const at = id => html.indexOf('id="' + id + '"');
-  assert.ok(at('choisir-profil') < at('catalogue') && at('catalogue') < at('demos') && at('demos') < at('tests') && at('tests') < at('eviter') && at('eviter') < at('methode'), 'ordre des onglets');
-  assert.ok(at('choisir-profil') < at('mode-profil') && at('mode-profil') < at('purchase-audit') && at('purchase-audit') < at('analyser') && at('analyser') < at('sx-reco'), 'modes dans la section de sélection');
-  assert.ok(at('autonomie') > at('tests') && at('photo') > at('autonomie') && at('par-tests') > at('photo') && at('manuel') > at('methode') && at('faq') > at('manuel'), 'ordre interne');
-  assert.equal((html.match(/class="pj-card sx-card"/g) || []).length, D.produits.length, 'une fiche par modèle dans le rail');
-  D.produits.filter(p => p.catalogue).forEach(p => assert.ok(require('../data/smartphones.json').produits.some(c => c.id === p.catalogue), p.id + ' : modèle du catalogue introuvable'));
-  assert.ok(html.includes('id="sx-dock"') && html.includes('smartphones-conseiller.js') && html.includes('smartphones-compat.js'), 'barre du bas et conseiller');
-  assert.ok(html.includes('sx-rail-reco'), 'rail des recommandations');
-  assert.equal((html.match(/role="tab"/g) || []).length, 6, 'six onglets de fenêtre');
-  assert.ok(html.includes('smartphones-fenetre.js') && html.includes('smartphones-carte.js') && html.includes('smartphones-demos.js'), 'scripts de la fenêtre');
-  assert.equal((html.match(/<tr data-gamme/g) || []).length, D.produits.length, 'une ligne par modèle testé');
+check('page : parcours linéaire, catalogue complet et analyseur indépendant', () => {
+  assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('data-analyzer-category="smartphones"'));
+  ['phone-analyzer/ui.js', 'assets/js/smartphones-page.js', 'assets/js/smartphones-compat.js', 'assets/css/smartphones.css'].forEach(s => assert.ok(html.includes(s), s));
+  const sections = ['choisir-profil','comprendre','catalogue','analyser','faq'];
+  sections.forEach((id,i) => { assert.ok(html.includes('id="'+id+'"')); if(i)assert.ok(html.indexOf('id="'+sections[i-1]+'"')<html.indexOf('id="'+id+'"')); });
+  assert.ok(!html.includes('id="sx-win"'), 'ancienne fenêtre supprimée');
+  assert.ok(!html.includes('role="tabpanel"'), 'les sections se lisent par défilement');
+  D.produits.filter(p=>p.catalogue).forEach(p=>assert.ok(require('../data/smartphones.json').produits.some(c=>c.id===p.catalogue)));
 });
+
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');
 if (failures) process.exitCode = 1;
