@@ -83,11 +83,31 @@ async function run(name, fn) { try { await fn(); ok++; console.log('OK    ' + na
   });
   await run('barre de raccourcis : deux autres modes, retour à l’analyseur et navigation clavier',async()=>{
     const p=await open();await p.waitForSelector('.sx-rec');await p.locator('.sx-next-step').scrollIntoViewIfNeeded();await p.waitForTimeout(100);
-    const actions=await p.locator('#sx-dock button').allInnerTexts();assert(actions.length===2&&actions.some(x=>/critères/i.test(x))&&actions.some(x=>/Analyser/.test(x)),'deux autres modes');
+    const actions=await p.locator('#sx-dock button').allInnerTexts();assert(actions.length===2&&actions.some(x=>/critères/i.test(x))&&actions.some(x=>/analyser/i.test(x)),'deux autres modes');
     await p.click('#sx-dock [data-mode="analyser"]');assert(await p.isVisible('#phone-product-url'),'analyseur');
-    const next=await p.locator('#sx-dock button').allInnerTexts();assert(next.length===2&&!next.some(x=>/Analyser/.test(x)),'mode actif exclu');
+    const next=await p.locator('#sx-dock button').allInnerTexts();assert(next.length===2&&!next.some(x=>/analyser/i.test(x)),'mode actif exclu');
     await p.click('#sx-editor-close');await p.locator('[data-wt="choisir-profil"]').focus();await p.keyboard.press('ArrowDown');assert((await p.evaluate(()=>SxFenetre.current()))==='catalogue','flèche bas');
     assert(p.errors.length===0,p.errors.join(' | '));await p.close();
+  });
+  await run('régression : même lien cliqué deux fois, commandes réelles de fenêtre, charte commune',async()=>{
+    for(const width of [390,1440]){
+      const p=await open('',width);await p.waitForSelector('.sx-rec');
+      if(width===1440){for(let i=0;i<2;i++){await p.click('.header-cta');assert(await p.isVisible('#sx-editor'),'réouverture '+i);await p.click('#sx-editor-close');}}
+      const palette=await p.locator('.sx').evaluate(el=>({accent:getComputedStyle(el).getPropertyValue('--accent').trim(),head:getComputedStyle(el).getPropertyValue('--head').trim()}));
+      assert(palette.accent==='#ffd400'&&palette.head.includes('Archivo'),'hérite de la charte du site');
+      await p.click('[data-window="minimize"]');assert(!(await p.isVisible('.sx-desktop')),'réduit');
+      await p.click('[data-window="minimize"]');assert(await p.isVisible('.sx-desktop'),'rouvert');
+      await p.click('[data-window="maximize"]');assert(await p.locator('#sx-win').evaluate(el=>el.classList.contains('is-maximized')),'agrandi');
+      await p.keyboard.press('Escape');assert(!(await p.locator('#sx-win').evaluate(el=>el.classList.contains('is-maximized'))),'taille rétablie');
+      await p.click('[data-window="close"]');assert(!(await p.isVisible('#sx-win')),'fermé');
+      await p.click('[data-window="reopen"]');assert(await p.isVisible('#sx-win'),'rouvrir fonctionne');
+      assert(p.errors.length===0,p.errors.join(' | '));await p.close();
+    }
+  });
+  await run('compatibilité : MediaQueryList sans addEventListener conserve les recommandations',async()=>{
+    const p=await browser.newPage({locale:'fr-FR'});const errors=[];p.on('pageerror',e=>errors.push(e.message));
+    await p.addInitScript(()=>{const native=window.matchMedia.bind(window);window.matchMedia=q=>{const m=native(q);if(q.includes('721px'))return {matches:m.matches,media:m.media,addListener:m.addListener.bind(m),removeListener:m.removeListener.bind(m)};return m;};});
+    await p.goto(base+'/smartphones.html');await p.waitForSelector('.sx-rec');assert(errors.length===0,errors.join(' | '));await p.close();
   });
   await browser.close(); srv.close();
   console.log('\n' + ok + ' réussi(s), ' + ko + ' échec(s).'); process.exit(ko ? 1 : 0);

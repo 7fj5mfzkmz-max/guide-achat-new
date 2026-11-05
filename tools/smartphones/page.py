@@ -260,7 +260,7 @@ def window(panels):
     tabs = ''.join(tab(i, l) for i,l,_ in TABS[:3])
     more = ''.join(tab(i,l) for i,l,_ in TABS[3:])
     body = ''.join(f'<section class="sx-wp" role="tabpanel" aria-labelledby="tab-{i}" id="{i}" data-wp="{i}">{panels[i]}</section>' for i, _, _ in TABS)
-    return (f'<div class="sx-win" id="sx-win"><div class="sx-win-bar"><span class="sx-app-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sx-win-title">Guide·Achat <span>/ Smartphones</span></span><span class="sx-win-path" id="sx-win-path" aria-hidden="true">Ma sélection</span><span class="sx-win-controls" aria-hidden="true"><i>−</i><i>□</i><i>×</i></span></div>'
+    return (f'<div class="sx-win" id="sx-win"><div class="sx-win-bar"><span class="sx-app-icon" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="sx-win-title">Guide·Achat <span>/ Smartphones</span></span><span class="sx-win-path" id="sx-win-path" aria-hidden="true">Ma sélection</span><div class="sx-win-controls"><button type="button" data-window="minimize" aria-label="Réduire la fenêtre" aria-expanded="true">−</button><button type="button" data-window="maximize" aria-label="Agrandir la fenêtre" aria-pressed="false">□</button><button type="button" data-window="close" aria-label="Fermer la fenêtre">×</button></div></div>'
             f'<div class="sx-desktop"><div class="sx-sidebar"><p class="sx-sidebar-label">VOTRE ESPACE</p><div class="sx-wtabs" id="sx-wtabs" role="tablist" aria-label="Rubriques" aria-orientation="vertical">{tabs}<details class="sx-nav-more"><summary>Pour aller plus loin</summary>{more}</details></div><p class="sx-sidebar-note">Choisir avec confiance.<br>À votre rythme.</p></div><div class="sx-wpanels">{body}</div></div></div>')
 
 
@@ -314,6 +314,7 @@ def build():
 <header class="sx-hero" id="debut"><div><nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a><span>/</span>Smartphones</nav><h1>Le bon téléphone.<br><span>Le choix devient simple.</span></h1><p>Une sélection courte. Des raisons claires. À vous de choisir.</p></div><span class="sx-edition">LE BUREAU DES SMARTPHONES<span>Novembre 2026</span></span></header>
 </div>
 <div class="container-wide sx-wide">
+<section class="sx-window-launcher" id="sx-window-launcher" hidden><h2>Guide smartphones</h2><p>Votre sélection est conservée.</p><button type="button" class="btn" data-window="reopen">Rouvrir le guide</button></section>
 {window(panels)}
 </div>
 </div>
@@ -322,7 +323,9 @@ def build():
 <dialog class="sx-dlg" id="sx-dlg" aria-label="Fiche du modèle"><button type="button" class="sx-dlg-x" id="sx-dlg-x" aria-label="Fermer">×</button><div id="sx-dlg-in"></div></dialog>
 </main>
 '''
-    (ROOT / 'smartphones.html').write_text(top + main + end, encoding='utf-8')
+    output = top + main + end
+    output = re.sub(r'(assets/(?:js|css)/smartphones(?:-[a-z]+)?\.(?:js|css))(?=[\"\'])', r'\1?v=20261105-repair1', output)
+    (ROOT / 'smartphones.html').write_text(output, encoding='utf-8')
     subprocess.run([sys.executable, str(ROOT / 'tools/site/gabarit.py')], check=True)
     print('smartphones.html générée')
 

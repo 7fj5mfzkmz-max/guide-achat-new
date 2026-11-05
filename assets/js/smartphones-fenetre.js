@@ -10,6 +10,17 @@
   var ALIAS = { analyser: 'choisir-profil', 'purchase-audit': 'choisir-profil', 'mode-profil': 'choisir-profil', photo: 'tests', autonomie: 'tests', 'par-tests': 'tests',
                 exemples: 'demos', manuel: 'methode', faq: 'methode' };
   var cur = null;
+  var launcher=document.getElementById('sx-window-launcher');
+  function openWindow(){win.hidden=false;if(launcher)launcher.hidden=true;win.classList.remove('is-minimized');var b=win.querySelector('[data-window="minimize"]');if(b){b.setAttribute('aria-expanded','true');b.setAttribute('aria-label','Réduire la fenêtre');}}
+  function maximize(on){win.classList.toggle('is-maximized',on);document.body.classList.toggle('sx-window-expanded',on);var b=win.querySelector('[data-window="maximize"]');if(b){b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',on?'Rétablir la taille de la fenêtre':'Agrandir la fenêtre');}}
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-window]');if(!b)return;var action=b.dataset.window;
+    if(action==='minimize'){var reduced=!win.classList.contains('is-minimized');win.classList.toggle('is-minimized',reduced);if(reduced)maximize(false);b.setAttribute('aria-expanded',String(!reduced));b.setAttribute('aria-label',reduced?'Rouvrir la fenêtre':'Réduire la fenêtre');}
+    else if(action==='maximize'){openWindow();maximize(!win.classList.contains('is-maximized'));}
+    else if(action==='close'){maximize(false);win.hidden=true;if(launcher){launcher.hidden=false;launcher.querySelector('button').focus({preventScroll:true});}}
+    else if(action==='reopen'){openWindow();win.querySelector('[data-wt][aria-selected="true"]').focus({preventScroll:true});}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&win.classList.contains('is-maximized')&&!document.querySelector('dialog[open]'))maximize(false);});
 
   function charger(url) { return fetch(url).then(function (r) { if (!r.ok) throw new Error(url); return r.json(); }); }
   var cache = {};
@@ -21,6 +32,7 @@
   function show(id, o) {
     o = o || {}; id = ALIAS[id] || id;
     if (!panels.some(function (p) { return p.getAttribute('data-wp') === id; })) return false;
+    openWindow();
     panels.forEach(function (p) { p.hidden = p.getAttribute('data-wp') !== id; });
     var label = '';
     tabs.forEach(function (t) { var on = t.getAttribute('data-wt') === id; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; if (on) label = t.textContent.trim(); });

@@ -25,7 +25,7 @@
   var eng, pts = [], byId = {}, tested = {}, prio = 'equilibre', sel = null, dims = null, built = false, tour = 0;
   var svg = $('sx-map'), wrap = $('sx-map-wrap'), insp = $('sx-insp'), tip = $('sx-tip'), body = $('sx-map-body');
   var mapDetails=$('sx-map-disclosure');
-  if(mapDetails){mapDetails.open=window.innerWidth>720;var mapMedia=window.matchMedia('(min-width:721px)');mapMedia.addEventListener('change',function(e){mapDetails.open=e.matches;});mapDetails.addEventListener('toggle',function(){if(mapDetails.open)setTimeout(construire,0);});}
+  if(mapDetails){mapDetails.open=window.innerWidth>720;var mapMedia=window.matchMedia('(min-width:721px)');var onMapSize=function(e){mapDetails.open=e.matches;};if(mapMedia.addEventListener)mapMedia.addEventListener('change',onMapSize);else if(mapMedia.addListener)mapMedia.addListener(onMapSize);mapDetails.addEventListener('toggle',function(){if(mapDetails.open)setTimeout(construire,0);});}
   var G = {};   // éléments SVG : dots, frontier
 
   /* ——— Données ——— */

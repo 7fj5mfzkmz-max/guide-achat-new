@@ -89,7 +89,7 @@
     var d = $('sx-dock'), s = $('choisir-profil'); if (!d || !s) return;
     document.body.appendChild(d);   /* hors du conteneur animé : position fixe fiable */
     var tick = false;
-    function maj() { tick=false;var elsewhere=window.SxFenetre&&window.SxFenetre.current()!=='choisir-profil';var actions=document.querySelector('.sx-start-actions');var above=actions&&actions.getBoundingClientRect().bottom<80;d.classList.toggle('is-hidden',elsewhere||!above); }
+    function maj() { tick=false;var elsewhere=window.SxFenetre&&window.SxFenetre.current()!=='choisir-profil';var actions=document.querySelector('.sx-start-actions');var above=actions&&actions.getBoundingClientRect().bottom<80;d.classList.toggle('is-hidden',document.getElementById('sx-win').hidden||(!elsewhere&&!above)); }
 
     window.addEventListener('scroll', function () { if (!tick) { tick = true; requestAnimationFrame(maj); } }, { passive: true });
     window.addEventListener('resize', maj); document.addEventListener('sx:tab', function () { setTimeout(maj, 0); }); maj();
@@ -123,12 +123,20 @@
       else if (h === 'mode-profil') setMode('profil', true);
     }
     window.addEventListener('hashchange', depuisHash);
+    // Un lien doit réagir même si l’URL porte déjà la même ancre.
+    document.addEventListener('click',function(e){
+      var a=e.target.closest('a[href^="#"]');if(!a)return;var hash=a.getAttribute('href');
+      if(['#choisir-profil','#mode-profil','#purchase-audit','#analyser'].indexOf(hash)===-1)return;
+      e.preventDefault();history.replaceState(null,'',hash);
+      if(window.SxFenetre)window.SxFenetre.show('choisir-profil',{scroll:true});
+      depuisHash();
+    });
     setMode(/^#(analyser$|capture=)/.test(location.hash) ? 'analyser' : /^#purchase-audit$/.test(location.hash) ? 'criteres' : 'profil', false);
     /* Dès que l'analyseur travaille (capture de page, exemple, saisie), son panneau s'ouvre. */
     var carteA = $('analyse-modele');
     if (carteA && window.MutationObserver) new MutationObserver(function () { if (carteA.classList.contains('is-active') && state.mode !== 'analyser') setMode('analyser', false); }).observe(carteA, { attributes: true, attributeFilter: ['class'] });
     suivreDock();
-    window.matchMedia('(min-width:721px)').addEventListener('change',function(e){var others=document.querySelector('.sx-other-choices');if(others)others.open=e.matches;});
+    var media=window.matchMedia('(min-width:721px)'),onSize=function(e){var others=document.querySelector('.sx-other-choices');if(others)others.open=e.matches;};if(media.addEventListener)media.addEventListener('change',onSize);else if(media.addListener)media.addListener(onSize);
     if (['#analyser','#purchase-audit','#mode-profil'].indexOf(location.hash)!==-1) setTimeout(depuisHash, 60);
     (window.SxData ? window.SxData.catalogue() : fetch('data/smartphones.json').then(function (r) { if(!r.ok)throw new Error('catalogue');return r.json(); })).then(function (d) { produits = d.produits; rendre(); })
       .catch(function () { $('sx-reco-rail-track').innerHTML = '<p class="pj-warn">Le catalogue n’a pas pu être chargé. Les modèles testés restent consultables plus bas.</p>'; });

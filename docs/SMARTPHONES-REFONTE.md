@@ -1,6 +1,6 @@
 # Bureau Smartphones — novembre 2026
 
-La page ouvre une sélection courte dans une fenêtre inspirée de Windows 11 : barre de titre, navigation latérale et surface de travail étendue. Le générateur reste `tools/smartphones/page.py` ; l’habillage du bureau est dans `assets/css/smartphones-workspace.css`.
+La page conserve la charte commune (Archivo, Public Sans, JetBrains Mono, encre noire, jaune, fond gris et bordures droites). La fenêtre utilise des commandes Windows fonctionnelles : réduire, agrandir/rétablir, fermer et rouvrir sans perdre la sélection. Le générateur reste `tools/smartphones/page.py` ; l’habillage du bureau est dans `assets/css/smartphones-workspace.css`.
 
 ## Ordre et densité
 
@@ -23,3 +23,7 @@ La page ouvre une sélection courte dans une fenêtre inspirée de Windows 11 : 
 `npm test` vérifie données, moteurs, génération et dépendances. `npm run smartphones:fenetre-test` vérifie navigation, anciennes ancres, catalogue, fiches, comparaisons, validation différée, budget, filtre iPhone, raccourcis à deux options et absence de débordement sur 360, 390, 768 et 1440 px. L’analyseur garde sa suite `npm run analyzer:ui-test`.
 
 Textes français uniquement ; les traductions suivent le circuit DeepL du projet.
+
+## Correctifs après publication
+
+Les liens de parcours réagissent à chaque clic, y compris quand l’ancre est déjà dans l’URL. Les deux autres parcours restent accessibles depuis les rubriques secondaires. Les anciens navigateurs utilisant `MediaQueryList.addListener` chargent toujours les recommandations. Les fichiers propres à la page portent une version dans leur URL pour éviter un mélange entre HTML récent et scripts précédents conservés en cache. Les couleurs, les typographies et l’en-tête/pied de page héritent du design-system commun.
