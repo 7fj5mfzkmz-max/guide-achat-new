@@ -16,6 +16,7 @@ async function run(name, fn) { try { await fn(); ok++; console.log('OK    ' + na
   await run('parcours linéaire, vidéos en tête du catalogue et aucun bonus vidéo dans la sélection', async()=>{
     const p=await open(); await p.waitForSelector('#sp-recommendations .sp-product');
     assert(await p.locator('#sp-recommendations .sp-product').count()===4,'quatre choix initiaux');
+    assert(await p.locator('#sp-recommendations .sp-score').count()===0&&!(await p.locator('#sp-recommendations').evaluate(e=>e.textContent)).includes('%'),'aucun pourcentage avant les réponses');
     assert(await p.locator('#sp-catalogue .is-video').count()===9,'vidéos en premier');
     assert(await p.locator('#sx-win').count()===0,'ancienne fenêtre supprimée');
     assert(await p.locator('#sp-recommendations .sp-video-link').count()===0,'vidéos réservées au catalogue');
@@ -37,6 +38,7 @@ async function run(name, fn) { try { await fn(); ok++; console.log('OK    ' + na
     assert(JSON.stringify(actual)===JSON.stringify(expected),'classement technique exact sur toutes les fiches');
     assert(actual.some(id=>!require('../data/smartphones-guide.json').produits.some(v=>v.catalogue===id)),'des téléphones sans vidéo sont recommandés');
     assert(actual.every(id=>data.find(x=>x.id===id).prix_indicatif<=300),'plafond respecté');
+    assert(await p.locator('#sp-recommendations .sp-score').count()===actual.length,'pourcentage affiché après les réponses');
     await p.click('#sp-edit');assert(await p.getAttribute('[data-answer="jeu"]','aria-pressed')==='true','réponses conservées');
     await p.click('#sp-reset');assert(await p.locator('#sp-recommendations .sp-product').count()===4,'retour au mois');
     assert(p.errors.length===0,p.errors.join(' | '));await p.close();

@@ -11,3 +11,7 @@ Le catalogue fusionne les 24 fiches vidéo et les 146 fiches techniques en dédo
 L’analyseur `phone-analyzer/` conserve son moteur, ses modules et ses identifiants. Le conseiller fonctionne aussi si les données vidéo sont indisponibles. Les anciennes ancres redirigent vers les sections équivalentes.
 
 Validation : `npm test`, `npm run smartphones:fenetre-test` (nom historique, couvre désormais le guide linéaire), tests UI de l’analyseur. Aucun fichier de traduction modifié.
+
+Pourcentage de compatibilité : il n’apparaît qu’après le questionnaire. Avant, les « choix du moment » montrent la gamme, un point fort et une limite, sans pourcentage, et un encadré explique pourquoi. Le test d’interface vérifie les deux cas.
+
+Repris du modèle de novembre (archive zip) : en-tête illustré (téléphone « selon votre usage », pourcentage « ? % » jusqu’aux réponses) à la place de la photo d’un iPhone, bandeau de chiffres, badges de gamme, et le bloc « Repères chiffrés » (noms de puces, note de puce de 1 à 10 alignée sur `phone-analyzer/chips.js`, capteur, luminosité, batterie) dans la section Comprendre.
