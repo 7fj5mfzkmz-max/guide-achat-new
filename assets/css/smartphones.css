@@ -15,6 +15,8 @@
 .sp-guide h1,.sp-guide h2,.sp-guide h3,.sp-guide h4{margin:0;font-family:var(--head);text-transform:uppercase;letter-spacing:-.02em;line-height:1.04}
 .sp-guide h2{font-size:clamp(28px,3.5vw,50px);font-weight:700}
 .sp-guide h3{font-size:clamp(19px,1.8vw,24px);font-weight:700}
+/* Les noms de modèles gardent leur casse (iPhone, realme, OnePlus) ; l'analyseur garde ses propres titres. */
+.sp-guide .sp-product h3,.sp-guide .sp-res h4,.sp-guide .model-analyzer-result :is(h2,h3,h4),.sp-guide #phone-manual-entry :is(h2,h3,h4){text-transform:none}
 .sp-guide p{margin:0;color:var(--ink-soft);line-height:1.65}
 .sp-guide mark{background:var(--accent);color:var(--on-accent);padding:0 .12em}
 .sp-guide :focus-visible{outline:3px solid var(--hot);outline-offset:3px}
