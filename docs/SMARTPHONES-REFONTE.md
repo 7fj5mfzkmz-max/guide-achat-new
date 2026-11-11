@@ -21,3 +21,11 @@ Aucun pourcentage n’apparaît tant qu’aucun choix n’est fait. Les « choix
 Les vidéos n’enrichissent que le catalogue : aucun bonus dans le classement. Le conseiller fonctionne aussi si les données vidéo sont indisponibles.
 
 Validation : `npm test` (dont `smartphones:compat-test`, qui couvre le calcul sur mesure), `npm run smartphones:fenetre-test` (nom historique, couvre les onglets, le sur mesure, les profils, le catalogue et le mobile), tests UI de l’analyseur. Aucun fichier de traduction modifié.
+
+## Design et mouvement (novembre 2026)
+Parti pris « manuel en grille », décrit en tête de `assets/css/smartphones.css` (une seule feuille, neuf parties).
+- **Gardé du site** : le jaune, les titres Archivo, les libellés mono, le surlignage.
+- **Abandonné sur cette page** : les ombres décalées et les cartes à coin coupé, très répandues ailleurs.
+- **Ajouté** : cellules à plat séparées par des filets d’encre de 4 px (`.sp-bento` : chaque cellule dessine son cadre, donc pas de case noire vide quand une rangée est incomplète), mot géant ajusté à la largeur, lignes pointillées « libellé … valeur » (`.sp-ld`), bandeau défilant, tuiles de chiffres, rangées numérotées avec un « + » orange, orange (`--brand-orange`) réservé aux indicateurs vivants (progression, onglet actif, barres de compatibilité).
+
+Mouvement : apparitions au défilement (`.sp-rv`), compteurs des tuiles, lettres du mot géant, indicateur qui glisse sous l’onglet actif, entrée des panneaux, ouverture des familles, barres de compatibilité, filet qui balaie l’en-tête de la sélection à chaque mise à jour. Tout passe par la classe `sp-js`, posée par le script seulement si le visiteur n’a pas demandé à réduire les animations : sans JavaScript ou avec « réduire les animations », le contenu est visible tout de suite. Tout élément `.sp-rv` créé par le script doit être passé à `reveal()`, sinon il reste invisible.

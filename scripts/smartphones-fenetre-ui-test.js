@@ -93,6 +93,19 @@ async function run(name, fn) { try { await fn(); ok++; console.log('OK    ' + na
       await p.evaluate(()=>document.documentElement.classList.add('dark-theme'));assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mode sombre');
       assert(p.errors.length===0,p.errors.join(' | '));await p.close();}
   });
+  await run('mouvement : indicateur sous l’onglet actif, mot géant ajusté, animations coupées sur demande et contenu visible sans attendre',async()=>{
+    const p=await open('',1280);await p.waitForSelector('.sp-opt');await p.waitForTimeout(400);
+    assert(await p.evaluate(()=>document.querySelector('.sp-guide').classList.contains('sp-js')),'mouvement actif par défaut');
+    const fitOk=()=>p.evaluate(()=>{const h=document.getElementById('sp-giant'),s=h.firstElementChild;return s.getBoundingClientRect().width<=h.clientWidth+1&&s.getBoundingClientRect().width>h.clientWidth*.9;});
+    assert(await fitOk(),'mot géant à la largeur de la page');await p.setViewportSize({width:700,height:900});await p.waitForTimeout(200);assert(await fitOk(),'mot géant réajusté');await p.setViewportSize({width:1280,height:900});
+    await p.click('#tab-catalogue');await p.waitForTimeout(600);
+    assert(await p.evaluate(()=>{const b=document.getElementById('tab-catalogue').getBoundingClientRect(),i=document.getElementById('sp-tab-ind').getBoundingClientRect();return Math.abs(b.left-i.left)<2&&Math.abs(b.width-i.width)<2;}),'indicateur sous l’onglet actif');
+    assert((await p.textContent('#sp-step'))==='04','numéro de rubrique');await p.close();
+    const q=await browser.newPage({viewport:{width:1280,height:900},locale:'fr-FR',reducedMotion:'reduce'});await q.goto(base+'/smartphones.html',{waitUntil:'networkidle'});await q.waitForSelector('.sp-opt');
+    assert(!await q.evaluate(()=>document.querySelector('.sp-guide').classList.contains('sp-js')),'aucune animation si le visiteur le demande');
+    assert(await q.evaluate(()=>[...document.querySelectorAll('.sp-rv')].every(e=>getComputedStyle(e).opacity==='1')),'contenu visible sans attendre');
+    assert((await q.textContent('.sp-stats [data-count="146"]'))==='146','chiffres affichés sans compteur');await q.close();
+  });
   await run('le conseiller fonctionne sans le fichier des vidéos',async()=>{
     const p=await browser.newPage({locale:'fr-FR'});await p.route('**/data/smartphones-guide.json',r=>r.abort());await p.goto(base+'/smartphones.html');await p.waitForSelector('.sp-opt',{state:'attached'});
     await p.click('[data-fam="batterie"] .sp-fam-head');await p.click('.sp-opt[data-k="mah"][data-v="5000"]');assert(await p.locator('#sp-results [data-model]').count()>0,'classement indépendant des vidéos');
