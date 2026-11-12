@@ -382,12 +382,19 @@
   .sp-intro{grid-template-columns:1fr}
 }
 @media(max-width:650px){
-  .sp-guide{--pad:32px;font-size:15.5px}
+  .sp-guide{--pad:20px;--g:3px;font-size:16px}
+  .sp-win-bar b{display:none}.sp-win-bar{justify-content:flex-start;padding:10px 14px 8px;font-size:12.5px}
+  .sp-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}
+  .sp-tab{min-width:0;padding:10px 10px 14px;gap:4px}.sp-tab small{font-size:11px}.sp-tab b{font-size:12px;letter-spacing:.03em;line-height:1.2}
+  .sp-tab-ind{display:none}.sp-tab[aria-selected=true]{background:var(--paper);color:var(--ink);box-shadow:inset 0 -5px 0 var(--hot)}
+  .sp-tab-badge{top:8px;right:8px}
+  .sp-tabnote{font:500 14px/1.45 var(--sans);letter-spacing:0}.sp-tabnote span::before{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .sp-panel-head{margin-bottom:22px}.sp-panel-head p{margin-top:12px}
   .sp-hero{padding-top:18px}.sp-hero>.sp-wrap:first-child{background:none}.sp-meta{padding-bottom:22px;font-size:10.5px;letter-spacing:.05em}.sp-meta span:nth-child(2){display:none}
   .sp-guide .sp-giant{margin-top:24px}.sp-rule{margin-top:22px}.sp-phases{padding:26px 0 32px}
   .sp-actions .btn{flex:1 1 100%;justify-content:space-between}
   .sp-tile{padding:18px;min-height:0}.sp-stats{grid-auto-rows:minmax(132px,auto)}.sp-stage{min-height:410px}
-  .sp-win{margin-top:44px}.sp-panel{padding:18px 14px}.sp-tabnote{padding:11px 14px;font-size:12px}.sp-tab{padding:13px 14px 16px}
+  .sp-win{margin-top:44px}.sp-panel{padding:18px 14px}.sp-tabnote{padding:11px 14px}
   .sp-how{grid-template-columns:1fr}
   .sp-fam-head{grid-template-columns:auto minmax(0,1fr) auto;gap:12px;padding:16px 14px}.sp-fam-state{display:none}.sp-fam.is-done .sp-fam-state{display:block;grid-column:2;justify-self:start}
   .sp-fam-body{padding:2px 14px 18px}.sp-opts{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -400,4 +407,15 @@
   .sp-reperes .rp-bands{grid-template-columns:1fr 1fr;gap:6px 14px}.sp-reperes .rp-sensor{grid-template-columns:1fr}.sp-reperes .rp-bar{grid-template-columns:1fr}.sp-reperes .rp-bar b{grid-row:auto}.sp-reperes .rp-cells li{font-size:14px}
   .sp-faq summary{padding:18px 16px}.sp-faq summary::before{right:16px}.sp-guide .sp-faq p{padding:0 16px 20px}
   .sp-analysis .model-analyzer-input-row input{flex:0 0 auto;height:52px}
+  /* Repères : à plat, une seule bordure, des lignes pleine largeur */
+  .sp-reperes{border-width:0 0 var(--g);border-color:var(--ink);background:transparent;margin-top:18px}
+  .sp-reperes>summary{padding:14px 0}.sp-reperes-in{padding:0 0 18px}
+  .sp-reperes .decode-grid{gap:0;padding:0}
+  .sp-reperes .decode{padding:16px 0;background:transparent;box-shadow:none;border-top:2px solid var(--ink)}
+  .sp-reperes .decode-name{display:grid;gap:12px}
+  .sp-reperes .seg,.sp-reperes .seg.brand{flex:none;display:grid;grid-template-columns:minmax(84px,32%) minmax(0,1fr);gap:4px 14px;align-items:start}
+  .sp-reperes .seg.brand{grid-template-columns:minmax(0,1fr)}.sp-reperes .seg b{padding-bottom:4px;font-size:22px}.sp-reperes .seg i{margin-top:2px;font-size:14.5px}
+  .sp-reperes .rp-cells{padding:0;grid-template-columns:repeat(5,1fr)}
+  .sp-reperes .rp-title{margin:22px 0 12px;font-size:17px}
+  .sp-topic-list button,.sp-faq summary{min-height:56px}
 }
