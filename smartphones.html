@@ -25,6 +25,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/categories.js" defer></script>
 <script src="assets/js/category-menu.js" defer></script>
 <link rel="stylesheet" href="assets/css/actualites.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400&amp;display=swap">
 <link rel="stylesheet" href="assets/css/smartphones.css">
 <script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
 function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
@@ -44,35 +45,52 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide d’achat</span><span>Prix indicatifs du catalogue</span></div></div>
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker" translate="no">Guide·Achat</span><p class="drawer-title" id="search-panel-title">Rechercher</p></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main" class="sg">
-<section class="sg-intro" aria-labelledby="sg-title">
-<div class="sg-wrap sg-intro-grid">
-<div class="sg-intro-main">
-<h1 id="sg-title">Le bon smartphone, c’est celui qui vous convient<span class="sg-px-dot" aria-hidden="true"></span></h1>
-</div>
-<div class="sg-intro-side">
+<section class="sg-hero" aria-labelledby="sg-title">
+<div class="sg-wrap sg-hero-grid">
+<div class="sg-hero-text">
+<p class="sg-dotlabel">Guide smartphones · <span data-count>146</span> modèles</p>
+<h1 id="sg-title"><span class="sg-h1-light">Le bon smartphone,</span> <span class="sg-sticker-text">c’est celui qui vous convient.</span></h1>
 <p class="sg-lead">Fixez un budget, puis ce qui compte pour vous. Seules les options qui existent à ce prix restent proposées.</p>
-<dl class="sg-facts">
-<div><dt>Modèles</dt><dd data-count>—</dd></div>
-<div><dt>Prix relevés</dt><dd data-pricedate>—</dd></div>
-<div><dt>Critères</dt><dd>7</dd></div>
-</dl>
+<div class="sg-hero-actions">
+<button type="button" class="sg-cta" id="sg-cta-start">Choisir mon budget</button>
+<button type="button" class="sg-cta-ghost" id="sg-cta-analyse">J’ai déjà un modèle en tête</button>
+</div>
+</div>
+<div class="sg-hero-visual" aria-hidden="true">
+<svg class="sg-wires" viewBox="0 0 520 520" preserveAspectRatio="none" focusable="false">
+<path d="M150 112 C 200 112, 200 170, 236 190"/><path d="M372 92 C 330 92, 330 150, 300 176"/>
+<path d="M120 300 C 180 300, 190 290, 232 290"/><path d="M402 330 C 350 330, 340 300, 306 296"/>
+<path d="M170 436 C 210 436, 220 400, 246 386"/><path d="M380 446 C 330 446, 320 410, 294 392"/>
+</svg>
+<div class="sg-phone">
+<div class="sg-phone-notch"></div>
+<div class="sg-phone-screen">
+<p class="sg-mock-k">Recommandation</p>
+<p class="sg-mock-name" id="sg-mock-name">Votre modèle</p>
+<p class="sg-mock-price" id="sg-mock-price">Choisissez un budget</p>
+<div class="sg-mock-meter" id="sg-mock-meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="sg-mock-rows" id="sg-mock-rows"><span></span><span></span><span></span></div>
+</div>
+</div>
+<span class="sg-float f1">Écran</span><span class="sg-float f2">Puce 1–10</span>
+<span class="sg-float f3">Photo</span><span class="sg-float f4">Batterie</span>
+<span class="sg-float f5">Indice IP</span><span class="sg-float f6">Mises à jour</span>
+<span class="sg-stick s1">€</span>
+<span class="sg-stick s2"><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg></span>
 </div>
 </div>
 </section>
 
 <div class="sg-wrap">
 <div class="sg-tabs" role="tablist" aria-label="Parties du guide">
-<button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="true" tabindex="0"><span class="sg-tab-n">01</span><span class="sg-tab-name">Mes critères</span></button>
-<button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1"><span class="sg-tab-n">02</span><span class="sg-tab-name">Présentation</span></button>
-<button type="button" role="tab" id="sg-tab-analyseur" data-hash="analyseur" aria-controls="sg-zone-analyseur" aria-selected="false" tabindex="-1"><span class="sg-tab-n">03</span><span class="sg-tab-name">Analyseur</span></button>
+<button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="true" tabindex="0">Mes critères</button>
+<button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1">Présentation</button>
+<button type="button" role="tab" id="sg-tab-analyseur" data-hash="analyseur" aria-controls="sg-zone-analyseur" aria-selected="false" tabindex="-1">Analyseur</button>
 </div>
 
 <section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone">
 <div class="sg-parcours" id="sg-parcours">
-<div class="sg-steps-col">
-<p class="sg-zone-note">Sept étapes, dans l’ordre. Une étape se referme après votre choix ; vous pouvez la rouvrir, la passer ou retirer votre choix.</p>
 <ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement du catalogue…</li></ol>
-</div>
 <aside class="sg-result-col" aria-label="Recommandation">
 <div id="sg-result" class="sg-result" aria-live="polite"></div>
 </aside>
@@ -81,133 +99,143 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-zone" hidden>
-<div class="sg-sec-head"><h2 id="sg-h-month">Téléphone du mois</h2><p class="sg-sec-meta" id="sg-month-date"></p></div>
 <div class="sg-month">
-<article class="sg-month-ref" id="sg-month-ref"></article>
+<article class="sg-month-ref" id="sg-month-ref" aria-labelledby="sg-h-month"></article>
 <div class="sg-month-side">
-<h3 class="sg-label">Trois autres choix, par budget</h3>
+<p class="sg-dotlabel">Trois autres choix, par budget</p>
 <ol id="sg-month-alts" class="sg-alts"></ol>
 <p class="sg-fine" id="sg-month-rule"></p>
 </div>
 </div>
 
-<div class="sg-sec-head"><h2 id="sg-h-notions">Notions à connaître</h2><p class="sg-sec-meta">Ce que vous remarquerez au quotidien, puis le détail technique.</p></div>
-<div class="sg-bento">
+<div class="sg-sec-head"><p class="sg-dotlabel">Notions à connaître</p><h2 id="sg-h-notions"><span class="sg-h-light">Ce qu’on remarque au quotidien,</span> le détail ensuite.</h2></div>
+<div class="sg-cards">
 
-<article class="sg-cell sg-cell-wide" id="sg-n-ecran" aria-labelledby="sg-nh-ecran">
-<div class="sg-cell-text">
-<p class="sg-label">01 · Écran</p>
-<h3 id="sg-nh-ecran" tabindex="-1">OLED, AMOLED, LCD et LTPO</h3>
-<p>Vous le remarquerez dans une pièce sombre, à la profondeur des noirs, et en faisant défiler une page, à la fluidité.</p>
-<button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-ecran">Voir l’analyse : comment ces écrans se relient</button>
-<div class="sg-hint-body" id="sg-hd-ecran" hidden>
-<p><b>OLED :</b> chaque point s’éclaire seul ; un pixel noir est éteint, d’où des noirs profonds. <b>AMOLED</b> est la variante d’OLED de la plupart des smartphones : une famille de l’OLED, pas un autre type d’écran.</p>
-<p><b>LCD :</b> les points filtrent une lumière de fond toujours allumée. Moins cher, mais les noirs restent gris foncé.</p>
-<p><b>LTPO :</b> pas un type d’écran à lui seul, mais une électronique qui permet à un écran OLED de baisser sa fréquence d’affichage sur une image fixe pour consommer moins.</p>
-</div>
-</div>
+<article class="sg-card sg-card-wide" id="sg-n-ecran" aria-labelledby="sg-nh-ecran">
 <div class="sg-demo" data-demo="fluidite">
-<p class="sg-demo-k">Démonstration · fluidité</p>
 <div class="sg-lanes">
 <div class="sg-lane"><span class="sg-lane-name">Peu d’images par seconde</span><div class="sg-track"><span class="sg-dot" data-fps="12"></span></div></div>
 <div class="sg-lane"><span class="sg-lane-name">Beaucoup d’images par seconde</span><div class="sg-track"><span class="sg-dot" data-fps="0"></span></div></div>
 </div>
-<button type="button" class="sg-mini-btn" data-action="toggle">Mettre en pause</button>
-<p class="sg-sim">Simulation : l’écart est accentué, et votre écran limite ce que vous voyez.</p>
-<p class="sg-static-alt">À 120 images par seconde, un défilement affiche deux fois plus d’étapes intermédiaires qu’à 60 : le mouvement paraît plus doux.</p>
+<div class="sg-swatches"><span class="sg-sw sg-sw-oled"><i></i>OLED : le noir est éteint</span><span class="sg-sw sg-sw-lcd"><i></i>LCD : le noir reste éclairé</span></div>
+<p class="sg-static-alt">À 120 images par seconde, un défilement affiche deux fois plus d’étapes qu’à 60 : le mouvement paraît plus doux.</p>
+<div class="sg-demo-foot"><span class="sg-sim">Simulation, écart accentué</span><button type="button" class="sg-mini-btn" data-action="toggle">Pause</button></div>
+</div>
+<div class="sg-card-text">
+<p class="sg-num">01 · Écran</p>
+<h3 id="sg-nh-ecran" tabindex="-1">OLED, AMOLED, LCD et LTPO</h3>
+<p>Des noirs profonds dans le noir, et un défilement fluide.</p>
+<button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-ecran">Voir l’analyse : comment ces écrans se relient</button>
+<div class="sg-hint-body" id="sg-hd-ecran" hidden>
+<p><b>OLED :</b> chaque point s’éclaire seul ; un pixel noir est éteint. <b>AMOLED</b> est la variante d’OLED de la plupart des smartphones, pas un autre type d’écran.</p>
+<p><b>LCD :</b> une lumière de fond toujours allumée ; moins cher, noirs gris foncé.</p>
+<p><b>LTPO :</b> une électronique qui permet à un écran OLED de baisser sa fréquence sur une image fixe pour consommer moins.</p>
+</div>
 </div>
 </article>
 
-<article class="sg-cell" id="sg-n-processeur" aria-labelledby="sg-nh-processeur">
-<div class="sg-cell-text">
-<p class="sg-label">02 · Processeur</p>
+<article class="sg-card" id="sg-n-processeur" aria-labelledby="sg-nh-processeur">
+<div class="sg-demo" data-demo="puce">
+<label class="sg-sr" for="sg-chip-pick">Choisir un modèle du catalogue</label>
+<select id="sg-chip-pick" class="sg-select"></select>
+<ol class="sg-gauge" id="sg-scale" aria-hidden="true"></ol>
+<p class="sg-gauge-out" id="sg-scale-out" aria-live="polite"></p>
+</div>
+<div class="sg-card-text">
+<p class="sg-num">02 · Processeur</p>
 <h3 id="sg-nh-processeur" tabindex="-1">La note de 1 à 10</h3>
-<p>Elle décide si les applications s’ouvrent sans attendre et si les jeux restent fluides dans quelques années.</p>
+<p>Des applications qui s’ouvrent sans attendre, aujourd’hui et dans trois ans.</p>
 <button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-processeur">Voir l’analyse : comment la note est calculée</button>
 <div class="sg-hint-body" id="sg-hd-processeur" hidden>
-<p>La note situe la puce parmi toutes celles du marché, d’après son nom et une table de classement tenue par le guide. Elle est la même dans ce parcours, le catalogue et l’Analyseur.</p>
-<p><b>1–3</b> entrée de gamme · <b>4–6</b> milieu · <b>7–8</b> haut de gamme · <b>9–10</b> très haut de gamme. Une puce inconnue de la table reste sans note. Cette note n’est pas le score du parcours.</p>
+<p>La note situe la puce parmi toutes celles du marché, d’après son nom et une table de classement tenue par le guide ; la même dans ce parcours, le catalogue et l’Analyseur.</p>
+<p><b>1–3</b> entrée de gamme · <b>4–6</b> milieu · <b>7–8</b> haut · <b>9–10</b> très haut de gamme. Une puce inconnue reste sans note. Ce n’est pas le score du parcours.</p>
 </div>
-</div>
-<div class="sg-demo" data-demo="puce">
-<label class="sg-demo-k" for="sg-chip-pick">Démonstration · choisir un modèle</label>
-<select id="sg-chip-pick" class="sg-select"></select>
-<ol class="sg-scale" id="sg-scale" aria-hidden="true"></ol>
-<p class="sg-scale-out" id="sg-scale-out" aria-live="polite"></p>
 </div>
 </article>
 
-<article class="sg-cell sg-cell-wide" id="sg-n-photo" aria-labelledby="sg-nh-photo">
-<div class="sg-cell-text">
-<p class="sg-label">03 · Photo</p>
+<article class="sg-card" id="sg-n-photo" aria-labelledby="sg-nh-photo">
+<div class="sg-demo" data-demo="photo">
+<div class="sg-viewfinder" id="sg-vf">
+<svg class="sg-vf-scene" viewBox="0 0 300 200" role="img" aria-label="Photo de paysage : arbre, collines et soleil">
+<rect width="300" height="200" fill="#bfe0ee"/><circle cx="222" cy="56" r="24" fill="#ffc94a"/>
+<path d="M0 132 C 60 104, 120 120, 170 112 S 260 96, 300 110 V200 H0Z" fill="#a9c26a"/>
+<path d="M0 156 C 70 140, 150 160, 210 150 S 280 140, 300 146 V200 H0Z" fill="#6f9a43"/>
+<rect x="74" y="110" width="7" height="40" fill="#6b4a2c"/><circle cx="78" cy="98" r="22" fill="#3f7a46"/><circle cx="64" cy="108" r="14" fill="#356b3c"/><circle cx="92" cy="106" r="15" fill="#468a4e"/>
+</svg>
+<span class="sg-vf-corner c1"></span><span class="sg-vf-corner c2"></span><span class="sg-vf-corner c3"></span><span class="sg-vf-corner c4"></span>
+</div>
+<div class="sg-toggles" role="group" aria-label="Réglages de la démonstration photo">
+<button type="button" class="sg-toggle" id="sg-ph-ois" aria-pressed="true">Stabilisation</button>
+<button type="button" class="sg-toggle" id="sg-ph-crop" aria-pressed="false">Recadrer ×3</button>
+<button type="button" class="sg-toggle" id="sg-ph-mp" aria-pressed="false">Peu de mégapixels</button>
+</div>
+<span class="sg-sim">Simulation, pas une mesure</span>
+</div>
+<div class="sg-card-text">
+<p class="sg-num">03 · Photo</p>
 <h3 id="sg-nh-photo" tabindex="-1">Mégapixels, capteur, stabilisation</h3>
-<p>La différence se voit la nuit, en vidéo en marchant et quand vous recadrez une photo.</p>
+<p>La nuit, en vidéo en marchant, et quand on recadre.</p>
 <button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-photo">Voir l’analyse : ce que les mégapixels disent et taisent</button>
 <div class="sg-hint-body" id="sg-hd-photo" hidden>
-<p><b>Mégapixels (MP) :</b> le nombre de points de l’image. Plus il y en a, plus on peut recadrer. Ils ne disent rien de la lumière captée.</p>
-<p><b>Capteur :</b> plus il est grand, plus il reçoit de lumière, ce qui aide la nuit. Un 50 MP à petit capteur peut faire moins bien qu’un 12 MP à grand capteur.</p>
-<p><b>Stabilisation optique (OIS) :</b> une partie de l’objectif bouge pour compenser les tremblements. Beaucoup de fiches ne la précisent pas : le guide l’indique alors « non renseignée ».</p>
+<p><b>Mégapixels (MP) :</b> le nombre de points de l’image ; plus il y en a, plus on peut recadrer. Ils ne disent rien de la lumière captée.</p>
+<p><b>Capteur :</b> plus il est grand, plus il reçoit de lumière. Un 50 MP à petit capteur peut faire moins bien qu’un 12 MP à grand capteur.</p>
+<p><b>Stabilisation optique (OIS) :</b> une partie de l’objectif compense les tremblements. Souvent non précisée sur les fiches : le guide l’indique « non renseignée ».</p>
 </div>
-</div>
-<div class="sg-demo" data-demo="pixels">
-<p class="sg-demo-k">Démonstration · nombre de points</p>
-<div class="sg-pixels">
-<canvas id="sg-px-canvas" width="192" height="192" role="img" aria-label="Paysage en pixels dont la finesse change selon la grille choisie"></canvas>
-<div class="sg-px-controls">
-<fieldset class="sg-seg"><legend>Points par côté</legend>
-<label><input type="radio" name="sg-grid" value="8"><span>8</span></label><label><input type="radio" name="sg-grid" value="16"><span>16</span></label><label><input type="radio" name="sg-grid" value="32" checked><span>32</span></label><label><input type="radio" name="sg-grid" value="96"><span>96</span></label>
-</fieldset>
-<label class="sg-check"><input type="checkbox" id="sg-px-crop"> Recadrer au centre (×3)</label>
-<label class="sg-check"><input type="checkbox" id="sg-px-ois"> Main qui tremble, sans stabilisation</label>
-</div>
-</div>
-<p class="sg-sim">Simulation : la grille illustre la densité de points, pas un nombre réel de mégapixels.</p>
 </div>
 </article>
 
-<article class="sg-cell" id="sg-n-batterie" aria-labelledby="sg-nh-batterie">
-<div class="sg-cell-text">
-<p class="sg-label">04 · Batterie</p>
+<article class="sg-card" id="sg-n-batterie" aria-labelledby="sg-nh-batterie">
+<div class="sg-demo" data-demo="batterie">
+<ul class="sg-bars" id="sg-bars"></ul>
+<div class="sg-demo-foot"><span class="sg-sim">Données du catalogue, pas une mesure d’autonomie</span><button type="button" class="sg-mini-btn" data-action="replay-bars">Rejouer</button></div>
+</div>
+<div class="sg-card-text">
+<p class="sg-num">04 · Batterie</p>
 <h3 id="sg-nh-batterie" tabindex="-1">Ce que 6 000 mAh peut changer</h3>
-<p>Une plus grande capacité laisse en général plus de marge le soir, sans la garantir.</p>
+<p>Plus de marge le soir, en général, sans garantie.</p>
 <button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-batterie">Voir l’analyse : capacité, autonomie et prix</button>
 <div class="sg-hint-body" id="sg-hd-batterie" hidden>
 <p>Le <b>mAh</b> (milliampère-heure) mesure l’énergie stockée. À usage égal, 6 000 mAh tiennent plus longtemps que 5 000, mais un grand écran lumineux ou une puce gourmande peuvent effacer l’écart. Une grosse batterie ajoute souvent du poids ; le prix dépend surtout du reste de la fiche.</p>
 </div>
 </div>
-<div class="sg-demo" data-demo="batterie">
-<p class="sg-demo-k">Capacités et prix du catalogue</p>
-<ul class="sg-bars" id="sg-bars"></ul>
-<button type="button" class="sg-mini-btn" data-action="replay-bars">Rejouer</button>
-<p class="sg-sim">Données réelles : ce n’est pas une mesure d’autonomie.</p>
-</div>
 </article>
 
-<article class="sg-cell sg-cell-half" id="sg-n-protection" aria-labelledby="sg-nh-protection">
-<div class="sg-cell-text">
-<p class="sg-label">05 · Protection</p>
+<article class="sg-card" id="sg-n-protection" aria-labelledby="sg-nh-protection">
+<div class="sg-demo sg-demo-ip" data-demo="ip" aria-hidden="true">
+<div class="sg-ip-scale">
+<span class="sg-ip-lvl l4"><b>IPx4</b>éclaboussures</span>
+<span class="sg-ip-lvl l7"><b>IPx7</b>immersion brève</span>
+<span class="sg-ip-lvl l8"><b>IPx8</b>immersion prolongée</span>
+</div>
+<div class="sg-ip-water"></div>
+</div>
+<div class="sg-card-text">
+<p class="sg-num">05 · Protection</p>
 <h3 id="sg-nh-protection" tabindex="-1">L’indice IP</h3>
-<p>La pluie, un verre renversé, une chute dans l’évier : l’indice dit jusqu’où le téléphone a été testé.</p>
+<p>La pluie, un verre renversé, une chute dans l’évier.</p>
 <button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-protection">Voir l’analyse : lire les deux chiffres</button>
 <div class="sg-hint-body" id="sg-hd-protection" hidden>
-<p>Premier chiffre : la poussière (6 = étanche). Second : l’eau (4 = éclaboussures, 7 = immersion brève, 8 = immersion prolongée selon le fabricant). « X » : test non fait. Les tests se font en eau douce, et la garantie couvre rarement l’eau.</p>
+<p>Premier chiffre : la poussière (6 = étanche). Second : l’eau (4 = éclaboussures, 7 = immersion brève, 8 = immersion prolongée selon le fabricant). « X » : test non fait. Tests en eau douce ; la garantie couvre rarement l’eau.</p>
 </div>
 </div>
 </article>
 
-<article class="sg-cell sg-cell-half" id="sg-n-maj" aria-labelledby="sg-nh-maj">
-<div class="sg-cell-text">
-<p class="sg-label">06 · Mises à jour</p>
+<article class="sg-card" id="sg-n-maj" aria-labelledby="sg-nh-maj">
+<div class="sg-demo sg-demo-maj" aria-hidden="true">
+<span class="sg-maj-ring"><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg></span>
+<span class="sg-pill-nd">Donnée non renseignée</span>
+</div>
+<div class="sg-card-text">
+<p class="sg-num">06 · Mises à jour</p>
 <h3 id="sg-nh-maj" tabindex="-1">La durée du suivi</h3>
-<p>Les mises à jour corrigent des failles de sécurité et gardent les applications compatibles. Leur durée annoncée varie selon les fabricants.</p>
-<p class="sg-fine">Le catalogue ne renseigne pas encore cette durée : le guide ne l’utilise pas pour recommander.</p>
+<p>Sécurité et applications compatibles : la durée annoncée varie selon les fabricants. Le catalogue ne la renseigne pas encore ; le guide ne l’utilise pas pour recommander.</p>
 </div>
 </article>
 </div>
 </section>
 
 <section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone" hidden>
-<div class="sg-sec-head"><h2>Vérifier un modèle précis</h2><p class="sg-sec-meta">Collez le lien d’une fiche produit ou tapez le nom d’un modèle.</p></div>
+<div class="sg-sec-head"><p class="sg-dotlabel">Analyseur</p><h2><span class="sg-h-light">Vérifier un modèle</span> précis.</h2></div>
 <div class="sg-frame-wrap"><iframe id="sg-frame" class="sg-frame" title="Analyseur de smartphones" src="about:blank" data-src="analyseur.html?cat=smartphones"></iframe></div>
 <p class="sg-fine"><a href="analyseur.html?cat=smartphones">Ouvrir l’Analyseur dans une page séparée</a></p>
 </section>

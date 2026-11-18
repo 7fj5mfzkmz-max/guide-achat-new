@@ -22,20 +22,31 @@
   var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var guide = null, openStep = 'prix', catalogueError = false;
 
-  /* Icônes pixel 9×9, une par étape (« X » = point plein). */
+  /* Icônes au trait (24×24), une par étape. */
   var ICONS = {
-    prix: ['..XXXXX..', '.X.....X.', 'X..XXX..X', 'X.X.....X', 'X.XXXX..X', 'X.X.....X', 'X..XXX..X', '.X.....X.', '..XXXXX..'],
-    ecran: ['.XXXXXXX.', '.X.....X.', '.X.XX..X.', '.X..XX.X.', '.X.....X.', '.X.XXX.X.', '.X.....X.', '.XXXXXXX.', '....X....'],
-    processeur: ['.X.X.X.X.', 'XXXXXXXXX', '.X.....X.', 'XX.XXX.XX', '.X.X.X.X.', 'XX.XXX.XX', '.X.....X.', 'XXXXXXXXX', '.X.X.X.X.'],
-    photo: ['.........', '...XXX...', 'XXXXXXXXX', 'X.......X', 'X..XXX..X', 'X..X.X..X', 'X..XXX..X', 'X.......X', 'XXXXXXXXX'],
-    batterie: ['...XXX...', '.XXXXXXX.', '.X.....X.', '.X.....X.', '.XXXXXXX.', '.XXXXXXX.', '.XXXXXXX.', '.XXXXXXX.', '.XXXXXXX.'],
-    protection: ['....X....', '....X....', '...XXX...', '..XX.XX..', '.XX...XX.', '.X.....X.', '.X.....X.', '..X...X..', '...XXX...'],
-    maj: ['...XXXX..', '..X....XX', '.X....XXX', 'X........', 'X.......X', 'X.......X', '.X.....X.', '..X...X..', '...XXX...']
+    prix: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4.4 4.4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/>',
+    ecran: '<rect x="6" y="2.5" width="12" height="19" rx="2.6"/><path d="M10.5 18.6h3"/>',
+    processeur: '<rect x="7" y="7" width="10" height="10" rx="1.6"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>',
+    photo: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+    batterie: '<rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M6.5 10v4M9.5 10v4M12.5 10v4"/>',
+    protection: '<path d="M12 3c3.5 4.5 6 7.7 6 10.5a6 6 0 0 1-12 0C6 10.7 8.5 7.5 12 3z"/>',
+    maj: '<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>'
   };
-  function pixelIcon(id) {
-    var r = '';
-    (ICONS[id] || []).forEach(function (row, y) { for (var x = 0; x < row.length; x++) if (row[x] === 'X') r += '<rect x="' + x + '" y="' + y + '" width="1" height="1"/>'; });
-    return '<svg class="sg-pix" viewBox="0 0 9 9" aria-hidden="true" focusable="false" shape-rendering="crispEdges">' + r + '</svg>';
+  function icon(id) { return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + (ICONS[id] || '') + '</svg>'; }
+
+  /* Petit visuel par option : il montre l’idée, le libellé dit la règle. */
+  function optVisual(step, opt) {
+    var v = '';
+    if (step === 'ecran') v = opt.id === 'oled' ? '<span class="sg-v-oled"></span>' : opt.id === 'lcd' ? '<span class="sg-v-lcd"></span>' : '<span class="sg-v-ltpo">1–120<br>Hz</span>';
+    else if (step === 'processeur') {
+      var r = { entree: [1, 3], milieu: [4, 6], haut: [7, 8], sommet: [9, 10] }[opt.id] || [0, 0], g = '';
+      for (var i = 1; i <= 10; i++) g += '<i class="' + (i >= r[0] && i <= r[1] ? 'on' : '') + '" style="height:' + (20 + i * 8) + '%"></i>';
+      v = '<span class="sg-v-gauge">' + g + '</span>';
+    } else if (step === 'batterie') v = '<span class="sg-v-bat"><i style="width:' + (opt.id === 'b6000' ? 100 : 72) + '%"></i></span>';
+    else if (step === 'photo') v = opt.id === 'ois' ? '<svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/><path d="M1.5 11v4M22.5 11v4"/></svg>' : '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16M15 4v16"/></svg>';
+    else if (step === 'protection') v = opt.id === 'ip4' ? '<svg viewBox="0 0 24 24"><path d="M8 5c1.6 2 2.6 3.4 2.6 4.6a2.6 2.6 0 0 1-5.2 0C5.4 8.4 6.4 7 8 5zM16 9c1.6 2 2.6 3.4 2.6 4.6a2.6 2.6 0 0 1-5.2 0c0-1.2 1-2.6 2.6-4.6z"/></svg>' : '<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="1.5"/><path d="M3 14c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0M3 18.5c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/></svg>';
+    else if (step === 'maj') v = '<svg viewBox="0 0 24 24">' + ICONS.maj + '</svg>';
+    return v ? '<span class="sg-vis" aria-hidden="true">' + v + '</span>' : '';
   }
 
   function esc(s) {
@@ -69,8 +80,9 @@
     document.getElementById('sg-steps').innerHTML = guide.steps.map(function (s, i) {
       return '<li class="sg-step" id="sg-step-' + s.id + '">' +
         '<h3 class="sg-step-h"><button type="button" class="sg-step-btn" id="sg-btn-' + s.id + '" aria-expanded="false" aria-controls="sg-panel-' + s.id + '">' +
-        '<span class="sg-step-n">' + String(i + 1).padStart(2, '0') + '</span>' + pixelIcon(s.id) +
-        '<span class="sg-step-t">' + esc(s.titre) + '</span><span class="sg-step-v" id="sg-status-' + s.id + '"></span><span class="sg-step-c" aria-hidden="true"></span></button></h3>' +
+        '<span class="sg-ico">' + icon(s.id) + '</span>' +
+        '<span class="sg-step-tt"><span class="sg-step-n">Étape ' + (i + 1) + ' sur ' + guide.steps.length + '</span><span class="sg-step-t">' + esc(s.titre) + '</span></span>' +
+        '<span class="sg-step-v" id="sg-status-' + s.id + '"></span><span class="sg-step-c" aria-hidden="true"></span></button></h3>' +
         '<div class="sg-panel" id="sg-panel-' + s.id + '" role="region" aria-labelledby="sg-btn-' + s.id + '"><div class="sg-panel-in">' +
         '<p class="sg-q">' + esc(s.question) + '</p><p class="sg-aide">' + esc(s.aide) + '</p>' +
         '<p class="sg-warn" id="sg-warn-' + s.id + '" hidden></p>' +
@@ -88,7 +100,7 @@
     }
     var last = s.options[s.options.length - 1] === opt;
     return '<span class="sg-opt-label"><span class="sg-opt-pre">' + (last ? 'Tout le catalogue' : 'Jusqu’à') + '</span>' +
-      '<span class="sg-opt-big">' + (last ? '≤ ' : '') + opt.cap.toLocaleString('fr-FR') + ' €</span></span>';
+      '<span class="sg-opt-big">' + opt.cap.toLocaleString('fr-FR') + ' €</span></span>';
   }
 
   function renderSteps() {
@@ -115,10 +127,11 @@
         var sel = choice === opt.id;
         var whyId = 'sg-why-' + s.id + '-' + opt.id;
         var tail = sel ? '<span class="sg-chosen">Choisi</span>' : a.available ? '<span class="sg-count">' + a.ok + ' modèle' + (a.ok > 1 ? 's' : '') + '</span>' : '';
-        var trade = opt.adv ? '<span class="sg-trade"><span class="sg-adv"><b>Avantage :</b> ' + esc(opt.adv) + '</span><span class="sg-comp"><b>Compromis :</b> ' + esc(opt.comp) + '</span></span>' : '';
+        var trade = opt.adv ? '<span class="sg-trade"><span class="sg-adv"><b>Avantage</b> ' + esc(opt.adv) + '</span><span class="sg-comp"><b>Compromis</b> ' + esc(opt.comp) + '</span></span>' : '';
+        var share = s.id === 'prix' ? '<span class="sg-share" aria-hidden="true"><i style="width:' + Math.round(a.ok / Math.max(1, guide.products.length) * 100) + '%"></i></span>' : '';
         return '<li><button type="button" class="sg-opt' + (sel ? ' is-on' : '') + (sel && !a.available ? ' is-broken' : '') + '" data-step="' + s.id + '" data-opt="' + opt.id + '" aria-pressed="' + sel + '"' +
           (!a.available && !sel ? ' disabled' : '') + (!a.available ? ' aria-describedby="' + whyId + '"' : '') + '>' +
-          '<span class="sg-opt-top">' + optionLabel(s, opt) + tail + '</span>' + trade +
+          optVisual(s.id, opt) + '<span class="sg-opt-top">' + optionLabel(s, opt) + tail + '</span>' + share + trade +
           (!a.available ? '<span class="sg-why" id="' + whyId + '"><b>Indisponible.</b> ' + esc(reasonText(a)) + '</span>' : '') +
           '</button></li>';
       }).join('');
@@ -140,55 +153,75 @@
       return '<div><dt>' + r[0] + '</dt><dd>' + (r[1] ? esc(r[1]) : '<span class="sg-nd">non renseigné</span>') + '</dd></div>';
     }).join('') + '</dl>';
   }
+  /* Pastilles courtes tirées de la fiche ; celles qui répondent à un choix actif sont marquées. */
+  function specChips(p) {
+    var chips = [], t = F.ecran(p), n = F.niveau(p), c = F.mah(p), w = F.eau(p), ip = F.get(p, ['compatibilite', 'durete', 'protection_ip']);
+    var m = function (step) { var o = guide && guide.chosen(step); return o && o.test(p) === true; };
+    if (t) chips.push([/LTPO/i.test(t) ? 'LTPO' : /OLED/i.test(t) ? 'OLED' : /LCD/i.test(t) ? 'LCD' : 'Écran', m('ecran')]);
+    chips.push([n === null ? 'Puce : note inconnue' : 'Puce ' + n + '/10', m('processeur')]);
+    if (F.ois(p) === true) chips.push(['Stabilisation', m('photo')]); else if (F.mp(p) !== null) chips.push([F.mp(p) + ' MP', m('photo')]);
+    if (c !== null) chips.push([c.toLocaleString('fr-FR') + ' mAh', m('batterie')]);
+    if (ip) chips.push([String(ip).split('/')[0], m('protection')]);
+    return '<ul class="sg-chips">' + chips.map(function (x) { return '<li' + (x[1] ? ' class="is-match"' : '') + '>' + esc(x[0]) + '</li>'; }).join('') + '</ul>';
+  }
   function meter(pr) {
     var cells = guide.steps.map(function (s) {
       var o = guide.chosen(s.id), st = s.unavailable ? 'nd' : (o && guide.availability(s.id, o.id).available) ? 'ok' : 'off';
-      return '<span class="sg-cell-px is-' + st + '"></span>';
+      return '<i class="is-' + st + '"></i>';
     }).join('');
-    return '<div class="sg-meter"><div class="sg-cells" aria-hidden="true">' + cells + '</div>' +
+    return '<div class="sg-meter"><div class="sg-meter-bar" aria-hidden="true">' + cells + '</div>' +
       '<p class="sg-meter-txt"><b>' + pr.confirmed + ' critère' + (pr.confirmed > 1 ? 's' : '') + ' confirmé' + (pr.confirmed > 1 ? 's' : '') + ' sur ' + pr.total + '.</b> ' +
       (pr.provisional ? 'Score provisoire : le parcours n’est pas terminé.' : 'Parcours terminé.') + ' Mises à jour : donnée non renseignée, non comptée.</p></div>';
   }
-  function matchList() {
-    return '<ul class="sg-match">' + guide.steps.filter(function (s) { return s.id !== 'prix'; }).map(function (s) {
-      var o = guide.chosen(s.id), v = guide.sel[s.id];
-      var st = o ? 'ok' : v === L.SKIP ? 'skip' : s.unavailable ? 'nd' : 'off';
-      var txt = o ? o.label : v === L.SKIP ? 'étape passée' : s.unavailable ? 'non renseigné' : 'pas encore choisi';
-      return '<li class="is-' + st + '"><span class="sg-match-k">' + esc(s.titre) + '</span><span class="sg-match-v">' + esc(txt) + '</span></li>';
-    }).join('') + '</ul>';
-  }
   var lastReco = null;
+  function card(top, body) {
+    return '<div class="sg-res-top">' + top + '<span class="sg-res-phone" aria-hidden="true"></span></div><div class="sg-res-body">' + body + '</div>';
+  }
   function renderResult() {
     var box = document.getElementById('sg-result');
     if (catalogueError) {
-      box.innerHTML = '<p class="sg-res-k">Recommandation</p><h2 class="sg-res-title" id="sg-result-title">Catalogue indisponible</h2><p class="sg-res-empty">Le catalogue n’a pas pu être chargé. Rechargez la page ou utilisez l’Analyseur.</p>';
-      updateDock(null); return;
+      box.innerHTML = card('', '<h2 class="sg-res-title" id="sg-result-title">Catalogue indisponible</h2><p class="sg-res-empty">Le catalogue n’a pas pu être chargé. Rechargez la page ou utilisez l’Analyseur.</p>');
+      updateDock(null); updateMock(null); return;
     }
     var pr = guide.progress();
-    var head = '<p class="sg-res-k"><span>Recommandation</span><span>' + pr.confirmed + '/' + pr.total + '</span></p>';
+    var count = '<span class="sg-res-count">' + pr.confirmed + ' / ' + pr.total + '</span>';
     if (!guide.chosen('prix')) {
-      box.innerHTML = head + '<h2 class="sg-res-title" id="sg-result-title">Choisissez un budget</h2><p class="sg-res-empty">Un premier modèle s’affiche dès ce choix, puis s’affine à chaque critère.</p>' + meter(pr);
-      updateDock(null); return;
+      box.innerHTML = card(count, '<h2 class="sg-res-title" id="sg-result-title">Choisissez un budget</h2><p class="sg-res-empty">Un premier modèle s’affiche dès ce choix, puis s’affine à chaque critère.</p>' + meter(pr));
+      updateDock(null); updateMock(null); return;
     }
     var recos = guide.recommend(3), blocking = guide.blocking();
     if (!recos.length) {
       var names = blocking.map(function (b) { return '« ' + b.option.label + ' »'; });
-      box.innerHTML = head + '<h2 class="sg-res-title" id="sg-result-title">Aucun modèle ne correspond à ces critères</h2>' +
-        '<p class="sg-res-empty">' + (names.length ? 'En cause : ' + esc(names.join(', ')) + '. ' : '') + 'Augmentez le budget ou retirez un critère : vos autres réponses sont gardées.</p>' + meter(pr);
-      updateDock(null); return;
+      box.innerHTML = card(count, '<h2 class="sg-res-title" id="sg-result-title">Aucun modèle ne correspond à ces critères</h2>' +
+        '<p class="sg-res-empty">' + (names.length ? 'En cause : ' + esc(names.join(', ')) + '. ' : '') + 'Augmentez le budget ou retirez un critère : vos autres réponses sont gardées.</p>' + meter(pr));
+      updateDock(null); updateMock(null); return;
     }
     var p = recos[0], total = guide.results().length;
     var img = PHOTOS[p.id] ? '<img class="sg-res-img" src="' + esc(PHOTOS[p.id]) + '" alt="' + esc(PHOTOS_ALT[p.id] || '') + '" width="1200" height="900" loading="lazy" decoding="async">' : '';
-    box.innerHTML = head + img +
-      '<h2 class="sg-res-title" id="sg-result-title">' + esc(nameOf(p)) + '</h2><p class="sg-res-var">' + esc(p.variante || '') + '</p>' +
-      '<p class="sg-res-price">' + euros(F.prix(p)) + '<small>Prix indicatif relevé le ' + esc(dateFr(p.prix_date) || 'date inconnue') + '</small></p>' +
+    box.innerHTML = card('<span class="sg-res-badge">Pour vous</span>' + count,
+      img + '<h2 class="sg-res-title" id="sg-result-title">' + esc(nameOf(p)) + '</h2><p class="sg-res-var">' + esc(p.variante || '') + '</p>' +
+      '<p class="sg-res-price"><b>' + euros(F.prix(p)) + '</b><small>prix indicatif, ' + esc(dateFr(p.prix_date, true) || 'date inconnue') + '</small></p>' +
+      specChips(p) + meter(pr) +
       '<p class="sg-res-why">Meilleure note moyenne parmi les ' + total + ' modèle' + (total > 1 ? 's' : '') + ' qui respectent vos choix.</p>' +
-      meter(pr) + matchList() +
-      '<details class="sg-res-more"><summary>Sa fiche</summary>' + specRows(p) + '</details>' +
-      (recos.length > 1 ? '<p class="sg-label sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
+      '<details class="sg-res-more"><summary>Voir sa fiche</summary>' + specRows(p) + '</details>' +
+      (recos.length > 1 ? '<p class="sg-dotlabel sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
         return '<li><span>' + esc(nameOf(q)) + '</span><b>' + euros(F.prix(q)) + '</b><small>' + esc(chipText(q)) + '</small></li>';
-      }).join('') + '</ol>' : '');
-    updateDock(p);
+      }).join('') + '</ol>' : ''));
+    updateDock(p); updateMock(p);
+  }
+
+  /* Téléphone dessiné de l’accueil : il reprend la recommandation en cours. */
+  function updateMock(p) {
+    var name = document.getElementById('sg-mock-name'), price = document.getElementById('sg-mock-price'), rows = document.getElementById('sg-mock-rows'), bar = document.getElementById('sg-mock-meter');
+    if (!name) return;
+    var pr = guide ? guide.progress() : { confirmed: 0 };
+    bar.querySelectorAll('i').forEach(function (i, k) { i.classList.toggle('on', k < pr.confirmed); });
+    if (!p) { name.textContent = 'Votre modèle'; price.textContent = guide && guide.chosen('prix') ? 'Aucun modèle pour l’instant' : 'Choisissez un budget'; rows.innerHTML = '<span></span><span></span><span></span>'; return; }
+    name.textContent = nameOf(p);
+    price.textContent = euros(F.prix(p));
+    var n = F.niveau(p), c = F.mah(p), t = F.ecran(p);
+    rows.innerHTML = '<span>Écran <b>' + esc(t ? (/OLED/i.test(t) ? 'OLED' : /LCD/i.test(t) ? 'LCD' : '—') : '—') + '</b></span>' +
+      '<span>Puce <b>' + (n === null ? '?' : n + '/10') + '</b></span><span>Batterie <b>' + (c === null ? '—' : c.toLocaleString('fr-FR') + ' mAh') + '</b></span>';
   }
 
   /* Rappel en bas d’écran (téléphone) : visible quand la carte n’est pas à l’écran. */
@@ -325,18 +358,23 @@
   }
   function renderMonth(products) {
     var ref = document.getElementById('sg-month-ref');
-    document.getElementById('sg-month-date').textContent = 'Sélection du ' + dateFr(SELECTION.date);
     var byId = {};
     products.forEach(function (p) { byId[p.id] = p; });
     var r = byId[SELECTION.reference.id];
     var img = PHOTOS.mois ? '<img class="sg-month-img" src="' + esc(PHOTOS.mois) + '" alt="' + esc(PHOTOS_ALT.mois || '') + '" width="1200" height="900" loading="lazy" decoding="async">' : '';
+    var nom = r ? nameOf(r) : SELECTION.reference.nom;
+    var parts = nom.split(' '), last = parts.pop();
+    var head = '<p class="sg-dotlabel">Téléphone du mois</p>' +
+      '<h2 id="sg-h-month">' + esc(parts.join(' ')) + ' <b>' + esc(last) + '</b></h2>' +
+      '<p class="sg-month-date">Sélection du ' + esc(dateFr(SELECTION.date)) + '</p>';
+    var phone = '<span class="sg-month-stick" aria-hidden="true">Réf. du mois</span><div class="sg-month-phone" aria-hidden="true"><span>' + esc(nom) + '<small>' + (r ? euros(F.prix(r)) : 'fiche à venir') + '</small></span></div>';
     if (r) {
-      ref.innerHTML = img + '<span class="sg-tag">Référence du mois</span><h3>' + esc(nameOf(r)) + '</h3><p class="sg-price-s">' + euros(F.prix(r)) + '</p>' + specRows(r) + '<p class="sg-month-note">' + esc(profil(r)) + '</p>';
+      ref.innerHTML = img + head + '<div class="sg-month-pred">' + specChipsFor(r) + '<p class="sg-price-s">' + euros(F.prix(r)) + '</p><p class="sg-fine">' + esc(profil(r)) + '</p></div>' + phone;
     } else {
       var pred = byId[SELECTION.reference.predecesseur];
-      ref.innerHTML = img + '<span class="sg-tag">Référence du mois</span><h3>' + esc(SELECTION.reference.nom) + '</h3>' +
-        '<p class="sg-month-note">Sa fiche n’est pas encore au catalogue : prix et caractéristiques seront affichés une fois vérifiés.</p>' +
-        (pred ? '<div class="sg-month-pred"><p class="sg-label">En attendant, son prédécesseur au catalogue</p><h4>' + esc(nameOf(pred)) + '</h4><p class="sg-price-s">' + euros(F.prix(pred)) + '</p>' + specRows(pred) + '</div>' : '');
+      ref.innerHTML = img + head + '<p class="sg-month-note">Sa fiche n’est pas encore au catalogue : prix et caractéristiques s’afficheront une fois vérifiés.</p>' +
+        (pred ? '<div class="sg-month-pred"><p class="sg-dotlabel">En attendant, son prédécesseur</p><h3>' + esc(nameOf(pred)) + '</h3><p class="sg-price-s">' + euros(F.prix(pred)) + '</p>' + specChipsFor(pred) +
+          '<details class="sg-res-more"><summary>Voir sa fiche</summary>' + specRows(pred) + '</details></div>' : '') + phone;
     }
     var g = new L.Guide(products), used = {};
     var ready = products.filter(function (p) { return p.ready_for_recommendation !== false && F.prix(p) !== null && p.id !== SELECTION.reference.predecesseur; });
@@ -353,11 +391,13 @@
     ];
     document.getElementById('sg-month-alts').innerHTML = picks.filter(function (x) { return x[0]; }).map(function (x) {
       var p = x[0];
-      return '<li class="sg-alt"><p class="sg-label">' + esc(x[1]) + '</p><h4>' + esc(nameOf(p)) + '</h4><p class="sg-price-s">' + euros(F.prix(p)) + '</p>' +
-        '<p class="sg-alt-chip">' + esc(chipText(p)) + (F.mah(p) !== null ? ' · ' + F.mah(p).toLocaleString('fr-FR') + ' mAh' : '') + '</p><p>' + esc(profil(p)) + '</p></li>';
+      return '<li class="sg-alt"><span class="sg-alt-phone" aria-hidden="true"></span><p class="sg-alt-tag">' + esc(x[1]) + '</p><h3>' + esc(nameOf(p)) + '</h3>' +
+        '<p class="sg-alt-price">' + euros(F.prix(p)) + '</p><p class="sg-alt-meta">' + esc(chipText(p)) + (F.mah(p) !== null ? ' · ' + F.mah(p).toLocaleString('fr-FR') + ' mAh' : '') + ' · ' + esc(profil(p).replace(/^Pour : /, '').replace(/\.$/, '')) + '</p></li>';
     }).join('');
     document.getElementById('sg-month-rule').textContent = 'Choisis automatiquement dans le catalogue : meilleure note moyenne de chaque tranche de prix ; pour la photo, meilleure note photo parmi les modèles à stabilisation confirmée.';
   }
+  /* Pastilles de fiche hors parcours (sélection du mois) : aucune n’est marquée comme choisie. */
+  function specChipsFor(p) { var keep = guide; guide = null; var html = specChips(p); guide = keep; return html; }
 
   /* ---------- Démonstrations ---------- */
   var demosStarted = false;
@@ -441,7 +481,7 @@
     if (unknown) picks.push(unknown);
     sel.innerHTML = picks.map(function (p) { return '<option value="' + esc(p.id) + '">' + esc(nameOf(p)) + ' · ' + esc(F.get(p, ['compatibilite', 'performance', 'soc']) || 'puce non précisée') + '</option>'; }).join('');
     var cells = '';
-    for (var i = 1; i <= 10; i++) cells += '<li data-n="' + i + '">' + i + '</li>';
+    for (var i = 1; i <= 10; i++) cells += '<li data-n="' + i + '" style="height:' + (22 + i * 7.8) + '%">' + i + '</li>';
     scale.innerHTML = cells;
     var show = function () {
       var p = picks.filter(function (x) { return x.id === sel.value; })[0], n = F.niveau(p);
@@ -456,36 +496,41 @@
     show();
   }
 
-  /* Paysage pixelisé : chaque case prend la couleur du centre de la case dans une image calculée. */
-  function scene(x, y) {
-    if (Math.hypot(x - 0.72, y - 0.26) < 0.11) return '#f2b134';
-    var trunk = x > 0.255 && x < 0.285 && y > 0.6 && y < 0.8;
-    if (Math.hypot((x - 0.27) * 1.2, y - 0.52) < 0.1) return (Math.sin(x * 90) * Math.sin(y * 90) > 0.2) ? '#2f5d3a' : '#3d7a4a';
-    if (trunk) return '#5a3b24';
-    if (y > 0.74 + 0.05 * Math.sin(x * 11 + 2)) return (Math.floor(x * 40) + Math.floor(y * 40)) % 2 ? '#6b8f3e' : '#7aa046';
-    if (y > 0.62 + 0.08 * Math.sin(x * 7.5 + 0.6)) return '#9b8a5a';
-    return Math.floor(y * 12) % 2 ? '#b9d3df' : '#c6dbe4';
-  }
-  function setupPixels() {
-    var cv = document.getElementById('sg-px-canvas');
-    if (!cv || !cv.getContext) return;
-    var ctx = cv.getContext('2d'), crop = document.getElementById('sg-px-crop'), shake = document.getElementById('sg-px-ois'), raf = 0;
-    var draw = function (ox, oy) {
-      var n = Number((document.querySelector('input[name="sg-grid"]:checked') || {}).value || 32), z = crop.checked ? 3 : 1, size = cv.width / n;
-      for (var j = 0; j < n; j++) for (var i = 0; i < n; i++) {
-        var u = (i + 0.5) / n, v = (j + 0.5) / n;
-        if (z > 1) { u = 0.27 + (u - 0.5) / z; v = 0.52 + (v - 0.5) / z; }
-        ctx.fillStyle = scene(u + (ox || 0), v + (oy || 0));
-        ctx.fillRect(Math.floor(i * size), Math.floor(j * size), Math.ceil(size), Math.ceil(size));
-      }
-      cv.style.filter = shake.checked && reduceMotion ? 'blur(2px)' : '';
+  /* Démonstration photo : stabilisation, recadrage, peu de mégapixels (simulation vectorielle). */
+  function setupPhoto() {
+    var vf = document.getElementById('sg-vf');
+    if (!vf) return;
+    var sync = function () {
+      var ois = document.getElementById('sg-ph-ois').getAttribute('aria-pressed') === 'true';
+      vf.classList.toggle('is-shake', !ois);
+      vf.classList.toggle('is-crop', document.getElementById('sg-ph-crop').getAttribute('aria-pressed') === 'true');
+      vf.classList.toggle('is-lowmp', document.getElementById('sg-ph-mp').getAttribute('aria-pressed') === 'true');
     };
-    var loop = function (t) { var a = 0.012 / (crop.checked ? 3 : 1); draw(Math.sin(t / 37) * a, Math.cos(t / 53) * a); raf = requestAnimationFrame(loop); };
-    var update = function () { cancelAnimationFrame(raf); raf = 0; if (shake.checked && !reduceMotion) raf = requestAnimationFrame(loop); else draw(0, 0); };
-    document.querySelectorAll('input[name="sg-grid"]').forEach(function (r) { r.addEventListener('change', update); });
-    crop.addEventListener('change', update);
-    shake.addEventListener('change', update);
-    draw(0, 0);
+    ['sg-ph-ois', 'sg-ph-crop', 'sg-ph-mp'].forEach(function (id) {
+      document.getElementById(id).addEventListener('click', function () {
+        this.setAttribute('aria-pressed', this.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+        sync();
+      });
+    });
+    sync();
+  }
+
+  function setupHero() {
+    var start = document.getElementById('sg-cta-start'), an = document.getElementById('sg-cta-analyse');
+    if (start) start.addEventListener('click', function () {
+      showTab(document.getElementById('sg-tab-criteres'), false);
+      openStep = guide && guide.chosen('prix') ? openStep : 'prix';
+      if (guide) render();
+      var b = document.getElementById('sg-btn-prix') || document.getElementById('sg-steps');
+      b.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+      if (b.focus) b.focus({ preventScroll: true });
+    });
+    if (an) an.addEventListener('click', function () {
+      var t = document.getElementById('sg-tab-analyseur');
+      showTab(t, false);
+      t.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+      t.focus({ preventScroll: true });
+    });
   }
 
   /* ---------- Démarrage ---------- */
@@ -493,7 +538,8 @@
     setupTabs();
     setupHints();
     setupFluid();
-    setupPixels();
+    setupPhoto();
+    setupHero();
     setupDock();
     document.getElementById('sg-steps').addEventListener('click', onStepsClick);
     document.querySelector('[data-action="replay-bars"]').addEventListener('click', function () { bars.play(false); });
