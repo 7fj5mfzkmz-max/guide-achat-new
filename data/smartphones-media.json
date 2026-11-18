@@ -1,0 +1,20 @@
+{
+  "_lisezmoi": "Images optionnelles du guide smartphones. Un emplacement à null reste masqué : aucun cadre vide n'apparaît. Pour ajouter une image, renseigner src (chemin dans le dépôt), width et height en pixels (place réservée, pas de saut de mise en page), alt (ce que l'image montre) et legende (ce qu'elle apprend). pixel: true garde les pixels nets. Les produits s'indexent par leur id du catalogue (data/smartphones.json).",
+  "emplacements": {
+    "ecran": {
+      "src": "assets/editorial/smartphones-contraste.png",
+      "width": 224,
+      "height": 76,
+      "pixel": true,
+      "alt": "Le même paysage nocturne sur deux écrans. Le ciel est gris sur le LCD à gauche et plus sombre sur l’OLED à droite.",
+      "legende": "Même image, deux écrans : à gauche un LCD, dont le noir reste grisé ; à droite un OLED, dont les points noirs sont éteints."
+    },
+    "processeur": null,
+    "memoire": null,
+    "stockage": null,
+    "batterie": null,
+    "photo": null,
+    "etancheite": null
+  },
+  "produits": {}
+}

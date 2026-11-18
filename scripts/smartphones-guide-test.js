@@ -55,16 +55,20 @@ check('iPhone : seul un iPhone est proposé ; jeu sans iPhone testé : aucun ré
   assert.equal(recommander(D.produits, 'jeu', 'ios', 'haut', 10).length, 0);
 });
 check('jeu : POCO F9 Ultra ou REDMAGIC en tête (rang 1)', () => { assert.equal(recommander(D.produits, 'jeu', 'any', 'haut')[0].usages.jeu, 1); });
-check('page : fenêtre à onglets, six panneaux, catalogue complet et analyseur indépendant', () => {
+check('page : guide linéaire, budget d’abord, sections ancrées, analyseur indépendant', () => {
   assert.ok(html.includes('id="phone-analyzer-form"') && html.includes('data-analyzer-category="smartphones"'));
-  ['phone-analyzer/ui.js', 'assets/js/smartphones-page.js', 'assets/js/smartphones-visuels.js', 'assets/js/smartphones-compat.js', 'assets/css/smartphones.css'].forEach(s => assert.ok(html.includes(s), s));
-  assert.ok(html.indexOf('assets/js/smartphones-visuels.js') < html.indexOf('assets/js/smartphones-page.js'), 'les illustrations se chargent avant la page');
-  const onglets = ['choisir-profil','choix','comprendre','catalogue','analyser','faq'];
-  onglets.forEach((id,i) => { assert.ok(html.includes('id="tab-'+id+'"'), 'onglet '+id); assert.ok(html.includes('role="tabpanel"') && new RegExp('role="tabpanel"[^>]*id="'+id+'"').test(html), 'panneau '+id); if(i)assert.ok(html.indexOf('id="'+onglets[i-1]+'" data-panel')<html.indexOf('id="'+id+'" data-panel')); });
-  assert.equal((html.match(/role="tabpanel"/g)||[]).length, 6);
-  assert.ok(html.includes('id="sp-families"') && html.includes('id="sp-live"') && html.includes('id="sp-livebar"'));
-  assert.ok(!html.includes('id="sx-win"') && !html.includes('id="sp-questionnaire"'), 'ancienne fenêtre et questionnaire supprimés');
+  ['phone-analyzer/ui.js', 'assets/js/smartphones-page.js', 'assets/js/smartphones-quiz.js', 'assets/js/smartphones-demos.js', 'assets/js/smartphones-compat.js', 'assets/css/smartphones.css'].forEach(s => assert.ok(html.includes(s), s));
+  assert.ok(html.indexOf('assets/js/smartphones-compat.js') < html.indexOf('assets/js/smartphones-quiz.js') && html.indexOf('assets/js/smartphones-quiz.js') < html.indexOf('assets/js/smartphones-page.js'), 'moteur, quiz, puis page');
+  const sections = ['choisir-profil', 'besoins', 'comprendre', 'choix', 'catalogue', 'analyser', 'faq'];
+  sections.forEach((id, i) => { assert.ok(html.includes('id="' + id + '"'), 'section ' + id); if (i) assert.ok(html.indexOf('id="' + sections[i - 1] + '"') < html.indexOf('id="' + id + '"'), 'ordre ' + id); });
+  assert.ok(html.indexOf('id="sp-budgets"') < html.indexOf('id="sp-questions"'), 'le budget vient avant les autres questions');
+  assert.ok(html.includes('id="sp-live"') && html.includes('id="sp-livebar"') && html.includes('id="sp-plate"'));
+  assert.ok(!html.includes('role="tabpanel"') && !html.includes('id="sx-win"') && !html.includes('id="sp-questionnaire"'), 'anciens onglets et questionnaire supprimés');
+  assert.ok(!/site-motion\.js/.test(html), 'pas d’apparition au défilement sur cette page');
+  assert.ok(!/ — /.test(html.slice(html.indexOf('<main'), html.indexOf('</main>'))), 'pas de tiret cadratin dans le contenu');
   D.produits.filter(p=>p.catalogue).forEach(p=>assert.ok(require('../data/smartphones.json').produits.some(c=>c.id===p.catalogue)));
+  const media = JSON.parse(fs.readFileSync(path.join(root, 'data/smartphones-media.json'), 'utf8'));
+  Object.values(media.emplacements).filter(Boolean).forEach(m => { assert.ok(fs.existsSync(path.join(root, m.src)), m.src); assert.ok(m.alt && m.width && m.height, m.src + ' : alt et dimensions'); });
 });
 
 console.log(passed + ' vérifications réussies, ' + failures + ' échec(s).');

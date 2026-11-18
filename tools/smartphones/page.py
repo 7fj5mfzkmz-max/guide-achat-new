@@ -10,7 +10,7 @@ SCRIPTS = ['assets/js/categories.js', 'sources/catalogue.js', 'phone-analyzer/no
            'category-kit/smartphones.js', 'category-kit/pc-portables.js', 'phone-analyzer/identity.js', 'phone-analyzer/crosscheck.js',
            'phone-analyzer/static-resolver.js', 'phone-analyzer/fetcher.js', 'phone-analyzer/capture.js', 'phone-analyzer/profile-fit.js',
            'phone-analyzer/references.js', 'phone-analyzer/chips.js', 'phone-analyzer/spec-insights.js', 'phone-analyzer/spec-score.js',
-           'phone-analyzer/ui.js', 'assets/js/site-tools.js', 'assets/js/scoring-engine.js', 'assets/js/profiles.js', 'assets/js/smartphones-scoring.js', 'assets/js/smartphones-compat.js']
+           'phone-analyzer/ui.js', 'assets/js/site-tools.js', 'assets/js/scoring-engine.js', 'assets/js/profiles.js', 'assets/js/smartphones-scoring.js', 'assets/js/smartphones-compat.js', 'assets/js/smartphones-quiz.js']
 
 def build():
     base = (ROOT / 'pc-portables.html').read_text()
@@ -19,8 +19,7 @@ def build():
     top = re.sub(r'<meta name="description"[^>]*>', f'<meta name="description" content="{html.escape(DESCRIPTION)}"/>', top)
     top = re.sub(r'<script type="application/ld\+json">.*?</script>', '', top, flags=re.S)
     top = re.sub(r'<link rel="stylesheet" href="assets/css/pc-[^"]+">', '', top)
-    top = top.replace('</head>', f'''<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="assets/css/smartphones.css?v=20261118-banc">
+    top = top.replace('</head>', f'''<link rel="stylesheet" href="assets/css/smartphones.css?v=20261118-terrain">
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="{html.escape(TITLE)}"/>
 <meta property="og:description" content="{html.escape(DESCRIPTION)}"/>
@@ -30,11 +29,11 @@ def build():
 <meta property="og:image:alt" content="Guide·Achat. Le même paysage en pixels sur un écran LCD et un écran OLED."/>
 </head>''')
     top = top.replace('pc-portables.html"/>', 'smartphones.html"/>')
-    top = re.sub(r'<div class="header-meta">.*?</div></div>', '<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide de choix</span><span>Édition novembre 2026</span></div></div>', top, flags=re.S)
+    top = re.sub(r'<div class="header-meta">.*?</div></div>', '<div class="header-meta"><div class="header-meta-inner"><span>Smartphones · Guide de choix</span><span>Édition novembre 2026</span></div></div>', top, flags=re.S)
     end = base[base.index('<footer'):]
     end = re.sub(r'<script[^>]*src="[^"]+"[^>]*></script>', '', end)
-    scripts = list(dict.fromkeys([s for s in SCRIPTS if s != 'assets/js/categories.js'] + ['assets/js/theme.js', 'assets/js/site-motion.js', 'assets/js/smartphones-visuels.js', 'assets/js/smartphones-page.js', 'assets/js/i18n.js']))
-    end = end.replace('</body>', ''.join('<script src="'+s+('?v=20261118-banc' if s.endswith('smartphones-page.js') else '')+'" defer></script>\n' for s in scripts)+'</body>')
+    scripts = list(dict.fromkeys([s for s in SCRIPTS if s != 'assets/js/categories.js'] + ['assets/js/theme.js', 'assets/js/smartphones-demos.js', 'assets/js/smartphones-page.js', 'assets/js/i18n.js']))
+    end = end.replace('</body>', ''.join('<script src="'+s+('?v=20261118-terrain' if s.split('/')[-1].startswith('smartphones-') else '')+'" defer></script>\n' for s in scripts)+'</body>')
     main = (ROOT / 'tools/smartphones/template.html').read_text()
     (ROOT / 'smartphones.html').write_text((top + main + end).rstrip() + '\n')
     subprocess.run([sys.executable, str(ROOT / 'tools/site/gabarit.py')], check=True)
