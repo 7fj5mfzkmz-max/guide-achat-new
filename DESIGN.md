@@ -1,24 +1,5 @@
 # DESIGN.md — Guide·Achat
 
-## Identité de marque
-
-- Écrire toujours le nom « Guide·Achat », avec le point médian. Ne pas traduire le nom.
-- Respecter le slogan « Bien pour tout le monde ? On préfère bien pour vous. »
-- Conserver les logos et symboles existants. Ne pas les redessiner.
-- Utiliser Archivo 900 pour le mot-symbole, conformément à `assets/brand/LISEZMOI.md`.
-- Respecter les variantes du point du mot-symbole selon la page. Accueil, guides et monochrome ont des traitements différents.
-
-## Couleurs
-
-Les règles de `assets/brand/LISEZMOI.md` et les variables de `assets/css/design-system.css` font autorité.
-
-- Fond commun : `#E3E7EB`.
-- Encre du logo d’accueil : `#20221E`.
-- Point orange du logo d’accueil : `#FF651B`.
-- Point jaune du logo des guides : `#FFD400`, avec le traitement prévu par la marque.
-- Garder les couleurs propres aux catégories si elles sont définies dans le système de styles.
-- Ne pas reprendre la palette verte de NerdWallet. La référence sert uniquement pour les principes de comparaison et de lisibilité.
-
 ## Direction visuelle
 
 Créer une interface de guide d’achat claire, fiable et pratique. Aider les visiteurs à comprendre les différences entre produits et à choisir selon leurs besoins, leur budget et leurs priorités.
