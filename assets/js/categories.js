@@ -5,7 +5,7 @@
 (function () {
   "use strict";
   var LIST = [
-    { id: "smartphones", label: "Smartphones", live: true, href: "smartphones.html", tone: "orchid", icon: "phone",
+    { id: "smartphones", label: "Smartphones", live: false, href: "analyseur.html?cat=smartphones", tone: "orchid", icon: "phone",
       photo: "assets/editorial/smartphones-photo.webp", photoAlt: "Vue rapprochée d’un smartphone sur fond sombre",
       blurb: "Écran, autonomie, photo et performances : les points qui changent réellement l’usage.",
       terms: ["Écran", "Batterie", "Photo", "Puce", "Autonomie", "Charge", "Étanchéité", "Mises à jour", "Stockage", "Prix"],

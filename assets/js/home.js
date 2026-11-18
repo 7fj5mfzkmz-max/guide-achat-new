@@ -37,7 +37,7 @@
     var pcAnchors = {mobile: 'profils', play: 'audit', create: 'audit'};
     var phoneAnchors = {mobile: 'choisir-profil', play: 'choisir-profil', create: 'photo'};
     var watchAnchors = {mobile: 'marathon', play: 'sommeil', create: 'choisir'};
-    link.href = product === 'pc' ? 'pc-portables.html#' + pcAnchors[usage] : product === 'phone' ? 'smartphones.html#' + phoneAnchors[usage] : 'montres.html#' + watchAnchors[usage];
+    link.href = product === 'pc' ? 'pc-portables.html#' + pcAnchors[usage] : product === 'phone' ? 'analyseur.html?cat=smartphones' + phoneAnchors[usage] : 'montres.html#' + watchAnchors[usage];
     link.firstChild.textContent = product === 'pc' ? 'Trouver mon PC ' : product === 'phone' ? 'Trouver mon smartphone ' : 'Trouver ma montre ';
   }
   products.forEach(function (b) { b.addEventListener('click', function () { product = b.dataset.product; render(); }); });

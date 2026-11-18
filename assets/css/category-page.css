@@ -6,7 +6,7 @@
    ombres décalées, jaune d'accent.
    Contient : accroche (hero, boutons, chiffres), trois idées, cartes profil,
    FAQ, appel final, menu « Sections » collant.
-   Chaque page catégorie charge ensuite sa propre feuille (pc-*.css, smartphones-page.css).
+   Chaque page catégorie charge ensuite sa propre feuille (pc-*.css ; les smartphones n’ont plus de page propre).
    ============================================================ */
 @keyframes pcFoldIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
 

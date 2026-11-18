@@ -19,8 +19,13 @@
 
 # Pages retirées : redirections permanentes (mêmes règles que vercel.json)
 [[redirects]]
+  from = "/smartphones.html"
+  to = "/analyseur.html?cat=smartphones"
+  status = 301
+
+[[redirects]]
   from = "/comparateur.html"
-  to = "/smartphones.html#choisir-profil"
+  to = "/analyseur.html?cat=smartphones"
   status = 301
 
 [[redirects]]

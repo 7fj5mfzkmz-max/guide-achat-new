@@ -16,7 +16,7 @@ check('entrées valides : date ISO, titre, lien vers une page existante, identif
   assert.equal(new Set(j.entrees.map(e => e.id)).size, j.entrees.length);
   j.entrees.forEach((e, i) => {
     assert.match(e.date, /^\d{4}-\d{2}-\d{2}$/); assert.ok(e.titre && e.resume, e.id);
-    assert.ok(fs.existsSync(path.join(root, e.lien.split('#')[0])), e.lien);
+    assert.ok(fs.existsSync(path.join(root, e.lien.split('#')[0].split('?')[0])), e.lien);
     if (i) assert.ok(j.entrees[i - 1].date >= e.date, 'tri');
   });
   assert.equal(j.mis_a_jour, j.entrees[0].date);

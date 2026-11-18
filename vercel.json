@@ -5,7 +5,8 @@
     }
   },
   "redirects": [
-    { "source": "/comparateur.html", "destination": "/smartphones.html#choisir-profil", "permanent": true },
+    { "source": "/smartphones.html", "destination": "/analyseur.html?cat=smartphones", "permanent": true },
+    { "source": "/comparateur.html", "destination": "/analyseur.html?cat=smartphones", "permanent": true },
     { "source": "/lexique.html", "destination": "/index.html#categories", "permanent": true },
     { "source": "/lexique-pc-portables.html", "destination": "/pc-portables.html#lexique", "permanent": true },
     { "source": "/capture.html", "destination": "/analyseur.html", "permanent": true },

@@ -6,7 +6,7 @@ Site statique (HTML/CSS/JS) + petit backend Node pour l'analyse de liens marchan
 
 ```
 /                      Pages du site (les URL ne changent pas)
-  index.html  actualites.html  smartphones.html  montres.html
+  index.html  actualites.html  montres.html
   pc-portables.html  batteries-externes.html  ecouteurs.html  projecteurs.html
   analyseur.html  a-propos.html
   (comparateur, lexique, lexique-pc-portables, capture et diagnostic sont retirés :
@@ -39,19 +39,13 @@ de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, d
 ## Montres (montres.html)
 Données : `data/montres.json` (33 modèles, 10 vidéos sources : pouls contre ceinture ECG, sommeil contre EEG, GPS sur marathon, VO2 max, tension, montres Citizen). Page générée par `python3 tools/montres/construire.py` (`npm run montres:build`) : contenu en HTML statique, `assets/js/montres.js` ajoute le questionnaire (rang des tests pour l’usage, puis prix ; un prix inconnu n’apparaît qu’avec « Sans limite »), les filtres et la liste de contrôle. Contrôle : `npm run montres:test`. Prix convertis en euros (taux BCE du 3 novembre 2026) ; les codes promotionnels et liens affiliés des vidéos ne sont pas repris.
 
-## Smartphones (smartphones.html)
-Page générée par `npm run smartphones:build` depuis `tools/smartphones/template.html`. Le guide est une fenêtre à onglets : Mon choix (valeurs visées, sélection en direct), Choix du moment, Comprendre, Catalogue, Analyser, Questions.
+## Smartphones (page retirée)
+La page Smartphones (`smartphones.html`, son quiz, son catalogue et ses démonstrations) a été supprimée. `smartphones.html` redirige vers `analyseur.html?cat=smartphones` (règles dans `vercel.json` et `netlify.toml`).
 
-- `assets/js/smartphones-page.js` : onglets, familles de critères illustrées (`smartphones-visuels.js`), sélection en direct, choix du moment, catalogue filtrable et paginé, explications.
-- `assets/js/smartphones-compat.js` : interprétation des 146 fiches techniques ; budget et système filtrent les modèles, les valeurs visées par le visiteur (`surMesure`) ou les priorités (`conseiller`) pondèrent les caractéristiques. Une vidéo n’ajoute aucun bonus aux recommandations.
-- Catalogue : 24 modèles documentés en vidéo en tête, puis les autres fiches techniques. Neuf correspondances explicites sont fusionnées, soit 161 entrées consultables. Les vidéos et citations restent dans leurs détails.
-- `phone-analyzer/` : moteur et contrats de l’analyseur conservés.
-
-Contrôles : `npm test`, `npm run smartphones:fenetre-test` (nom historique, teste le nouveau guide), `npm run analyzer:ui-test`. Détails : `docs/SMARTPHONES-REFONTE.md`.
+Restent utiles à l’analyseur : `phone-analyzer/` (moteur, interface, contrats), `analyseur.html`, `assets/js/smartphones-scoring.js`, `data/smartphones.json` et les fichiers de données liés (puces, capteurs, vérifications). `npm run analyzer:ui-test` teste le parcours smartphones de l’analyseur.
 
 ### Échelle des puces (1 à 10) et gammes
-`phone-analyzer/chips.js` classe chaque puce sur une seule échelle (1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme), partagée par le catalogue, le quiz et l'analyseur. `node tools/smartphones/classer-puces.js` écrit `perf.niveau` et `perf.gamme` dans `data/smartphones.json` (déjà appelé par `integrer-tests.js`). Puce inconnue : pas de niveau. Nouvelle puce : ajouter une règle dans `chips.js`, puis `node scripts/chips-test.js`.
-Paliers de prix du quiz : bas prix 80-150 €, entrée 150-300 €, milieu 300-800 €, haut 800 € et plus ; « petit prix » = 80 à 250 €.
+`phone-analyzer/chips.js` classe chaque puce sur une seule échelle (1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme), partagée par les données et l'analyseur. `node tools/smartphones/classer-puces.js` écrit `perf.niveau` et `perf.gamme` dans `data/smartphones.json` (déjà appelé par `integrer-tests.js`). Puce inconnue : pas de niveau. Nouvelle puce : ajouter une règle dans `chips.js`, puis `node scripts/chips-test.js`.
 
 ### Échelle des capteurs photo (1 à 10)
 `phone-analyzer/sensors.js` note le capteur principal selon sa taille : 1″ = 10, 1/1.3″ = 8, 1/1.56″ = 7, 1/2″ = 5, 1/2.76″ = 3 (1-3 petit, 4-6 moyen, 7-8 grand, 9-10 très grand). Les tailles relevées, avec leurs sources, sont dans `data/smartphones-capteurs.json` ; `node tools/smartphones/classer-capteurs.js` les inscrit dans `compatibilite.photo.capteur` (relancé par tous les outils du catalogue). Un modèle sans relevé n'a pas de note : on ne devine pas. Contrôle : `node scripts/sensors-test.js`.
