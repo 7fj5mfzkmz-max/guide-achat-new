@@ -15,6 +15,7 @@ PAGES = {
     'pc-portables.html': '#audit',
     'projecteurs.html': '#profils',
     'montres.html': '#choisir',
+    'smartphones.html': '#sg-parcours',
     'ecouteurs.html': '#usages',
     'batteries-externes.html': '#choisir',
     'a-propos.html': 'index.html#essayer',
