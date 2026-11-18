@@ -71,7 +71,7 @@
     box.innerHTML = guide.steps.map(function (s, i) {
       return '<li class="sg-step" id="sg-step-' + s.id + '" data-step="' + s.id + '">' +
         '<h3 class="sg-step-head"><button type="button" class="sg-step-btn" id="sg-btn-' + s.id + '" aria-expanded="false" aria-controls="sg-panel-' + s.id + '">' +
-        '<span class="sg-step-num">' + String(i + 1).padStart(2, '0') + '</span>' + pixelIcon(s.id) +
+        '<span class="sg-step-num">' + String(i + 1).padStart(2, '0') + '</span>' +
         '<span class="sg-step-title">' + esc(s.titre) + '</span><span class="sg-step-status" id="sg-status-' + s.id + '"></span>' +
         '<span class="sg-step-chev" aria-hidden="true"></span></button></h3>' +
         '<div class="sg-panel" id="sg-panel-' + s.id + '" role="region" aria-labelledby="sg-btn-' + s.id + '"><div class="sg-panel-in">' +
