@@ -23,7 +23,7 @@ async function run(name, fn) { try { await fn(); ok++; console.log('OK    ' + na
     await p.focus('#tab-choisir-profil');await p.keyboard.press('ArrowRight');assert(await p.isVisible('#choix')&&await p.getAttribute('#tab-choix','aria-selected')==='true','flèche droite');
     await p.keyboard.press('End');assert(await p.isVisible('#faq'),'touche Fin');
     await p.click('#tab-catalogue');assert(await p.isVisible('#sp-catalogue')&&!await p.isVisible('#faq'),'clic sur un onglet');
-    assert((await p.textContent('#sp-path')).includes('Catalogue'),'titre de la fenêtre');
+    assert(await p.locator('#catalogue').getAttribute('aria-labelledby')==='tab-catalogue','panneau nommé par son onglet');
     await p.close();
     for(const [h,t] of [['#analyser','analyser'],['#tests','catalogue'],['#methode','faq'],['#purchase-audit','choisir-profil'],['#demos','comprendre']]){const q=await open(h);assert(await q.isVisible('#'+t),h+' ouvre '+t);assert(q.errors.length===0,q.errors.join(' | '));await q.close();}
   });
@@ -93,18 +93,27 @@ async function run(name, fn) { try { await fn(); ok++; console.log('OK    ' + na
       await p.evaluate(()=>document.documentElement.classList.add('dark-theme'));assert(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mode sombre');
       assert(p.errors.length===0,p.errors.join(' | '));await p.close();}
   });
-  await run('mouvement : indicateur sous l’onglet actif, mot géant ajusté, animations coupées sur demande et contenu visible sans attendre',async()=>{
-    const p=await open('',1280);await p.waitForSelector('.sp-opt');await p.waitForTimeout(400);
-    assert(await p.evaluate(()=>document.querySelector('.sp-guide').classList.contains('sp-js')),'mouvement actif par défaut');
-    const fitOk=()=>p.evaluate(()=>{const h=document.getElementById('sp-giant'),s=h.firstElementChild;return s.getBoundingClientRect().width<=h.clientWidth+1&&s.getBoundingClientRect().width>h.clientWidth*.9;});
-    assert(await fitOk(),'mot géant à la largeur de la page');await p.setViewportSize({width:700,height:900});await p.waitForTimeout(200);assert(await fitOk(),'mot géant réajusté');await p.setViewportSize({width:1280,height:900});
-    await p.click('#tab-catalogue');await p.waitForTimeout(600);
-    assert(await p.evaluate(()=>{const b=document.getElementById('tab-catalogue').getBoundingClientRect(),i=document.getElementById('sp-tab-ind').getBoundingClientRect();return Math.abs(b.left-i.left)<2&&Math.abs(b.width-i.width)<2;}),'indicateur sous l’onglet actif');
-    assert((await p.textContent('#sp-step'))==='04','numéro de rubrique');await p.close();
-    const q=await browser.newPage({viewport:{width:1280,height:900},locale:'fr-FR',reducedMotion:'reduce'});await q.goto(base+'/smartphones.html',{waitUntil:'networkidle'});await q.waitForSelector('.sp-opt');
-    assert(!await q.evaluate(()=>document.querySelector('.sp-guide').classList.contains('sp-js')),'aucune animation si le visiteur le demande');
-    assert(await q.evaluate(()=>[...document.querySelectorAll('.sp-rv')].every(e=>getComputedStyle(e).opacity==='1')),'contenu visible sans attendre');
-    assert((await q.textContent('.sp-stats [data-count="146"]'))==='146','chiffres affichés sans compteur');await q.close();
+  await run('introduction : accès direct aux critères et état actif visible, y compris en mouvement réduit',async()=>{
+    const p=await open('',1280);
+    assert(await p.locator('.sp-display img').evaluate(img=>img.complete&&img.naturalWidth>0),'illustration des écrans chargée');
+    await p.getByRole('link',{name:'Comprendre les écrans'}).click();
+    assert(await p.locator('#comprendre').isVisible()&&await p.getAttribute('[data-topic="ecran"]','aria-pressed')==='true','le lien ouvre l’explication de l’écran');
+    await p.getByRole('link',{name:'Trouver mon smartphone'}).click();
+    await p.waitForFunction(()=>document.getElementById('sp-win').getBoundingClientRect().top<160);
+    assert(await p.locator('#tab-choisir-profil').evaluate(b=>document.activeElement===b),'focus sur la destination du lien');
+    await p.keyboard.press('ArrowRight');
+    assert(await p.locator('#tab-choix').evaluate(b=>getComputedStyle(b).borderBottomColor!==getComputedStyle(b.previousElementSibling).borderBottomColor),'soulignement de l’onglet actif');
+    await p.close();
+    const q=await browser.newPage({viewport:{width:390,height:844},locale:'fr-FR',reducedMotion:'reduce'});
+    await q.route(u=>!u.toString().startsWith(base),r=>r.abort());
+    await q.goto(base+'/smartphones.html',{waitUntil:'networkidle'});
+    assert(await q.locator('#sp-tabs').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),'six onglets accessibles sur le premier écran mobile');
+    assert(await q.locator('#sp-budget').evaluate(e=>e.getBoundingClientRect().bottom<=innerHeight),'budget accessible sur le premier écran mobile');
+    assert((await q.textContent('.sp-facts li:first-child b'))==='146','chiffres visibles sans animation');
+    await q.locator('[data-fam="batterie"] .sp-fam-head').click();
+    assert(await q.locator('.sp-opt .av-grow').first().evaluate(e=>getComputedStyle(e).animationName==='none'),'illustration statique en mouvement réduit');
+    assert(await q.evaluate(()=>getComputedStyle(document.documentElement).scrollBehavior==='auto'),'défilement sans animation en mouvement réduit');
+    await q.close();
   });
   await run('le conseiller fonctionne sans le fichier des vidéos',async()=>{
     const p=await browser.newPage({locale:'fr-FR'});await p.route('**/data/smartphones-guide.json',r=>r.abort());await p.goto(base+'/smartphones.html');await p.waitForSelector('.sp-opt',{state:'attached'});

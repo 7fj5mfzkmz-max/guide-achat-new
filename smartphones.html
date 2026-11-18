@@ -37,7 +37,14 @@ function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i
 l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
 <style>html.i18n-wait body{opacity:0}</style>
 <link rel="stylesheet" href="assets/css/i18n.css">
-<link rel="stylesheet" href="assets/css/smartphones.css?v=20261111-manuel1">
+<link rel="stylesheet" href="assets/css/smartphones.css?v=20261118-contraste">
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Quel smartphone choisir ? Un guide selon vos besoins · Guide·Achat"/>
+<meta property="og:description" content="Trouvez un smartphone selon votre usage et votre budget. Interprétation des caractéristiques, catalogue avec tests vidéo et analyseur de modèle."/>
+<meta property="og:image" content="https://guide-achat-new.vercel.app/assets/editorial/smartphones-partage.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Guide·Achat. Le même paysage en pixels sur un écran LCD et un écran OLED."/>
 </head>
 <body class="photo-editorial site-redesign">
 <header class="site-header">
@@ -51,62 +58,88 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide de choix</span><span>Édition novembre 2026</span></div></div>
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker" translate="no">Guide·Achat</span><p class="drawer-title" id="search-panel-title">Rechercher</p></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main" class="sp-guide" data-cat="smartphones">
-<header class="sp-hero" id="debut">
-<div class="sp-wrap">
-<nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Smartphones</nav>
-<div class="sp-meta"><span>Manuel smartphones</span><span>6 familles / 146 fiches</span><span>Rév. 11 / 2026</span></div>
-<div class="sp-intro"><p class="sp-lede">Photo, batterie, jeux ou simplement le quotidien. On traduit les caractéristiques pour trouver ce qui vous convient. <strong>Un téléphone. Vos besoins. <mark>Le bon choix.</mark></strong></p><div class="sp-actions"><a class="btn" href="#choisir-profil" data-tab-go="choisir-profil">Trouver mon smartphone <span aria-hidden="true">→</span></a><a class="sp-ghost" href="#analyser" data-tab-go="analyser">Analyser un modèle <span aria-hidden="true">→</span></a></div></div>
-<h1 class="sp-giant" id="sp-giant" aria-label="Smartphones"><span class="sp-giant-in" aria-hidden="true"><span style="--i:0">S</span><span style="--i:1">m</span><span style="--i:2">a</span><span style="--i:3">r</span><span style="--i:4">t</span><span style="--i:5">p</span><span style="--i:6">h</span><span style="--i:7">o</span><span style="--i:8">n</span><span style="--i:9">e</span><span style="--i:10">s</span></span></h1>
-<div class="sp-rule" aria-hidden="true"><i></i></div>
-<ol class="sp-phases">
-<li><a href="#choisir-profil" data-tab-go="choisir-profil"><span class="sp-ph-t"><small>01</small><b>Choisir</b></span><span class="sp-ld"><span>Familles</span><i></i><b>6, toutes facultatives</b></span><span class="sp-ld"><span>Résultat</span><i></i><b>6 modèles classés</b></span><span class="sp-ld"><span>Règle</span><i></i><b>aucun % avant vos choix</b></span></a></li>
-<li><a href="#comprendre" data-tab-go="comprendre"><span class="sp-ph-t"><small>02</small><b>Comprendre</b></span><span class="sp-ld"><span>Thèmes</span><i></i><b>5, en langage clair</b></span><span class="sp-ld"><span>Repères</span><i></i><b>puces, capteurs, nits, mAh</b></span><span class="sp-ld"><span>Format</span><i></i><b>exemples chiffrés</b></span></a></li>
-<li><a href="#catalogue" data-tab-go="catalogue"><span class="sp-ph-t"><small>03</small><b>Vérifier</b></span><span class="sp-ld"><span>Catalogue</span><i></i><b>161 entrées</b></span><span class="sp-ld"><span>Analyseur</span><i></i><b>un lien ou un nom</b></span><span class="sp-ld"><span>Prix</span><i></i><b>indicatifs, à vérifier</b></span></a></li>
-</ol>
-</div>
-<div class="sp-ticker" aria-hidden="true"><div class="sp-ticker-track"><div><span>Écran</span><i>/</i> <span>Batterie</span><i>/</i> <span>Puissance</span><i>/</i> <span>Photo</span><i>/</i> <span>Mémoire</span><i>/</i> <span>Résistance</span><i>/</i> <span>146 fiches techniques</span><i>/</i> <span>24 modèles testés en vidéo</span><i>/</i> <span>Aucun pourcentage avant vos choix</span><i>/</i> <span>Prix à vérifier chez le vendeur</span><i>/</i></div><div><span>Écran</span><i>/</i> <span>Batterie</span><i>/</i> <span>Puissance</span><i>/</i> <span>Photo</span><i>/</i> <span>Mémoire</span><i>/</i> <span>Résistance</span><i>/</i> <span>146 fiches techniques</span><i>/</i> <span>24 modèles testés en vidéo</span><i>/</i> <span>Aucun pourcentage avant vos choix</span><i>/</i> <span>Prix à vérifier chez le vendeur</span><i>/</i></div></div></div>
-<div class="sp-wrap"><div class="sp-bento sp-stats">
-<div class="sp-tile is-accent sp-rv"><b data-count="146">146</b><span>fiches techniques comparées</span></div>
-<figure class="sp-tile sp-stage sp-rv" aria-hidden="true"><div class="sp-phone"><span class="sp-phone-notch"></span><span class="sp-phone-title">Selon votre usage</span><span class="sp-phone-row"><em>Autonomie</em><span class="sp-phone-bar"><i style="--w:86"></i></span></span><span class="sp-phone-row"><em>Écran</em><span class="sp-phone-bar"><i style="--w:70"></i></span></span><span class="sp-phone-row"><em>Puissance</em><span class="sp-phone-bar"><i style="--w:56"></i></span></span><span class="sp-phone-score"><b>?&nbsp;%</b><small>après vos réponses</small></span></div></figure>
-<div class="sp-tile sp-rv"><b data-count="24">24</b><span>modèles testés en vidéo</span></div>
-<div class="sp-tile is-ink sp-rv"><b>0&nbsp;%</b><span>affiché avant vos choix</span></div>
-<div class="sp-tile is-white sp-rv"><b data-count="6">6</b><span>familles de critères à régler</span></div>
-<div class="sp-tile is-ink sp-rv"><b data-count="9">9</b><span>caractéristiques lues par fiche</span></div>
-<div class="sp-tile is-hatch sp-rv"><b>11/26</b><span>dernière mise à jour</span></div>
-</div></div>
+<header class="sp-wrap sp-hero" id="debut">
+  <nav class="sp-crumb" aria-label="Fil d’Ariane">
+    <a href="index.html">Accueil</a><span aria-hidden="true">/</span><span aria-current="page">Smartphones</span>
+  </nav>
+  <div class="sp-intro">
+    <div class="sp-intro-copy">
+      <h1 class="sp-title">
+        <span class="sp-title-prefix">Quel</span>
+        <span class="sp-title-device">smartphone</span>
+        <span class="sp-title-question">choisir&nbsp;?</span>
+      </h1>
+      <p class="sp-lede">Comparez les modèles selon votre usage et votre budget.</p>
+      <div class="sp-actions">
+        <a class="btn" href="#choisir-profil" data-tab-go="choisir-profil">Trouver mon smartphone <span aria-hidden="true">↓</span></a>
+      </div>
+      <ul class="sp-facts" role="list">
+        <li><b>146</b> fiches techniques</li>
+        <li><b>24</b> modèles testés en vidéo</li>
+      </ul>
+    </div>
+    <figure class="sp-display">
+      <figcaption>Contraste à l’écran</figcaption>
+      <div class="sp-display-visual">
+        <img src="assets/editorial/smartphones-contraste.png" alt="Le même paysage nocturne sur deux écrans. Le ciel est gris sur le LCD à gauche et plus sombre sur l’OLED à droite." width="224" height="76" decoding="async">
+        <div class="sp-display-labels" aria-hidden="true"><span>LCD</span><span>OLED</span></div>
+      </div>
+      <a class="sp-link" href="#comprendre" data-tab-go="comprendre" data-topic-go="ecran">Comprendre les écrans <span aria-hidden="true">→</span></a>
+    </figure>
+  </div>
 </header>
 <div class="sp-wrap">
-<div class="sp-win sp-rv" id="sp-win">
-<div class="sp-win-bar"><b>Guide·Achat — Smartphones</b><span class="sp-path-wrap" aria-hidden="true"><span id="sp-step">01</span> / 06 · <span class="sp-path" id="sp-path">Mon choix</span></span></div>
-<div class="sp-tabs" id="sp-tabs" role="tablist" aria-label="Rubriques du guide"><button type="button" role="tab" class="sp-tab" id="tab-choisir-profil" data-tab="choisir-profil" aria-controls="choisir-profil" aria-selected="true" tabindex="0"><small>01</small><b>Mon choix</b><i class="sp-tab-badge" id="sp-badge" hidden></i></button><button type="button" role="tab" class="sp-tab" id="tab-choix" data-tab="choix" aria-controls="choix" aria-selected="false" tabindex="-1"><small>02</small><b>Choix du moment</b></button><button type="button" role="tab" class="sp-tab" id="tab-comprendre" data-tab="comprendre" aria-controls="comprendre" aria-selected="false" tabindex="-1"><small>03</small><b>Comprendre</b></button><button type="button" role="tab" class="sp-tab" id="tab-catalogue" data-tab="catalogue" aria-controls="catalogue" aria-selected="false" tabindex="-1"><small>04</small><b>Catalogue</b></button><button type="button" role="tab" class="sp-tab" id="tab-analyser" data-tab="analyser" aria-controls="analyser" aria-selected="false" tabindex="-1"><small>05</small><b>Analyser</b></button><button type="button" role="tab" class="sp-tab" id="tab-faq" data-tab="faq" aria-controls="faq" aria-selected="false" tabindex="-1"><small>06</small><b>Questions</b></button><span class="sp-tab-ind" id="sp-tab-ind" aria-hidden="true"></span></div>
-<p class="sp-tabnote" id="sp-tabnote" aria-live="polite"><span data-note="choisir-profil">Réglez ce qui compte, la liste se met à jour à droite.</span><span data-note="choix" hidden>Notre sélection du mois, sans réglage : un modèle par gamme de prix.</span><span data-note="comprendre" hidden>Ce que les chiffres d’une fiche changent vraiment au quotidien.</span><span data-note="catalogue" hidden>Toutes les fiches, en vidéo d’abord. Cherchez par nom, filtrez par prix.</span><span data-note="analyser" hidden>Un modèle en tête ? Collez son lien, on lit sa fiche pour vous.</span><span data-note="faq" hidden>Les réponses aux questions les plus fréquentes avant d’acheter.</span></p>
+<div class="sp-win" id="sp-win">
+<div class="sp-tabs" id="sp-tabs" role="tablist" aria-label="Rubriques du guide">
+  <button type="button" role="tab" class="sp-tab" id="tab-choisir-profil" data-tab="choisir-profil" aria-controls="choisir-profil" aria-selected="true" tabindex="0"><b>Mon choix</b><span class="sp-tab-badge" id="sp-badge" aria-hidden="true" hidden></span></button>
+  <button type="button" role="tab" class="sp-tab" id="tab-choix" data-tab="choix" aria-controls="choix" aria-selected="false" tabindex="-1"><b>Choix du moment</b></button>
+  <button type="button" role="tab" class="sp-tab" id="tab-comprendre" data-tab="comprendre" aria-controls="comprendre" aria-selected="false" tabindex="-1"><b>Comprendre</b></button>
+  <button type="button" role="tab" class="sp-tab" id="tab-catalogue" data-tab="catalogue" aria-controls="catalogue" aria-selected="false" tabindex="-1"><b>Catalogue</b></button>
+  <button type="button" role="tab" class="sp-tab" id="tab-analyser" data-tab="analyser" aria-controls="analyser" aria-selected="false" tabindex="-1"><b>Analyser</b></button>
+  <button type="button" role="tab" class="sp-tab" id="tab-faq" data-tab="faq" aria-controls="faq" aria-selected="false" tabindex="-1"><b>Questions</b></button>
+</div>
 <div class="sp-panels">
 <section class="sp-panel sp-mix" role="tabpanel" aria-labelledby="tab-choisir-profil" id="choisir-profil" data-panel="choisir-profil">
 <div class="sp-mix-left">
-<ol class="sp-how" aria-label="Comment ça marche"><li><b>1</b><span>Choisissez ce qui compte pour vous</span></li><li><b>2</b><span>La liste se met à jour à chaque clic</span></li><li><b>3</b><span>Comparez les prix chez le vendeur</span></li></ol>
-<div class="sp-presets" role="group" aria-label="Point de départ"><span class="sp-label">Point de départ, facultatif</span><div class="sp-preset-row" id="sp-presets"></div></div>
-<div class="sp-progress-row"><div class="sp-dotsbar" id="sp-dotsbar" aria-hidden="true"></div><strong id="sp-count-fam">0 / 6 familles renseignées</strong><button class="sp-link" type="button" id="sp-clear" hidden>↺ Recommencer</button></div>
-<div id="sp-families" class="sp-families"><p>Chargement du conseiller…</p></div>
-<div class="sp-filters sp-mix-filters"><label>Budget maximum<select id="sp-budget"><option value="">Sans limite</option><option value="300">Jusqu’à 300 €</option><option value="500">Jusqu’à 500 €</option><option value="800">Jusqu’à 800 €</option><option value="1200">Jusqu’à 1 200 €</option></select></label><label>Système<select id="sp-os"><option value="any">Peu importe</option><option value="android">Android</option><option value="ios">iPhone</option></select></label></div>
+  <div class="sp-mix-intro">
+    <h2>Mes critères</h2>
+    <div class="sp-filters sp-mix-filters">
+      <label>Budget maximum<select id="sp-budget"><option value="">Sans limite</option><option value="300">Jusqu’à 300 €</option><option value="500">Jusqu’à 500 €</option><option value="800">Jusqu’à 800 €</option><option value="1200">Jusqu’à 1 200 €</option></select></label>
+      <label>Système<select id="sp-os"><option value="any">Peu importe</option><option value="android">Android</option><option value="ios">iPhone</option></select></label>
+    </div>
+    <div class="sp-presets" role="group" aria-label="Point de départ">
+      <span class="sp-label">Point de départ, facultatif</span><div class="sp-preset-row" id="sp-presets"></div>
+    </div>
+  </div>
+  <div class="sp-progress-row">
+    <div class="sp-dotsbar" id="sp-dotsbar" aria-hidden="true"></div>
+    <strong id="sp-count-fam">0 / 6 familles renseignées</strong>
+    <button class="sp-link" type="button" id="sp-clear" hidden>↺ Recommencer</button>
+  </div>
+  <div id="sp-families" class="sp-families"><p>Chargement du conseiller…</p></div>
 </div>
-<aside class="sp-mix-right" id="sp-live" aria-live="polite" aria-label="Votre sélection">
-<div class="sp-live-head"><span class="sp-label">Votre sélection</span><h3 id="sp-live-title">En attente de votre premier choix</h3><p id="sp-live-note">Cliquez sur une option à gauche : les modèles qui vous correspondent apparaissent ici, du meilleur rapport spécifications/prix au moins adapté.</p></div>
+<aside class="sp-mix-right" id="sp-live" aria-live="polite" aria-labelledby="sp-live-heading">
+  <div class="sp-live-head">
+    <h2 id="sp-live-heading">Votre sélection</h2>
+    <h3 id="sp-live-title" hidden></h3>
+    <p id="sp-live-note">Faites un premier choix : les modèles les plus proches s’affichent ici.</p>
+  </div>
 <div id="sp-results" class="sp-results"></div>
 <p class="sp-live-foot" id="sp-live-foot" hidden></p>
 </aside>
 <noscript><p>Activez JavaScript pour régler vos critères et utiliser l’analyseur.</p></noscript>
 </section>
 <section class="sp-panel" role="tabpanel" aria-labelledby="tab-choix" id="choix" data-panel="choix" hidden>
-<div class="sp-panel-head"><span class="sp-label">02 / Sans réglage</span><h2>Les choix du moment</h2><p id="sp-result-note">Notre choix du mois, puis une alternative par gamme de prix, retenue sur sa fiche technique. Pas de pourcentage ici : une compatibilité n’a de sens qu’avec vos critères.</p></div>
-<div class="sp-bento sp-recommendations" id="sp-recommendations"></div>
+<div class="sp-panel-head"><h2>Les choix du moment</h2><p id="sp-result-note">Notre choix du mois, puis une alternative par gamme de prix, retenue sur sa fiche technique. Pas de pourcentage ici : une compatibilité n’a de sens qu’avec vos critères.</p></div>
+<div class="sp-recommendations" id="sp-recommendations"></div>
 <p class="sp-next"><button class="btn" type="button" data-tab-go="choisir-profil">Régler mes critères <span aria-hidden="true">→</span></button></p>
 </section>
 <section class="sp-panel" role="tabpanel" aria-labelledby="tab-comprendre" id="comprendre" data-panel="comprendre" hidden>
-<div class="sp-panel-head"><span class="sp-label">03 / Lire entre les lignes</span><h2>Les specs disent quoi, <mark>au juste ?</mark></h2><p>Un chiffre sert à choisir quand on comprend ce qu’il change au quotidien.</p></div>
-<div class="sp-bento sp-explainer"><div class="sp-topic-list" role="group" aria-label="Caractéristique à comprendre"><button type="button" data-topic="photo" aria-pressed="true"><small>01</small><b>La photo</b><i aria-hidden="true"></i></button><button type="button" data-topic="batterie" aria-pressed="false"><small>02</small><b>La batterie</b><i aria-hidden="true"></i></button><button type="button" data-topic="ecran" aria-pressed="false"><small>03</small><b>L’écran</b><i aria-hidden="true"></i></button><button type="button" data-topic="puissance" aria-pressed="false"><small>04</small><b>La puissance</b><i aria-hidden="true"></i></button><button type="button" data-topic="duree" aria-pressed="false"><small>05</small><b>Le garder longtemps</b><i aria-hidden="true"></i></button></div><article id="sp-explanation" aria-live="polite"></article></div>
-<details class="sp-reperes" open><summary><span class="sp-label">Repères chiffrés</span><span class="sp-sum-t">Lire un nom de puce, une taille de capteur, des nits, des mAh</span><i aria-hidden="true"></i></summary><div class="sp-reperes-in"><p class="rp-lead">Les noms de puces, les nits et les pouces ressemblent à des codes. Voici comment les lire.</p>
+<div class="sp-panel-head"><h2>Les specs disent quoi, au juste ?</h2><p>Un chiffre sert à choisir quand on comprend ce qu’il change au quotidien.</p></div>
+<div class="sp-explainer"><div class="sp-topic-list" role="group" aria-label="Caractéristique à comprendre"><button type="button" data-topic="photo" aria-pressed="true"><b>La photo</b><i aria-hidden="true"></i></button><button type="button" data-topic="batterie" aria-pressed="false"><b>La batterie</b><i aria-hidden="true"></i></button><button type="button" data-topic="ecran" aria-pressed="false"><b>L’écran</b><i aria-hidden="true"></i></button><button type="button" data-topic="puissance" aria-pressed="false"><b>La puissance</b><i aria-hidden="true"></i></button><button type="button" data-topic="duree" aria-pressed="false"><b>Le garder longtemps</b><i aria-hidden="true"></i></button></div><article id="sp-explanation" aria-live="polite"></article></div>
+<details class="sp-reperes" open><summary><span><span class="sp-label">Repères chiffrés</span><span class="sp-sum-t">Lire un nom de puce, une taille de capteur, des nits, des mAh</span></span></summary><div class="sp-reperes-in"><p class="rp-lead">Les noms de puces, les nits et les pouces ressemblent à des codes. Voici comment les lire.</p>
 
-<h5 class="rp-title">Lire un nom de puce</h5>
+<h3 class="rp-title">Lire un nom de puce</h3>
 <div class="decode-grid">
 <figure class="decode"><figcaption>Qualcomm · Snapdragon</figcaption>
 <div class="decode-name" role="img" aria-label="Snapdragon 8 Elite Gen 5, décodé en quatre parties : marque, série, nom premium, génération">
@@ -143,7 +176,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div>
 <p class="rp-rule">Dans une même famille, plus la génération est grande, plus la puce est récente. Pour comparer des marques entre elles, on utilise la note de 1 à 10.</p>
 
-<h5 class="rp-title">La note de puce, de 1 à 10</h5>
+<h3 class="rp-title">La note de puce, de 1 à 10</h3>
 <div class="rp-scale">
 <ol class="rp-cells" aria-label="Échelle de 1 à 10"><li class="g1">1</li><li class="g1">2</li><li class="g1">3</li><li class="g2">4</li><li class="g2">5</li><li class="g2">6</li><li class="g3">7</li><li class="g3">8</li><li class="g4">9</li><li class="g4">10</li></ol>
 <div class="rp-bands">
@@ -153,7 +186,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="g4"><b>9 à 10</b><span>Sommet</span><i>Snapdragon 8 Elite, Exynos 2600, Apple A19 Pro et A20 Pro</i></div>
 </div></div>
 
-<h5 class="rp-title">Capteur photo : plus il est grand, plus la note monte</h5>
+<h3 class="rp-title">Capteur photo : plus il est grand, plus la note monte</h3>
 <div class="rp-sensor">
 <div class="rp-sensor-draw" role="img" aria-label="Cinq rectangles à l’échelle : un capteur d’un pouce, puis 1/1,3, 1/1,56, 1/2 et 1/2,76 pouce, de plus en plus petits"><span class="s s10"></span><span class="s s8"></span><span class="s s7"></span><span class="s s5"></span><span class="s s3"></span></div>
 <ul class="rp-sensor-list">
@@ -165,7 +198,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </ul></div>
 <p class="rp-rule">Plus le second chiffre est petit, plus le capteur est grand : 1/1,3″ est bien plus grand que 1/2,8″.</p>
 
-<h5 class="rp-title">Luminosité de l’écran</h5>
+<h3 class="rp-title">Luminosité de l’écran</h3>
 <div class="rp-bars">
 <div class="rp-bar" style="--w:24%"><b>600 nits</b><span class="bar"></span><i>Lisible à l’ombre</i></div>
 <div class="rp-bar" style="--w:40%"><b>1 000 nits</b><span class="bar"></span><i>Correct dehors, sauf sous un soleil fort</i></div>
@@ -173,7 +206,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="rp-bar" style="--w:100%"><b>2 500 nits et plus</b><span class="bar"></span><i>Très lumineux</i></div>
 </div>
 
-<h5 class="rp-title">Batterie</h5>
+<h3 class="rp-title">Batterie</h3>
 <div class="rp-bars">
 <div class="rp-bar" style="--w:67%"><b>4 000 mAh</b><span class="bar"></span><i>Une journée d’usage normal</i></div>
 <div class="rp-bar" style="--w:83%"><b>5 000 mAh</b><span class="bar"></span><i>La norme : une bonne journée, parfois plus</i></div>
@@ -181,15 +214,15 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div></div></details>
 </section>
 <section class="sp-panel" role="tabpanel" aria-labelledby="tab-catalogue" id="catalogue" data-panel="catalogue" hidden>
-<div class="sp-panel-head"><span class="sp-label">04 / Explorer librement</span><h2>Le catalogue. À vous de comparer.</h2><p>Les modèles documentés en vidéo ouvrent la sélection. Explorez ensuite toutes les fiches techniques, par budget ou par nom.</p></div>
+<div class="sp-panel-head"><h2>Le catalogue. À vous de comparer.</h2><p>Les modèles documentés en vidéo ouvrent la sélection. Explorez ensuite toutes les fiches techniques, par budget ou par nom.</p></div>
 <div class="sp-filters"><label>Rechercher<input id="sp-search" type="search" placeholder="Samsung, iPhone, Pixel…"></label><label>Gamme<select id="sp-range"><option value="">Tous les prix</option><option value="entree">Entrée de gamme · moins de 300 €</option><option value="milieu">Milieu de gamme · 300 à 799 €</option><option value="haut">Haut de gamme · 800 € et plus</option></select></label><label>Explorer<select id="sp-source"><option value="all">Tous · vidéos en premier</option><option value="video">Avec une vidéo</option><option value="spec">Fiches techniques</option></select></label></div>
-<p id="sp-count" role="status"></p><div id="sp-catalogue" class="sp-bento sp-catalogue"></div><button class="btn btn-secondary" id="sp-more" hidden>Voir plus de modèles ↓</button><noscript><p><a href="data/smartphones.json">Consulter les données du catalogue</a></p></noscript>
+<p id="sp-count" role="status"></p><div id="sp-catalogue" class="sp-catalogue"></div><button class="btn btn-secondary" id="sp-more" hidden>Voir plus de modèles ↓</button><noscript><p><a href="data/smartphones.json">Consulter les données du catalogue</a></p></noscript>
 </section>
 <section class="sp-panel sp-analysis" role="tabpanel" aria-labelledby="tab-analyser" id="analyser" data-panel="analyser" hidden>
-<div class="sp-bento sp-analysis-grid"><div class="sp-panel-head is-ink"><span class="sp-label">05 / Un modèle en tête</span><h2>Sa fiche technique. En langage clair.</h2><p>Collez un lien ou saisissez un modèle. L’analyseur identifie ses caractéristiques et explique ses forces et ses limites.</p></div><article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones"><form class="model-analyzer-form" id="phone-analyzer-form"><label for="phone-product-url">Lien ou nom du smartphone</label><div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" placeholder="Un lien ou « Galaxy A56 »" required type="text"><button class="btn" type="submit">Analyser</button></div><p>Gratuit · Sans compte</p><p class="model-analyzer-manual-entry"><button class="btn btn-secondary" type="button" id="phone-manual-toggle">Je connais déjà le modèle</button></p></form><div id="phone-manual-entry" hidden></div><div aria-live="polite" class="model-analyzer-result" hidden id="phone-analyzer-result"></div></article></div>
+<div class="sp-analysis-grid"><div class="sp-panel-head"><h2>Sa fiche technique. En langage clair.</h2><p>Collez un lien ou saisissez un modèle. L’analyseur identifie ses caractéristiques et explique ses forces et ses limites.</p></div><article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones"><form class="model-analyzer-form" id="phone-analyzer-form"><label for="phone-product-url">Lien ou nom du smartphone</label><div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" placeholder="Un lien ou « Galaxy A56 »" required type="text"><button class="btn" type="submit">Analyser</button></div><p>Gratuit · Sans compte</p><p class="model-analyzer-manual-entry"><button class="btn btn-secondary" type="button" id="phone-manual-toggle">Je connais déjà le modèle</button></p></form><div id="phone-manual-entry" hidden></div><div aria-live="polite" class="model-analyzer-result" hidden id="phone-analyzer-result"></div></article></div>
 </section>
 <section class="sp-panel" role="tabpanel" aria-labelledby="tab-faq" id="faq" data-panel="faq" hidden>
-<div class="sp-bento sp-faq-grid"><div class="sp-panel-head"><span class="sp-label">06 / Avant de décider</span><h2>Les bonnes questions.</h2><p>Une question sur le classement, le budget ou les sources ? Les réponses tiennent en quelques lignes.</p></div><div class="sp-faq">
+<div class="sp-faq-grid"><div class="sp-panel-head"><h2>Les bonnes questions.</h2><p>Une question sur le classement, le budget ou les sources ? Les réponses tiennent en quelques lignes.</p></div><div class="sp-faq">
 <details><summary>Comment sont choisies mes recommandations ?</summary><p>Vous réglez ce qui compte pour vous : fréquence de l’écran, capacité de la batterie, niveau de puissance, photo, mémoire, résistance. Chaque modèle est comparé à ces valeurs : atteindre ou dépasser votre choix donne 100 %, être en dessous fait baisser la note selon l’écart. Les familles laissées vides ne comptent pas, donc avec un seul critère, plusieurs modèles peuvent afficher 100 %. Ils sont alors classés du meilleur rapport entre spécifications et prix. Le budget et le système choisis filtrent la liste. La présence d’une vidéo ne donne aucun bonus. Le résultat est une estimation technique, pas une mesure de qualité en laboratoire.</p></details>
 <details><summary>Pourquoi un téléphone sans test vidéo peut-il être recommandé ?</summary><p>Il peut mieux correspondre à vos besoins. Nous interprétons les spécifications disponibles et signalons ce qui manque. Une vidéo complète cette lecture, mais son absence n’exclut pas un téléphone.</p></details>
 <details><summary>Combien faut-il dépenser ?</summary><p>Sous 300 €, cherchez les fonctions utiles et acceptez des compromis sur la photo ou le jeu. Entre 300 et 800 €, les modèles polyvalents sont nombreux. Au-delà, vérifiez que le zoom, l’écran ou la puissance supplémentaires vous serviront. Les prix du catalogue sont indicatifs, à vérifier chez le vendeur.</p></details>
@@ -264,7 +297,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/theme.js" defer></script>
 <script src="assets/js/site-motion.js" defer></script>
 <script src="assets/js/smartphones-visuels.js" defer></script>
-<script src="assets/js/smartphones-page.js?v=20261111-manuel1" defer></script>
+<script src="assets/js/smartphones-page.js?v=20261118-contraste" defer></script>
 <script src="assets/js/i18n.js" defer></script>
 </body>
 </html>

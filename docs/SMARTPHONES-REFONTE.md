@@ -1,6 +1,6 @@
 # Guide smartphones
 
-Page à onglets dans une fenêtre : **Mon choix**, **Choix du moment**, **Comprendre**, **Catalogue**, **Analyser**, **Questions**. Chaque onglet est une partie distincte ; une phrase sous les onglets dit où l’on est et ce qu’on y fait. Le panneau ouvert se retrouve par son ancre (`#choisir-profil`, `#choix`, `#comprendre`, `#catalogue`, `#analyser`, `#faq`) ; les anciens liens (`#purchase-audit`, `#tests`, `#methode`, `#demos`…) ouvrent l’onglet équivalent.
+Le guide comporte six onglets (**Mon choix**, **Choix du moment**, **Comprendre**, **Catalogue**, **Analyser**, **Questions**). Le panneau ouvert se retrouve par son ancre (`#choisir-profil`, `#choix`, `#comprendre`, `#catalogue`, `#analyser`, `#faq`). Les anciens liens (`#purchase-audit`, `#tests`, `#methode`, `#demos`…) ouvrent l’onglet équivalent.
 
 Source : `tools/smartphones/template.html`, assemblée avec la coque commune par `tools/smartphones/page.py`. Générer avec `npm run smartphones:build`.
 
@@ -14,7 +14,7 @@ Aucun pourcentage n’apparaît tant qu’aucun choix n’est fait. Les « choix
 ## Les autres onglets
 - **Choix du moment** : `SmartphonesCompat.selection`, sans réglage.
 - **Comprendre** : explications en cinq thèmes et repères chiffrés (noms de puces, note de puce de 1 à 10 alignée sur `phone-analyzer/chips.js`, capteur, luminosité, batterie).
-- **Catalogue** : fusionne les 24 fiches vidéo et les 146 fiches techniques en dédoublonnant les neuf correspondances explicites. Les vidéos d’abord ; recherche, gamme et source filtrent ; trois cartes sur mobile, neuf sur ordinateur. « Voir la fiche » depuis un résultat ouvre la carte du modèle.
+- **Catalogue** : fusionne les 24 fiches vidéo et les 146 fiches techniques en dédoublonnant les neuf correspondances explicites. Les vidéos s’affichent en premier. La recherche, la gamme et la source filtrent la liste, qui affiche trois entrées à la fois sur mobile et neuf sur ordinateur. « Voir la fiche » ouvre l’entrée du modèle.
 - **Analyser** : `phone-analyzer/` conserve son moteur, ses modules et ses identifiants.
 - **Questions** : FAQ.
 
@@ -22,10 +22,8 @@ Les vidéos n’enrichissent que le catalogue : aucun bonus dans le classement. 
 
 Validation : `npm test` (dont `smartphones:compat-test`, qui couvre le calcul sur mesure), `npm run smartphones:fenetre-test` (nom historique, couvre les onglets, le sur mesure, les profils, le catalogue et le mobile), tests UI de l’analyseur. Aucun fichier de traduction modifié.
 
-## Design et mouvement (novembre 2026)
-Parti pris « manuel en grille », décrit en tête de `assets/css/smartphones.css` (une seule feuille, neuf parties).
-- **Gardé du site** : le jaune, les titres Archivo, les libellés mono, le surlignage.
-- **Abandonné sur cette page** : les ombres décalées et les cartes à coin coupé, très répandues ailleurs.
-- **Ajouté** : cellules à plat séparées par des filets d’encre de 4 px (`.sp-bento` : chaque cellule dessine son cadre, donc pas de case noire vide quand une rangée est incomplète), mot géant ajusté à la largeur, lignes pointillées « libellé … valeur » (`.sp-ld`), bandeau défilant, tuiles de chiffres, rangées numérotées avec un « + » orange, orange (`--brand-orange`) réservé aux indicateurs vivants (progression, onglet actif, barres de compatibilité).
+## Mise en page
 
-Mouvement : apparitions au défilement (`.sp-rv`), compteurs des tuiles, lettres du mot géant, indicateur qui glisse sous l’onglet actif, entrée des panneaux, ouverture des familles, barres de compatibilité, filet qui balaie l’en-tête de la sélection à chaque mise à jour. Tout passe par la classe `sp-js`, posée par le script seulement si le visiteur n’a pas demandé à réduire les animations : sans JavaScript ou avec « réduire les animations », le contenu est visible tout de suite. Tout élément `.sp-rv` créé par le script doit être passé à `reveal()`, sinon il reste invisible.
+L’introduction présente le même dessin sur deux écrans pour illustrer le contraste entre LCD et OLED. Son lien ouvre le sujet Écran de l’onglet Comprendre. L’illustration est dans `assets/editorial/smartphones-contraste.png`.
+
+`assets/css/smartphones.css` définit la palette ivoire et cobalt pour le guide, avec le jaune et les polices de la marque. Les réglages s’organisent en feuille de critères, les résultats en liste et les choix du moment autour du modèle mis en avant. Sur petit écran, les onglets se répartissent sur deux rangées et la sélection se lit sous les critères. Seuls les schémas des critères utilisent des animations ponctuelles, avec `prefers-reduced-motion`.
