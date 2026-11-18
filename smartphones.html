@@ -25,6 +25,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/categories.js" defer></script>
 <script src="assets/js/category-menu.js" defer></script>
 <link rel="stylesheet" href="assets/css/actualites.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;display=swap">
 <link rel="stylesheet" href="assets/css/smartphones.css">
 <script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
 function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
@@ -41,74 +42,211 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="header-tool-label">Rechercher</span></button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><svg class="ga-ico ga-ico-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></svg><svg class="ga-ico ga-ico-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></svg></button></div>
 </div>
 </header>
-<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide d’achat</span><span>Prix indicatifs du catalogue</span></div></div>
+<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide de terrain</span><span>Prix indicatifs · Novembre 2026</span></div></div>
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker" translate="no">Guide·Achat</span><p class="drawer-title" id="search-panel-title">Rechercher</p></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
-<main id="main">
+<main id="main" class="sg">
 <section class="sg-hero" aria-labelledby="sg-title">
-<div class="sg-wrap">
-<p class="sg-eyebrow">Guide smartphones</p>
-<h1 id="sg-title">Trouvez le téléphone qui vous convient.</h1>
-<p class="sg-lead">Commencez par votre budget. Les autres choix ne proposent que des options qui existent vraiment dans le catalogue.</p>
+<div class="sg-wrap sg-hero-grid">
+<div class="sg-hero-text">
+<p class="sg-eyebrow"><span>Guide de terrain</span><span>Smartphones</span><span data-count>Catalogue réel</span></p>
+<h1 id="sg-title"><span class="sg-h1-row">Le bon</span> <span class="sg-h1-row">smartphone,</span> <span class="sg-h1-row sg-h1-mark">c’est celui</span> <span class="sg-h1-row">qui vous convient.</span></h1>
+<p class="sg-lead">Choisissez votre budget, puis ce qui compte pour vous : le guide ne propose que des options qui existent vraiment à ce prix. Vous pouvez aussi apprendre à lire une fiche technique ou analyser un modèle précis.</p>
+</div>
+<figure class="sg-anatomy" aria-labelledby="sg-anatomy-cap">
+<svg class="sg-phone-svg" viewBox="0 0 300 420" aria-hidden="true" focusable="false">
+<g class="sg-phone-body">
+<rect x="70" y="20" width="160" height="330" rx="22"/>
+<rect class="sg-screen" x="80" y="32" width="140" height="306" rx="14"/>
+<rect class="sg-px" x="96" y="60" width="8" height="8"/><rect class="sg-px" x="104" y="60" width="8" height="8"/><rect class="sg-px" x="104" y="68" width="8" height="8"/><rect class="sg-px" x="112" y="68" width="8" height="8"/>
+<line class="sg-scan" x1="80" y1="120" x2="220" y2="120"/><line class="sg-scan" x1="80" y1="128" x2="220" y2="128"/><line class="sg-scan" x1="80" y1="136" x2="220" y2="136"/>
+<rect class="sg-chip" x="128" y="160" width="44" height="44"/>
+<path class="sg-chip-pins" d="M134 156v-6M142 156v-6M150 156v-6M158 156v-6M166 156v-6M134 208v6M142 208v6M150 208v6M158 208v6M166 208v6"/>
+<rect class="sg-bat" x="102" y="226" width="96" height="88" rx="4"/>
+<rect class="sg-bat-fill" x="108" y="262" width="84" height="46"/>
+<circle class="sg-lens" cx="196" cy="58" r="11"/><circle class="sg-lens" cx="196" cy="86" r="8"/>
+<path class="sg-drop" d="M150 362c-6 9-10 14-10 19a10 10 0 0 0 20 0c0-5-4-10-10-19z"/>
+<path class="sg-arrows" d="M246 392a12 12 0 1 1-3.5-8.5M242.5 376v7.5h7.5"/>
+</g>
+<g class="sg-callouts">
+<path d="M80 60H22"/><circle cx="16" cy="60" r="12"/><text x="16" y="65">1</text>
+<path d="M172 182H262"/><circle cx="274" cy="182" r="12"/><text x="274" y="187">2</text>
+<path d="M207 58H262"/><circle cx="274" cy="58" r="12"/><text x="274" y="63">3</text>
+<path d="M102 270H22"/><circle cx="16" cy="270" r="12"/><text x="16" y="275">4</text>
+<path d="M140 382H22"/><circle cx="16" cy="382" r="12"/><text x="16" y="387">5</text>
+<path d="M258 388H272"/><circle cx="284" cy="388" r="12"/><text x="284" y="393">6</text>
+</g>
+</svg>
+<figcaption id="sg-anatomy-cap"><span class="sg-cap-title">Ce qu’on regarde dans un téléphone</span>
+<ol class="sg-anatomy-list">
+<li><button type="button" data-notion="ecran"><b>1</b><span>Écran</span><small>OLED, LCD, LTPO</small></button></li>
+<li><button type="button" data-notion="processeur"><b>2</b><span>Processeur</span><small>note de 1 à 10</small></button></li>
+<li><button type="button" data-notion="photo"><b>3</b><span>Photo</span><small>capteur et stabilisation</small></button></li>
+<li><button type="button" data-notion="batterie"><b>4</b><span>Batterie</span><small>mAh et autonomie</small></button></li>
+<li><button type="button" data-notion="protection"><b>5</b><span>Protection</span><small>indice IP</small></button></li>
+<li><button type="button" data-notion="maj"><b>6</b><span>Mises à jour</span><small>durée du suivi</small></button></li>
+</ol>
+</figcaption>
+</figure>
 </div>
 </section>
-<div class="sg-wrap sg-tabs-wrap">
+
+<div class="sg-wrap">
 <div class="sg-tabs" role="tablist" aria-label="Parties du guide">
-<button type="button" role="tab" id="sg-tab-criteres" aria-controls="sg-panel-criteres-zone" aria-selected="true" tabindex="0">Mes critères</button>
-<button type="button" role="tab" id="sg-tab-presentation" aria-controls="sg-panel-presentation-zone" aria-selected="false" tabindex="-1">Présentation</button>
-<button type="button" role="tab" id="sg-tab-analyseur" aria-controls="sg-panel-analyseur-zone" aria-selected="false" tabindex="-1">Analyseur</button>
+<button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="true" tabindex="0"><span class="sg-tab-num">01</span><span class="sg-tab-name">Mes critères</span><span class="sg-tab-desc">Trouver un modèle pas à pas</span><span class="sg-tab-here" aria-hidden="true">Vous êtes ici</span></button>
+<button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1"><span class="sg-tab-num">02</span><span class="sg-tab-name">Présentation</span><span class="sg-tab-desc">Sélection du mois et notions</span><span class="sg-tab-here" aria-hidden="true">Vous êtes ici</span></button>
+<button type="button" role="tab" id="sg-tab-analyseur" data-hash="analyseur" aria-controls="sg-zone-analyseur" aria-selected="false" tabindex="-1"><span class="sg-tab-num">03</span><span class="sg-tab-name">Analyseur</span><span class="sg-tab-desc">Vérifier un modèle précis</span><span class="sg-tab-here" aria-hidden="true">Vous êtes ici</span></button>
 </div>
 
-<div role="tabpanel" id="sg-panel-criteres-zone" aria-labelledby="sg-tab-criteres" class="sg-tabpanel">
+<section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone">
 <div class="sg-parcours" id="sg-parcours">
 <div class="sg-steps-col">
-<p class="sg-intro">Sept étapes, dans l’ordre. Une étape se referme après votre choix ; vous pouvez la rouvrir à tout moment.</p>
-<div id="sg-steps" class="sg-steps"><p>Chargement du parcours…</p></div>
+<h2 class="sg-zone-title">Sept étapes, le budget d’abord</h2>
+<p class="sg-zone-lead">Chaque étape se referme après votre choix. Vous pouvez la rouvrir, la passer ou retirer votre choix à tout moment.</p>
+<ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement du catalogue…</li></ol>
 </div>
-<aside class="sg-result-col" aria-live="polite">
-<div id="sg-result" class="sg-result"></div>
+<aside class="sg-result-col" aria-labelledby="sg-result-title">
+<div id="sg-result" class="sg-result" aria-live="polite"></div>
 </aside>
 </div>
-</div>
-
-<div role="tabpanel" id="sg-panel-presentation-zone" aria-labelledby="sg-tab-presentation" class="sg-tabpanel" hidden>
-<div id="sg-presentation" class="sg-presentation">
-<section class="sg-block" aria-labelledby="sg-h-ref">
-<h2 id="sg-h-ref">Téléphone du mois</h2>
-<p id="sg-date" class="sg-muted"></p>
-<div class="sg-ref" id="sg-ref"><p>Chargement…</p></div>
-<h3 class="sg-sub">Autres choix</h3>
-<ul class="sg-alts" id="sg-alts"></ul>
 </section>
 
-<section class="sg-block" aria-labelledby="sg-h-notions">
-<h2 id="sg-h-notions">Notions à connaître</h2>
-<details class="sg-notion"><summary>Les mégapixels, ce qu’ils indiquent</summary>
-<p>Ils donnent le nombre de points du capteur. Plus il y en a, plus l’image peut être recadrée sans se dégrader. Ils ne disent rien de la taille du capteur, de l’objectif ni du traitement de l’image, qui comptent souvent davantage.</p></details>
-<details class="sg-notion"><summary>La batterie : ce que mAh change au quotidien</summary>
-<p>Les mAh indiquent la capacité. À usage égal, 6 000 mAh tiennent en général plus longtemps que 5 000 mAh. L’écran, le processeur et les réglages changent aussi l’autonomie : la capacité seule ne garantit rien.</p></details>
-<details class="sg-notion"><summary>Écrans : OLED, AMOLED, LCD et LTPO</summary>
-<p>L’OLED éclaire chaque pixel séparément : les noirs sont profonds. L’AMOLED est une variante de l’OLED adaptée aux smartphones. Le LCD utilise un rétroéclairage : il coûte souvent moins cher, mais les noirs sont moins profonds. Le LTPO n’est pas un type d’écran à lui seul : c’est une électronique qui peut baisser la fréquence de rafraîchissement, souvent montée sur un écran OLED.</p></details>
-<details class="sg-notion"><summary>Le processeur : la note de 1 à 10</summary>
-<p>La note indique le niveau de performance du processeur, d’après les données du catalogue. Un 1 ou un 2 suffit pour les usages simples. Un 7 ou plus donne de la marge pour les jeux et les applications lourdes. Quand la donnée manque, la note n’est pas affichée.</p></details>
-<details class="sg-notion"><summary>L’appareil photo : stabilisation et capteur</summary>
-<p>La stabilisation optique (OIS) déplace une partie de l’objectif pour compenser les mouvements : les photos de nuit et les vidéos sont plus nettes. La taille du capteur influence la quantité de lumière captée.</p></details>
+<section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-zone" hidden>
+<div class="sg-pres">
+<section class="sg-month" aria-labelledby="sg-h-month">
+<header class="sg-sec-head"><p class="sg-sec-num">A</p><h2 id="sg-h-month">Téléphone du mois</h2><p class="sg-sec-meta" id="sg-month-date"></p></header>
+<div class="sg-month-grid">
+<div id="sg-month-ref" class="sg-month-ref"></div>
+<div class="sg-month-alts"><h3 class="sg-mini-title">Trois autres choix, selon le budget</h3><ol id="sg-month-alts" class="sg-alts"></ol>
+<p class="sg-fine" id="sg-month-rule"></p></div>
+</div>
 </section>
 
-<section class="sg-block" aria-labelledby="sg-h-demo">
-<h2 id="sg-h-demo">Démonstrations</h2>
-<h3 class="sg-sub">Capacité de batterie</h3>
-<p class="sg-muted">Les barres comparent des capacités du catalogue. Ce n’est pas une mesure d’autonomie.</p>
-<ul class="sg-bars" id="sg-demo-battery"></ul>
+<section class="sg-notions" aria-labelledby="sg-h-notions">
+<header class="sg-sec-head"><p class="sg-sec-num">B</p><h2 id="sg-h-notions">Notions à connaître</h2><p class="sg-sec-meta">Ce que vous remarquerez au quotidien d’abord, les détails techniques ensuite.</p></header>
+
+<article class="sg-notion" id="sg-n-ecran" aria-labelledby="sg-nh-ecran">
+<div class="sg-notion-text">
+<p class="sg-notion-num">1 · Écran</p>
+<h3 id="sg-nh-ecran" tabindex="-1">OLED, AMOLED, LCD et LTPO</h3>
+<p>Au quotidien, vous remarquerez surtout deux choses : la profondeur des noirs dans une pièce sombre et la fluidité quand vous faites défiler une page.</p>
+<button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-ecran">Voir l’analyse : comment ces écrans se relient</button>
+<div class="sg-hint-body" id="sg-hd-ecran" hidden>
+<p><b>OLED :</b> chaque point s’éclaire seul ; un pixel noir est éteint, d’où des noirs profonds. <b>AMOLED</b> est la variante d’OLED utilisée dans la plupart des smartphones : c’est une famille de l’OLED, pas un autre type d’écran.</p>
+<p><b>LCD :</b> les points filtrent une lumière de fond toujours allumée. C’est moins cher, mais les noirs restent gris foncé.</p>
+<p><b>LTPO :</b> ce n’est pas un type d’écran à lui seul. C’est une électronique qui permet à un écran OLED de baisser sa fréquence d’affichage (par exemple de 120 à 1 image par seconde sur une image fixe) pour consommer moins.</p>
+</div>
+</div>
+<div class="sg-demo" data-demo="fluidite">
+<p class="sg-demo-label">Démonstration · fluidité</p>
+<div class="sg-lanes">
+<div class="sg-lane"><span class="sg-lane-name">Peu d’images par seconde</span><div class="sg-track"><span class="sg-dot" data-fps="12"></span></div></div>
+<div class="sg-lane"><span class="sg-lane-name">Beaucoup d’images par seconde</span><div class="sg-track"><span class="sg-dot" data-fps="0"></span></div></div>
+</div>
+<div class="sg-demo-actions"><button type="button" class="sg-btn" data-action="toggle">Mettre en pause</button></div>
+<p class="sg-sim">l’écart est volontairement accentué. Votre propre écran limite ce que vous pouvez voir ici.</p>
+<p class="sg-static-alt">Animations réduites : sur un écran à 120 images par seconde, un défilement affiche deux fois plus d’étapes intermédiaires qu’à 60, ce qui le rend plus doux.</p>
+</div>
+</article>
+
+<article class="sg-notion" id="sg-n-processeur" aria-labelledby="sg-nh-processeur">
+<div class="sg-notion-text">
+<p class="sg-notion-num">2 · Processeur</p>
+<h3 id="sg-nh-processeur" tabindex="-1">La note de 1 à 10</h3>
+<p>Au quotidien, la puce décide si les applications s’ouvrent sans attendre, si les jeux restent fluides et si le téléphone sera encore à l’aise dans quelques années.</p>
+<button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-processeur">Voir l’analyse : comment la note est calculée</button>
+<div class="sg-hint-body" id="sg-hd-processeur" hidden>
+<p>La note situe la puce parmi toutes celles du marché, d’après son nom (par exemple « Snapdragon 8 Elite » ou « Helio G85 ») et une table de classement maintenue dans le guide. Elle est la même dans ce parcours, le catalogue et l’Analyseur.</p>
+<p><b>1 à 3</b> entrée de gamme · <b>4 à 6</b> milieu de gamme · <b>7 à 8</b> haut de gamme · <b>9 à 10</b> très haut de gamme. Une puce que la table ne reconnaît pas reste sans note : on ne la devine pas.</p>
+<p>Cette note n’est pas le score de compatibilité du parcours « Mes critères ».</p>
+</div>
+</div>
+<div class="sg-demo" data-demo="puce">
+<p class="sg-demo-label">Démonstration · échelle des puces</p>
+<label class="sg-select-label" for="sg-chip-pick">Choisir un modèle du catalogue</label>
+<select id="sg-chip-pick" class="sg-select"></select>
+<ol class="sg-scale" id="sg-scale" aria-hidden="true"></ol>
+<p class="sg-scale-out" id="sg-scale-out" aria-live="polite"></p>
+</div>
+</article>
+
+<article class="sg-notion" id="sg-n-photo" aria-labelledby="sg-nh-photo">
+<div class="sg-notion-text">
+<p class="sg-notion-num">3 · Photo</p>
+<h3 id="sg-nh-photo" tabindex="-1">Mégapixels, capteur et stabilisation</h3>
+<p>Au quotidien, vous verrez la différence surtout la nuit, en vidéo en marchant et quand vous recadrez une photo.</p>
+<button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-photo">Voir l’analyse : ce que disent les mégapixels, et ce qu’ils taisent</button>
+<div class="sg-hint-body" id="sg-hd-photo" hidden>
+<p><b>Mégapixels (MP) :</b> le nombre de points de l’image. Plus il y en a, plus on peut recadrer sans voir les carrés. Ils ne disent rien de la quantité de lumière captée.</p>
+<p><b>Capteur :</b> plus il est grand, plus il reçoit de lumière, ce qui aide la nuit. Un 50 MP avec un petit capteur peut faire moins bien qu’un 12 MP avec un grand.</p>
+<p><b>Stabilisation optique (OIS) :</b> une partie de l’objectif bouge pour compenser les tremblements de la main. Elle aide la nuit et en vidéo. Beaucoup de fiches ne la précisent pas : le guide l’indique alors comme « non renseignée ».</p>
+</div>
+</div>
+<div class="sg-demo" data-demo="pixels">
+<p class="sg-demo-label">Démonstration · nombre de points</p>
+<div class="sg-pixels">
+<canvas id="sg-px-canvas" width="240" height="240" role="img" aria-label="Paysage en pixels dont la finesse change selon la grille choisie"></canvas>
+<div class="sg-px-controls">
+<fieldset class="sg-seg"><legend>Points par côté</legend>
+<label><input type="radio" name="sg-grid" value="8"> 8</label><label><input type="radio" name="sg-grid" value="16"> 16</label><label><input type="radio" name="sg-grid" value="32" checked> 32</label><label><input type="radio" name="sg-grid" value="96"> 96</label>
+</fieldset>
+<label class="sg-check"><input type="checkbox" id="sg-px-crop"> Recadrer au centre (zoom ×3)</label>
+<label class="sg-check"><input type="checkbox" id="sg-px-ois"> Simuler une main qui tremble sans stabilisation</label>
+</div>
+</div>
+<p class="sg-sim">Simulation : la grille illustre la densité de points, pas un nombre réel de mégapixels.</p>
+</div>
+</article>
+
+<article class="sg-notion" id="sg-n-batterie" aria-labelledby="sg-nh-batterie">
+<div class="sg-notion-text">
+<p class="sg-notion-num">4 · Batterie</p>
+<h3 id="sg-nh-batterie" tabindex="-1">Ce que 6 000 mAh peut changer</h3>
+<p>Au quotidien, c’est la question du soir : reste-t-il de la batterie en rentrant ? Une plus grande capacité laisse en général plus de marge, sans la garantir.</p>
+<button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-batterie">Voir l’analyse : capacité, autonomie et prix</button>
+<div class="sg-hint-body" id="sg-hd-batterie" hidden>
+<p>Le <b>mAh</b> (milliampère-heure) mesure la quantité d’énergie stockée. À usage égal, 6 000 mAh tiennent plus longtemps que 5 000 mAh, mais un grand écran lumineux ou une puce gourmande peuvent effacer l’écart.</p>
+<p>Une batterie plus grande ajoute souvent du poids. Le prix dépend surtout du reste de la fiche : le graphique montre des modèles du catalogue avec leur capacité et leur prix indicatif.</p>
+</div>
+</div>
+<div class="sg-demo" data-demo="batterie">
+<p class="sg-demo-label">Démonstration · capacités du catalogue</p>
+<ul class="sg-bars" id="sg-bars"></ul>
+<div class="sg-demo-actions"><button type="button" class="sg-btn" data-action="replay-bars">Rejouer</button></div>
+<p class="sg-sim">Capacités et prix relevés dans le catalogue. Ce n’est pas une mesure d’autonomie.</p>
+</div>
+</article>
+
+<article class="sg-notion" id="sg-n-protection" aria-labelledby="sg-nh-protection">
+<div class="sg-notion-text">
+<p class="sg-notion-num">5 · Protection</p>
+<h3 id="sg-nh-protection" tabindex="-1">L’indice IP</h3>
+<p>Au quotidien : la pluie, un verre renversé, une chute dans l’évier. L’indice IP dit jusqu’où le téléphone a été testé.</p>
+<button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-protection">Voir l’analyse : lire les deux chiffres</button>
+<div class="sg-hint-body" id="sg-hd-protection" hidden>
+<p>Le premier chiffre concerne la poussière (6 = étanche), le second l’eau : 4 = éclaboussures, 7 = immersion brève, 8 = immersion prolongée selon le fabricant. Un « X » signifie que le test n’a pas été fait.</p>
+<p>Les tests se font en eau douce ; la garantie couvre rarement les dégâts des eaux.</p>
+</div>
+</div>
+</article>
+
+<article class="sg-notion" id="sg-n-maj" aria-labelledby="sg-nh-maj">
+<div class="sg-notion-text">
+<p class="sg-notion-num">6 · Mises à jour</p>
+<h3 id="sg-nh-maj" tabindex="-1">La durée du suivi</h3>
+<p>Au quotidien, les mises à jour corrigent des failles de sécurité et maintiennent les applications compatibles. Leur durée annoncée varie beaucoup selon les fabricants.</p>
+<p class="sg-fine">Le catalogue ne renseigne pas encore cette durée : le guide ne l’utilise pas pour recommander un modèle.</p>
+</div>
+</article>
 </section>
 </div>
-</div>
+</section>
 
-<div role="tabpanel" id="sg-panel-analyseur-zone" aria-labelledby="sg-tab-analyseur" class="sg-tabpanel" hidden>
-<div class="sg-analyseur">
-<p class="sg-muted">L’Analyseur reste l’outil existant : collez un lien ou choisissez un modèle.</p>
-<iframe class="sg-frame" src="analyseur.html?cat=smartphones" title="Analyseur de smartphones" loading="lazy"></iframe>
-</div>
-</div>
+<section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone" hidden>
+<h2 class="sg-zone-title">Vérifier un modèle précis</h2>
+<p class="sg-zone-lead">Collez le lien d’une fiche produit ou tapez le nom d’un modèle : l’Analyseur explique ses caractéristiques et à qui il convient.</p>
+<div class="sg-frame-wrap"><iframe id="sg-frame" class="sg-frame" title="Analyseur de smartphones" src="about:blank" data-src="analyseur.html?cat=smartphones"></iframe></div>
+<p class="sg-fine"><a href="analyseur.html?cat=smartphones">Ouvrir l’Analyseur dans une page séparée</a></p>
+</section>
 </div>
 </main>
 
@@ -121,6 +259,8 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <nav class="footer-nav" aria-label="Plan du site"><div class="footer-col"><p class="footer-title">Catégories</p><ul><li><a href="pc-portables.html">PC portables</a></li><li><a href="batteries-externes.html">Batteries externes</a></li><li><a href="ecouteurs.html">Écouteurs Bluetooth</a></li><li><a href="projecteurs.html">Projecteurs</a></li><li><a href="montres.html">Montres et bracelets</a></li></ul></div><div class="footer-col"><p class="footer-title">Outils</p><ul><li><a href="analyseur.html">Analyseur de lien</a></li><li><a href="actualites.html">Mises à jour</a></li><li><a href="feed.xml">Flux Atom</a></li></ul></div><div class="footer-col"><p class="footer-title">Le guide</p><ul><li><a href="a-propos.html">À propos et méthode</a></li><li><a href="a-propos.html#credits-visuels">Crédits des visuels</a></li><li><a href="https://github.com/7fj5mfzkmz-max/guide-achat-new/issues">Signaler une erreur</a></li></ul></div></nav>
 </div>
 </footer>
+<script src="phone-analyzer/chips.js" defer></script>
+<script src="assets/js/smartphones-guide-logic.js" defer></script>
 <script src="assets/js/smartphones-guide.js" defer></script>
 <script src="assets/js/theme.js" defer></script>
 <script src="assets/js/site-tools.js" defer></script>
