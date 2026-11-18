@@ -37,7 +37,8 @@ function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i
 l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-lang",l);r.lang={fr:"fr",en:"en-US",es:"es-ES"}[l];if(l!=="fr"){r.classList.add("i18n-wait");setTimeout(function(){r.classList.remove("i18n-wait")},2500)}})()</script>
 <style>html.i18n-wait body{opacity:0}</style>
 <link rel="stylesheet" href="assets/css/i18n.css">
-<link rel="stylesheet" href="assets/css/smartphones.css?v=20261118-contraste">
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/smartphones.css?v=20261118-banc">
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Quel smartphone choisir ? Un guide selon vos besoins · Guide·Achat"/>
 <meta property="og:description" content="Trouvez un smartphone selon votre usage et votre budget. Interprétation des caractéristiques, catalogue avec tests vidéo et analyseur de modèle."/>
@@ -73,10 +74,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
       <div class="sp-actions">
         <a class="btn" href="#choisir-profil" data-tab-go="choisir-profil">Trouver mon smartphone <span aria-hidden="true">↓</span></a>
       </div>
-      <ul class="sp-facts" role="list">
-        <li><b>146</b> fiches techniques</li>
-        <li><b>24</b> modèles testés en vidéo</li>
-      </ul>
     </div>
     <figure class="sp-display">
       <figcaption>Contraste à l’écran</figcaption>
@@ -86,6 +83,10 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
       </div>
       <a class="sp-link" href="#comprendre" data-tab-go="comprendre" data-topic-go="ecran">Comprendre les écrans <span aria-hidden="true">→</span></a>
     </figure>
+    <ul class="sp-facts" role="list">
+      <li><b>146</b> fiches techniques</li>
+      <li><b>24</b> modèles testés en vidéo</li>
+    </ul>
   </div>
 </header>
 <div class="sp-wrap">
@@ -297,7 +298,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/theme.js" defer></script>
 <script src="assets/js/site-motion.js" defer></script>
 <script src="assets/js/smartphones-visuels.js" defer></script>
-<script src="assets/js/smartphones-page.js?v=20261118-contraste" defer></script>
+<script src="assets/js/smartphones-page.js?v=20261118-banc" defer></script>
 <script src="assets/js/i18n.js" defer></script>
 </body>
 </html>

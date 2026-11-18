@@ -19,7 +19,8 @@ def build():
     top = re.sub(r'<meta name="description"[^>]*>', f'<meta name="description" content="{html.escape(DESCRIPTION)}"/>', top)
     top = re.sub(r'<script type="application/ld\+json">.*?</script>', '', top, flags=re.S)
     top = re.sub(r'<link rel="stylesheet" href="assets/css/pc-[^"]+">', '', top)
-    top = top.replace('</head>', f'''<link rel="stylesheet" href="assets/css/smartphones.css?v=20261118-contraste">
+    top = top.replace('</head>', f'''<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/smartphones.css?v=20261118-banc">
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="{html.escape(TITLE)}"/>
 <meta property="og:description" content="{html.escape(DESCRIPTION)}"/>
@@ -33,7 +34,7 @@ def build():
     end = base[base.index('<footer'):]
     end = re.sub(r'<script[^>]*src="[^"]+"[^>]*></script>', '', end)
     scripts = list(dict.fromkeys([s for s in SCRIPTS if s != 'assets/js/categories.js'] + ['assets/js/theme.js', 'assets/js/site-motion.js', 'assets/js/smartphones-visuels.js', 'assets/js/smartphones-page.js', 'assets/js/i18n.js']))
-    end = end.replace('</body>', ''.join('<script src="'+s+('?v=20261118-contraste' if s.endswith('smartphones-page.js') else '')+'" defer></script>\n' for s in scripts)+'</body>')
+    end = end.replace('</body>', ''.join('<script src="'+s+('?v=20261118-banc' if s.endswith('smartphones-page.js') else '')+'" defer></script>\n' for s in scripts)+'</body>')
     main = (ROOT / 'tools/smartphones/template.html').read_text()
     (ROOT / 'smartphones.html').write_text((top + main + end).rstrip() + '\n')
     subprocess.run([sys.executable, str(ROOT / 'tools/site/gabarit.py')], check=True)
