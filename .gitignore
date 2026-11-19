@@ -9,3 +9,6 @@ __pycache__/
 .cache/
 *.log
 /tools/i18n/chaines-rendu*.json
+
+# Graphe de code local (reconstruit par `graphify update .`)
+graphify-out/

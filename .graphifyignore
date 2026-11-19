@@ -1,0 +1,9 @@
+# Skills tiers et outils : pas du code du site
+.agents/
+.claude/
+.codex/
+graphify-out/
+node_modules/
+# Fichiers vendus ou générés
+*.min.js
+**/vendor/**
