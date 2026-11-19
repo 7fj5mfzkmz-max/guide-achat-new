@@ -1,34 +1,6 @@
 {
   "version": 2,
   "skills": {
-    "animate": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/animate/SKILL.md",
-      "computedHash": "c622e29fa956aea703dc4e2b8726d9a017d438beb284a60bc3fdb2540c602102"
-    },
-    "animation-performance": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/animation-performance/SKILL.md",
-      "computedHash": "1ff92f577fc2b7781ed622fd4eb5e514c252cf5cb95c3661743cd127ee01290a"
-    },
-    "break-ui": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/break-ui/SKILL.md",
-      "computedHash": "f089f3663e197fb4e106249df70e815a96e3236520a2e1c0919d1694816baca8"
-    },
-    "choreograph": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/choreograph/SKILL.md",
-      "computedHash": "a33a7cf57eacff502f833778eed62244fb5a890bb25124dacde73bcf8716218c"
-    },
     "emil-design-eng": {
       "source": "emilkowalski/skills",
       "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
@@ -42,41 +14,6 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/impeccable/SKILL.md",
       "computedHash": "08bd5bf141cb507f46bd8347890cd985865606f15adf88295ed3a73bc9ad5d96"
-    },
-    "mobile-native": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/mobile-native/SKILL.md",
-      "computedHash": "2f55a258f185314d585cb6a3514a66c15e9cfc8cd45c936284c4fb7374603d7e"
-    },
-    "oil-ui": {
-      "source": "oil-oil/oil-ui",
-      "commit": "81f2657f41410f04ae47ba77f902fcc0567eaab2",
-      "sourceType": "github",
-      "skillPath": "SKILL.md",
-      "computedHash": "f909a6388946f1783bd9ccd3e3830400e17157b11b588b2dd345985996b683bf"
-    },
-    "pick-ui-library": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/pick-ui-library/SKILL.md",
-      "computedHash": "3bc44e7faccb949583f4af6c8a15b5a50acc04a5e656f5168a96e5aa43e9f3cd"
-    },
-    "remove-animations": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/remove-animations/SKILL.md",
-      "computedHash": "22491898575c9eed57fc1add66a072bfb5ed2cc946289c54f41c3d10b6be4204"
-    },
-    "review-animations": {
-      "source": "emilkowalski/skills",
-      "commit": "64eb3deb9a5fbfa041faf783e0bc3fd635872e9c",
-      "sourceType": "github",
-      "skillPath": "skills/review-animations/SKILL.md",
-      "computedHash": "50f1de2394b88bb3433eca1e30da6866a4e310963d872a66af20ca77fd77f07d"
     }
   }
 }
