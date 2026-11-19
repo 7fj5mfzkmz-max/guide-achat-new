@@ -4,6 +4,8 @@
 - **Traductions : ne pas les écrire à la main.** DeepL produit les versions EN/ES. Ne pas ajouter de paires dans
   `tools/i18n/*.tsv` ni modifier `assets/i18n/*.json` : écrire le français, c'est tout.
 
+- **Outils IA** : choix des skills et règles d'usage dans `docs/outils-ia/AGENT.md` (version humaine : `docs/outils-ia/README.md`).
+
 ## graphify
 
 This project has a knowledge graph at graphify-out/ with god nodes, community structure, and cross-file relationships.
