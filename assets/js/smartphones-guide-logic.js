@@ -40,18 +40,6 @@
     var v = get(p, ['compatibilite', 'suivi', 'ans']);
     return typeof v === 'number' ? v : null;
   }
-  /* Immersion : seul un code déclaré IPX7 ou IPX8 la confirme. Un code IP69 (jets) seul ne suffit pas :
-     l’immersion reste non établie (inconnu), et un code sans 7 ni 8 ni 9 est un échec. */
-  function immersion(p) {
-    var v = get(p, ['compatibilite', 'durete', 'protection_ip']);
-    if (!v) return null;
-    var re = /IP[0-9X]([0-9X])/gi, m, digits = [];
-    while ((m = re.exec(String(v)))) digits.push(m[1]);
-    if (!digits.length) return null;
-    if (digits.some(function (d) { return d === '7' || d === '8'; })) return true;
-    if (digits.some(function (d) { return d === '9'; })) return null;
-    return false;
-  }
   function cmp(v, test) { return v === null ? null : !!test(v); }
 
   var GAMMES = [
@@ -135,7 +123,7 @@
           { id: 'ip4', label: 'Éclaboussures (IPx4 ou mieux)', adv: 'Supporte la pluie et les éclaboussures.', comp: 'Pas fait pour être plongé dans l’eau.',
             test: function (p) { return cmp(eau(p), function (d) { return d >= 4; }); } },
           { id: 'ip7', label: 'Immersion (IPx7 ou mieux)', adv: 'Résiste à une chute dans l’eau douce, brièvement.', comp: 'Plus fréquent sur les modèles chers ; la garantie couvre rarement l’eau.',
-            test: function (p) { return immersion(p); } }
+            test: function (p) { return cmp(eau(p), function (d) { return d >= 7; }); } }
         ] },
       { id: 'maj', titre: 'Mises à jour', question: 'Combien d’années de mises à jour ?',
         aide: 'Le catalogue ne renseigne pas encore la durée des mises à jour annoncée par les fabricants.',
@@ -164,8 +152,7 @@
     return v && v !== SKIP ? this.option(stepId, v) : null;
   };
   Guide.prototype.choose = function (stepId, optId) { this.sel[stepId] = optId; };
-  /* Le budget ne peut pas être passé : sans plafond, aucune recommandation ne peut être donnée. */
-  Guide.prototype.skip = function (stepId) { if (stepId !== 'prix') this.sel[stepId] = SKIP; };
+  Guide.prototype.skip = function (stepId) { this.sel[stepId] = SKIP; };
   Guide.prototype.clear = function (stepId) { delete this.sel[stepId]; };
   /* Modèles qui respectent tous les choix actifs, sauf celui de « except ». */
   Guide.prototype.pool = function (except) {

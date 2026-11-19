@@ -157,24 +157,6 @@ check('Résultat vide : aucune recommandation, le choix en cause est nommé', ()
   assert.equal(g.blocking()[0].step.id, 'batterie');
 });
 
-check('Immersion : seul IPX7/IPX8 la confirme ; IP69 seul reste non établi, pas un échec', () => {
-  const g = new L.Guide([phone('i68', 100, { ip: 'IP68' }), phone('i69', 100, { ip: 'IP69' }), phone('i54', 100, { ip: 'IP54' }), phone('i69k', 100, { ip: 'IP68/IP69' }), phone('inull', 100, { ip: null })]);
-  g.choose('prix', g.step('prix').options[g.step('prix').options.length - 1].id);
-  const imm = g.step('protection').options.find(o => o.id === 'ip7');
-  assert.equal(imm.test(g.products.find(p => p.id === 'i68')), true);
-  assert.equal(imm.test(g.products.find(p => p.id === 'i69')), null);
-  assert.equal(imm.test(g.products.find(p => p.id === 'i54')), false);
-  assert.equal(imm.test(g.products.find(p => p.id === 'i69k')), true);
-  assert.equal(imm.test(g.products.find(p => p.id === 'inull')), null);
-});
-
-check('Le budget ne peut pas être passé', () => {
-  const g = new L.Guide(synth);
-  g.skip('prix');
-  assert.equal(g.sel.prix, undefined);
-  assert.equal(g.chosen('prix'), null);
-});
-
 check('Mises à jour : étape sans donnée, désactivée et non comptée', () => {
   const g = new L.Guide(catalogue);
   g.choose('prix', g.step('prix').options[g.step('prix').options.length - 1].id);
