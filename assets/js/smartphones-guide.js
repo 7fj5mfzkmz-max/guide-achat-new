@@ -297,7 +297,6 @@
     if (focus) tab.focus();
     if (!keepHash && history.replaceState) history.replaceState(null, '', '#' + tab.dataset.hash);
     if (tab.id === 'sg-tab-analyseur') loadFrame();
-    if (tab.id === 'sg-tab-presentation') startDemos();
     updateDock(lastReco);
   }
   function setupTabs() {
@@ -317,16 +316,6 @@
     var h = (location.hash || '').slice(1);
     if (h in map) showTab(tabs[map[h]], false, true);
   }
-  function setupHints() {
-    document.querySelectorAll('.sg-hint').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var open = b.getAttribute('aria-expanded') !== 'true';
-        b.setAttribute('aria-expanded', open ? 'true' : 'false');
-        document.getElementById(b.getAttribute('aria-controls')).hidden = !open;
-      });
-    });
-  }
-
   /* ---------- Analyseur : l’outil n’est pas modifié. Dans le cadre, on masque seulement l’en-tête et le pied de page
      communs, et l’introduction de la page Analyseur (titre et choix Smartphone / PC, déjà donnés par l’onglet). ---------- */
   var frameLoaded = false;
@@ -400,121 +389,6 @@
   function specChipsFor(p) { var keep = guide; guide = null; var html = specChips(p); guide = keep; return html; }
 
   /* ---------- Démonstrations ---------- */
-  var demosStarted = false;
-  function startDemos() {
-    if (demosStarted) return;
-    demosStarted = true;
-    var els = document.querySelectorAll('.sg-demo');
-    if (reduceMotion || !('IntersectionObserver' in window)) { bars.play(true); return; }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        var k = e.target.dataset.demo;
-        if (k === 'fluidite') { if (e.isIntersecting) fluid.start(); else fluid.stop(); }
-        if (k === 'batterie' && e.isIntersecting && !bars.done) bars.play(false);
-      });
-    }, { threshold: 0.3 });
-    els.forEach(function (el) { io.observe(el); });
-  }
-
-  var fluid = {
-    raf: 0, paused: false,
-    start: function () {
-      if (this.raf || this.paused) return;
-      var self = this, loop = function (t) { self.frame(t); self.raf = requestAnimationFrame(loop); };
-      this.raf = requestAnimationFrame(loop);
-    },
-    stop: function () { cancelAnimationFrame(this.raf); this.raf = 0; },
-    frame: function (t) {
-      document.querySelectorAll('.sg-dot').forEach(function (d) {
-        var fps = Number(d.dataset.fps), tt = fps ? Math.floor(t / (1000 / fps)) * (1000 / fps) : t;
-        var ph = (tt % 2400) / 2400, x = ph < 0.5 ? ph * 2 : 2 - ph * 2;
-        d.style.transform = 'translateX(' + (x * (d.parentNode.clientWidth - d.offsetWidth)) + 'px)';
-      });
-    }
-  };
-  function setupFluid() {
-    var b = document.querySelector('[data-demo="fluidite"] [data-action="toggle"]');
-    if (!b || reduceMotion) return;
-    b.addEventListener('click', function () {
-      fluid.paused = !fluid.paused;
-      if (fluid.paused) { fluid.stop(); b.textContent = 'Reprendre'; } else { fluid.start(); b.textContent = 'Mettre en pause'; }
-    });
-  }
-
-  var bars = {
-    built: false, pending: null, done: false,
-    build: function (products) {
-      var list = products.filter(function (p) { return F.mah(p) !== null && F.prix(p) !== null && p.ready_for_recommendation !== false; })
-        .sort(function (a, b) { return F.mah(a) - F.mah(b) || F.prix(a) - F.prix(b); });
-      if (!list.length) return;
-      var picks = [], seen = {};
-      [0, 0.3, 0.6, 0.85, 1].forEach(function (q) { var p = list[Math.round(q * (list.length - 1))]; if (!seen[p.id]) { seen[p.id] = 1; picks.push(p); } });
-      var max = F.mah(picks[picks.length - 1]);
-      document.getElementById('sg-bars').innerHTML = picks.map(function (p) {
-        return '<li><span class="sg-bar-name">' + esc(nameOf(p)) + '</span><span class="sg-bar-price">' + euros(F.prix(p)) + '</span>' +
-          '<span class="sg-bar"><span class="sg-bar-track" aria-hidden="true"><span data-w="' + Math.round(F.mah(p) / max * 100) + '"></span></span><span class="sg-bar-val">' + F.mah(p).toLocaleString('fr-FR') + ' mAh</span></span></li>';
-      }).join('');
-      this.built = true;
-      if (this.pending !== null) { var i = this.pending; this.pending = null; this.play(i); }
-    },
-    play: function (instant) {
-      if (!this.built) { this.pending = !!instant; return; }
-      this.done = true;
-      var spans = document.querySelectorAll('#sg-bars [data-w]');
-      var now = instant || reduceMotion;
-      spans.forEach(function (s) { s.style.transition = now ? 'none' : ''; s.style.width = '0%'; });
-      var go = function () { spans.forEach(function (s, i) { s.style.transitionDelay = now ? '0s' : (i * 80) + 'ms'; s.style.width = s.dataset.w + '%'; }); };
-      if (now) go(); else requestAnimationFrame(function () { requestAnimationFrame(go); });
-    }
-  };
-
-  function setupChipScale(products) {
-    var sel = document.getElementById('sg-chip-pick'), scale = document.getElementById('sg-scale'), out = document.getElementById('sg-scale-out');
-    if (!sel) return;
-    var byLevel = {}, unknown = null;
-    products.slice().sort(function (a, b) { return F.prix(a) - F.prix(b); }).forEach(function (p) {
-      var n = F.niveau(p);
-      if (n === null) { if (!unknown) unknown = p; return; }
-      if (!byLevel[n]) byLevel[n] = p;
-    });
-    var picks = Object.keys(byLevel).map(Number).sort(function (a, b) { return a - b; }).map(function (n) { return byLevel[n]; });
-    if (unknown) picks.push(unknown);
-    sel.innerHTML = picks.map(function (p) { return '<option value="' + esc(p.id) + '">' + esc(nameOf(p)) + ' · ' + esc(F.get(p, ['compatibilite', 'performance', 'soc']) || 'puce non précisée') + '</option>'; }).join('');
-    var cells = '';
-    for (var i = 1; i <= 10; i++) cells += '<li data-n="' + i + '" style="height:' + (22 + i * 7.8) + '%">' + i + '</li>';
-    scale.innerHTML = cells;
-    var show = function () {
-      var p = picks.filter(function (x) { return x.id === sel.value; })[0], n = F.niveau(p);
-      scale.querySelectorAll('li').forEach(function (li) { var k = Number(li.dataset.n); li.classList.toggle('is-on', n !== null && k < n); li.classList.toggle('is-mark', k === n); });
-      scale.classList.toggle('is-unknown', n === null);
-      out.textContent = n === null ? nameOf(p) + ' : note inconnue, puce non identifiée par la table. Le guide ne la devine pas.'
-        : nameOf(p) + ' : ' + n + ' sur 10, ' + L.gammeOf(n).label.toLowerCase() + '.';
-    };
-    sel.addEventListener('change', show);
-    var mid = picks[Math.floor(picks.length * 0.6)];
-    if (mid) sel.value = mid.id;
-    show();
-  }
-
-  /* Démonstration photo : stabilisation, recadrage, peu de mégapixels (simulation vectorielle). */
-  function setupPhoto() {
-    var vf = document.getElementById('sg-vf');
-    if (!vf) return;
-    var sync = function () {
-      var ois = document.getElementById('sg-ph-ois').getAttribute('aria-pressed') === 'true';
-      vf.classList.toggle('is-shake', !ois);
-      vf.classList.toggle('is-crop', document.getElementById('sg-ph-crop').getAttribute('aria-pressed') === 'true');
-      vf.classList.toggle('is-lowmp', document.getElementById('sg-ph-mp').getAttribute('aria-pressed') === 'true');
-    };
-    ['sg-ph-ois', 'sg-ph-crop', 'sg-ph-mp'].forEach(function (id) {
-      document.getElementById(id).addEventListener('click', function () {
-        this.setAttribute('aria-pressed', this.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
-        sync();
-      });
-    });
-    sync();
-  }
-
   function setupHero() {
     var start = document.getElementById('sg-cta-start'), an = document.getElementById('sg-cta-analyse');
     if (start) start.addEventListener('click', function () {
@@ -533,102 +407,261 @@
     });
   }
 
-  /* ---------- Anatomie d’un téléphone : vue éclatée animée + explication courte par composant.
-     Les répartitions sont calculées sur le catalogue (jamais saisies à la main). ---------- */
-  function num(v) { return typeof v === 'number' && isFinite(v) ? v : null; }
-  function stockageGo(p) {
-    var m = /([\d.,]+)\s*(Go|To)/i.exec(String(F.get(p, ['caracteristiques', 'stockage']) || ''));
-    if (!m) return null;
-    var n = parseFloat(m[1].replace(',', '.'));
-    return isFinite(n) ? (/to/i.test(m[2]) ? n * 1000 : n) : null;
+  /* ---------- Comprendre votre téléphone : vue éclatée animée + une démonstration par composant.
+     Aucune donnée du catalogue : chaque démonstration est une illustration, étiquetée comme telle. ---------- */
+  var ILLU = 'Illustration, pas une mesure';
+
+  function seg(label, name, opts, sel) {
+    return '<div class="sg-toggles sg-seg" role="group" aria-label="' + esc(label) + '" data-seg="' + name + '">' + opts.map(function (o) {
+      return '<button type="button" class="sg-toggle" data-v="' + esc(o[0]) + '" aria-pressed="' + (o[0] === sel ? 'true' : 'false') + '">' + esc(o[1]) + '</button>';
+    }).join('') + '</div>';
   }
-  /* Classe d’étanchéité : seul IPx7/IPx8 confirme l’immersion ; un IP69 seul décrit des jets d’eau. */
-  function ipClass(p) {
-    var v = F.get(p, ['compatibilite', 'durete', 'protection_ip']);
-    if (!v) return null;
-    var d = [], re = /IP[0-9X]([0-9X])/gi, m;
-    while ((m = re.exec(String(v)))) d.push(m[1]);
-    if (!d.length) return null;
-    if (d.some(function (x) { return x === '7' || x === '8'; })) return 'imm';
-    if (d.indexOf('9') >= 0) return 'jets';
-    var nums = d.filter(function (x) { return x !== 'X'; }).map(Number);
-    return nums.length && Math.max.apply(null, nums) >= 4 ? 'eclab' : 'faible';
-  }
-  function bin(products, get, defs) {
-    var counts = defs.map(function () { return 0; }), known = 0;
-    products.forEach(function (p) {
-      var v = get(p);
-      if (v === null || v === undefined) return;
-      known++;
-      for (var i = 0; i < defs.length; i++) if (defs[i].t(v)) { counts[i]++; break; }
+  function bindSeg(box, name, cb) {
+    var g = box.querySelector('[data-seg="' + name + '"]'), bs = g.querySelectorAll('button');
+    g.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b) return;
+      Array.prototype.forEach.call(bs, function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      cb(b.dataset.v);
     });
-    return { rows: defs.map(function (d, i) { return { label: d.l, n: counts[i] }; }), known: known };
   }
+  function restart(el, anim) {
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = anim;
+  }
+
+  var DEMOS = {
+    /* Écran : fluidité (écart accentué) et profondeur du noir. */
+    fluid: function (box) {
+      box.innerHTML =
+        '<div class="sg-lanes"><div class="sg-lane"><span class="sg-lane-name">Peu d’images par seconde</span><div class="sg-track"><span class="sg-dot" data-fps="12"></span></div></div>' +
+        '<div class="sg-lane"><span class="sg-lane-name">Beaucoup d’images par seconde</span><div class="sg-track"><span class="sg-dot" data-fps="0"></span></div></div></div>' +
+        '<div class="sg-swatches"><span class="sg-sw sg-sw-oled"><i></i>OLED : le noir est éteint</span><span class="sg-sw sg-sw-lcd"><i></i>LCD : le noir reste éclairé</span></div>' +
+        '<p class="sg-static-alt">À 120 images par seconde, un défilement affiche deux fois plus d’étapes qu’à 60 : le mouvement paraît plus doux.</p>' +
+        '<p class="sg-sim">Simulation, écart accentué</p>';
+      if (reduceMotion) return;
+      var dots = box.querySelectorAll('.sg-dot'), raf = 0;
+      var loop = function (t) {
+        if (box.offsetParent !== null) Array.prototype.forEach.call(dots, function (d) {
+          var fps = Number(d.dataset.fps), tt = fps ? Math.floor(t / (1000 / fps)) * (1000 / fps) : t;
+          var ph = (tt % 2400) / 2400, x = ph < 0.5 ? ph * 2 : 2 - ph * 2;
+          d.style.transform = 'translateX(' + (x * (d.parentNode.clientWidth - d.offsetWidth)) + 'px)';
+        });
+        raf = requestAnimationFrame(loop);
+      };
+      raf = requestAnimationFrame(loop);
+      return function () { cancelAnimationFrame(raf); };
+    },
+
+    /* Processeur : les quatre gammes de la note du guide. */
+    gauge: function (box) {
+      var G = [
+        ['entree', 'Entrée', [1, 3], 'messages, web et vidéo'],
+        ['milieu', 'Milieu', [4, 6], 'usage courant et jeux occasionnels'],
+        ['haut', 'Haut', [7, 8], 'jeux exigeants et photo'],
+        ['sommet', 'Très haut', [9, 10], 'usages exigeants, et un téléphone gardé longtemps']
+      ];
+      var cells = '';
+      for (var i = 1; i <= 10; i++) cells += '<li data-n="' + i + '" style="height:' + (22 + i * 7.8) + '%;--i:' + i + '">' + i + '</li>';
+      box.innerHTML = '<ol class="sg-gauge is-pre" aria-hidden="true">' + cells + '</ol>' +
+        seg('Gamme de puce', 'g', G.map(function (g) { return [g[0], g[1]]; }), 'milieu') +
+        '<p class="sg-gauge-out" aria-live="polite"></p><p class="sg-sim">Note du guide : un classement, pas une mesure de vitesse</p>';
+      var gauge = box.querySelector('.sg-gauge'), out = box.querySelector('.sg-gauge-out');
+      function show(id) {
+        var g = G.filter(function (x) { return x[0] === id; })[0], r = g[2];
+        Array.prototype.forEach.call(gauge.children, function (li) {
+          var k = Number(li.dataset.n);
+          li.classList.toggle('is-mark', k >= r[0] && k <= r[1]);
+          li.classList.toggle('is-on', k < r[0]);
+        });
+        out.textContent = g[1] + ' de gamme, notes ' + r[0] + ' à ' + r[1] + ' : ' + g[3] + '.';
+      }
+      bindSeg(box, 'g', show);
+      show('milieu');
+      if (reduceMotion) gauge.classList.remove('is-pre');
+      else requestAnimationFrame(function () { requestAnimationFrame(function () { gauge.classList.remove('is-pre'); }); });
+    },
+
+    /* Mémoire vive : combien d’applications restent prêtes. */
+    ram: function (box) {
+      var tiles = '';
+      for (var i = 0; i < 8; i++) tiles += '<span class="sg-tile"><i></i></span>';
+      box.innerHTML = '<div class="sg-tiles" aria-hidden="true">' + tiles + '</div>' +
+        seg('Mémoire vive', 'r', [['4', '4 Go'], ['8', '8 Go'], ['12', '12 Go'], ['16', '16 Go']], '8') +
+        '<p class="sg-gauge-out" aria-live="polite"></p><p class="sg-sim">' + ILLU + ' : le nombre réel dépend du système et des applications</p>';
+      var els = box.querySelectorAll('.sg-tile'), out = box.querySelector('.sg-gauge-out'), ready = 4, cur = 0, timer = 0;
+      function show(v) {
+        ready = Number(v) / 2;
+        Array.prototype.forEach.call(els, function (t, k) { t.classList.toggle('is-ready', k < ready); });
+        out.textContent = ready + ' applications sur 8 restent prêtes ; les autres se rechargent quand vous y revenez.';
+      }
+      bindSeg(box, 'r', show);
+      show('8');
+      if (reduceMotion) return;
+      timer = setInterval(function () {
+        Array.prototype.forEach.call(els, function (t) { t.classList.remove('is-cur', 'is-loading'); });
+        cur = (cur + 1) % els.length;
+        els[cur].classList.add('is-cur');
+        if (cur >= ready) els[cur].classList.add('is-loading');
+      }, 1100);
+      return function () { clearInterval(timer); };
+    },
+
+    /* Stockage : ce qui remplit l’espace, selon l’usage. */
+    storage: function (box) {
+      var PROF = { leger: [30, 15, 10], photos: [40, 70, 20], video: [60, 60, 160] }, cap = 256, prof = 'leger';
+      box.innerHTML = '<div class="sg-sbar" aria-hidden="true"><i class="s3"></i><i class="s2"></i><i class="s1"></i></div>' +
+        '<ul class="sg-legend"><li><b class="k1"></b>Système et applications</li><li><b class="k2"></b>Photos</li><li><b class="k3"></b>Vidéos et jeux</li></ul>' +
+        seg('Capacité', 'c', [['128', '128 Go'], ['256', '256 Go'], ['512', '512 Go']], '256') +
+        seg('Usage', 'p', [['leger', 'Léger'], ['photos', 'Beaucoup de photos'], ['video', 'Vidéos et jeux']], 'leger') +
+        '<p class="sg-gauge-out" aria-live="polite"></p><p class="sg-sim">' + ILLU + ' : ordres de grandeur</p>';
+      var l = [box.querySelector('.s1'), box.querySelector('.s2'), box.querySelector('.s3')], out = box.querySelector('.sg-gauge-out');
+      function show() {
+        var p = PROF[prof], a = p[0], b = a + p[1], t = b + p[2];
+        [a, b, t].forEach(function (v, k) { l[k].style.transform = 'scaleX(' + Math.min(1, v / cap) + ')'; });
+        out.textContent = t > cap ? 'Plein : il faudrait supprimer ou sauvegarder des fichiers.' : t > cap * 0.85 ? 'Presque plein : il restera peu de marge.' : 'Marge confortable.';
+      }
+      bindSeg(box, 'c', function (v) { cap = Number(v); show(); });
+      bindSeg(box, 'p', function (v) { prof = v; show(); });
+      if (reduceMotion) show(); else requestAnimationFrame(function () { requestAnimationFrame(show); });
+    },
+
+    /* Appareil photo : stabilisation, recadrage, mégapixels. */
+    photo: function (box) {
+      box.innerHTML = '<div class="sg-viewfinder"><svg class="sg-vf-scene" viewBox="0 0 300 200" role="img" aria-label="Photo de paysage : arbre, collines et soleil">' +
+        '<rect width="300" height="200" fill="#bfe0ee"/><circle cx="222" cy="56" r="24" fill="#ffc94a"/>' +
+        '<path d="M0 132 C 60 104, 120 120, 170 112 S 260 96, 300 110 V200 H0Z" fill="#a9c26a"/>' +
+        '<path d="M0 156 C 70 140, 150 160, 210 150 S 280 140, 300 146 V200 H0Z" fill="#6f9a43"/>' +
+        '<rect x="74" y="110" width="7" height="40" fill="#6b4a2c"/><circle cx="78" cy="98" r="22" fill="#3f7a46"/><circle cx="64" cy="108" r="14" fill="#356b3c"/><circle cx="92" cy="106" r="15" fill="#468a4e"/></svg>' +
+        '<span class="sg-vf-corner c1"></span><span class="sg-vf-corner c2"></span><span class="sg-vf-corner c3"></span><span class="sg-vf-corner c4"></span></div>' +
+        '<div class="sg-toggles" role="group" aria-label="Réglages de la démonstration photo">' +
+        '<button type="button" class="sg-toggle" data-k="ois" aria-pressed="true">Stabilisation</button>' +
+        '<button type="button" class="sg-toggle" data-k="crop" aria-pressed="false">Recadrer ×3</button>' +
+        '<button type="button" class="sg-toggle" data-k="mp" aria-pressed="false">Peu de mégapixels</button></div>' +
+        '<p class="sg-sim">Simulation, pas une mesure</p>';
+      var vf = box.querySelector('.sg-viewfinder'), on = function (k) { return box.querySelector('[data-k="' + k + '"]').getAttribute('aria-pressed') === 'true'; };
+      var sync = function () { vf.classList.toggle('is-shake', !on('ois')); vf.classList.toggle('is-crop', on('crop')); vf.classList.toggle('is-lowmp', on('mp')); };
+      Array.prototype.forEach.call(box.querySelectorAll('[data-k]'), function (b) {
+        b.addEventListener('click', function () { b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true'); sync(); });
+      });
+      sync();
+    },
+
+    /* Batterie : capacité et usage décident de la durée. */
+    battery: function (box) {
+      box.innerHTML = '<div class="sg-bat" aria-hidden="true"><span class="sg-bat-cell"><i class="sg-bat-fill"></i></span></div>' +
+        seg('Capacité', 'c', [['4000', '4 000 mAh'], ['5000', '5 000 mAh'], ['6000', '6 000 mAh'], ['7000', '7 000 mAh']], '5000') +
+        seg('Usage', 'u', [['l', 'Léger'], ['i', 'Intensif']], 'l') +
+        '<p class="sg-gauge-out" aria-live="polite">À usage égal, plus de capacité tient plus longtemps. Un usage intensif vide toute batterie plus vite.</p>' +
+        '<p class="sg-sim">Durée relative, ' + ILLU.toLowerCase() + ' d’autonomie</p>';
+      var fill = box.querySelector('.sg-bat-fill'), cap = 5000, use = 'l';
+      function run() {
+        if (reduceMotion) { fill.style.transform = 'scaleX(' + (cap / 7000 * (use === 'i' ? 0.5 : 1)) + ')'; return; }
+        restart(fill, 'sg-drain ' + ((cap / 5000) * (use === 'i' ? 2.4 : 5.4)) + 's linear infinite');
+      }
+      bindSeg(box, 'c', function (v) { cap = Number(v); run(); });
+      bindSeg(box, 'u', function (v) { use = v; run(); });
+      run();
+    },
+
+    /* Charge : plus de watts, une barre qui se remplit plus vite, puis ralentit. */
+    charge: function (box) {
+      box.innerHTML = '<div class="sg-bat" aria-hidden="true"><span class="sg-bat-cell"><i class="sg-chg-fill"></i></span><span class="sg-bat-bolt"></span></div>' +
+        seg('Puissance de charge', 'w', [['15', '15 W'], ['30', '30 W'], ['65', '65 W'], ['100', '100 W']], '30') +
+        '<p class="sg-gauge-out" aria-live="polite">Plus de watts : la barre se remplit plus vite, puis ralentit vers la fin pour protéger la batterie.</p>' +
+        '<p class="sg-sim">Durée relative, ' + ILLU.toLowerCase() + '</p>';
+      var fill = box.querySelector('.sg-chg-fill');
+      function run(w) {
+        if (reduceMotion) { fill.style.transform = 'scaleX(1)'; return; }
+        restart(fill, 'sg-charge ' + (1 + 48 / Number(w)) + 's linear infinite');
+      }
+      bindSeg(box, 'w', run);
+      run('30');
+    },
+
+    /* Étanchéité : ce que chaque indice couvre. */
+    ip: function (box) {
+      var CAP = {
+        x4: 'IPx4 : éclaboussures et pluie, dans toutes les directions.',
+        x7: 'IPx7 : immersion brève, en général 1 m pendant 30 minutes.',
+        x8: 'IPx8 : immersion prolongée, selon la profondeur et la durée annoncées par le fabricant.',
+        x9: 'IP69 : jets d’eau chaude à haute pression. Ce n’est pas forcément une résistance à l’immersion.'
+      };
+      box.innerHTML = '<div class="sg-ipscene" data-mode="x4" aria-hidden="true"><span class="sg-ipp"></span><span class="sg-ipw"></span>' +
+        '<span class="sg-ipdrops"><b></b><b></b><b></b><b></b></span><span class="sg-ipjets"><u></u><u></u><u></u></span></div>' +
+        seg('Indice de protection', 'm', [['x4', 'IPx4'], ['x7', 'IPx7'], ['x8', 'IPx8'], ['x9', 'IP69']], 'x4') +
+        '<p class="sg-gauge-out" aria-live="polite"></p><p class="sg-sim">Illustration ; tests en laboratoire, en eau douce</p>';
+      var sc = box.querySelector('.sg-ipscene'), out = box.querySelector('.sg-gauge-out');
+      function show(m) { sc.dataset.mode = m; out.textContent = CAP[m]; }
+      bindSeg(box, 'm', show);
+      show('x4');
+    },
+
+    /* Mises à jour : combien de temps le téléphone reste suivi. */
+    maj: function (box) {
+      var ticks = '';
+      for (var i = 1; i <= 7; i++) ticks += '<li>' + i + '</li>';
+      box.innerHTML = '<div class="sg-tl" aria-hidden="true"><div class="sg-tl-track"><i class="sg-tl-on"></i><span class="sg-tl-pin"></span></div><ol class="sg-tl-ticks">' + ticks + '</ol><p class="sg-tl-unit">années après l’achat</p></div>' +
+        '<ul class="sg-legend"><li><b class="k2"></b>Suivi par le fabricant</li><li><b class="k4"></b>Plus de correctifs</li></ul>' +
+        seg('Durée annoncée', 'y', [['3', '3 ans'], ['5', '5 ans'], ['7', '7 ans']], '5') +
+        '<p class="sg-gauge-out" aria-live="polite"></p><p class="sg-sim">Exemple de durées ; chaque fabricant annonce la sienne</p>';
+      var on = box.querySelector('.sg-tl-on'), out = box.querySelector('.sg-gauge-out');
+      function show(y) {
+        on.style.transform = 'scaleX(' + (Number(y) / 7) + ')';
+        out.textContent = 'Correctifs de sécurité et nouvelles versions pendant ' + y + ' ans ; ensuite, le téléphone n’est plus suivi.';
+      }
+      bindSeg(box, 'y', show);
+      if (reduceMotion) show('5'); else { out.textContent = ''; requestAnimationFrame(function () { requestAnimationFrame(function () { show('5'); }); }); }
+    }
+  };
+
   var ANAT = [
-    { id: 'ecran', nom: 'Écran', layer: 'screen', part: '.sg-scan, .sg-app', step: 'ecran',
-      role: 'La dalle tactile. Sa technologie (OLED ou LCD) et sa fréquence en hertz (Hz) décident du rendu et de la fluidité.',
-      effet: 'Des noirs plus profonds, et un défilement plus doux à 90 ou 120 Hz.',
-      savoir: 'Une fréquence élevée peut consommer plus ; l’écran LTPO ajuste sa fréquence pour limiter cela.',
-      titre: 'Fréquence maximale de l’écran',
-      data: function (ps) { return bin(ps, function (p) { return num(F.get(p, ['compatibilite', 'ecran', 'frequence_max_hz'])); }, [
-        { l: '60 Hz', t: function (v) { return v <= 60; } }, { l: '90 Hz', t: function (v) { return v <= 90; } },
-        { l: '120 Hz', t: function (v) { return v <= 120; } }, { l: '144 Hz et plus', t: function () { return true; } }]); } },
-    { id: 'puce', nom: 'Processeur', layer: 'board', part: '.sg-chip-cpu', step: 'processeur',
-      role: 'Le cerveau du téléphone : il exécute les applications, les jeux et le traitement des photos.',
-      effet: 'Des applications qui s’ouvrent sans attendre, aujourd’hui et dans quelques années.',
-      savoir: 'Le guide note la puce de 1 à 10 d’après son nom : c’est un classement, pas une mesure de vitesse.',
-      titre: 'Gamme de la puce (note du guide)',
-      data: function (ps) { return bin(ps, function (p) { var g = L.gammeOf(F.niveau(p)); return g ? g.id : null; }, [
-        { l: 'Entrée de gamme (1–3)', t: function (v) { return v === 'entree'; } }, { l: 'Milieu de gamme (4–6)', t: function (v) { return v === 'milieu'; } },
-        { l: 'Haut de gamme (7–8)', t: function (v) { return v === 'haut'; } }, { l: 'Très haut de gamme (9–10)', t: function () { return true; } }]); } },
-    { id: 'ram', nom: 'Mémoire vive', layer: 'board', part: '.sg-chip-ram',
-      role: 'La mémoire de travail : elle garde vos applications ouvertes, prêtes à reprendre.',
+    { id: 'ecran', nom: 'Écran', layer: 'screen', part: '.sg-scan, .sg-app', demo: 'fluid', step: 'ecran',
+      lead: 'La dalle que vous touchez et regardez toute la journée.',
+      effet: 'Un défilement plus doux avec plus d’images par seconde, et des noirs plus profonds en OLED.',
+      regarder: 'La technologie (OLED ou LCD) et la fréquence maximale en hertz : 60, 90, 120 Hz ou plus. Un écran LTPO ajuste sa fréquence pour économiser la batterie.',
+      piege: 'Une fréquence élevée consomme plus si elle reste fixe. Regardez aussi la luminosité en plein soleil, que la fiche cite peu.' },
+    { id: 'puce', nom: 'Processeur', layer: 'board', part: '.sg-chip-cpu', demo: 'gauge', step: 'processeur',
+      lead: 'Le cerveau du téléphone : il exécute les applications, les jeux et le traitement des photos.',
+      effet: 'Des applications qui s’ouvrent sans attendre, aujourd’hui comme dans quelques années.',
+      regarder: 'La gamme de la puce, d’après la note du guide. Le nombre de cœurs ou de gigahertz ne suffit pas pour comparer deux puces.',
+      piege: 'La note est un classement, pas une mesure de vitesse. Une puce non identifiée reste sans note : le guide ne la devine pas.' },
+    { id: 'ram', nom: 'Mémoire vive', layer: 'board', part: '.sg-chip-ram', demo: 'ram',
+      lead: 'La mémoire de travail : elle garde vos applications ouvertes, prêtes à reprendre.',
       effet: 'Passer d’une application à l’autre sans tout recharger.',
-      savoir: 'Ce n’est pas l’espace de stockage. Au-delà de 8 Go, le gain se sent surtout en multitâche lourd ou en jeu.',
-      titre: 'Mémoire vive annoncée',
-      data: function (ps) { return bin(ps, function (p) { return num(F.get(p, ['compatibilite', 'performance', 'ram_go_max'])); }, [
-        { l: '4 à 6 Go', t: function (v) { return v <= 6; } }, { l: '8 Go', t: function (v) { return v <= 8; } },
-        { l: '12 Go', t: function (v) { return v <= 12; } }, { l: '16 Go et plus', t: function () { return true; } }]); } },
-    { id: 'stockage', nom: 'Stockage', layer: 'board', part: '.sg-chip-sto',
-      role: 'L’espace pour vos applications, photos, vidéos et fichiers.',
+      regarder: 'En général, 8 Go suffisent pour un usage courant ; 12 Go et plus servent surtout au jeu et au multitâche lourd.',
+      piege: 'Ce n’est pas l’espace de stockage. Plus de mémoire vive ne rattrape pas une puce lente.' },
+    { id: 'stockage', nom: 'Stockage', layer: 'board', part: '.sg-chip-sto', demo: 'storage',
+      lead: 'L’espace pour vos applications, vos photos, vos vidéos et vos fichiers.',
       effet: 'Un stockage trop juste oblige à supprimer des photos ou des applications.',
-      savoir: 'Vérifiez si le modèle accepte une carte mémoire : sans cela, l’espace ne se rajoute pas.',
-      titre: 'Stockage',
-      data: function (ps) { return bin(ps, stockageGo, [
-        { l: '64 Go', t: function (v) { return v <= 64; } }, { l: '128 Go', t: function (v) { return v <= 128; } },
-        { l: '256 Go', t: function (v) { return v <= 256; } }, { l: '512 Go et plus', t: function () { return true; } }]); } },
-    { id: 'photo', nom: 'Appareil photo', layer: 'board', part: '.sg-lens', step: 'photo',
-      role: 'Un capteur, des objectifs et un traitement logiciel. Les mégapixels n’en sont qu’une partie.',
+      regarder: 'Les vidéos et les jeux remplissent le plus. Si vos photos sont sauvegardées en ligne, 128 Go peuvent suffire ; sinon, visez plus large.',
+      piege: 'Le système occupe déjà une partie de l’espace. Vérifiez si le modèle accepte une carte mémoire : sans cela, l’espace ne s’étend pas.' },
+    { id: 'photo', nom: 'Appareil photo', layer: 'board', part: '.sg-lens', demo: 'photo', step: 'photo',
+      lead: 'Un capteur, des objectifs et un traitement logiciel : les mégapixels n’en sont qu’une partie.',
       effet: 'Des photos plus nettes de nuit, une vidéo stable en marchant, un recadrage qui garde le détail.',
-      savoir: 'La taille du capteur et la stabilisation optique (OIS) comptent souvent plus que les mégapixels. L’OIS est souvent non précisée.',
-      titre: 'Mégapixels du capteur principal',
-      data: function (ps) { return bin(ps, function (p) { return F.mp(p); }, [
-        { l: '48 MP ou moins', t: function (v) { return v <= 48; } }, { l: '50 MP', t: function (v) { return v <= 50; } },
-        { l: '64 à 108 MP', t: function (v) { return v <= 108; } }, { l: '200 MP', t: function () { return true; } }]); } },
-    { id: 'batterie', nom: 'Batterie', layer: 'batt', part: '.sg-cell', step: 'batterie',
-      role: 'La capacité de la batterie, en milliampères-heures (mAh).',
-      effet: 'À usage égal, plus de capacité laisse en général plus de marge le soir.',
-      savoir: 'L’autonomie dépend aussi de l’écran, de la puce et de votre usage : le catalogue ne la mesure pas.',
-      titre: 'Capacité de la batterie',
-      data: function (ps) { return bin(ps, function (p) { return F.mah(p); }, [
-        { l: 'Moins de 4 500 mAh', t: function (v) { return v < 4500; } }, { l: '4 500 à 5 499 mAh', t: function (v) { return v < 5500; } },
-        { l: '5 500 à 6 499 mAh', t: function (v) { return v < 6500; } }, { l: '6 500 mAh et plus', t: function () { return true; } }]); } },
-    { id: 'charge', nom: 'Charge', layer: 'batt', part: '.sg-bolt, .sg-port',
-      role: 'La puissance maximale de recharge, en watts (W).',
+      regarder: 'La taille du capteur, la stabilisation optique (OIS) et le mode nuit pèsent souvent plus que le nombre de mégapixels.',
+      piege: 'Beaucoup de mégapixels sur un petit capteur ne garantissent rien. L’OIS est souvent non précisée sur les fiches.' },
+    { id: 'batterie', nom: 'Batterie', layer: 'batt', part: '.sg-cell', demo: 'battery', step: 'batterie',
+      lead: 'La capacité de la batterie, en milliampères-heures (mAh).',
+      effet: 'À usage égal, plus de capacité laisse plus de marge en fin de journée.',
+      regarder: 'La capacité, la puissance de charge, et l’efficacité de l’écran et de la puce : c’est l’ensemble qui décide de l’autonomie.',
+      piege: 'Deux téléphones de même capacité n’ont pas la même autonomie. Une grosse batterie rend souvent l’appareil plus lourd.' },
+    { id: 'charge', nom: 'Charge', layer: 'batt', part: '.sg-bolt, .sg-port', demo: 'charge',
+      lead: 'La puissance maximale de recharge, en watts (W).',
       effet: 'Plus de watts : une recharge plus rapide, avec un chargeur compatible.',
-      savoir: 'Le chargeur n’est pas toujours dans la boîte, et la vitesse baisse souvent en fin de charge.',
-      titre: 'Puissance de charge maximale',
-      data: function (ps) { return bin(ps, function (p) { return num(F.get(p, ['compatibilite', 'batterie', 'recharge_watts'])); }, [
-        { l: '30 W ou moins', t: function (v) { return v <= 30; } }, { l: '31 à 65 W', t: function (v) { return v <= 65; } },
-        { l: '66 à 100 W', t: function (v) { return v <= 100; } }, { l: 'Plus de 100 W', t: function () { return true; } }]); } },
-    { id: 'protection', nom: 'Étanchéité', layer: 'frame', part: '.sg-seal, .sg-drops', step: 'protection',
-      role: 'L’indice IP dit la résistance à la poussière puis à l’eau.',
+      regarder: 'Si le chargeur est fourni, et si la puissance annoncée est tenue longtemps ou seulement quelques minutes.',
+      piege: 'La vitesse baisse en fin de charge pour protéger la batterie. Le chargeur n’est pas toujours dans la boîte.' },
+    { id: 'protection', nom: 'Étanchéité', layer: 'frame', part: '.sg-seal, .sg-drops', demo: 'ip', step: 'protection',
+      lead: 'L’indice IP dit la résistance à la poussière, puis à l’eau.',
       effet: 'La pluie, un verre renversé ou une chute dans l’eau douce font moins de dégâts.',
-      savoir: 'IPx7 et IPx8 : immersion déclarée. IP69 : jets d’eau, pas forcément immersion. La garantie couvre rarement l’eau.',
-      titre: 'Résistance à l’eau déclarée',
-      data: function (ps) { return bin(ps, ipClass, [
-        { l: 'Faible (moins de IPx4)', t: function (v) { return v === 'faible'; } }, { l: 'Éclaboussures (IPx4 à IPx6)', t: function (v) { return v === 'eclab'; } },
-        { l: 'Immersion déclarée (IPx7, IPx8)', t: function (v) { return v === 'imm'; } }, { l: 'Jets d’eau (IP69 seul)', t: function () { return true; } }]); } }
+      regarder: 'Le second chiffre : 4 pour les éclaboussures, 7 pour l’immersion brève, 8 pour l’immersion prolongée. Un X veut dire « non testé ».',
+      piege: 'Tests en laboratoire, en eau douce. La garantie couvre rarement l’eau. IP69 seul décrit des jets d’eau, pas forcément l’immersion.' },
+    { id: 'maj', nom: 'Mises à jour', layer: 'screen', part: '.sg-app', demo: 'maj', step: 'maj',
+      lead: 'Le temps pendant lequel le fabricant corrige les failles et fait évoluer le système.',
+      effet: 'Un téléphone suivi plus longtemps reste sûr et compatible plus longtemps : on peut le garder plus longtemps.',
+      regarder: 'Deux durées à distinguer : les correctifs de sécurité et les nouvelles versions du système. Cherchez les deux, en années.',
+      piege: 'La promesse varie selon le fabricant et le modèle, et la fiche ne la cite pas toujours. Le guide ne s’en sert pas pour recommander.' }
   ];
 
   function goStep(id) {
@@ -640,16 +673,17 @@
     if (b.focus) b.focus({ preventScroll: true });
   }
 
-  function setupAnatomy(products) {
+  function setupAnatomy() {
     var tabsEl = document.getElementById('sg-anat-tabs'), panel = document.getElementById('sg-anat-panel'), stage = document.getElementById('sg-anat-stage');
     if (!tabsEl || !panel || !stage) return;
     tabsEl.innerHTML = ANAT.map(function (c, i) {
       return '<button type="button" role="tab" id="sg-at-' + c.id + '" class="sg-at" aria-selected="false" aria-controls="sg-anat-panel" tabindex="-1" data-i="' + i + '">' + esc(c.nom) + '</button>';
     }).join('');
-    var btns = Array.prototype.slice.call(tabsEl.querySelectorAll('button'));
+    var btns = Array.prototype.slice.call(tabsEl.querySelectorAll('button')), cleanup = null;
 
     function select(i, focus) {
       var c = ANAT[i];
+      if (cleanup) { cleanup(); cleanup = null; }
       btns.forEach(function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); b.tabIndex = j === i ? 0 : -1; });
       panel.setAttribute('aria-labelledby', 'sg-at-' + c.id);
       Array.prototype.forEach.call(stage.querySelectorAll('.is-lift, .is-on, .is-above'), function (e) { e.classList.remove('is-lift', 'is-on', 'is-above'); });
@@ -660,21 +694,14 @@
         if (el) el.classList.add(k === at ? 'is-lift' : (k > at ? 'is-above' : 'is-below'));
       });
       Array.prototype.forEach.call(stage.querySelectorAll(c.part), function (e) { e.classList.add('is-on'); });
-      var h = c.data(products), max = Math.max.apply(null, h.rows.map(function (r) { return r.n; }).concat(1));
       panel.innerHTML =
-        '<h3 class="sg-anat-h">' + esc(c.nom) + '</h3>' +
-        '<dl class="sg-anat-dl"><div><dt>C’est quoi</dt><dd>' + esc(c.role) + '</dd></div>' +
-        '<div><dt>Ce que ça change</dt><dd>' + esc(c.effet) + '</dd></div>' +
-        '<div><dt>À savoir</dt><dd>' + esc(c.savoir) + '</dd></div></dl>' +
-        '<div class="sg-hist"><p class="sg-hist-t">Dans le catalogue : <b>' + esc(c.titre) + '</b></p><ul>' +
-        h.rows.map(function (r) {
-          return '<li><span class="sg-hist-l">' + esc(r.label) + '</span><span class="sg-hist-bar" aria-hidden="true"><i data-w="' + Math.round(r.n / max * 100) + '"></i></span><span class="sg-hist-n">' + r.n + '</span></li>';
-        }).join('') + '</ul><p class="sg-fine">' + h.known + ' modèles renseignés sur ' + products.length + '. Répartition du catalogue, pas une mesure de qualité.</p></div>' +
-        (c.step ? '<button type="button" class="sg-mini-btn sg-anat-go" data-goto="' + c.step + '">Voir ce critère dans le parcours</button>'
-                : '<p class="sg-fine">Pas encore un critère du parcours : à lire dans la fiche du modèle.</p>');
-      var bars = panel.querySelectorAll('.sg-hist-bar i');
-      var fill = function () { Array.prototype.forEach.call(bars, function (b) { b.style.width = b.dataset.w + '%'; }); };
-      if (reduceMotion) fill(); else requestAnimationFrame(function () { requestAnimationFrame(fill); });
+        '<h3 class="sg-anat-h">' + esc(c.nom) + '</h3><p class="sg-anat-lead">' + esc(c.lead) + '</p>' +
+        '<div class="sg-demo sg-anat-demo"></div>' +
+        '<dl class="sg-anat-dl"><div><dt>Ce que ça change</dt><dd>' + esc(c.effet) + '</dd></div>' +
+        '<div><dt>Ce qu’il faut regarder</dt><dd>' + esc(c.regarder) + '</dd></div>' +
+        '<div><dt>Le piège</dt><dd>' + esc(c.piege) + '</dd></div></dl>' +
+        (c.step ? '<button type="button" class="sg-mini-btn sg-anat-go" data-goto="' + c.step + '">Voir ce critère dans le parcours</button>' : '');
+      cleanup = DEMOS[c.demo](panel.querySelector('.sg-anat-demo')) || null;
       if (focus) btns[i].focus();
     }
 
@@ -697,34 +724,13 @@
     }, { threshold: 0.35 }).observe(stage);
   }
 
-  /* Apparition progressive : seulement si le mouvement est autorisé ; sinon tout reste visible. */
-  function setupReveal() {
-    if (reduceMotion || !('IntersectionObserver' in window)) return;
-    var root = document.querySelector('.sg');
-    var els = document.querySelectorAll('.sg-card, .sg-feat-card, .sg-month-ref, .sg-alts li');
-    if (!root || !els.length) return;
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    Array.prototype.forEach.call(els, function (el, i) {
-      el.classList.add('sg-reveal');
-      el.style.transitionDelay = (i % 3) * 70 + 'ms';
-      io.observe(el);
-    });
-    root.classList.add('sg-motion');
-  }
-
   /* ---------- Démarrage ---------- */
   function init() {
     setupTabs();
-    setupHints();
-    setupFluid();
-    setupPhoto();
-    setupReveal();
+    setupAnatomy();
     setupHero();
     setupDock();
     document.getElementById('sg-steps').addEventListener('click', onStepsClick);
-    document.querySelector('[data-action="replay-bars"]').addEventListener('click', function () { bars.play(false); });
     fetch('data/smartphones.json')
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) {
@@ -732,9 +738,6 @@
         guide = new L.Guide(products);
         buildSteps(); render();
         renderMonth(products);
-        bars.build(products);
-        setupChipScale(products);
-        setupAnatomy(products);
         document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(products.length); });
         var dates = products.map(function (p) { return p.prix_date; }).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x || ''); }).sort();
         document.querySelectorAll('[data-pricedate]').forEach(function (el) { el.textContent = dates.length ? dateFr(dates[dates.length - 1], true) : '—'; });
