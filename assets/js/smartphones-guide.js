@@ -87,7 +87,7 @@
         '<p class="sg-q">' + esc(s.question) + '</p><p class="sg-aide">' + esc(s.aide) + '</p>' +
         '<p class="sg-warn" id="sg-warn-' + s.id + '" hidden></p>' +
         '<ul class="sg-opts sg-opts-' + s.id + '" id="sg-opts-' + s.id + '"></ul>' +
-        '<div class="sg-step-actions"><button type="button" class="sg-link-btn" data-skip="' + s.id + '">Passer cette étape</button>' +
+        '<div class="sg-step-actions"><button type="button" class="sg-link-btn" data-skip="' + s.id + '"' + (s.id === 'prix' ? ' hidden' : '') + '>Passer cette étape</button>' +
         '<button type="button" class="sg-link-btn" data-clear="' + s.id + '" hidden>Retirer mon choix</button></div>' +
         '</div></div></li>';
     }).join('');
@@ -140,7 +140,7 @@
       warn.hidden = !broken;
       if (broken) warn.textContent = '« ' + o.label + ' » ne correspond plus. ' + reasonText(guide.availability(s.id, o.id)) + ' Retirez ce choix ou changez de budget.';
       li.querySelector('[data-clear]').hidden = !choice;
-      li.querySelector('[data-skip]').hidden = choice === L.SKIP;
+      li.querySelector('[data-skip]').hidden = s.id === 'prix' || choice === L.SKIP;
     });
   }
 
