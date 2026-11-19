@@ -48,7 +48,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <section class="sg-hero" aria-labelledby="sg-title">
 <div class="sg-wrap sg-hero-grid">
 <div class="sg-hero-text">
-<p class="sg-dotlabel">Guide smartphones · <span data-count>146</span> modèles</p>
 <h1 id="sg-title"><span class="sg-h1-light">Le bon smartphone,</span> <span class="sg-sticker-text">c’est celui qui vous convient.</span></h1>
 <p class="sg-lead">Fixez un budget, puis ce qui compte pour vous. Seules les options qui existent à ce prix restent proposées.</p>
 <div class="sg-hero-actions">
@@ -101,7 +100,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-zone" hidden>
 
 <section class="sg-anat" id="sg-anat" aria-labelledby="sg-h-anat">
-<div class="sg-sec-head"><p class="sg-dotlabel">Anatomie d’un téléphone</p><h2 id="sg-h-anat"><span class="sg-h-light">Ce qu’il y a dedans,</span> et ce que ça change pour vous.</h2></div>
+<div class="sg-sec-head"><h2 id="sg-h-anat"><span class="sg-h-light">Ce qu’il y a dedans,</span> et ce que ça change pour vous.</h2></div>
 <div class="sg-anat-grid">
 <div class="sg-anat-stage" id="sg-anat-stage" data-open="false" aria-hidden="true">
 <div class="sg-stack">
@@ -124,8 +123,25 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div>
 </section>
 
+<section class="sg-tests" id="sg-tests" aria-labelledby="sg-h-tests">
+<div class="sg-sec-head"><h2 id="sg-h-tests"><span class="sg-h-light">Ce que disent les tests,</span> mesure par mesure.</h2>
+<p class="sg-sec-lead">Des essais publiés par des testeurs, avec leurs conditions. Comparez les téléphones à l’intérieur d’un même test, jamais d’un test à l’autre : les protocoles diffèrent.</p></div>
+<div class="sg-tests-grid">
+<div class="sg-tests-list" id="sg-tests-list" role="tablist" aria-label="Tests publiés" aria-orientation="vertical"></div>
+<div class="sg-tests-panel" id="sg-tests-panel" role="tabpanel" tabindex="0"><p class="sg-loading">Chargement des tests…</p></div>
+</div>
+<div class="sg-same" id="sg-same"></div>
+</section>
+
+<section class="sg-fiche" id="sg-fiche" aria-labelledby="sg-h-fiche">
+<div class="sg-sec-head"><h2 id="sg-h-fiche"><span class="sg-h-light">Un modèle en détail,</span> avec ses preuves.</h2>
+<p class="sg-sec-lead">Caractéristiques annoncées, résultats de tests et observations, chacun rattaché à sa source.</p></div>
+<div class="sg-fiche-pick"><label for="sg-fiche-sel">Choisir un modèle</label><select id="sg-fiche-sel" class="sg-select"></select></div>
+<div class="sg-fiche-card" id="sg-fiche-card" aria-live="polite"></div>
+</section>
+
 <section class="sg-feat" aria-labelledby="sg-h-feat">
-<div class="sg-sec-head"><p class="sg-dotlabel">Fonctionnalités à connaître</p><h2 id="sg-h-feat"><span class="sg-h-light">Ce que la fiche met peu en avant,</span> à vérifier avant d’acheter.</h2></div>
+<div class="sg-sec-head"><h2 id="sg-h-feat"><span class="sg-h-light">Ce que la fiche met peu en avant,</span> à vérifier avant d’acheter.</h2></div>
 <ul class="sg-feats">
 <li class="sg-feat-card"><span class="sg-fi sg-fi-5g" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h3>5G</h3>
 <p><b>Sert à</b> un débit mobile plus élevé, quand le réseau le permet.</p>
@@ -148,7 +164,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone" hidden>
-<div class="sg-sec-head"><p class="sg-dotlabel">Analyseur</p><h2><span class="sg-h-light">Vérifier un modèle</span> précis.</h2></div>
+<div class="sg-sec-head"><h2><span class="sg-h-light">Vérifier un modèle</span> précis.</h2></div>
 <div class="sg-frame-wrap"><iframe id="sg-frame" class="sg-frame" title="Analyseur de smartphones" src="about:blank" data-src="analyseur.html?cat=smartphones"></iframe></div>
 <p class="sg-fine"><a href="analyseur.html?cat=smartphones">Ouvrir l’Analyseur dans une page séparée</a></p>
 </section>

@@ -1,0 +1,3164 @@
+{
+ "version": "2026-11-19",
+ "sources": {
+  "T01-T11": "data/sources/base-tests-T01-T11.md",
+  "T12-T16": "data/sources/base-tests-T12-T16.md"
+ },
+ "statuts": {
+  "spec_constructeur": "Fiche officielle du fabricant.",
+  "spec_secondaire": "Caractéristique non vérifiée dans la fiche officielle.",
+  "mesure_publiee": "Résultat précis publié ou lu à l’écran dans la vidéo.",
+  "estimation": "Valeur déduite (par exemple des mAh estimés d’après une jauge).",
+  "ordre_de_grandeur": "Durée arrondie rapportée par l’auteur, sans chronométrage.",
+  "observation": "Constat qualitatif du testeur sur les scènes montrées.",
+  "fonction_prise_en_charge": "Mode ou fonction disponible, pas une mesure.",
+  "divergence": "Deux chiffres contradictoires, non moyennés.",
+  "mention": "Produit simplement cité."
+ },
+ "modeles": [
+  {
+   "id": "iphone-17",
+   "nom": "Apple iPhone 17",
+   "puce_ecran": "A19 ; OLED 6,3″, 120 Hz (Apple France)",
+   "batterie_charge": "3 692 mAh sur les unités décrites (T03, PhoneBuff, T10, TechNick)",
+   "photo_arriere": "48 + 48 Mpx (Apple France)",
+   "presence": "T01, T03, T10",
+   "sources": [
+    "https://www.apple.com/fr/iphone-17/specs/",
+    "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=11s",
+    "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=276s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "iphone-air",
+   "nom": "Apple iPhone Air",
+   "puce_ecran": "A19 Pro ; OLED 6,5″, 120 Hz (Apple France)",
+   "batterie_charge": "3 149 mAh affichés dans le test (T01, PhoneBuff)",
+   "photo_arriere": "48 Mpx (Apple France)",
+   "presence": "T01",
+   "sources": [
+    "https://www.apple.com/fr/iphone-air/specs/",
+    "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=555s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "iphone-18-pro",
+   "nom": "Apple iPhone 18 Pro",
+   "puce_ecran": "A20 Pro ; OLED 6,3″, 120 Hz (Apple France)",
+   "batterie_charge": "4 288 mAh en T01 ; 4 056 mAh en T08, variante nano-SIM selon PhoneArena (T01, T08)",
+   "photo_arriere": "48 + 48 + 48 Mpx ; télé 4× (Apple France)",
+   "presence": "T01, T08",
+   "sources": [
+    "https://www.apple.com/fr/iphone-18-pro/specs/",
+    "https://www.phonearena.com/phones/compare/Apple-iPhone-18-Pro-Max,Apple-iPhone-18-Pro/phones/12880,12884",
+    "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=555s",
+    "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=15s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "iphone-18-pro-max",
+   "nom": "Apple iPhone 18 Pro Max",
+   "puce_ecran": "A20 Pro ; OLED 6,9″, 120 Hz (Apple France)",
+   "batterie_charge": "5 567 mAh en T01 ; 5 391 mAh en T07 et T09, variante nano-SIM ; non précisée en T02 (T01, T07, T09, PhoneArena)",
+   "photo_arriere": "48 + 48 + 48 Mpx ; télé 4× (Apple France)",
+   "presence": "T01, T02, T07, T09",
+   "sources": [
+    "https://www.apple.com/fr/iphone-18-pro/specs/",
+    "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=555s",
+    "https://www.youtube.com/watch?v=48RnplrImcE&t=17s",
+    "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=196s",
+    "https://www.phonearena.com/phones/compare/Apple-iPhone-18-Pro-Max,Apple-iPhone-18-Pro/phones/12880,12884"
+   ],
+   "lot": 1,
+   "complements": [
+    {
+     "rattachement": "Comparateur T12 ; variante de batterie non identifiée",
+     "texte": "Comparaison de portraits, scènes photo et autonomie perçue. Ne pas lui attribuer la capacité d’une unité d’un autre test (T12, 00:15, 05:19, 06:44).",
+     "sources": [
+      "https://www.youtube.com/watch?v=8v47Qy4POvo&t=15s",
+      "https://www.youtube.com/watch?v=8v47Qy4POvo&t=319s",
+      "https://www.youtube.com/watch?v=8v47Qy4POvo&t=404s"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "iphone-duo",
+   "nom": "Apple iPhone Duo",
+   "puce_ecran": "A20 Pro ; OLED pliant 7,6″ interne / OLED 5,4″ externe, jusqu’à 120 Hz chacun (Apple France)",
+   "batterie_charge": "4 883 mAh, total affiché dans le test (T01, Phandroid)",
+   "photo_arriere": "48 + 48 Mpx (Apple France)",
+   "presence": "T01",
+   "sources": [
+    "https://www.apple.com/fr/iphone-duo/specs/",
+    "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=555s",
+    "https://phandroid.com/2026/11/19/the-iphone-duos-battery-life-is-better-than-you-might-expect/"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "galaxy-a57-5g",
+   "nom": "Samsung Galaxy A57 5G",
+   "puce_ecran": "Exynos 1680 ; Super AMOLED Plus 6,7″, 120 Hz (Samsung France)",
+   "batterie_charge": "5 000 mAh ; 45 W (Samsung France, GSMArena)",
+   "photo_arriere": "50 Mpx principal + 12 Mpx ultra grand-angle + 5 Mpx macro (Samsung France)",
+   "presence": "T03, T10",
+   "sources": [
+    "https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a57-5g-awesome-navy-256gb-sm-a576bdbdeub/",
+    "https://www.gsmarena.com/samsung_galaxy_a57-14379.php"
+   ],
+   "lot": 1,
+   "complements": [
+    {
+     "rattachement": "galaxy-a57-5g-5000 dans T14",
+     "texte": "Même fiche : Exynos 1680, Super AMOLED Plus 6,7″ 120 Hz, 5 000 mAh, 45 W ; 50 + 12 Mpx + macro 5 Mpx. Type de retour ajouté : jeu et photo, pas une nouvelle mesure d’autonomie (Samsung France, GSMArena, charge, T14, 07:11).",
+     "sources": [
+      "https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a57-5g-awesome-navy-256gb-sm-a576bdbdeub/",
+      "https://www.gsmarena.com/samsung_galaxy_a57-14379.php",
+      "https://www.youtube.com/watch?v=zw30rfxoVO4&t=431s"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "galaxy-s26",
+   "nom": "Samsung Galaxy S26",
+   "puce_ecran": "Exynos 2600 en France ; Snapdragon 8 Elite Gen 5 for Galaxy sur l’autre variante T08 ; AMOLED 6,3″, 120 Hz (Samsung France, GSMArena, T08, Techmo)",
+   "batterie_charge": "4 300 mAh ; 25 W filaire, 15 W sans fil (GSMArena)",
+   "photo_arriere": "50 + 12 + 10 Mpx ; télé 3× (Samsung US)",
+   "presence": "T08 (deux puces), T10 (Exynos d’après l’incrustation)",
+   "sources": [
+    "https://www.samsung.com/fr/business/smartphones/galaxy-s/galaxy-s26-silver-shadow-256gb-sm-s942bzsgeub/",
+    "https://www.gsmarena.com/samsung_galaxy_s26-review-2942.php",
+    "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=30s",
+    "https://www.gsmarena.com/samsung_galaxy_s26_5g-14456.php",
+    "https://www.samsung.com/us/smartphones/galaxy-s26/"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "galaxy-s26-ultra",
+   "nom": "Samsung Galaxy S26 Ultra",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 for Galaxy ; AMOLED 6,9″, 120 Hz (Samsung France, Samsung US)",
+   "batterie_charge": "5 000 mAh ; 60 W filaire, 25 W sans fil (GSMArena)",
+   "photo_arriere": "200 + 50 + 10 Mpx (3×) + 50 Mpx (5×) (Samsung France, T04)",
+   "presence": "T02, T04, T07",
+   "sources": [
+    "https://www.samsung.com/fr/smartphones/galaxy-s26-ultra/specs/",
+    "https://samsung.com/us/smartphones/galaxy-s26-ultra/",
+    "https://www.gsmarena.com/samsung_galaxy_s26_ultra_5g-14320.php",
+    "https://www.youtube.com/watch?v=pVFErYxYWKU&t=267s"
+   ],
+   "lot": 1,
+   "complements": [
+    {
+     "rattachement": "Comparateur T12 ; model_id existant",
+     "texte": "Démonstration du filtre de confidentialité et comparaison d’autonomie perçue, sans nouvelle durée absolue (T12, 03:48, 05:19).",
+     "sources": [
+      "https://www.youtube.com/watch?v=8v47Qy4POvo&t=228s",
+      "https://www.youtube.com/watch?v=8v47Qy4POvo&t=319s"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pixel-11",
+   "nom": "Google Pixel 11",
+   "puce_ecran": "Tensor G6 ; OLED 6,3″, 60–120 Hz (Google Store)",
+   "batterie_charge": "4 985 mAh ; Qi2 jusqu’à 25 W (Google Store)",
+   "photo_arriere": "48 + 13 + 10,8 Mpx ; télé 5× (Google Store)",
+   "presence": "T08",
+   "sources": [
+    "https://store.google.com/us/product/pixel_11_specs?hl=en-US"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "pixel-11-pro",
+   "nom": "Google Pixel 11 Pro",
+   "puce_ecran": "Tensor G6 ; OLED LTPO 6,3″, 1–120 Hz (Google Store)",
+   "batterie_charge": "4 850 mAh ; Qi2 jusqu’à 25 W (Google Store)",
+   "photo_arriere": "50 + 48 + 48 Mpx (Google Store)",
+   "presence": "T08",
+   "sources": [
+    "https://store.google.com/us/product/pixel_11_pro_specs?hl=en-US"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "pixel-11-pro-xl",
+   "nom": "Google Pixel 11 Pro XL",
+   "puce_ecran": "Tensor G6 ; OLED LTPO 6,8″, 1–120 Hz (Google Store)",
+   "batterie_charge": "5 115 mAh ; Qi2 jusqu’à 25 W (Google Store)",
+   "photo_arriere": "50 + 48 + 48 Mpx (Google Store)",
+   "presence": "T02, T07",
+   "sources": [
+    "https://store.google.com/us/product/pixel_11_pro_specs?hl=en-US"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "redmi-note-17-pro-max-5g",
+   "nom": "Xiaomi REDMI Note 17 Pro Max 5G",
+   "puce_ecran": "Snapdragon 6 Gen 5 ; AMOLED 6,83″, 120 Hz (Xiaomi EAU)",
+   "batterie_charge": "10 000 mAh sur T03, capacité aussi indiquée aux EAU ; 9 210 mAh en Belgique et sur la version UE testée par GSMArena ; 100 W (Xiaomi EAU, Xiaomi Belgique, GSMArena)",
+   "photo_arriere": "50 + 8 Mpx (Xiaomi EAU)",
+   "presence": "T03",
+   "sources": [
+    "https://www.mi.com/ae-en/product/redmi-note-17-pro-max-5g/specs/",
+    "https://www.mi.com/be-fr/product/redmi-note-17-pro-max-5g/",
+    "https://www.gsmarena.com/redmi_note_17_pro_max-review-2993p3.php"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "xiaomi-17",
+   "nom": "Xiaomi 17",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 ; OLED 6,3″ (Xiaomi)",
+   "batterie_charge": "7 000 mAh Chine, testé en T08 ; 6 330 mAh sur la fiche internationale EAU ; 100 W filaire, 50 W sans fil annoncés pour cette dernière (Xiaomi Chine, annonce, Xiaomi EAU, T08)",
+   "photo_arriere": "50 + 50 + 50 Mpx (Xiaomi EAU)",
+   "presence": "T08",
+   "sources": [
+    "https://www.mi.com/global/discover/article?id=5471",
+    "https://www.mi.com/ae-en/product/xiaomi-17/specs/",
+    "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=319s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "xiaomi-18-pro-max",
+   "nom": "Xiaomi 18 Pro Max",
+   "puce_ecran": "Snapdragon 8 Elite Extreme Gen 6 ; OLED LTPO 6,9″, 1–120 Hz + écran arrière AMOLED 2,9″ (Xiaomi Global)",
+   "batterie_charge": "8 500 mAh sur l’import Chine T07 ; 7 050 mAh international, 100 W filaire et 50 W sans fil déclarés sur cette fiche (Xiaomi Global, GSMArena, T07)",
+   "photo_arriere": "200 + 50 + 200 Mpx Leica (Xiaomi Global)",
+   "presence": "T07",
+   "sources": [
+    "https://www.mi.com/global/product/xiaomi-18-pro-max/specs/",
+    "https://www.gsmarena.com/xiaomi_18_pro_18_pro_max_international_launch-news-75505.php",
+    "https://www.youtube.com/watch?v=48RnplrImcE&t=17s"
+   ],
+   "lot": 1,
+   "complements": [
+    {
+     "rattachement": "xiaomi-18-pro-max-global-7050 dans T12",
+     "texte": "Snapdragon 8 Elite Extreme Gen 6 ; LTPO 6,9″, 1–120 Hz + AMOLED arrière 2,9″, 1–120 Hz ; 7 050 mAh, 100 W filaire / 50 W sans fil ; 200 + 50 + 200 Mpx, télé 75 mm équiv. et ultra grand-angle 102° (Xiaomi France).",
+     "sources": [
+      "https://www.mi.com/fr/product/xiaomi-18-pro-max/specs/"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "poco-x8",
+   "nom": "POCO X8",
+   "puce_ecran": "Snapdragon 6s Gen 4 ; AMOLED 6,83″, 120 Hz (Xiaomi Global)",
+   "batterie_charge": "8 340 mAh ; 67 W (Xiaomi France)",
+   "photo_arriere": "50 Mpx principal + 2 Mpx profondeur (Xiaomi Global)",
+   "presence": "T10, T11 (aperçu)",
+   "sources": [
+    "https://www.mi.com/global/product/poco-x8/specs/",
+    "https://www.mi.com/fr/product/poco-x8/"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "poco-f9-pro",
+   "nom": "POCO F9 Pro",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 V Series + VisionBoost D8 ; AMOLED 6,59″, jusqu’à 185 Hz (Xiaomi Global)",
+   "batterie_charge": "6 330 mAh ; 100 W filaire, 50 W sans fil (Xiaomi Global)",
+   "photo_arriere": "200 + 8 + 50 Mpx ; télé 2,5× (Xiaomi Global, T11)",
+   "presence": "T11",
+   "sources": [
+    "https://www.mi.com/global/product/poco-f9-pro/specs/",
+    "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=604s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "poco-f9-ultra",
+   "nom": "POCO F9 Ultra",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 + VisionBoost D8 ; AMOLED 6,9″ (classe annoncée), jusqu’à 185 Hz (Xiaomi Global)",
+   "batterie_charge": "8 050 mAh typiques selon la fiche technique ; 100 W filaire, 50 W sans fil (Xiaomi Global)",
+   "photo_arriere": "200 + 50 + 50 Mpx ; télé 5× (Xiaomi Global, T11)",
+   "presence": "T11",
+   "sources": [
+    "https://www.mi.com/global/product/poco-f9-ultra/specs/",
+    "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=604s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "oppo-reno16-f-5g",
+   "nom": "OPPO Reno16 F 5G",
+   "puce_ecran": "Dimensity 7300-Energy ; OLED 6,57″, 120 Hz (OPPO Global)",
+   "batterie_charge": "7 000 mAh ; 80 W (OPPO Global)",
+   "photo_arriere": "50 Mpx principal (GSMArena)",
+   "presence": "T03",
+   "sources": [
+    "https://www.oppo.com/en/smartphones/series-reno/reno16-f/specs/",
+    "https://www.gsmarena.com/oppo_reno16_f_5g-14751.php"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "oppo-find-x10-pro-max",
+   "nom": "OPPO Find X10 Pro Max",
+   "puce_ecran": "Dimensity 9600 Pro ; AMOLED 6,78″, 1–120 Hz, 144 Hz dans certains jeux (OPPO Global)",
+   "batterie_charge": "8 000 mAh sur les unités testées ; 7 150 mAh annoncés pour l’Europe ; 80 W filaire, 50 W sans fil (OPPO Europe francophone, T04)",
+   "photo_arriere": "200 + 200 + 200 Mpx ; télé 3× (OPPO Global)",
+   "presence": "T04, T05, T07",
+   "sources": [
+    "https://www.oppo.com/en/smartphones/series-find-x/find-x10-pro-max/specs/",
+    "https://www.oppo.com/befr/smartphones/series-find-x/find-x10-pro-max/",
+    "https://www.youtube.com/watch?v=pVFErYxYWKU&t=565s"
+   ],
+   "lot": 1,
+   "complements": [
+    {
+     "rattachement": "Comparateur photo T12 ; variant_id non établi",
+     "texte": "Présent dans la planche de portraits. Aucun nouveau résultat d’autonomie ni verdict photo individuel à importer (T12, 00:15).",
+     "sources": [
+      "https://www.youtube.com/watch?v=8v47Qy4POvo&t=15s"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "oneplus-16",
+   "nom": "OnePlus 16",
+   "puce_ecran": "Snapdragon 8 Elite Extreme Gen 6 ; OLED 6,78″, 1–165 Hz, jusqu’à 185 Hz en jeu compatible (OnePlus Chine, T05)",
+   "batterie_charge": "9 000 mAh équivalents, double cellule ; 100 W filaire, 50 W sans fil pour la version Chine (OnePlus Chine)",
+   "photo_arriere": "200 + 50 + 50 Mpx (T05, OnePlus Chine)",
+   "presence": "T05",
+   "sources": [
+    "https://www.oneplus.com/cn/16",
+    "https://www.youtube.com/watch?v=H56aC0rJ23I&t=135s",
+    "https://www.oneplus.com/cn/16/specs",
+    "https://www.youtube.com/watch?v=H56aC0rJ23I&t=278s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "vivo-x500-pro-max",
+   "nom": "vivo X500 Pro Max",
+   "puce_ecran": "Dimensity 9600 Pro ; AMOLED 6,85″, 1–144 Hz (vivo Global)",
+   "batterie_charge": "Chine 8 000 mAh ; international hors Europe 7 800 mAh ; Europe 6 750 mAh ; 90 W filaire, 40 W sans fil (vivo Chine, vivo Global)",
+   "photo_arriere": "50 + 50 + 200 Mpx ; télé 85 mm équiv. (vivo Global)",
+   "presence": "T06, T07",
+   "sources": [
+    "https://www.vivo.com/en/products/param/x500-pro-max",
+    "https://www.vivo.com.cn/vivo/param/x500promax",
+    "https://www.vivo.com/en/products/x500-pro-max"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "vivo-x300-ultra",
+   "nom": "vivo X300 Ultra",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 ; AMOLED 6,82″ (vivo Global, GSMArena)",
+   "batterie_charge": "6 600 mAh ; 100 W filaire, 40 W sans fil (vivo Global)",
+   "photo_arriere": "200 + 50 + 200 Mpx, focales équiv. 35 / 14 / 85 mm ; capteur auxiliaire 5 Mpx (T06, vivo Global)",
+   "presence": "T06",
+   "sources": [
+    "https://www.vivo.com/en/products/x300-ultra",
+    "https://www.gsmarena.com/vivo_x300_ultra_5g-14388.php",
+    "https://www.youtube.com/watch?v=mHGO0Toq1SQ&t=15s",
+    "https://www.vivo.com/en/products/param/x300-ultra"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "vivo-v80-lite-5g",
+   "nom": "vivo V80 Lite 5G",
+   "puce_ecran": "Dimensity 7300e ; AMOLED 6,83″, 120 Hz (vivo Afrique du Sud)",
+   "batterie_charge": "10 000 mAh ; 44 W ; référence Afrique du Sud (vivo Afrique du Sud)",
+   "photo_arriere": "50 + 2 Mpx (secondaire) (vivo Afrique du Sud)",
+   "presence": "T10",
+   "sources": [
+    "https://www.vivo.com/za/en/products/param/v80-lite-5g"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "honor-x9d",
+   "nom": "HONOR X9d",
+   "puce_ecran": "Snapdragon 6 Gen 4 ; AMOLED 6,79″, 120 Hz (HONOR, GSMArena)",
+   "batterie_charge": "8 300 mAh ; 66 W (HONOR, GSMArena)",
+   "photo_arriere": "Principal 108 Mpx avec OIS (HONOR)",
+   "presence": "T10",
+   "sources": [
+    "https://www.honor.com/kw-en/phones/honor-x9d/",
+    "https://www.gsmarena.com/honor_x9d_5g-14176.php"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "honor-600-pro",
+   "nom": "HONOR 600 Pro",
+   "puce_ecran": "Snapdragon 8 Elite ; AMOLED 6,57″, 120 Hz (HONOR)",
+   "batterie_charge": "7 000 mAh sur T10 et la fiche Koweït ; 6 400 mAh en France ; 80 W filaire, 50 W sans fil sur la fiche française (HONOR Koweït, HONOR France, T10)",
+   "photo_arriere": "200 + 12 + 50 Mpx (HONOR France)",
+   "presence": "T10",
+   "sources": [
+    "https://www.honor.com/sa-en/phones/honor-600-pro/buy/",
+    "https://www.honor.com/kw-en/phones/honor-600-pro/",
+    "https://www.honor.com/fr/phones/honor-600-pro/",
+    "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=276s"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "redmagic-12-pro",
+   "nom": "REDMAGIC 12 Pro",
+   "puce_ecran": "Snapdragon 8 Elite Extreme Gen 6 + RedCore R5 ; AMOLED 6,85″, jusqu’à 185 Hz ; ventilateur et boucle liquide double (REDMAGIC Global)",
+   "batterie_charge": "8 400 mAh ; jusqu’à 80 W filaire et sans fil (REDMAGIC Global)",
+   "photo_arriere": "50 + 50 Mpx ; selfie 16 Mpx sous l’écran (REDMAGIC Global)",
+   "presence": "T02, T09",
+   "sources": [
+    "https://global.redmagic.gg/pages/redmagic-12-pro-specs"
+   ],
+   "lot": 1,
+   "complements": []
+  },
+  {
+   "id": "poco-x8-pro-max",
+   "nom": "POCO X8 Pro Max",
+   "puce_ecran": "Dimensity 9500S ; AMOLED 6,83″, 120 Hz",
+   "batterie_charge": "8 500 mAh ; 100 W ; charge inversée filaire jusqu’à 27 W",
+   "photo_arriere": "50 Mpx Light Fusion 600 avec OIS + 8 Mpx",
+   "presence": "T13, T14, T16 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/poco-x8-pro-max/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "poco-x8-pro",
+   "nom": "POCO X8 Pro",
+   "puce_ecran": "Dimensity 8500-Ultra ; AMOLED 6,59″, 120 Hz",
+   "batterie_charge": "6 500 mAh ; 100 W ; charge inversée filaire jusqu’à 27 W",
+   "photo_arriere": "50 Mpx Sony IMX882 avec OIS + 8 Mpx",
+   "presence": "T14 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/poco-x8-pro/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "poco-f8-pro",
+   "nom": "POCO F8 Pro",
+   "puce_ecran": "Snapdragon 8 Elite ; AMOLED 6,59″, 120 Hz",
+   "batterie_charge": "6 210 mAh ; 100 W",
+   "photo_arriere": "50 + 8 + 50 Mpx, télé 60 mm équiv.",
+   "presence": "T14 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/poco-f8-pro/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "xiaomi-17t",
+   "nom": "Xiaomi 17T",
+   "puce_ecran": "Dimensity 8500-Ultra ; AMOLED 6,59″, 120 Hz",
+   "batterie_charge": "6 500 mAh ; 67 W",
+   "photo_arriere": "50 + 12 + 50 Mpx, télé 115 mm équiv.",
+   "presence": "T14 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/xiaomi-17t/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "redmi-note-15-4g",
+   "nom": "REDMI Note 15 (4G)",
+   "puce_ecran": "Helio G100-Ultra ; AMOLED 6,77″, 120 Hz",
+   "batterie_charge": "6 000 mAh ; 33 W",
+   "photo_arriere": "108 Mpx + profondeur 2 Mpx",
+   "presence": "T15 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/redmi-note-15/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "redmi-note-15-5g",
+   "nom": "REDMI Note 15 5G",
+   "puce_ecran": "Snapdragon 6 Gen 3 ; AMOLED 6,77″, 120 Hz",
+   "batterie_charge": "5 520 mAh ; 45 W",
+   "photo_arriere": "108 + 8 Mpx",
+   "presence": "T15, mention ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/redmi-note-15-5g/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "redmi-note-15-pro-5g",
+   "nom": "REDMI Note 15 Pro 5G",
+   "puce_ecran": "Dimensity 7400-Ultra ; AMOLED 6,83″, 120 Hz",
+   "batterie_charge": "6 580 mAh ; 45 W",
+   "photo_arriere": "200 Mpx avec OIS + 8 Mpx",
+   "presence": "T14, T15 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/redmi-note-15-pro-5g/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "redmi-note-15-pro-plus-5g",
+   "nom": "REDMI Note 15 Pro+ 5G",
+   "puce_ecran": "Snapdragon 7s Gen 4 ; AMOLED 6,83″, 120 Hz",
+   "batterie_charge": "6 500 mAh ; 100 W",
+   "photo_arriere": "200 Mpx avec OIS + 8 Mpx",
+   "presence": "T14 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/redmi-note-15-pro-plus-5g/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "poco-m8-5g",
+   "nom": "POCO M8 5G",
+   "puce_ecran": "Snapdragon 6 Gen 3 ; AMOLED 6,77″, 120 Hz",
+   "batterie_charge": "5 520 mAh ; 45 W",
+   "photo_arriere": "50 Mpx Light Fusion 400 + profondeur 2 Mpx",
+   "presence": "T15 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/poco-m8-5g/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "poco-m8-pro-5g",
+   "nom": "POCO M8 Pro 5G",
+   "puce_ecran": "Snapdragon 7s Gen 4 ; AMOLED 6,83″, 120 Hz",
+   "batterie_charge": "6 500 mAh ; 100 W",
+   "photo_arriere": "50 Mpx Light Fusion 800 avec OIS + 8 Mpx",
+   "presence": "T15 ; Xiaomi France",
+   "sources": [
+    "https://www.mi.com/fr/product/poco-m8-pro-5g/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "pixel-10a",
+   "nom": "Google Pixel 10a",
+   "puce_ecran": "Tensor G4 ; OLED 6,3″, 60–120 Hz",
+   "batterie_charge": "5 100 mAh ; 30 W filaire, 10 W sans fil Qi",
+   "photo_arriere": "48 + 13 Mpx",
+   "presence": "T14 ; Google Store France, Google Store, puissances de charge",
+   "sources": [
+    "https://store.google.com/fr/product/pixel_10a_specs?hl=fr",
+    "https://store.google.com/us/magazine/pixel-10a-vs-9a?hl=en-US"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "oneplus-nord-5",
+   "nom": "OnePlus Nord 5",
+   "puce_ecran": "Snapdragon 8s Gen 3 ; AMOLED 6,83″, jusqu’à 144 Hz",
+   "batterie_charge": "5 200 mAh France/Royaume-Uni ; 6 800 mAh Inde ; 80 W sur la fiche France",
+   "photo_arriere": "50 + 8 Mpx",
+   "presence": "T14, mention T15 ; OnePlus France, Royaume-Uni, Inde",
+   "sources": [
+    "https://www.oneplus.com/fr/nord-5/specs",
+    "https://www.oneplus.com/uk/nord-5/specs",
+    "https://www.oneplus.com/in/nord-5/specs"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "oneplus-nord-ce5",
+   "nom": "OnePlus Nord CE5",
+   "puce_ecran": "Dimensity 8350 Apex ; AMOLED 6,77″, 120 Hz",
+   "batterie_charge": "5 200 mAh France/Royaume-Uni ; 7 100 mAh Inde ; 80 W sur la fiche France",
+   "photo_arriere": "50 + 8 Mpx",
+   "presence": "T14 ; OnePlus France, Royaume-Uni, Inde",
+   "sources": [
+    "https://www.oneplus.com/fr/nord-ce5/specs",
+    "https://www.oneplus.com/uk/nord-ce5",
+    "https://www.oneplus.com/in/nord-ce5/specs"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "oneplus-15",
+   "nom": "OnePlus 15",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 ; AMOLED LTPO 6,78″, 1–120 Hz, jusqu’à 165 Hz en jeu compatible",
+   "batterie_charge": "7 300 mAh ; 120 W filaire, 50 W sans fil",
+   "photo_arriere": "50 + 50 + 50 Mpx",
+   "presence": "T16 ; OnePlus France",
+   "sources": [
+    "https://www.oneplus.com/fr/15/specs"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "oneplus-15r",
+   "nom": "OnePlus 15R",
+   "puce_ecran": "Snapdragon 8 Gen 5 ; AMOLED 6,83″, jusqu’à 165 Hz dans les applications compatibles",
+   "batterie_charge": "7 400 mAh ; 80 W",
+   "photo_arriere": "50 + 8 Mpx, sans téléobjectif",
+   "presence": "T14, T16 ; OnePlus France",
+   "sources": [
+    "https://www.oneplus.com/fr/15r/specs"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "galaxy-a37-5g",
+   "nom": "Samsung Galaxy A37 5G",
+   "puce_ecran": "Exynos 1480 ; Super AMOLED 6,7″, 120 Hz",
+   "batterie_charge": "5 000 mAh ; 45 W",
+   "photo_arriere": "50 + 8 Mpx + macro 5 Mpx",
+   "presence": "T14 ; Samsung Belgique, Samsung US",
+   "sources": [
+    "https://www.samsung.com/be_fr/support/mobile-devices/what-are-the-differences-between-the-galaxy-a57-5g-and-a37-5g/",
+    "https://www.samsung.com/us/smartphones/galaxy-a37-5g/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "nothing-phone-4a",
+   "nom": "Nothing Phone (4a)",
+   "puce_ecran": "Snapdragon 7s Gen 4 ; AMOLED 6,78″, 120 Hz",
+   "batterie_charge": "5 080 mAh international ; 5 400 mAh Inde ; 50 W",
+   "photo_arriere": "50 + 8 + 50 Mpx, télé 3,5×",
+   "presence": "T14 ; Nothing France, GSMArena, détails et marchés",
+   "sources": [
+    "https://fr.nothing.tech/products/phone-4a",
+    "https://www.gsmarena.com/nothing_phone_(4a)_5g-14503.php"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "nothing-phone-4a-pro",
+   "nom": "Nothing Phone (4a) Pro",
+   "puce_ecran": "Snapdragon 7 Gen 4 ; AMOLED 6,83″, 144 Hz",
+   "batterie_charge": "5 080 mAh international ; 5 400 mAh Inde ; 50 W",
+   "photo_arriere": "50 + 8 + 50 Mpx, télé 3,5×",
+   "presence": "T14 ; Nothing France, GSMArena, détails et marchés",
+   "sources": [
+    "https://fr.nothing.tech/products/phone-4a-pro",
+    "https://www.gsmarena.com/nothing_phone_(4a)_pro_5g-14529.php"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "nothing-phone-4b",
+   "nom": "Nothing Phone (4b)",
+   "puce_ecran": "Snapdragon 6 Gen 4 ; AMOLED 6,77″, 120 Hz",
+   "batterie_charge": "5 200 mAh international ; 6 000 mAh Inde ; 33 W",
+   "photo_arriere": "50 + 8 Mpx, sans téléobjectif",
+   "presence": "T14, mention T15 ; Nothing, GSMArena, détails et marchés",
+   "sources": [
+    "https://nothing.tech/products/phone-4b",
+    "https://www.gsmarena.com/nothing_phone_(4b)_5g-14781.php"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "motorola-edge-70-fusion",
+   "nom": "Motorola edge 70 fusion",
+   "puce_ecran": "Snapdragon 7s Gen 3 ; AMOLED 6,78″, 144 Hz sur la fiche UK",
+   "batterie_charge": "5 200 ou 7 000 mAh selon la version ; 68 W annoncé pour la version 7 000 mAh",
+   "photo_arriere": "50 Mpx principal",
+   "presence": "T14, mention T15 ; Motorola UK, sélecteur de batterie, Motorola, fiche 7 000 mAh",
+   "sources": [
+    "https://www.motorola.com/gb/en/p/phones/motorola-edge/pmipmjm44md/pmipmjm44md",
+    "https://en-us.support.motorola.com/app/answers/detail/a_id/192851/~/specifications---motorola-edge-70-fusion"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "motorola-edge-60-fusion",
+   "nom": "Motorola edge 60 fusion",
+   "puce_ecran": "Dimensity 7300 sur la fiche France ; pOLED 6,67″",
+   "batterie_charge": "5 200 mAh France ; 68 W",
+   "photo_arriere": "50 Mpx principal",
+   "presence": "T15 ; Motorola France, page produit",
+   "sources": [
+    "https://fr-fr.support.motorola.com/app/answers/detail/a_id/187113/~/sp%C3%A9cifications--motorola-edge-60-fusion",
+    "https://www.motorola.com/fr/fr/p/phones/motorola-edge/smartphones-motorola-edge-60-fusion/pmipmhq40mz?pn=PB7E0034SE"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "motorola-moto-g77",
+   "nom": "Motorola moto g77",
+   "puce_ecran": "Dimensity 6400 ; AMOLED 6,78″, 120 Hz",
+   "batterie_charge": "5 200 mAh ; 30 W",
+   "photo_arriere": "108 Mpx principal",
+   "presence": "T15 ; Motorola Irlande",
+   "sources": [
+    "https://www.motorola.com/ie/en/p/phones/moto-g/77/pmipmjh43mw"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "motorola-moto-g06-power",
+   "nom": "Motorola moto g06 power",
+   "puce_ecran": "Helio G81 Extreme ; écran 6,88″",
+   "batterie_charge": "7 000 mAh ; 18 W sur la fiche UK",
+   "photo_arriere": "50 Mpx principal",
+   "presence": "T15 ; Motorola France, Motorola UK",
+   "sources": [
+    "https://www.motorola.com/fr/fr/p/phones/moto-g/moto-g06-power/pmipmhy43m4",
+    "https://en-gb.support.motorola.com/app/answers/detail/a_id/189454/~/specifications---moto-g06-power"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "honor-400",
+   "nom": "HONOR 400",
+   "puce_ecran": "Snapdragon 7 Gen 3 ; écran 6,55″, 120 Hz",
+   "batterie_charge": "5 300 mAh France ; 66 W",
+   "photo_arriere": "200 + 12 Mpx",
+   "presence": "T15, mention ; HONOR France",
+   "sources": [
+    "https://www.honor.com/fr/phones/honor-400/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "honor-400-lite",
+   "nom": "HONOR 400 Lite",
+   "puce_ecran": "Dimensity 7025 Ultra ; AMOLED 6,7″, 120 Hz",
+   "batterie_charge": "5 230 mAh ; 35 W",
+   "photo_arriere": "108 + 5 Mpx",
+   "presence": "T14 ; HONOR France, Vodafone UK, GSMArena",
+   "sources": [
+    "https://www.honor.com/fr/phones/honor-400-lite/",
+    "https://deviceguides.vodafone.co.uk/honor/400-lite-android-15/specifications",
+    "https://www.gsmarena.com/honor_400_lite-13742.php"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "honor-600",
+   "nom": "HONOR 600",
+   "puce_ecran": "Snapdragon 7 Gen 4 ; écran jusqu’à 120 Hz",
+   "batterie_charge": "6 400 mAh France ; 7 000 mAh sur certains marchés ; 80 W",
+   "photo_arriere": "200 + 12 Mpx",
+   "presence": "T14 ; HONOR France, guide France, HONOR Arabie saoudite",
+   "sources": [
+    "https://www.honor.com/fr/phones/honor-600/",
+    "https://www.honor.com/fr/shop/buying-guide/introducing-honor-600-series/",
+    "https://www.honor.com/sa-en/phones/honor-600/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "honor-magic8-lite",
+   "nom": "HONOR Magic8 Lite",
+   "puce_ecran": "Snapdragon 6 Gen 4 ; AMOLED 6,79″, 120 Hz",
+   "batterie_charge": "7 500 mAh ; 66 W",
+   "photo_arriere": "108 Mpx avec OIS au principal",
+   "presence": "T14, T15 ; HONOR France",
+   "sources": [
+    "https://www.honor.com/fr/phones/honor-magic8-lite/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "redmagic-11s-pro",
+   "nom": "REDMAGIC 11S Pro",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 Leading Version ; écran 6,85″, jusqu’à 144 Hz ; refroidissement liquide",
+   "batterie_charge": "7 500 mAh ; 80 W filaire et sans fil sur la fiche Global",
+   "photo_arriere": "50 + 50 Mpx + auxiliaire 2 Mpx",
+   "presence": "T16 ; REDMAGIC Global",
+   "sources": [
+    "https://global.redmagic.gg/pages/redmagic-11s-pro-specs"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "redmagic-11-pro",
+   "nom": "REDMAGIC 11 Pro",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 ; écran 6,85″, jusqu’à 144 Hz ; refroidissement liquide",
+   "batterie_charge": "7 500 mAh ; 80 W filaire et sans fil sur la fiche Global",
+   "photo_arriere": "50 + 50 Mpx + auxiliaire 2 Mpx",
+   "presence": "T16 ; REDMAGIC Global",
+   "sources": [
+    "https://global.redmagic.gg/pages/redmagic-11-pro-specs"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "redmagic-11-air",
+   "nom": "REDMAGIC 11 Air",
+   "puce_ecran": "Snapdragon 8 Elite ; OLED 6,85″, jusqu’à 144 Hz ; ventilateur et chambre à vapeur",
+   "batterie_charge": "7 000 mAh ; 80 W",
+   "photo_arriere": "50 + 8 Mpx",
+   "presence": "T14, T16 ; REDMAGIC Global",
+   "sources": [
+    "https://global.redmagic.gg/pages/redmagic-11-air-specs"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "asus-rog-phone-9-pro",
+   "nom": "ASUS ROG Phone 9 Pro",
+   "puce_ecran": "Snapdragon 8 Elite ; AMOLED LTPO 6,78″, 1–120 Hz ; jusqu’à 165 Hz dans les réglages ou 185 Hz via Game Genie",
+   "batterie_charge": "5 800 mAh ; 65 W avec chargeur compatible",
+   "photo_arriere": "50 + 13 + 32 Mpx, télé 3×",
+   "presence": "T16 ; ASUS ROG France",
+   "sources": [
+    "https://rog.asus.com/fr/phones/rog-phone-9-pro/wtb/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "sony-xperia-1-viii",
+   "nom": "Sony Xperia 1 VIII",
+   "puce_ecran": "Snapdragon 8 Elite Gen 5 ; OLED 6,5″, 120 Hz",
+   "batterie_charge": "5 000 mAh ; USB PD et charge sans fil Qi",
+   "photo_arriere": "Principal, ultra grand-angle et télé : 48 Mpx effectifs chacun",
+   "presence": "T16 ; Sony France, Sony, spécifications détaillées",
+   "sources": [
+    "https://www.sony.fr/smartphones/products/xperia-1m8",
+    "https://www.sony.com.hk/en/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-viii-512gb/specifications"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "vivo-v70",
+   "nom": "vivo V70",
+   "puce_ecran": "Snapdragon 7 Gen 4 ; AMOLED 6,59″, 120 Hz",
+   "batterie_charge": "6 500 mAh ; 90 W",
+   "photo_arriere": "50 + 8 + 50 Mpx, optiques ZEISS",
+   "presence": "T14 ; vivo Global",
+   "sources": [
+    "https://www.vivo.com/en/products/param/v70"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "oppo-reno16-5g",
+   "nom": "OPPO Reno16 5G",
+   "puce_ecran": "Snapdragon 7 Gen 4 ; AMOLED 6,32″, jusqu’à 120 Hz",
+   "batterie_charge": "6 700 mAh ; 80 W",
+   "photo_arriere": "50 + 50 + 50 Mpx",
+   "presence": "T14, mention ; OPPO Global",
+   "sources": [
+    "https://www.oppo.com/en/smartphones/series-reno/reno16/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "oppo-reno16-pro-5g",
+   "nom": "OPPO Reno16 Pro 5G",
+   "puce_ecran": "Dimensity 8550 SUPER ; AMOLED 6,32″, jusqu’à 144 Hz dans certains jeux",
+   "batterie_charge": "6 700 mAh ; 80 W",
+   "photo_arriere": "200 + 50 + 50 Mpx",
+   "presence": "T14, mention ; OPPO Global",
+   "sources": [
+    "https://www.oppo.com/en/smartphones/series-reno/reno16-pro/specs/"
+   ],
+   "lot": 2,
+   "complements": []
+  },
+  {
+   "id": "iphone-17e",
+   "nom": "Apple iPhone 17e",
+   "puce_ecran": "A19 ; OLED 6,1″, 60 Hz",
+   "batterie_charge": "Capacité non indiquée dans la fiche Apple ; Qi2/MagSafe jusqu’à 15 W",
+   "photo_arriere": "Un seul module Fusion 48 Mpx ; le cadrage 2× n’est pas un téléobjectif séparé",
+   "presence": "T14 ; Apple France, GSMArena, écran",
+   "sources": [
+    "https://www.apple.com/fr/iphone-17e/specs/",
+    "https://www.gsmarena.com/apple_iphone_17e-review-2945p3.php"
+   ],
+   "lot": 2,
+   "complements": []
+  }
+ ],
+ "tests": [
+  {
+   "id": "T01",
+   "titre": "autonomie de cinq iPhone",
+   "chaine": "PhoneBuff",
+   "date": "2026-11-19",
+   "url": "https://www.youtube.com/watch?v=bGA-u8tne-Y",
+   "protocole": "19 novembre 2026. iOS 27, 200 nits sans luminosité automatique, haut-parleurs calibrés, Wi-Fi et mini-antenne à distance égale, environnement thermorégulé ; plusieurs essais annoncés sans dispersion publiée. Le déroulé alterne appels et applications, puis 16 h de veille écran éteint, puis applications jusqu’à l’arrêt. Vidéo sponsorisée par Anker ; ses promesses commerciales de recharge ne sont pas des résultats de ce comparatif (PhoneBuff, description et protocole).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T02",
+   "titre": "REDMAGIC 12 Pro, performances soutenues et jeu",
+   "chaine": "PhoneBuff",
+   "date": "2026-11-10",
+   "url": "https://www.youtube.com/watch?v=xDHHvWxxbxc",
+   "protocole": "10 novembre 2026. Vidéo sponsorisée par REDMAGIC. Le stress test GPU est distinct du test d’autonomie : le premier enchaîne les boucles 3DMark Wild Life Extreme, le second fait jouer des robots à League of Legends avec le refroidissement actif du REDMAGIC en marche (PhoneBuff, stress test, PhoneBuff, session jeu).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T03",
+   "titre": "autonomie et recharge de quatre modèles",
+   "chaine": "PhoneBuff",
+   "date": "2026-08-27",
+   "url": "https://www.youtube.com/watch?v=yIXi7YyhvHg",
+   "protocole": "27 août 2026. Cycle à 200 nits, volumes alignés, Wi-Fi et mini-antenne, 16 h de veille puis retour aux applications. Partenariat REDMI déclaré, accès anticipé et rapport fourni au partenaire ; l’auteur indique que REDMI n’a pas choisi la méthode. Le titre et les incrustations identifient le Galaxy A57 malgré un nom mal rendu au début de la transcription. Quelques coupures d’appel ont nécessité une reconnexion sur le Samsung (PhoneBuff, protocole et transparence, nom et résultats à l’écran).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T04",
+   "titre": "OPPO Find X10 Pro Max contre Galaxy S26 Ultra",
+   "chaine": "Techmo",
+   "date": "2026-10-30",
+   "url": "https://www.youtube.com/watch?v=pVFErYxYWKU",
+   "protocole": "30 octobre 2026. OPPO import Chine, 8 000 mAh ; Galaxy S26 Ultra, 5 000 mAh. Les résultats d’autonomie cités renvoient au test mixte « Real-Day » de l’auteur : écran actif de 100 % à l’arrêt, différent du comparatif T07. Le lien revendeur pour l’OPPO est affilié (Techmo, vidéo, Techmo, fiche du comparatif).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T05",
+   "titre": "OnePlus 16 contre OPPO Find X10 Pro Max",
+   "chaine": "Techmo",
+   "date": "2026-10-24",
+   "url": "https://www.youtube.com/watch?v=H56aC0rJ23I",
+   "protocole": "24 octobre 2026. Deux appareils achetés en version Chine selon l’auteur ; liens revendeur affiliés. Les deux tests internes de jeu durent 5 min chacun. Le relevé de batterie se fait après une session 5G avec photos et vidéos et non après une décharge complète ; la durée totale de cette session n’est pas précisée (Techmo, unités, Techmo, jeux, Techmo, batterie 5G).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T06",
+   "titre": "vivo X500 Pro Max contre vivo X300 Ultra",
+   "chaine": "Techmo",
+   "date": "2026-10-21",
+   "url": "https://www.youtube.com/watch?v=mHGO0Toq1SQ",
+   "protocole": "21 octobre 2026. Deux imports Chine selon l’auteur, avec liens revendeur affiliés. La vidéo oppose les appareils en photo et en benchmark ; elle ne mesure pas une durée d’autonomie pour le X300 Ultra (Techmo, variantes et benchmarks).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T07",
+   "titre": "autonomie mixte de six flagships",
+   "chaine": "Techmo",
+   "date": "2026-10-11",
+   "url": "https://www.youtube.com/watch?v=48RnplrImcE",
+   "protocole": "11 octobre 2026. Luminosité réglée à 500 nits selon l’auteur, dernière mise à jour disponible au moment du test. Environ 5 h de YouTube, 1 h d’enregistrement 4K/30 i/s, un peu plus de 2 h de Google Meet, puis Meet + Shorts jusqu’à l’arrêt. Le début de la transcription dit « global » pour les OPPO et vivo, mais la fin identifie les trois appareils Xiaomi, OPPO et vivo comme des imports chinois. Les 8 000 mAh affichés du vivo correspondent par ailleurs à sa variante Chine, pas à sa fiche internationale (Techmo, début et étapes, Techmo, marché des unités, vivo Chine, vivo Global).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T08",
+   "titre": "autonomie des compacts et Geekbench 7",
+   "chaine": "Techmo",
+   "date": "2026-09-29",
+   "url": "https://www.youtube.com/watch?v=tcpeWJQO8DA",
+   "protocole": "29 septembre 2026. Luminosité alignée au luxmètre, Wi-Fi uniquement, appareils achetés par l’auteur. Environ 6 h de YouTube, 1 h de vidéo 4K, 1 h de WebGL Aquarium, puis Google Meet et Shorts. La vidéo 4K du Xiaomi a été enregistrée en deux segments ; le test doit rester rattaché au Xiaomi 17 Chine de 7 000 mAh (Techmo, protocole, Techmo, vidéo 4K, Techmo, import).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T09",
+   "titre": "vitesse d’usage, biométrie et RAM",
+   "chaine": "TechNick",
+   "date": "2026-11-11",
+   "url": "https://www.youtube.com/watch?v=KL2cYuBqaZ0",
+   "protocole": "11 novembre 2026. Luminosité alignée au luxmètre, éclairage RGB du REDMAGIC désactivé, ventilateur et pompe activés. iPhone 18 Pro Max nano-SIM de 5 391 mAh. Le classement final combine les points attribués par TechNick, pas un score universel ; intégration sponsorisée par PITAKA (TechNick, conditions, TechNick, sponsor et mesures de départ).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T10",
+   "titre": "autonomie écran allumé de sept modèles",
+   "chaine": "TechNick",
+   "date": "2026-10-28",
+   "url": "https://www.youtube.com/watch?v=gEPCdMFG5lE",
+   "protocole": "28 octobre 2026. Démarrage à 100 %, appareils neufs, Wi-Fi sans carte SIM, luminosité alignée au luxmètre, résolution native et écrans jusqu’à 120 Hz selon l’auteur. Quinze applications, relevés toutes les 30 min, une heure de benchmarks et enregistrement arrière réduit à 1080p pour la compatibilité des appareils. Partenariat vivo Afrique du Sud déclaré ; TechNick indique que la marque n’a pas eu la main sur les résultats (TechNick, conditions, TechNick, variantes et protocole, TechNick, choix du 1080p).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T11",
+   "titre": "POCO F9 Pro, F9 Ultra et aperçu du X8",
+   "chaine": "TechNick",
+   "date": "2026-09-16",
+   "url": "https://www.youtube.com/watch?v=wDmYRIUJiGA",
+   "protocole": "16 septembre 2026. Comparaison jeux, benchmarks, photo et vidéo ; pas de test d’autonomie complète, ni de mesure chronométrée de la recharge des deux F9. Les 100 W filaires et 50 W sans fil sont des caractéristiques, pas des durées. Le X8 est présenté en aperçu ; son autonomie chiffrée se trouve en T10 (TechNick, batterie et X8, TechNick, batterie mesurée du X8).",
+   "source": "T01-T11"
+  },
+  {
+   "id": "T12",
+   "titre": "Xiaomi 18 Pro Max, version internationale",
+   "chaine": "The Tech Chap",
+   "date": "2026-11-18",
+   "url": "https://www.youtube.com/watch?v=8v47Qy4POvo",
+   "protocole": "",
+   "source": "T12-T16",
+   "exploitable": "Comparaisons photo et écran, démonstration de l’écran arrière, écart d’autonomie annoncé sans durée absolue."
+  },
+  {
+   "id": "T13",
+   "titre": "POCO X8 Pro Max",
+   "chaine": "Tech Spurt",
+   "date": "2026-03-17",
+   "url": "https://www.youtube.com/watch?v=RJEJesrC2OY",
+   "protocole": "",
+   "source": "T12-T16",
+   "exploitable": "Autonomie approximative en jeu, comportement sous charge et exemples photo/vidéo."
+  },
+  {
+   "id": "T14",
+   "titre": "Sélection de smartphones milieu de gamme",
+   "chaine": "Tech Spurt",
+   "date": "2026-07-30",
+   "url": "https://www.youtube.com/watch?v=zw30rfxoVO4",
+   "protocole": "",
+   "source": "T12-T16",
+   "exploitable": "Synthèse d’essais d’usage ; pas de protocole commun ni de classement mesuré."
+  },
+  {
+   "id": "T15",
+   "titre": "Sélection de smartphones à petit budget",
+   "chaine": "Tech Spurt",
+   "date": "2026-07-26",
+   "url": "https://www.youtube.com/watch?v=Oi3uzDEFflo",
+   "protocole": "",
+   "source": "T12-T16",
+   "exploitable": "Retours d’usage et comparaisons qualitatives ; quelques modèles sont seulement cités."
+  },
+  {
+   "id": "T16",
+   "titre": "Sélection de smartphones gaming",
+   "chaine": "Tech Spurt",
+   "date": "2026-06-25",
+   "url": "https://www.youtube.com/watch?v=i0INRp2uLi4",
+   "protocole": "",
+   "source": "T12-T16",
+   "exploitable": "Autonomies approximatives en jeu, retours sur la fluidité et mode 165 FPS pris en charge."
+  }
+ ],
+ "classements": [
+  {
+   "test": "T01",
+   "metrique": "Autonomie totale",
+   "unite": "s",
+   "lignes": [
+    {
+     "variante": "iphone-18-pro-max-5567",
+     "modele": "iphone-18-pro-max",
+     "mah": 5567,
+     "marche": null,
+     "details": [],
+     "valeur": 108780,
+     "unite": "s",
+     "rang": 1,
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=560s"
+     ],
+     "extra": {
+      "Total h:min": "30:13",
+      "Temps actif h:min": "14:13"
+     }
+    },
+    {
+     "variante": "iphone-18-pro-4288",
+     "modele": "iphone-18-pro",
+     "mah": 4288,
+     "marche": null,
+     "details": [],
+     "valeur": 98280,
+     "unite": "s",
+     "rang": 2,
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=560s"
+     ],
+     "extra": {
+      "Total h:min": "27:18",
+      "Temps actif h:min": "11:18"
+     }
+    },
+    {
+     "variante": "iphone-duo-4883",
+     "modele": "iphone-duo",
+     "mah": 4883,
+     "marche": null,
+     "details": [],
+     "valeur": 95220,
+     "unite": "s",
+     "rang": 3,
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=560s"
+     ],
+     "extra": {
+      "Total h:min": "26:27",
+      "Temps actif h:min": "10:27"
+     }
+    },
+    {
+     "variante": "iphone-air-3149",
+     "modele": "iphone-air",
+     "mah": 3149,
+     "marche": null,
+     "details": [],
+     "valeur": 91440,
+     "unite": "s",
+     "rang": 4,
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=560s"
+     ],
+     "extra": {
+      "Total h:min": "25:24",
+      "Temps actif h:min": "09:24"
+     }
+    },
+    {
+     "variante": "iphone-17-3692",
+     "modele": "iphone-17",
+     "mah": 3692,
+     "marche": null,
+     "details": [],
+     "valeur": 90360,
+     "unite": "s",
+     "rang": 5,
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=560s"
+     ],
+     "extra": {
+      "Total h:min": "25:06",
+      "Temps actif h:min": "09:06"
+     }
+    }
+   ]
+  },
+  {
+   "test": "T02",
+   "metrique": "3DMark Wild Life Extreme, dernière boucle",
+   "unite": "points",
+   "lignes": [
+    {
+     "variante": "redmagic-12-pro-8400",
+     "modele": "redmagic-12-pro",
+     "mah": 8400,
+     "marche": null,
+     "details": [],
+     "valeur": 6551,
+     "unite": "points",
+     "rang": null,
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=95s",
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=345s"
+     ],
+     "extra": {
+      "3DMark, dernière boucle (points)": "6551",
+      "Autonomie jeu h:min": "09:02",
+      "Autonomie jeu s": "32520"
+     }
+    },
+    {
+     "variante": "iphone-18-pro-max-variante-inconnue",
+     "modele": "iphone-18-pro-max",
+     "mah": null,
+     "marche": null,
+     "details": [
+      "Variante inconnue"
+     ],
+     "valeur": 5422,
+     "unite": "points",
+     "rang": null,
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=95s"
+     ],
+     "extra": {
+      "3DMark, dernière boucle (points)": "5422",
+      "Autonomie jeu h:min": "n.d.",
+      "Autonomie jeu s": "n.d."
+     }
+    },
+    {
+     "variante": "galaxy-s26-ultra-5000",
+     "modele": "galaxy-s26-ultra",
+     "mah": 5000,
+     "marche": null,
+     "details": [],
+     "valeur": 4275,
+     "unite": "points",
+     "rang": null,
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=95s",
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=331s"
+     ],
+     "extra": {
+      "3DMark, dernière boucle (points)": "4275",
+      "Autonomie jeu h:min": "06:02",
+      "Autonomie jeu s": "21720"
+     }
+    },
+    {
+     "variante": "pixel-11-pro-xl",
+     "modele": "pixel-11-pro-xl",
+     "mah": null,
+     "marche": null,
+     "details": [],
+     "valeur": 1666,
+     "unite": "points",
+     "rang": null,
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=95s"
+     ],
+     "extra": {
+      "3DMark, dernière boucle (points)": "1666",
+      "Autonomie jeu h:min": "n.d.",
+      "Autonomie jeu s": "n.d."
+     }
+    }
+   ]
+  },
+  {
+   "test": "T03",
+   "metrique": "Autonomie totale",
+   "unite": "s",
+   "lignes": [
+    {
+     "variante": "redmi-note-17-pro-max-5g-10000",
+     "modele": "redmi-note-17-pro-max-5g",
+     "mah": 10000,
+     "marche": null,
+     "details": [],
+     "valeur": 128700,
+     "unite": "s",
+     "rang": 1,
+     "sources": [
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=435s",
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=480s"
+     ],
+     "extra": {
+      "Total h:min": "35:45",
+      "Temps actif h:min": "19:45",
+      "Batterie après 30 min de charge": "46 %",
+      "mAh ajoutés estimés à 10 / 30 min": "1800 / 4600"
+     }
+    },
+    {
+     "variante": "oppo-reno16-f-5g-7000",
+     "modele": "oppo-reno16-f-5g",
+     "mah": 7000,
+     "marche": null,
+     "details": [],
+     "valeur": 106800,
+     "unite": "s",
+     "rang": 2,
+     "sources": [
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=435s",
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=480s"
+     ],
+     "extra": {
+      "Total h:min": "29:40",
+      "Temps actif h:min": "13:40",
+      "Batterie après 30 min de charge": "53 %",
+      "mAh ajoutés estimés à 10 / 30 min": "1400 / 3710"
+     }
+    },
+    {
+     "variante": "galaxy-a57-5g-5000",
+     "modele": "galaxy-a57-5g",
+     "mah": 5000,
+     "marche": null,
+     "details": [],
+     "valeur": 100500,
+     "unite": "s",
+     "rang": 3,
+     "sources": [
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=435s",
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=480s"
+     ],
+     "extra": {
+      "Total h:min": "27:55",
+      "Temps actif h:min": "11:55",
+      "Batterie après 30 min de charge": "61 %",
+      "mAh ajoutés estimés à 10 / 30 min": "1100 / 3050"
+     }
+    },
+    {
+     "variante": "iphone-17-3692",
+     "modele": "iphone-17",
+     "mah": 3692,
+     "marche": null,
+     "details": [],
+     "valeur": 92580,
+     "unite": "s",
+     "rang": 4,
+     "sources": [
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=435s",
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=480s"
+     ],
+     "extra": {
+      "Total h:min": "25:43",
+      "Temps actif h:min": "09:43",
+      "Batterie après 30 min de charge": "69 %",
+      "mAh ajoutés estimés à 10 / 30 min": "923 / 2547"
+     }
+    }
+   ]
+  },
+  {
+   "test": "T07",
+   "metrique": "Autonomie jusqu’à l’arrêt",
+   "unite": "s",
+   "lignes": [
+    {
+     "variante": "vivo-x500-pro-max-cn-8000",
+     "modele": "vivo-x500-pro-max",
+     "mah": 8000,
+     "marche": "Import Chine",
+     "details": [],
+     "valeur": 45000,
+     "unite": "s",
+     "rang": 1,
+     "sources": [
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=61s",
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=304s"
+     ],
+     "extra": {
+      "Après YouTube": "87 %",
+      "Après 4K": "72 %",
+      "Après Meet": "46 %",
+      "Arrêt h:min": "12:30"
+     }
+    },
+    {
+     "variante": "oppo-find-x10-pro-max-cn-8000",
+     "modele": "oppo-find-x10-pro-max",
+     "mah": 8000,
+     "marche": "Import Chine",
+     "details": [],
+     "valeur": 43020,
+     "unite": "s",
+     "rang": 2,
+     "sources": [
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=61s",
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=304s"
+     ],
+     "extra": {
+      "Après YouTube": "83 %",
+      "Après 4K": "65 %",
+      "Après Meet": "41 %",
+      "Arrêt h:min": "11:57"
+     }
+    },
+    {
+     "variante": "xiaomi-18-pro-max-cn-8500",
+     "modele": "xiaomi-18-pro-max",
+     "mah": 8500,
+     "marche": "Import Chine",
+     "details": [],
+     "valeur": 41580,
+     "unite": "s",
+     "rang": 3,
+     "sources": [
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=61s",
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=304s"
+     ],
+     "extra": {
+      "Après YouTube": "82 %",
+      "Après 4K": "65 %",
+      "Après Meet": "37 %",
+      "Arrêt h:min": "11:33"
+     }
+    },
+    {
+     "variante": "iphone-18-pro-max-nano-sim-5391",
+     "modele": "iphone-18-pro-max",
+     "mah": 5391,
+     "marche": null,
+     "details": [
+      "Variante nano-SIM"
+     ],
+     "valeur": 38340,
+     "unite": "s",
+     "rang": 4,
+     "sources": [
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=61s",
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=304s"
+     ],
+     "extra": {
+      "Après YouTube": "81 %",
+      "Après 4K": "59 %",
+      "Après Meet": "26 %",
+      "Arrêt h:min": "10:39"
+     }
+    },
+    {
+     "variante": "pixel-11-pro-xl",
+     "modele": "pixel-11-pro-xl",
+     "mah": null,
+     "marche": null,
+     "details": [],
+     "valeur": 34680,
+     "unite": "s",
+     "rang": 5,
+     "sources": [
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=61s",
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=304s"
+     ],
+     "extra": {
+      "Après YouTube": "71 %",
+      "Après 4K": "52 %",
+      "Après Meet": "17 %",
+      "Arrêt h:min": "09:38"
+     }
+    },
+    {
+     "variante": "galaxy-s26-ultra-5000",
+     "modele": "galaxy-s26-ultra",
+     "mah": 5000,
+     "marche": null,
+     "details": [],
+     "valeur": 33120,
+     "unite": "s",
+     "rang": 6,
+     "sources": [
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=61s",
+      "https://www.youtube.com/watch?v=48RnplrImcE&t=304s"
+     ],
+     "extra": {
+      "Après YouTube": "75 %",
+      "Après 4K": "49 %",
+      "Après Meet": "15 %",
+      "Arrêt h:min": "09:12"
+     }
+    }
+   ]
+  },
+  {
+   "test": "T08",
+   "metrique": "Autonomie jusqu’à l’arrêt",
+   "unite": "s",
+   "lignes": [
+    {
+     "variante": "xiaomi-17-cn-7000",
+     "modele": "xiaomi-17",
+     "mah": 7000,
+     "marche": "Import Chine",
+     "details": [],
+     "valeur": 47700,
+     "unite": "s",
+     "rang": 1,
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=75s",
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=345s"
+     ],
+     "extra": {
+      "Arrêt h:min": "13:15",
+      "Geekbench 7 mono / multi (points)": "1908 / 8364"
+     }
+    },
+    {
+     "variante": "pixel-11",
+     "modele": "pixel-11",
+     "mah": null,
+     "marche": null,
+     "details": [],
+     "valeur": 39600,
+     "unite": "s",
+     "rang": 2,
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=75s",
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=345s"
+     ],
+     "extra": {
+      "Arrêt h:min": "11:00",
+      "Geekbench 7 mono / multi (points)": "2319 / 7145"
+     }
+    },
+    {
+     "variante": "iphone-18-pro-nano-sim-4056",
+     "modele": "iphone-18-pro",
+     "mah": 4056,
+     "marche": null,
+     "details": [
+      "Variante nano-SIM"
+     ],
+     "valeur": 38460,
+     "unite": "s",
+     "rang": 3,
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=75s",
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=345s"
+     ],
+     "extra": {
+      "Arrêt h:min": "10:41",
+      "Geekbench 7 mono / multi (points)": "4031 / 11538"
+     }
+    },
+    {
+     "variante": "galaxy-s26-snapdragon-4300",
+     "modele": "galaxy-s26",
+     "mah": 4300,
+     "marche": null,
+     "details": [
+      "Puce Snapdragon"
+     ],
+     "valeur": 37800,
+     "unite": "s",
+     "rang": 4,
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=75s",
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=345s"
+     ],
+     "extra": {
+      "Arrêt h:min": "10:30",
+      "Geekbench 7 mono / multi (points)": "3133 / 10684"
+     }
+    },
+    {
+     "variante": "pixel-11-pro",
+     "modele": "pixel-11-pro",
+     "mah": null,
+     "marche": null,
+     "details": [],
+     "valeur": 37620,
+     "unite": "s",
+     "rang": 5,
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=75s",
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=345s"
+     ],
+     "extra": {
+      "Arrêt h:min": "10:27",
+      "Geekbench 7 mono / multi (points)": "2337 / 7203"
+     }
+    },
+    {
+     "variante": "galaxy-s26-exynos-4300",
+     "modele": "galaxy-s26",
+     "mah": 4300,
+     "marche": null,
+     "details": [
+      "Puce Exynos"
+     ],
+     "valeur": 37320,
+     "unite": "s",
+     "rang": 6,
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=75s",
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=345s"
+     ],
+     "extra": {
+      "Arrêt h:min": "10:22",
+      "Geekbench 7 mono / multi (points)": "2634 / 10311"
+     }
+    }
+   ]
+  },
+  {
+   "test": "T10",
+   "metrique": "Autonomie écran allumé",
+   "unite": "s",
+   "lignes": [
+    {
+     "variante": "vivo-v80-lite-5g-za-10000",
+     "modele": "vivo-v80-lite-5g",
+     "mah": 10000,
+     "marche": "Afrique du Sud",
+     "details": [],
+     "valeur": 67380,
+     "unite": "s",
+     "rang": 1,
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1060s"
+     ],
+     "extra": {
+      "Écran allumé h:min": "18:43"
+     }
+    },
+    {
+     "variante": "honor-x9d-8300",
+     "modele": "honor-x9d",
+     "mah": 8300,
+     "marche": null,
+     "details": [],
+     "valeur": 65880,
+     "unite": "s",
+     "rang": 2,
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1060s"
+     ],
+     "extra": {
+      "Écran allumé h:min": "18:18"
+     }
+    },
+    {
+     "variante": "honor-600-pro-7000",
+     "modele": "honor-600-pro",
+     "mah": 7000,
+     "marche": null,
+     "details": [],
+     "valeur": 63720,
+     "unite": "s",
+     "rang": 3,
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1060s"
+     ],
+     "extra": {
+      "Écran allumé h:min": "17:42"
+     }
+    },
+    {
+     "variante": "poco-x8-8340",
+     "modele": "poco-x8",
+     "mah": 8340,
+     "marche": null,
+     "details": [],
+     "valeur": 59100,
+     "unite": "s",
+     "rang": 4,
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1060s"
+     ],
+     "extra": {
+      "Écran allumé h:min": "16:25"
+     }
+    },
+    {
+     "variante": "galaxy-a57-5g-5000",
+     "modele": "galaxy-a57-5g",
+     "mah": 5000,
+     "marche": null,
+     "details": [],
+     "valeur": 42000,
+     "unite": "s",
+     "rang": 5,
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1060s"
+     ],
+     "extra": {
+      "Écran allumé h:min": "11:40"
+     }
+    },
+    {
+     "variante": "galaxy-s26-exynos-4300",
+     "modele": "galaxy-s26",
+     "mah": 4300,
+     "marche": null,
+     "details": [
+      "Puce Exynos"
+     ],
+     "valeur": 39660,
+     "unite": "s",
+     "rang": 6,
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1050s"
+     ],
+     "extra": {
+      "Écran allumé h:min": "11:01"
+     }
+    },
+    {
+     "variante": "iphone-17-3692",
+     "modele": "iphone-17",
+     "mah": 3692,
+     "marche": null,
+     "details": [],
+     "valeur": 34560,
+     "unite": "s",
+     "rang": 7,
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1060s"
+     ],
+     "extra": {
+      "Écran allumé h:min": "09:36"
+     }
+    }
+   ]
+  }
+ ],
+ "tableaux": [
+  {
+   "test": "T02",
+   "colonnes": [
+    "Jeu sur REDMAGIC",
+    "FPS sans interpolation ou plafond indiqué",
+    "Avec interpolation",
+    "Preuve"
+   ],
+   "lignes": [
+    {
+     "cellules": [
+      "Call of Duty Mobile",
+      "Jusqu’à 165 FPS, plafond du jeu dans l’essai",
+      "Non rapporté",
+      "PhoneBuff, 02:19"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=139s"
+     ]
+    },
+    {
+     "cellules": [
+      "Genshin Impact (Android)",
+      "60 FPS, plafond indiqué",
+      "120 ou jusqu’à 185 FPS en mode compatible ; artefacts possibles",
+      "PhoneBuff, 02:30"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=150s"
+     ]
+    },
+    {
+     "cellules": [
+      "GTA V (PC émulé, réglages élevés)",
+      "55–70 FPS",
+      "Plus de 100 FPS",
+      "PhoneBuff, 03:37"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=217s"
+     ]
+    },
+    {
+     "cellules": [
+      "Far Cry 4 (PC émulé, réglages élevés)",
+      "50–60 FPS",
+      "Plus de 100 FPS ; artefacts près du viseur",
+      "PhoneBuff, 03:53"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=233s"
+     ]
+    },
+    {
+     "cellules": [
+      "Cyberpunk (PC émulé)",
+      "Environ 20–30 FPS",
+      "Environ 50–60 FPS",
+      "PhoneBuff, 04:16"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=256s"
+     ]
+    }
+   ]
+  },
+  {
+   "test": "T04",
+   "colonnes": [
+    "Mesure",
+    "oppo-find-x10-pro-max-cn-8000",
+    "galaxy-s26-ultra-5000",
+    "Preuve"
+   ],
+   "lignes": [
+    {
+     "cellules": [
+      "Geekbench 7, monocœur / multicœur",
+      "3004 / 9841",
+      "3078 / 10094",
+      "Benchmarks, 08:14, version sur le site Techmo"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=pVFErYxYWKU&t=494s",
+      "https://techmocentral.com/versus/oppo-find-x10-pro-max-vs-galaxy-s26-ultra"
+     ]
+    },
+    {
+     "cellules": [
+      "3DMark Wild Life Extreme, points",
+      "7428 affichés ; 7564 annoncés",
+      "7022 affichés et annoncés",
+      "Incrustation, 08:45, commentaire, 08:37"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=pVFErYxYWKU&t=525s",
+      "https://www.youtube.com/watch?v=pVFErYxYWKU&t=517s"
+     ]
+    },
+    {
+     "cellules": [
+      "AnTuTu, points ; version non confirmée",
+      "4276483",
+      "3642597",
+      "Techmo, 08:55"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=pVFErYxYWKU&t=535s"
+     ]
+    },
+    {
+     "cellules": [
+      "Techmo Voxel Village, FPS",
+      "42,1",
+      "40,9",
+      "Techmo, 09:05"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=pVFErYxYWKU&t=545s"
+     ]
+    },
+    {
+     "cellules": [
+      "Techmo Sky Mecha, FPS",
+      "44,5",
+      "39,9",
+      "Techmo, 09:20"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=pVFErYxYWKU&t=560s"
+     ]
+    },
+    {
+     "cellules": [
+      "Autonomie mixte « Real-Day », h:min (s)",
+      "11:39 (41940)",
+      "07:22 (26520)",
+      "Techmo, 09:45, définition écrite"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=pVFErYxYWKU&t=585s",
+      "https://techmocentral.com/versus/oppo-find-x10-pro-max-vs-galaxy-s26-ultra"
+     ]
+    }
+   ]
+  },
+  {
+   "test": "T05",
+   "colonnes": [
+    "Mesure",
+    "oneplus-16-cn-9000",
+    "oppo-find-x10-pro-max-cn-8000",
+    "Preuve"
+   ],
+   "lignes": [
+    {
+     "cellules": [
+      "Geekbench, monocœur / multicœur",
+      "3232 / 10987",
+      "3004 / 9841",
+      "Techmo, 02:24"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=H56aC0rJ23I&t=144s"
+     ]
+    },
+    {
+     "cellules": [
+      "3DMark Wild Life Extreme, points",
+      "7864 affichés ; 7759 dans la transcription",
+      "7428 affichés ; 6993 dans la transcription",
+      "Incrustation, 03:05, passage du commentaire"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=H56aC0rJ23I&t=185s",
+      "https://www.youtube.com/watch?v=H56aC0rJ23I&t=168s"
+     ]
+    },
+    {
+     "cellules": [
+      "Voxel Village, moyenne FPS / température finale °C",
+      "33,4 / 38,6",
+      "33,1 / 36,4",
+      "Techmo, 03:25"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=H56aC0rJ23I&t=205s"
+     ]
+    },
+    {
+     "cellules": [
+      "Sky Mecha, moyenne FPS / température finale °C",
+      "37,9 / 39,3",
+      "38,4 / 36,5",
+      "Techmo, 03:53"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=H56aC0rJ23I&t=233s"
+     ]
+    },
+    {
+     "cellules": [
+      "Batterie restante après la session 5G",
+      "69 %",
+      "60 %",
+      "Techmo, 09:17"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=H56aC0rJ23I&t=557s"
+     ]
+    }
+   ]
+  },
+  {
+   "test": "T06",
+   "colonnes": [
+    "Mesure",
+    "vivo-x500-pro-max-cn-8000",
+    "vivo-x300-ultra-cn-6600",
+    "Preuve"
+   ],
+   "lignes": [
+    {
+     "cellules": [
+      "Geekbench 7, monocœur / multicœur",
+      "3056 / 9988",
+      "3006 / 9797",
+      "Techmo, vidéo, version sur le site Techmo"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=mHGO0Toq1SQ&t=428s",
+      "https://techmocentral.com/versus/vivo-x500-pro-max-vs-vivo-x300-ultra"
+     ]
+    },
+    {
+     "cellules": [
+      "3DMark Wild Life Extreme, moyenne FPS affichée",
+      "44,8",
+      "40,9",
+      "Incrustation, 07:00"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=mHGO0Toq1SQ&t=420s"
+     ]
+    },
+    {
+     "cellules": [
+      "3DMark Wild Life Extreme, points publiés séparément sur le site de l’auteur ; identité de la session non confirmée",
+      "7483",
+      "6589",
+      "Tableau écrit de Techmo"
+     ],
+     "sources": [
+      "https://techmocentral.com/versus/vivo-x500-pro-max-vs-vivo-x300-ultra"
+     ]
+    }
+   ]
+  },
+  {
+   "test": "T09",
+   "colonnes": [
+    "Indicateur",
+    "redmagic-12-pro-8400",
+    "iphone-18-pro-max-nano-sim-5391",
+    "Preuve"
+   ],
+   "lignes": [
+    {
+     "cellules": [
+      "Score final TechNick",
+      "18",
+      "19",
+      "Bilan, 10:13"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=613s"
+     ]
+    },
+    {
+     "cellules": [
+      "Points vitesse",
+      "15",
+      "19",
+      "Vitesse, 08:53"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=533s"
+     ]
+    },
+    {
+     "cellules": [
+      "Points biométrie (essais gagnés)",
+      "1 (3 sur 3)",
+      "0 (0 sur 3)",
+      "Biométrie, 03:26"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=206s"
+     ]
+    },
+    {
+     "cellules": [
+      "Points mémoire (gains différentiels)",
+      "2",
+      "0",
+      "RAM, 09:43"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=583s"
+     ]
+    },
+    {
+     "cellules": [
+      "Temps d’exécution Geekbench 7, min:s",
+      "03:24",
+      "03:13",
+      "Chronos, 07:10"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=430s"
+     ]
+    },
+    {
+     "cellules": [
+      "Batterie départ → fin",
+      "79 → 73 %",
+      "78 → 72 %",
+      "Tableau batterie, 10:30"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=630s"
+     ]
+    },
+    {
+     "cellules": [
+      "Température de surface, départ → fin",
+      "25,7 → 45,9 °C",
+      "23,1 → 37,7 °C",
+      "Tableau température, 10:45"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=645s"
+     ]
+    }
+   ]
+  },
+  {
+   "test": "T11",
+   "colonnes": [
+    "Indicateur",
+    "poco-f9-pro-6330",
+    "poco-f9-ultra-8050",
+    "Preuve"
+   ],
+   "lignes": [
+    {
+     "cellules": [
+      "Subway Surfers",
+      "Pas de valeur isolée à l’écran",
+      "185 FPS affichés dans la séquence",
+      "TechNick, 06:40"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=400s"
+     ]
+    },
+    {
+     "cellules": [
+      "Call of Duty Mobile, réglage graphique « très élevé »",
+      "Environ 165 FPS",
+      "Environ 165 FPS",
+      "TechNick, 06:57"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=417s"
+     ]
+    },
+    {
+     "cellules": [
+      "Benchmarks CPU / mémoire et GPU",
+      "CPU et mémoire proches ; GPU moins performant",
+      "CPU et mémoire proches ; GPU plus performant",
+      "TechNick, 08:01–09:05"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=481s"
+     ]
+    },
+    {
+     "cellules": [
+      "Téléobjectif / résultat",
+      "2,5× optique ; préféré au recadrage du principal de l’Ultra à 2,5× de nuit",
+      "5× optique ; avantage de détail à 5× et 10×",
+      "TechNick, zoom de jour, zoom de nuit"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=682s",
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=795s"
+     ]
+    },
+    {
+     "cellules": [
+      "Vidéo avec l’ultra grand-angle",
+      "1080p/30",
+      "4K/60",
+      "TechNick, 13:40"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=820s"
+     ]
+    },
+    {
+     "cellules": [
+      "Vidéo principale et télé",
+      "4K/60 sur les deux modules ; télé jugé plus fluide",
+      "4K/60 sur les deux modules ; télé jugé plus détaillé ; 8K sur le principal",
+      "TechNick, 13:50–14:50, Xiaomi Global"
+     ],
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=830s",
+      "https://www.mi.com/global/product/poco-f9-ultra/specs/"
+     ]
+    }
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "test": "T01",
+   "type": "paragraphe",
+   "texte": "Dans ce scénario mixte, le Duo est fermé pour les messages et Maps et ouvert notamment pour les e-mails et Instagram. Il ne perd que 5 points dans Maps fermé ; le test ne mesure pas une journée complète en mode fermé ou ouvert. Au début de Snapchat, il reste respectivement 48 %, 30 %, 15 %, 6 % et 1 % aux cinq appareils ci-dessus, dans l’ordre du tableau (PhoneBuff, modes et niveaux).",
+   "sources": [
+    "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=393s"
+   ]
+  },
+  {
+   "test": "T02",
+   "type": "paragraphe",
+   "texte": "L’iPhone mène à la première boucle ; le REDMAGIC passe devant dès la deuxième et termine 1 129 points devant. Dans League of Legends, il affiche encore 33 % au moment où le Samsung s’éteint. Acrobat et Lightroom distinguent peu les deux Android dans les tâches montrées ; le REDMAGIC est plus rapide sur l’export 4K dans Edits et l’extraction de l’archive de 6 Go (PhoneBuff, bureautique et GPU, PhoneBuff, autonomie jeu).",
+   "sources": [
+    "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=40s",
+    "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=325s"
+   ]
+  },
+  {
+   "test": "T03",
+   "type": "paragraphe",
+   "texte": "La recharge part de l’arrêt. Le 69 % de l’iPhone ne signifie pas qu’il a repris plus de charge que le REDMI : les capacités diffèrent. Les mAh ajoutés sont des estimations dérivées de la jauge et de la capacité affichée, pas des mesures d’énergie à la prise ni des durées d’utilisation après recharge (PhoneBuff, début et bilan de la recharge).",
+   "sources": [
+    "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=442s"
+   ]
+  },
+  {
+   "test": "T04",
+   "type": "paragraphe",
+   "texte": "Score disputé : l’OPPO reste devant dans cette séquence, mais ne publie pas un score unique pour lui en T04. L’article reprend 7 564 dans son texte et liste par ailleurs 7 270 pour le Galaxy dans un tableau récapitulatif ; ce dernier chiffre ne remplace pas les 7 022 de la séquence vidéo (Techmo, texte et tableau, incrustation vidéo).",
+   "sources": [
+    "https://techmocentral.com/versus/oppo-find-x10-pro-max-vs-galaxy-s26-ultra",
+    "https://www.youtube.com/watch?v=pVFErYxYWKU&t=525s"
+   ]
+  },
+  {
+   "test": "T04",
+   "type": "point",
+   "libelle": "Photo, appréciation de Techmo",
+   "texte": "le principal est relativement proche en usage courant. L’OPPO est préféré à 3×, en ultra grand-angle intérieur, en portrait, en selfie et sur plusieurs scènes nocturnes ; le 5× est plus disputé. Le Samsung est jugé un peu plus stable en vidéo principale. Ce sont des comparaisons sur les scènes montrées, pas des scores photo normalisés (Techmo, photo et vidéo, Techmo, faible lumière et portrait).",
+   "sources": [
+    "https://www.youtube.com/watch?v=pVFErYxYWKU&t=170s",
+    "https://www.youtube.com/watch?v=pVFErYxYWKU&t=425s"
+   ]
+  },
+  {
+   "test": "T05",
+   "type": "point",
+   "libelle": "Score disputé",
+   "texte": "les deux versions du résultat classent le OnePlus devant l’OPPO. Garder les valeurs d’écran et de transcription séparées sans les moyenner ; si le site n’accepte qu’un score validé, laisser cette mesure en attente (Techmo, passage 3DMark).",
+   "sources": [
+    "https://www.youtube.com/watch?v=H56aC0rJ23I&t=168s"
+   ]
+  },
+  {
+   "test": "T05",
+   "type": "point",
+   "libelle": "Jeu réel",
+   "texte": "Genshin Impact, 10 min et réglages maximum, paraît fluide sur les deux au réglage 60 FPS. Le compteur n’est pas disponible sur l’OPPO dans cet essai ; ne pas enregistrer 60 FPS comme moyenne mesurée pour cet appareil (Techmo, 04:11).",
+   "sources": [
+    "https://www.youtube.com/watch?v=H56aC0rJ23I&t=251s"
+   ]
+  },
+  {
+   "test": "T05",
+   "type": "point",
+   "libelle": "Photo, appréciation de Techmo",
+   "texte": "les principaux sont proches mais l’OPPO gère mieux les hautes lumières. L’écart est plus sensible en ultra grand-angle et en vidéo au téléobjectif, en faveur de l’OPPO. Les détails sont proches à 6× dans l’exemple intérieur ; le zoom 50× utilise de l’IA et ne constitue pas une preuve de résolution optique (Techmo, comparaison des caméras).",
+   "sources": [
+    "https://www.youtube.com/watch?v=H56aC0rJ23I&t=287s"
+   ]
+  },
+  {
+   "test": "T06",
+   "type": "point",
+   "libelle": "Photo principale et ultra grand-angle",
+   "texte": "l’Ultra est préféré surtout en intérieur et de nuit avec l’ultra grand-angle ; sa focale principale de 35 mm diffère du 24 mm du Pro Max et favorise un cadrage plus serré. En vidéo principale, l’auteur préfère la gestion des hautes lumières et des ombres du Pro Max dans les exemples montrés (Techmo, principal, Techmo, ultra grand-angle).",
+   "sources": [
+    "https://www.youtube.com/watch?v=mHGO0Toq1SQ&t=18s",
+    "https://www.youtube.com/watch?v=mHGO0Toq1SQ&t=260s"
+   ]
+  },
+  {
+   "test": "T06",
+   "type": "point",
+   "libelle": "Téléobjectif et selfie",
+   "texte": "les deux téléobjectifs sont annoncés identiques à 85 mm équiv., 200 Mpx ; l’auteur préfère la vidéo télé de l’Ultra dans son exemple. Il juge les deux caméras selfie peu larges et leur stabilisation irrégulière (Techmo, téléobjectif et selfie).",
+   "sources": [
+    "https://www.youtube.com/watch?v=mHGO0Toq1SQ&t=195s"
+   ]
+  },
+  {
+   "test": "T08",
+   "type": "paragraphe",
+   "texte": "L’écart Snapdragon–Exynos est de 8 min dans cette session : sans répétitions publiées, ce n’est pas une marge garantie. Le score monocœur faible du Xiaomi est une mesure de cette exécution ; l’auteur évoque une éventuelle question d’optimisation ou de liste d’autorisation, sans la démontrer (Techmo, arrêts, Techmo, Geekbench).",
+   "sources": [
+    "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=238s",
+    "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=56s"
+   ]
+  },
+  {
+   "test": "T09",
+   "type": "paragraphe",
+   "texte": "L’iPhone est plus rapide à lancer plusieurs jeux dans cet essai ; le REDMAGIC gagne plusieurs lancements d’apps et exporte plus vite le projet CapCut (un peu plus de 3 s, contre un peu plus de 4 s). Cela ne contredit pas le résultat longue durée de T02 : temps de lancement et FPS soutenus sont deux métriques distinctes. De même, les deux pertes de 6 points de batterie ne disent pas que l’énergie consommée est égale, et la température de surface n’est pas la température de la puce (TechNick, CapCut, TechNick, lancement de jeux, TechNick, bilan, PhoneBuff, stress test).",
+   "sources": [
+    "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=309s",
+    "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=460s",
+    "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=622s",
+    "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=71s"
+   ]
+  },
+  {
+   "test": "T10",
+   "type": "paragraphe",
+   "texte": "Le vivo ne devance le HONOR X9d que de 25 min dans ce scénario. Le HONOR 600 Pro testé, avec 7 000 mAh, devance le POCO X8 de 1 h 17 malgré sa capacité moindre ; ce résultat ne s’applique pas d’office au HONOR 600 Pro de 6 400 mAh vendu en France. Pour le Galaxy S26, la puce Exynos vient de l’incrustation ; la référence commerciale de l’unité testée n’est pas précisée (TechNick, tableau du test, HONOR France).",
+   "sources": [
+    "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1050s",
+    "https://www.honor.com/fr/phones/honor-600-pro/"
+   ]
+  },
+  {
+   "test": "T11",
+   "type": "paragraphe",
+   "texte": "Le 185 Hz est un maximum d’écran exploitable dans certains jeux, pas le résultat de Call of Duty. Les fiches officielles et les incrustations donnent 200 Mpx pour le principal des deux F9 ; elles concordent malgré le chiffre mal restitué dans la transcription. Le testeur juge les deux principaux proches et préfère globalement l’Ultra pour le zoom et l’ultra grand-angle, avec des exceptions selon la scène (TechNick, écran et jeux, incrustation photo, bilan photo, Xiaomi F9 Pro, Xiaomi F9 Ultra).",
+   "sources": [
+    "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=366s",
+    "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=640s",
+    "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=989s",
+    "https://www.mi.com/global/product/poco-f9-pro/specs/",
+    "https://www.mi.com/global/product/poco-f9-ultra/specs/"
+   ]
+  }
+ ],
+ "observations": [
+  {
+   "test": "T12",
+   "modeles": null,
+   "libelle": "Variante",
+   "texte": "Le testeur précise qu’il utilise la version internationale ; la fiche Xiaomi France confirme 7 050 mAh. Ne pas transférer le résultat T07, obtenu sur l’import Chine, sur cette fiche.",
+   "sources": [
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=102s",
+    "https://www.mi.com/fr/product/xiaomi-18-pro-max/specs/",
+    "https://www.youtube.com/watch?v=48RnplrImcE&t=304s"
+   ]
+  },
+  {
+   "test": "T12",
+   "modeles": null,
+   "libelle": "Écran arrière",
+   "texte": "Démonstration comme viseur avec les caméras arrière et comme téléprompteur pour se filmer.",
+   "sources": [
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=145s"
+   ]
+  },
+  {
+   "test": "T12",
+   "modeles": null,
+   "libelle": "Filtre de confidentialité",
+   "texte": "Le Xiaomi masque le contenu latéralement dans la démonstration. Le Galaxy S26 Ultra le masque à un angle plus faible selon l’auteur et agit aussi sur l’autre axe lors de son essai ; aucun angle n’est mesuré.",
+   "sources": [
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=228s"
+   ]
+  },
+  {
+   "test": "T12",
+   "modeles": null,
+   "libelle": "Photo face à l’iPhone 18 Pro Max",
+   "texte": "Sur les scènes montrées, l’auteur préfère le Xiaomi pour la texture, la conservation des hautes lumières et le zoom. Il trouve l’ultra grand-angle peu large et en retrait en basse lumière, et certains teints trop pâles. Ce sont des préférences sur ces exemples.",
+   "sources": [
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=388s",
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=404s"
+   ]
+  },
+  {
+   "test": "T12",
+   "modeles": null,
+   "libelle": "Portraits à l’aveugle",
+   "texte": "Les quatre images d’ouverture sont ensuite identifiées : iPhone 18 Pro Max, Galaxy S26 Ultra, Xiaomi 18 Pro Max et OPPO Find X10 Pro Max. La séquence ne fournit ni vote agrégé ni score par appareil.",
+   "sources": [
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=15s"
+   ]
+  },
+  {
+   "test": "T13",
+   "modeles": null,
+   "libelle": "Jeu soutenu",
+   "texte": "Wuthering Waves reste fluide selon le testeur avec les graphismes au maximum, malgré quelques saccades. L’appareil est légèrement chaud au toucher ; aucune baisse de performance n’est ressentie, mais pas de journal FPS, de température ni de mesure du throttling.",
+   "sources": [
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=575s"
+   ]
+  },
+  {
+   "test": "T13",
+   "modeles": null,
+   "libelle": "Photo principale",
+   "texte": "Bons résultats sur plusieurs scènes contrastées ou en lumière plus faible ; les sujets en mouvement deviennent plus facilement flous si la lumière manque.",
+   "sources": [
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=805s"
+   ]
+  },
+  {
+   "test": "T13",
+   "modeles": null,
+   "libelle": "Ultra grand-angle et zoom",
+   "texte": "L’ultra grand-angle est moins détaillé, surtout de nuit. Sans téléobjectif, le zoom est numérique ; l’auteur voit du grain à fort grossissement.",
+   "sources": [
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=785s",
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=850s"
+   ]
+  },
+  {
+   "test": "T13",
+   "modeles": null,
+   "libelle": "Vidéo",
+   "texte": "4K à 30/60 ips à l’arrière, jusqu’à 1080p60 à l’avant. Le testeur juge la stabilisation arrière correcte, avec quelques secousses en déplacement. Les ips d’enregistrement ne sont pas des FPS de jeu.",
+   "sources": [
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=884s",
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=935s",
+    "https://www.mi.com/fr/product/poco-x8-pro-max/specs/"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "pixel-10a"
+   ],
+   "libelle": null,
+   "texte": "Le traitement photo est apprécié de jour comme de nuit ; le testeur le considère moins adapté au jeu exigeant que plusieurs modèles de la sélection.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=61s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "oneplus-nord-5"
+   ],
+   "libelle": null,
+   "texte": "Chauffe ressentie pendant Wuthering Waves ; bonne endurance en usage courant selon le testeur, sans durée comparable.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=177s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=255s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "oneplus-nord-ce5"
+   ],
+   "libelle": null,
+   "texte": "Moins puissant que le Nord 5 mais jugé moins chaud en jeu ; prise en charge microSD. Pas de FPS publiés.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=300s",
+    "https://www.oneplus.com/fr/nord-ce5/specs"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "oneplus-15r"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves jugé fluide avec les graphismes au maximum ; endurance appréciée en usage mixte, mais pas chronométrée.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=348s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "galaxy-a57-5g"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves jouable à des réglages bas d’après l’auteur. La photo lui convient tant que le sujet ne bouge pas trop.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=499s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "galaxy-a37-5g"
+   ],
+   "libelle": null,
+   "texte": "L’auteur le juge moins performant que le Galaxy A57 ; pas d’essai comparatif chiffré.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=525s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "nothing-phone-4a",
+    "nothing-phone-4a-pro"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves tourne sur les deux ; le Pro paraît plus fluide. Les deux ont un téléobjectif.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=630s",
+    "https://www.gsmarena.com/nothing_phone_(4a)_5g-14503.php",
+    "https://www.gsmarena.com/nothing_phone_(4a)_pro_5g-14529.php"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "nothing-phone-4b"
+   ],
+   "libelle": null,
+   "texte": "Performances jugées plus modestes et absence de téléobjectif ; pas de mesure chiffrée.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=668s",
+    "https://www.gsmarena.com/nothing_phone_(4b)_5g-14781.php"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "motorola-edge-70-fusion"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves est à la limite du confortable ; les titres mieux optimisés passent mieux. Aucun résultat d’autonomie à rattacher à l’une des deux batteries.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=691s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=762s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "redmi-note-15-pro-plus-5g"
+   ],
+   "libelle": null,
+   "texte": "Principal apprécié au quotidien mais parfois peu net ; charge 100 W citée, sans temps de charge mesuré dans la séquence.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=800s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=884s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "redmi-note-15-pro-5g"
+   ],
+   "libelle": null,
+   "texte": "Moins à l’aise dans les jeux exigeants de type Wuthering Waves que le Pro+, selon l’auteur ; pas de mesures comparables.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=891s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=937s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "xiaomi-17t"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves jugé satisfaisant ; le principal rend bien sur des sujets fixes mais peut peiner sur les sujets mobiles. Téléobjectif apprécié en portrait.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=957s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1009s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "poco-x8-pro-max",
+    "poco-x8-pro"
+   ],
+   "libelle": null,
+   "texte": "L’auteur souligne la puissance et l’endurance du Pro Max ; le Pro a une batterie plus petite et moins de marge en performances. Aucun nouveau chronométrage.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1046s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1121s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "poco-f8-pro"
+   ],
+   "libelle": null,
+   "texte": "Plus de puissance selon l’auteur, mais chauffe ressentie sous charge ; pas de température relevée.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1143s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "honor-400-lite"
+   ],
+   "libelle": null,
+   "texte": "PUBG et Call of Duty s’en sortent mieux que les jeux plus exigeants. Les photos sont jugées parfois trop saturées.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1164s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1202s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "honor-600"
+   ],
+   "libelle": null,
+   "texte": "Retour bref : batterie jugée intéressante, sans durée. Les 7 000 mAh cités ne correspondent pas aux 6 400 mAh annoncés en France.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1224s",
+    "https://www.honor.com/fr/phones/honor-600/"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "honor-magic8-lite"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves tourne sans fluidité constante selon l’auteur ; PUBG est préférable. Le « week-end » évoqué n’est pas une mesure.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1258s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1320s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "redmagic-11-air"
+   ],
+   "libelle": null,
+   "texte": "Gâchettes et outils de jeu appréciés ; Wuthering Waves tourne bien d’après l’auteur. Pas de FPS ni d’autonomie chiffrée.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1363s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "vivo-v70"
+   ],
+   "libelle": null,
+   "texte": "Portraits et rendu naturel appréciés, notamment au téléobjectif ; Wuthering Waves s’exécute, mais chauffe ressentie sous charge.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1406s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "oppo-reno16-5g",
+    "oppo-reno16-pro-5g"
+   ],
+   "libelle": null,
+   "texte": "Présentation brève de la gamme et commentaire favorable sur la photo, sans résultat individuel exploitable pour l’un ou l’autre.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1460s"
+   ]
+  },
+  {
+   "test": "T14",
+   "modeles": [
+    "iphone-17e"
+   ],
+   "libelle": null,
+   "texte": "L’auteur juge l’appareil réactif mais l’affichage 60 Hz moins fluide, et la photo moins polyvalente. Sa recommandation d’achat n’est pas une mesure.",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1494s",
+    "https://www.gsmarena.com/apple_iphone_17e-review-2945p3.php"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "redmi-note-15-4g"
+   ],
+   "libelle": null,
+   "texte": "Endurance appréciée ; ralentissements en usage et jeu limité surtout aux titres optimisés comme Call of Duty.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=45s",
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=103s"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "redmi-note-15-5g"
+   ],
+   "libelle": null,
+   "texte": "Mention distincte du 4G, présentée comme plus rapide. Ne pas lui attribuer les 6 000 mAh ni l’avis jeu de la version 4G.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=116s",
+    "https://www.mi.com/fr/product/redmi-note-15-5g/specs/"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "redmi-note-15-pro-5g"
+   ],
+   "libelle": null,
+   "texte": "Jeu et usage quotidien jugés plus fluides que sur le Note 15 4G ; principal jugé meilleur de nuit. Ce point de comparaison diffère de T14, où le Pro est opposé au Pro+.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=131s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=891s"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "honor-400"
+   ],
+   "libelle": null,
+   "texte": "mention : le testeur indique avoir réalisé un essai du HONOR 400 Pro, mais pas du HONOR 400 standard.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=234s"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "honor-magic8-lite"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves possible mais irrégulier ; PUBG préférable, endurance appréciée, photo jugée moyenne. Retour largement répété dans T14 ; pas de nouvel essai indépendant établi.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=255s",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1313s"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "motorola-edge-60-fusion"
+   ],
+   "libelle": null,
+   "texte": "Écran pOLED, autonomie et polyvalence photo appréciés ; performances jugées correctes. L’edge 70 fusion est cité comme successeur, pas retesté ici.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=370s",
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=430s"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "motorola-moto-g77",
+    "motorola-moto-g06-power"
+   ],
+   "libelle": null,
+   "texte": "G77 : écran AMOLED apprécié. G06 power : grande batterie et grand écran mis en avant, sans mesure de durée ni de fluidité.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=440s"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": [
+    "poco-m8-5g",
+    "poco-m8-pro-5g"
+   ],
+   "libelle": null,
+   "texte": "Le Pro est présenté comme plus capable et doté d’un meilleur principal. Sur le Pro, Wuthering Waves et Genshin Impact sont possibles, mais Call of Duty tourne mieux selon l’auteur. Aucun résultat d’autonomie chronométrée pour les deux.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=471s",
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=528s"
+   ]
+  },
+  {
+   "test": "T15",
+   "modeles": null,
+   "libelle": "Mentions de fin",
+   "texte": "Nord 5, Nothing Phone (3a) et Phone (4b) : recommandations ou remarques d’achat au Royaume-Uni à la date de la vidéo. La description nomme le (3a) et le visuel correspond à ce modèle ; la transcription tronque son nom. Pas de ligne performance.",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo",
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=574s",
+    "https://np.nothing.tech/products/phone-3a"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "redmagic-11s-pro"
+   ],
+   "libelle": null,
+   "texte": "L’auteur rapporte une bonne stabilité de jeu à graphismes élevés et ne perçoit pas de ralentissement lors de sessions prolongées. Ne pas transformer ce retour en température, FPS moyens ou score GPU.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=40s"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "redmagic-11-pro"
+   ],
+   "libelle": null,
+   "texte": "Jugé légèrement plus endurant que le 11S Pro par l’auteur, sans durée. Snapdragon 8 Elite Gen 5 standard, sans le suffixe Leading Version.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=149s",
+    "https://global.redmagic.gg/pages/redmagic-11-pro-specs"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "redmagic-11-air"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves jugé jouable malgré une puce d’une génération antérieure. Ventilateur et chambre à vapeur, sans le système liquide des Pro ; pas de durée mesurée dans la séquence.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=180s",
+    "https://global.redmagic.gg/pages/redmagic-11-air-specs"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "asus-rog-phone-9-pro"
+   ],
+   "libelle": null,
+   "texte": "Puissance toujours jugée suffisante pour les jeux exigeants ; mode jeu et accessoires appréciés. Aucun score ni durée publiée dans cette séquence.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=227s"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "oneplus-15"
+   ],
+   "libelle": null,
+   "texte": "Le testeur met en avant le refroidissement et les outils de jeu. Le mode 165 FPS concerne Call of Duty: Mobile, pas tous les jeux.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=269s",
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=293s"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "oneplus-15r"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves jugé fluide aux réglages maximum. La dalle monte à 165 Hz dans des applications compatibles ; la vidéo ne donne pas 165 FPS mesurés dans Wuthering Waves.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=345s",
+    "https://www.oneplus.com/fr/15r/specs"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "sony-xperia-1-viii"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves, Genshin Impact et Call of Duty sont jugés fluides ; endurance jugée moins convaincante, sans durée.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=407s",
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=477s"
+   ]
+  },
+  {
+   "test": "T16",
+   "modeles": [
+    "poco-x8-pro-max"
+   ],
+   "libelle": null,
+   "texte": "Wuthering Waves jugé raisonnablement stable avec graphismes poussés ; l’autonomie annoncée est arrondie et l’indépendance par rapport à T13 n’est pas établie.",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=489s",
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=691s"
+   ]
+  }
+ ],
+ "ordres_de_grandeur": [
+  {
+   "test": "T12",
+   "variante": "xiaomi-18-pro-max-global-7050",
+   "modele": "xiaomi-18-pro-max",
+   "indicateur": "Écart d’autonomie en usage du testeur",
+   "resultat": "Environ 1 à 2 h de plus que son iPhone 18 Pro Max et son Galaxy S26 Ultra",
+   "statut": "ordre_de_grandeur",
+   "limites": "ordre_de_grandeur ; pas de durée absolue, de scénario contrôlé, ni d’écart séparé pour chaque comparateur",
+   "sources": [
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=319s"
+   ]
+  },
+  {
+   "test": "T13",
+   "variante": "poco-x8-pro-max-8500",
+   "modele": "poco-x8-pro-max",
+   "indicateur": "Autonomie dans Wuthering Waves",
+   "resultat": "Un peu moins de 6 h",
+   "statut": "ordre_de_grandeur",
+   "limites": "ordre_de_grandeur ; départ à 100 %, graphismes au maximum et mode pleine performance, unité 12 Go. Minute exacte, luminosité, version du jeu et FPS non renseignés",
+   "sources": [
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=556s",
+    "https://www.youtube.com/watch?v=RJEJesrC2OY&t=691s"
+   ]
+  },
+  {
+   "test": "T16",
+   "variante": "redmagic-11s-pro-7500",
+   "modele": "redmagic-11s-pro",
+   "indicateur": "Autonomie dans Wuthering Waves",
+   "resultat": "Un peu plus de 4 h",
+   "statut": "ordre_de_grandeur",
+   "limites": "ordre_de_grandeur ; de la pleine charge à l’arrêt selon l’auteur. La vidéo évoque des graphismes poussés mais ne précise pas tous les réglages de la session d’autonomie",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=67s",
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=86s"
+   ]
+  },
+  {
+   "test": "T16",
+   "variante": "poco-x8-pro-max-8500",
+   "modele": "poco-x8-pro-max",
+   "indicateur": "Autonomie dans Wuthering Waves",
+   "resultat": "Environ 6 h, formulé « a full 6 hours » dans la vidéo",
+   "statut": "ordre_de_grandeur",
+   "limites": "ordre_de_grandeur ; même testeur, modèle et jeu que T13. Une répétition indépendante n’est pas établie ; ne pas compter un deuxième échantillon",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=533s"
+   ]
+  },
+  {
+   "test": "T16",
+   "variante": "oneplus-15-7300",
+   "modele": "oneplus-15",
+   "indicateur": "Call of Duty: Mobile, mode natif",
+   "resultat": "165 FPS pris en charge, selon l’auteur",
+   "statut": "fonction_prise_en_charge",
+   "limites": "fonction_prise_en_charge ; ce n’est ni une moyenne mesurée ni une garantie à tous les réglages. OnePlus distingue 1–120 Hz adaptatifs et jusqu’à 165 Hz en jeu",
+   "sources": [
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=293s",
+    "https://www.oneplus.com/fr/15/specs"
+   ]
+  }
+ ],
+ "controles": [
+  {
+   "sujet": "Xiaomi 18 Pro Max",
+   "texte": "l’incrustation de T12 affiche 7 050 mAh pour la version internationale et 8 000 mAh pour la Chine. Retenir 7 050 mAh pour T12, confirmé par Xiaomi France, et garder 8 500 mAh sur xiaomi-18-pro-max-cn-8500 : c’est la capacité annoncée par Techmo pour son unité T07 et celle corroborée pour la Chine par GSMArena. Ne pas créer de troisième variante sur la seule incrustation divergente ; les 11 h 33 de T07 restent attachées à son import (T12, incrustation vers 05:15, Xiaomi France, T07, capacités, T07, arrivée, GSMArena, marchés).",
+   "sources": [
+    "https://www.youtube.com/watch?v=8v47Qy4POvo&t=315s",
+    "https://www.mi.com/fr/product/xiaomi-18-pro-max/specs/",
+    "https://www.youtube.com/watch?v=48RnplrImcE&t=17s",
+    "https://www.youtube.com/watch?v=48RnplrImcE&t=304s",
+    "https://www.gsmarena.com/xiaomi_18_pro_18_pro_max_international_launch-news-75505.php"
+   ]
+  },
+  {
+   "sujet": "Google Pixel 10a",
+   "texte": "enregistrer 30 W en puissance de charge filaire du téléphone. Les 45 W évoqués en T14 correspondent à la puissance du chargeur de référence chez Google pour « jusqu’à 50 % en 30 min environ », pas à un pic mesuré sur le téléphone (T14, 01:52, Google Store France, Google Store, charge 30 W).",
+   "sources": [
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=112s",
+    "https://store.google.com/fr/product/pixel_10a_specs?hl=fr",
+    "https://store.google.com/us/magazine/pixel-10a-vs-9a?hl=en-US"
+   ]
+  },
+  {
+   "sujet": "POCO M8 5G",
+   "texte": "la vidéo dit 5 500 mAh ; la fiche Xiaomi France indique 5 520 mAh typiques. Publier la valeur constructeur pour la fiche France et garder la formulation de la vidéo dans la note source (T15, 09:02, Xiaomi France).",
+   "sources": [
+    "https://www.youtube.com/watch?v=Oi3uzDEFflo&t=542s",
+    "https://www.mi.com/fr/product/poco-m8-5g/specs/"
+   ]
+  },
+  {
+   "sujet": "Noms proches et transcription",
+   "texte": "le POCO X8 Pro Max n’est ni le X8 ni le X8 Pro ; les « X6 » sporadiques de T13 ne sont pas des unités distinctes. Le chapitre T14 identifie le vivo V70, et le chapitre T16 identifie le REDMAGIC 11 Air ; ne pas importer les noms transcrits « V17 » et « 11R ». Même principe pour REDMI Note 15 4G/5G, HONOR 600/600 Pro et OPPO Reno16/Reno16 Pro/Reno16 F (T13, titre, T14, V70, T16, 11 Air, Xiaomi France, Note 15 5G, HONOR France, comparaison 600, OPPO Global, Reno16).",
+   "sources": [
+    "https://www.youtube.com/watch?v=RJEJesrC2OY",
+    "https://www.youtube.com/watch?v=zw30rfxoVO4&t=1406s",
+    "https://www.youtube.com/watch?v=i0INRp2uLi4&t=180s",
+    "https://www.mi.com/fr/product/redmi-note-15-5g/specs/",
+    "https://www.honor.com/fr/shop/buying-guide/introducing-honor-600-series/",
+    "https://www.oppo.com/en/smartphones/series-reno/reno16/specs/"
+   ]
+  },
+  {
+   "sujet": "Variantes régionales",
+   "texte": "utiliser des clés différentes si la batterie change, par exemple oneplus-nord-5-eu-5200 / oneplus-nord-5-in-6800, oneplus-nord-ce5-eu-5200 / oneplus-nord-ce5-in-7100, honor-600-fr-6400 / honor-600-sa-7000. Ne pas deviner le marché de l’unité quand la séquence ne le documente pas (OnePlus Nord 5 France, Nord 5 Inde, Nord CE5 France, Nord CE5 Inde, HONOR France, HONOR Arabie saoudite).",
+   "sources": [
+    "https://www.oneplus.com/fr/nord-5/specs",
+    "https://www.oneplus.com/in/nord-5/specs",
+    "https://www.oneplus.com/fr/nord-ce5/specs",
+    "https://www.oneplus.com/in/nord-ce5/specs",
+    "https://www.honor.com/fr/phones/honor-600/",
+    "https://www.honor.com/sa-en/phones/honor-600/"
+   ]
+  },
+  {
+   "sujet": "Statuts",
+   "texte": "spec_constructeur pour la fiche officielle, spec_secondaire pour une caractéristique non vérifiée dans la fiche officielle, ordre_de_grandeur pour une durée arrondie, observation pour un constat qualitatif, fonction_prise_en_charge pour un mode disponible et mention pour un produit simplement cité. Garder mesure_publiee pour les mesures précises et toujours conserver la source horodatée.",
+   "sources": []
+  },
+  {
+   "sujet": "Agrégation",
+   "texte": "séparer autonomie_jeu, ecart_autonomie_usage, fps_mode_supporte, fps_mesures et frequence_ecran_hz. Exclure les mentions, impressions et durées arrondies des moyennes ; ne pas compter deux résumés d’une même expérience comme deux tests et ne pas combler les champs inconnus avec zéro.",
+   "sources": []
+  }
+ ],
+ "transparence": {
+  "T01": [
+   "Vidéo sponsorisée"
+  ],
+  "T02": [
+   "Vidéo sponsorisée"
+  ],
+  "T03": [
+   "Partenariat déclaré"
+  ],
+  "T04": [
+   "Liens revendeur affiliés"
+  ],
+  "T05": [
+   "Liens revendeur affiliés"
+  ],
+  "T06": [
+   "Liens revendeur affiliés"
+  ],
+  "T09": [
+   "Vidéo sponsorisée"
+  ],
+  "T10": [
+   "Partenariat déclaré"
+  ]
+ },
+ "variantes": {
+  "iphone-18-pro-max-5567": {
+   "modele": "iphone-18-pro-max",
+   "mah": 5567,
+   "marche": null,
+   "details": []
+  },
+  "iphone-18-pro-4288": {
+   "modele": "iphone-18-pro",
+   "mah": 4288,
+   "marche": null,
+   "details": []
+  },
+  "iphone-duo-4883": {
+   "modele": "iphone-duo",
+   "mah": 4883,
+   "marche": null,
+   "details": []
+  },
+  "iphone-air-3149": {
+   "modele": "iphone-air",
+   "mah": 3149,
+   "marche": null,
+   "details": []
+  },
+  "iphone-17-3692": {
+   "modele": "iphone-17",
+   "mah": 3692,
+   "marche": null,
+   "details": []
+  },
+  "redmagic-12-pro-8400": {
+   "modele": "redmagic-12-pro",
+   "mah": 8400,
+   "marche": null,
+   "details": []
+  },
+  "iphone-18-pro-max-variante-inconnue": {
+   "modele": "iphone-18-pro-max",
+   "mah": null,
+   "marche": null,
+   "details": [
+    "Variante inconnue"
+   ]
+  },
+  "galaxy-s26-ultra-5000": {
+   "modele": "galaxy-s26-ultra",
+   "mah": 5000,
+   "marche": null,
+   "details": []
+  },
+  "pixel-11-pro-xl": {
+   "modele": "pixel-11-pro-xl",
+   "mah": null,
+   "marche": null,
+   "details": []
+  },
+  "redmi-note-17-pro-max-5g-10000": {
+   "modele": "redmi-note-17-pro-max-5g",
+   "mah": 10000,
+   "marche": null,
+   "details": []
+  },
+  "oppo-reno16-f-5g-7000": {
+   "modele": "oppo-reno16-f-5g",
+   "mah": 7000,
+   "marche": null,
+   "details": []
+  },
+  "galaxy-a57-5g-5000": {
+   "modele": "galaxy-a57-5g",
+   "mah": 5000,
+   "marche": null,
+   "details": []
+  },
+  "vivo-x500-pro-max-cn-8000": {
+   "modele": "vivo-x500-pro-max",
+   "mah": 8000,
+   "marche": "Import Chine",
+   "details": []
+  },
+  "oppo-find-x10-pro-max-cn-8000": {
+   "modele": "oppo-find-x10-pro-max",
+   "mah": 8000,
+   "marche": "Import Chine",
+   "details": []
+  },
+  "xiaomi-18-pro-max-cn-8500": {
+   "modele": "xiaomi-18-pro-max",
+   "mah": 8500,
+   "marche": "Import Chine",
+   "details": []
+  },
+  "iphone-18-pro-max-nano-sim-5391": {
+   "modele": "iphone-18-pro-max",
+   "mah": 5391,
+   "marche": null,
+   "details": [
+    "Variante nano-SIM"
+   ]
+  },
+  "xiaomi-17-cn-7000": {
+   "modele": "xiaomi-17",
+   "mah": 7000,
+   "marche": "Import Chine",
+   "details": []
+  },
+  "pixel-11": {
+   "modele": "pixel-11",
+   "mah": null,
+   "marche": null,
+   "details": []
+  },
+  "iphone-18-pro-nano-sim-4056": {
+   "modele": "iphone-18-pro",
+   "mah": 4056,
+   "marche": null,
+   "details": [
+    "Variante nano-SIM"
+   ]
+  },
+  "galaxy-s26-snapdragon-4300": {
+   "modele": "galaxy-s26",
+   "mah": 4300,
+   "marche": null,
+   "details": [
+    "Puce Snapdragon"
+   ]
+  },
+  "pixel-11-pro": {
+   "modele": "pixel-11-pro",
+   "mah": null,
+   "marche": null,
+   "details": []
+  },
+  "galaxy-s26-exynos-4300": {
+   "modele": "galaxy-s26",
+   "mah": 4300,
+   "marche": null,
+   "details": [
+    "Puce Exynos"
+   ]
+  },
+  "vivo-v80-lite-5g-za-10000": {
+   "modele": "vivo-v80-lite-5g",
+   "mah": 10000,
+   "marche": "Afrique du Sud",
+   "details": []
+  },
+  "honor-x9d-8300": {
+   "modele": "honor-x9d",
+   "mah": 8300,
+   "marche": null,
+   "details": []
+  },
+  "honor-600-pro-7000": {
+   "modele": "honor-600-pro",
+   "mah": 7000,
+   "marche": null,
+   "details": []
+  },
+  "poco-x8-8340": {
+   "modele": "poco-x8",
+   "mah": 8340,
+   "marche": null,
+   "details": []
+  },
+  "oneplus-16-cn-9000": {
+   "modele": "oneplus-16",
+   "mah": 9000,
+   "marche": "Import Chine",
+   "details": []
+  },
+  "vivo-x300-ultra-cn-6600": {
+   "modele": "vivo-x300-ultra",
+   "mah": 6600,
+   "marche": "Import Chine",
+   "details": []
+  },
+  "poco-f9-pro-6330": {
+   "modele": "poco-f9-pro",
+   "mah": 6330,
+   "marche": null,
+   "details": []
+  },
+  "poco-f9-ultra-8050": {
+   "modele": "poco-f9-ultra",
+   "mah": 8050,
+   "marche": null,
+   "details": []
+  }
+ }
+}

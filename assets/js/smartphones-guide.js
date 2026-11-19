@@ -197,7 +197,7 @@
       specChips(p) + meter(pr) +
       '<p class="sg-res-why">Meilleure note moyenne parmi les ' + total + ' modèle' + (total > 1 ? 's' : '') + ' qui respectent vos choix.</p>' +
       '<details class="sg-res-more"><summary>Voir sa fiche</summary>' + specRows(p) + '</details>' +
-      (recos.length > 1 ? '<p class="sg-dotlabel sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
+      (recos.length > 1 ? '<p class="sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
         return '<li><span>' + esc(nameOf(q)) + '</span><b>' + euros(F.prix(q)) + '</b><small>' + esc(chipText(q)) + '</small></li>';
       }).join('') + '</ol>' : ''));
     updateDock(p); updateMock(p);
@@ -629,10 +629,11 @@
     tabsEl.innerHTML = ANAT.map(function (c, i) {
       return '<button type="button" role="tab" id="sg-at-' + c.id + '" class="sg-at" aria-selected="false" aria-controls="sg-anat-panel" tabindex="-1" data-i="' + i + '">' + esc(c.nom) + '</button>';
     }).join('');
-    var btns = Array.prototype.slice.call(tabsEl.querySelectorAll('button')), cleanup = null;
+    var btns = Array.prototype.slice.call(tabsEl.querySelectorAll('button')), cleanup = null, current = 0;
 
     function select(i, focus) {
       var c = ANAT[i];
+      current = i;
       if (cleanup) { cleanup(); cleanup = null; }
       btns.forEach(function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); b.tabIndex = j === i ? 0 : -1; });
       panel.setAttribute('aria-labelledby', 'sg-at-' + c.id);
@@ -650,6 +651,7 @@
         '<dl class="sg-anat-dl"><div><dt>Ce que ça change</dt><dd>' + esc(c.effet) + '</dd></div>' +
         '<div><dt>Ce qu’il faut regarder</dt><dd>' + esc(c.regarder) + '</dd></div>' +
         '<div><dt>Le piège</dt><dd>' + esc(c.piege) + '</dd></div></dl>' +
+        preuveHtml(c.id) +
         (c.step ? '<button type="button" class="sg-mini-btn sg-anat-go" data-goto="' + c.step + '">Voir ce critère dans le parcours</button>' : '');
       cleanup = DEMOS[c.demo](panel.querySelector('.sg-anat-demo')) || null;
       if (focus) btns[i].focus();
@@ -668,16 +670,240 @@
     panel.addEventListener('click', function (e) { var g = e.target.closest('[data-goto]'); if (g) goStep(g.dataset.goto); });
 
     select(0, false);
-    if (reduceMotion || !('IntersectionObserver' in window)) { stage.setAttribute('data-open', 'true'); return; }
+    if (reduceMotion || !('IntersectionObserver' in window)) { stage.setAttribute('data-open', 'true'); return { refresh: function () { select(current, false); } }; }
     new IntersectionObserver(function (es, ob) {
       if (es[0].isIntersecting) { stage.setAttribute('data-open', 'true'); ob.disconnect(); }
     }, { threshold: 0.35 }).observe(stage);
+    return { refresh: function () { select(current, false); } };
+  }
+
+  /* ---------- Tests publiés, comparaisons et fiches (data/smartphones-tests.json) ----------
+     Chaque chiffre garde sa source et son statut. Rien n’est moyenné entre tests : les protocoles diffèrent. */
+  var TD = null, TIDX = null;
+  var STATUTS = { mesure_publiee: 'Mesure publiée', estimation: 'Estimation', ordre_de_grandeur: 'Ordre de grandeur', observation: 'Observation du testeur', fonction_prise_en_charge: 'Fonction prise en charge', divergence: 'Divergence' };
+  function st(s) { return '<span class="sg-st sg-st-' + esc(s) + '">' + esc(STATUTS[s] || s) + '</span>'; }
+  function fmtNum(n) { return Number(n).toLocaleString('fr-FR'); }
+  function hm(s) { var m = /^(\d+):(\d{2})$/.exec(String(s || '')); return m ? Number(m[1]) + ' h ' + m[2] : null; }
+  function cap1(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+  function hote(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } }
+  function mname(id) { var m = TIDX.modele[id]; return m ? m.nom : id; }
+  function lien(u, txt) { return '<a class="sg-src" href="' + esc(u) + '" target="_blank" rel="noopener noreferrer">' + esc(txt) + '</a>'; }
+  function badges(v) {
+    var b = [];
+    if (v.marche) b.push(v.marche);
+    (v.details || []).forEach(function (x) { b.push(x); });
+    if (v.mah) b.push(fmtNum(v.mah) + ' mAh');
+    return b.map(function (x) { return '<span class="sg-badge">' + esc(x) + '</span>'; }).join('');
+  }
+  function valeurTexte(l) {
+    if (l.unite === 'points') return fmtNum(l.valeur) + ' points';
+    var k = ['Total h:min', 'Arrêt h:min', 'Écran allumé h:min'].filter(function (x) { return l.extra[x]; })[0];
+    if (k && hm(l.extra[k])) return hm(l.extra[k]);
+    var mn = Math.round(l.valeur / 60);
+    return Math.floor(mn / 60) + ' h ' + ('0' + (mn % 60)).slice(-2);
+  }
+  function extrasTexte(l) {
+    var ignore = { 'Total h:min': 1, 'Arrêt h:min': 1, 'Écran allumé h:min': 1, 'Total s': 1, 'Arrêt s': 1, 'Durée s': 1, 'Autonomie jeu s': 1 };
+    return Object.keys(l.extra).filter(function (k) { return !ignore[k]; }).map(function (k) {
+      var v = l.extra[k];
+      if (v === 'n.d.') v = 'non disponible'; else if (/h:min$/.test(k) && hm(v)) v = hm(v);
+      return k.replace(/ h:min$/, '') + ' : ' + v;
+    }).join(' · ');
+  }
+  function classementsDe(id) { return TD.classements.filter(function (c) { return c.test === id; }); }
+  function ligneDe(test, variante) { var c = classementsDe(test)[0]; return c && c.lignes.filter(function (l) { return l.variante === variante; })[0]; }
+  function noteDe(test, debut) { return TD.notes.filter(function (n) { return n.test === test && n.texte.indexOf(debut) === 0; })[0]; }
+  function genre(c) { return /^Autonomie/.test(c.metrique) ? 'Autonomie' : 'Performances'; }
+
+  function rankHtml(c) {
+    var max = Math.max.apply(null, c.lignes.map(function (l) { return l.valeur; }));
+    return '<ol class="sg-rks">' + c.lignes.map(function (l, i) {
+      var ex = extrasTexte(l);
+      return '<li class="sg-rk"><span class="sg-rk-n">' + (l.rang || i + 1) + '</span>' +
+        '<div class="sg-rk-name"><b>' + esc(mname(l.modele)) + '</b>' + badges(l) + '</div>' +
+        '<span class="sg-rk-val">' + esc(valeurTexte(l)) + '</span>' +
+        '<span class="sg-rk-bar" aria-hidden="true"><i data-w="' + Math.round(l.valeur / max * 100) + '"></i></span>' +
+        '<small class="sg-rk-ex">' + (ex ? esc(ex) + ' · ' : '') + (l.sources[0] ? lien(l.sources[0], 'relevé') : '') + '</small></li>';
+    }).join('') + '</ol>';
+  }
+  function tableHtml(t) {
+    var head = t.colonnes.map(function (c, i) {
+      var v = TD.variantes[c];
+      return '<th scope="col">' + (v ? '<b>' + esc(mname(v.modele)) + '</b><span class="sg-th-b">' + badges(v) + '</span>' : esc(c)) + '</th>';
+    }).join('');
+    var rows = t.lignes.map(function (r) {
+      return '<tr>' + r.cellules.map(function (c, i) {
+        if (i === 0) return '<th scope="row">' + esc(c) + '</th>';
+        var proof = i === r.cellules.length - 1 && /^Preuve/.test(t.colonnes[i]) && r.sources[0];
+        return '<td>' + (proof ? lien(r.sources[0], c) : esc(c)) + '</td>';
+      }).join('') + '</tr>';
+    }).join('');
+    return '<div class="sg-tbl"><table><thead><tr>' + head + '</tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
+  var tcur = null, tshow = null;
+  function setupTestList() {
+    var list = document.getElementById('sg-tests-list'), panel = document.getElementById('sg-tests-panel');
+    if (!list || !panel) return;
+    var ids = TD.tests.filter(function (t) { return classementsDe(t.id).length || TD.tableaux.some(function (x) { return x.test === t.id; }); }).map(function (t) { return t.id; });
+    list.innerHTML = ids.map(function (id) {
+      var t = TIDX.test[id], c = classementsDe(id)[0];
+      return '<button type="button" role="tab" id="sg-tt-' + id + '" class="sg-tt" aria-selected="false" aria-controls="sg-tests-panel" tabindex="-1" data-id="' + id + '">' +
+        '<span class="sg-tt-k">' + (c ? genre(c) : 'Comparatif') + '</span><b>' + esc(cap1(t.titre)) + '</b><small>' + esc(t.chaine) + ' · ' + esc(dateFr(t.date, true)) + '</small></button>';
+    }).join('');
+    var btns = Array.prototype.slice.call(list.querySelectorAll('button'));
+    function show(id, focus) {
+      var t = TIDX.test[id], marques = TD.transparence[id] || [];
+      btns.forEach(function (b) { var on = b.dataset.id === id; b.setAttribute('aria-selected', on ? 'true' : 'false'); b.tabIndex = on ? 0 : -1; });
+      panel.setAttribute('aria-labelledby', 'sg-tt-' + id);
+      var html = '<h3 class="sg-anat-h">' + esc(cap1(t.titre)) + '</h3><p class="sg-tests-meta">' + esc(t.chaine) + ' · ' + esc(dateFr(t.date)) + ' · ' + lien(t.url, 'Voir la vidéo') +
+        marques.map(function (m) { return ' <span class="sg-badge sg-badge-warn">' + esc(m) + '</span>'; }).join('') + '</p>';
+      classementsDe(id).forEach(function (c) {
+        html += '<p class="sg-tests-h">' + esc(c.metrique) + ' ' + st('mesure_publiee') + '</p>' + rankHtml(c);
+      });
+      TD.tableaux.filter(function (x) { return x.test === id; }).forEach(function (x) { html += tableHtml(x); });
+      var notes = TD.notes.filter(function (n) { return n.test === id; });
+      if (notes.length) html += '<ul class="sg-tests-notes">' + notes.map(function (n) {
+        return '<li>' + (n.libelle ? '<b>' + esc(n.libelle) + ' : </b>' : '') + esc(n.texte) + (n.sources[0] ? ' ' + lien(n.sources[0], 'source') : '') + '</li>';
+      }).join('') + '</ul>';
+      html += '<details class="sg-cond"><summary>Conditions du test</summary><p>' + esc(t.protocole) + '</p></details>';
+      panel.innerHTML = html;
+      var bars = panel.querySelectorAll('.sg-rk-bar i');
+      var fill = function () { Array.prototype.forEach.call(bars, function (b) { b.style.transform = 'scaleX(' + (Number(b.dataset.w) / 100) + ')'; }); };
+      if (reduceMotion) fill(); else requestAnimationFrame(function () { requestAnimationFrame(fill); });
+      tcur = id;
+      if (focus) document.getElementById('sg-tt-' + id).focus();
+    }
+    tshow = show;
+    list.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) show(b.dataset.id, false); });
+    list.addEventListener('keydown', function (e) {
+      var cur = btns.indexOf(document.activeElement), n = null;
+      if (cur < 0) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') n = (cur + 1) % btns.length;
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') n = (cur - 1 + btns.length) % btns.length;
+      else if (e.key === 'Home') n = 0; else if (e.key === 'End') n = btns.length - 1;
+      if (n !== null) { e.preventDefault(); show(btns[n].dataset.id, true); }
+    });
+    show(ids[0], false);
+  }
+
+  /* Un même modèle mesuré dans plusieurs tests d’autonomie : les chiffres diffèrent parce que les protocoles diffèrent. */
+  function renderSame() {
+    var box = document.getElementById('sg-same');
+    if (!box) return;
+    var by = {};
+    TD.classements.filter(function (c) { return /^Autonomie/.test(c.metrique); }).forEach(function (c) {
+      c.lignes.forEach(function (l) { (by[l.modele] = by[l.modele] || []).push({ c: c, l: l }); });
+    });
+    var rows = Object.keys(by).filter(function (m) { return new Set(by[m].map(function (x) { return x.c.test; })).size >= 2; })
+      .sort(function (a, b) { return by[b].length - by[a].length; }).slice(0, 3);
+    if (!rows.length) { box.innerHTML = ''; return; }
+    box.innerHTML = '<h3 class="sg-same-h">Un même téléphone, plusieurs chiffres</h3>' +
+      '<p class="sg-sec-lead">Veille incluse ou non, luminosité, scénario d’usage : chaque test mesure autre chose. Les trois valeurs ci-dessous sont toutes exactes, aucune n’est la « vraie » autonomie.</p>' +
+      '<div class="sg-same-grid">' + rows.map(function (m) {
+        return '<article class="sg-same-card"><h4>' + esc(mname(m)) + '</h4><ul>' + by[m].map(function (x) {
+          var t = TIDX.test[x.c.test];
+          return '<li><span>' + esc(cap1(t.titre)) + '<small>' + esc(t.chaine) + ' · ' + esc(x.c.metrique.toLowerCase()) + (badges(x.l) ? ' ' + badges(x.l) : '') + '</small></span><b>' + esc(valeurTexte(x.l)) + '</b></li>';
+        }).join('') + '</ul></article>';
+      }).join('') + '</div>';
+  }
+
+  /* Fiche d’un modèle : caractéristiques annoncées + preuves rattachées. */
+  function setupFiche() {
+    var sel = document.getElementById('sg-fiche-sel'), card = document.getElementById('sg-fiche-card');
+    if (!sel || !card) return;
+    function nb(id) {
+      return TD.classements.reduce(function (n, c) { return n + c.lignes.filter(function (l) { return l.modele === id; }).length; }, 0) +
+        TD.observations.filter(function (o) { return (o.modeles || []).indexOf(id) >= 0; }).length;
+    }
+    var ms = TD.modeles.slice().sort(function (a, b) { return a.nom.localeCompare(b.nom, 'fr'); });
+    sel.innerHTML = ms.map(function (m) { return '<option value="' + esc(m.id) + '">' + esc(m.nom) + '</option>'; }).join('');
+    var best = ms.slice().sort(function (a, b) { return nb(b.id) - nb(a.id); })[0];
+    function show(id) {
+      var m = TIDX.modele[id], html = '<h3 class="sg-anat-h">' + esc(m.nom) + '</h3>' +
+        '<dl class="sg-anat-dl"><div><dt>Puce et écran</dt><dd>' + esc(m.puce_ecran) + '</dd></div>' +
+        '<div><dt>Batterie et charge</dt><dd>' + esc(m.batterie_charge) + '</dd></div>' +
+        '<div><dt>Photo arrière</dt><dd>' + esc(m.photo_arriere) + '</dd></div></dl>' +
+        '<p class="sg-fine">Caractéristiques annoncées par le fabricant ou une source secondaire, avec leur marché quand il est connu. Une capacité de batterie peut varier selon le pays.</p>';
+      var res = [];
+      TD.classements.forEach(function (c) { c.lignes.forEach(function (l) { if (l.modele === id) res.push({ c: c, l: l }); }); });
+      html += '<p class="sg-tests-h">Résultats de tests ' + (res.length ? st('mesure_publiee') : '') + '</p>';
+      html += res.length ? '<ul class="sg-fl">' + res.map(function (x) {
+        var t = TIDX.test[x.c.test], n = x.c.lignes.length;
+        return '<li><span><b>' + esc(x.c.metrique) + '</b> · ' + esc(cap1(t.titre)) + ' (' + esc(t.chaine) + ')' + badges(x.l) +
+          '<small>' + (x.l.rang ? x.l.rang + (x.l.rang === 1 ? 'er' : 'e') + ' sur ' + n + ' dans ce test · ' : '') + esc(extrasTexte(x.l)) + ' ' + (x.l.sources[0] ? lien(x.l.sources[0], 'relevé') : '') + '</small></span><b class="sg-fl-v">' + esc(valeurTexte(x.l)) + '</b></li>';
+      }).join('') + '</ul>' : '<p class="sg-fine">Aucun classement publié pour ce modèle dans les bases actuelles.</p>';
+      var og = TD.ordres_de_grandeur.filter(function (o) { return o.modele === id; });
+      if (og.length) html += '<p class="sg-tests-h">Durées rapportées par les testeurs</p><ul class="sg-fl">' + og.map(function (o) {
+        return '<li><span><b>' + esc(o.indicateur) + '</b> ' + st(o.statut) + '<small>' + esc(o.limites.replace(/^[a-z_]+ ; ?/, '')) + ' ' + (o.sources[0] ? lien(o.sources[0], 'relevé') : '') + '</small></span><b class="sg-fl-v">' + esc(o.resultat) + '</b></li>';
+      }).join('') + '</ul>';
+      var ob = TD.observations.filter(function (o) { return (o.modeles || []).indexOf(id) >= 0; });
+      if (ob.length) html += '<p class="sg-tests-h">Observations du testeur ' + st('observation') + '</p><ul class="sg-tests-notes">' + ob.map(function (o) {
+        var t = TIDX.test[o.test];
+        return '<li>' + esc(o.texte) + ' <small>' + esc(t.chaine) + ', ' + esc(dateFr(t.date, true)) + '</small> ' + (o.sources[0] ? lien(o.sources[0], 'source') : '') + '</li>';
+      }).join('') + '</ul>';
+      var cp = (m.complements || []);
+      if (cp.length) html += '<p class="sg-tests-h">Compléments</p><ul class="sg-tests-notes">' + cp.map(function (x) { return '<li>' + esc(x.texte) + (x.sources[0] ? ' ' + lien(x.sources[0], 'source') : '') + '</li>'; }).join('') + '</ul>';
+      html += '<details class="sg-cond"><summary>Sources de la fiche (' + m.sources.length + ')</summary><ul class="sg-srcs">' + m.sources.map(function (u) { return '<li>' + lien(u, hote(u)) + '</li>'; }).join('') + '</ul></details>';
+      card.innerHTML = html;
+    }
+    sel.addEventListener('change', function () { show(sel.value); });
+    sel.value = best.id; show(best.id);
+  }
+
+  /* Preuves chiffrées affichées sous chaque composant de l’anatomie (uniquement ce que les tests mesurent). */
+  function preuve(id) {
+    if (!TD) return null;
+    var a, b, n;
+    if (id === 'batterie') {
+      a = ligneDe('T10', 'honor-600-pro-7000'); b = ligneDe('T10', 'poco-x8-8340');
+      if (a && b) return { s: ['mesure_publiee'], u: a.sources[0], t: 'Au test d’autonomie écran allumé de ' + TIDX.test.T10.chaine + ', le ' + mname(a.modele) + ' de ' + fmtNum(a.mah) + ' mAh tient ' + valeurTexte(a) + ', devant le ' + mname(b.modele) + ' de ' + fmtNum(b.mah) + ' mAh (' + valeurTexte(b) + ') : la capacité seule ne décide pas. Attention : la version du HONOR 600 Pro vendue en France a 6 400 mAh.' };
+    }
+    if (id === 'charge') {
+      a = ligneDe('T03', 'redmi-note-17-pro-max-5g-10000'); b = ligneDe('T03', 'iphone-17-3692');
+      if (a && b) return { s: ['mesure_publiee', 'estimation'], u: a.sources[0], t: 'Après 30 minutes de charge, au test de ' + TIDX.test.T03.chaine + ', le ' + mname(a.modele) + ' est à ' + a.extra['Batterie après 30 min de charge'] + ' et l’' + mname(b.modele) + ' à ' + b.extra['Batterie après 30 min de charge'] + '. Le pourcentage trompe, car les capacités diffèrent : en mAh ajoutés (estimation d’après la jauge), environ ' + fmtNum(parseInt(a.extra['mAh ajoutés estimés à 10 / 30 min'].split('/')[1], 10)) + ' contre ' + fmtNum(parseInt(b.extra['mAh ajoutés estimés à 10 / 30 min'].split('/')[1], 10)) + '.' };
+    }
+    if (id === 'puce') {
+      a = ligneDe('T08', 'xiaomi-17-cn-7000'); b = ligneDe('T08', 'galaxy-s26-snapdragon-4300');
+      if (a && b) return { s: ['mesure_publiee'], u: a.sources[0], t: 'Au test de ' + TIDX.test.T08.chaine + ', deux téléphones à puce Snapdragon 8 Elite Gen 5 (version « for Galaxy » pour le Samsung) donnent des scores Geekbench 7 monocœur très différents : ' + a.extra['Geekbench 7 mono / multi (points)'].split('/')[0].trim() + ' pour le ' + mname(a.modele) + ', ' + b.extra['Geekbench 7 mono / multi (points)'].split('/')[0].trim() + ' pour le ' + mname(b.modele) + '. Le testeur évoque l’optimisation sans le démontrer : un score dépend aussi de l’exécution.' };
+    }
+    if (id === 'ram') {
+      var t9 = TD.tableaux.filter(function (x) { return x.test === 'T09'; })[0], r = t9 && t9.lignes.filter(function (x) { return /^Points mémoire/.test(x.cellules[0]); })[0];
+      if (r) return { s: ['mesure_publiee'], u: r.sources[0], t: 'Au test de vitesse d’usage de ' + TIDX.test.T09.chaine + ', le REDMAGIC 12 Pro marque ' + r.cellules[1] + ' points mémoire et l’iPhone 18 Pro Max ' + r.cellules[2] + '. Pourtant, l’iPhone lance plus vite plusieurs jeux : mémoire et vitesse de lancement sont deux mesures distinctes.' };
+    }
+    if (id === 'ecran') {
+      n = noteDe('T11', 'Le 185 Hz'); var m = TIDX.modele['oneplus-16'];
+      if (n && m) return { s: ['observation'], u: n.sources[0], t: 'Le ' + m.nom + ' annonce « ' + (m.puce_ecran.split(' ; ')[1] || m.puce_ecran) + ' ». ' + n.texte.split('. ')[0] + '.' };
+    }
+    if (id === 'photo') {
+      n = TD.notes.filter(function (x) { return x.test === 'T04' && /^Photo/.test(x.libelle || ''); })[0];
+      if (n) return { s: ['observation'], u: n.sources[0], t: 'Comparaison de ' + TIDX.test.T04.chaine + ' sur les scènes montrées : ' + n.texte };
+    }
+    return null;
+  }
+  function preuveHtml(id) {
+    var p = preuve(id);
+    if (!TD) return '<p class="sg-fine">Chargement des preuves…</p>';
+    if (!p) return '<p class="sg-fine">Aucun test publié dans les bases actuelles ne mesure ce point.</p>';
+    return '<div class="sg-proof"><p class="sg-proof-h">Dans les tests ' + p.s.map(st).join(' ') + '</p><p>' + esc(p.t) + '</p>' + (p.u ? '<p class="sg-fine">' + lien(p.u, 'Voir le relevé') + '</p>' : '') + '</div>';
   }
 
   /* ---------- Démarrage ---------- */
   function init() {
     setupTabs();
-    setupAnatomy();
+    var anat = setupAnatomy();
+    fetch('data/smartphones-tests.json')
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        TD = d; TIDX = { modele: {}, test: {} };
+        d.modeles.forEach(function (m) { TIDX.modele[m.id] = m; });
+        d.tests.forEach(function (t) { TIDX.test[t.id] = t; });
+        setupTestList(); renderSame(); setupFiche();
+        if (anat) anat.refresh();
+      })
+      .catch(function () {
+        ['sg-tests-panel', 'sg-fiche-card'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="sg-loading">Les tests n’ont pas pu être chargés. Rechargez la page.</p>'; });
+      });
     setupHero();
     setupDock();
     document.getElementById('sg-steps').addEventListener('click', onStepsClick);
