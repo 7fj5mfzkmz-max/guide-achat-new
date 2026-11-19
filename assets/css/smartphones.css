@@ -158,7 +158,7 @@
 
 /* Visuels des options */
 .sg-v-oled { width: 100%; height: 100%; background: #000; position: relative; }
-.sg-v-oled::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px; border-radius: 50%; background: #ffc700; box-shadow: 0 0 10px #ffc700; }
+.sg-v-oled::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px; border-radius: 50%; background: #ffc700; box-shadow: 0 1px 2px rgba(23, 19, 15, .35); }
 .sg-v-lcd { width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #6d6d6d, #3a3a3a); position: relative; }
 .sg-v-lcd::after { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px; border-radius: 50%; background: #ffc700; }
 .sg-v-ltpo { font: 700 .62rem/1.1 var(--mono); text-align: center; color: var(--orange); }
@@ -221,7 +221,6 @@
 .sg-dock { display: none; }
 
 /* ---------- Présentation ---------- */
-  background: radial-gradient(120% 120% at 100% 0, #ffd2b6 0, var(--orange) 55%, #e8430a 100%); box-shadow: 0 30px 60px rgba(255, 91, 20, .22); }
 
 .sg-sec-head { margin: 0 0 22px; }
 .sg-sec-head h2 { margin: 8px 0 0; font: 800 clamp(1.6rem, 3vw, 2.3rem)/1.1 var(--head); letter-spacing: -.03em; }
@@ -236,7 +235,7 @@
 .sg-lanes { display: grid; gap: 10px; }
 .sg-lane-name { display: block; font-size: .76rem; font-weight: 600; color: var(--mute); margin-bottom: 4px; }
 .sg-track { position: relative; height: 34px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); }
-.sg-dot { position: absolute; left: 4px; top: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--orange); box-shadow: 0 4px 10px rgba(255, 91, 20, .35); will-change: transform; }
+.sg-dot { position: absolute; left: 4px; top: 4px; width: 24px; height: 24px; border-radius: 50%; background: var(--orange); box-shadow: 0 2px 3px rgba(23, 19, 15, .3); will-change: transform; }
 .sg-swatches { display: flex; gap: 10px; flex-wrap: wrap; }
 .sg-sw { display: inline-flex; align-items: center; gap: 8px; font-size: .78rem; font-weight: 600; }
 .sg-sw i { width: 30px; height: 20px; border-radius: 6px; position: relative; }

@@ -247,6 +247,8 @@ button { cursor: pointer; background: none; border: 0; }
 .header-meta {
   border-bottom: 1px solid var(--line-soft);
   background: var(--paper-2);
+  padding-block: 8px;
+  padding-inline: 16px;
 }
 .header-meta-inner {
   width: min(1120px, 100% - clamp(32px, 6vw, 88px));
@@ -254,10 +256,10 @@ button { cursor: pointer; background: none; border: 0; }
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  padding-block: 9px;
+  padding-block: 10px;
 }
 .header-meta-inner span {
-  font: 500 10.5px var(--mono);
+  font: 500 11px var(--mono);
   letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--ink-mute);
@@ -286,6 +288,7 @@ button { cursor: pointer; background: none; border: 0; }
 }
 .ga-ticker-track em { font-style: normal; color: var(--accent); padding: 0 10px; }
 @keyframes ga-ticker { to { transform: translateX(-50%); } }
+.ga-ticker:hover .ga-ticker-track, .ga-ticker:focus-within .ga-ticker-track { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .ga-ticker-track { animation: none; } }
 
 /* ---------- Tiroirs (recherche, catégories) ---------- */
