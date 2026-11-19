@@ -15,7 +15,7 @@ Document lu par les agents. Guide humain : [README.md](README.md).
 |---|---|---|
 | Critique d'une page ou d'un écran | impeccable `critique` | lecture seule |
 | Audit technique (accessibilité, performance, responsive) | impeccable `audit` | lecture seule |
-| Détecter des défauts visuels sur un fichier | `impeccable detect <fichier>` | lecture seule |
+| Détecter des défauts visuels sur un fichier | `scripts/impeccable detect <fichier> --no-advisory` (renvoie au moteur du skill) | lecture seule |
 | Polish avant livraison | impeccable `polish` | modifie le code, après accord |
 | Référence de polish animation / interaction | emil-design-eng | référence |
 

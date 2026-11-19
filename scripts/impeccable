@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Lanceur du skill Impeccable (moteur vérifié dans .agents/skills/impeccable/scripts).
+# Usage : scripts/impeccable detect smartphones.html
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+exec "$DIR/.agents/skills/impeccable/scripts/impeccable" "$@"
