@@ -39,22 +39,15 @@ de « Ma recommandation »), dans `sitemap.xml` et, si c’est une catégorie, d
 ## Montres (montres.html)
 Données : `data/montres.json` (33 modèles, 10 vidéos sources : pouls contre ceinture ECG, sommeil contre EEG, GPS sur marathon, VO2 max, tension, montres Citizen). Page générée par `python3 tools/montres/construire.py` (`npm run montres:build`) : contenu en HTML statique, `assets/js/montres.js` ajoute le questionnaire (rang des tests pour l’usage, puis prix ; un prix inconnu n’apparaît qu’avec « Sans limite »), les filtres et la liste de contrôle. Contrôle : `npm run montres:test`. Prix convertis en euros (taux BCE du 3 novembre 2026) ; les codes promotionnels et liens affiliés des vidéos ne sont pas repris.
 
-## Smartphones (page retirée)
-La page Smartphones (`smartphones.html`, son quiz, son catalogue et ses démonstrations) a été supprimée. `smartphones.html` redirige vers `analyseur.html?cat=smartphones` (règles dans `vercel.json` et `netlify.toml`).
+## Smartphones (smartphones.html)
+Trois onglets :
+- **Mes critères** : parcours budget → critères → recommandation. Lit `data/smartphones.json`, qui est **obsolète** (prix et fiches à ne pas utiliser comme vérité). Logique pure : `assets/js/smartphones-guide-logic.js` (testée par `scripts/smartphones-guide-test.js`). Interface : `assets/js/smartphones-guide.js`.
+- **Présentation** : vue éclatée du téléphone, une démonstration par composant, fonctionnalités, tests publiés et fiches de modèles. Lit `data/smartphones-tests.json`, **généré** par `python3 tools/donnees/construire-tests.py` à partir de `data/sources/base-tests-T01-T11.md` et `base-tests-T12-T16.md`. Ne pas modifier le JSON à la main. Test : `npm run smartphones:donnees`.
+- **Analyseur** : `analyseur.html?cat=smartphones` affiché dans un cadre.
 
-Restent utiles à l’analyseur : `phone-analyzer/` (moteur, interface, contrats), `analyseur.html`, `assets/js/smartphones-scoring.js`, `data/smartphones.json` et les fichiers de données liés (puces, capteurs, vérifications). `npm run analyzer:ui-test` teste le parcours smartphones de l’analyseur.
+Styles : `assets/css/smartphones.css`. Les prix, indices IP et durées de mises à jour ne sont pas dans les bases de tests : le parcours budget n'est pas fiable tant qu'un nouveau jeu de données n'est pas fourni.
 
-### Échelle des puces (1 à 10) et gammes
-`phone-analyzer/chips.js` classe chaque puce sur une seule échelle (1-3 entrée, 4-6 milieu, 7-8 haut, 9-10 très haut de gamme), partagée par les données et l'analyseur. `node tools/smartphones/classer-puces.js` écrit `perf.niveau` et `perf.gamme` dans `data/smartphones.json` (déjà appelé par `integrer-tests.js`). Puce inconnue : pas de niveau. Nouvelle puce : ajouter une règle dans `chips.js`, puis `node scripts/chips-test.js`.
-
-### Échelle des capteurs photo (1 à 10)
-`phone-analyzer/sensors.js` note le capteur principal selon sa taille : 1″ = 10, 1/1.3″ = 8, 1/1.56″ = 7, 1/2″ = 5, 1/2.76″ = 3 (1-3 petit, 4-6 moyen, 7-8 grand, 9-10 très grand). Les tailles relevées, avec leurs sources, sont dans `data/smartphones-capteurs.json` ; `node tools/smartphones/classer-capteurs.js` les inscrit dans `compatibilite.photo.capteur` (relancé par tous les outils du catalogue). Un modèle sans relevé n'a pas de note : on ne devine pas. Contrôle : `node scripts/sensors-test.js`.
-
-### Options du quiz « Mes critères » grisées
-`window.GuideDisponibilite` (`assets/js/smartphones-scoring.js`) dit si une option a au moins un modèle correspondant dans le catalogue, dans le budget déjà choisi (palier ± 15 %). Même règle que le classement : valeur « pile » ou très proche. Une option sans modèle est grisée (`aria-disabled`, « Aucun modèle dans ce budget »), un clic dessus est ignoré, et changer de budget retire les choix devenus impossibles. Un critère que le catalogue ne documente pour aucun modèle (chimie de batterie par exemple) n'est pas grisé.
-
-### Fiches vérifiées sur sources
-`data/smartphones-verifications.json` liste les fiches relues sur au moins deux sources (presse, fabricant, revendeur), avec le prix France et les liens. `node tools/smartphones/verifier-fiches.js` les applique au catalogue : statut `verifie_web`, éligibles aux classements. Une valeur absente ou contradictoire reste vide. Les modèles introuvables sont écartés (`exclu_reco`), les pliables et imports restent hors classement. Contrôle : `node scripts/verifications-test.js`.
+Règles de contenu pour un agent : ne pas inventer de chiffre ; garder le statut et la source de chaque valeur ; ne jamais moyenner des résultats de tests différents.
 
 ## Générer les données PC portables
 `python3 tools/pc-portables/construire.py` → écrit `data/pc-portables.json` et `data/lexique-pc-portables.json` (lexique affiché dans `pc-portables.html#lexique`).
