@@ -1,19 +1,12 @@
-/* Page Smartphones : onglets, parcours « Mes critères », sélection du mois et démonstrations.
+/* Page Smartphones : onglets, parcours « Mes critères » et démonstrations.
    La logique de filtrage est dans assets/js/smartphones-guide-logic.js (testée par scripts/smartphones-guide-test.js).
 
-   SÉLECTION DU MOIS : modifier SELECTION ci-dessous (date de la sélection et identifiant catalogue du modèle).
-   Si le modèle n’est pas encore au catalogue, seul son nom s’affiche, sans prix ni caractéristique inventés.
-
-   EMPLACEMENTS PHOTO : renseigner PHOTOS avec un chemin d’image, par exemple { mois: "assets/editorial/oneplus-16.webp" }.
-   Clés prévues : "mois" (téléphone du mois) et l’identifiant catalogue d’un modèle (carte de recommandation).
+   EMPLACEMENTS PHOTO : renseigner PHOTOS avec un chemin d’image, par exemple { "<identifiant>": "assets/...webp" }.
+   Clé : l’identifiant catalogue d’un modèle (carte de recommandation).
    Une clé absente n’affiche rien aux visiteurs. Format conseillé : WebP 1200×900 ; texte alternatif dans PHOTOS_ALT. */
 (function () {
   'use strict';
 
-  var SELECTION = {
-    date: '2026-11-18',
-    reference: { nom: 'OnePlus 16', id: 'oneplus-oneplus-16', predecesseur: 'oneplus-oneplus-15' }
-  };
   var PHOTOS = {};
   var PHOTOS_ALT = {};
 
@@ -345,49 +338,6 @@
     var c = F.mah(p); if (c !== null && c >= 6000) bits.push('longues journées sans recharge');
     return bits.length ? 'Pour : ' + bits.join(', ') + '.' : 'Profil à préciser : données insuffisantes.';
   }
-  function renderMonth(products) {
-    var ref = document.getElementById('sg-month-ref');
-    var byId = {};
-    products.forEach(function (p) { byId[p.id] = p; });
-    var r = byId[SELECTION.reference.id];
-    var img = PHOTOS.mois ? '<img class="sg-month-img" src="' + esc(PHOTOS.mois) + '" alt="' + esc(PHOTOS_ALT.mois || '') + '" width="1200" height="900" loading="lazy" decoding="async">' : '';
-    var nom = r ? nameOf(r) : SELECTION.reference.nom;
-    var parts = nom.split(' '), last = parts.pop();
-    var head = '<p class="sg-dotlabel">Téléphone du mois</p>' +
-      '<h2 id="sg-h-month">' + esc(parts.join(' ')) + ' <b>' + esc(last) + '</b></h2>' +
-      '<p class="sg-month-date">Sélection du ' + esc(dateFr(SELECTION.date)) + '</p>';
-    var phone = '<span class="sg-month-stick" aria-hidden="true">Réf. du mois</span><div class="sg-month-phone" aria-hidden="true"><span>' + esc(nom) + '<small>' + (r ? euros(F.prix(r)) : 'fiche à venir') + '</small></span></div>';
-    if (r) {
-      ref.innerHTML = img + head + '<div class="sg-month-pred">' + specChipsFor(r) + '<p class="sg-price-s">' + euros(F.prix(r)) + '</p><p class="sg-fine">' + esc(profil(r)) + '</p></div>' + phone;
-    } else {
-      var pred = byId[SELECTION.reference.predecesseur];
-      ref.innerHTML = img + head + '<p class="sg-month-note">Sa fiche n’est pas encore au catalogue : prix et caractéristiques s’afficheront une fois vérifiés.</p>' +
-        (pred ? '<div class="sg-month-pred"><p class="sg-dotlabel">En attendant, son prédécesseur</p><h3>' + esc(nameOf(pred)) + '</h3><p class="sg-price-s">' + euros(F.prix(pred)) + '</p>' + specChipsFor(pred) +
-          '<details class="sg-res-more"><summary>Voir sa fiche</summary>' + specRows(pred) + '</details></div>' : '') + phone;
-    }
-    var g = new L.Guide(products), used = {};
-    var ready = products.filter(function (p) { return p.ready_for_recommendation !== false && F.prix(p) !== null && p.id !== SELECTION.reference.predecesseur; });
-    var pick = function (list, key) {
-      var p = list.filter(function (x) { return !used[x.id]; }).sort(function (a, b) {
-        return (key ? (F.get(b, ['scores', key]) || 0) - (F.get(a, ['scores', key]) || 0) : 0) || g.overall(b) - g.overall(a);
-      })[0];
-      if (p) used[p.id] = true; return p;
-    };
-    var picks = [
-      [pick(ready.filter(function (p) { return F.prix(p) <= 200; })), 'Jusqu’à 200 €'],
-      [pick(ready.filter(function (p) { return F.prix(p) > 200 && F.prix(p) <= 450; })), 'De 200 à 450 €'],
-      [pick(ready.filter(function (p) { return F.prix(p) <= 800 && F.ois(p) === true; }), 'photo'), 'Photo, jusqu’à 800 €']
-    ];
-    document.getElementById('sg-month-alts').innerHTML = picks.filter(function (x) { return x[0]; }).map(function (x) {
-      var p = x[0];
-      return '<li class="sg-alt"><span class="sg-alt-phone" aria-hidden="true"></span><p class="sg-alt-tag">' + esc(x[1]) + '</p><h3>' + esc(nameOf(p)) + '</h3>' +
-        '<p class="sg-alt-price">' + euros(F.prix(p)) + '</p><p class="sg-alt-meta">' + esc(chipText(p)) + (F.mah(p) !== null ? ' · ' + F.mah(p).toLocaleString('fr-FR') + ' mAh' : '') + ' · ' + esc(profil(p).replace(/^Pour : /, '').replace(/\.$/, '')) + '</p></li>';
-    }).join('');
-    document.getElementById('sg-month-rule').textContent = 'Choisis automatiquement dans le catalogue : meilleure note moyenne de chaque tranche de prix ; pour la photo, meilleure note photo parmi les modèles à stabilisation confirmée.';
-  }
-  /* Pastilles de fiche hors parcours (sélection du mois) : aucune n’est marquée comme choisie. */
-  function specChipsFor(p) { var keep = guide; guide = null; var html = specChips(p); guide = keep; return html; }
-
   /* ---------- Démonstrations ---------- */
   function setupHero() {
     var start = document.getElementById('sg-cta-start'), an = document.getElementById('sg-cta-analyse');
@@ -737,7 +687,6 @@
         var products = (d && d.produits) || [];
         guide = new L.Guide(products);
         buildSteps(); render();
-        renderMonth(products);
         document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(products.length); });
         var dates = products.map(function (p) { return p.prix_date; }).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x || ''); }).sort();
         document.querySelectorAll('[data-pricedate]').forEach(function (el) { el.textContent = dates.length ? dateFr(dates[dates.length - 1], true) : '—'; });

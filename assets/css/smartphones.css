@@ -46,7 +46,6 @@
 .sg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .sg-dotlabel { display: flex; align-items: center; gap: 8px; margin: 0; font: 500 .8rem/1.3 var(--sans); color: var(--mute); }
 .sg-dotlabel::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--orange); flex: none; }
-.sg-fine { font-size: .84rem; color: var(--mute); margin: 10px 0 0; }
 .sg a { color: inherit; text-underline-offset: 3px; }
 .sg-h-light { font-weight: 300; }
 
@@ -207,8 +206,6 @@
 .sg-meter-txt b { color: var(--ink); }
 .sg-res-why { margin: 12px 0 0; font-size: .86rem; color: var(--mute); }
 .sg-res-empty { margin: 0; font-size: .92rem; }
-.sg-res-more { margin-top: 12px; border-top: 1px solid var(--line); }
-.sg-res-more summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; font-size: .9rem; }
 .sg-specs { margin: 0; font-size: .82rem; }
 .sg-specs div { display: grid; grid-template-columns: 86px 1fr; gap: 8px; padding: 5px 0; border-top: 1px solid var(--line); }
 .sg-specs dt { color: var(--mute); font-weight: 600; }
@@ -224,31 +221,7 @@
 .sg-dock { display: none; }
 
 /* ---------- Présentation ---------- */
-.sg-month { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 28px; margin-bottom: 64px; align-items: start; }
-.sg-month-ref { position: relative; overflow: hidden; border-radius: 26px; padding: 28px; min-height: 380px; color: #17130f;
   background: radial-gradient(120% 120% at 100% 0, #ffd2b6 0, var(--orange) 55%, #e8430a 100%); box-shadow: 0 30px 60px rgba(255, 91, 20, .22); }
-.sg-month-ref .sg-dotlabel { color: #17130f; }
-.sg-month-ref .sg-dotlabel::before { background: #17130f; }
-.sg-month-ref h2 { margin: 14px 0 6px; font: 300 clamp(2.6rem, 5vw, 4rem)/.95 var(--head); letter-spacing: -.045em; max-width: 6ch; }
-.sg-month-ref h2 b { font-weight: 800; }
-.sg-month-date { margin: 0; font: 500 .8rem/1.3 var(--mono); }
-.sg-month-note { margin: 14px 0 0; max-width: 30ch; font-size: .92rem; line-height: 1.5; }
-.sg-month-phone { position: absolute; right: 30px; bottom: -60px; width: 170px; height: 330px; border-radius: 32px; background: #17130f; padding: 8px; transform: rotate(8deg); box-shadow: 0 24px 50px rgba(23, 19, 15, .35); }
-.sg-month-phone::before { content: ''; display: block; height: 100%; border-radius: 25px; background: linear-gradient(170deg, #fff 0, #ffe5d6 100%); }
-.sg-month-phone span { position: absolute; left: 22px; right: 22px; top: 46px; font: 800 1.05rem/1.1 var(--head); color: #17130f; }
-.sg-month-phone small { display: block; margin-top: 4px; font: 500 .6rem/1.2 var(--mono); color: #6a625a; text-transform: uppercase; letter-spacing: .06em; }
-.sg-month-stick { position: absolute; right: 168px; top: 30px; padding: 8px 12px; border: 2.5px solid #17130f; border-radius: 10px; background: var(--yellow); font: 800 .8rem/1 var(--head); text-transform: uppercase; box-shadow: var(--hard); transform: rotate(-8deg); }
-.sg-month-pred { margin-top: 18px; padding: 16px; border-radius: 18px; background: var(--card); color: var(--ink); max-width: 330px; position: relative; z-index: 1; box-shadow: var(--shadow); }
-.sg-month-pred h3 { margin: 6px 0 0; font: 800 1.1rem/1.2 var(--head); }
-.sg-price-s { margin: 2px 0 6px; font: 700 1rem/1.3 var(--mono); }
-.sg-month-side { display: grid; gap: 12px; }
-.sg-alts { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.sg-alt { display: grid; grid-template-columns: 44px 1fr auto; gap: 2px 14px; align-items: center; padding: 14px 16px; border-radius: 18px; background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); }
-.sg-alt-phone { grid-row: span 3; width: 30px; height: 52px; border-radius: 8px; border: 2.5px solid var(--ink); justify-self: center; background: linear-gradient(170deg, var(--card), var(--orange-soft)); }
-.sg-alt-tag { grid-column: 2; font: 500 .7rem/1.3 var(--mono); color: var(--mute); text-transform: uppercase; letter-spacing: .05em; margin: 0; }
-.sg-alt h3 { grid-column: 2; margin: 0; font: 800 1.02rem/1.2 var(--head); }
-.sg-alt-price { grid-column: 3; grid-row: 1 / span 2; margin: 0; font: 800 1.2rem/1 var(--head); }
-.sg-alt-meta { grid-column: 2 / -1; margin: 0; font-size: .8rem; color: var(--mute); }
 
 .sg-sec-head { margin: 0 0 22px; }
 .sg-sec-head h2 { margin: 8px 0 0; font: 800 clamp(1.6rem, 3vw, 2.3rem)/1.1 var(--head); letter-spacing: -.03em; }
@@ -306,7 +279,6 @@
   .sg-hero-visual { height: 460px; max-width: 520px; width: 100%; margin: 0 auto; }
   .sg-parcours { grid-template-columns: 1fr; }
   .sg-result-col { position: static; max-width: 520px; }
-  .sg-month { grid-template-columns: 1fr; }
 }
 /* ---------- Téléphone ---------- */
 @media (max-width: 640px) {
@@ -328,10 +300,6 @@
   .sg-step.is-open .sg-panel-in { padding: 0 12px 14px; }
   .sg-opts { grid-template-columns: 1fr; }
   .sg-opts-prix { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .sg-month-ref { padding: 22px; min-height: 0; padding-bottom: 210px; }
-  .sg-month-phone { width: 130px; height: 250px; right: 20px; bottom: -40px; }
-  .sg-month-stick { right: auto; left: 22px; top: auto; bottom: 120px; }
-  .sg-month-pred { max-width: none; }
   .sg-frame { height: 1100px; }
   .sg-zone { padding-bottom: 110px; }
   .sg-dock:not([hidden]) { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 30; display: flex; align-items: center; justify-content: space-between; gap: 12px;
@@ -552,3 +520,6 @@
 .sg-tl-ticks { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); margin: 6px 0 0; padding: 0; list-style: none; text-align: center; font-size: .72rem; color: var(--mute); }
 .sg-tl-unit { margin: 2px 0 0; text-align: center; font-size: .72rem; color: var(--mute); }
 @media (max-width: 640px) { .sg-anat-dl div { grid-template-columns: minmax(0, 1fr); } }
+
+/* Notes de bas de section */
+.sg-fine { font-size: .84rem; color: var(--mute); margin: 10px 0 0; }
