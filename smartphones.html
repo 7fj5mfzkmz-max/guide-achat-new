@@ -108,6 +108,52 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div>
 </div>
 
+<section class="sg-anat" id="sg-anat" aria-labelledby="sg-h-anat">
+<div class="sg-sec-head"><p class="sg-dotlabel">Anatomie d’un téléphone</p><h2 id="sg-h-anat"><span class="sg-h-light">Ce qu’il y a dedans,</span> et ce que ça change pour vous.</h2></div>
+<div class="sg-anat-grid">
+<div class="sg-anat-stage" id="sg-anat-stage" data-open="false" aria-hidden="true">
+<div class="sg-stack">
+<div class="sg-ly sg-ly-frame" data-layer="frame"><i class="sg-seal"></i><span class="sg-drops"><b></b><b></b><b></b></span></div>
+<div class="sg-ly sg-ly-batt" data-layer="batt"><span class="sg-cell"><i class="sg-level"></i></span><span class="sg-bolt"></span><span class="sg-port"></span></div>
+<div class="sg-ly sg-ly-board" data-layer="board">
+<span class="sg-chip sg-chip-cpu" data-part="puce"><i></i></span>
+<span class="sg-chip sg-chip-ram" data-part="ram"><i></i><i></i><i></i><i></i></span>
+<span class="sg-chip sg-chip-sto" data-part="stockage"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+<span class="sg-lens" data-part="photo"><i></i></span>
+</div>
+<div class="sg-ly sg-ly-screen" data-layer="screen"><span class="sg-scan"></span><span class="sg-app"></span><span class="sg-app"></span><span class="sg-app"></span></div>
+</div>
+<p class="sg-stage-cap">Vue éclatée, simplifiée</p>
+</div>
+<div class="sg-anat-side">
+<div class="sg-anat-tabs" role="tablist" aria-label="Composants du téléphone" id="sg-anat-tabs"></div>
+<div class="sg-anat-panel" role="tabpanel" id="sg-anat-panel" tabindex="0"><p class="sg-loading">Chargement du catalogue…</p></div>
+</div>
+</div>
+</section>
+
+<section class="sg-feat" aria-labelledby="sg-h-feat">
+<div class="sg-sec-head"><p class="sg-dotlabel">Fonctionnalités à connaître</p><h2 id="sg-h-feat"><span class="sg-h-light">Ce que la fiche met peu en avant,</span> à vérifier avant d’acheter.</h2></div>
+<ul class="sg-feats">
+<li class="sg-feat-card"><span class="sg-fi sg-fi-5g" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h3>5G</h3>
+<p><b>Sert à</b> un débit mobile plus élevé, quand le réseau le permet.</p>
+<p><b>À vérifier</b> que le téléphone prend en charge les bandes de votre opérateur, et que votre zone est couverte.</p></li>
+<li class="sg-feat-card"><span class="sg-fi sg-fi-wifi" aria-hidden="true"><i></i><i></i><i></i><u></u></span><h3>Wi-Fi 6 ou 7</h3>
+<p><b>Sert à</b> une connexion domestique plus rapide et plus stable.</p>
+<p><b>À vérifier</b> que votre box est compatible : sans elle, le gain est faible.</p></li>
+<li class="sg-feat-card"><span class="sg-fi sg-fi-nfc" aria-hidden="true"><i></i><i></i><i></i><u></u></span><h3>NFC</h3>
+<p><b>Sert à</b> payer sans contact avec le téléphone, ou à badger.</p>
+<p><b>À vérifier</b> sa présence sur la fiche : certains modèles d’entrée de gamme n’en ont pas.</p></li>
+<li class="sg-feat-card"><span class="sg-fi sg-fi-sim" aria-hidden="true"><i></i><u></u></span><h3>eSIM et double SIM</h3>
+<p><b>Sert à</b> garder deux lignes, ou à activer une ligne par code QR, sans carte.</p>
+<p><b>À vérifier</b> la combinaison offerte (SIM + eSIM, deux SIM) et la compatibilité de votre opérateur.</p></li>
+<li class="sg-feat-card"><span class="sg-fi sg-fi-wl" aria-hidden="true"><i></i><i></i><u></u></span><h3>Charge sans fil</h3>
+<p><b>Sert à</b> recharger en posant le téléphone sur un socle.</p>
+<p><b>À vérifier</b> sa présence et sa puissance : elle est souvent plus lente que le câble, et absente de nombreux modèles.</p></li>
+</ul>
+<p class="sg-fine">Le catalogue ne renseigne pas encore ces fonctions : le guide ne s’en sert pas pour recommander. Vérifiez la fiche du fabricant.</p>
+</section>
+
 <div class="sg-sec-head"><p class="sg-dotlabel">Notions à connaître</p><h2 id="sg-h-notions"><span class="sg-h-light">Ce qu’on remarque au quotidien,</span> le détail ensuite.</h2></div>
 <div class="sg-cards">
 
@@ -195,7 +241,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <p>Plus de marge le soir, en général, sans garantie.</p>
 <button type="button" class="sg-hint" aria-expanded="false" aria-controls="sg-hd-batterie">Voir l’analyse : capacité, autonomie et prix</button>
 <div class="sg-hint-body" id="sg-hd-batterie" hidden>
-<p>Le <b>mAh</b> (milliampère-heure) mesure l’énergie stockée. À usage égal, 6 000 mAh tiennent plus longtemps que 5 000, mais un grand écran lumineux ou une puce gourmande peuvent effacer l’écart. Une grosse batterie ajoute souvent du poids ; le prix dépend surtout du reste de la fiche.</p>
+<p>Le <b>mAh</b> (milliampère-heure) indique la capacité de la batterie. À usage égal, plus de capacité laisse en général plus de marge, mais un grand écran lumineux ou une puce gourmande peuvent effacer l’écart. Une grosse batterie ajoute souvent du poids ; le prix dépend surtout du reste de la fiche.</p>
 </div>
 </div>
 </article>

@@ -533,12 +533,194 @@
     });
   }
 
+  /* ---------- Anatomie d’un téléphone : vue éclatée animée + explication courte par composant.
+     Les répartitions sont calculées sur le catalogue (jamais saisies à la main). ---------- */
+  function num(v) { return typeof v === 'number' && isFinite(v) ? v : null; }
+  function stockageGo(p) {
+    var m = /([\d.,]+)\s*(Go|To)/i.exec(String(F.get(p, ['caracteristiques', 'stockage']) || ''));
+    if (!m) return null;
+    var n = parseFloat(m[1].replace(',', '.'));
+    return isFinite(n) ? (/to/i.test(m[2]) ? n * 1000 : n) : null;
+  }
+  /* Classe d’étanchéité : seul IPx7/IPx8 confirme l’immersion ; un IP69 seul décrit des jets d’eau. */
+  function ipClass(p) {
+    var v = F.get(p, ['compatibilite', 'durete', 'protection_ip']);
+    if (!v) return null;
+    var d = [], re = /IP[0-9X]([0-9X])/gi, m;
+    while ((m = re.exec(String(v)))) d.push(m[1]);
+    if (!d.length) return null;
+    if (d.some(function (x) { return x === '7' || x === '8'; })) return 'imm';
+    if (d.indexOf('9') >= 0) return 'jets';
+    var nums = d.filter(function (x) { return x !== 'X'; }).map(Number);
+    return nums.length && Math.max.apply(null, nums) >= 4 ? 'eclab' : 'faible';
+  }
+  function bin(products, get, defs) {
+    var counts = defs.map(function () { return 0; }), known = 0;
+    products.forEach(function (p) {
+      var v = get(p);
+      if (v === null || v === undefined) return;
+      known++;
+      for (var i = 0; i < defs.length; i++) if (defs[i].t(v)) { counts[i]++; break; }
+    });
+    return { rows: defs.map(function (d, i) { return { label: d.l, n: counts[i] }; }), known: known };
+  }
+  var ANAT = [
+    { id: 'ecran', nom: 'Écran', layer: 'screen', part: '.sg-scan, .sg-app', step: 'ecran',
+      role: 'La dalle tactile. Sa technologie (OLED ou LCD) et sa fréquence en hertz (Hz) décident du rendu et de la fluidité.',
+      effet: 'Des noirs plus profonds, et un défilement plus doux à 90 ou 120 Hz.',
+      savoir: 'Une fréquence élevée peut consommer plus ; l’écran LTPO ajuste sa fréquence pour limiter cela.',
+      titre: 'Fréquence maximale de l’écran',
+      data: function (ps) { return bin(ps, function (p) { return num(F.get(p, ['compatibilite', 'ecran', 'frequence_max_hz'])); }, [
+        { l: '60 Hz', t: function (v) { return v <= 60; } }, { l: '90 Hz', t: function (v) { return v <= 90; } },
+        { l: '120 Hz', t: function (v) { return v <= 120; } }, { l: '144 Hz et plus', t: function () { return true; } }]); } },
+    { id: 'puce', nom: 'Processeur', layer: 'board', part: '.sg-chip-cpu', step: 'processeur',
+      role: 'Le cerveau du téléphone : il exécute les applications, les jeux et le traitement des photos.',
+      effet: 'Des applications qui s’ouvrent sans attendre, aujourd’hui et dans quelques années.',
+      savoir: 'Le guide note la puce de 1 à 10 d’après son nom : c’est un classement, pas une mesure de vitesse.',
+      titre: 'Gamme de la puce (note du guide)',
+      data: function (ps) { return bin(ps, function (p) { var g = L.gammeOf(F.niveau(p)); return g ? g.id : null; }, [
+        { l: 'Entrée de gamme (1–3)', t: function (v) { return v === 'entree'; } }, { l: 'Milieu de gamme (4–6)', t: function (v) { return v === 'milieu'; } },
+        { l: 'Haut de gamme (7–8)', t: function (v) { return v === 'haut'; } }, { l: 'Très haut de gamme (9–10)', t: function () { return true; } }]); } },
+    { id: 'ram', nom: 'Mémoire vive', layer: 'board', part: '.sg-chip-ram',
+      role: 'La mémoire de travail : elle garde vos applications ouvertes, prêtes à reprendre.',
+      effet: 'Passer d’une application à l’autre sans tout recharger.',
+      savoir: 'Ce n’est pas l’espace de stockage. Au-delà de 8 Go, le gain se sent surtout en multitâche lourd ou en jeu.',
+      titre: 'Mémoire vive annoncée',
+      data: function (ps) { return bin(ps, function (p) { return num(F.get(p, ['compatibilite', 'performance', 'ram_go_max'])); }, [
+        { l: '4 à 6 Go', t: function (v) { return v <= 6; } }, { l: '8 Go', t: function (v) { return v <= 8; } },
+        { l: '12 Go', t: function (v) { return v <= 12; } }, { l: '16 Go et plus', t: function () { return true; } }]); } },
+    { id: 'stockage', nom: 'Stockage', layer: 'board', part: '.sg-chip-sto',
+      role: 'L’espace pour vos applications, photos, vidéos et fichiers.',
+      effet: 'Un stockage trop juste oblige à supprimer des photos ou des applications.',
+      savoir: 'Vérifiez si le modèle accepte une carte mémoire : sans cela, l’espace ne se rajoute pas.',
+      titre: 'Stockage',
+      data: function (ps) { return bin(ps, stockageGo, [
+        { l: '64 Go', t: function (v) { return v <= 64; } }, { l: '128 Go', t: function (v) { return v <= 128; } },
+        { l: '256 Go', t: function (v) { return v <= 256; } }, { l: '512 Go et plus', t: function () { return true; } }]); } },
+    { id: 'photo', nom: 'Appareil photo', layer: 'board', part: '.sg-lens', step: 'photo',
+      role: 'Un capteur, des objectifs et un traitement logiciel. Les mégapixels n’en sont qu’une partie.',
+      effet: 'Des photos plus nettes de nuit, une vidéo stable en marchant, un recadrage qui garde le détail.',
+      savoir: 'La taille du capteur et la stabilisation optique (OIS) comptent souvent plus que les mégapixels. L’OIS est souvent non précisée.',
+      titre: 'Mégapixels du capteur principal',
+      data: function (ps) { return bin(ps, function (p) { return F.mp(p); }, [
+        { l: '48 MP ou moins', t: function (v) { return v <= 48; } }, { l: '50 MP', t: function (v) { return v <= 50; } },
+        { l: '64 à 108 MP', t: function (v) { return v <= 108; } }, { l: '200 MP', t: function () { return true; } }]); } },
+    { id: 'batterie', nom: 'Batterie', layer: 'batt', part: '.sg-cell', step: 'batterie',
+      role: 'La capacité de la batterie, en milliampères-heures (mAh).',
+      effet: 'À usage égal, plus de capacité laisse en général plus de marge le soir.',
+      savoir: 'L’autonomie dépend aussi de l’écran, de la puce et de votre usage : le catalogue ne la mesure pas.',
+      titre: 'Capacité de la batterie',
+      data: function (ps) { return bin(ps, function (p) { return F.mah(p); }, [
+        { l: 'Moins de 4 500 mAh', t: function (v) { return v < 4500; } }, { l: '4 500 à 5 499 mAh', t: function (v) { return v < 5500; } },
+        { l: '5 500 à 6 499 mAh', t: function (v) { return v < 6500; } }, { l: '6 500 mAh et plus', t: function () { return true; } }]); } },
+    { id: 'charge', nom: 'Charge', layer: 'batt', part: '.sg-bolt, .sg-port',
+      role: 'La puissance maximale de recharge, en watts (W).',
+      effet: 'Plus de watts : une recharge plus rapide, avec un chargeur compatible.',
+      savoir: 'Le chargeur n’est pas toujours dans la boîte, et la vitesse baisse souvent en fin de charge.',
+      titre: 'Puissance de charge maximale',
+      data: function (ps) { return bin(ps, function (p) { return num(F.get(p, ['compatibilite', 'batterie', 'recharge_watts'])); }, [
+        { l: '30 W ou moins', t: function (v) { return v <= 30; } }, { l: '31 à 65 W', t: function (v) { return v <= 65; } },
+        { l: '66 à 100 W', t: function (v) { return v <= 100; } }, { l: 'Plus de 100 W', t: function () { return true; } }]); } },
+    { id: 'protection', nom: 'Étanchéité', layer: 'frame', part: '.sg-seal, .sg-drops', step: 'protection',
+      role: 'L’indice IP dit la résistance à la poussière puis à l’eau.',
+      effet: 'La pluie, un verre renversé ou une chute dans l’eau douce font moins de dégâts.',
+      savoir: 'IPx7 et IPx8 : immersion déclarée. IP69 : jets d’eau, pas forcément immersion. La garantie couvre rarement l’eau.',
+      titre: 'Résistance à l’eau déclarée',
+      data: function (ps) { return bin(ps, ipClass, [
+        { l: 'Faible (moins de IPx4)', t: function (v) { return v === 'faible'; } }, { l: 'Éclaboussures (IPx4 à IPx6)', t: function (v) { return v === 'eclab'; } },
+        { l: 'Immersion déclarée (IPx7, IPx8)', t: function (v) { return v === 'imm'; } }, { l: 'Jets d’eau (IP69 seul)', t: function () { return true; } }]); } }
+  ];
+
+  function goStep(id) {
+    showTab(document.getElementById('sg-tab-criteres'), false);
+    openStep = guide && guide.chosen('prix') ? id : 'prix';
+    if (guide) render();
+    var b = document.getElementById('sg-btn-' + openStep) || document.getElementById('sg-steps');
+    b.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (b.focus) b.focus({ preventScroll: true });
+  }
+
+  function setupAnatomy(products) {
+    var tabsEl = document.getElementById('sg-anat-tabs'), panel = document.getElementById('sg-anat-panel'), stage = document.getElementById('sg-anat-stage');
+    if (!tabsEl || !panel || !stage) return;
+    tabsEl.innerHTML = ANAT.map(function (c, i) {
+      return '<button type="button" role="tab" id="sg-at-' + c.id + '" class="sg-at" aria-selected="false" aria-controls="sg-anat-panel" tabindex="-1" data-i="' + i + '">' + esc(c.nom) + '</button>';
+    }).join('');
+    var btns = Array.prototype.slice.call(tabsEl.querySelectorAll('button'));
+
+    function select(i, focus) {
+      var c = ANAT[i];
+      btns.forEach(function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); b.tabIndex = j === i ? 0 : -1; });
+      panel.setAttribute('aria-labelledby', 'sg-at-' + c.id);
+      Array.prototype.forEach.call(stage.querySelectorAll('.is-lift, .is-on, .is-above'), function (e) { e.classList.remove('is-lift', 'is-on', 'is-above'); });
+      /* La couche choisie monte ; celles qui la recouvrent s’écartent pour la laisser voir. */
+      var order = ['frame', 'batt', 'board', 'screen'], at = order.indexOf(c.layer);
+      order.forEach(function (name, k) {
+        var el = stage.querySelector('[data-layer="' + name + '"]');
+        if (el) el.classList.add(k === at ? 'is-lift' : (k > at ? 'is-above' : 'is-below'));
+      });
+      Array.prototype.forEach.call(stage.querySelectorAll(c.part), function (e) { e.classList.add('is-on'); });
+      var h = c.data(products), max = Math.max.apply(null, h.rows.map(function (r) { return r.n; }).concat(1));
+      panel.innerHTML =
+        '<h3 class="sg-anat-h">' + esc(c.nom) + '</h3>' +
+        '<dl class="sg-anat-dl"><div><dt>C’est quoi</dt><dd>' + esc(c.role) + '</dd></div>' +
+        '<div><dt>Ce que ça change</dt><dd>' + esc(c.effet) + '</dd></div>' +
+        '<div><dt>À savoir</dt><dd>' + esc(c.savoir) + '</dd></div></dl>' +
+        '<div class="sg-hist"><p class="sg-hist-t">Dans le catalogue : <b>' + esc(c.titre) + '</b></p><ul>' +
+        h.rows.map(function (r) {
+          return '<li><span class="sg-hist-l">' + esc(r.label) + '</span><span class="sg-hist-bar" aria-hidden="true"><i data-w="' + Math.round(r.n / max * 100) + '"></i></span><span class="sg-hist-n">' + r.n + '</span></li>';
+        }).join('') + '</ul><p class="sg-fine">' + h.known + ' modèles renseignés sur ' + products.length + '. Répartition du catalogue, pas une mesure de qualité.</p></div>' +
+        (c.step ? '<button type="button" class="sg-mini-btn sg-anat-go" data-goto="' + c.step + '">Voir ce critère dans le parcours</button>'
+                : '<p class="sg-fine">Pas encore un critère du parcours : à lire dans la fiche du modèle.</p>');
+      var bars = panel.querySelectorAll('.sg-hist-bar i');
+      var fill = function () { Array.prototype.forEach.call(bars, function (b) { b.style.width = b.dataset.w + '%'; }); };
+      if (reduceMotion) fill(); else requestAnimationFrame(function () { requestAnimationFrame(fill); });
+      if (focus) btns[i].focus();
+    }
+
+    tabsEl.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) select(Number(b.dataset.i), false); });
+    tabsEl.addEventListener('keydown', function (e) {
+      var cur = btns.indexOf(document.activeElement), n = null;
+      if (cur < 0) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') n = (cur + 1) % btns.length;
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') n = (cur - 1 + btns.length) % btns.length;
+      else if (e.key === 'Home') n = 0;
+      else if (e.key === 'End') n = btns.length - 1;
+      if (n !== null) { e.preventDefault(); select(n, true); }
+    });
+    panel.addEventListener('click', function (e) { var g = e.target.closest('[data-goto]'); if (g) goStep(g.dataset.goto); });
+
+    select(0, false);
+    if (reduceMotion || !('IntersectionObserver' in window)) { stage.setAttribute('data-open', 'true'); return; }
+    new IntersectionObserver(function (es, ob) {
+      if (es[0].isIntersecting) { stage.setAttribute('data-open', 'true'); ob.disconnect(); }
+    }, { threshold: 0.35 }).observe(stage);
+  }
+
+  /* Apparition progressive : seulement si le mouvement est autorisé ; sinon tout reste visible. */
+  function setupReveal() {
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+    var root = document.querySelector('.sg');
+    var els = document.querySelectorAll('.sg-card, .sg-feat-card, .sg-month-ref, .sg-alts li');
+    if (!root || !els.length) return;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    Array.prototype.forEach.call(els, function (el, i) {
+      el.classList.add('sg-reveal');
+      el.style.transitionDelay = (i % 3) * 70 + 'ms';
+      io.observe(el);
+    });
+    root.classList.add('sg-motion');
+  }
+
   /* ---------- Démarrage ---------- */
   function init() {
     setupTabs();
     setupHints();
     setupFluid();
     setupPhoto();
+    setupReveal();
     setupHero();
     setupDock();
     document.getElementById('sg-steps').addEventListener('click', onStepsClick);
@@ -552,6 +734,7 @@
         renderMonth(products);
         bars.build(products);
         setupChipScale(products);
+        setupAnatomy(products);
         document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(products.length); });
         var dates = products.map(function (p) { return p.prix_date; }).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x || ''); }).sort();
         document.querySelectorAll('[data-pricedate]').forEach(function (el) { el.textContent = dates.length ? dateFr(dates[dates.length - 1], true) : '—'; });
