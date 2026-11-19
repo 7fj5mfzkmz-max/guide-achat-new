@@ -1,5 +1,5 @@
 'use strict';
-/* Parcours réel de bout en bout (tâche 3 de NOTE-REPRISE-IA) : un lien marchand court
+/* Parcours réel de bout en bout (tâche 3 de la reprise PC portables, voir docs/PISTES-OUVERTES.md) : un lien marchand court
    sans indice de catégorie → la cascade resolve() doit re-router vers pc-portables
    (looksLikeLaptop), interroger NotebookCheck et produire une fiche complète.
    Test d'exploration ponctuelle : accès réseau réel, hors chaîne npm test. */

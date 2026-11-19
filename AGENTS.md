@@ -27,8 +27,8 @@ Guide·Achat : site statique (HTML, CSS, JavaScript) avec un petit backend Node 
 - Ne jamais moyenner des résultats de tests différents : les protocoles diffèrent.
 - Les changements visuels ne modifient ni les données, ni les recommandations, ni les calculs.
 
-## Notes historiques à la racine
-Les fichiers `NOTE-*.md` et `Diagnostic-*.md` décrivent des états passés, certains sur `main` et datés. Ils peuvent être périmés : vérifiez toujours dans le code avant de vous y fier.
+## Pistes ouvertes et règles
+Les pistes encore ouvertes (analyseur Fnac, analyseur PC portables) et les règles d'éthique du projet sont dans `docs/PISTES-OUVERTES.md`. Les anciennes notes de reprise à la racine ont été supprimées : leur contenu est dans le code et `docs/`.
 
 ## Skills et outils IA
 - `.agents/skills/` : `impeccable` (revue et polish d'interface) et `emil-design-eng` (référence d'animation). Détails : `docs/outils-ia/AGENT.md`.
