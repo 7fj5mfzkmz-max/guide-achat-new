@@ -93,6 +93,74 @@ def entier(texte):
     return int(t) if re.fullmatch(r'\d+', t) else None
 
 
+def nombre_fr(texte):
+    """« 6,83 » → 6.83 ; « 10 000 » → 10000."""
+    return float(re.sub(r'[\s  ]', '', texte).replace(',', '.'))
+
+
+def specs_de(m):
+    """Champs filtrables tirés du texte des fiches, sans rien deviner : un champ non écrit dans la base reste null.
+
+    - mah : la plus basse des capacités citées (la version vendue en France est souvent la plus petite ;
+      on ne promet pas plus que la plus petite version connue). mah_max garde la plus haute.
+    - charge_w : puissance filaire maximale annoncée ; les watts « sans fil », Qi/MagSafe et « charge inversée » sont exclus.
+    - tele : true si un téléobjectif ou une focale longue est écrit, false si la base dit qu'il n'y en a pas, sinon null.
+    - ois : true si « OIS » est écrit, sinon null (l'absence de mention ne prouve pas l'absence)."""
+    pe, bc, ph = m['puce_ecran'], m['batterie_charge'], m['photo_arriere']
+    seg = [x.strip() for x in pe.split(';')]
+    puce = re.sub(r'\s+(en France|sur la fiche France)$', '', seg[0]).strip() or None
+
+    ecran_txt = ' '.join(seg[1:]) if len(seg) > 1 else ''
+    if re.search(r'OLED', ecran_txt, re.I):
+        techno = 'oled'
+    elif re.search(r'LCD|IPS', ecran_txt, re.I):
+        techno = 'lcd'
+    else:
+        techno = None
+    pouces = re.search(r'(\d+(?:,\d+)?)\s*″', ecran_txt)
+    hz = [int(x) for x in re.findall(r'(\d{2,3})\s*Hz', ecran_txt)]
+
+    mah = [int(nombre_fr(x)) for x in re.findall(r'(\d{1,2}[\s  ]\d{3}|\d{4,5})\s*mAh', bc)]
+    filaire, sans_fil = [], []
+    for mt in re.finditer(r'(\d{2,3})\s*W\b([^;,\d]*)', bc):
+        w, apres = int(mt.group(1)), mt.group(2)
+        avant = bc[max(0, mt.start() - 40):mt.start()]
+        if re.search(r'invers', avant + apres, re.I):
+            continue
+        if re.search(r'sans fil', apres) and re.search(r'filaire', apres):
+            filaire.append(w); sans_fil.append(w)
+        elif re.search(r'sans fil', apres) or re.search(r'Qi|MagSafe', avant.split(';')[-1]):
+            sans_fil.append(w)
+        else:
+            filaire.append(w)
+    sf = max(sans_fil) if sans_fil else (True if re.search(r'sans fil|Qi', bc) else None)
+
+    mp = re.search(r'(\d{2,3})\s*(?:\+|Mpx)', ph)
+    if re.search(r'sans téléobjectif|n’est pas un téléobjectif|Un seul module', ph):
+        tele = False
+    elif re.search(r'télé|\d+\s*mm|\d(?:,\d)?\s*×', ph):
+        tele = True
+    else:
+        tele = None
+
+    return {
+        'puce': puce,
+        'ecran': techno,
+        'pouces': nombre_fr(pouces.group(1)) if pouces else None,
+        'pliant': bool(re.search(r'pliant', ecran_txt)),
+        'hz': max(hz) if hz else None,
+        'ltpo': True if re.search(r'LTPO|\b1[–-]1[2-6]\d\s*Hz', ecran_txt) else None,
+        'mah': min(mah) if mah else None,
+        'mah_max': max(mah) if mah else None,
+        'charge_w': max(filaire) if filaire else None,
+        'sans_fil': sf,
+        'mp': int(mp.group(1)) if mp else None,
+        'tele': tele,
+        'ois': True if re.search(r'\bOIS\b', ph) else None,
+        'refroidissement': bool(re.search(r'ventilateur|refroidissement', pe))
+    }
+
+
 def main():
     s1 = lire_blocs(SRC1.read_text(encoding='utf-8').split('\n'))
     s2 = lire_blocs(SRC2.read_text(encoding='utf-8').split('\n'))
@@ -127,6 +195,9 @@ def main():
                         rattache, _ = nettoyer(r[1])
                         if mid in modeles:
                             modeles[mid]['complements'].append({'rattachement': rattache, 'texte': txt, 'sources': urls})
+
+    for m in modeles.values():
+        m['specs'] = specs_de(m)
 
     ids = sorted(modeles, key=len, reverse=True)
 

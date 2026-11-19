@@ -29,7 +29,23 @@
     "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=276s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "A19",
+    "ecran": "oled",
+    "pouces": 6.3,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 3692,
+    "mah_max": 3692,
+    "charge_w": null,
+    "sans_fil": null,
+    "mp": 48,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "iphone-air",
@@ -43,7 +59,23 @@
     "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=555s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "A19 Pro",
+    "ecran": "oled",
+    "pouces": 6.5,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 3149,
+    "mah_max": 3149,
+    "charge_w": null,
+    "sans_fil": null,
+    "mp": 48,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "iphone-18-pro",
@@ -59,7 +91,23 @@
     "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=15s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "A20 Pro",
+    "ecran": "oled",
+    "pouces": 6.3,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 4056,
+    "mah_max": 4288,
+    "charge_w": null,
+    "sans_fil": null,
+    "mp": 48,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "iphone-18-pro-max",
@@ -86,7 +134,23 @@
       "https://www.youtube.com/watch?v=8v47Qy4POvo&t=404s"
      ]
     }
-   ]
+   ],
+   "specs": {
+    "puce": "A20 Pro",
+    "ecran": "oled",
+    "pouces": 6.9,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5391,
+    "mah_max": 5567,
+    "charge_w": null,
+    "sans_fil": null,
+    "mp": 48,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "iphone-duo",
@@ -101,7 +165,23 @@
     "https://phandroid.com/2026/11/19/the-iphone-duos-battery-life-is-better-than-you-might-expect/"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "A20 Pro",
+    "ecran": "oled",
+    "pouces": 7.6,
+    "pliant": true,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 4883,
+    "mah_max": 4883,
+    "charge_w": null,
+    "sans_fil": null,
+    "mp": 48,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "galaxy-a57-5g",
@@ -125,7 +205,23 @@
       "https://www.youtube.com/watch?v=zw30rfxoVO4&t=431s"
      ]
     }
-   ]
+   ],
+   "specs": {
+    "puce": "Exynos 1680",
+    "ecran": "oled",
+    "pouces": 6.7,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5000,
+    "mah_max": 5000,
+    "charge_w": 45,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "galaxy-s26",
@@ -142,7 +238,23 @@
     "https://www.samsung.com/us/smartphones/galaxy-s26/"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Exynos 2600",
+    "ecran": "oled",
+    "pouces": 6.3,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 4300,
+    "mah_max": 4300,
+    "charge_w": 25,
+    "sans_fil": 15,
+    "mp": 50,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "galaxy-s26-ultra",
@@ -167,7 +279,23 @@
       "https://www.youtube.com/watch?v=8v47Qy4POvo&t=319s"
      ]
     }
-   ]
+   ],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5 for Galaxy",
+    "ecran": "oled",
+    "pouces": 6.9,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5000,
+    "mah_max": 5000,
+    "charge_w": 60,
+    "sans_fil": 25,
+    "mp": 200,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "pixel-11",
@@ -180,7 +308,23 @@
     "https://store.google.com/us/product/pixel_11_specs?hl=en-US"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Tensor G6",
+    "ecran": "oled",
+    "pouces": 6.3,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 4985,
+    "mah_max": 4985,
+    "charge_w": null,
+    "sans_fil": 25,
+    "mp": 48,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "pixel-11-pro",
@@ -193,7 +337,23 @@
     "https://store.google.com/us/product/pixel_11_pro_specs?hl=en-US"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Tensor G6",
+    "ecran": "oled",
+    "pouces": 6.3,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": true,
+    "mah": 4850,
+    "mah_max": 4850,
+    "charge_w": null,
+    "sans_fil": 25,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "pixel-11-pro-xl",
@@ -206,7 +366,23 @@
     "https://store.google.com/us/product/pixel_11_pro_specs?hl=en-US"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Tensor G6",
+    "ecran": "oled",
+    "pouces": 6.8,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": true,
+    "mah": 5115,
+    "mah_max": 5115,
+    "charge_w": null,
+    "sans_fil": 25,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "redmi-note-17-pro-max-5g",
@@ -221,7 +397,23 @@
     "https://www.gsmarena.com/redmi_note_17_pro_max-review-2993p3.php"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 6 Gen 5",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 9210,
+    "mah_max": 10000,
+    "charge_w": 100,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "xiaomi-17",
@@ -236,7 +428,23 @@
     "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=319s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5",
+    "ecran": "oled",
+    "pouces": 6.3,
+    "pliant": false,
+    "hz": null,
+    "ltpo": null,
+    "mah": 6330,
+    "mah_max": 7000,
+    "charge_w": 100,
+    "sans_fil": 50,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "xiaomi-18-pro-max",
@@ -259,7 +467,23 @@
       "https://www.mi.com/fr/product/xiaomi-18-pro-max/specs/"
      ]
     }
-   ]
+   ],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Extreme Gen 6",
+    "ecran": "oled",
+    "pouces": 6.9,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": true,
+    "mah": 7050,
+    "mah_max": 8500,
+    "charge_w": 100,
+    "sans_fil": 50,
+    "mp": 200,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "poco-x8",
@@ -273,7 +497,23 @@
     "https://www.mi.com/fr/product/poco-x8/"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 6s Gen 4",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 8340,
+    "mah_max": 8340,
+    "charge_w": 67,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "poco-f9-pro",
@@ -287,7 +527,23 @@
     "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=604s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5 V Series + VisionBoost D8",
+    "ecran": "oled",
+    "pouces": 6.59,
+    "pliant": false,
+    "hz": 185,
+    "ltpo": null,
+    "mah": 6330,
+    "mah_max": 6330,
+    "charge_w": 100,
+    "sans_fil": 50,
+    "mp": 200,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "poco-f9-ultra",
@@ -301,7 +557,23 @@
     "https://www.youtube.com/watch?v=wDmYRIUJiGA&t=604s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5 + VisionBoost D8",
+    "ecran": "oled",
+    "pouces": 6.9,
+    "pliant": false,
+    "hz": 185,
+    "ltpo": null,
+    "mah": 8050,
+    "mah_max": 8050,
+    "charge_w": 100,
+    "sans_fil": 50,
+    "mp": 200,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oppo-reno16-f-5g",
@@ -315,7 +587,23 @@
     "https://www.gsmarena.com/oppo_reno16_f_5g-14751.php"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 7300-Energy",
+    "ecran": "oled",
+    "pouces": 6.57,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 7000,
+    "mah_max": 7000,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oppo-find-x10-pro-max",
@@ -338,7 +626,23 @@
       "https://www.youtube.com/watch?v=8v47Qy4POvo&t=15s"
      ]
     }
-   ]
+   ],
+   "specs": {
+    "puce": "Dimensity 9600 Pro",
+    "ecran": "oled",
+    "pouces": 6.78,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": true,
+    "mah": 7150,
+    "mah_max": 8000,
+    "charge_w": 80,
+    "sans_fil": 50,
+    "mp": 200,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oneplus-16",
@@ -354,7 +658,23 @@
     "https://www.youtube.com/watch?v=H56aC0rJ23I&t=278s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Extreme Gen 6",
+    "ecran": "oled",
+    "pouces": 6.78,
+    "pliant": false,
+    "hz": 185,
+    "ltpo": true,
+    "mah": 9000,
+    "mah_max": 9000,
+    "charge_w": 100,
+    "sans_fil": 50,
+    "mp": 200,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "vivo-x500-pro-max",
@@ -369,7 +689,23 @@
     "https://www.vivo.com/en/products/x500-pro-max"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 9600 Pro",
+    "ecran": "oled",
+    "pouces": 6.85,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": true,
+    "mah": 6750,
+    "mah_max": 8000,
+    "charge_w": 90,
+    "sans_fil": 40,
+    "mp": 50,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "vivo-x300-ultra",
@@ -385,7 +721,23 @@
     "https://www.vivo.com/en/products/param/x300-ultra"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5",
+    "ecran": "oled",
+    "pouces": 6.82,
+    "pliant": false,
+    "hz": null,
+    "ltpo": null,
+    "mah": 6600,
+    "mah_max": 6600,
+    "charge_w": 100,
+    "sans_fil": 40,
+    "mp": 200,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "vivo-v80-lite-5g",
@@ -398,7 +750,23 @@
     "https://www.vivo.com/za/en/products/param/v80-lite-5g"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 7300e",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 10000,
+    "mah_max": 10000,
+    "charge_w": 44,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "honor-x9d",
@@ -412,7 +780,23 @@
     "https://www.gsmarena.com/honor_x9d_5g-14176.php"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 6 Gen 4",
+    "ecran": "oled",
+    "pouces": 6.79,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 8300,
+    "mah_max": 8300,
+    "charge_w": 66,
+    "sans_fil": null,
+    "mp": 108,
+    "tele": null,
+    "ois": true,
+    "refroidissement": false
+   }
   },
   {
    "id": "honor-600-pro",
@@ -428,7 +812,23 @@
     "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=276s"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite",
+    "ecran": "oled",
+    "pouces": 6.57,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6400,
+    "mah_max": 7000,
+    "charge_w": 80,
+    "sans_fil": 50,
+    "mp": 200,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "redmagic-12-pro",
@@ -441,7 +841,23 @@
     "https://global.redmagic.gg/pages/redmagic-12-pro-specs"
    ],
    "lot": 1,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Extreme Gen 6 + RedCore R5",
+    "ecran": "oled",
+    "pouces": 6.85,
+    "pliant": false,
+    "hz": 185,
+    "ltpo": null,
+    "mah": 8400,
+    "mah_max": 8400,
+    "charge_w": 80,
+    "sans_fil": 80,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": true
+   }
   },
   {
    "id": "poco-x8-pro-max",
@@ -454,7 +870,23 @@
     "https://www.mi.com/fr/product/poco-x8-pro-max/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 9500S",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 8500,
+    "mah_max": 8500,
+    "charge_w": 100,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": true,
+    "refroidissement": false
+   }
   },
   {
    "id": "poco-x8-pro",
@@ -467,7 +899,23 @@
     "https://www.mi.com/fr/product/poco-x8-pro/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 8500-Ultra",
+    "ecran": "oled",
+    "pouces": 6.59,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6500,
+    "mah_max": 6500,
+    "charge_w": 100,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": true,
+    "refroidissement": false
+   }
   },
   {
    "id": "poco-f8-pro",
@@ -480,7 +928,23 @@
     "https://www.mi.com/fr/product/poco-f8-pro/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite",
+    "ecran": "oled",
+    "pouces": 6.59,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6210,
+    "mah_max": 6210,
+    "charge_w": 100,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "xiaomi-17t",
@@ -493,7 +957,23 @@
     "https://www.mi.com/fr/product/xiaomi-17t/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 8500-Ultra",
+    "ecran": "oled",
+    "pouces": 6.59,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6500,
+    "mah_max": 6500,
+    "charge_w": 67,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "redmi-note-15-4g",
@@ -506,7 +986,23 @@
     "https://www.mi.com/fr/product/redmi-note-15/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Helio G100-Ultra",
+    "ecran": "oled",
+    "pouces": 6.77,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6000,
+    "mah_max": 6000,
+    "charge_w": 33,
+    "sans_fil": null,
+    "mp": 108,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "redmi-note-15-5g",
@@ -519,7 +1015,23 @@
     "https://www.mi.com/fr/product/redmi-note-15-5g/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 6 Gen 3",
+    "ecran": "oled",
+    "pouces": 6.77,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5520,
+    "mah_max": 5520,
+    "charge_w": 45,
+    "sans_fil": null,
+    "mp": 108,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "redmi-note-15-pro-5g",
@@ -532,7 +1044,23 @@
     "https://www.mi.com/fr/product/redmi-note-15-pro-5g/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 7400-Ultra",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6580,
+    "mah_max": 6580,
+    "charge_w": 45,
+    "sans_fil": null,
+    "mp": 200,
+    "tele": null,
+    "ois": true,
+    "refroidissement": false
+   }
   },
   {
    "id": "redmi-note-15-pro-plus-5g",
@@ -545,7 +1073,23 @@
     "https://www.mi.com/fr/product/redmi-note-15-pro-plus-5g/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7s Gen 4",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6500,
+    "mah_max": 6500,
+    "charge_w": 100,
+    "sans_fil": null,
+    "mp": 200,
+    "tele": null,
+    "ois": true,
+    "refroidissement": false
+   }
   },
   {
    "id": "poco-m8-5g",
@@ -558,7 +1102,23 @@
     "https://www.mi.com/fr/product/poco-m8-5g/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 6 Gen 3",
+    "ecran": "oled",
+    "pouces": 6.77,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5520,
+    "mah_max": 5520,
+    "charge_w": 45,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "poco-m8-pro-5g",
@@ -571,7 +1131,23 @@
     "https://www.mi.com/fr/product/poco-m8-pro-5g/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7s Gen 4",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6500,
+    "mah_max": 6500,
+    "charge_w": 100,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": true,
+    "refroidissement": false
+   }
   },
   {
    "id": "pixel-10a",
@@ -585,7 +1161,23 @@
     "https://store.google.com/us/magazine/pixel-10a-vs-9a?hl=en-US"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Tensor G4",
+    "ecran": "oled",
+    "pouces": 6.3,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5100,
+    "mah_max": 5100,
+    "charge_w": 30,
+    "sans_fil": 10,
+    "mp": 48,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oneplus-nord-5",
@@ -600,7 +1192,23 @@
     "https://www.oneplus.com/in/nord-5/specs"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8s Gen 3",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": null,
+    "mah": 5200,
+    "mah_max": 6800,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oneplus-nord-ce5",
@@ -615,7 +1223,23 @@
     "https://www.oneplus.com/in/nord-ce5/specs"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 8350 Apex",
+    "ecran": "oled",
+    "pouces": 6.77,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5200,
+    "mah_max": 7100,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oneplus-15",
@@ -628,7 +1252,23 @@
     "https://www.oneplus.com/fr/15/specs"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5",
+    "ecran": "oled",
+    "pouces": 6.78,
+    "pliant": false,
+    "hz": 165,
+    "ltpo": true,
+    "mah": 7300,
+    "mah_max": 7300,
+    "charge_w": 120,
+    "sans_fil": 50,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oneplus-15r",
@@ -641,7 +1281,23 @@
     "https://www.oneplus.com/fr/15r/specs"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Gen 5",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 165,
+    "ltpo": null,
+    "mah": 7400,
+    "mah_max": 7400,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": false,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "galaxy-a37-5g",
@@ -655,7 +1311,23 @@
     "https://www.samsung.com/us/smartphones/galaxy-a37-5g/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Exynos 1480",
+    "ecran": "oled",
+    "pouces": 6.7,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5000,
+    "mah_max": 5000,
+    "charge_w": 45,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "nothing-phone-4a",
@@ -669,7 +1341,23 @@
     "https://www.gsmarena.com/nothing_phone_(4a)_5g-14503.php"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7s Gen 4",
+    "ecran": "oled",
+    "pouces": 6.78,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5080,
+    "mah_max": 5400,
+    "charge_w": 50,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "nothing-phone-4a-pro",
@@ -683,7 +1371,23 @@
     "https://www.gsmarena.com/nothing_phone_(4a)_pro_5g-14529.php"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7 Gen 4",
+    "ecran": "oled",
+    "pouces": 6.83,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": null,
+    "mah": 5080,
+    "mah_max": 5400,
+    "charge_w": 50,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "nothing-phone-4b",
@@ -697,7 +1401,23 @@
     "https://www.gsmarena.com/nothing_phone_(4b)_5g-14781.php"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 6 Gen 4",
+    "ecran": "oled",
+    "pouces": 6.77,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5200,
+    "mah_max": 6000,
+    "charge_w": 33,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": false,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "motorola-edge-70-fusion",
@@ -711,7 +1431,23 @@
     "https://en-us.support.motorola.com/app/answers/detail/a_id/192851/~/specifications---motorola-edge-70-fusion"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7s Gen 3",
+    "ecran": "oled",
+    "pouces": 6.78,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": null,
+    "mah": 7000,
+    "mah_max": 7000,
+    "charge_w": 68,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "motorola-edge-60-fusion",
@@ -725,7 +1461,23 @@
     "https://www.motorola.com/fr/fr/p/phones/motorola-edge/smartphones-motorola-edge-60-fusion/pmipmhq40mz?pn=PB7E0034SE"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 7300",
+    "ecran": "oled",
+    "pouces": 6.67,
+    "pliant": false,
+    "hz": null,
+    "ltpo": null,
+    "mah": 5200,
+    "mah_max": 5200,
+    "charge_w": 68,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "motorola-moto-g77",
@@ -738,7 +1490,23 @@
     "https://www.motorola.com/ie/en/p/phones/moto-g/77/pmipmjh43mw"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 6400",
+    "ecran": "oled",
+    "pouces": 6.78,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5200,
+    "mah_max": 5200,
+    "charge_w": 30,
+    "sans_fil": null,
+    "mp": 108,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "motorola-moto-g06-power",
@@ -752,7 +1520,23 @@
     "https://en-gb.support.motorola.com/app/answers/detail/a_id/189454/~/specifications---moto-g06-power"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Helio G81 Extreme",
+    "ecran": null,
+    "pouces": 6.88,
+    "pliant": false,
+    "hz": null,
+    "ltpo": null,
+    "mah": 7000,
+    "mah_max": 7000,
+    "charge_w": 18,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "honor-400",
@@ -765,7 +1549,23 @@
     "https://www.honor.com/fr/phones/honor-400/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7 Gen 3",
+    "ecran": null,
+    "pouces": 6.55,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5300,
+    "mah_max": 5300,
+    "charge_w": 66,
+    "sans_fil": null,
+    "mp": 200,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "honor-400-lite",
@@ -780,7 +1580,23 @@
     "https://www.gsmarena.com/honor_400_lite-13742.php"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 7025 Ultra",
+    "ecran": "oled",
+    "pouces": 6.7,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5230,
+    "mah_max": 5230,
+    "charge_w": 35,
+    "sans_fil": null,
+    "mp": 108,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "honor-600",
@@ -795,7 +1611,23 @@
     "https://www.honor.com/sa-en/phones/honor-600/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7 Gen 4",
+    "ecran": null,
+    "pouces": null,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6400,
+    "mah_max": 7000,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 200,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "honor-magic8-lite",
@@ -808,7 +1640,23 @@
     "https://www.honor.com/fr/phones/honor-magic8-lite/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 6 Gen 4",
+    "ecran": "oled",
+    "pouces": 6.79,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 7500,
+    "mah_max": 7500,
+    "charge_w": 66,
+    "sans_fil": null,
+    "mp": 108,
+    "tele": null,
+    "ois": true,
+    "refroidissement": false
+   }
   },
   {
    "id": "redmagic-11s-pro",
@@ -821,7 +1669,23 @@
     "https://global.redmagic.gg/pages/redmagic-11s-pro-specs"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5 Leading Version",
+    "ecran": null,
+    "pouces": 6.85,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": null,
+    "mah": 7500,
+    "mah_max": 7500,
+    "charge_w": 80,
+    "sans_fil": 80,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": true
+   }
   },
   {
    "id": "redmagic-11-pro",
@@ -834,7 +1698,23 @@
     "https://global.redmagic.gg/pages/redmagic-11-pro-specs"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5",
+    "ecran": null,
+    "pouces": 6.85,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": null,
+    "mah": 7500,
+    "mah_max": 7500,
+    "charge_w": 80,
+    "sans_fil": 80,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": true
+   }
   },
   {
    "id": "redmagic-11-air",
@@ -847,7 +1727,23 @@
     "https://global.redmagic.gg/pages/redmagic-11-air-specs"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite",
+    "ecran": "oled",
+    "pouces": 6.85,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": null,
+    "mah": 7000,
+    "mah_max": 7000,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": true
+   }
   },
   {
    "id": "asus-rog-phone-9-pro",
@@ -860,7 +1756,23 @@
     "https://rog.asus.com/fr/phones/rog-phone-9-pro/wtb/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite",
+    "ecran": "oled",
+    "pouces": 6.78,
+    "pliant": false,
+    "hz": 185,
+    "ltpo": true,
+    "mah": 5800,
+    "mah_max": 5800,
+    "charge_w": 65,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "sony-xperia-1-viii",
@@ -874,7 +1786,23 @@
     "https://www.sony.com.hk/en/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-viii-512gb/specifications"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 8 Elite Gen 5",
+    "ecran": "oled",
+    "pouces": 6.5,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 5000,
+    "mah_max": 5000,
+    "charge_w": null,
+    "sans_fil": true,
+    "mp": 48,
+    "tele": true,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "vivo-v70",
@@ -887,7 +1815,23 @@
     "https://www.vivo.com/en/products/param/v70"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7 Gen 4",
+    "ecran": "oled",
+    "pouces": 6.59,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6500,
+    "mah_max": 6500,
+    "charge_w": 90,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oppo-reno16-5g",
@@ -900,7 +1844,23 @@
     "https://www.oppo.com/en/smartphones/series-reno/reno16/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Snapdragon 7 Gen 4",
+    "ecran": "oled",
+    "pouces": 6.32,
+    "pliant": false,
+    "hz": 120,
+    "ltpo": null,
+    "mah": 6700,
+    "mah_max": 6700,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 50,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "oppo-reno16-pro-5g",
@@ -913,7 +1873,23 @@
     "https://www.oppo.com/en/smartphones/series-reno/reno16-pro/specs/"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "Dimensity 8550 SUPER",
+    "ecran": "oled",
+    "pouces": 6.32,
+    "pliant": false,
+    "hz": 144,
+    "ltpo": null,
+    "mah": 6700,
+    "mah_max": 6700,
+    "charge_w": 80,
+    "sans_fil": null,
+    "mp": 200,
+    "tele": null,
+    "ois": null,
+    "refroidissement": false
+   }
   },
   {
    "id": "iphone-17e",
@@ -927,7 +1903,23 @@
     "https://www.gsmarena.com/apple_iphone_17e-review-2945p3.php"
    ],
    "lot": 2,
-   "complements": []
+   "complements": [],
+   "specs": {
+    "puce": "A19",
+    "ecran": "oled",
+    "pouces": 6.1,
+    "pliant": false,
+    "hz": 60,
+    "ltpo": null,
+    "mah": null,
+    "mah_max": null,
+    "charge_w": null,
+    "sans_fil": 15,
+    "mp": 48,
+    "tele": false,
+    "ois": null,
+    "refroidissement": false
+   }
   }
  ],
  "tests": [

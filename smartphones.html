@@ -10,7 +10,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
 <link rel="canonical" href="https://guide-achat-new.vercel.app/smartphones.html"/>
-<meta name="description" content="Trouvez le smartphone qui vous convient : choisissez d’abord votre budget, puis écran, processeur, photo, batterie, protection et mises à jour. Modèles du catalogue, prix indicatifs et notions expliquées."/>
+<meta name="description" content="Trouvez le smartphone qui vous convient : priorité, taille, écran, processeur, batterie, charge et photo. Fiches constructeur vérifiées par des tests publiés, notions expliquées."/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -42,16 +42,16 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div aria-label="Outils du guide" class="header-tools"><button aria-controls="search-panel" aria-expanded="false" aria-label="Ouvrir la recherche" class="header-tool header-tool-search" id="search-toggle" type="button"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="header-tool-label">Rechercher</span></button><button aria-label="Activer le thème sombre" aria-pressed="false" class="header-tool header-tool-theme" id="theme-toggle" type="button"><svg class="ga-ico ga-ico-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14A8.5 8.5 0 0 1 10 4a8.5 8.5 0 1 0 10 10Z"/></svg><svg class="ga-ico ga-ico-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></svg></button></div>
 </div>
 </header>
-<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide d’achat</span><span>Prix indicatifs du catalogue</span></div></div>
+<div class="header-meta"><div class="header-meta-inner"><span>Smartphones — Guide d’achat</span><span><span data-count>62</span> modèles · <span data-tests>16</span> tests publiés</span></div></div>
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker" translate="no">Guide·Achat</span><p class="drawer-title" id="search-panel-title">Rechercher</p></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main" class="sg">
 <section class="sg-hero" aria-labelledby="sg-title">
 <div class="sg-wrap sg-hero-grid">
 <div class="sg-hero-text">
 <h1 id="sg-title"><span class="sg-h1-light">Le bon smartphone,</span> <span class="sg-sticker-text">c’est celui qui vous convient.</span></h1>
-<p class="sg-lead">Fixez un budget, puis ce qui compte pour vous. Seules les options qui existent à ce prix restent proposées.</p>
+<p class="sg-lead">Dites ce qui compte pour vous. Seules les options qui existent restent proposées, et les tests publiés départagent les modèles.</p>
 <div class="sg-hero-actions">
-<button type="button" class="sg-cta" id="sg-cta-start">Choisir mon budget</button>
+<button type="button" class="sg-cta" id="sg-cta-start">Choisir mes critères</button>
 <button type="button" class="sg-cta-ghost" id="sg-cta-analyse">J’ai déjà un modèle en tête</button>
 </div>
 </div>
@@ -66,7 +66,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="sg-phone-screen">
 <p class="sg-mock-k">Recommandation</p>
 <p class="sg-mock-name" id="sg-mock-name">Votre modèle</p>
-<p class="sg-mock-price" id="sg-mock-price">Choisissez un budget</p>
+<p class="sg-mock-price" id="sg-mock-price">Choisissez vos critères</p>
 <div class="sg-mock-meter" id="sg-mock-meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="sg-mock-rows" id="sg-mock-rows"><span></span><span></span><span></span></div>
 </div>
@@ -74,7 +74,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <span class="sg-float f1">Écran</span><span class="sg-float f2">Puce 1–10</span>
 <span class="sg-float f3">Photo</span><span class="sg-float f4">Batterie</span>
 <span class="sg-float f5">Indice IP</span><span class="sg-float f6">Mises à jour</span>
-<span class="sg-stick s1">€</span>
+<span class="sg-stick s1"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
 <span class="sg-stick s2"><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg></span>
 </div>
 </div>
@@ -89,7 +89,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 
 <section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone">
 <div class="sg-parcours" id="sg-parcours">
-<ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement du catalogue…</li></ol>
+<ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement des fiches…</li></ol>
 <aside class="sg-result-col" aria-label="Recommandation">
 <div id="sg-result" class="sg-result" aria-live="polite"></div>
 </aside>
@@ -104,21 +104,21 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="sg-anat-grid">
 <div class="sg-anat-stage" id="sg-anat-stage" data-open="false" aria-hidden="true">
 <div class="sg-stack">
-<div class="sg-ly sg-ly-frame" data-layer="frame"><i class="sg-seal"></i><span class="sg-drops"><b></b><b></b><b></b></span></div>
+<div class="sg-ly sg-ly-frame" data-layer="frame"><span class="sg-bump"></span><i class="sg-seal"></i><span class="sg-drops"><b></b><b></b><b></b></span></div>
 <div class="sg-ly sg-ly-batt" data-layer="batt"><span class="sg-cell"><i class="sg-level"></i></span><span class="sg-bolt"></span><span class="sg-port"></span></div>
-<div class="sg-ly sg-ly-board" data-layer="board">
-<span class="sg-chip sg-chip-cpu" data-part="puce"><i></i></span>
-<span class="sg-chip sg-chip-ram" data-part="ram"><i></i><i></i><i></i><i></i></span>
-<span class="sg-chip sg-chip-sto" data-part="stockage"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+<div class="sg-ly sg-ly-board" data-layer="board"><span class="sg-pcb">
 <span class="sg-lens" data-part="photo"><i></i></span>
+<span class="sg-chip sg-chip-cpu" data-part="puce"><i></i></span>
+<span class="sg-chip sg-chip-sto" data-part="stockage"><i></i><i></i><i></i><i></i><i></i><i></i></span>
+<span class="sg-chip sg-chip-ram" data-part="ram"><i></i><i></i><i></i><i></i></span>
+</span></div>
+<div class="sg-ly sg-ly-screen" data-layer="screen"><span class="sg-notch"></span><span class="sg-scan"></span><span class="sg-app"></span><span class="sg-app"></span><span class="sg-app"></span></div>
 </div>
-<div class="sg-ly sg-ly-screen" data-layer="screen"><span class="sg-scan"></span><span class="sg-app"></span><span class="sg-app"></span><span class="sg-app"></span></div>
-</div>
-<p class="sg-stage-cap">Vue éclatée, simplifiée</p>
+<p class="sg-stage-cap">Maquette simplifiée, couche par couche</p>
 </div>
 <div class="sg-anat-side">
 <div class="sg-anat-tabs" role="tablist" aria-label="Composants du téléphone" id="sg-anat-tabs"></div>
-<div class="sg-anat-panel" role="tabpanel" id="sg-anat-panel" tabindex="0"><p class="sg-loading">Chargement du catalogue…</p></div>
+<div class="sg-anat-panel" role="tabpanel" id="sg-anat-panel" tabindex="0"><p class="sg-loading">Chargement…</p></div>
 </div>
 </div>
 </section>

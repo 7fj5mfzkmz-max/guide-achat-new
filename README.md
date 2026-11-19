@@ -41,11 +41,11 @@ Données : `data/montres.json` (33 modèles, 10 vidéos sources : pouls contre c
 
 ## Smartphones (smartphones.html)
 Trois onglets :
-- **Mes critères** : parcours budget → critères → recommandation. Lit `data/smartphones.json`, qui est **obsolète** (prix et fiches à ne pas utiliser comme vérité). Logique pure : `assets/js/smartphones-guide-logic.js` (testée par `scripts/smartphones-guide-test.js`). Interface : `assets/js/smartphones-guide.js`.
-- **Présentation** : vue éclatée du téléphone, une démonstration par composant, fonctionnalités, tests publiés et fiches de modèles. Lit `data/smartphones-tests.json`, **généré** par `python3 tools/donnees/construire-tests.py` à partir de `data/sources/base-tests-T01-T11.md` et `base-tests-T12-T16.md`. Ne pas modifier le JSON à la main. Test : `npm run smartphones:donnees`.
+- **Mes critères** : priorité → taille, écran, processeur, batterie, charge, photo, tests → recommandation. Lit `data/smartphones-tests.json` (62 modèles) : les caractéristiques filtrables sont dans `specs`, extraites des fiches par `tools/donnees/construire-tests.py` (une valeur non écrite reste `null`). Les classements publiés départagent les modèles (rang dans son test, jamais comparé d’un test à l’autre). Logique pure : `assets/js/smartphones-guide-logic.js` (testée par `scripts/smartphones-guide-test.js`). Interface : `assets/js/smartphones-guide.js`. `data/smartphones.json` n’est plus lu par cette page (l’analyseur s’en sert encore).
+- **Présentation** : maquette du téléphone en couches, une démonstration par composant, fonctionnalités, tests publiés et fiches de modèles. Lit `data/smartphones-tests.json`, **généré** par `python3 tools/donnees/construire-tests.py` à partir de `data/sources/base-tests-T01-T11.md` et `base-tests-T12-T16.md`. Ne pas modifier le JSON à la main. Test : `npm run smartphones:donnees`.
 - **Analyseur** : `analyseur.html?cat=smartphones` affiché dans un cadre.
 
-Styles : `assets/css/smartphones.css`. Les prix, indices IP et durées de mises à jour ne sont pas dans les bases de tests : le parcours budget n'est pas fiable tant qu'un nouveau jeu de données n'est pas fourni.
+Styles : `assets/css/smartphones.css`. Les prix, indices IP et durées de mises à jour ne sont pas dans les bases : le parcours n’a pas d’étape pour eux tant qu’ils ne sont pas fournis.
 
 Règles de contenu pour un agent : ne pas inventer de chiffre ; garder le statut et la source de chaque valeur ; ne jamais moyenner des résultats de tests différents.
 

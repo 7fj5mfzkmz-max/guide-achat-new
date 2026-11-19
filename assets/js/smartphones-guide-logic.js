@@ -1,146 +1,165 @@
 /* Logique du parcours « Mes critères » (page Smartphones), sans DOM : utilisée par la page et par scripts/smartphones-guide-test.js.
 
+   Source : data/smartphones-tests.json (généré depuis data/sources/*.md). Chaque modèle a un objet « specs » tiré de sa fiche,
+   et des résultats de tests publiés (classements et tableaux) qui servent à vérifier les caractéristiques annoncées.
+
    Règles :
-   - Le budget est le premier choix. Les plafonds sont calculés depuis les prix réels du catalogue (pas de grille codée en dur).
-     « Jusqu’à X € » inclut les modèles à X €.
    - Un choix par étape : choisir une autre option remplace la précédente.
-   - Une option est disponible seulement si au moins un modèle respecte le budget, cette option et tous les autres choix actifs.
+   - Une option est disponible seulement si au moins un modèle respecte cette option et tous les autres choix actifs.
      Les options et la recommandation utilisent le même filtre.
-   - Une donnée absente du catalogue vaut « inconnue » (null) : elle ne compte ni comme correspondance ni comme échec.
-   - Le niveau de puce (1 à 10) vient du catalogue, calculé par phone-analyzer/chips.js. */
+   - Une donnée absente de la base vaut « inconnue » (null) : elle ne compte ni comme correspondance ni comme échec.
+   - La priorité ne retire aucun modèle : elle choisit l’ordre de la recommandation.
+   - Les tests départagent : à caractéristiques proches, un modèle dont un test confirme le point fort passe devant.
+     Un rang n’est jamais comparé d’un test à l’autre en valeur absolue : on garde la position dans le test (1er sur 6).
+   - Le prix, l’étanchéité et la durée des mises à jour ne sont pas encore dans la base : pas d’étape pour eux.
+   - Le niveau de puce (1 à 10) vient de phone-analyzer/chips.js. */
 (function (root) {
   'use strict';
 
-  var SKIP = '__skip';
+  var Chips = root && root.PhoneChips;
+  if (!Chips && typeof require === 'function') { try { Chips = require('../../phone-analyzer/chips.js'); } catch (e) { Chips = null; } }
 
-  function get(p, path) {
-    var v = p;
-    for (var i = 0; i < path.length; i++) {
-      if (v === null || v === undefined || typeof v !== 'object') return null;
-      v = v[path[i]];
-    }
-    return v === undefined ? null : v;
+  function sp(p, k) { var v = p && p.specs ? p.specs[k] : null; return v === undefined ? null : v; }
+  var niveauCache = {};
+  function niveau(p) {
+    var puce = sp(p, 'puce');
+    if (!puce || !Chips) return null;
+    if (!(puce in niveauCache)) niveauCache[puce] = Chips.level(puce);
+    return niveauCache[puce];
   }
-  function prix(p) { return typeof p.prix_indicatif === 'number' && isFinite(p.prix_indicatif) ? p.prix_indicatif : null; }
-  function niveau(p) { var n = get(p, ['compatibilite', 'performance', 'niveau']); return typeof n === 'number' ? n : null; }
-  function ecran(p) { return get(p, ['compatibilite', 'ecran', 'technologie']) || get(p, ['caracteristiques', 'ecran']); }
-  function mah(p) { var c = get(p, ['compatibilite', 'batterie', 'capacite_mah']); return typeof c === 'number' ? c : null; }
-  function mp(p) { var m = get(p, ['compatibilite', 'photo', 'mp_principal']); return typeof m === 'number' ? m : null; }
-  function ois(p) { var o = get(p, ['compatibilite', 'photo', 'ois']); return typeof o === 'boolean' ? o : null; }
-  /* Indice d’étanchéité : le second chiffre de l’indice IP (IP68 → 8, IPX4 → 4). Plusieurs indices : on garde le meilleur. */
-  function eau(p) {
-    var v = get(p, ['compatibilite', 'durete', 'protection_ip']);
-    if (!v) return null;
-    var best = null, re = /IP[0-9X]([0-9])/gi, m;
-    while ((m = re.exec(String(v)))) { var d = Number(m[1]); if (best === null || d > best) best = d; }
-    return best;
-  }
-  /* Durée des mises à jour : pas encore renseignée dans le catalogue (champ « suivi » vide). */
-  function majAns(p) {
-    var v = get(p, ['compatibilite', 'suivi', 'ans']);
-    return typeof v === 'number' ? v : null;
-  }
+  function sansFil(p) { var v = sp(p, 'sans_fil'); return v === null ? null : !!v; }
   function cmp(v, test) { return v === null ? null : !!test(v); }
 
-  var GAMMES = [
+  var GAMMES = (Chips && Chips.GAMMES) || [
     { id: 'entree', label: 'Entrée de gamme', min: 1, max: 3 },
     { id: 'milieu', label: 'Milieu de gamme', min: 4, max: 6 },
     { id: 'haut', label: 'Haut de gamme', min: 7, max: 8 },
     { id: 'sommet', label: 'Très haut de gamme', min: 9, max: 10 }
   ];
-  if (root && root.PhoneChips && root.PhoneChips.GAMMES) GAMMES = root.PhoneChips.GAMMES;
   function gammeOf(n) {
     if (n === null) return null;
     for (var i = 0; i < GAMMES.length; i++) if (n >= GAMMES[i].min && n <= GAMMES[i].max) return GAMMES[i];
     return null;
   }
 
-  /* Plafonds de budget tirés des prix du catalogue : quantiles arrondis à 50 € au-dessus, sans doublon, plus le plafond qui couvre tout. */
-  function budgetCaps(products) {
-    var ps = products.map(prix).filter(function (x) { return x !== null; }).sort(function (a, b) { return a - b; });
-    if (!ps.length) return [];
-    var caps = [];
-    [0.1, 0.22, 0.38, 0.55, 0.72, 0.88].forEach(function (q) {
-      var v = ps[Math.min(ps.length - 1, Math.floor(q * ps.length))];
-      var c = Math.ceil(v / 50) * 50;
-      if (caps.indexOf(c) < 0) caps.push(c);
+  /* ---------- Preuves : ce que les tests publiés disent de chaque modèle ---------- */
+  function buildEvidence(data) {
+    var ev = {};
+    function of(id) { return ev[id] || (ev[id] = { autonomie: [], perf: [], tableaux: [], observations: 0 }); }
+    if (!data) return ev;
+    (data.classements || []).forEach(function (c) {
+      var auto = /^Autonomie/.test(c.metrique), n = c.lignes.length;
+      c.lignes.forEach(function (l) {
+        var e = { test: c.test, metrique: c.metrique, rang: l.rang || null, n: n, variante: l.variante, mah: l.mah || null };
+        (auto ? of(l.modele).autonomie : of(l.modele).perf).push(e);
+      });
     });
-    var top = Math.ceil(ps[ps.length - 1] / 50) * 50;
-    if (caps.indexOf(top) < 0) caps.push(top);
-    return caps;
+    (data.tableaux || []).forEach(function (t) {
+      t.colonnes.forEach(function (c) {
+        var v = data.variantes && data.variantes[c];
+        if (v && of(v.modele).tableaux.indexOf(t.test) < 0) of(v.modele).tableaux.push(t.test);
+      });
+    });
+    (data.observations || []).forEach(function (o) { (o.modeles || []).forEach(function (m) { of(m).observations++; }); });
+    return ev;
   }
+  /* Position dans un test : 1 pour le premier, 0 pour le dernier. */
+  function place(e) { return e.rang && e.n > 1 ? (e.n - e.rang) / (e.n - 1) : null; }
 
-  function buildSteps(products) {
-    var caps = budgetCaps(products);
+  function buildSteps() {
     return [
-      { id: 'prix', titre: 'Prix', question: 'Quel est votre budget maximum ?',
-        aide: 'C’est le premier choix : les étapes suivantes ne proposent que ce qui existe dans ce budget.',
-        options: caps.map(function (cap, i) {
-          return { id: 'b' + cap, label: (i === caps.length - 1 ? 'Jusqu’à ' + cap + ' € (tout le catalogue)' : 'Jusqu’à ' + cap + ' €'), cap: cap,
-            test: function (p) { return cmp(prix(p), function (x) { return x <= cap; }); } };
-        }) },
-      { id: 'ecran', titre: 'Écran', question: 'Quel type d’écran ?',
-        aide: 'Vous le regardez toute la journée : il change le contraste, la lisibilité au soleil et la consommation.',
+      { id: 'priorite', titre: 'Priorité', ranking: true, question: 'Qu’est-ce qui compte le plus pour vous ?',
+        aide: 'Ce choix ne retire aucun modèle : il décide de l’ordre de la recommandation.',
         options: [
-          { id: 'oled', label: 'OLED ou AMOLED', adv: 'Noirs profonds, bon contraste.', comp: 'Souvent un peu plus cher qu’un LCD.',
-            test: function (p) { return cmp(ecran(p), function (t) { return /OLED/i.test(t); }); } },
-          { id: 'ltpo', label: 'LTPO (fréquence variable)', adv: 'Peut ménager la batterie en baissant la fréquence d’affichage.', comp: 'Réservé aux modèles plus chers.',
-            test: function (p) { return cmp(ecran(p), function (t) { return /LTPO/i.test(t); }); } },
-          { id: 'lcd', label: 'LCD', adv: 'Permet des prix plus bas.', comp: 'Noirs moins profonds, un peu plus épais.',
-            test: function (p) { return cmp(ecran(p), function (t) { return /LCD/i.test(t) && !/OLED/i.test(t); }); } }
+          { id: 'equilibre', label: 'Un peu de tout', adv: 'Puce, batterie, charge et photo pèsent ensemble.', comp: 'Aucun point n’est poussé au maximum.' },
+          { id: 'autonomie', label: 'L’autonomie', adv: 'Grosses batteries d’abord ; un bon rang aux tests d’autonomie compte en plus.', comp: 'Téléphones souvent plus lourds.' },
+          { id: 'puissance', label: 'La puissance', adv: 'Les puces les mieux notées d’abord.', comp: 'Une puce rapide chauffe plus en jeu long.' },
+          { id: 'photo', label: 'La photo', adv: 'Téléobjectif et stabilisation annoncés d’abord.', comp: 'Les tests publiés comparent peu la photo : surtout des observations.' }
+        ].map(function (o) { o.test = function () { return true; }; return o; }) },
+      { id: 'taille', titre: 'Taille', question: 'Quelle taille d’écran ?',
+        aide: 'La diagonale décide de la prise en main. Au-delà de 6,7 pouces, l’usage à une main devient difficile.',
+        options: [
+          { id: 'compact', label: 'Compact (6,4″ ou moins)', adv: 'Tient dans une main et dans toutes les poches.', comp: 'Batterie souvent plus petite.',
+            test: function (p) { return cmp(sp(p, 'pouces'), function (x) { return x <= 6.4; }); } },
+          { id: 'moyen', label: 'Moyen (6,5 à 6,7″)', adv: 'Le compromis le plus courant.', comp: 'Usage à une main limité.',
+            test: function (p) { return cmp(sp(p, 'pouces'), function (x) { return x >= 6.45 && x < 6.75; }); } },
+          { id: 'grand', label: 'Grand (6,8″ ou plus)', adv: 'Vidéo, lecture et jeu plus confortables.', comp: 'Lourd et encombrant.',
+            test: function (p) { return cmp(sp(p, 'pouces'), function (x) { return x >= 6.75; }); } }
+        ] },
+      { id: 'ecran', titre: 'Écran', question: 'Quel type d’écran ?',
+        aide: 'La technologie décide du contraste ; la fréquence (en Hz), de la fluidité au défilement.',
+        options: [
+          { id: 'oled', label: 'OLED ou AMOLED', adv: 'Noirs profonds, bon contraste.', comp: 'Presque tous les modèles récents en ont un.',
+            test: function (p) { return cmp(sp(p, 'ecran'), function (t) { return t === 'oled'; }); } },
+          { id: 'hz120', label: '120 Hz ou plus', adv: 'Défilement fluide.', comp: 'Consomme un peu plus sans fréquence variable.',
+            test: function (p) { return cmp(sp(p, 'hz'), function (h) { return h >= 120; }); } },
+          { id: 'hz144', label: '144 Hz ou plus', adv: 'Utile dans les jeux compatibles.', comp: 'Peu visible hors jeu ; souvent réservé à certains jeux.',
+            test: function (p) { return cmp(sp(p, 'hz'), function (h) { return h >= 144; }); } }
         ] },
       { id: 'processeur', titre: 'Processeur', question: 'Quelle puissance ?',
-        aide: 'La note de 1 à 10 situe la puce parmi celles du marché. Elle est inconnue quand la puce n’est pas identifiée.',
+        aide: 'La note de 1 à 10 situe la puce parmi celles du marché. Elle est inconnue quand la puce n’est pas encore classée.',
         options: GAMMES.map(function (g) {
           var txt = {
             entree: ['Suffit pour les messages, le web et la vidéo.', 'Les jeux 3D récents saccadent.'],
             milieu: ['La plupart des jeux tournent bien.', 'Réglages à baisser dans les jeux les plus lourds.'],
-            haut: ['Jeux exigeants et montage vidéo.', 'Prix plus élevé, chauffe possible en jeu long.'],
-            sommet: ['Le plus rapide de sa génération, avec de la marge pour durer.', 'Prix le plus élevé ; la différence se voit peu au quotidien.']
+            haut: ['Jeux exigeants et montage vidéo.', 'Chauffe possible en jeu long.'],
+            sommet: ['Le plus rapide de sa génération, avec de la marge pour durer.', 'La différence se voit peu au quotidien.']
           }[g.id] || ['', ''];
           return { id: g.id, label: g.label + ' (note ' + g.min + ' à ' + g.max + ')', adv: txt[0], comp: txt[1],
             test: function (p) { return cmp(niveau(p), function (n) { return n >= g.min && n <= g.max; }); } };
         }) },
-      { id: 'photo', titre: 'Photo', question: 'Qu’attendez-vous de l’appareil photo ?',
-        aide: 'La stabilisation et le capteur comptent plus que le nombre de mégapixels.',
-        options: [
-          { id: 'ois', label: 'Stabilisation optique (OIS)', adv: 'Photos de nuit et vidéos plus nettes.', comp: 'Rarement présente en entrée de gamme ; souvent non renseignée.',
-            test: function (p) { return ois(p); } },
-          { id: 'mp50', label: 'Capteur principal de 50 MP ou plus', adv: 'Plus de détail quand on recadre.', comp: 'Ne garantit pas de meilleures photos à lui seul.',
-            test: function (p) { return cmp(mp(p), function (m) { return m >= 50; }); } }
-        ] },
       { id: 'batterie', titre: 'Batterie', question: 'Quelle capacité de batterie ?',
-        aide: 'La capacité (en mAh) aide l’autonomie sans la garantir : l’écran et la puce consomment aussi.',
+        aide: 'Quand la capacité change selon le pays, on retient la plus petite version annoncée.',
         options: [
-          { id: 'b5000', label: '5 000 mAh ou plus', adv: 'Tient souvent une journée d’usage normal.', comp: 'Peut ajouter un peu de poids.',
-            test: function (p) { return cmp(mah(p), function (c) { return c >= 5000; }); } },
-          { id: 'b6000', label: '6 000 mAh ou plus', adv: 'Plus de marge pour les longues journées.', comp: 'Téléphone souvent plus lourd ; peut peser sur le prix.',
-            test: function (p) { return cmp(mah(p), function (c) { return c >= 6000; }); } }
+          { id: 'b5000', label: '5 000 mAh ou plus', adv: 'Tient souvent une journée d’usage normal.', comp: 'Ne garantit pas l’autonomie : l’écran et la puce consomment aussi.',
+            test: function (p) { return cmp(sp(p, 'mah'), function (c) { return c >= 5000; }); } },
+          { id: 'b6500', label: '6 500 mAh ou plus', adv: 'De la marge pour les longues journées.', comp: 'Téléphone souvent plus lourd.',
+            test: function (p) { return cmp(sp(p, 'mah'), function (c) { return c >= 6500; }); } },
+          { id: 'b8000', label: '8 000 mAh ou plus', adv: 'Deux jours possibles en usage léger.', comp: 'Lourd ; version européenne parfois plus petite.',
+            test: function (p) { return cmp(sp(p, 'mah'), function (c) { return c >= 8000; }); } }
         ] },
-      { id: 'protection', titre: 'Protection', question: 'Contre l’eau, jusqu’où ?',
-        aide: 'L’indice IP indique la résistance à la poussière puis à l’eau. Le second chiffre concerne l’eau.',
+      { id: 'charge', titre: 'Charge', question: 'Quelle recharge ?',
+        aide: 'La puissance en watts (W) est un maximum annoncé, tenu quelques minutes, avec un chargeur compatible.',
         options: [
-          { id: 'ip4', label: 'Éclaboussures (IPx4 ou mieux)', adv: 'Supporte la pluie et les éclaboussures.', comp: 'Pas fait pour être plongé dans l’eau.',
-            test: function (p) { return cmp(eau(p), function (d) { return d >= 4; }); } },
-          { id: 'ip7', label: 'Immersion (IPx7 ou mieux)', adv: 'Résiste à une chute dans l’eau douce, brièvement.', comp: 'Plus fréquent sur les modèles chers ; la garantie couvre rarement l’eau.',
-            test: function (p) { return cmp(eau(p), function (d) { return d >= 7; }); } }
+          { id: 'w45', label: '45 W ou plus (câble)', adv: 'Une bonne partie de la batterie en 30 minutes.', comp: 'Le chargeur n’est pas toujours fourni.',
+            test: function (p) { return cmp(sp(p, 'charge_w'), function (w) { return w >= 45; }); } },
+          { id: 'w80', label: '80 W ou plus (câble)', adv: 'Recharge très rapide.', comp: 'Demande le chargeur de la marque.',
+            test: function (p) { return cmp(sp(p, 'charge_w'), function (w) { return w >= 80; }); } },
+          { id: 'sansfil', label: 'Charge sans fil', adv: 'On pose le téléphone, sans câble.', comp: 'Plus lente que par câble.',
+            test: function (p) { return sansFil(p); } }
         ] },
-      { id: 'maj', titre: 'Mises à jour', question: 'Combien d’années de mises à jour ?',
-        aide: 'Le catalogue ne renseigne pas encore la durée des mises à jour annoncée par les fabricants.',
-        unavailable: true,
+      { id: 'photo', titre: 'Photo', question: 'Qu’attendez-vous de l’appareil photo ?',
+        aide: 'Le téléobjectif et la stabilisation comptent plus que le nombre de mégapixels.',
         options: [
-          { id: 'maj5', label: 'Au moins 5 ans', adv: 'Téléphone protégé plus longtemps.', comp: 'Donnée absente du catalogue pour le moment.',
-            test: function (p) { return cmp(majAns(p), function (a) { return a >= 5; }); } }
+          { id: 'tele', label: 'Téléobjectif (zoom optique)', adv: 'Zoom net sur un sujet éloigné, portraits.', comp: 'Souvent réservé aux modèles chers.',
+            test: function (p) { return sp(p, 'tele'); } },
+          { id: 'ois', label: 'Stabilisation optique (OIS)', adv: 'Photos de nuit et vidéos plus nettes.', comp: 'Souvent non précisée dans les fiches.',
+            test: function (p) { return sp(p, 'ois'); } }
+        ] },
+      { id: 'preuves', titre: 'Tests', question: 'Seulement des modèles mesurés par des testeurs ?',
+        aide: 'Un résultat publié vérifie les chiffres annoncés : autonomie, recharge, performances.',
+        options: [
+          { id: 'mesure', label: 'Au moins un résultat chiffré publié', adv: 'Des mesures, pas seulement la fiche du fabricant.', comp: 'Moins de modèles proposés.',
+            test: function (p) { return null; } }
         ] }
     ];
   }
 
-  function Guide(products) {
+  function Guide(products, data) {
+    var self = this;
     this.products = products || [];
-    this.steps = buildSteps(this.products);
+    this.evidence = buildEvidence(data);
+    this.steps = buildSteps();
+    var pre = this.step('preuves').options[0];
+    pre.test = function (p) { return self.measured(p.id) > 0; };
+    /* Bornes du catalogue, pour ramener chaque caractéristique entre 0 et 1. */
+    this.range = {};
+    ['mah', 'charge_w', 'hz'].forEach(function (k) {
+      var vs = self.products.map(function (p) { return sp(p, k); }).filter(function (v) { return typeof v === 'number'; });
+      self.range[k] = vs.length ? [Math.min.apply(null, vs), Math.max.apply(null, vs)] : [0, 1];
+    });
     this.sel = {};
   }
-  Guide.SKIP = SKIP;
   Guide.prototype.step = function (id) { for (var i = 0; i < this.steps.length; i++) if (this.steps[i].id === id) return this.steps[i]; return null; };
   Guide.prototype.option = function (stepId, optId) {
     var s = this.step(stepId); if (!s) return null;
@@ -154,13 +173,25 @@
   Guide.prototype.choose = function (stepId, optId) { this.sel[stepId] = optId; };
   Guide.prototype.skip = function (stepId) { this.sel[stepId] = SKIP; };
   Guide.prototype.clear = function (stepId) { delete this.sel[stepId]; };
+  Guide.prototype.filterSteps = function () { return this.steps.filter(function (s) { return !s.ranking; }); };
+  /* Nombre de résultats chiffrés publiés (lignes de classement + tableaux) pour un modèle. */
+  Guide.prototype.measured = function (id) {
+    var e = this.evidence[id];
+    return e ? e.autonomie.length + e.perf.length + e.tableaux.length : 0;
+  };
+  /* Meilleure position dans un test d’autonomie (1 = premier du test), ou null sans test classé. */
+  Guide.prototype.autonomyPlace = function (id) {
+    var e = this.evidence[id], best = null;
+    (e ? e.autonomie : []).forEach(function (x) { var v = place(x); if (v !== null && (best === null || v > best)) best = v; });
+    return best;
+  };
   /* Modèles qui respectent tous les choix actifs, sauf celui de « except ». */
   Guide.prototype.pool = function (except) {
     var self = this;
     return this.products.filter(function (p) {
       for (var i = 0; i < self.steps.length; i++) {
         var s = self.steps[i];
-        if (s.id === except) continue;
+        if (s.id === except || s.ranking) continue;
         var o = self.chosen(s.id);
         if (o && o.test(p) !== true) return false;
       }
@@ -169,58 +200,67 @@
   };
   /* Disponibilité d’une option : ok (modèles qui correspondent), inconnu (donnée absente), base (modèles restants sans cette étape). */
   Guide.prototype.availability = function (stepId, optId) {
-    var o = this.option(stepId, optId);
-    // Le budget est le premier choix : un plafond reste toujours sélectionnable s’il contient au moins un modèle,
-    // pour pouvoir baisser ou monter le budget ; ce sont alors les autres choix devenus impossibles qui sont signalés.
-    var base = stepId === 'prix' ? this.products : this.pool(stepId), ok = 0, unknown = 0;
+    var o = this.option(stepId, optId), s = this.step(stepId);
+    var base = this.pool(stepId), ok = 0, unknown = 0;
+    if (s.ranking) return { ok: base.length, unknown: 0, base: base.length, available: base.length > 0, reason: base.length ? null : 'aucun' };
     base.forEach(function (p) { var r = o.test(p); if (r === true) ok++; else if (r === null) unknown++; });
     var reason = null;
     if (ok === 0) {
-      if (base.length === 0 || unknown === 0) reason = 'aucun';      // aucun modèle ne correspond
-      else if (unknown === base.length) reason = 'inconnu';           // donnée non renseignée pour tous les modèles restants
-      else reason = 'partiel';                                        // aucun modèle renseigné ne correspond, d’autres fiches n’ont pas la donnée
+      if (base.length === 0 || unknown === 0) reason = 'aucun';
+      else if (unknown === base.length) reason = 'inconnu';
+      else reason = 'partiel';
     }
     return { ok: ok, unknown: unknown, base: base.length, available: ok > 0, reason: reason };
   };
   Guide.prototype.results = function () { return this.pool(null); };
-  /* Choix actifs qui empêchent tout résultat : ceux dont l’option ne trouve plus aucun modèle avec les autres choix. */
+  /* Choix actifs qui empêchent tout résultat. */
   Guide.prototype.blocking = function () {
     var self = this, out = [];
-    this.steps.forEach(function (s) {
+    this.filterSteps().forEach(function (s) {
       var o = self.chosen(s.id);
-      if (s.id !== 'prix' && o && !self.availability(s.id, o.id).available) out.push({ step: s, option: o });
+      if (o && !self.availability(s.id, o.id).available) out.push({ step: s, option: o });
     });
     return out;
   };
-  /* Score : critères confirmés (choisis et encore compatibles avec les autres choix) sur les sept étapes.
-     Une étape passée ou sans donnée n’est ni comptée ni présentée comme un échec. */
+  /* Critères confirmés : choisis et encore compatibles avec les autres choix. La priorité n’est pas un critère. */
   Guide.prototype.progress = function () {
-    var self = this, confirmed = 0, answered = 0, unavailable = 0;
-    this.steps.forEach(function (s) {
-      if (s.unavailable) { unavailable++; return; }
+    var self = this, confirmed = 0, answered = 0, fs = this.filterSteps();
+    fs.forEach(function (s) {
       if (self.sel[s.id]) answered++;
       var o = self.chosen(s.id);
-      if (o && self.availability(s.id, o.id).available) confirmed++; // un choix devenu impossible n’est pas compté
+      if (o && self.availability(s.id, o.id).available) confirmed++;
     });
-    var available = this.steps.length - unavailable;
-    return { confirmed: confirmed, total: this.steps.length, available: available, finished: answered >= available,
-      provisional: answered < available };
+    return { confirmed: confirmed, total: fs.length, answered: answered, finished: answered >= fs.length && !!this.sel.priorite,
+      provisional: answered < fs.length };
   };
-  Guide.prototype.overall = function (p) {
-    var keys = ['performance', 'autonomie', 'photo', 'ecran', 'stockage'], sum = 0, n = 0;
-    keys.forEach(function (k) { var v = get(p, ['scores', k]); if (typeof v === 'number') { sum += v; n++; } });
-    return n ? sum / n : 0;
+  Guide.prototype.norm = function (p, k) {
+    var v = sp(p, k), r = this.range[k];
+    return typeof v === 'number' && r[1] > r[0] ? (v - r[0]) / (r[1] - r[0]) : 0;
   };
-  /* Recommandation : modèles prêts, qui respectent tous les choix, classés par note moyenne puis par prix. */
+  /* Note d’ordre (0 à 1 environ), selon la priorité. Une donnée inconnue vaut 0 : elle n’aide pas, elle n’exclut pas. */
+  Guide.prototype.score = function (p, prio) {
+    var n = niveau(p), puce = n === null ? 0 : n / 10, auto = this.autonomyPlace(p.id);
+    var tele = sp(p, 'tele') === true ? 1 : 0, ois = sp(p, 'ois') === true ? 1 : 0;
+    var proof = Math.min(1, this.measured(p.id) / 3);
+    var s;
+    if (prio === 'autonomie') s = 0.65 * this.norm(p, 'mah') + 0.25 * (auto === null ? 0 : auto) + 0.1 * this.norm(p, 'charge_w');
+    else if (prio === 'puissance') s = 0.75 * puce + 0.1 * this.norm(p, 'hz') + 0.15 * proof;
+    else if (prio === 'photo') s = 0.45 * tele + 0.2 * ois + 0.25 * puce + 0.1 * proof;
+    else s = 0.3 * puce + 0.25 * this.norm(p, 'mah') + 0.15 * this.norm(p, 'charge_w') + 0.1 * tele + 0.1 * (auto === null ? 0 : auto) + 0.1 * proof;
+    return s;
+  };
+  /* Recommandation : modèles qui respectent tous les choix, classés selon la priorité ; à égalité, le plus mesuré passe devant. */
   Guide.prototype.recommend = function (limit) {
-    var self = this;
-    if (!this.chosen('prix')) return [];
-    return this.results().filter(function (p) { return p.ready_for_recommendation !== false && prix(p) !== null; })
-      .sort(function (a, b) { return (self.overall(b) - self.overall(a)) || (prix(a) - prix(b)); })
-      .slice(0, limit || 3);
+    var self = this, prio = this.chosen('priorite') ? this.chosen('priorite').id : 'equilibre';
+    return this.results().map(function (p) { return { p: p, s: self.score(p, prio) }; })
+      .sort(function (a, b) { return (b.s - a.s) || (self.measured(b.p.id) - self.measured(a.p.id)) || a.p.nom.localeCompare(b.p.nom); })
+      .slice(0, limit || 3).map(function (x) { return x.p; });
   };
 
-  var api = { Guide: Guide, SKIP: SKIP, budgetCaps: budgetCaps, gammeOf: gammeOf, GAMMES: GAMMES,
-    fields: { prix: prix, niveau: niveau, ecran: ecran, mah: mah, mp: mp, ois: ois, eau: eau, majAns: majAns, get: get } };
+  var SKIP = '__skip';
+  Guide.SKIP = SKIP;
+
+  var api = { Guide: Guide, SKIP: SKIP, gammeOf: gammeOf, GAMMES: GAMMES, buildEvidence: buildEvidence, place: place,
+    fields: { niveau: niveau, sp: sp, sansFil: sansFil } };
   if (typeof module !== 'undefined' && module.exports) module.exports = api; else root.SmartphonesGuide = api;
 })(typeof window !== 'undefined' ? window : globalThis);

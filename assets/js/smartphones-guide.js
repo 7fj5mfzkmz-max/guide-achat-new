@@ -1,8 +1,9 @@
-/* Page Smartphones : onglets, parcours « Mes critères » et démonstrations.
-   La logique de filtrage est dans assets/js/smartphones-guide-logic.js (testée par scripts/smartphones-guide-test.js).
+/* Page Smartphones : onglets, parcours « Mes critères », présentation et démonstrations.
+   La logique de filtrage et de classement est dans assets/js/smartphones-guide-logic.js (testée par scripts/smartphones-guide-test.js).
+   Données : data/smartphones-tests.json (fiches + tests publiés), généré depuis data/sources/*.md.
 
    EMPLACEMENTS PHOTO : renseigner PHOTOS avec un chemin d’image, par exemple { "<identifiant>": "assets/...webp" }.
-   Clé : l’identifiant catalogue d’un modèle (carte de recommandation).
+   Clé : l’identifiant d’un modèle dans data/smartphones-tests.json (carte de recommandation).
    Une clé absente n’affiche rien aux visiteurs. Format conseillé : WebP 1200×900 ; texte alternatif dans PHOTOS_ALT. */
 (function () {
   'use strict';
@@ -13,16 +14,18 @@
   var L = window.SmartphonesGuide;
   var F = L.fields;
   var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  var guide = null, openStep = 'prix', catalogueError = false;
+  var guide = null, openStep = 'priorite', catalogueError = false;
 
   /* Icônes au trait (24×24), une par étape. */
   var ICONS = {
-    prix: '<circle cx="12" cy="12" r="9"/><path d="M15.5 8.6a4.4 4.4 0 1 0 0 6.8M7 10.6h6M7 13.4h6"/>',
+    priorite: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+    taille: '<rect x="7" y="2.5" width="10" height="19" rx="2.4"/><path d="M3 6v12M1.8 7.4 3 6l1.2 1.4M1.8 16.6 3 18l1.2-1.4"/>',
     ecran: '<rect x="6" y="2.5" width="12" height="19" rx="2.6"/><path d="M10.5 18.6h3"/>',
     processeur: '<rect x="7" y="7" width="10" height="10" rx="1.6"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>',
-    photo: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
     batterie: '<rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M6.5 10v4M9.5 10v4M12.5 10v4"/>',
-    protection: '<path d="M12 3c3.5 4.5 6 7.7 6 10.5a6 6 0 0 1-12 0C6 10.7 8.5 7.5 12 3z"/>',
+    charge: '<path d="M13 2 5 13.5h6L10 22l8-11.5h-6z"/>',
+    photo: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
+    preuves: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
     maj: '<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>'
   };
   function icon(id) { return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + (ICONS[id] || '') + '</svg>'; }
@@ -30,15 +33,19 @@
   /* Petit visuel par option : il montre l’idée, le libellé dit la règle. */
   function optVisual(step, opt) {
     var v = '';
-    if (step === 'ecran') v = opt.id === 'oled' ? '<span class="sg-v-oled"></span>' : opt.id === 'lcd' ? '<span class="sg-v-lcd"></span>' : '<span class="sg-v-ltpo">1–120<br>Hz</span>';
+    if (step === 'ecran') v = opt.id === 'oled' ? '<span class="sg-v-oled"></span>' : '<span class="sg-v-ltpo">' + (opt.id === 'hz144' ? '144' : '120') + '<br>Hz</span>';
     else if (step === 'processeur') {
       var r = { entree: [1, 3], milieu: [4, 6], haut: [7, 8], sommet: [9, 10] }[opt.id] || [0, 0], g = '';
       for (var i = 1; i <= 10; i++) g += '<i class="' + (i >= r[0] && i <= r[1] ? 'on' : '') + '" style="height:' + (20 + i * 8) + '%"></i>';
       v = '<span class="sg-v-gauge">' + g + '</span>';
-    } else if (step === 'batterie') v = '<span class="sg-v-bat"><i style="width:' + (opt.id === 'b6000' ? 100 : 72) + '%"></i></span>';
-    else if (step === 'photo') v = opt.id === 'ois' ? '<svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/><path d="M1.5 11v4M22.5 11v4"/></svg>' : '<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16M10 4v16M15 4v16"/></svg>';
-    else if (step === 'protection') v = opt.id === 'ip4' ? '<svg viewBox="0 0 24 24"><path d="M8 5c1.6 2 2.6 3.4 2.6 4.6a2.6 2.6 0 0 1-5.2 0C5.4 8.4 6.4 7 8 5zM16 9c1.6 2 2.6 3.4 2.6 4.6a2.6 2.6 0 0 1-5.2 0c0-1.2 1-2.6 2.6-4.6z"/></svg>' : '<svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="1.5"/><path d="M3 14c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0M3 18.5c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0"/></svg>';
-    else if (step === 'maj') v = '<svg viewBox="0 0 24 24">' + ICONS.maj + '</svg>';
+    } else if (step === 'batterie') v = '<span class="sg-v-bat"><i style="width:' + ({ b5000: 55, b6500: 75, b8000: 100 }[opt.id] || 50) + '%"></i></span>';
+    else if (step === 'taille') v = '<span class="sg-v-size sg-v-size-' + opt.id + '"></span>';
+    else if (step === 'charge') v = opt.id === 'sansfil' ? '<svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="14" rx="1.6"/><path d="M4 20.5h16M6.5 18c3-2 8-2 11 0"/></svg>'
+      : '<svg viewBox="0 0 24 24"><path d="M13 2 5 13.5h6L10 22l8-11.5h-6z"/>' + (opt.id === 'w80' ? '<path d="M20 4v4M22 6h-4"/>' : '') + '</svg>';
+    else if (step === 'photo') v = opt.id === 'ois' ? '<svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/><path d="M1.5 11v4M22.5 11v4"/></svg>'
+      : '<svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="5"/><circle cx="9" cy="12" r="2"/><path d="M14 9.5h7v5h-7"/></svg>';
+    else if (step === 'preuves') v = '<svg viewBox="0 0 24 24">' + ICONS.preuves + '</svg>';
+    else if (step === 'priorite') v = '<svg viewBox="0 0 24 24">' + (ICONS[{ autonomie: 'batterie', puissance: 'processeur', photo: 'photo' }[opt.id]] || ICONS.priorite) + '</svg>';
     return v ? '<span class="sg-vis" aria-hidden="true">' + v + '</span>' : '';
   }
 
@@ -47,8 +54,9 @@
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function euros(v) { return v === null ? 'Prix non renseigné' : Math.round(v).toLocaleString('fr-FR') + ' €'; }
-  function nameOf(p) { return p.nom.toLowerCase().indexOf(String(p.marque).toLowerCase()) === 0 ? p.nom : p.marque + ' ' + p.nom; }
+  function nameOf(p) { return p.nom; }
+  function fmt(n) { return Number(n).toLocaleString('fr-FR'); }
+  function pouces(x) { return String(x).replace('.', ',') + '″'; }
   var MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
   function dateFr(iso, court) {
     var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
@@ -59,13 +67,13 @@
   }
   function chipText(p) {
     var n = F.niveau(p), g = L.gammeOf(n);
-    return n === null ? 'puce : note inconnue' : 'puce ' + n + '/10, ' + g.label.toLowerCase();
+    return n === null ? 'puce non classée' : 'puce ' + n + '/10, ' + g.label.toLowerCase();
   }
   function reasonText(a) {
     if (a.reason === 'inconnu') return 'Donnée non renseignée pour les ' + a.base + ' modèle' + (a.base > 1 ? 's' : '') + ' restant' + (a.base > 1 ? 's' : '') + '.';
     if (a.reason === 'partiel') return 'Aucun modèle renseigné ne correspond ; donnée non renseignée pour ' + a.unknown + ' modèle' + (a.unknown > 1 ? 's' : '') + '.';
     if (a.base === 0) return 'Aucun modèle ne respecte déjà vos autres choix.';
-    return 'Aucun modèle ne correspond à ce budget et à vos autres choix.';
+    return 'Aucun modèle ne correspond à vos autres choix.';
   }
 
   /* ---------- Étapes ---------- */
@@ -87,84 +95,94 @@
   }
 
   function optionLabel(s, opt) {
-    if (s.id !== 'prix') {
-      var m = /^(.*?) \((.*)\)$/.exec(opt.label);
-      return '<span class="sg-opt-label">' + esc(m ? m[1] : opt.label) + (m ? '<span class="sg-opt-detail">' + esc(m[2]) + '</span>' : '') + '</span>';
-    }
-    var last = s.options[s.options.length - 1] === opt;
-    return '<span class="sg-opt-label"><span class="sg-opt-pre">' + (last ? 'Tout le catalogue' : 'Jusqu’à') + '</span>' +
-      '<span class="sg-opt-big">' + opt.cap.toLocaleString('fr-FR') + ' €</span></span>';
+    var m = /^(.*?) \((.*)\)$/.exec(opt.label);
+    return '<span class="sg-opt-label">' + esc(m ? m[1] : opt.label) + (m ? '<span class="sg-opt-detail">' + esc(m[2]) + '</span>' : '') + '</span>';
   }
 
   function renderSteps() {
-    var budgetSet = !!guide.chosen('prix');
     guide.steps.forEach(function (s) {
       var li = document.getElementById('sg-step-' + s.id);
       var btn = document.getElementById('sg-btn-' + s.id);
       var choice = guide.sel[s.id], o = guide.chosen(s.id);
-      var locked = s.id !== 'prix' && !budgetSet;
-      var isOpen = openStep === s.id && !locked;
+      var isOpen = openStep === s.id;
       var broken = !!o && !guide.availability(s.id, o.id).available;
       li.classList.toggle('is-open', isOpen);
       li.classList.toggle('is-done', !!o);
       li.classList.toggle('is-broken', broken);
-      li.classList.toggle('is-locked', locked);
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      btn.setAttribute('aria-disabled', locked ? 'true' : 'false');
-      document.getElementById('sg-status-' + s.id).textContent = locked ? 'après le budget'
-        : !choice ? (s.unavailable ? 'donnée non renseignée' : 'à choisir')
-        : choice === L.SKIP ? 'passée' : (broken ? 'À revoir : ' : '') + o.label;
+      document.getElementById('sg-status-' + s.id).textContent = !choice ? 'à choisir'
+        : choice === L.SKIP ? 'passée' : (broken ? 'À revoir : ' : '') + o.label.replace(/ \(.*\)$/, '');
 
       document.getElementById('sg-opts-' + s.id).innerHTML = s.options.map(function (opt) {
         var a = guide.availability(s.id, opt.id);
         var sel = choice === opt.id;
         var whyId = 'sg-why-' + s.id + '-' + opt.id;
-        var tail = sel ? '<span class="sg-chosen">Choisi</span>' : a.available ? '<span class="sg-count">' + a.ok + ' modèle' + (a.ok > 1 ? 's' : '') + '</span>' : '';
+        var tail = sel ? '<span class="sg-chosen">Choisi</span>' : (a.available && !s.ranking) ? '<span class="sg-count">' + a.ok + ' modèle' + (a.ok > 1 ? 's' : '') + '</span>' : '';
         var trade = opt.adv ? '<span class="sg-trade"><span class="sg-adv"><b>Avantage</b> ' + esc(opt.adv) + '</span><span class="sg-comp"><b>Compromis</b> ' + esc(opt.comp) + '</span></span>' : '';
-        var share = s.id === 'prix' ? '<span class="sg-share" aria-hidden="true"><i style="width:' + Math.round(a.ok / Math.max(1, guide.products.length) * 100) + '%"></i></span>' : '';
         return '<li><button type="button" class="sg-opt' + (sel ? ' is-on' : '') + (sel && !a.available ? ' is-broken' : '') + '" data-step="' + s.id + '" data-opt="' + opt.id + '" aria-pressed="' + sel + '"' +
           (!a.available && !sel ? ' disabled' : '') + (!a.available ? ' aria-describedby="' + whyId + '"' : '') + '>' +
-          optVisual(s.id, opt) + '<span class="sg-opt-top">' + optionLabel(s, opt) + tail + '</span>' + share + trade +
+          optVisual(s.id, opt) + '<span class="sg-opt-top">' + optionLabel(s, opt) + tail + '</span>' + trade +
           (!a.available ? '<span class="sg-why" id="' + whyId + '"><b>Indisponible.</b> ' + esc(reasonText(a)) + '</span>' : '') +
           '</button></li>';
       }).join('');
 
       var warn = document.getElementById('sg-warn-' + s.id);
       warn.hidden = !broken;
-      if (broken) warn.textContent = '« ' + o.label + ' » ne correspond plus. ' + reasonText(guide.availability(s.id, o.id)) + ' Retirez ce choix ou changez de budget.';
+      if (broken) warn.textContent = '« ' + o.label + ' » ne correspond plus. ' + reasonText(guide.availability(s.id, o.id)) + ' Retirez ce choix ou un autre critère.';
       li.querySelector('[data-clear]').hidden = !choice;
-      li.querySelector('[data-skip]').hidden = choice === L.SKIP;
+      li.querySelector('[data-skip]').hidden = choice === L.SKIP || !!s.ranking;
     });
   }
 
   /* ---------- Carte de recommandation ---------- */
   function specRows(p) {
-    var c = p.caracteristiques || {};
-    var rows = [['Écran', c.ecran], ['Puce', c.processeur ? c.processeur + ' (' + chipText(p).replace('puce ', '') + ')' : null], ['Photo', c.photo],
-      ['Batterie', c.batterie], ['Protection', c.etancheite], ['Mémoire', [c.ram, c.stockage].filter(Boolean).join(' · ') || null]];
+    var rows = [['Puce et écran', p.puce_ecran], ['Batterie et charge', p.batterie_charge], ['Photo arrière', p.photo_arriere]];
     return '<dl class="sg-specs">' + rows.map(function (r) {
       return '<div><dt>' + r[0] + '</dt><dd>' + (r[1] ? esc(r[1]) : '<span class="sg-nd">non renseigné</span>') + '</dd></div>';
     }).join('') + '</dl>';
   }
   /* Pastilles courtes tirées de la fiche ; celles qui répondent à un choix actif sont marquées. */
   function specChips(p) {
-    var chips = [], t = F.ecran(p), n = F.niveau(p), c = F.mah(p), w = F.eau(p), ip = F.get(p, ['compatibilite', 'durete', 'protection_ip']);
-    var m = function (step) { var o = guide && guide.chosen(step); return o && o.test(p) === true; };
-    if (t) chips.push([/LTPO/i.test(t) ? 'LTPO' : /OLED/i.test(t) ? 'OLED' : /LCD/i.test(t) ? 'LCD' : 'Écran', m('ecran')]);
-    chips.push([n === null ? 'Puce : note inconnue' : 'Puce ' + n + '/10', m('processeur')]);
-    if (F.ois(p) === true) chips.push(['Stabilisation', m('photo')]); else if (F.mp(p) !== null) chips.push([F.mp(p) + ' MP', m('photo')]);
-    if (c !== null) chips.push([c.toLocaleString('fr-FR') + ' mAh', m('batterie')]);
-    if (ip) chips.push([String(ip).split('/')[0], m('protection')]);
+    var chips = [], s = p.specs || {}, n = F.niveau(p);
+    var m = function (step) { var o = guide && guide.chosen(step); return !!o && o.test(p) === true; };
+    if (s.pouces) chips.push([pouces(s.pouces), m('taille')]);
+    if (s.ecran || s.hz) chips.push([[s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '', s.hz ? s.hz + ' Hz' : ''].filter(Boolean).join(' '), m('ecran')]);
+    chips.push([n === null ? 'Puce non classée' : 'Puce ' + n + '/10', m('processeur')]);
+    if (s.mah) chips.push([fmt(s.mah) + ' mAh', m('batterie')]);
+    if (s.charge_w) chips.push([s.charge_w + ' W', m('charge')]);
+    else if (s.sans_fil) chips.push(['Sans fil', m('charge')]);
+    if (s.tele) chips.push(['Téléobjectif', m('photo')]);
+    if (s.ois) chips.push(['OIS', m('photo')]);
     return '<ul class="sg-chips">' + chips.map(function (x) { return '<li' + (x[1] ? ' class="is-match"' : '') + '>' + esc(x[0]) + '</li>'; }).join('') + '</ul>';
   }
+  function rangTxt(r) { return r === 1 ? '1er' : r + 'e'; }
+  /* Ce que les tests publiés disent du modèle : rangs dans les tests d’autonomie, mesures de performances, observations. */
+  function preuvesDe(p) {
+    var e = guide.evidence[p.id], out = [];
+    if (!e) return out;
+    e.autonomie.slice().sort(function (a, b) { return (L.place(b) || 0) - (L.place(a) || 0); }).slice(0, 2).forEach(function (x) {
+      var t = TIDX && TIDX.test[x.test];
+      out.push((x.rang ? rangTxt(x.rang) + ' sur ' + x.n : 'Mesuré') + ' · ' + x.metrique.toLowerCase() + (t ? ' (' + t.chaine + ')' : '') + (x.mah && p.specs.mah && x.mah !== p.specs.mah ? ', version ' + fmt(x.mah) + ' mAh' : ''));
+    });
+    var perf = e.perf.length + e.tableaux.length;
+    if (perf) out.push(perf + ' mesure' + (perf > 1 ? 's' : '') + ' de performances publiée' + (perf > 1 ? 's' : ''));
+    if (e.observations) out.push(e.observations + ' observation' + (e.observations > 1 ? 's' : '') + ' de testeurs');
+    return out;
+  }
+  var PRIO_TXT = {
+    equilibre: 'Classement équilibré : puce, batterie, charge, téléobjectif, et rang aux tests.',
+    autonomie: 'Classé d’abord par capacité de batterie, puis par rang aux tests d’autonomie.',
+    puissance: 'Classé d’abord par note de puce, puis par fluidité d’écran et nombre de mesures.',
+    photo: 'Classé d’abord par téléobjectif et stabilisation annoncés, puis par note de puce.'
+  };
   function meter(pr) {
-    var cells = guide.steps.map(function (s) {
-      var o = guide.chosen(s.id), st = s.unavailable ? 'nd' : (o && guide.availability(s.id, o.id).available) ? 'ok' : 'off';
+    var cells = guide.filterSteps().map(function (s) {
+      var o = guide.chosen(s.id), st = (o && guide.availability(s.id, o.id).available) ? 'ok' : 'off';
       return '<i class="is-' + st + '"></i>';
     }).join('');
     return '<div class="sg-meter"><div class="sg-meter-bar" aria-hidden="true">' + cells + '</div>' +
       '<p class="sg-meter-txt"><b>' + pr.confirmed + ' critère' + (pr.confirmed > 1 ? 's' : '') + ' confirmé' + (pr.confirmed > 1 ? 's' : '') + ' sur ' + pr.total + '.</b> ' +
-      (pr.provisional ? 'Score provisoire : le parcours n’est pas terminé.' : 'Parcours terminé.') + ' Mises à jour : donnée non renseignée, non comptée.</p></div>';
+      (pr.provisional ? 'Recommandation provisoire : le parcours n’est pas terminé.' : 'Parcours terminé.') + '</p></div>';
   }
   var lastReco = null;
   function card(top, body) {
@@ -173,33 +191,36 @@
   function renderResult() {
     var box = document.getElementById('sg-result');
     if (catalogueError) {
-      box.innerHTML = card('', '<h2 class="sg-res-title" id="sg-result-title">Catalogue indisponible</h2><p class="sg-res-empty">Le catalogue n’a pas pu être chargé. Rechargez la page ou utilisez l’Analyseur.</p>');
+      box.innerHTML = card('', '<h2 class="sg-res-title" id="sg-result-title">Données indisponibles</h2><p class="sg-res-empty">Les fiches n’ont pas pu être chargées. Rechargez la page ou utilisez l’Analyseur.</p>');
       updateDock(null); updateMock(null); return;
     }
     var pr = guide.progress();
     var count = '<span class="sg-res-count">' + pr.confirmed + ' / ' + pr.total + '</span>';
-    if (!guide.chosen('prix')) {
-      box.innerHTML = card(count, '<h2 class="sg-res-title" id="sg-result-title">Choisissez un budget</h2><p class="sg-res-empty">Un premier modèle s’affiche dès ce choix, puis s’affine à chaque critère.</p>' + meter(pr));
-      updateDock(null); updateMock(null); return;
-    }
     var recos = guide.recommend(3), blocking = guide.blocking();
     if (!recos.length) {
       var names = blocking.map(function (b) { return '« ' + b.option.label + ' »'; });
       box.innerHTML = card(count, '<h2 class="sg-res-title" id="sg-result-title">Aucun modèle ne correspond à ces critères</h2>' +
-        '<p class="sg-res-empty">' + (names.length ? 'En cause : ' + esc(names.join(', ')) + '. ' : '') + 'Augmentez le budget ou retirez un critère : vos autres réponses sont gardées.</p>' + meter(pr));
+        '<p class="sg-res-empty">' + (names.length ? 'En cause : ' + esc(names.join(', ')) + '. ' : '') + 'Retirez un critère : vos autres réponses sont gardées.</p>' + meter(pr));
       updateDock(null); updateMock(null); return;
     }
-    var p = recos[0], total = guide.results().length;
+    var p = recos[0], total = guide.results().length, prio = guide.chosen('priorite') ? guide.chosen('priorite').id : 'equilibre';
+    var proofs = preuvesDe(p);
     var img = PHOTOS[p.id] ? '<img class="sg-res-img" src="' + esc(PHOTOS[p.id]) + '" alt="' + esc(PHOTOS_ALT[p.id] || '') + '" width="1200" height="900" loading="lazy" decoding="async">' : '';
-    box.innerHTML = card('<span class="sg-res-badge">Pour vous</span>' + count,
-      img + '<h2 class="sg-res-title" id="sg-result-title">' + esc(nameOf(p)) + '</h2><p class="sg-res-var">' + esc(p.variante || '') + '</p>' +
-      '<p class="sg-res-price"><b>' + euros(F.prix(p)) + '</b><small>prix indicatif, ' + esc(dateFr(p.prix_date, true) || 'date inconnue') + '</small></p>' +
-      specChips(p) + meter(pr) +
-      '<p class="sg-res-why">Meilleure note moyenne parmi les ' + total + ' modèle' + (total > 1 ? 's' : '') + ' qui respectent vos choix.</p>' +
+    box.innerHTML = card('<span class="sg-res-badge">' + (pr.answered || guide.sel.priorite ? 'Pour vous' : 'Pour commencer') + '</span>' + count,
+      img + '<h2 class="sg-res-title" id="sg-result-title">' + esc(nameOf(p)) + '</h2>' +
+      '<p class="sg-res-var">' + esc(chipText(p)) + '</p>' +
+      specChips(p) +
+      '<div class="sg-res-proof"><p class="sg-res-sub">Ce que disent les tests</p>' + (proofs.length
+        ? '<ul>' + proofs.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>'
+        : '<p class="sg-fine">Aucun test publié pour ce modèle dans les bases actuelles : la recommandation repose sur sa fiche.</p>') + '</div>' +
+      meter(pr) +
+      '<p class="sg-res-why">' + esc(PRIO_TXT[prio]) + ' ' + total + ' modèle' + (total > 1 ? 's' : '') + ' respecte' + (total > 1 ? 'nt' : '') + ' vos choix.</p>' +
       '<details class="sg-res-more"><summary>Voir sa fiche</summary>' + specRows(p) + '</details>' +
       (recos.length > 1 ? '<p class="sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
-        return '<li><span>' + esc(nameOf(q)) + '</span><b>' + euros(F.prix(q)) + '</b><small>' + esc(chipText(q)) + '</small></li>';
-      }).join('') + '</ol>' : ''));
+        var e = guide.measured(q.id);
+        return '<li><span>' + esc(nameOf(q)) + '</span><b>' + (q.specs.mah ? fmt(q.specs.mah) + ' mAh' : '') + '</b><small>' + esc(chipText(q)) + (e ? ' · mesuré ' + e + ' fois' : ' · pas encore testé') + '</small></li>';
+      }).join('') + '</ol>' : '') +
+      '<p class="sg-fine">Pas encore dans la base : prix, étanchéité et durée des mises à jour.</p>');
     updateDock(p); updateMock(p);
   }
 
@@ -209,12 +230,12 @@
     if (!name) return;
     var pr = guide ? guide.progress() : { confirmed: 0 };
     bar.querySelectorAll('i').forEach(function (i, k) { i.classList.toggle('on', k < pr.confirmed); });
-    if (!p) { name.textContent = 'Votre modèle'; price.textContent = guide && guide.chosen('prix') ? 'Aucun modèle pour l’instant' : 'Choisissez un budget'; rows.innerHTML = '<span></span><span></span><span></span>'; return; }
+    if (!p) { name.textContent = 'Votre modèle'; price.textContent = 'Choisissez vos critères'; rows.innerHTML = '<span></span><span></span><span></span>'; return; }
+    var s = p.specs || {}, n = F.niveau(p), m = guide.measured(p.id);
     name.textContent = nameOf(p);
-    price.textContent = euros(F.prix(p));
-    var n = F.niveau(p), c = F.mah(p), t = F.ecran(p);
-    rows.innerHTML = '<span>Écran <b>' + esc(t ? (/OLED/i.test(t) ? 'OLED' : /LCD/i.test(t) ? 'LCD' : '—') : '—') + '</b></span>' +
-      '<span>Puce <b>' + (n === null ? '?' : n + '/10') + '</b></span><span>Batterie <b>' + (c === null ? '—' : c.toLocaleString('fr-FR') + ' mAh') + '</b></span>';
+    price.textContent = m ? 'Mesuré dans ' + m + ' test' + (m > 1 ? 's' : '') : 'Fiche constructeur';
+    rows.innerHTML = '<span>Écran <b>' + esc(s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '—') + (s.hz ? ' ' + s.hz + ' Hz' : '') + '</b></span>' +
+      '<span>Puce <b>' + (n === null ? '?' : n + '/10') + '</b></span><span>Batterie <b>' + (s.mah ? fmt(s.mah) + ' mAh' : '—') + '</b></span>';
   }
 
   /* Rappel en bas d’écran (téléphone) : visible quand la carte n’est pas à l’écran. */
@@ -223,8 +244,9 @@
     lastReco = p;
     var dock = document.getElementById('sg-dock');
     if (!dock) return;
-    if (p) document.getElementById('sg-dock-txt').textContent = nameOf(p) + ' · ' + euros(F.prix(p));
-    dock.hidden = !p || dockVisibleCard || document.getElementById('sg-zone-criteres').hidden;
+    if (p) document.getElementById('sg-dock-txt').textContent = nameOf(p) + ' · ' + chipText(p);
+    var touched = guide && Object.keys(guide.sel).length > 0; // pas de rappel tant que le visiteur n’a rien choisi
+    dock.hidden = !p || !touched || dockVisibleCard || document.getElementById('sg-zone-criteres').hidden;
   }
   function setupDock() {
     var card = document.getElementById('sg-result');
@@ -241,7 +263,7 @@
 
   function nextStep(after) {
     var ids = guide.steps.map(function (s) { return s.id; });
-    for (var k = ids.indexOf(after) + 1; k < ids.length; k++) if (!guide.sel[ids[k]] && !guide.step(ids[k]).unavailable) return ids[k];
+    for (var k = ids.indexOf(after) + 1; k < ids.length; k++) if (!guide.sel[ids[k]]) return ids[k];
     return null;
   }
   function focusStep(id) {
@@ -256,7 +278,6 @@
     var t = e.target.closest('button');
     if (!t || t.disabled) return;
     if (t.classList.contains('sg-step-btn')) {
-      if (t.getAttribute('aria-disabled') === 'true') { openStep = 'prix'; render(); focusStep('prix'); return; }
       var id = t.id.replace('sg-btn-', '');
       openStep = openStep === id ? null : id;
       render(); return;
@@ -329,23 +350,14 @@
     f.src = f.dataset.src;
   }
 
-  /* ---------- Sélection du mois ---------- */
-  function profil(p) {
-    var g = L.gammeOf(F.niveau(p));
-    var usage = { entree: 'messages, web et vidéo', milieu: 'usage courant et jeux occasionnels', haut: 'jeux exigeants et photo', sommet: 'usages exigeants, pour longtemps' };
-    var bits = [];
-    if (g) bits.push(usage[g.id]);
-    var c = F.mah(p); if (c !== null && c >= 6000) bits.push('longues journées sans recharge');
-    return bits.length ? 'Pour : ' + bits.join(', ') + '.' : 'Profil à préciser : données insuffisantes.';
-  }
-  /* ---------- Démonstrations ---------- */
+  /* ---------- Accueil ---------- */
   function setupHero() {
     var start = document.getElementById('sg-cta-start'), an = document.getElementById('sg-cta-analyse');
     if (start) start.addEventListener('click', function () {
       showTab(document.getElementById('sg-tab-criteres'), false);
-      openStep = guide && guide.chosen('prix') ? openStep : 'prix';
+      openStep = 'priorite';
       if (guide) render();
-      var b = document.getElementById('sg-btn-prix') || document.getElementById('sg-steps');
+      var b = document.getElementById('sg-btn-priorite') || document.getElementById('sg-steps');
       b.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
       if (b.focus) b.focus({ preventScroll: true });
     });
@@ -358,7 +370,7 @@
   }
 
   /* ---------- Comprendre votre téléphone : vue éclatée animée + une démonstration par composant.
-     Aucune donnée du catalogue : chaque démonstration est une illustration, étiquetée comme telle. ---------- */
+     Chaque démonstration est une illustration, étiquetée comme telle ; les preuves chiffrées viennent des tests publiés. ---------- */
   var ILLU = 'Illustration, pas une mesure';
 
   function seg(label, name, opts, sel) {
@@ -597,7 +609,7 @@
       effet: 'À usage égal, plus de capacité laisse plus de marge en fin de journée.',
       regarder: 'La capacité, la puissance de charge, et l’efficacité de l’écran et de la puce : c’est l’ensemble qui décide de l’autonomie.',
       piege: 'Deux téléphones de même capacité n’ont pas la même autonomie. Une grosse batterie rend souvent l’appareil plus lourd.' },
-    { id: 'charge', nom: 'Charge', layer: 'batt', part: '.sg-bolt, .sg-port', demo: 'charge',
+    { id: 'charge', nom: 'Charge', layer: 'batt', part: '.sg-bolt, .sg-port', demo: 'charge', step: 'charge',
       lead: 'La puissance maximale de recharge, en watts (W).',
       effet: 'Plus de watts : une recharge plus rapide, avec un chargeur compatible.',
       regarder: 'Si le chargeur est fourni, et si la puissance annoncée est tenue longtemps ou seulement quelques minutes.',
@@ -616,7 +628,7 @@
 
   function goStep(id) {
     showTab(document.getElementById('sg-tab-criteres'), false);
-    openStep = guide && guide.chosen('prix') ? id : 'prix';
+    openStep = id;
     if (guide) render();
     var b = document.getElementById('sg-btn-' + openStep) || document.getElementById('sg-steps');
     b.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
@@ -637,8 +649,8 @@
       if (cleanup) { cleanup(); cleanup = null; }
       btns.forEach(function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); b.tabIndex = j === i ? 0 : -1; });
       panel.setAttribute('aria-labelledby', 'sg-at-' + c.id);
-      Array.prototype.forEach.call(stage.querySelectorAll('.is-lift, .is-on, .is-above'), function (e) { e.classList.remove('is-lift', 'is-on', 'is-above'); });
-      /* La couche choisie monte ; celles qui la recouvrent s’écartent pour la laisser voir. */
+      Array.prototype.forEach.call(stage.querySelectorAll('.is-lift, .is-on, .is-above, .is-below'), function (e) { e.classList.remove('is-lift', 'is-on', 'is-above', 'is-below'); });
+      /* La couche choisie monte un peu ; celles qui la recouvrent deviennent transparentes. */
       var order = ['frame', 'batt', 'board', 'screen'], at = order.indexOf(c.layer);
       order.forEach(function (name, k) {
         var el = stage.querySelector('[data-layer="' + name + '"]');
@@ -652,7 +664,7 @@
         '<div><dt>Ce qu’il faut regarder</dt><dd>' + esc(c.regarder) + '</dd></div>' +
         '<div><dt>Le piège</dt><dd>' + esc(c.piege) + '</dd></div></dl>' +
         preuveHtml(c.id) +
-        (c.step ? '<button type="button" class="sg-mini-btn sg-anat-go" data-goto="' + c.step + '">Voir ce critère dans le parcours</button>' : '');
+        (c.step && guide && guide.step(c.step) ? '<button type="button" class="sg-mini-btn sg-anat-go" data-goto="' + c.step + '">Voir ce critère dans le parcours</button>' : '');
       cleanup = DEMOS[c.demo](panel.querySelector('.sg-anat-demo')) || null;
       if (focus) btns[i].focus();
     }
@@ -892,36 +904,28 @@
   function init() {
     setupTabs();
     var anat = setupAnatomy();
+    setupHero();
+    setupDock();
+    document.getElementById('sg-steps').addEventListener('click', onStepsClick);
     fetch('data/smartphones-tests.json')
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) {
         TD = d; TIDX = { modele: {}, test: {} };
         d.modeles.forEach(function (m) { TIDX.modele[m.id] = m; });
         d.tests.forEach(function (t) { TIDX.test[t.id] = t; });
+        guide = new L.Guide(d.modeles, d);
+        buildSteps(); render();
+        document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(d.modeles.length); });
+        document.querySelectorAll('[data-tests]').forEach(function (el) { el.textContent = String(d.tests.length); });
         setupTestList(); renderSame(); setupFiche();
         if (anat) anat.refresh();
       })
       .catch(function () {
-        ['sg-tests-panel', 'sg-fiche-card'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="sg-loading">Les tests n’ont pas pu être chargés. Rechargez la page.</p>'; });
-      });
-    setupHero();
-    setupDock();
-    document.getElementById('sg-steps').addEventListener('click', onStepsClick);
-    fetch('data/smartphones.json')
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (d) {
-        var products = (d && d.produits) || [];
-        guide = new L.Guide(products);
-        buildSteps(); render();
-        document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(products.length); });
-        var dates = products.map(function (p) { return p.prix_date; }).filter(function (x) { return /^\d{4}-\d{2}-\d{2}$/.test(x || ''); }).sort();
-        document.querySelectorAll('[data-pricedate]').forEach(function (el) { el.textContent = dates.length ? dateFr(dates[dates.length - 1], true) : '—'; });
-      })
-      .catch(function () {
         catalogueError = true;
         guide = new L.Guide([]);
-        document.getElementById('sg-steps').innerHTML = '<li class="sg-loading">Le parcours a besoin du catalogue, qui n’a pas pu être chargé.</li>';
+        document.getElementById('sg-steps').innerHTML = '<li class="sg-loading">Le parcours a besoin des fiches, qui n’ont pas pu être chargées. Rechargez la page.</li>';
         renderResult();
+        ['sg-tests-panel', 'sg-fiche-card'].forEach(function (id) { var el = document.getElementById(id); if (el) el.innerHTML = '<p class="sg-loading">Les tests n’ont pas pu être chargés. Rechargez la page.</p>'; });
       });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
