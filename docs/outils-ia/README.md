@@ -40,7 +40,7 @@ Un graphe local des fichiers et fonctions du projet, pour répondre aux question
 
 **Fichiers** : `graphify-out/` est ignoré par Git. `.graphifyignore` exclut le code tiers.
 
-**Hooks** : des hooks locaux (`.claude/settings.json`, `.codex/hooks.json`) ajoutent un rappel à chaque recherche et lecture, ce qui consomme des tokens. Retirez les entrées `hooks` si ce coût ne vous convient pas.
+**Hooks et skill** : retirés. Ils n'économisaient pas de tokens, et les rappels ajoutaient du texte à chaque appel. Graphify reste disponible en ligne de commande.
 
 ## 4. Économiser des tokens
 
