@@ -2,7 +2,8 @@
  "version": "2026-11-19",
  "sources": {
   "T01-T11": "data/sources/base-tests-T01-T11.md",
-  "T12-T16": "data/sources/base-tests-T12-T16.md"
+  "T12-T16": "data/sources/base-tests-T12-T16.md",
+  "France": "data/sources/base-smartphones-prix-france-ip-mises-a-jour.md"
  },
  "statuts": {
   "spec_constructeur": "Fiche officielle du fabricant.",
@@ -45,6 +46,50 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 119 € / 256 Go, Boulanger",
+     "sources": [
+      "https://www.boulanger.com/ref/1227758"
+     ]
+    },
+    "reference": {
+     "texte": "1 119 € / 256 Go, Apple France au relevé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "iOS : NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Minimum 5 ans (déclaration UK)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Apple France, caractéristiques, Apple PSTI A3520",
+     "sources": [
+      "https://www.apple.com/fr/shop/buy-iphone/iphone-17",
+      "https://www.apple.com/fr/iphone-17/specs/",
+      "https://regulatoryinfo.apple.com/cwt/api/ext/file?fileId=securityTelecommunication/A3520_UKPSTI_DoC_Annex_V1.pdf"
+     ]
+    },
+    "videos": {
+     "texte": "T01, T03, T10",
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y",
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg",
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE"
+     ]
+    }
    }
   },
   {
@@ -75,6 +120,50 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 079 € / 256 Go, Boulanger, prix indiqué sur la fiche du modèle bleu",
+     "sources": [
+      "https://www.boulanger.com/ref/1227824"
+     ]
+    },
+    "reference": {
+     "texte": "1 329 € / 256 Go, Apple France au relevé. 979 € affichés dans la liste Boulanger, montant non reconfirmé sur la fiche du modèle.",
+     "sources": [
+      "https://www.boulanger.com/c/iphone-air"
+     ]
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "iOS : NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Minimum 5 ans (déclaration UK)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Apple France, caractéristiques, Apple PSTI A3517",
+     "sources": [
+      "https://www.apple.com/fr/shop/buy-iphone/iphone-air",
+      "https://www.apple.com/fr/iphone-air/specs/",
+      "https://regulatoryinfo.apple.com/cwt/api/ext/file?fileId=securityTelecommunication/A3517_UKPSTI_DoC_Annex_V1.pdf"
+     ]
+    },
+    "videos": {
+     "texte": "T01",
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y"
+     ]
+    }
    }
   },
   {
@@ -107,6 +196,50 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 479 € / 256 Go, Darty",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile_seul/iphone/apple_iph18pro_256_noir.html"
+     ]
+    },
+    "reference": {
+     "texte": "1 479 € / 256 Go, Apple France au relevé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "iOS : NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Minimum 5 ans (déclaration UK)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Apple France, Apple Newsroom France, caractéristiques, Apple PSTI A3714",
+     "sources": [
+      "https://www.apple.com/fr/shop/buy-iphone/iphone-18-pro",
+      "https://www.apple.com/fr/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/",
+      "https://www.apple.com/fr/iphone-18-pro/specs/",
+      "https://regulatoryinfo.apple.com/cwt/api/ext/file?fileId=securityTelecommunication/A3714_UKPSTI_DoC_Annex_V1.pdf"
+     ]
+    },
+    "videos": {
+     "texte": "T01, T08",
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y",
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA"
+     ]
+    }
    }
   },
   {
@@ -150,6 +283,53 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 629 € / 256 Go, Fnac",
+     "sources": [
+      "https://www.fnac.com/Apple-iPhone-18-Pro-Max-6-9-5G-Double-SIM-256-Go-Noir/a23428223/w-4"
+     ]
+    },
+    "reference": {
+     "texte": "1 629 € / 256 Go, Apple France au relevé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "iOS : NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Minimum 5 ans (déclaration UK)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Apple France, Apple Newsroom France, caractéristiques, Apple PSTI A3717",
+     "sources": [
+      "https://www.apple.com/fr/shop/buy-iphone/iphone-18-pro",
+      "https://www.apple.com/fr/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/",
+      "https://www.apple.com/fr/iphone-18-pro/specs/",
+      "https://regulatoryinfo.apple.com/cwt/api/ext/file?fileId=securityTelecommunication/A3717_UKPSTI_DoC_Annex_V1.pdf"
+     ]
+    },
+    "videos": {
+     "texte": "T01, T02, T07, T09, T12",
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y",
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc",
+      "https://www.youtube.com/watch?v=48RnplrImcE",
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0",
+      "https://www.youtube.com/watch?v=8v47Qy4POvo"
+     ]
+    }
    }
   },
   {
@@ -181,6 +361,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. Fnac : 2 339 € / 256 Go, réassort annoncé.",
+     "sources": [
+      "https://www.fnac.com/iPhone-Duo/iPhone/nsh571419/w-4"
+     ]
+    },
+    "reference": {
+     "texte": "2 339 € / 256 Go, Apple France au relevé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "iOS : NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Minimum 5 ans (fiche UE A3720)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Apple France, caractéristiques, fiche réglementaire UE A3720, hébergée par SFR",
+     "sources": [
+      "https://www.apple.com/fr/shop/buy-iphone/iphone-duo",
+      "https://www.apple.com/fr/iphone-duo/specs/",
+      "https://static.s-sfr.fr/media/EtiquettesEnergetiques/FicheProduits/APPLE/A3720/Fiche_2774825_FR.pdf"
+     ]
+    },
+    "videos": {
+     "texte": "T01",
+     "sources": [
+      "https://www.youtube.com/watch?v=bGA-u8tne-Y"
+     ]
+    }
    }
   },
   {
@@ -221,6 +443,49 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "352 € / 128 Go, smartecho, Darty Marketplace, promotion affichée",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/samsung_a57_violet_128g.html"
+     ]
+    },
+    "reference": {
+     "texte": "579 € / 128 Go, prix normal Samsung.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "Jusqu’à 6 générations",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Fiche Samsung France, configurateur Samsung",
+     "sources": [
+      "https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a57-5g-awesome-navy-128gb-sm-a576bdbbeub/",
+      "https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a57-5g/buy/"
+     ]
+    },
+    "videos": {
+     "texte": "T03, T10, T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg",
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE",
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -254,6 +519,51 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go (grand public)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "899 € / 256 Go, Samsung France, remise immédiate",
+     "sources": [
+      "https://www.samsung.com/fr/smartphones/galaxy-s26/buy/?modelCode=SM-S942BZKGEUB"
+     ]
+    },
+    "reference": {
+     "texte": "1 119 € / 256 Go, prix normal. Le 128 Go répertorié comme Enterprise Edition n’a pas été confirmé pour cette fiche grand public.",
+     "sources": [
+      "https://www.idealo.fr/prix/209951311/samsung-galaxy-s26-128-go-entreprise-edition-violet.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "7 générations",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Samsung France, guide Samsung France, Samsung Newsroom",
+     "sources": [
+      "https://www.samsung.com/fr/smartphones/galaxy-s26/buy/",
+      "https://www.samsung.com/fr/guide-achat-mobile/choisir-son-smartphone/presentation-samsung-galaxy-s26/",
+      "https://news.samsung.com/fr/galaxy_s26_series"
+     ]
+    },
+    "videos": {
+     "texte": "T08, T10",
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA",
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE"
+     ]
+    }
    }
   },
   {
@@ -295,6 +605,51 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 399 € / 256 Go, Samsung France, remise immédiate, hors remboursement",
+     "sources": [
+      "https://www.samsung.com/fr/smartphones/galaxy-s26-ultra/buy/"
+     ]
+    },
+    "reference": {
+     "texte": "1 569 € / 256 Go, prix normal Samsung.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "7 générations",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Samsung France, fiche Samsung France, Samsung Newsroom",
+     "sources": [
+      "https://www.samsung.com/fr/smartphones/galaxy-s26-ultra/buy/",
+      "https://www.samsung.com/fr/smartphones/galaxy-s26-ultra/",
+      "https://news.samsung.com/fr/galaxy_s26_series"
+     ]
+    },
+    "videos": {
+     "texte": "T02, T04, T07, T12",
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc",
+      "https://www.youtube.com/watch?v=pVFErYxYWKU",
+      "https://www.youtube.com/watch?v=48RnplrImcE",
+      "https://www.youtube.com/watch?v=8v47Qy4POvo"
+     ]
+    }
    }
   },
   {
@@ -324,6 +679,47 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "649 € / 256 Go, Boulanger, promotion, stock limité",
+     "sources": [
+      "https://www.boulanger.com/ref/000000000001243801"
+     ]
+    },
+    "reference": {
+     "texte": "999 € / 256 Go, repère Google.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Fiche Google Store France, stockage et tarif, Frandroid",
+     "sources": [
+      "https://store.google.com/fr/product/pixel_11_specs?hl=fr",
+      "https://www.frandroid.com/produits/smartphones/google/3209409-google-pixel-11"
+     ]
+    },
+    "videos": {
+     "texte": "T08",
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA"
+     ]
+    }
    }
   },
   {
@@ -353,6 +749,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "899 € / 256 Go, Boulanger, promotion",
+     "sources": [
+      "https://www.boulanger.com/ref/1243541"
+     ]
+    },
+    "reference": {
+     "texte": "1 199 € / 256 Go, repère Google.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarifs Google Store France, fiche Pro et Pro XL",
+     "sources": [
+      "https://store.google.com/fr/collection/offers?hl=fr",
+      "https://store.google.com/fr/product/pixel_11_pro_specs?hl=fr"
+     ]
+    },
+    "videos": {
+     "texte": "T08",
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA"
+     ]
+    }
    }
   },
   {
@@ -382,6 +819,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 299 € / 256 Go, Boulanger, promotion, hors remboursement",
+     "sources": [
+      "https://www.boulanger.com/ref/1243542"
+     ]
+    },
+    "reference": {
+     "texte": "1 399 € / 256 Go, prix habituel Google.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarifs Google Store France, fiche Pro et Pro XL",
+     "sources": [
+      "https://store.google.com/fr/collection/offers?hl=fr",
+      "https://store.google.com/fr/product/pixel_11_pro_specs?hl=fr"
+     ]
+    },
+    "videos": {
+     "texte": "T02, T07",
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc",
+      "https://www.youtube.com/watch?v=48RnplrImcE"
+     ]
+    }
    }
   },
   {
@@ -413,6 +892,50 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "385,99 € / 256 Go, OMIZU TECH, PcComponentes Marketplace ; batterie de l’offre à confirmer",
+     "sources": [
+      "https://www.pccomponentes.fr/xiaomi-redmi-note-17-pro-max-5g-8gb-256gb-6-83-noir"
+     ]
+    },
+    "reference": {
+     "texte": "Référence RED : 599 € / 256 Go, hors forfait. Le renvoi 128 Go vise le Note 17 5G, pas le Pro Max.",
+     "sources": [
+      "https://www.pccomponentes.fr/xiaomi-redmi-note-17-5g-6gb-128gb-6-99-noir"
+     ]
+    },
+    "ip": {
+     "texte": "IP66 + IP68 (fiche France)",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarif RED by SFR, fiche Xiaomi France, suivi UE, Notebookcheck",
+     "sources": [
+      "https://www.red-by-sfr.fr/telephones/xiaomi-redmi-note-17-pro-max-5g/256Go/VERT/",
+      "https://www.mi.com/fr/product/redmi-note-17-pro-max-5g/specs/",
+      "https://www.notebookcheck.biz/Un-champion-de-l-autonomie-a-prix-competitif-sans-prix-de-vente-conseille-astronomique-Test-du-Xiaomi-Redmi-Note-17-Pro-Max-5G.1442883.0.html"
+     ]
+    },
+    "videos": {
+     "texte": "T03",
+     "sources": [
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg"
+     ]
+    }
    }
   },
   {
@@ -444,6 +967,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "763 € / 256 Go, Fnac Marketplace, offre neuve avec livraison annoncée ; variante de batterie non confirmée",
+     "sources": [
+      "https://www.fnac.com/Xiaomi-17-5G-smartphone-double-SIM-RAM-12-Go-Memoire-interne-256-Go-OLED-display-6-3-2656-x-1220-pixels-120-Hz-3-x-cameras-arriere-50-MP-50-MP-50-MP-front-camera-50-MP-noir/a22675997/w-4"
+     ]
+    },
+    "reference": {
+     "texte": "Annonce France : 999 € / 256 Go ; 1 099 € / 512 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix et conditions de l’offre de lancement, Frandroid, suivi, Phonandroid, fiche Xiaomi France",
+     "sources": [
+      "https://www.frandroid.com/marques/xiaomi/2993443_pourquoi-le-xiaomi-17-est-le-vrai-rival-de-liphone-17-pro-cette-annee-voici-son-prix-en-france",
+      "https://www.phonandroid.com/test-xiaomi-17-un-smartphone-petit-format-aux-tres-grandes-ambitions.html",
+      "https://www.mi.com/fr/product/xiaomi-17/specs/"
+     ]
+    },
+    "videos": {
+     "texte": "T08",
+     "sources": [
+      "https://www.youtube.com/watch?v=tcpeWJQO8DA"
+     ]
+    }
    }
   },
   {
@@ -483,6 +1048,49 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 468,50 € / 256 Go, Darty Marketplace, expédié du Portugal ; référence régionale à confirmer",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/xiaomi_18_promax_256_blanc.html"
+     ]
+    },
+    "reference": {
+     "texte": "Prix conseillé France : 1 599 € / 256 Go ; 1 799 € / 512 Go. Sur la même fiche, Darty en direct : 1 602 € / 256 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Lancement Xiaomi France, prix et IP, Phonandroid, suivi, GSMArena",
+     "sources": [
+      "https://www.mi.com/fr/launch/xiaomi-18-pro-series/",
+      "https://www.phonandroid.com/test-du-xiaomi-18-pro-max.html",
+      "https://www.gsmarena.com/xiaomi_18_pro_max-review-3013p4.php"
+     ]
+    },
+    "videos": {
+     "texte": "T07, T12",
+     "sources": [
+      "https://www.youtube.com/watch?v=48RnplrImcE",
+      "https://www.youtube.com/watch?v=8v47Qy4POvo"
+     ]
+    }
    }
   },
   {
@@ -513,6 +1121,50 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go (offre revendeur) ; 256 Go (fiche Xiaomi France)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "239 € / 128 Go, FutureTech, Darty Marketplace, promotion affichée ; 6 Go de RAM",
+     "sources": [
+      "https://www.darty.com/nav/achat/ref/MC356151220.html"
+     ]
+    },
+    "reference": {
+     "texte": "403 € / 256 Go (8 Go RAM) au lancement France.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP66 + IP68 (fiche France)",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 versions selon l’essai UE ; 4 selon une autre fiche, décompte constructeur à confirmer",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans, jusqu’en 2032 selon l’essai UE",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, Frandroid, Xiaomi France, suivi UE, Notebookcheck, autre décompte, SpecPair",
+     "sources": [
+      "https://www.frandroid.com/marques/xiaomi/3228973_xiaomi-poco-f9-ultra-f9-pro-et-x8-en-france-grosse-puissance-batteries-geantes-et-prix-agressifs-au-lancement",
+      "https://www.mi.com/fr/product/poco-x8/specs/",
+      "https://www.notebookcheck.net/Xiaomi-Poco-X8-smartphone-review-Probably-the-best-phone-deal-of-2026-for-battery-life-and-display.1426213.0.html",
+      "https://specpair.com/product/poco-x8"
+     ]
+    },
+    "videos": {
+     "texte": "T10, T11",
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE",
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA"
+     ]
+    }
    }
   },
   {
@@ -543,6 +1195,48 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "655 € / 256 Go, AirCellar, PcComponentes Marketplace",
+     "sources": [
+      "https://www.pccomponentes.fr/poco-f9-pro-5g-12-go-256-go-blanc-6-59-pouces"
+     ]
+    },
+    "reference": {
+     "texte": "Prix de lancement : 903 € / 256 Go ; 1 003 € / 512 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, Frandroid, Xiaomi France, suivi, GSMArena",
+     "sources": [
+      "https://www.frandroid.com/marques/xiaomi/3228973_xiaomi-poco-f9-ultra-f9-pro-et-x8-en-france-grosse-puissance-batteries-geantes-et-prix-agressifs-au-lancement",
+      "https://www.mi.com/fr/product/poco-f9-pro/specs/",
+      "https://www.gsmarena.com/poco_f9_pro-review-2997p4.php"
+     ]
+    },
+    "videos": {
+     "texte": "T11",
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA"
+     ]
+    }
    }
   },
   {
@@ -573,6 +1267,48 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "728,69 € / 256 Go, SmartLink, PcComponentes Marketplace ; fiche 8 050 mAh, version importée",
+     "sources": [
+      "https://www.pccomponentes.fr/poco-f9-ultra-5g-12-go-256-go-6-9-noir"
+     ]
+    },
+    "reference": {
+     "texte": "Prix de lancement : 1 103 € / 256 Go ; 1 203 € / 512 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, Frandroid, Xiaomi France, suivi, GSMArena",
+     "sources": [
+      "https://www.frandroid.com/marques/xiaomi/3228973_xiaomi-poco-f9-ultra-f9-pro-et-x8-en-france-grosse-puissance-batteries-geantes-et-prix-agressifs-au-lancement",
+      "https://www.mi.com/fr/product/poco-f9-ultra/specs/",
+      "https://www.gsmarena.com/poco_f9_ultra-review-2995p4.php"
+     ]
+    },
+    "videos": {
+     "texte": "T11",
+     "sources": [
+      "https://www.youtube.com/watch?v=wDmYRIUJiGA"
+     ]
+    }
    }
   },
   {
@@ -603,6 +1339,49 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "379 € / 256 Go, GROTTOTINTOM, expédié par Cdiscount ; fiche 6 500 mAh",
+     "sources": [
+      "https://www.cdiscount.com/telephonie/telephone-mobile/smartphone-oppo-reno16-f-5g/f-14404-aadea40128.html"
+     ]
+    },
+    "reference": {
+     "texte": "699 € / 256 Go, référence OPPO ; 599 € / 256 Go sans forfait chez RED.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix OPPO France, RED by SFR, 256 Go, protection OPPO, suivi, LesMobiles",
+     "sources": [
+      "https://www.oppo.com/fr/articles/reno16-series/best-android-phones-under-500/",
+      "https://www.red-by-sfr.fr/telephones/oppo-reno16-f/256Go/VIOLET/",
+      "https://www.oppo.com/fr/smartphones/series-reno/reno16-f/",
+      "https://www.lesmobiles.com/test/test-du-oppo-reno16-f-5g-l-accessible-de-la-gamme-mise-tout-sur-l-autonomie"
+     ]
+    },
+    "videos": {
+     "texte": "T03",
+     "sources": [
+      "https://www.youtube.com/watch?v=yIXi7YyhvHg"
+     ]
+    }
    }
   },
   {
@@ -642,6 +1421,53 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "512 Go (France)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 799,99 € / 512 Go, Boulanger, version France",
+     "sources": [
+      "https://www.boulanger.com/ref/1249026"
+     ]
+    },
+    "reference": {
+     "texte": "1 799 € / 512 Go au lancement France. La fiche PhoneDroid à 1 664,90 € / 512 Go indique 8 000 mAh, une autre variante, non utilisée pour le prix de la fiche France.",
+     "sources": [
+      "https://www.darty.com/nav/achat/ref/MC356039824.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Boutique OPPO France, prix et suivi, Meilleure Innovation, indices OPPO France",
+     "sources": [
+      "https://www.oppo.com/fr/product/oppo-find-x10-pro-max.P.P1100525",
+      "https://meilleure-innovation.com/high-tech/smartphone/test-oppo-find-x10-pro-max/",
+      "https://www.oppo.com/fr/smartphones/series-find-x/find-x10-pro-max/"
+     ]
+    },
+    "videos": {
+     "texte": "T04, T05, T07, T12",
+     "sources": [
+      "https://www.youtube.com/watch?v=pVFErYxYWKU",
+      "https://www.youtube.com/watch?v=H56aC0rJ23I",
+      "https://www.youtube.com/watch?v=48RnplrImcE",
+      "https://www.youtube.com/watch?v=8v47Qy4POvo"
+     ]
+    }
    }
   },
   {
@@ -674,6 +1500,50 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go (Chine)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. Pas d’offre locale France confirmée.",
+     "sources": []
+    },
+    "reference": {
+     "texte": "Chine : 5 999 CNY, ≈ 819 € / 256 Go, prix public hors subvention. Import livrable : 787 € / 256 Go, promotion TradingShenzhen hors taxes, livraison dès 15 €, ROM chinoise ColorOS.",
+     "sources": [
+      "https://tradingshenzhen.com/en/oneplus-16/oneplus-16-12gb-256gb?SubmitCurrency=1&id_currency=1"
+     ]
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "NC pour la ROM chinoise",
+     "sources": []
+    },
+    "securite": {
+     "texte": "NC pour la ROM chinoise",
+     "sources": []
+    },
+    "sources": {
+     "texte": "TradingShenzhen, offre avec France sélectionnable, modalités d’expédition et frais, prix Chine, FoneArena, OnePlus Chine, distribution et suivi, Notebookcheck",
+     "sources": [
+      "https://tradingshenzhen.com/en/oneplus-16/oneplus-16-12gb-256gb?SubmitCurrency=1&id_currency=1",
+      "https://tradingshenzhen.com/en/content/transportation-regulation",
+      "https://www.fonearena.com/blog/494711/oneplus-16-price-specifications.html",
+      "https://www.oneplus.com/cn/16/specs",
+      "https://www.notebookcheck.net/OnePlus-16-smartphone-review-A-new-generation-flagship-phone-with-spectacular-battery-life.1445226.0.html"
+     ]
+    },
+    "videos": {
+     "texte": "T05",
+     "sources": [
+      "https://www.youtube.com/watch?v=H56aC0rJ23I"
+     ]
+    }
    }
   },
   {
@@ -705,6 +1575,53 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 536 € / 256 Go, Gomibo, en stock, fiche 6 750 mAh ; lancement officiel France non confirmé",
+     "sources": [
+      "https://www.gomibo.fr/vivo-x500-pro-max/256go-noir"
+     ]
+    },
+    "reference": {
+     "texte": "Annonce Europe : 1 599 € / 256 Go. Même batterie, 1 620 € / 512 Go chez Gomibo. Chine : 6 999 CNY, ≈ 955 € / 256 Go, variante 8 000 mAh.",
+     "sources": [
+      "https://www.gomibo.fr/vivo-x500-pro-max/512go-noir"
+     ]
+    },
+    "ip": {
+     "texte": "IP68 + IP69",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 ans (Europe)",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans (Europe)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Annonce et suivi, L’Éclaireur Fnac, vente France, Frandroid, fiche Darty Marketplace, prix officiel vivo Chine, fiche vivo Global",
+     "sources": [
+      "https://leclaireur.fnac.com/article/700132-vivo-lance-les-x500-pro-et-x500-pro-max-en-europe-avec-un-zoom-qui-grimpe-jusqua-400-mm/",
+      "https://www.frandroid.com/marques/vivo/3306557_jai-un-immense-coup-de-coeur-en-photo-pour-le-vivo-x500-pro-max-malgre-un-flou-sur-sortie-en-france",
+      "https://www.darty.com/nav/achat/ref/MC356538201.html",
+      "https://www.vivo.com.cn/vivo/param/x500promax",
+      "https://www.vivo.com/en/products/param/x500-pro-max"
+     ]
+    },
+    "videos": {
+     "texte": "T06, T07",
+     "sources": [
+      "https://www.youtube.com/watch?v=mHGO0Toq1SQ",
+      "https://www.youtube.com/watch?v=48RnplrImcE"
+     ]
+    }
    }
   },
   {
@@ -737,6 +1654,50 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "512 Go (offre France) ; 256 Go (Chine)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 518 € / 512 Go, Gomibo, blanc, en stock ; vérifier le marché de l’appareil avant de rattacher un test",
+     "sources": [
+      "https://www.gomibo.fr/vivo-x300-ultra/512go-blanc"
+     ]
+    },
+    "reference": {
+     "texte": "1 717 € / 1 To observés chez Gomibo, fiche 6 600 mAh ; tarif public France non confirmé. Chine : 7 499 CNY, ≈ 1 023 € / 256 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68 + IP69",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 ans (engagement global) ; Chine : NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans (engagement global) ; Chine : NC",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Offre Gomibo France, livraison France, Gomibo, commercialisation, Frandroid, vivo Global, prix officiel vivo Chine",
+     "sources": [
+      "https://www.gomibo.fr/vivo-x300-ultra/1to-noir",
+      "https://www.gomibo.fr/en",
+      "https://www.frandroid.com/marques/vivo/3300793_oublie-vivo-revient-tres-fort-en-france",
+      "https://www.vivo.com/en/products/x300-ultra",
+      "https://www.vivo.com.cn/vivo/param/x300ultra"
+     ]
+    },
+    "videos": {
+     "texte": "T06",
+     "sources": [
+      "https://www.youtube.com/watch?v=mHGO0Toq1SQ"
+     ]
+    }
    }
   },
   {
@@ -766,6 +1727,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go (version 10 000 mAh)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. Aucune livraison France vérifiée pour la version testée de 10 000 mAh.",
+     "sources": []
+    },
+    "reference": {
+     "texte": "États-Unis : 359,99 USD, ≈ 328 € / 128 Go, Swiftronics (V2626 global, stock non confirmé). Repère officiel Philippines : 24 999 PHP, ≈ 357 € / 128 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68 + IP69",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 versions (rapportées aux Philippines)",
+     "sources": []
+    },
+    "securite": {
+     "texte": "5 ans (rapportés aux Philippines)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Offre Swiftronics USA, conditions d’expédition Swiftronics, boutique vivo Philippines, annonce vivo Philippines, suivi, Unbox Philippines",
+     "sources": [
+      "https://swiftronicsinc.com/products/vivo-v80-lite-v2626-dual-sim-unlocked-global-version-5g",
+      "https://swiftronicsinc.com/policies/shipping-policy",
+      "https://shop.vivo.com/ph/product/2180",
+      "https://www.vivo.com/ph/about-vivo/news-detail?id=1621",
+      "https://unbox.ph/gadget/vivo-v80-lite-feature-philippines/"
+     ]
+    },
+    "videos": {
+     "texte": "T10",
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE"
+     ]
+    }
    }
   },
   {
@@ -796,6 +1799,54 @@
     "tele": null,
     "ois": true,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "339,99 € / 256 Go, NEXTECH ELEC, expédié par Cdiscount ; batterie non indiquée, distribution officielle France non établie",
+     "sources": [
+      "https://www.cdiscount.com/telephonie/telephone-mobile/honor-x9d-5g-smartphone-12g/f-14404-aadrs21998.html"
+     ]
+    },
+    "reference": {
+     "texte": "Variante 8 300 mAh : 371,89 € / 256 Go, Powerplanet. Malaisie : 1 499 MYR, ≈ 332 € / 256 Go ; 1 699 MYR, ≈ 376 € / 512 Go.",
+     "sources": [
+      "https://www.powerplanetonline.com/fr/honor-x9d-5g-12go-256go-noir"
+     ]
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 ans en Malaisie selon un essai local",
+     "sources": []
+    },
+    "securite": {
+     "texte": "4 ans en Malaisie selon cet essai ; durée constructeur non confirmée",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Fiche Cdiscount Marketplace, fiche Powerplanet, 8 300 mAh, livraison France métropolitaine, Powerplanet, tarifs HONOR Malaisie, indices HONOR, suivi malaisien, ProductNation, bulletin HONOR EAU, cadence trimestrielle sans échéance",
+     "sources": [
+      "https://www.cdiscount.com/telephonie/telephone-mobile/honor-x9d-5g-smartphone-12g/f-14404-aadrs21998.html",
+      "https://www.powerplanetonline.com/fr/honor-x9d-5g-12go-256go-noir",
+      "https://www.powerplanetonline.com/fr/delais-et-frais-delivraison",
+      "https://www.honor.com/my/notices/honor-x9d-terms-and-conditions/",
+      "https://www.honor.com/sa-en/phones/honor-x9d/",
+      "https://productnation.co/my/31152/honor-x9d-review-malaysia/",
+      "https://www.honor.com/ae-en/support/bulletin/"
+     ]
+    },
+    "videos": {
+     "texte": "T10",
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE"
+     ]
+    }
    }
   },
   {
@@ -828,6 +1879,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "512 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "629 € / 512 Go, Fusion X, expédié par Darty ; version régionale à confirmer",
+     "sources": [
+      "https://www.darty.com/nav/q/telephonie-smartphone-honor-600-pro.html"
+     ]
+    },
+    "reference": {
+     "texte": "999,90 € / 512 Go, prix conseillé HONOR France.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarif HONOR France, fiche et suivi France, configuration, Phonandroid",
+     "sources": [
+      "https://www.honor.com/fr/shop/buying-guide/introducing-honor-600-series/",
+      "https://www.honor.com/fr/phones/honor-600-pro/buy/",
+      "https://www.phonandroid.com/test-honor-600-pro.html"
+     ]
+    },
+    "videos": {
+     "texte": "T10",
+     "sources": [
+      "https://www.youtube.com/watch?v=gEPCdMFG5lE"
+     ]
+    }
    }
   },
   {
@@ -857,6 +1950,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": true
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "899 € / 256 Go, boutique REDMAGIC UE, en stock",
+     "sources": [
+      "https://eu.redmagic.gg/fr/pages/redmagic-12-pro-launch"
+     ]
+    },
+    "reference": {
+     "texte": "899 € / 256 Go, prix officiel UE.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68 + IP69 (téléphone) ; IPX8 (ventilateur)",
+     "sources": []
+    },
+    "os": {
+     "texte": "2 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "5 ans (UE)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Lancement, boutique REDMAGIC UE en français",
+     "sources": [
+      "https://eu.redmagic.gg/fr/pages/redmagic-12-pro-launch"
+     ]
+    },
+    "videos": {
+     "texte": "T02, T09",
+     "sources": [
+      "https://www.youtube.com/watch?v=xDHHvWxxbxc",
+      "https://www.youtube.com/watch?v=KL2cYuBqaZ0"
+     ]
+    }
    }
   },
   {
@@ -886,6 +2020,50 @@
     "tele": null,
     "ois": true,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "479,98 € / 256 Go, SmartLink, PcComponentes Marketplace, prix remisé",
+     "sources": [
+      "https://www.pccomponentes.fr/poco-x8-pro-max-5g-12gb-256gb-6-83-blanc"
+     ]
+    },
+    "reference": {
+     "texte": "Prix de lancement : 533 € / 256 Go ; 583 € / 512 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, Frandroid, Xiaomi France, suivi, 01net",
+     "sources": [
+      "https://www.frandroid.com/bons-plans/3030067_le-nouveau-xiaomi-poxo-x8-pro-max-avec-son-enorme-batterie-de-8-500-mah-est-deja-en-promo-pour-le-lancement",
+      "https://www.mi.com/fr/product/poco-x8-pro-max/specs/",
+      "https://www.01net.com/bons-plans/poco-a-la-main-lourde-le-x8-pro-max-est-a-56-8-500-mah-oled-100w-120hz.html"
+     ]
+    },
+    "videos": {
+     "texte": "T13, T14, T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=RJEJesrC2OY",
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -915,6 +2093,47 @@
     "tele": null,
     "ois": true,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "369,97 € / 256 Go, Cdiscount, 8 Go de RAM, livraison annoncée",
+     "sources": [
+      "https://www.cdiscount.com/telephonie/telephone-mobile/poco-x8-pro-8256-go-blanc/f-14404-aacuw84428.html"
+     ]
+    },
+    "reference": {
+     "texte": "403 € / 256 Go, prix conseillé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarif et suivi, 01net, Xiaomi France",
+     "sources": [
+      "https://www.01net.com/tests/xiaomi-poco-x8-pro-fiche-technique-69307.html",
+      "https://www.mi.com/fr/product/poco-x8-pro/specs/"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -944,6 +2163,47 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "459,99 € / 256 Go, AoEn, expédié par Cdiscount",
+     "sources": [
+      "https://www.cdiscount.com/telephonie/telephone-mobile/xiaomi-poco-f8-pro-5g/f-14404-aacll51008.html"
+     ]
+    },
+    "reference": {
+     "texte": "Prix de lancement : 653 € / 256 Go ; 703 € / 512 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix et suivi, Clubic, Xiaomi France",
+     "sources": [
+      "https://www.clubic.com/test-produit-589699-test-poco-f8-pro-performant-endurant-mais-pourquoi-si-peu-de-saveur.html",
+      "https://www.mi.com/fr/product/poco-f8-pro/specs/"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -973,6 +2233,48 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "752 € / 256 Go, Darty en direct, noir ou violet",
+     "sources": [
+      "https://www.darty.com/nav/q/telephonie-smartphone-xiaomi-17t.html"
+     ]
+    },
+    "reference": {
+     "texte": "Prix conseillé : 753 € / 256 Go ; 803 € / 512 Go. Offre partenaire dès 489 € sur la fiche, mais non attribuée à un vendeur précis.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 ans selon deux essais ; 4 ans selon une autre publication",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix et suivi, Phonandroid, Frandroid, divergence recensée par Troviio",
+     "sources": [
+      "https://www.phonandroid.com/test-xiaomi-17t.html",
+      "https://www.frandroid.com/marques/xiaomi/3132757_xiaomi-17t-jai-teste-le-moins-cher-des-smartphones-avec-un-zoom-optique-x5",
+      "https://www.troviio.com/produit/xiaomi-17t"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1002,6 +2304,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "235 € / 128 Go, 2KINGS, Darty Marketplace, modèle 4G",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/xiaomi_rn15_128_noir.html"
+     ]
+    },
+    "reference": {
+     "texte": "203 € / 128 Go, prix conseillé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP64",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarifs 01net, Xiaomi France, suivi, Frandroid",
+     "sources": [
+      "https://www.01net.com/actualites/les-redmi-note-15-sont-la-que-valent-les-champions-du-rapport-qualite-prix-de-xiaomi-en-2026.html",
+      "https://www.mi.com/fr/product/redmi-note-15/",
+      "https://www.frandroid.com/marques/xiaomi/2969643_jai-teste-un-smartphone-4g-en-2026-et-il-est-loin-detre-ridicule-xiaomi-redmi-note-15-4g"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1031,6 +2375,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "269,17 € / 128 Go, ProComponentes, Darty Marketplace, modèle 5G",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/xiaomi_rn15_5g_128_noir.html"
+     ]
+    },
+    "reference": {
+     "texte": "259 € / 128 Go, tarif d’entrée rapporté.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP65 (fiche France ; IP66 aussi rapporté)",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarifs et suivi, 01net, Xiaomi France, versions, GSMArena",
+     "sources": [
+      "https://www.01net.com/tests/test-xiaomi-redmi-note-15-5g-avis-smartphones.html",
+      "https://www.mi.com/fr/product/redmi-note-15-5g/specs/",
+      "https://www.gsmarena.com/redmi_note_15_5g-review-2927p4.php"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1060,6 +2446,49 @@
     "tele": null,
     "ois": true,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "378,42 € / 256 Go, Fnac Marketplace, modèle noir ; livraison affichée à 3,99 €",
+     "sources": [
+      "https://www.fnac.com/Smartphone-Xiaomi-Redmi-Note-15-Pro-6-83-5G-Double-nano-SIM-256-Go-Noir/a22460438/w-4"
+     ]
+    },
+    "reference": {
+     "texte": "403 € / 256 Go, prix conseillé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP66 + IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarifs 01net, Xiaomi France, suivi, 01net",
+     "sources": [
+      "https://www.01net.com/actualites/les-redmi-note-15-sont-la-que-valent-les-champions-du-rapport-qualite-prix-de-xiaomi-en-2026.html",
+      "https://www.mi.com/fr/product/redmi-note-15-pro-5g/specs/",
+      "https://www.01net.com/bons-plans/a-47-le-redmi-note-15-pro-5g-a-tout-pour-seduire-la-majorite-des-francais.html"
+     ]
+    },
+    "videos": {
+     "texte": "T14, T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1089,6 +2518,48 @@
     "tele": null,
     "ois": true,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "399,48 € / 256 Go, Elplace, Boulanger Marketplace, expédition annoncée sous 24 h",
+     "sources": [
+      "https://www.boulanger.com/ref/1234061"
+     ]
+    },
+    "reference": {
+     "texte": "503 € / 256 Go, prix conseillé. Le 128 Go suggéré par le marchand n’est pas validé pour le modèle Pro+ 5G.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP66 + IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarifs 01net, Xiaomi France, suivi, TechRadar",
+     "sources": [
+      "https://www.01net.com/actualites/les-redmi-note-15-sont-la-que-valent-les-champions-du-rapport-qualite-prix-de-xiaomi-en-2026.html",
+      "https://www.mi.com/fr/product/redmi-note-15-pro-plus-5g/specs/",
+      "https://www.techradar.com/phones/redmi-phones/redmi-note-15-pro-plus-5g-review"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1118,6 +2589,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. PcComponentes : 269 € / 256 Go, en rupture sur la fiche.",
+     "sources": [
+      "https://www.pccomponentes.fr/poco-m8-5g-8gb-256gb-6-77-argent"
+     ]
+    },
+    "reference": {
+     "texte": "Prix de lancement : 273 € / 256 Go ; 303 € / 512 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP65 (fiche France)",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, Frandroid, Xiaomi France, suivi, Troviio",
+     "sources": [
+      "https://www.frandroid.com/marques/xiaomi/2935491_a-230-euros-ce-nouveau-poco-m8-5g-est-aussi-puissant-quun-galaxy-a36",
+      "https://www.mi.com/fr/product/poco-m8-5g/specs/",
+      "https://www.troviio.com/produit/poco-m8-5g"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1147,6 +2660,49 @@
     "tele": null,
     "ois": true,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "293,11 € / 256 Go, SmartLink, PcComponentes Marketplace, modèle noir",
+     "sources": [
+      "https://www.pccomponentes.fr/categories/smartphone-portables?S3XUGM2F2K[]=poco&IGKGAJMAZR[]=poco-m8-pro-5g"
+     ]
+    },
+    "reference": {
+     "texte": "Prix de lancement : 353 € / 256 Go ; 403 € / 512 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP66 + IP68 (fiche France)",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans rapportés ; échéance à confirmer",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix 256 Go, Phonandroid, prix 512 Go, Les Numériques, Xiaomi France, suivi, Troviio",
+     "sources": [
+      "https://www.phonandroid.com/120-reduction-poco-m8-pro-5g-processeur-snapdragon-7s-gen-4-grosse-batterie-bord.html",
+      "https://www.lesnumeriques.com/telephone-portable/le-smartphone-poco-m8-pro-5g-12-512-go-est-a-329-n263380.html",
+      "https://www.mi.com/fr/product/poco-m8-pro-5g/specs/",
+      "https://www.troviio.com/produit/poco-m8-pro-5g"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1177,6 +2733,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "429 € / 128 Go, Google Store France, promotion",
+     "sources": [
+      "https://store.google.com/fr/config/pixel_10a?hl=fr"
+     ]
+    },
+    "reference": {
+     "texte": "Lancement : 549 € / 128 Go ; 649 € / 256 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "7 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Tarifs de lancement, Orange, fiche Google Store France",
+     "sources": [
+      "https://boutiquepro.orange.fr/mobile/telephone-mobile/google/pixel-10a",
+      "https://store.google.com/fr/product/pixel_10a_specs?hl=fr"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1208,6 +2805,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "379 € / 256 Go, FutureTech, Darty Marketplace, promotion affichée",
+     "sources": [
+      "https://www.darty.com/nav/achat/ref/MC352421432.html"
+     ]
+    },
+    "reference": {
+     "texte": "469 € / 256 Go (8 Go RAM) au lancement ; version européenne 5 200 mAh.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP65",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix et IP, Les Numériques, suivi OnePlus France",
+     "sources": [
+      "https://www.lesnumeriques.com/telephone-portable/oneplus-nord-5-p76772.html",
+      "https://www.oneplus.com/fr/nord-5"
+     ]
+    },
+    "videos": {
+     "texte": "T14, T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1239,6 +2878,50 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "318,57 € / 128 Go, Fnac Marketplace, promotion, stock vendeur partenaire ; livraison affichée à 3,99 €",
+     "sources": [
+      "https://www.fnac.com/Oneplus-Nord-Nord-CE-5G/OnePlus/nsh524564/w-4"
+     ]
+    },
+    "reference": {
+     "texte": "349 € / 128 Go au lancement. Darty : 362,99 € / 128 Go, fiche 5 200 mAh.",
+     "sources": [
+      "https://www.darty.com/nav/achat/ref/MC352432401.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP65",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix et IP, Frandroid, suivi OnePlus France, fiche technique France",
+     "sources": [
+      "https://www.frandroid.com/produits/smartphones/oneplus/2722823-oneplus-nord-ce5",
+      "https://www.oneplus.com/fr/nord-ce5",
+      "https://www.oneplus.com/fr/nord-ce5/specs"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1268,6 +2951,49 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 433 € / 256 Go, D2 Mobile, Darty Marketplace, 7 300 mAh ; prix supérieur au tarif de lancement",
+     "sources": [
+      "https://www.darty.com/nav/achat/ref/MC353208882.html"
+     ]
+    },
+    "reference": {
+     "texte": "Lancement : 979 € / 256 Go ; 1 129 € / 512 Go. Le « dès 804 € » de Fnac n’est pas associé à une offre identifiable dans le relevé.",
+     "sources": [
+      "https://www.fnac.com/smartphone/oneplus-15/q"
+     ]
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, protection et suivi, Frandroid, fiche OnePlus France",
+     "sources": [
+      "https://www.frandroid.com/marques/oneplus/2855373_test-du-oneplus-15-il-a-tout-dun-grand-smartphone-gaming-sauf-le-prix",
+      "https://www.oneplus.com/fr/15/specs"
+     ]
+    },
+    "videos": {
+     "texte": "T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -1297,6 +3023,51 @@
     "tele": false,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "736 € / 256 Go, Gomibo, en stock, fiche 7 400 mAh",
+     "sources": [
+      "https://www.gomibo.fr/oneplus-15r"
+     ]
+    },
+    "reference": {
+     "texte": "Lancement : 729 € / 256 Go ; 829 € / 512 Go. Piste idealo à 527 € / 256 Go sans stock confirmé chez le vendeur.",
+     "sources": [
+      "https://www.idealo.fr/prix/208830261/oneplus-15r.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, Phonandroid, IP et suivi, Frandroid, OnePlus France",
+     "sources": [
+      "https://www.phonandroid.com/test-oneplus-15r.html",
+      "https://www.frandroid.com/bons-plans/3027029_oneplus-15r-ce-champion-de-lautonomie-voit-son-prix-salleger-de-21-en-ce-dernier-jour-des-ventes-flash-damazon",
+      "https://www.oneplus.com/fr/15r/specs"
+     ]
+    },
+    "videos": {
+     "texte": "T14, T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -1327,6 +3098,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "314 € / 128 Go, smartecho, Darty Marketplace, promotion affichée",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/samsung_a37_128g_vert.html"
+     ]
+    },
+    "reference": {
+     "texte": "429 € / 128 Go, relevé Samsung hors reprise.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "Jusqu’à 6 générations",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Configurateur Samsung France, fiche Samsung France",
+     "sources": [
+      "https://samsung.com/fr/smartphones/galaxy-a/galaxy-a37-5g/buy/",
+      "https://www.samsung.com/fr/smartphones/galaxy-a/galaxy-a37-5g-awesome-white-128gb-sm-a376bzwbeub/"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1357,6 +3169,48 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "402 € / 128 Go, Darty, téléphone seul",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/nothing_4a_128gb_noir.html"
+     ]
+    },
+    "reference": {
+     "texte": "Lancement : 369 € / 128 Go (8 Go RAM) ; 449 € / 256 Go (12 Go RAM).",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP64",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Configurations et tarifs, Frandroid, IP et suivi Nothing, boutique Nothing France",
+     "sources": [
+      "https://www.frandroid.com/marques/nothing/2998037_test-nothing-phone-4a-zoom-periscopique-top-smartphone-milieu-gamme",
+      "https://no.nothing.tech/products/phone-4a",
+      "https://fr.nothing.tech/products/phone-4a"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1387,6 +3241,48 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "549,95 € / 128 Go, Materiel.net, en stock",
+     "sources": [
+      "https://www.materiel.net/produit/202602110036.html?a_aid=aff112"
+     ]
+    },
+    "reference": {
+     "texte": "Lancement : 499 € / 128 Go ; 569 € / 256 Go.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP65",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix et suivi, Phonandroid, IP, Frandroid, Nothing France",
+     "sources": [
+      "https://www.phonandroid.com/nothing-phone-4a-pro-officiel.html",
+      "https://www.frandroid.com/marques/nothing/3007783_jai-teste-cet-ovni-le-nothing-phone-4a-pro-un-petit-ecran-au-dos-et-un-zoom-bluffant-pour-son-prix",
+      "https://fr.nothing.tech/products/phone-4a-pro"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1417,6 +3313,48 @@
     "tele": false,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. 329 € / 128 Go affichés chez Nothing France, disponibilité non confirmée.",
+     "sources": [
+      "https://fr.nothing.tech/products/phone-4b"
+     ]
+    },
+    "reference": {
+     "texte": "329 € / 128 Go, prix affiché par Nothing France.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP64",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Boutique Nothing France, IP et suivi, Les Numériques",
+     "sources": [
+      "https://fr.nothing.tech/products/phone-4b",
+      "https://www.lesnumeriques.com/telephone-portable/un-nouveau-smartphone-nothing-a-seulement-329-une-bonne-affaire-ou-une-fausse-bonne-idee-n258986.html"
+     ]
+    },
+    "videos": {
+     "texte": "T14, T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1447,6 +3385,54 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "345 € / 256 Go, La Boutique Tech shop - FR, PcComponentes ; version 7 000 mAh, réf. PBBE0002SE",
+     "sources": [
+      "https://www.pccomponentes.fr/motorola-edge-70-fusion-5g-8gb-256gb-678-noir"
+     ]
+    },
+    "reference": {
+     "texte": "Version 5 200 mAh : 376,97 € / 256 Go, Electro Store. Lancement : 499,99 € / 256 Go, 5 200 mAh ; 529 € / 256 Go, 7 000 mAh.",
+     "sources": [
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/motorola_edge70_f_256_bleu.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP68 + IP69",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "5 ans, jusqu’en 2031 selon l’essai UE",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Motorola France, variantes, prix conseillé et capacité 5 200, Amazon France, prix de lancement des deux variantes, 01net, fiche 256 Go et 7 000 mAh, Motorola Support, offre marketplace PcComponentes, 7 000 mAh, suivi, Notebookcheck",
+     "sources": [
+      "https://www.motorola.com/fr/fr/p/phones/motorola-edge/pmipmjm44md/pmipmjm44md",
+      "https://www.amazon.fr/-/en/Motorola-Fusion-Pantone-Silhouette-Black/dp/B0GP26BDTW",
+      "https://www.01net.com/tests/test-du-motorola-edge-70-avis.html",
+      "https://en-gb.support.motorola.com/app/answers/detail/a_id/192851",
+      "https://www.pccomponentes.fr/motorola-edge-70-fusion-5g-8gb-256gb-678-noir",
+      "https://www.notebookcheck.net/Motorola-Edge-70-Fusion-Review-A-configurable-mid-range-smartphone-with-broad-appeal.1264811.0.html"
+     ]
+    },
+    "videos": {
+     "texte": "T14, T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1477,6 +3463,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "295 € / 256 Go, TechMuse, Darty Marketplace",
+     "sources": [
+      "https://www.darty.com/nav/q/telephonie-motorola-edge-60-fusion.html"
+     ]
+    },
+    "reference": {
+     "texte": "329 € / 256 Go, prix public de référence.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68 + IP69",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "4 ans, jusqu’en mars 2029 selon l’essai UE",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Motorola France, prix France, Les Numériques, prix UE et suivi, Notebookcheck",
+     "sources": [
+      "https://www.motorola.com/fr/fr/p/phones/motorola-edge/smartphones-motorola-edge-60-fusion/pmipmhq40mz",
+      "https://www.lesnumeriques.com/telephone-portable/motorola-edge-60-fusion-p76466.html",
+      "https://www.notebookcheck.net/Has-this-mid-range-phone-gotten-even-better-Motorola-Edge-60-Fusion-review.1006202.0.html"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1506,6 +3534,51 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "128 Go (répertorié) ; 256 Go (offre vérifiée)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "245 € / 256 Go, Gomibo, en stock",
+     "sources": [
+      "https://www.gomibo.fr/en/motorola-moto-g77"
+     ]
+    },
+    "reference": {
+     "texte": "128 Go répertorié sur idealo à environ 367 €, stock direct non vérifié. Le 256 Go est moins cher.",
+     "sources": [
+      "https://www.idealo.fr/prix/209399625/motorola-moto-g77-128-go-pantone-shaded-spruce.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP64",
+     "sources": []
+    },
+    "os": {
+     "texte": "3 versions (source secondaire)",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Jusqu’en janvier 2030 (sources secondaires)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix Topbiz France, IP Motorola France, versions, Memeburn, calendrier endoflife.date",
+     "sources": [
+      "https://www.topbiz.fr/smartphones/402923-motorola-moto-g77-17-3-cm-6-8-do-0840493629476.html",
+      "https://www.motorola.com/fr/fr/p/phones/moto-g/77/pmipmjh43mw",
+      "https://memeburn.com/galaxy-a27-5g-vs-moto-g77/",
+      "https://endoflife.date/motorola-mobility"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1536,6 +3609,51 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "64 Go (international) ; 256 Go (offre vérifiée)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "179,99 € / 256 Go, Boulanger, modèle Power",
+     "sources": [
+      "https://www.boulanger.com/ref/1238053"
+     ]
+    },
+    "reference": {
+     "texte": "64 Go international : piste à 142,52 € sur idealo, livraison non reconfirmée chez le vendeur. Ne pas confondre avec le moto g06 sans « Power ».",
+     "sources": [
+      "https://www.amazon.fr/Motorola-Moto-G06-Power-Dual/dp/B0G1YRBFDC",
+      "https://www.idealo.fr/prix/208029907/motorola-moto-g06-power.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP64",
+     "sources": []
+    },
+    "os": {
+     "texte": "NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Jusqu’en août 2027 (calendrier secondaire)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix Boulanger, Motorola France, calendrier exact du modèle, endoflife.date",
+     "sources": [
+      "https://www.boulanger.com/ref/1238053",
+      "https://www.motorola.com/fr/fr/p/phones/moto-g/moto-g06-power/pmipmhy43m4",
+      "https://endoflife.date/motorola-mobility"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1565,6 +3683,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "339 € / 256 Go, FutureTech, expédié par Darty",
+     "sources": [
+      "https://www.darty.com/nav/q/telephonie-smartphone-honor-400.html"
+     ]
+    },
+    "reference": {
+     "texte": "499,90 € / 256 Go au lancement.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP65",
+     "sources": []
+    },
+    "os": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, Frandroid, IP et suivi HONOR France",
+     "sources": [
+      "https://www.frandroid.com/produits/smartphones/honor/2613699-honor-400",
+      "https://www.honor.com/fr/phones/honor-400/buy/"
+     ]
+    },
+    "videos": {
+     "texte": "T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1596,6 +3755,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "249 € / 256 Go, FutureTech, Darty Marketplace, promotion affichée",
+     "sources": [
+      "https://www.darty.com/nav/achat/gps_communication/telephone_mobile/telephone_portable/honor_400lite_noir.html"
+     ]
+    },
+    "reference": {
+     "texte": "299 € / 256 Go, repère RED hors forfait.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP64",
+     "sources": []
+    },
+    "os": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix RED by SFR, IP et suivi HONOR France",
+     "sources": [
+      "https://www.red-by-sfr.fr/telephones/HONOR-400-Lite-5G/256Go/GRIS/",
+      "https://www.honor.com/fr/phones/honor-400-lite/buy/"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1627,6 +3827,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "493,18 € / 256 Go, Digital Bay, Darty Marketplace, référence régionale à confirmer",
+     "sources": [
+      "https://www.darty.com/nav/q/telephonie-smartphone-honor-600.html"
+     ]
+    },
+    "reference": {
+     "texte": "Prix conseillés : 649,90 € / 256 Go ; 699,90 € / 512 Go. Sur la même page, 502 € / 256 Go chez Darty en direct.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Guide et prix HONOR France, fiche et suivi France",
+     "sources": [
+      "https://www.honor.com/fr/shop/buying-guide/introducing-honor-600-series/",
+      "https://www.honor.com/fr/phones/honor-600/buy/"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1656,6 +3897,49 @@
     "tele": null,
     "ois": true,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "319 € / 256 Go, FutureTech, expédié par Darty ; version UE à 7 500 mAh",
+     "sources": [
+      "https://www.darty.com/nav/q/telephonie-smartphone-honor-magic-8-lite.html"
+     ]
+    },
+    "reference": {
+     "texte": "399,90 € / 256 Go, prix conseillé HONOR.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Guide HONOR France, fiche et suivi France, configuration Orange",
+     "sources": [
+      "https://www.honor.com/fr/shop/buying-guide/introducing-honor-magic8-lite/",
+      "https://www.honor.com/fr/phones/honor-magic8-lite/buy/",
+      "https://boutique.orange.fr/mobile/details/honor-magic8-lite-5g-vert-256-go?intention=terminal-seul"
+     ]
+    },
+    "videos": {
+     "texte": "T14, T15",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=Oi3uzDEFflo"
+     ]
+    }
    }
   },
   {
@@ -1685,6 +3969,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": true
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. Boutique REDMAGIC UE en rupture.",
+     "sources": [
+      "https://eu.redmagic.gg/products/redmagic-11s-pro"
+     ]
+    },
+    "reference": {
+     "texte": "799 € / 256 Go, prix de lancement Europe.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IPX8 (téléphone) ; IP68 (module ventilateur, selon le fabricant)",
+     "sources": []
+    },
+    "os": {
+     "texte": "2 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "5 ans (UE)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix France, Frandroid, boutique et suivi REDMAGIC UE, protection du module, REDMAGIC",
+     "sources": [
+      "https://www.frandroid.com/marques/redmagic/3120099_test-redmagic-11s-pro",
+      "https://eu.redmagic.gg/products/redmagic-11s-pro",
+      "https://eu.redmagic.gg/pages/redmagic-11s-pro"
+     ]
+    },
+    "videos": {
+     "texte": "T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -1714,6 +4040,47 @@
     "tele": null,
     "ois": null,
     "refroidissement": true
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. Boutique REDMAGIC UE en rupture.",
+     "sources": [
+      "https://eu.redmagic.gg/products/redmagic-11-pro"
+     ]
+    },
+    "reference": {
+     "texte": "699 € / 256 Go, prix de référence Europe.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IPX8 (téléphone)",
+     "sources": []
+    },
+    "os": {
+     "texte": "2 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "5 ans (UE)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Boutique et suivi REDMAGIC UE, politique REDMAGIC UE",
+     "sources": [
+      "https://eu.redmagic.gg/products/redmagic-11-pro",
+      "https://eu.redmagic.gg/pages/software-update-policy"
+     ]
+    },
+    "videos": {
+     "texte": "T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -1743,6 +4110,48 @@
     "tele": null,
     "ois": null,
     "refroidissement": true
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. Boutique REDMAGIC UE en rupture.",
+     "sources": [
+      "https://eu.redmagic.gg/products/redmagic-11-air"
+     ]
+    },
+    "reference": {
+     "texte": "499 € / 256 Go, prix de référence Europe.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP54",
+     "sources": []
+    },
+    "os": {
+     "texte": "2 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "5 ans (UE)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Boutique et suivi REDMAGIC UE, fiche technique REDMAGIC",
+     "sources": [
+      "https://eu.redmagic.gg/products/redmagic-11-air",
+      "https://eu.redmagic.gg/pages/redmagic-11-air"
+     ]
+    },
+    "videos": {
+     "texte": "T14, T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4",
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -1772,6 +4181,48 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "512 Go (hors Pro Edition)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "Non vérifiée. LDLC ne le vend plus.",
+     "sources": [
+      "https://www.ldlc.com/fiche/PB00655332.html"
+     ]
+    },
+    "reference": {
+     "texte": "1 299,99 € / 512 Go au lancement France ; dernier tarif LDLC : 1 299,95 €.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP65 + IP68 selon la note ASUS ; IP68 mis en avant",
+     "sources": []
+    },
+    "os": {
+     "texte": "2 versions",
+     "sources": []
+    },
+    "securite": {
+     "texte": "5 ans, jusqu’en 2029",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix, L’Éclaireur Fnac, ASUS ROG France, politique ASUS",
+     "sources": [
+      "https://leclaireur.fnac.com/test/574103-asus-rog-phone-9-pro-notre-prise-en-main/",
+      "https://rog.asus.com/fr/phones/rog-phone-9-pro/",
+      "https://www.asus.com/support/faq/1056885/"
+     ]
+    },
+    "videos": {
+     "texte": "T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -1802,6 +4253,48 @@
     "tele": true,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "1 249 € / 256 Go, Sony France, promotion sur la réf. XQGE54B.GC",
+     "sources": [
+      "https://www.sony.fr/smartphones/products/xperia-1m8"
+     ]
+    },
+    "reference": {
+     "texte": "1 499 € / 256 Go, prix normal Sony.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP65 + IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "4 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Boutique Sony France, annonce Sony France, suivi, Frandroid",
+     "sources": [
+      "https://www.sony.fr/store/product/xqge54b.gc/Xperia-1-VIII-Assistant-Cam%C3%A9ra-IA-Nouveau-t%C3%A9l%C3%A9objectif-Autonomie-de-deux-jours",
+      "https://www.sony.fr/presscentre/sony-annonce-le-lancement-du-xperia-1-viii-son-dernier-smartphone-dote-dune-nouvelle-ia-integree-pour-des-photos-toujours-plus-reussies",
+      "https://www.frandroid.com/marques/sony/3161579_test-du-sony-xperia-1-viii-le-roi-de-la-photo-a-lancienne-est-de-retour-et-il-bouscule-enfin-ses-codes"
+     ]
+    },
+    "videos": {
+     "texte": "T16",
+     "sources": [
+      "https://www.youtube.com/watch?v=i0INRp2uLi4"
+     ]
+    }
    }
   },
   {
@@ -1831,6 +4324,52 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "624,04 € / 512 Go, Fnac Marketplace, fiche à 6 500 mAh ; lancement officiel France non confirmé",
+     "sources": [
+      "https://www.fnac.com/mp54155162/VIVO-V70-16-7-cm-6-59-Double-SIM-Android-16-0-5G-8-Go-512-Go-6500-mAh-Gris/w-4"
+     ]
+    },
+    "reference": {
+     "texte": "256 Go à 565,54 € sur idealo, stock et batterie non confirmés ; ne pas utiliser pour le 6 500 mAh. Inde : 45 999 INR, ≈ 449 € / 256 Go.",
+     "sources": [
+      "https://www.idealo.fr/prix/209612256/vivo-v70.html"
+     ]
+    },
+    "ip": {
+     "texte": "IP68 + IP69",
+     "sources": []
+    },
+    "os": {
+     "texte": "Jusqu’à 4 générations hors UE ; 5 générations UE",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans hors UE dès lancement local ; 5 ans UE après fin de commercialisation UE",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Fiche Fnac Marketplace, 512 Go et 6 500 mAh, offre Digital Bay au même prix, Darty Marketplace, offre Mirando, idealo, lancement Inde, FoneArena, vivo Global, note 3",
+     "sources": [
+      "https://www.fnac.com/mp54155162/VIVO-V70-16-7-cm-6-59-Double-SIM-Android-16-0-5G-8-Go-512-Go-6500-mAh-Gris/w-4",
+      "https://www.darty.com/nav/achat/telephonie/telephone_mobile/mobile/marque_2__vivo__VIVO.html",
+      "https://www.idealo.fr/prix/209612256/vivo-v70.html",
+      "https://www.fonearena.com/blog/475816/vivo-v70-elite-price-india-specifications-vivo-v70.html",
+      "https://www.vivo.com/en/products/v70"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1860,6 +4399,52 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go (marketplace) ; 512 Go (fiche OPPO France)",
+     "sources": []
+    },
+    "offre": {
+     "texte": "549 € / 512 Go, GROTTOTINTOM, expédié par Cdiscount, version 6 000 mAh",
+     "sources": [
+      "https://www.cdiscount.com/telephonie/telephone-mobile/smartphone-oppo-reno16-5g-8go/f-14404-aadea41333.html"
+     ]
+    },
+    "reference": {
+     "texte": "899 € / 512 Go, référence OPPO France ; 702 € / 512 Go chez Darty. Le 256 Go sur Auchan Marketplace était affiché à 888,91 €.",
+     "sources": [
+      "https://www.darty.com/nav/q/telephonie-oppo-reno-16.html",
+      "https://www.auchan.fr/oppo-smartphone-reno16-5g-8-256gb/pr-a175cc14-2655-496c-b9d2-ab0cb672b226"
+     ]
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix OPPO France, fiche France, essais IP, OPPO France, suivi, GSMArena",
+     "sources": [
+      "https://www.oppo.com/fr/articles/reno16-series/best-android-phones-under-500/",
+      "https://www.oppo.com/fr/smartphones/series-reno/reno16/specs/",
+      "https://www.oppo.com/fr/articles/reno16-series/leading-budget-phone-for-long-battery-life-and-fast-charging-oppo-reno16/",
+      "https://www.gsmarena.com/oppo_reno16_pro-review-2973p4.php"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1889,6 +4474,49 @@
     "tele": null,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "512 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "699 € / 512 Go, GROTTOTINTOM, expédié par Cdiscount ; variante de batterie non confirmée",
+     "sources": [
+      "https://www.cdiscount.com/telephonie/telephone-mobile/smartphone-oppo-reno16-pro-5g/f-14404-aadea41860.html"
+     ]
+    },
+    "reference": {
+     "texte": "1 099 € / 512 Go, référence OPPO France.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP66 + IP68 + IP69 + IP69K",
+     "sources": []
+    },
+    "os": {
+     "texte": "5 ans",
+     "sources": []
+    },
+    "securite": {
+     "texte": "6 ans",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Prix OPPO France, fiche France, indices OPPO Global, suivi, Frandroid",
+     "sources": [
+      "https://www.oppo.com/fr/articles/reno16-series/best-android-phones-under-500/",
+      "https://www.oppo.com/fr/smartphones/series-reno/reno16-pro/specs/",
+      "https://www.oppo.com/en/smartphones/series-reno/reno16-pro/",
+      "https://www.frandroid.com/produits/smartphones/oppo/3157749-oppo-reno-16-pro"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   },
   {
@@ -1919,6 +4547,49 @@
     "tele": false,
     "ois": null,
     "refroidissement": false
+   },
+   "france": {
+    "stockage": {
+     "texte": "256 Go",
+     "sources": []
+    },
+    "offre": {
+     "texte": "869 € / 256 Go, Boulanger",
+     "sources": [
+      "https://www.boulanger.com/ref/1233934"
+     ]
+    },
+    "reference": {
+     "texte": "719 € / 256 Go au lancement ; 869 € / 256 Go chez Apple au relevé.",
+     "sources": []
+    },
+    "ip": {
+     "texte": "IP68",
+     "sources": []
+    },
+    "os": {
+     "texte": "iOS : NC",
+     "sources": []
+    },
+    "securite": {
+     "texte": "Minimum 5 ans (déclaration UK)",
+     "sources": []
+    },
+    "sources": {
+     "texte": "Achat Apple France, Apple Newsroom au lancement, caractéristiques, Apple PSTI A3634",
+     "sources": [
+      "https://www.apple.com/fr/shop/buy-iphone/iphone-17e",
+      "https://www.apple.com/fr/newsroom/2026/03/apple-introduces-iphone-17e/",
+      "https://www.apple.com/fr/iphone-17e/specs/",
+      "https://regulatoryinfo.apple.com/cwt/api/ext/file?fileId=securityTelecommunication/A3634_UKPSTI_DoC_Annex_V1.pdf"
+     ]
+    },
+    "videos": {
+     "texte": "T14",
+     "sources": [
+      "https://www.youtube.com/watch?v=zw30rfxoVO4"
+     ]
+    }
    }
   }
  ],

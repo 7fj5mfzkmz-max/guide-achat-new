@@ -137,6 +137,12 @@
   /* ---------- Carte de recommandation ---------- */
   function specRows(p) {
     var rows = [['Puce et écran', p.puce_ecran], ['Batterie et charge', p.batterie_charge], ['Photo arrière', p.photo_arriere]];
+    if (p.france) {
+      [['Offre neuve', 'offre'], ['Protection', 'ip'], ['Mises à niveau système', 'os'], ['Correctifs de sécurité', 'securite']].forEach(function (item) {
+        var champ = p.france[item[1]];
+        if (champ && champ.texte) rows.push([item[0], champ.texte]);
+      });
+    }
     return '<dl class="sg-specs">' + rows.map(function (r) {
       return '<div><dt>' + r[0] + '</dt><dd>' + (r[1] ? esc(r[1]) : '<span class="sg-nd">non renseigné</span>') + '</dd></div>';
     }).join('') + '</dl>';
@@ -220,7 +226,7 @@
         var e = guide.measured(q.id);
         return '<li><span>' + esc(nameOf(q)) + '</span><b>' + (q.specs.mah ? fmt(q.specs.mah) + ' mAh' : '') + '</b><small>' + esc(chipText(q)) + (e ? ' · mesuré ' + e + ' fois' : ' · pas encore testé') + '</small></li>';
       }).join('') + '</ol>' : '') +
-      '<p class="sg-fine">Pas encore dans la base : prix, étanchéité et durée des mises à jour.</p>');
+      '<p class="sg-fine">Prix et suivi : voir la fiche. Vérifiez le vendeur, la variante et la disponibilité.</p>');
     updateDock(p); updateMock(p);
   }
 
@@ -837,6 +843,18 @@
         '<div><dt>Batterie et charge</dt><dd>' + esc(m.batterie_charge) + '</dd></div>' +
         '<div><dt>Photo arrière</dt><dd>' + esc(m.photo_arriere) + '</dd></div></dl>' +
         '<p class="sg-fine">Caractéristiques annoncées par le fabricant ou une source secondaire, avec leur marché quand il est connu. Une capacité de batterie peut varier selon le pays.</p>';
+      if (m.france) {
+        var libellesFrance = { stockage: 'Stockage documenté', offre: 'Offre neuve', reference: 'Prix de référence', ip: 'Protection', os: 'Mises à niveau système', securite: 'Correctifs de sécurité' };
+        html += '<p class="sg-tests-h">Prix et suivi en France</p><dl class="sg-anat-dl">' +
+          Object.keys(libellesFrance).map(function (cle) {
+            var champ = m.france[cle];
+            if (!champ || !champ.texte) return '';
+            return '<div><dt>' + esc(libellesFrance[cle]) + '</dt><dd>' + esc(champ.texte) + ' ' +
+              champ.sources.map(function (url) { return lien(url, hote(url)); }).join(' · ') + '</dd></div>';
+          }).join('') + '</dl><p class="sg-fine">Prix relevés dans la source : vérifiez le vendeur, la variante et la disponibilité.</p>' +
+          '<details class="sg-cond"><summary>Sources du suivi et de la protection</summary><ul class="sg-srcs">' +
+          m.france.sources.sources.map(function (url) { return '<li>' + lien(url, hote(url)) + '</li>'; }).join('') + '</ul></details>';
+      }
       var res = [];
       TD.classements.forEach(function (c) { c.lignes.forEach(function (l) { if (l.modele === id) res.push({ c: c, l: l }); }); });
       html += '<p class="sg-tests-h">Résultats de tests ' + (res.length ? st('mesure_publiee') : '') + '</p>';

@@ -14,6 +14,7 @@ from pathlib import Path
 RACINE = Path(__file__).resolve().parents[2]
 SRC1 = RACINE / 'data/sources/base-tests-T01-T11.md'
 SRC2 = RACINE / 'data/sources/base-tests-T12-T16.md'
+SRC_FRANCE = RACINE / 'data/sources/base-smartphones-prix-france-ip-mises-a-jour.md'
 SORTIE = RACINE / 'data/smartphones-tests.json'
 
 LIEN = re.compile(r'\[([^\]]+)\]\(((?:[^()\s]|\([^()]*\))+)\)')
@@ -367,6 +368,24 @@ def main():
                 v = decrire_variante(col)
                 variantes[col] = {k: v[k] for k in ('modele', 'mah', 'marche', 'details')}
 
+    # Les relevés France gardent leur texte et les liens propres à chaque cellule.
+    # Les offres non vérifiées et les variantes restent distinctes des prix confirmés.
+    for section in lire_blocs(SRC_FRANCE.read_text(encoding='utf-8').split('\n')):
+        for bloc in section['blocs']:
+            if bloc['type'] != 'table' or len(bloc['tete']) != 10 or 'model_id' not in bloc['tete'][0]:
+                continue
+            for ligne in bloc['rangs']:
+                if len(ligne) != 10:
+                    raise ValueError('Ligne France mal formée : ' + repr(ligne))
+                mid = nettoyer(ligne[0])[0]
+                if mid not in modeles:
+                    continue
+                noms = ('stockage', 'offre', 'reference', 'ip', 'os', 'securite', 'sources', 'videos')
+                modeles[mid]['france'] = {}
+                for nom, valeur in zip(noms, ligne[2:]):
+                    texte, urls = nettoyer(valeur)
+                    modeles[mid]['france'][nom] = {'texte': texte or None, 'sources': urls}
+
     # Transparence : sponsors et liens affiliés, relevés dans les protocoles
     transparence = {}
     for tid, t in tests.items():
@@ -379,7 +398,7 @@ def main():
 
     sortie = {
         'version': '2026-11-19',
-        'sources': {'T01-T11': 'data/sources/base-tests-T01-T11.md', 'T12-T16': 'data/sources/base-tests-T12-T16.md'},
+        'sources': {'T01-T11': 'data/sources/base-tests-T01-T11.md', 'T12-T16': 'data/sources/base-tests-T12-T16.md', 'France': 'data/sources/base-smartphones-prix-france-ip-mises-a-jour.md'},
         'statuts': {
             'spec_constructeur': 'Fiche officielle du fabricant.',
             'spec_secondaire': 'Caractéristique non vérifiée dans la fiche officielle.',
