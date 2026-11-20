@@ -1,0 +1,559 @@
+{
+  "date": "2026-11-20",
+  "geekbench6": {
+    "A19": {
+      "multicoeur": 9454,
+      "source": "https://nanoreview.net/en/soc/apple-a19"
+    },
+    "A19 Pro": {
+      "multicoeur": 10558,
+      "source": "https://nanoreview.net/en/soc/apple-a19-pro"
+    },
+    "A20 Pro": {
+      "multicoeur": 12836,
+      "source": "https://nanoreview.net/en/soc/apple-a20-pro"
+    },
+    "Dimensity 6400": {
+      "multicoeur": 2047,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-6400"
+    },
+    "Dimensity 7025 Ultra": {
+      "multicoeur": 2321,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-7025",
+      "reference": "Dimensity 7025"
+    },
+    "Dimensity 7300": {
+      "multicoeur": 2918,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-7300"
+    },
+    "Dimensity 7300-Energy": {
+      "multicoeur": 2918,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-7300",
+      "reference": "Dimensity 7300"
+    },
+    "Dimensity 7300e": {
+      "multicoeur": 3106,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-7300e"
+    },
+    "Dimensity 7400-Ultra": {
+      "multicoeur": 3185,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-7400",
+      "reference": "Dimensity 7400"
+    },
+    "Dimensity 8350 Apex": {
+      "multicoeur": 4313,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-8350",
+      "reference": "Dimensity 8350"
+    },
+    "Dimensity 8500-Ultra": {
+      "multicoeur": 6611,
+      "source": "https://nanoreview.net/en/phone/xiaomi-poco-x8-pro",
+      "appareil": "POCO X8 Pro"
+    },
+    "Dimensity 8550 SUPER": {
+      "multicoeur": 6283,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-8550",
+      "reference": "Dimensity 8550"
+    },
+    "Dimensity 9500S": {
+      "multicoeur": 8932,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-9500s"
+    },
+    "Dimensity 9600 Pro": {
+      "multicoeur": 13145,
+      "source": "https://nanoreview.net/en/soc/mediatek-dimensity-9600-pro"
+    },
+    "Exynos 1480": {
+      "multicoeur": 3437,
+      "source": "https://nanoreview.net/en/soc/samsung-exynos-1480"
+    },
+    "Exynos 1680": {
+      "multicoeur": 4477,
+      "source": "https://nanoreview.net/en/soc/samsung-exynos-1680"
+    },
+    "Exynos 2600": {
+      "multicoeur": 10904,
+      "source": "https://nanoreview.net/en/soc/samsung-exynos-2600"
+    },
+    "Helio G100-Ultra": {
+      "multicoeur": 2014,
+      "source": "https://nanoreview.net/en/soc/mediatek-helio-g100",
+      "reference": "Helio G100"
+    },
+    "Helio G81 Extreme": {
+      "multicoeur": 1416,
+      "source": "https://www.itechguides.com/mediatek-helio-g81-benchmarks-and-specs-what-the-numbers-mean/",
+      "reference": "Helio G81"
+    },
+    "Snapdragon 6 Gen 3": {
+      "multicoeur": 3000,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-6-gen-3"
+    },
+    "Snapdragon 6 Gen 4": {
+      "multicoeur": 3148,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-6-gen-4"
+    },
+    "Snapdragon 6 Gen 5": {
+      "multicoeur": 3481,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-6-gen-5"
+    },
+    "Snapdragon 6s Gen 4": {
+      "multicoeur": 2981,
+      "source": "https://nanoreview.net/en/phone/xiaomi-poco-x8",
+      "appareil": "POCO X8"
+    },
+    "Snapdragon 7 Gen 3": {
+      "multicoeur": 3111,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-7-gen-3"
+    },
+    "Snapdragon 7 Gen 4": {
+      "multicoeur": 4106,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-7-gen-4"
+    },
+    "Snapdragon 7s Gen 3": {
+      "multicoeur": 3390,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-7s-gen-3"
+    },
+    "Snapdragon 7s Gen 4": {
+      "multicoeur": 3168,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-7s-gen-4"
+    },
+    "Snapdragon 8 Elite": {
+      "multicoeur": 9287,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8-gen-4"
+    },
+    "Snapdragon 8 Elite Extreme Gen 6": {
+      "multicoeur": 12873,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8-elite-gen-6-pro"
+    },
+    "Snapdragon 8 Elite Extreme Gen 6 + RedCore R5": {
+      "multicoeur": 12873,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8-elite-gen-6-pro",
+      "reference": "Snapdragon 8 Elite Extreme Gen 6"
+    },
+    "Snapdragon 8 Elite Gen 5": {
+      "multicoeur": 11047,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8-elite-2"
+    },
+    "Snapdragon 8 Elite Gen 5 + VisionBoost D8": {
+      "multicoeur": 11047,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8-elite-2",
+      "reference": "Snapdragon 8 Elite Gen 5"
+    },
+    "Snapdragon 8 Elite Gen 5 Leading Version": {
+      "multicoeur": 11618,
+      "source": "https://www.phonearena.com/phones/RedMagic-11S-Pro_id12982",
+      "appareil": "REDMAGIC 11S Pro"
+    },
+    "Snapdragon 8 Elite Gen 5 V Series + VisionBoost D8": {
+      "multicoeur": 10594,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8-elite-gen-5-v-series",
+      "reference": "Snapdragon 8 Elite Gen 5 V Series"
+    },
+    "Snapdragon 8 Elite Gen 5 for Galaxy": {
+      "multicoeur": 10733,
+      "source": "https://www.phonearena.com/phones/benchmarks/performance/",
+      "appareil": "Galaxy S26 Ultra"
+    },
+    "Snapdragon 8 Gen 5": {
+      "multicoeur": 9119,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8-gen-5"
+    },
+    "Snapdragon 8s Gen 3": {
+      "multicoeur": 5179,
+      "source": "https://nanoreview.net/en/soc/qualcomm-snapdragon-8s-gen-3"
+    },
+    "Tensor G4": {
+      "multicoeur": 4431,
+      "source": "https://nanoreview.net/en/soc/google-tensor-g4"
+    },
+    "Tensor G6": {
+      "multicoeur": 7563,
+      "source": "https://nanoreview.net/en/soc/google-tensor-g6"
+    }
+  },
+  "complements": {
+    "asus-rog-phone-9-pro": {
+      "source": "https://rog.asus.com/phones/rog-phone-9-pro/spec/",
+      "specs": {
+        "capteur": "1/1.56",
+        "ois": true,
+        "tele": true,
+        "ultra": true
+      }
+    },
+    "galaxy-s26-ultra": {
+      "source": "https://www.dxomark.com/samsung-galaxy-s26-ultra-camera-test/",
+      "specs": {
+        "capteur": "1/1.3",
+        "ois": true,
+        "tele": true,
+        "ultra": true
+      }
+    },
+    "honor-400": {
+      "source": "https://www.honor.com/global/news/honor-400-launch/",
+      "specs": {
+        "capteur": "1/1.4",
+        "ois": true,
+        "eis": true,
+        "ultra": true,
+        "ecran": "oled"
+      }
+    },
+    "honor-600": {
+      "source": "https://www.honor.com/fr/phones/honor-600/",
+      "specs": {
+        "capteur": "1/1.4",
+        "ois": true,
+        "eis": true,
+        "ultra": true,
+        "tele": false,
+        "ecran": "oled"
+      }
+    },
+    "honor-600-pro": {
+      "source": "https://www.honor.com/fr/phones/honor-600-pro/",
+      "specs": {
+        "capteur": "1/1.4",
+        "ois": true,
+        "eis": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "iphone-17": {
+      "source": "https://www.apple.com/iphone-17/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "iphone-17e": {
+      "source": "https://www.apple.com/iphone-17e/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": false,
+        "tele": false
+      }
+    },
+    "iphone-18-pro": {
+      "source": "https://www.apple.com/iphone-18-pro/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "iphone-18-pro-max": {
+      "source": "https://www.apple.com/iphone-18-pro/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "motorola-edge-70-fusion": {
+      "source": "https://en-us.support.motorola.com/app/answers/detail/a_id/192851/~/specifications---motorola-edge-70-fusion",
+      "specs": {
+        "ois": true
+      }
+    },
+    "motorola-moto-g06-power": {
+      "source": "https://www.lenovo.com/fr/fr/p/phones/moto/moto-g-series/XT2535-13/pba00005se",
+      "specs": {
+        "ecran": "lcd",
+        "hz": 120
+      }
+    },
+    "oneplus-15": {
+      "source": "https://www.oneplus.com/us/15/specs",
+      "specs": {
+        "ois": true,
+        "eis": true,
+        "tele": true,
+        "ultra": true,
+        "hz": 165
+      }
+    },
+    "oneplus-15r": {
+      "source": "https://www.oneplus.com/us/15r/specs",
+      "specs": {
+        "ois": true,
+        "eis": true,
+        "ultra": true
+      }
+    },
+    "oneplus-nord-5": {
+      "source": "https://www.oneplus.com/global/nord-5/specs",
+      "specs": {
+        "capteur": "1/1.56"
+      }
+    },
+    "oneplus-nord-ce5": {
+      "source": "https://www.oneplus.com/hu/nord-ce5/specs",
+      "specs": {
+        "capteur": "1/1.95",
+        "ois": true,
+        "eis": true,
+        "ultra": true
+      }
+    },
+    "oppo-find-x10-pro-max": {
+      "source": "https://www.oppo.com/en/smartphones/series-find-x/find-x10-pro-max/specs/",
+      "specs": {
+        "ois": true,
+        "eis": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "oppo-reno16-5g": {
+      "source": "https://www.oppo.com/ph/smartphones/series-reno/reno16/specs/",
+      "specs": {
+        "ois": true,
+        "eis": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "oppo-reno16-pro-5g": {
+      "source": "https://www.oppo.com/lu/smartphones/series-reno/reno16-pro/specs/",
+      "specs": {
+        "ois": true,
+        "eis": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "pixel-10a": {
+      "source": "https://store.google.com/us/product/pixel_10a_specs?hl=en-US",
+      "specs": {
+        "capteur": "1/2",
+        "ultra": true,
+        "ois": true,
+        "eis": true,
+        "tele": false
+      }
+    },
+    "pixel-11": {
+      "source": "https://store.google.com/us/product/pixel_11_specs?hl=en-US",
+      "specs": {
+        "capteur": "1/1.56",
+        "ultra": true,
+        "tele": true,
+        "ois": true,
+        "eis": true
+      }
+    },
+    "pixel-11-pro": {
+      "source": "https://store.google.com/us/product/pixel_11_pro_specs?hl=en-US",
+      "specs": {
+        "capteur": "1/1.3",
+        "ultra": true,
+        "tele": true,
+        "ois": true,
+        "eis": true
+      }
+    },
+    "pixel-11-pro-xl": {
+      "source": "https://store.google.com/us/product/pixel_11_pro_specs?hl=en-US",
+      "specs": {
+        "capteur": "1/1.3",
+        "ultra": true,
+        "tele": true,
+        "ois": true,
+        "eis": true
+      }
+    },
+    "poco-f8-pro": {
+      "source": "https://www.mi.com/global/product/poco-f8-pro/specs/",
+      "specs": {
+        "capteur": "1/1.55",
+        "ois": true,
+        "tele": true,
+        "ultra": true
+      }
+    },
+    "poco-f9-pro": {
+      "source": "https://www.mi.com/global/product/poco-f9-pro/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "poco-f9-ultra": {
+      "source": "https://www.mi.com/global/product/poco-f9-ultra/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "poco-m8-pro-5g": {
+      "source": "https://www.mi.com/global/product/poco-m8-pro-5g/specs/",
+      "specs": {
+        "capteur": "1/1.55",
+        "ois": true,
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "poco-x8": {
+      "source": "https://www.mi.com/global/product/poco-x8/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": false,
+        "tele": false
+      }
+    },
+    "poco-x8-pro": {
+      "source": "https://www.mi.com/global/product/poco-x8-pro/specs/",
+      "specs": {
+        "capteur": "1/1.95",
+        "ois": true,
+        "ultra": true
+      }
+    },
+    "poco-x8-pro-max": {
+      "source": "https://www.mi.com/fr/product/poco-x8-pro-max/specs/",
+      "specs": {
+        "capteur": "1/1.95",
+        "ois": true,
+        "ultra": true
+      }
+    },
+    "redmagic-11-air": {
+      "source": "https://global.redmagic.gg/pages/redmagic-11-air-specs",
+      "specs": {
+        "ois": true
+      }
+    },
+    "redmagic-11-pro": {
+      "source": "https://global.redmagic.gg/pages/redmagic-11-pro-specs",
+      "specs": {
+        "capteur": "1/1.55",
+        "ois": true,
+        "ecran": "oled",
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "redmagic-11s-pro": {
+      "source": "https://global.redmagic.gg/pages/redmagic-11s-pro-specs",
+      "specs": {
+        "capteur": "1/1.55",
+        "ois": true,
+        "ecran": "oled",
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "redmagic-12-pro": {
+      "source": "https://global.redmagic.gg/pages/redmagic-12-pro-specs",
+      "specs": {
+        "capteur": "1/1.56",
+        "ois": true
+      }
+    },
+    "redmi-note-15-4g": {
+      "source": "https://www.mi.com/sg/product/redmi-note-15/specs/",
+      "specs": {
+        "capteur": "1/1.67",
+        "ultra": false,
+        "tele": false
+      }
+    },
+    "redmi-note-15-5g": {
+      "source": "https://www.mi.com/global/product/redmi-note-15-5g/",
+      "specs": {
+        "capteur": "1/1.67",
+        "ois": true,
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "redmi-note-15-pro-5g": {
+      "source": "https://www.mi.com/pk/support/faq/details/KA-651554/",
+      "specs": {
+        "capteur": "1/1.4",
+        "ois": true,
+        "eis": true,
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "redmi-note-15-pro-plus-5g": {
+      "source": "https://www.mi.com/global/product/redmi-note-15-pro-plus-5g/specs/",
+      "specs": {
+        "capteur": "1/1.4",
+        "ois": true,
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "redmi-note-17-pro-max-5g": {
+      "source": "https://www.mi.com/ae-en/product/redmi-note-17-pro-max-5g/specs/",
+      "specs": {
+        "ois": true,
+        "ultra": true,
+        "tele": false
+      }
+    },
+    "sony-xperia-1-viii": {
+      "source": "https://www.sony.fr/electronics/support/mobile-phones-tablets-mobile-phones/xperia-1-viii-256gb/specifications",
+      "specs": {
+        "capteur": "1/1.35",
+        "ois": true,
+        "tele": true,
+        "ultra": true
+      }
+    },
+    "vivo-v70": {
+      "source": "https://www.vivo.com/en/products/param/v70",
+      "specs": {
+        "ois": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "vivo-x300-ultra": {
+      "source": "https://www.vivo.com/en/products/x300-ultra",
+      "specs": {
+        "capteur": "1/1.12",
+        "ois": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "vivo-x500-pro-max": {
+      "source": "https://www.vivo.com/en/products/x500-pro-max",
+      "specs": {
+        "capteur": "1/1.28",
+        "ois": true,
+        "ultra": true,
+        "tele": true
+      }
+    },
+    "xiaomi-17": {
+      "source": "https://www.mi.com/fr/product/xiaomi-17/specs/",
+      "specs": {
+        "capteur": "1/1.31",
+        "ois": true,
+        "tele": true,
+        "ultra": true
+      }
+    },
+    "xiaomi-17t": {
+      "source": "https://www.mi.com/fr/product/xiaomi-17t/",
+      "specs": {
+        "capteur": "1/1.55",
+        "ois": true,
+        "tele": true,
+        "ultra": true
+      }
+    }
+  }
+}

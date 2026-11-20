@@ -614,3 +614,42 @@
   .sg-fl li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 }
 @media (prefers-reduced-motion: reduce) { .sg-rk-bar i, .sg-tt { transition: none !important; } }
+
+.sg-quiz-actions { display: flex; justify-content: flex-end; margin-top: 12px; }
+.sg-quiz-actions button:disabled { opacity: .55; cursor: default; }
+.sg-refined-step { margin-inline-start: clamp(8px, 2vw, 24px); }
+.sg-opts-ecran, .sg-opts-fluidite { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.sg-opts-ecran > li:last-child { grid-column: 1 / -1; }
+.sg-opts-ecran .sg-opt-top, .sg-opts-fluidite .sg-opt-top { flex-wrap: wrap; gap: 4px 8px; }
+.sg-opts-ecran .sg-adv, .sg-opts-ecran .sg-comp { display: block; }
+.sg-opts-ecran .sg-trade b { margin-inline-end: 2px; }
+.sg-step-actions [data-refine] { color: var(--ink); font-weight: 700; }
+@media (max-width: 360px) {
+  .sg-opts-ecran .sg-opt, .sg-opts-fluidite .sg-opt { padding-inline: 8px; }
+}
+.sg-opts-ecran .sg-opt, .sg-opts-fluidite .sg-opt { grid-template-columns: minmax(0, 1fr); }
+.sg-screen-demo {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 72px;
+  border-radius: 10px;
+  background: #07080b;
+  border: 1px solid #535968;
+  overflow: hidden;
+}
+.sg-screen-demo.is-lcd { background: #232936; box-shadow: inset 0 0 30px rgba(196, 213, 250, var(--sg-backlight, .55)); }
+.sg-screen-demo i { width: 21px; height: 21px; border-radius: 50%; background: #ffdb66; }
+.sg-contrast-control { display: grid; gap: 4px; margin: 0 0 12px; font-size: .875rem; }
+.sg-contrast-control input { max-width: 230px; width: 100%; accent-color: var(--orange); }
+.sg-hz-demo { display: block; position: relative; height: 35px; border-radius: 8px; overflow: hidden; background: var(--line); }
+.sg-hz-demo i { position: absolute; top: 8px; left: 0; width: 19px; height: 19px; border-radius: 50%; background: var(--orange); }
+@media (prefers-reduced-motion: no-preference) {
+  .sg-step.is-open .sg-hz-demo i { animation: sg-hz-motion 1.35s steps(var(--frames)) 3 alternate both; }
+}
+@keyframes sg-hz-motion { to { left: calc(100% - 19px); } }
+.sg-chip-table { max-width: 100%; overflow: auto; margin-block: 12px; }
+.sg-chip-table table { width: 100%; min-width: 410px; border-collapse: collapse; text-align: start; }
+.sg-chip-table caption, .sg-chip-table th, .sg-chip-table td { padding: 8px 10px; text-align: start; vertical-align: top; }
+.sg-chip-table th, .sg-chip-table td { border-bottom: 1px solid var(--line); }
+.sg-chip-table small { display: block; font-weight: 400; }

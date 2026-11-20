@@ -15,6 +15,7 @@
   var F = L.fields;
   var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var guide = null, openStep = 'priorite', catalogueError = false;
+  var refinements = {};
 
   /* Icônes au trait (24×24), une par étape. */
   var ICONS = {
@@ -26,6 +27,8 @@
     charge: '<path d="M13 2 5 13.5h6L10 22l8-11.5h-6z"/>',
     photo: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
     preuves: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    prix: '<circle cx="12" cy="12" r="9"/><path d="M15 8a4 4 0 1 0 0 8M7 11h7M7 13h6"/>',
+    protection: '<path d="M12 3l7 3v6c0 4-4 7-7 9-3-2-7-5-7-9V6z"/>',
     maj: '<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>'
   };
   function icon(id) { return '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">' + (ICONS[id] || '') + '</svg>'; }
@@ -33,16 +36,17 @@
   /* Petit visuel par option : il montre l’idée, le libellé dit la règle. */
   function optVisual(step, opt) {
     var v = '';
-    if (step === 'ecran') v = opt.id === 'oled' ? '<span class="sg-v-oled"></span>' : '<span class="sg-v-ltpo">' + (opt.id === 'hz144' ? '144' : '120') + '<br>Hz</span>';
+    if (step === 'ecran' && opt.id !== 'ltpo') return '<span class="sg-screen-demo' + (opt.id === 'lcd' ? ' is-lcd' : '') + '" aria-hidden="true"><i></i></span>';
+    if (step === 'fluidite') return '<span class="sg-hz-demo" aria-hidden="true"><i style="--frames:' + Math.round(opt.hz / 10) + '"></i></span>';
     else if (step === 'processeur') {
       var r = { entree: [1, 3], milieu: [4, 6], haut: [7, 8], sommet: [9, 10] }[opt.id] || [0, 0], g = '';
       for (var i = 1; i <= 10; i++) g += '<i class="' + (i >= r[0] && i <= r[1] ? 'on' : '') + '" style="height:' + (20 + i * 8) + '%"></i>';
       v = '<span class="sg-v-gauge">' + g + '</span>';
-    } else if (step === 'batterie') v = '<span class="sg-v-bat"><i style="width:' + ({ b5000: 55, b6500: 75, b8000: 100 }[opt.id] || 50) + '%"></i></span>';
+    } else if (step === 'batterie') v = '<span class="sg-v-bat"><i style="width:' + ({ sous3000: 23, b3000: 42, b5000: 65, b7000: 85, b8000: 100 }[opt.id]) + '%"></i></span>';
     else if (step === 'taille') v = '<span class="sg-v-size sg-v-size-' + opt.id + '"></span>';
     else if (step === 'charge') v = opt.id === 'sansfil' ? '<svg viewBox="0 0 24 24"><rect x="8" y="3" width="8" height="14" rx="1.6"/><path d="M4 20.5h16M6.5 18c3-2 8-2 11 0"/></svg>'
       : '<svg viewBox="0 0 24 24"><path d="M13 2 5 13.5h6L10 22l8-11.5h-6z"/>' + (opt.id === 'w80' ? '<path d="M20 4v4M22 6h-4"/>' : '') + '</svg>';
-    else if (step === 'photo') v = opt.id === 'ois' ? '<svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/><path d="M1.5 11v4M22.5 11v4"/></svg>'
+    else if (step === 'photo') v = opt.id === 'ultra' ? '<svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/><path d="M1.5 11v4M22.5 11v4"/></svg>'
       : '<svg viewBox="0 0 24 24"><circle cx="9" cy="12" r="5"/><circle cx="9" cy="12" r="2"/><path d="M14 9.5h7v5h-7"/></svg>';
     else if (step === 'preuves') v = '<svg viewBox="0 0 24 24">' + ICONS.preuves + '</svg>';
     else if (step === 'priorite') v = '<svg viewBox="0 0 24 24">' + (ICONS[{ autonomie: 'batterie', puissance: 'processeur', photo: 'photo' }[opt.id]] || ICONS.priorite) + '</svg>';
@@ -78,17 +82,23 @@
 
   /* ---------- Étapes ---------- */
   function buildSteps() {
-    document.getElementById('sg-steps').innerHTML = guide.steps.map(function (s, i) {
-      return '<li class="sg-step" id="sg-step-' + s.id + '">' +
+    document.getElementById('sg-steps').innerHTML = guide.steps.map(function (s) {
+      return '<li class="sg-step' + (s.parent ? ' sg-refined-step' : '') + '" id="sg-step-' + s.id + '">' +
         '<h3 class="sg-step-h"><button type="button" class="sg-step-btn" id="sg-btn-' + s.id + '" aria-expanded="false" aria-controls="sg-panel-' + s.id + '">' +
-        '<span class="sg-ico">' + icon(s.id) + '</span>' +
-        '<span class="sg-step-tt"><span class="sg-step-n">Étape ' + (i + 1) + ' sur ' + guide.steps.length + '</span><span class="sg-step-t">' + esc(s.titre) + '</span></span>' +
+        '<span class="sg-ico">' + icon(s.parent || s.id) + '</span>' +
+        '<span class="sg-step-tt"><span class="sg-step-t">' + esc(s.titre) + '</span></span>' +
         '<span class="sg-step-v" id="sg-status-' + s.id + '"></span><span class="sg-step-c" aria-hidden="true"></span></button></h3>' +
         '<div class="sg-panel" id="sg-panel-' + s.id + '" role="region" aria-labelledby="sg-btn-' + s.id + '"><div class="sg-panel-in">' +
         '<p class="sg-q">' + esc(s.question) + '</p><p class="sg-aide">' + esc(s.aide) + '</p>' +
+        (s.id === 'ecran' ? '<label class="sg-contrast-control">Rétroéclairage LCD dans la simulation <input type="range" min="0" max="100" value="55" data-contrast></label>' : '') +
         '<p class="sg-warn" id="sg-warn-' + s.id + '" hidden></p>' +
         '<ul class="sg-opts sg-opts-' + s.id + '" id="sg-opts-' + s.id + '"></ul>' +
-        '<div class="sg-step-actions"><button type="button" class="sg-link-btn" data-skip="' + s.id + '">Passer cette étape</button>' +
+        '<div class="sg-step-actions">' +
+        (s.id === 'fluidite' && !reduceMotion && Element.prototype.getAnimations
+          ? '<button type="button" class="sg-link-btn" data-replay-fluidite>Rejouer la comparaison</button>' : '') +
+        (s.id === 'ecran' || s.id === 'photo' ? '<button type="button" class="sg-link-btn" data-refine="' + s.id +
+          '" aria-expanded="false" aria-controls="' + guide.steps.filter(function (f) { return f.parent === s.id; }).map(function (f) { return 'sg-step-' + f.id; }).join(' ') + '">Affiner ' + (s.id === 'ecran' ? 'la fluidité' : 'la photo') + '</button>' : '') +
+        '<button type="button" class="sg-link-btn" data-skip="' + s.id + '">Passer cette étape</button>' +
         '<button type="button" class="sg-link-btn" data-clear="' + s.id + '" hidden>Retirer mon choix</button></div>' +
         '</div></div></li>';
     }).join('');
@@ -106,7 +116,10 @@
       var choice = guide.sel[s.id], o = guide.chosen(s.id);
       var isOpen = openStep === s.id;
       var broken = !!o && !guide.availability(s.id, o.id).available;
+      li.hidden = !!s.parent && !refinements[s.parent] && !choice;
       li.classList.toggle('is-open', isOpen);
+      var refine = li.querySelector('[data-refine]');
+      if (refine) refine.setAttribute('aria-expanded', String(!!refinements[s.id]));
       li.classList.toggle('is-done', !!o);
       li.classList.toggle('is-broken', broken);
       btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
@@ -116,13 +129,20 @@
       document.getElementById('sg-opts-' + s.id).innerHTML = s.options.map(function (opt) {
         var a = guide.availability(s.id, opt.id);
         var sel = choice === opt.id;
+        var adjustments = !a.available && !sel ? guide.adjustments(s.id, opt.id) : null;
+        var canChange = adjustments !== null && adjustments.length > 0;
+        var blocked = !a.available && !sel && !canChange;
         var whyId = 'sg-why-' + s.id + '-' + opt.id;
         var tail = sel ? '<span class="sg-chosen">Choisi</span>' : (a.available && !s.ranking) ? '<span class="sg-count">' + a.ok + ' modèle' + (a.ok > 1 ? 's' : '') + '</span>' : '';
         var trade = opt.adv ? '<span class="sg-trade"><span class="sg-adv"><b>Avantage</b> ' + esc(opt.adv) + '</span><span class="sg-comp"><b>Compromis</b> ' + esc(opt.comp) + '</span></span>' : '';
         return '<li><button type="button" class="sg-opt' + (sel ? ' is-on' : '') + (sel && !a.available ? ' is-broken' : '') + '" data-step="' + s.id + '" data-opt="' + opt.id + '" aria-pressed="' + sel + '"' +
-          (!a.available && !sel ? ' disabled' : '') + (!a.available ? ' aria-describedby="' + whyId + '"' : '') + '>' +
+          (blocked ? ' disabled' : '') + (!a.available ? ' aria-describedby="' + whyId + '"' : '') + '>' +
           optVisual(s.id, opt) + '<span class="sg-opt-top">' + optionLabel(s, opt) + tail + '</span>' + trade +
-          (!a.available ? '<span class="sg-why" id="' + whyId + '"><b>Indisponible.</b> ' + esc(reasonText(a)) + '</span>' : '') +
+          (!a.available ? '<span class="sg-why" id="' + whyId + '">' +
+            (canChange ? '<b>Ce choix retirera</b> ' + esc(adjustments.map(function (step) {
+              return '« ' + guide.chosen(step.id).label + ' »';
+            }).join(', ')) + '.' : '<b>Indisponible.</b> ' +
+              esc(blocked && a.reason !== 'inconnu' ? 'Aucun modèle documenté pour ce choix.' : reasonText(a))) + '</span>' : '') +
           '</button></li>';
       }).join('');
 
@@ -130,21 +150,30 @@
       warn.hidden = !broken;
       if (broken) warn.textContent = '« ' + o.label + ' » ne correspond plus. ' + reasonText(guide.availability(s.id, o.id)) + ' Retirez ce choix ou un autre critère.';
       li.querySelector('[data-clear]').hidden = !choice;
-      li.querySelector('[data-skip]').hidden = choice === L.SKIP || !!s.ranking;
+      var skip = li.querySelector('[data-skip]');
+      skip.hidden = !!s.ranking;
+      skip.textContent = choice ? 'Continuer' : 'Passer cette étape';
     });
   }
 
   /* ---------- Carte de recommandation ---------- */
   function specRows(p) {
     var rows = [['Puce et écran', p.puce_ecran], ['Batterie et charge', p.batterie_charge], ['Photo arrière', p.photo_arriere]];
+    if (p.specs.capteur) rows.push(['Capteur photo principal', p.specs.capteur.replace('.', ',') + '″', p.source_criteres]);
+    if (p.benchmark_puce) {
+      var bench = p.benchmark_puce;
+      var context = bench.reference ? ' · puce de référence ' + bench.reference : bench.appareil ? ' · mesure sur ' + bench.appareil : '';
+      rows.push(['Geekbench 6 multicœur', fmt(bench.multicoeur) + context, bench.source]);
+    }
     if (p.france) {
       [['Offre neuve', 'offre'], ['Protection', 'ip'], ['Mises à niveau système', 'os'], ['Correctifs de sécurité', 'securite']].forEach(function (item) {
         var champ = p.france[item[1]];
-        if (champ && champ.texte) rows.push([item[0], champ.texte]);
+        if (champ && champ.texte) rows.push([item[0], champ.texte, champ.sources[0]]);
       });
     }
     return '<dl class="sg-specs">' + rows.map(function (r) {
-      return '<div><dt>' + r[0] + '</dt><dd>' + (r[1] ? esc(r[1]) : '<span class="sg-nd">non renseigné</span>') + '</dd></div>';
+      return '<div><dt>' + r[0] + '</dt><dd>' + (r[1] ? esc(r[1]) : '<span class="sg-nd">non renseigné</span>') +
+        (r[2] ? ' ' + lien(r[2], 'Source') : '') + '</dd></div>';
     }).join('') + '</dl>';
   }
   /* Pastilles courtes tirées de la fiche ; celles qui répondent à un choix actif sont marquées. */
@@ -152,13 +181,17 @@
     var chips = [], s = p.specs || {}, n = F.niveau(p);
     var m = function (step) { var o = guide && guide.chosen(step); return !!o && o.test(p) === true; };
     if (s.pouces) chips.push([pouces(s.pouces), m('taille')]);
-    if (s.ecran || s.hz) chips.push([[s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '', s.hz ? s.hz + ' Hz' : ''].filter(Boolean).join(' '), m('ecran')]);
+    if (s.ecran || s.hz) chips.push([[s.ltpo ? 'OLED LTPO' : s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '', s.hz ? s.hz + ' Hz' : ''].filter(Boolean).join(' '), m('ecran') || m('fluidite')]);
     chips.push([n === null ? 'Puce non classée' : 'Puce ' + n + '/10', m('processeur')]);
     if (s.mah) chips.push([fmt(s.mah) + ' mAh', m('batterie')]);
     if (s.charge_w) chips.push([s.charge_w + ' W', m('charge')]);
     else if (s.sans_fil) chips.push(['Sans fil', m('charge')]);
+    if (s.indices_ip && m('protection')) chips.push([s.indices_ip.join(' / '), true]);
     if (s.tele) chips.push(['Téléobjectif', m('photo')]);
-    if (s.ois) chips.push(['OIS', m('photo')]);
+    if (s.ultra && m('photo')) chips.push(['Ultra grand-angle', true]);
+    if (s.ois || s.eis) chips.push([[s.ois ? 'OIS' : '', s.eis ? 'EIS' : ''].filter(Boolean).join(' + '), m('stabilisation')]);
+    if (s.mp && m('resolution')) chips.push([s.mp + ' Mpx', true]);
+    if (s.capteur && m('capteur')) chips.push([pouces(s.capteur), true]);
     return '<ul class="sg-chips">' + chips.map(function (x) { return '<li' + (x[1] ? ' class="is-match"' : '') + '>' + esc(x[0]) + '</li>'; }).join('') + '</ul>';
   }
   function rangTxt(r) { return r === 1 ? '1er' : r + 'e'; }
@@ -182,7 +215,7 @@
     photo: 'Classé d’abord par téléobjectif et stabilisation annoncés, puis par note de puce.'
   };
   function meter(pr) {
-    var cells = guide.filterSteps().map(function (s) {
+    var cells = guide.filterSteps().filter(function (s) { return !s.parent || !!guide.sel[s.id]; }).map(function (s) {
       var o = guide.chosen(s.id), st = (o && guide.availability(s.id, o.id).available) ? 'ok' : 'off';
       return '<i class="is-' + st + '"></i>';
     }).join('');
@@ -192,7 +225,9 @@
   }
   var lastReco = null;
   function card(top, body) {
-    return '<div class="sg-res-top">' + top + '<span class="sg-res-phone" aria-hidden="true"></span></div><div class="sg-res-body">' + body + '</div>';
+    var restart = !catalogueError && Object.keys(guide.sel).length
+      ? '<button type="button" class="sg-link-btn" data-reset>Recommencer</button>' : '';
+    return '<div class="sg-res-top">' + top + '<span class="sg-res-phone" aria-hidden="true"></span></div><div class="sg-res-body">' + body + restart + '</div>';
   }
   function renderResult() {
     var box = document.getElementById('sg-result');
@@ -226,7 +261,7 @@
         var e = guide.measured(q.id);
         return '<li><span>' + esc(nameOf(q)) + '</span><b>' + (q.specs.mah ? fmt(q.specs.mah) + ' mAh' : '') + '</b><small>' + esc(chipText(q)) + (e ? ' · mesuré ' + e + ' fois' : ' · pas encore testé') + '</small></li>';
       }).join('') + '</ol>' : '') +
-      '<p class="sg-fine">Prix et suivi : voir la fiche. Vérifiez le vendeur, la variante et la disponibilité.</p>');
+      (p.specs.prix_eur !== null && p.specs.prix_eur !== undefined ? '<p class="sg-fine">Offre relevée le 20 novembre 2026 · ' + esc(p.france.offre.texte) + ' ' + lien(p.france.offre.sources[0], 'Voir l’offre') + '</p>' : '<p class="sg-fine">Prix neuf France indisponible pour le filtre. Voir les relevés dans la fiche.</p>'));
     updateDock(p); updateMock(p);
   }
 
@@ -265,10 +300,13 @@
     new IntersectionObserver(function (es) { dockVisibleCard = es[0].isIntersecting; updateDock(lastReco); }, { threshold: 0.15 }).observe(card);
   }
 
-  function render() { renderSteps(); renderResult(); }
+  function render() {
+    renderSteps(); renderResult();
+    document.getElementById('sg-reset').disabled = Object.keys(guide.sel).length === 0;
+  }
 
   function nextStep(after) {
-    var ids = guide.steps.map(function (s) { return s.id; });
+    var ids = guide.steps.filter(function (s) { return !s.parent || refinements[s.parent] || s.id === after; }).map(function (s) { return s.id; });
     for (var k = ids.indexOf(after) + 1; k < ids.length; k++) if (!guide.sel[ids[k]]) return ids[k];
     return null;
   }
@@ -288,13 +326,32 @@
       openStep = openStep === id ? null : id;
       render(); return;
     }
-    if (t.dataset.opt) {
-      guide.choose(t.dataset.step, t.dataset.opt);
-      openStep = nextStep(t.dataset.step);
+    if (t.hasAttribute('data-replay-fluidite')) {
+      document.getElementById('sg-opts-fluidite').getAnimations({ subtree: true }).forEach(function (animation) {
+        animation.currentTime = 0;
+        animation.play();
+      });
+      return;
+    }
+    if (t.dataset.refine) {
+      var parent = t.dataset.refine;
+      refinements[parent] = true;
+      openStep = guide.steps.find(function (step) { return step.parent === parent; }).id;
       render(); focusStep(openStep); return;
     }
+    if (t.dataset.opt) {
+      var step = t.dataset.step;
+      var wasChosen = !!guide.chosen(step);
+      if (!guide.applyOption(step, t.dataset.opt)) return;
+      openStep = wasChosen || step === 'ecran' || step === 'photo' ? step : nextStep(step);
+      render();
+      if (openStep === step) {
+        document.getElementById('sg-opts-' + step).querySelector('[aria-pressed="true"]').focus({ preventScroll: true });
+      } else focusStep(openStep);
+      return;
+    }
     if (t.dataset.skip) {
-      guide.skip(t.dataset.skip);
+      if (!guide.sel[t.dataset.skip]) guide.skip(t.dataset.skip);
       openStep = nextStep(t.dataset.skip);
       render(); focusStep(openStep); return;
     }
@@ -826,6 +883,29 @@
       }).join('') + '</div>';
   }
 
+  function setupChipTable() {
+    var box = document.getElementById('sg-puces');
+    var byChip = new Map();
+    TD.modeles.forEach(function (modele) {
+      if (!modele.benchmark_puce) return;
+      var chip = modele.specs.puce;
+      if (!byChip.has(chip)) byChip.set(chip, { name: chip, bench: modele.benchmark_puce, level: F.niveau(modele), models: [] });
+      byChip.get(chip).models.push(modele.nom);
+    });
+    if (!byChip.size) return;
+    var ordered = Array.from(byChip.values()).sort(function (a, b) { return b.bench.multicoeur - a.bench.multicoeur; });
+    box.innerHTML = '<div class="sg-chip-table" tabindex="0" role="region" aria-label="Classement des processeurs"><table>' +
+      '<caption>Notes du guide selon Geekbench 6 multicœur</caption><thead><tr><th scope="col">Puce et modèles</th><th scope="col">Note</th>' +
+      '<th scope="col">Score et source</th></tr></thead><tbody>' + ordered.map(function (chip) {
+        var context = chip.bench.reference ? 'Puce de référence : ' + chip.bench.reference
+          : chip.bench.appareil ? 'Mesure sur ' + chip.bench.appareil : '';
+        return '<tr><th scope="row">' + esc(chip.name) + '<small>' + esc(chip.models.join(', ')) + '</small></th><td><b>' + chip.level +
+          '/10</b></td><td>' + lien(chip.bench.source, fmt(chip.bench.multicoeur)) + (context ? '<small>' + esc(context) + '</small>' : '') + '</td></tr>';
+      }).join('') + '</tbody></table></div>';
+    if (TD.bareme_puce) box.insertAdjacentHTML('beforeend', '<p class="sg-fine">Le barème part de 1/10 et ajoute un point à chaque seuil atteint en multicœur (' +
+      TD.bareme_puce.map(fmt).join(' · ') + ').</p>');
+  }
+
   /* Fiche d’un modèle : caractéristiques annoncées + preuves rattachées. */
   function setupFiche() {
     var sel = document.getElementById('sg-fiche-sel'), card = document.getElementById('sg-fiche-card');
@@ -854,6 +934,15 @@
           }).join('') + '</dl><p class="sg-fine">Prix relevés dans la source : vérifiez le vendeur, la variante et la disponibilité.</p>' +
           '<details class="sg-cond"><summary>Sources du suivi et de la protection</summary><ul class="sg-srcs">' +
           m.france.sources.sources.map(function (url) { return '<li>' + lien(url, hote(url)) + '</li>'; }).join('') + '</ul></details>';
+      }
+      if (m.source_criteres) {
+        var infos = [];
+        if (m.specs.capteur) infos.push('Capteur photo principal ' + m.specs.capteur.replace('.', ',') + '″');
+        if (m.specs.ecran === 'lcd' && m.specs.hz) infos.push('Écran LCD ' + m.specs.hz + ' Hz');
+        if (m.specs.ois) infos.push('stabilisation optique');
+        if (m.specs.eis) infos.push('stabilisation électronique documentée');
+        if (m.specs.ultra) infos.push('ultra grand-angle');
+        if (infos.length) html += '<p class="sg-fine">' + esc(infos.join(' · ')) + ' ' + lien(m.source_criteres, 'Source des caractéristiques') + '</p>';
       }
       var res = [];
       TD.classements.forEach(function (c) { c.lignes.forEach(function (l) { if (l.modele === id) res.push({ c: c, l: l }); }); });
@@ -924,7 +1013,26 @@
     var anat = setupAnatomy();
     setupHero();
     setupDock();
-    document.getElementById('sg-steps').addEventListener('click', onStepsClick);
+    var steps = document.getElementById('sg-steps');
+    steps.addEventListener('click', onStepsClick);
+    steps.addEventListener('input', function (e) {
+      if (e.target.hasAttribute('data-contrast')) document.getElementById('sg-opts-ecran')
+        .style.setProperty('--sg-backlight', Number(e.target.value) / 100);
+    });
+    function restart() {
+      if (!guide) return;
+      guide.reset();
+      refinements = {};
+      openStep = 'priorite';
+      var contrast = steps.querySelector('[data-contrast]');
+      contrast.value = contrast.defaultValue;
+      contrast.dispatchEvent(new Event('input', { bubbles: true }));
+      render(); focusStep(openStep);
+    }
+    document.getElementById('sg-reset').addEventListener('click', restart);
+    document.getElementById('sg-result').addEventListener('click', function (e) {
+      if (e.target.closest('[data-reset]')) restart();
+    });
     fetch('data/smartphones-tests.json')
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (d) {
@@ -935,7 +1043,7 @@
         buildSteps(); render();
         document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(d.modeles.length); });
         document.querySelectorAll('[data-tests]').forEach(function (el) { el.textContent = String(d.tests.length); });
-        setupTestList(); renderSame(); setupFiche();
+        setupTestList(); renderSame(); setupFiche(); setupChipTable();
         if (anat) anat.refresh();
       })
       .catch(function () {

@@ -35,12 +35,23 @@ check('Toutes les fiches de la base sont proposées, avec des caractéristiques 
   const avecMah = data.modeles.filter(m => typeof m.specs.mah === 'number').length;
   assert.ok(avecMah >= data.modeles.length - 2, 'capacités lues : ' + avecMah);
   const classees = data.modeles.filter(m => L.fields.niveau(m) !== null).length;
-  assert.ok(classees >= data.modeles.length - 8, 'puces classées : ' + classees);
+  assert.equal(classees, data.modeles.length);
+  data.modeles.forEach(m => {
+    assert.match(m.benchmark_puce.source, /^https:\/\//, m.id);
+    assert.equal(L.fields.niveau(m), 1 + data.bareme_puce.filter(seuil => m.benchmark_puce.multicoeur >= seuil).length, m.id);
+  });
 });
 
-check('Aucune étape de prix, d’étanchéité ni de mises à jour tant que la base ne les renseigne pas', () => {
+check('Le budget France et la protection IP filtrent les valeurs confirmées', () => {
   const g = new L.Guide(data.modeles, data);
-  ['prix', 'protection', 'maj'].forEach(id => assert.equal(g.step(id), null));
+  g.choose('prix', 'eur300');
+  assert.ok(g.results().length > 0);
+  assert.ok(g.results().every(m => m.specs.prix_eur !== null && m.specs.prix_eur <= 300));
+  g.clear('prix');
+  g.choose('protection', 'ip68');
+  assert.ok(g.results().length > 0);
+  assert.ok(g.results().every(m => m.specs.indices_ip.includes('IP68')));
+  assert.equal(g.step('maj'), null);
 });
 
 check('Une recommandation s’affiche dès le départ, et la priorité ne retire aucun modèle', () => {
@@ -54,7 +65,7 @@ check('Une recommandation s’affiche dès le départ, et la priorité ne retire
 check('Une donnée absente vaut « inconnue » : ni correspondance, ni échec', () => {
   const g = new L.Guide(synth);
   const a = g.availability('batterie', 'b5000');
-  assert.equal(a.ok, 2); assert.equal(a.unknown, 1);           // a et b ; c a 4 500 mAh ; d inconnu
+  assert.equal(a.ok, 1); assert.equal(a.unknown, 1);           // b : 5 000 mAh ; d : inconnu
   g.choose('batterie', 'b5000');
   assert.ok(!g.results().some(p => p.id === 'd'));
 });
@@ -62,9 +73,9 @@ check('Une donnée absente vaut « inconnue » : ni correspondance, ni échec', 
 check('Option indisponible signalée avec sa raison (aucun / inconnu)', () => {
   const g = new L.Guide(synth);
   g.choose('taille', 'compact');                    // seul « c » (6,3″)
-  assert.equal(g.availability('batterie', 'b6500').reason, 'aucun');
+  assert.equal(g.availability('batterie', 'b7000').reason, 'aucun');
   g.clear('taille');
-  g.choose('photo', 'ois');                         // seul « c » renseigné
+  g.choose('stabilisation', 'ois');                         // seul « c » renseigné
   assert.equal(g.availability('photo', 'tele').available, true);
   const g2 = new L.Guide([phone('x', { tele: null }), phone('y', { tele: null })]);
   assert.equal(g2.availability('photo', 'tele').reason, 'inconnu');
@@ -72,11 +83,11 @@ check('Option indisponible signalée avec sa raison (aucun / inconnu)', () => {
 
 check('La recommandation respecte tous les choix actifs', () => {
   const g = new L.Guide(data.modeles, data);
-  g.choose('batterie', 'b6500'); g.choose('charge', 'w80'); g.choose('processeur', 'sommet');
+  g.choose('batterie', 'b7000'); g.choose('charge', 'w80'); g.choose('processeur', 'sommet');
   const r = g.recommend(3);
   assert.ok(r.length > 0);
   r.forEach(p => {
-    assert.ok(p.specs.mah >= 6500, p.id);
+    assert.ok(p.specs.mah >= 7000 && p.specs.mah <= 8000, p.id);
     assert.ok(p.specs.charge_w >= 80, p.id);
     assert.ok(L.fields.niveau(p) >= 9, p.id);
   });
@@ -128,12 +139,12 @@ check('Téléobjectif : « sans téléobjectif » vaut non, l’absence de menti
   assert.equal(data.modeles.find(m => m.id === 'oneplus-15r').specs.tele, false);
   assert.equal(data.modeles.find(m => m.id === 'iphone-17e').specs.tele, false);
   assert.equal(data.modeles.find(m => m.id === 'galaxy-s26-ultra').specs.tele, true);
-  assert.equal(data.modeles.find(m => m.id === 'xiaomi-17').specs.tele, null);
+  assert.equal(data.modeles.find(m => m.id === 'xiaomi-17').specs.tele, true);
 });
 
 check('Score : critères confirmés sur les étapes de filtre ; la priorité n’est pas comptée', () => {
   const g = new L.Guide(data.modeles, data);
-  const total = g.steps.filter(s => !s.ranking).length;
+  const total = g.steps.filter(s => !s.ranking && !s.parent).length;
   g.choose('priorite', 'photo');
   assert.deepEqual([g.progress().confirmed, g.progress().total], [0, total]);
   g.choose('ecran', 'oled');
@@ -143,11 +154,48 @@ check('Score : critères confirmés sur les étapes de filtre ; la priorité n�
 
 check('Un choix devenu impossible est signalé comme bloquant et n’est pas compté', () => {
   const g = new L.Guide(synth);
-  g.choose('taille', 'compact'); g.choose('batterie', 'b6500');
+  g.choose('taille', 'compact'); g.choose('batterie', 'b7000');
   assert.equal(g.recommend(3).length, 0);
   const b = g.blocking().map(x => x.step.id);
   assert.ok(b.includes('batterie') && b.includes('taille'));
   assert.equal(g.progress().confirmed, 0);
+});
+
+check('Le passage à une autre capacité ajuste les choix en conflit et garde la priorité', () => {
+  const g = new L.Guide(synth);
+  g.choose('ecran', 'oled');
+  g.choose('batterie', 'b5000');
+  g.choose('fluidite', 'hz120');
+  assert.deepEqual(g.results().map(m => m.id), ['b']);
+  assert.deepEqual(g.adjustments('batterie', 'b7000').map(s => s.id), ['ecran', 'fluidite']);
+  g.clear('fluidite');
+  g.choose('priorite', 'autonomie');
+  assert.equal(g.applyOption('batterie', 'b7000'), true);
+  assert.equal(g.chosen('ecran'), null);
+  assert.equal(g.chosen('priorite').id, 'autonomie');
+  assert.deepEqual(g.results().map(m => m.id), ['a']);
+  g.reset();
+  assert.equal(g.results().length, synth.length);
+  assert.equal(g.progress().answered, 0);
+});
+
+check('Modifier et effacer des filtres réactive toutes les options compatibles', () => {
+  const g = new L.Guide(data.modeles, data);
+  ['priorite', 'prix', 'taille', 'ecran', 'batterie', 'processeur', 'protection', 'charge', 'photo', 'preuves'].forEach(id => g.skip(id));
+  g.choose('ecran', 'oled');
+  g.choose('batterie', 'b3000');
+  g.clear('batterie');
+  assert.equal(g.applyOption('batterie', 'b5000'), true);
+  assert.ok(g.results().length > 10);
+  assert.equal(g.availability('fluidite', 'hz120').available, true);
+  assert.equal(g.availability('photo', 'tele').available, true);
+});
+
+check('Les tranches de batterie ne se chevauchent pas aux bornes', () => {
+  const bornes = [2999, 3000, 4999, 5000, 6999, 7000, 8000, 8001];
+  const g = new L.Guide(bornes.map(mah => phone(String(mah), { mah })));
+  const comptes = g.step('batterie').options.map(o => g.availability('batterie', o.id).ok);
+  assert.deepEqual(comptes, [1, 2, 2, 2, 1]);
 });
 
 console.log('\n' + ok + ' réussi(s), ' + ko + ' échec(s)');

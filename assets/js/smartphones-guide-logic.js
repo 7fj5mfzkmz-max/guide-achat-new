@@ -5,14 +5,13 @@
 
    Règles :
    - Un choix par étape : choisir une autre option remplace la précédente.
-   - Une option est disponible seulement si au moins un modèle respecte cette option et tous les autres choix actifs.
-     Les options et la recommandation utilisent le même filtre.
+   - Le nombre affiché respecte les autres choix actifs. Si une option correspond à un modèle du catalogue,
+     elle reste sélectionnable après indication des critères à retirer.
    - Une donnée absente de la base vaut « inconnue » (null) : elle ne compte ni comme correspondance ni comme échec.
    - La priorité ne retire aucun modèle : elle choisit l’ordre de la recommandation.
    - Les tests départagent : à caractéristiques proches, un modèle dont un test confirme le point fort passe devant.
      Un rang n’est jamais comparé d’un test à l’autre en valeur absolue : on garde la position dans le test (1er sur 6).
-   - Le prix, l’étanchéité et la durée des mises à jour ne sont pas encore dans la base : pas d’étape pour eux.
-   - Le niveau de puce (1 à 10) vient de phone-analyzer/chips.js. */
+   - Les notes du catalogue sont générées à partir de Geekbench 6 multicœur. */
 (function (root) {
   'use strict';
 
@@ -22,6 +21,7 @@
   function sp(p, k) { var v = p && p.specs ? p.specs[k] : null; return v === undefined ? null : v; }
   var niveauCache = {};
   function niveau(p) {
+    if (p && p.specs && Object.prototype.hasOwnProperty.call(p.specs, 'niveau_puce')) return p.specs.niveau_puce;
     var puce = sp(p, 'puce');
     if (!puce || !Chips) return null;
     if (!(puce in niveauCache)) niveauCache[puce] = Chips.level(puce);
@@ -66,6 +66,14 @@
   /* Position dans un test : 1 pour le premier, 0 pour le dernier. */
   function place(e) { return e.rang && e.n > 1 ? (e.n - e.rang) / (e.n - 1) : null; }
 
+  function plages(champ, rangs) {
+    return rangs.map(function (rang) {
+      return { id: rang[0], label: rang[1], test: function (p) {
+        return cmp(sp(p, champ), function (v) { return v >= rang[2] && v < rang[3]; });
+      } };
+    });
+  }
+
   function buildSteps() {
     return [
       { id: 'priorite', titre: 'Priorité', ranking: true, question: 'Qu’est-ce qui compte le plus pour vous ?',
@@ -76,6 +84,12 @@
           { id: 'puissance', label: 'La puissance', adv: 'Les puces les mieux notées d’abord.', comp: 'Une puce rapide chauffe plus en jeu long.' },
           { id: 'photo', label: 'La photo', adv: 'Téléobjectif et stabilisation annoncés d’abord.', comp: 'Les tests publiés comparent peu la photo : surtout des observations.' }
         ].map(function (o) { o.test = function () { return true; }; return o; }) },
+      { id: 'prix', titre: 'Budget', question: 'Quel est votre budget maximum ?',
+        aide: 'Offres neuves relevées en France le 20 novembre 2026, hors livraison. Vérifiez le vendeur et la disponibilité.',
+        options: [200, 300, 400, 500, 600, 800, 1000, 1200, 1500, 1800].map(function (max) {
+          return { id: 'eur' + max, label: 'Jusqu’à ' + max.toLocaleString('fr-FR') + ' €',
+            test: function (p) { return cmp(sp(p, 'prix_eur'), function (prix) { return prix <= max; }); } };
+        }) },
       { id: 'taille', titre: 'Taille', question: 'Quelle taille d’écran ?',
         aide: 'La diagonale décide de la prise en main. Au-delà de 6,7 pouces, l’usage à une main devient difficile.',
         options: [
@@ -86,18 +100,21 @@
           { id: 'grand', label: 'Grand (6,8″ ou plus)', adv: 'Vidéo, lecture et jeu plus confortables.', comp: 'Lourd et encombrant.',
             test: function (p) { return cmp(sp(p, 'pouces'), function (x) { return x >= 6.75; }); } }
         ] },
-      { id: 'ecran', titre: 'Écran', question: 'Quel type d’écran ?',
-        aide: 'La technologie décide du contraste ; la fréquence (en Hz), de la fluidité au défilement.',
+      { id: 'ecran', titre: 'Écran', question: 'Quelle technologie d’écran ?',
+        aide: 'AMOLED fait partie de la famille OLED. Le LTPO permet une fréquence variable.',
         options: [
-          { id: 'oled', label: 'OLED ou AMOLED', adv: 'Noirs profonds, bon contraste.', comp: 'Presque tous les modèles récents en ont un.',
-            test: function (p) { return cmp(sp(p, 'ecran'), function (t) { return t === 'oled'; }); } },
-          { id: 'hz120', label: '120 Hz ou plus', adv: 'Défilement fluide.', comp: 'Consomme un peu plus sans fréquence variable.',
-            test: function (p) { return cmp(sp(p, 'hz'), function (h) { return h >= 120; }); } },
-          { id: 'hz144', label: '144 Hz ou plus', adv: 'Utile dans les jeux compatibles.', comp: 'Peu visible hors jeu ; souvent réservé à certains jeux.',
-            test: function (p) { return cmp(sp(p, 'hz'), function (h) { return h >= 144; }); } }
+          { id: 'lcd', label: 'LCD', adv: 'Souvent moins cher.', comp: 'Les noirs tirent vers le gris.', test: function (p) { return cmp(sp(p, 'ecran'), function (t) { return t === 'lcd'; }); } },
+          { id: 'oled', label: 'OLED ou AMOLED', adv: 'Des noirs plus profonds.', comp: 'Le confort à faible luminosité varie selon l’écran.', test: function (p) { return cmp(sp(p, 'ecran'), function (t) { return t === 'oled'; }); } },
+          { id: 'ltpo', label: 'OLED LTPO', adv: 'Peut économiser la batterie sur une image fixe.', comp: 'Surtout sur les modèles haut de gamme.', test: function (p) { return sp(p, 'ltpo'); } }
         ] },
+      { id: 'fluidite', parent: 'ecran', titre: 'Fluidité', question: 'Quelle fréquence maximale annoncée ?',
+        aide: 'La simulation accentue les écarts. Certaines fréquences élevées s’activent dans les jeux compatibles.',
+        options: [60, 90, 120, 144].map(function (hz) {
+          return { id: 'hz' + hz, label: hz + ' Hz' + (hz === 144 ? ' ou plus' : ''), hz: hz,
+            test: function (p) { return cmp(sp(p, 'hz'), function (v) { return hz === 144 ? v >= hz : v === hz; }); } };
+        }) },
       { id: 'processeur', titre: 'Processeur', question: 'Quelle puissance ?',
-        aide: 'La note de 1 à 10 situe la puce parmi celles du marché. Elle est inconnue quand la puce n’est pas encore classée.',
+        aide: 'La note de 1 à 10 s’appuie sur Geekbench 6 multicœur. Le classement et les sources figurent dans Présentation.',
         options: GAMMES.map(function (g) {
           var txt = {
             entree: ['Suffit pour les messages, le web et la vidéo.', 'Les jeux 3D récents saccadent.'],
@@ -109,15 +126,26 @@
             test: function (p) { return cmp(niveau(p), function (n) { return n >= g.min && n <= g.max; }); } };
         }) },
       { id: 'batterie', titre: 'Batterie', question: 'Quelle capacité de batterie ?',
-        aide: 'Quand la capacité change selon le pays, on retient la plus petite version annoncée.',
+        aide: 'La capacité seule ne donne pas l’autonomie. Si plusieurs variantes sont documentées, le filtre retient la plus petite.',
+        options: plages('mah', [
+          ['sous3000', 'Moins de 3 000 mAh', 0, 3000],
+          ['b3000', '3 000 à 4 999 mAh', 3000, 5000],
+          ['b5000', '5 000 à 6 999 mAh', 5000, 7000],
+          ['b7000', '7 000 à 8 000 mAh', 7000, 8001],
+          ['b8000', 'Plus de 8 000 mAh', 8001, Infinity]
+        ]) },
+      { id: 'protection', titre: 'Protection IP', question: 'Quelle protection contre l’eau ou la poussière ?',
+        aide: 'Le premier chiffre concerne la poussière, le second l’eau. X indique un niveau non précisé.',
         options: [
-          { id: 'b5000', label: '5 000 mAh ou plus', adv: 'Tient souvent une journée d’usage normal.', comp: 'Ne garantit pas l’autonomie : l’écran et la puce consomment aussi.',
-            test: function (p) { return cmp(sp(p, 'mah'), function (c) { return c >= 5000; }); } },
-          { id: 'b6500', label: '6 500 mAh ou plus', adv: 'De la marge pour les longues journées.', comp: 'Téléphone souvent plus lourd.',
-            test: function (p) { return cmp(sp(p, 'mah'), function (c) { return c >= 6500; }); } },
-          { id: 'b8000', label: '8 000 mAh ou plus', adv: 'Deux jours possibles en usage léger.', comp: 'Lourd ; version européenne parfois plus petite.',
-            test: function (p) { return cmp(sp(p, 'mah'), function (c) { return c >= 8000; }); } }
-        ] },
+          ['ip64', 'Éclaboussures (IP54 ou IP64 à IP66)', /^IP(?:54|6[456])$/],
+          ['ip67', 'Immersion (IP67, IP68, IPX7 ou IPX8)', /^IP[6X][78]$/],
+          ['ip68', 'Poussière et immersion (IP68)', /^IP68$/],
+          ['ip69', 'Jets à haute pression (IP69 ou IP69K)', /^IP69K?$/]
+        ].map(function (option) {
+          return { id: option[0], label: option[1], test: function (p) {
+            return cmp(sp(p, 'indices_ip'), function (indices) { return indices.some(function (ip) { return option[2].test(ip); }); });
+          } };
+        }) },
       { id: 'charge', titre: 'Charge', question: 'Quelle recharge ?',
         aide: 'La puissance en watts (W) est un maximum annoncé, tenu quelques minutes, avec un chargeur compatible.',
         options: [
@@ -128,14 +156,39 @@
           { id: 'sansfil', label: 'Charge sans fil', adv: 'On pose le téléphone, sans câble.', comp: 'Plus lente que par câble.',
             test: function (p) { return sansFil(p); } }
         ] },
-      { id: 'photo', titre: 'Photo', question: 'Qu’attendez-vous de l’appareil photo ?',
-        aide: 'Le téléobjectif et la stabilisation comptent plus que le nombre de mégapixels.',
+      { id: 'photo', titre: 'Photo', question: 'Quel cadrage voulez-vous privilégier ?',
+        aide: 'Vous pouvez affiner la stabilisation, les mégapixels ou le capteur principal même sans choisir de cadrage.',
         options: [
-          { id: 'tele', label: 'Téléobjectif (zoom optique)', adv: 'Zoom net sur un sujet éloigné, portraits.', comp: 'Souvent réservé aux modèles chers.',
-            test: function (p) { return sp(p, 'tele'); } },
-          { id: 'ois', label: 'Stabilisation optique (OIS)', adv: 'Photos de nuit et vidéos plus nettes.', comp: 'Souvent non précisée dans les fiches.',
-            test: function (p) { return sp(p, 'ois'); } }
+          { id: 'tele', label: 'Téléobjectif (zoom optique)', adv: 'Rapproche un sujet éloigné.', comp: 'La qualité du zoom varie selon le module.', test: function (p) { return sp(p, 'tele'); } },
+          { id: 'ultra', label: 'Ultra grand-angle', adv: 'Fait entrer davantage de scène dans l’image.', comp: 'Les bords peuvent être déformés.', test: function (p) { return sp(p, 'ultra'); } },
+          { id: 'deuxobjectifs', label: 'Téléobjectif et ultra grand-angle', test: function (p) {
+            var tele = sp(p, 'tele'), ultra = sp(p, 'ultra');
+            if (tele === false || ultra === false) return false;
+            return tele === true && ultra === true ? true : null;
+          } }
         ] },
+      { id: 'stabilisation', parent: 'photo', titre: 'Stabilisation', question: 'Quelle stabilisation recherchez-vous ?',
+        aide: 'L’OIS compense le mouvement par l’optique ou le capteur. L’EIS le corrige par logiciel, généralement en vidéo.',
+        options: [
+          { id: 'ois', label: 'Stabilisation optique (OIS)', test: function (p) { return sp(p, 'ois'); } },
+          { id: 'eis', label: 'Stabilisation électronique (EIS)', test: function (p) { return sp(p, 'eis'); } },
+          { id: 'lesdeux', label: 'Optique et électronique', test: function (p) {
+            var ois = sp(p, 'ois'), eis = sp(p, 'eis');
+            if (ois === false || eis === false) return false;
+            return ois === true && eis === true ? true : null;
+          } }
+        ] },
+      { id: 'resolution', parent: 'photo', titre: 'Définition photo', question: 'Combien de mégapixels sur le module principal ?',
+        aide: 'Une haute définition donne de la marge pour recadrer. La lumière, l’optique et le traitement comptent aussi.',
+        options: plages('mp', [['mp0', 'Moins de 50 Mpx', 0, 50], ['mp50', '50 à 99 Mpx', 50, 100],
+          ['mp100', '100 à 199 Mpx', 100, 200], ['mp200', '200 Mpx ou plus', 200, Infinity]]) },
+      { id: 'capteur', parent: 'photo', titre: 'Taille du capteur', question: 'Quel format de capteur principal ?',
+        aide: 'Dans ces formats optiques, 1/1,3″ est plus grand que 1/2″.',
+        options: [[1.4, '1/1,4″ ou plus grand'], [1.6, '1/1,6″ ou plus grand'], [2, '1/2″ ou plus grand']].map(function (rang) {
+          return { id: 'capteur' + String(rang[0]).replace('.', ''), label: rang[1], test: function (p) {
+            return cmp(sp(p, 'capteur'), function (format) { return format === '1' || Number(format.split('/')[1]) <= rang[0]; });
+          } };
+        }) },
       { id: 'preuves', titre: 'Tests', question: 'Seulement des modèles mesurés par des testeurs ?',
         aide: 'Un résultat publié vérifie les chiffres annoncés : autonomie, recharge, performances.',
         options: [
@@ -173,6 +226,27 @@
   Guide.prototype.choose = function (stepId, optId) { this.sel[stepId] = optId; };
   Guide.prototype.skip = function (stepId) { this.sel[stepId] = SKIP; };
   Guide.prototype.clear = function (stepId) { delete this.sel[stepId]; };
+  Guide.prototype.reset = function () { this.sel = {}; };
+  /* La combinaison retenue conserve le maximum de choix actifs. */
+  Guide.prototype.adjustments = function (stepId, optId) {
+    var option = this.option(stepId, optId), self = this, best = null;
+    if (!option) return null;
+    if (this.step(stepId).ranking) return [];
+    var active = this.filterSteps().filter(function (step) { return step.id !== stepId && self.chosen(step.id); });
+    this.products.forEach(function (p) {
+      if (option.test(p) !== true) return;
+      var conflicts = active.filter(function (step) { return self.chosen(step.id).test(p) !== true; });
+      if (best === null || conflicts.length < best.length) best = conflicts;
+    });
+    return best;
+  };
+  Guide.prototype.applyOption = function (stepId, optId) {
+    var changes = this.adjustments(stepId, optId), self = this;
+    if (changes === null) return false;
+    changes.forEach(function (step) { self.clear(step.id); });
+    this.choose(stepId, optId);
+    return true;
+  };
   Guide.prototype.filterSteps = function () { return this.steps.filter(function (s) { return !s.ranking; }); };
   /* Nombre de résultats chiffrés publiés (lignes de classement + tableaux) pour un modèle. */
   Guide.prototype.measured = function (id) {
@@ -224,7 +298,7 @@
   };
   /* Critères confirmés : choisis et encore compatibles avec les autres choix. La priorité n’est pas un critère. */
   Guide.prototype.progress = function () {
-    var self = this, confirmed = 0, answered = 0, fs = this.filterSteps();
+    var self = this, confirmed = 0, answered = 0, fs = this.filterSteps().filter(function (s) { return !s.parent || !!self.sel[s.id]; });
     fs.forEach(function (s) {
       if (self.sel[s.id]) answered++;
       var o = self.chosen(s.id);

@@ -15,6 +15,8 @@ RACINE = Path(__file__).resolve().parents[2]
 SRC1 = RACINE / 'data/sources/base-tests-T01-T11.md'
 SRC2 = RACINE / 'data/sources/base-tests-T12-T16.md'
 SRC_FRANCE = RACINE / 'data/sources/base-smartphones-prix-france-ip-mises-a-jour.md'
+SRC_CRITERES = RACINE / 'data/sources/smartphones-criteres.json'
+SEUILS_PUCE = (1500, 2000, 2500, 3000, 4000, 5000, 6500, 8500, 10500)
 SORTIE = RACINE / 'data/smartphones-tests.json'
 
 LIEN = re.compile(r'\[([^\]]+)\]\(((?:[^()\s]|\([^()]*\))+)\)')
@@ -112,7 +114,7 @@ def specs_de(m):
     puce = re.sub(r'\s+(en France|sur la fiche France)$', '', seg[0]).strip() or None
 
     ecran_txt = ' '.join(seg[1:]) if len(seg) > 1 else ''
-    if re.search(r'OLED', ecran_txt, re.I):
+    if re.search(r'OLED|LTPO', ecran_txt, re.I):
         techno = 'oled'
     elif re.search(r'LCD|IPS', ecran_txt, re.I):
         techno = 'lcd'
@@ -150,14 +152,17 @@ def specs_de(m):
         'pouces': nombre_fr(pouces.group(1)) if pouces else None,
         'pliant': bool(re.search(r'pliant', ecran_txt)),
         'hz': max(hz) if hz else None,
-        'ltpo': True if re.search(r'LTPO|\b1[–-]1[2-6]\d\s*Hz', ecran_txt) else None,
+        'ltpo': True if re.search(r'\bLTPO\b', ecran_txt, re.I) else None,
         'mah': min(mah) if mah else None,
         'mah_max': max(mah) if mah else None,
         'charge_w': max(filaire) if filaire else None,
         'sans_fil': sf,
         'mp': int(mp.group(1)) if mp else None,
         'tele': tele,
-        'ois': True if re.search(r'\bOIS\b', ph) else None,
+        'ois': True if re.search(r'\bOIS\b|stabilisation optique', ph, re.I) else None,
+        'eis': True if re.search(r'\bEIS\b|stabilisation électronique', ph, re.I) else None,
+        'ultra': True if re.search(r'ultra[ -]grand[ -]angle', ph, re.I) else None,
+        'capteur': None,
         'refroidissement': bool(re.search(r'ventilateur|refroidissement', pe))
     }
 
@@ -386,6 +391,28 @@ def main():
                     texte, urls = nettoyer(valeur)
                     modeles[mid]['france'][nom] = {'texte': texte or None, 'sources': urls}
 
+    criteres = json.loads(SRC_CRITERES.read_text(encoding='utf-8'))
+    for modele in modeles.values():
+        specs = modele['specs']
+        puce = criteres['geekbench6'].get(specs['puce'])
+        specs['niveau_puce'] = 1 + sum(puce['multicoeur'] >= seuil for seuil in SEUILS_PUCE) if puce else None
+        modele['benchmark_puce'] = puce
+        complement = criteres['complements'].get(modele['id'])
+        if complement:
+            specs.update(complement['specs'])
+            modele['source_criteres'] = complement['source']
+
+        france = modele.get('france', {})
+        offre = france.get('offre', {})
+        texte_offre = offre.get('texte') or ''
+        # Seul le montant lié au vendeur et placé en tête d'une offre vérifiée est filtrable.
+        prix = re.match(r'^([0-9][0-9 ]*(?:,[0-9]{2})?) € / [0-9]+ (?:Go|To)\b', texte_offre)
+        specs['prix_eur'] = nombre_fr(prix[1]) if prix and offre.get('sources') and not re.search(r'\bimport[ée]', texte_offre, re.I) else None
+        indice = france.get('ip', {}).get('texte') or ''
+        # Un indice du ventilateur ne qualifie pas le téléphone.
+        indices = re.findall(r'\bIP[0-9X][0-9X]K?\b', indice.split(';', 1)[0])
+        specs['indices_ip'] = indices or None
+
     # Transparence : sponsors et liens affiliés, relevés dans les protocoles
     transparence = {}
     for tid, t in tests.items():
@@ -397,8 +424,9 @@ def main():
         if marques: transparence[tid] = marques
 
     sortie = {
-        'version': '2026-11-19',
-        'sources': {'T01-T11': 'data/sources/base-tests-T01-T11.md', 'T12-T16': 'data/sources/base-tests-T12-T16.md', 'France': 'data/sources/base-smartphones-prix-france-ip-mises-a-jour.md'},
+        'version': criteres['date'],
+        'bareme_puce': list(SEUILS_PUCE),
+        'sources': {'T01-T11': 'data/sources/base-tests-T01-T11.md', 'T12-T16': 'data/sources/base-tests-T12-T16.md', 'France': 'data/sources/base-smartphones-prix-france-ip-mises-a-jour.md', 'Critères': 'data/sources/smartphones-criteres.json'},
         'statuts': {
             'spec_constructeur': 'Fiche officielle du fabricant.',
             'spec_secondaire': 'Caractéristique non vérifiée dans la fiche officielle.',

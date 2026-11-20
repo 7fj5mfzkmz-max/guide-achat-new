@@ -88,6 +88,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div>
 
 <section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone">
+<div class="sg-quiz-actions"><button type="button" class="sg-link-btn" id="sg-reset" disabled>Recommencer</button></div>
 <div class="sg-parcours" id="sg-parcours">
 <ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement des fiches…</li></ol>
 <aside class="sg-result-col" aria-label="Recommandation">
@@ -136,6 +137,9 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <section class="sg-fiche" id="sg-fiche" aria-labelledby="sg-h-fiche">
 <div class="sg-sec-head"><h2 id="sg-h-fiche"><span class="sg-h-light">Un modèle en détail,</span> avec ses preuves.</h2>
 <p class="sg-sec-lead">Caractéristiques annoncées, résultats de tests et observations, chacun rattaché à sa source.</p></div>
+<details class="sg-cond"><summary>Voir le classement des processeurs par modèle</summary>
+<p class="sg-fine">La note situe les puces selon leur score Geekbench 6 multicœur. Les tests de téléphones éclairent ensuite les performances en usage.</p>
+<div id="sg-puces"></div></details>
 <div class="sg-fiche-pick"><label for="sg-fiche-sel">Choisir un modèle</label><select id="sg-fiche-sel" class="sg-select"></select></div>
 <div class="sg-fiche-card" id="sg-fiche-card" aria-live="polite"></div>
 </section>
