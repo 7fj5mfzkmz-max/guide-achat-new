@@ -49,17 +49,17 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="sg-wrap sg-hero-grid">
 <div class="sg-hero-text">
 <h1 id="sg-title"><span class="sg-h1-light">Le bon smartphone,</span> <span class="sg-sticker-text">c’est celui qui vous convient.</span></h1>
-<p class="sg-lead">Dites ce qui compte pour vous. Seules les options qui existent restent proposées, et les tests publiés départagent les modèles.</p>
+<p class="sg-lead">On décode les caractéristiques, on rassemble les résultats des tests et on vous aide à comparer les téléphones. Vous avez déjà un modèle en tête ? Lancez l’analyseur. Vous hésitez encore ? Le parcours de critères vous aide à trouver les modèles qui correspondent à vos usages.</p>
 <div class="sg-hero-actions">
 <button type="button" class="sg-cta" id="sg-cta-start">Choisir mes critères</button>
-<button type="button" class="sg-cta-ghost" id="sg-cta-analyse">J’ai déjà un modèle en tête</button>
+<button type="button" class="sg-cta-ghost" id="sg-cta-analyse"><span class="sg-cta-ghost-k">Vous avez repéré un modèle ?</span><span class="sg-cta-ghost-label">L’analyser</span><svg class="sg-cta-ghost-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
 </div>
 </div>
 <div class="sg-hero-visual" aria-hidden="true">
 <svg class="sg-wires" viewBox="0 0 520 520" preserveAspectRatio="none" focusable="false">
-<path d="M150 112 C 200 112, 200 170, 236 190"/><path d="M372 92 C 330 92, 330 150, 300 176"/>
-<path d="M120 300 C 180 300, 190 290, 232 290"/><path d="M402 330 C 350 330, 340 300, 306 296"/>
-<path d="M170 436 C 210 436, 220 400, 246 386"/><path d="M380 446 C 330 446, 320 410, 294 392"/>
+<path class="wire-screen" d="M138 105 C 177 105, 195 155, 228 169"/><path class="wire-chip" d="M380 86 C 340 86, 329 119, 304 139"/>
+<path class="wire-photo" d="M115 274 C 158 274, 177 265, 206 250"/><path class="wire-battery" d="M408 290 C 361 290, 348 267, 321 259"/>
+<path class="wire-ip" d="M165 423 C 197 423, 208 367, 226 346"/><path class="wire-updates" d="M394 428 C 359 428, 336 372, 306 347"/>
 </svg>
 <div class="sg-phone">
 <div class="sg-phone-notch"></div>
@@ -71,9 +71,12 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="sg-mock-rows" id="sg-mock-rows"><span></span><span></span><span></span></div>
 </div>
 </div>
-<span class="sg-float f1">Écran</span><span class="sg-float f2">Puce 1–10</span>
-<span class="sg-float f3">Photo</span><span class="sg-float f4">Batterie</span>
-<span class="sg-float f5">Indice IP</span><span class="sg-float f6">Mises à jour</span>
+<button type="button" class="sg-float f1" aria-label="Écran. Ouvrir la définition" aria-describedby="sg-tip-screen" aria-expanded="false">Écran<span class="sg-tip" id="sg-tip-screen" role="tooltip">La dalle que vous regardez. LCD et OLED produisent l’image de façon différente.</span></button>
+<button type="button" class="sg-float f2" aria-label="Puce. Ouvrir la définition" aria-describedby="sg-tip-chip" aria-expanded="false">Puce<span class="sg-tip" id="sg-tip-chip" role="tooltip">La puce, ou processeur, exécute les applications et les jeux.</span></button>
+<button type="button" class="sg-float f3" aria-label="Photo. Ouvrir la définition" aria-describedby="sg-tip-photo" aria-expanded="false">Photo<span class="sg-tip" id="sg-tip-photo" role="tooltip">Les appareils photo arrière servent au cadrage large, au zoom et aux détails.</span></button>
+<button type="button" class="sg-float f4" aria-label="Batterie. Ouvrir la définition" aria-describedby="sg-tip-battery" aria-expanded="false">Batterie<span class="sg-tip" id="sg-tip-battery" role="tooltip">La capacité, exprimée en mAh, donne un indice. Les tests mesurent l’autonomie réelle.</span></button>
+<button type="button" class="sg-float f5" aria-label="Indice IP. Ouvrir la définition" aria-describedby="sg-tip-ip" aria-expanded="false">Indice IP<span class="sg-tip" id="sg-tip-ip" role="tooltip">Les chiffres indiquent la résistance à la poussière puis à l’eau.</span></button>
+<button type="button" class="sg-float f6" aria-label="Mises à jour. Ouvrir la définition" aria-describedby="sg-tip-updates" aria-expanded="false">Mises à jour<span class="sg-tip" id="sg-tip-updates" role="tooltip">Le fabricant annonce pendant combien de temps il fournit de nouvelles versions et des correctifs.</span></button>
 <span class="sg-stick s1"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
 <span class="sg-stick s2"><svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/></svg></span>
 </div>

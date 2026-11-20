@@ -430,6 +430,15 @@
       t.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
       t.focus({ preventScroll: true });
     });
+    document.querySelectorAll('.sg-float').forEach(function (marker) {
+      marker.addEventListener('click', function () {
+        var expanded = marker.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.sg-float[aria-expanded="true"]').forEach(function (other) {
+          other.setAttribute('aria-expanded', 'false');
+        });
+        marker.setAttribute('aria-expanded', String(!expanded));
+      });
+    });
   }
 
   /* ---------- Comprendre votre téléphone : vue éclatée animée + une démonstration par composant.
