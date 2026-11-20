@@ -19,15 +19,15 @@
 
   /* Icônes au trait (24×24), une par étape. */
   var ICONS = {
-    priorite: '<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.5 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+    priorite: '<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2" fill="currentColor"/><circle cx="15" cy="12" r="2" fill="currentColor"/><circle cx="10" cy="18" r="2" fill="currentColor"/>',
     taille: '<rect x="7" y="2.5" width="10" height="19" rx="2.4"/><path d="M3 6v12M1.8 7.4 3 6l1.2 1.4M1.8 16.6 3 18l1.2-1.4"/>',
-    ecran: '<rect x="6" y="2.5" width="12" height="19" rx="2.6"/><path d="M10.5 18.6h3"/>',
+    ecran: '<rect x="4.5" y="3" width="15" height="18" rx="2.4"/><path d="m8 13 6-6m-3 9 5-5"/>',
     processeur: '<rect x="7" y="7" width="10" height="10" rx="1.6"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>',
     batterie: '<rect x="3" y="7" width="16" height="10" rx="2"/><path d="M21 10.5v3M6.5 10v4M9.5 10v4M12.5 10v4"/>',
     charge: '<path d="M13 2 5 13.5h6L10 22l8-11.5h-6z"/>',
     photo: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>',
     preuves: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
-    prix: '<circle cx="12" cy="12" r="9"/><path d="M15 8a4 4 0 1 0 0 8M7 11h7M7 13h6"/>',
+    prix: '<path d="M4 6a2 2 0 0 1 2-2h6l8 8a2 2 0 0 1 0 3l-5 5a2 2 0 0 1-3 0l-8-8z"/><circle cx="8.5" cy="8.5" r="1"/>',
     protection: '<path d="M12 3l7 3v6c0 4-4 7-7 9-3-2-7-5-7-9V6z"/>',
     maj: '<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>'
   };
@@ -430,15 +430,46 @@
       t.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
       t.focus({ preventScroll: true });
     });
-    document.querySelectorAll('.sg-float').forEach(function (marker) {
-      marker.addEventListener('click', function () {
-        var expanded = marker.getAttribute('aria-expanded') === 'true';
-        document.querySelectorAll('.sg-float[aria-expanded="true"]').forEach(function (other) {
-          other.setAttribute('aria-expanded', 'false');
-        });
-        marker.setAttribute('aria-expanded', String(!expanded));
+    var active = null, pinned = false;
+    function showDefinition(button) {
+      if (active) {
+        active.setAttribute('aria-expanded', 'false');
+        document.getElementById(active.getAttribute('aria-controls')).hidden = true;
+      }
+      active = button;
+      if (active) {
+        active.setAttribute('aria-expanded', 'true');
+        document.getElementById(active.getAttribute('aria-controls')).hidden = false;
+      } else pinned = false;
+    }
+    document.querySelectorAll('.sg-callout').forEach(function (callout) {
+      var button = callout.querySelector('button');
+      button.addEventListener('click', function () {
+        if (active === button && pinned) showDefinition(null);
+        else {
+          showDefinition(button);
+          pinned = true;
+        }
+      });
+      callout.addEventListener('pointerenter', function (event) {
+        if (event.pointerType === 'mouse' && !pinned) showDefinition(button);
+      });
+      callout.addEventListener('pointerleave', function () {
+        if (active === button && !pinned) showDefinition(null);
       });
     });
+    document.addEventListener('click', function (event) {
+      if (active && !event.target.closest('.sg-callout')) showDefinition(null);
+    });
+    document.addEventListener('focusin', function (event) {
+      if (active && !active.parentElement.contains(event.target)) showDefinition(null);
+    });
+    document.addEventListener('keydown', function (event) {
+      if (active && event.key === 'Escape') showDefinition(null);
+    });
+    window.addEventListener('scroll', function () {
+      if (active) showDefinition(null);
+    }, { passive: true });
   }
 
   /* ---------- Comprendre votre téléphone : vue éclatée animée + une démonstration par composant.
