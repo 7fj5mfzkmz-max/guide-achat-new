@@ -100,8 +100,8 @@ def footer(page):
 def head_tags(page):
     url = SITE + page
     return ('<meta name="color-scheme" content="light dark"/>\n'
-            '<meta name="theme-color" content="#e3e7eb" media="(prefers-color-scheme: light)"/>\n'
-            '<meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)"/>\n'
+            '<meta name="theme-color" content="#f5f4eb" media="(prefers-color-scheme: light)"/>\n'
+            '<meta name="theme-color" content="#141e19" media="(prefers-color-scheme: dark)"/>\n'
             '<link rel="icon" href="favicon.svg" type="image/svg+xml"/>\n'
             '<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>\n'
             f'<link rel="canonical" href="{url}"/>')

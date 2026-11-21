@@ -19,7 +19,7 @@ def head(title, desc, css, ld):
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <meta name="color-scheme" content="light dark"/>
-<meta name="theme-color" content="#e3e7eb"/>
+<meta name="theme-color" content="#f5f4eb"/>
 <title>{html.escape(title)}</title>
 <meta name="description" content="{html.escape(desc)}"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>

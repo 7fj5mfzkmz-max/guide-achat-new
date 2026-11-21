@@ -38,7 +38,7 @@
 .eb-stage .pj-chip-c { bottom: 26%; }
 
 /* Modèles testés, vue d'ensemble, transparence et commandes */
-.eb-models { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; align-items: start; }
+.eb-models { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr)); gap: 16px; align-items: start; }
 .eb-model .eb-tag { margin: 2px 0 0; font: 600 12px var(--mono); letter-spacing: .04em; color: var(--ink-mute); }
 .eb-note-rank { margin: 0; font-size: 12.5px; color: var(--ink-mute); }
 .eb-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; } .eb-info div { padding: 8px; background: var(--paper-3); } .eb-info dt { font: 600 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-mute); } .eb-info dd { margin: 3px 0 0; font: 700 14px/1.25 var(--head); overflow-wrap: anywhere; }
