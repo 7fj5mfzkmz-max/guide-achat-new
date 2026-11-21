@@ -16,9 +16,8 @@ Le citron sert aux actions principales et aux sélections. Les zones sombres met
 
 L’illustration d’accueil `assets/editorial/accueil-atelier.webp` est une image originale générée pour le site, exportée en WebP. Elle représente des appareils génériques.
 
-
 ## Guide Smartphones
 
-La page `smartphones.html` suit une direction propre. [Noeinoi](https://noeinoi.com/) inspire la grille à bordures franches et les titres sans empattements. [VOID](https://void.sbs/) inspire la mise en scène de la maquette. Le bleu ardoise structure les fonds et les zones de lecture, tandis que l’abricot signale les actions et les sélections. Les libellés et leurs photos ont chacun leur espace dans le parcours de critères. L’Analyseur intégré reprend la palette du guide. [The Ringer](https://www.theringer.com/) inspire la couverture qui réunit la maquette et l’ouverture du guide, ainsi que les onglets en pastilles. Sur mobile, les actions précèdent l’illustration pour faciliter l’accès au parcours.
+Le guide se lit de haut en bas. La manchette mûre ouvre sur un dossier photo et deux liens directs. Le sommaire donne accès à la recherche, à la lecture des tests et à l’analyseur. La recherche prend la forme d’un atelier sur fond papier, avec les critères à gauche et la recommandation à droite sur écran large. Le chapitre de lecture donne un espace aux composants et aux tests, puis resserre le lexique et les vérifications en listes plus courtes. L’analyseur intégré s’ouvre à la demande en fin de page.
 
-Le prisme `assets/editorial/smartphones-prisme-ardoise.webp` est une illustration originale générée pour le fond de la maquette. Les valeurs qui apparaissent à l’écran viennent de la recommandation courante.
+Gloock donne leur voix aux grands titres et Rethink Sans sert à la lecture et aux commandes. Les deux polices sont hébergées localement. Le miel signale les sélections. La photo `assets/editorial/smartphones-dossier.webp`, générée pour le dossier, représente un téléphone générique. Les modèles recommandés et les résultats viennent des données du guide.

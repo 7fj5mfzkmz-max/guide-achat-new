@@ -14,7 +14,7 @@
   var L = window.SmartphonesGuide;
   var F = L.fields;
   var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  var guide = null, openStep = 'priorite', catalogueError = false;
+  var guide = null, openStep = null, catalogueError = false;
   var refinements = {};
 
   /* Icônes au trait (24×24), une par étape. */
@@ -239,7 +239,7 @@
     var box = document.getElementById('sg-result');
     if (catalogueError) {
       box.innerHTML = card('', '<h2 class="sg-res-title" id="sg-result-title">Données indisponibles</h2><p class="sg-res-empty">Les fiches n’ont pas pu être chargées. Rechargez la page ou utilisez l’Analyseur.</p>');
-      updateDock(null); updateMock(null); return;
+      updateDock(null); return;
     }
     var pr = guide.progress();
     var count = '<span class="sg-res-count">' + pr.confirmed + ' / ' + pr.total + '</span>';
@@ -248,7 +248,7 @@
       var names = blocking.map(function (b) { return '« ' + b.option.label + ' »'; });
       box.innerHTML = card(count, '<h2 class="sg-res-title" id="sg-result-title">Aucun modèle ne correspond à ces critères</h2>' +
         '<p class="sg-res-empty">' + (names.length ? 'En cause : ' + esc(names.join(', ')) + '. ' : '') + 'Retirez un critère : vos autres réponses sont gardées.</p>' + meter(pr));
-      updateDock(null); updateMock(null); return;
+      updateDock(null); return;
     }
     var p = recos[0], total = guide.results().length, prio = guide.chosen('priorite') ? guide.chosen('priorite').id : 'equilibre';
     var proofs = preuvesDe(p);
@@ -268,32 +268,18 @@
         return '<li><span>' + esc(nameOf(q)) + '</span><b>' + (q.specs.mah ? fmt(q.specs.mah) + ' mAh' : '') + '</b><small>' + esc(chipText(q)) + (e ? ' · mesuré ' + e + ' fois' : ' · pas encore testé') + '</small></li>';
       }).join('') + '</ol>' : '') +
       (p.specs.prix_eur !== null && p.specs.prix_eur !== undefined ? '<p class="sg-fine">Offre relevée le 20 novembre 2026 · ' + esc(p.france.offre.texte) + ' ' + lien(p.france.offre.sources[0], 'Voir l’offre') + '</p>' : '<p class="sg-fine">Prix neuf France indisponible pour le filtre. Voir les relevés dans la fiche.</p>'));
-    updateDock(p); updateMock(p);
-  }
-
-  /* Téléphone dessiné de l’accueil : il reprend la recommandation en cours. */
-  function updateMock(p) {
-    var name = document.getElementById('sg-mock-name'), price = document.getElementById('sg-mock-price'), rows = document.getElementById('sg-mock-rows'), bar = document.getElementById('sg-mock-meter');
-    if (!name) return;
-    var pr = guide ? guide.progress() : { confirmed: 0 };
-    bar.querySelectorAll('i').forEach(function (i, k) { i.classList.toggle('on', k < pr.confirmed); });
-    if (!p) { name.textContent = 'Votre modèle'; price.textContent = 'Choisissez vos critères'; rows.innerHTML = '<span></span><span></span><span></span>'; return; }
-    var s = p.specs || {}, n = F.niveau(p), m = guide.measured(p.id);
-    name.textContent = nameOf(p);
-    price.textContent = m ? 'Mesuré dans ' + m + ' test' + (m > 1 ? 's' : '') : 'Fiche constructeur';
-    rows.innerHTML = '<span>Écran <b>' + esc(s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '—') + (s.hz ? ' ' + s.hz + ' Hz' : '') + '</b></span>' +
-      '<span>Puce <b>' + (n === null ? '?' : n + '/10') + '</b></span><span>Batterie <b>' + (s.mah ? fmt(s.mah) + ' mAh' : '—') + '</b></span>';
+    updateDock(p);
   }
 
   /* Rappel en bas d’écran (téléphone) : visible quand la carte n’est pas à l’écran. */
-  var dockVisibleCard = true;
+  var dockVisibleCard = true, dockInWorkshop = false;
   function updateDock(p) {
     lastReco = p;
     var dock = document.getElementById('sg-dock');
     if (!dock) return;
     if (p) document.getElementById('sg-dock-txt').textContent = nameOf(p) + ' · ' + chipText(p);
     var touched = guide && Object.keys(guide.sel).length > 0; // pas de rappel tant que le visiteur n’a rien choisi
-    dock.hidden = !p || !touched || dockVisibleCard || document.getElementById('sg-zone-criteres').hidden;
+    dock.hidden = !p || !touched || dockVisibleCard || !dockInWorkshop;
   }
   function setupDock() {
     var card = document.getElementById('sg-result');
@@ -304,6 +290,10 @@
     });
     if (!('IntersectionObserver' in window)) return;
     new IntersectionObserver(function (es) { dockVisibleCard = es[0].isIntersecting; updateDock(lastReco); }, { threshold: 0.15 }).observe(card);
+    new IntersectionObserver(function (entries) {
+      dockInWorkshop = entries[0].isIntersecting;
+      updateDock(lastReco);
+    }, { rootMargin: '-25% 0px -35% 0px' }).observe(document.getElementById('criteres'));
   }
 
   function render() {
@@ -368,37 +358,6 @@
     }
   }
 
-  /* ---------- Onglets ---------- */
-  var tabs = [];
-  function showTab(tab, focus, keepHash) {
-    tabs.forEach(function (x) {
-      var on = x === tab;
-      x.setAttribute('aria-selected', on ? 'true' : 'false');
-      x.tabIndex = on ? 0 : -1;
-      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
-    });
-    if (focus) tab.focus();
-    if (!keepHash && history.replaceState) history.replaceState(null, '', '#' + tab.dataset.hash);
-    if (tab.id === 'sg-tab-analyseur') loadFrame();
-    updateDock(lastReco);
-  }
-  function setupTabs() {
-    tabs = Array.prototype.slice.call(document.querySelectorAll('.sg-tabs [role="tab"]'));
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { showTab(tab, false); });
-      tab.addEventListener('keydown', function (e) {
-        var n = null;
-        if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
-        else if (e.key === 'ArrowLeft') n = (i - 1 + tabs.length) % tabs.length;
-        else if (e.key === 'Home') n = 0;
-        else if (e.key === 'End') n = tabs.length - 1;
-        if (n !== null) { e.preventDefault(); showTab(tabs[n], true); }
-      });
-    });
-    var map = { criteres: 0, 'sg-parcours': 0, presentation: 1, analyseur: 2 };
-    var h = (location.hash || '').slice(1);
-    if (h in map) showTab(tabs[map[h]], false, true);
-  }
   /* ---------- Analyseur intégré : appliquer le cadre visuel du guide au formulaire existant. ---------- */
   var frameLoaded = false;
   function loadFrame() {
@@ -420,63 +379,24 @@
     f.src = f.dataset.src;
   }
 
-  /* ---------- Accueil ---------- */
-  function setupHero() {
-    var start = document.getElementById('sg-cta-start'), an = document.getElementById('sg-cta-analyse');
-    if (start) start.addEventListener('click', function () {
-      showTab(document.getElementById('sg-tab-criteres'), false);
-      openStep = 'priorite';
-      if (guide) render();
-      var b = document.getElementById('sg-btn-priorite') || document.getElementById('sg-steps');
-      b.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
-      if (b.focus) b.focus({ preventScroll: true });
-    });
-    if (an) an.addEventListener('click', function () {
-      var t = document.getElementById('sg-tab-analyseur');
-      showTab(t, false);
-      t.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
-      t.focus({ preventScroll: true });
-    });
-    var active = null, pinned = false;
-    function showDefinition(button) {
-      if (active) {
-        active.setAttribute('aria-expanded', 'false');
-        document.getElementById(active.getAttribute('aria-controls')).hidden = true;
-      }
-      active = button;
-      if (active) {
-        active.setAttribute('aria-expanded', 'true');
-        document.getElementById(active.getAttribute('aria-controls')).hidden = false;
-      } else pinned = false;
+  function setupNavigation() {
+    var analyzer = document.getElementById('sg-analyzer-box');
+    function openAnalyzer() {
+      analyzer.open = true;
+      loadFrame();
     }
-    document.querySelectorAll('.sg-callout').forEach(function (callout) {
-      var button = callout.querySelector('button');
-      button.addEventListener('click', function () {
-        if (active === button && pinned) showDefinition(null);
-        else {
-          showDefinition(button);
-          pinned = true;
-        }
-      });
-      callout.addEventListener('pointerenter', function (event) {
-        if (event.pointerType === 'mouse' && !pinned) showDefinition(button);
-      });
-      callout.addEventListener('pointerleave', function () {
-        if (active === button && !pinned) showDefinition(null);
-      });
+    analyzer.addEventListener('toggle', function () { if (analyzer.open) loadFrame(); });
+    document.querySelectorAll('a[href="#analyseur"]').forEach(function (link) {
+      link.addEventListener('click', openAnalyzer);
     });
-    document.addEventListener('click', function (event) {
-      if (active && !event.target.closest('.sg-callout')) showDefinition(null);
+    function openAnalyzerFromHash() { if (location.hash === '#analyseur') openAnalyzer(); }
+    window.addEventListener('hashchange', openAnalyzerFromHash);
+    openAnalyzerFromHash();
+    document.getElementById('sg-cta-start').addEventListener('click', function () {
+      if (!guide || catalogueError || openStep) return;
+      openStep = 'priorite';
+      renderStepVisibility();
     });
-    document.addEventListener('focusin', function (event) {
-      if (active && !active.parentElement.contains(event.target)) showDefinition(null);
-    });
-    document.addEventListener('keydown', function (event) {
-      if (active && event.key === 'Escape') showDefinition(null);
-    });
-    window.addEventListener('scroll', function () {
-      if (active) showDefinition(null);
-    }, { passive: true });
   }
 
   /* ---------- Comprendre votre téléphone : vue éclatée animée + une démonstration par composant.
@@ -737,7 +657,6 @@
   ];
 
   function goStep(id) {
-    showTab(document.getElementById('sg-tab-criteres'), false);
     openStep = id;
     if (guide) render();
     var b = document.getElementById('sg-btn-' + openStep) || document.getElementById('sg-steps');
@@ -1056,9 +975,8 @@
 
   /* ---------- Démarrage ---------- */
   function init() {
-    setupTabs();
+    setupNavigation();
     var anat = setupAnatomy();
-    setupHero();
     setupDock();
     var steps = document.getElementById('sg-steps');
     steps.addEventListener('click', onStepsClick);

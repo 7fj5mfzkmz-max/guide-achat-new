@@ -99,7 +99,7 @@ def footer(page):
 
 def head_tags(page):
     url = SITE + page
-    light, dark = ("#edf2f6", "#202b39") if page == "smartphones.html" else ("#f5f4eb", "#141e19")
+    light, dark = ("#fbf8f2", "#231b25") if page == "smartphones.html" else ("#f5f4eb", "#141e19")
     return ('<meta name="color-scheme" content="light dark"/>\n'
             f'<meta name="theme-color" content="{light}" media="(prefers-color-scheme: light)"/>\n'
             f'<meta name="theme-color" content="{dark}" media="(prefers-color-scheme: dark)"/>\n'
