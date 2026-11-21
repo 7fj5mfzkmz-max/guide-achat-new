@@ -1076,9 +1076,9 @@
   function genre(c) { return /^Autonomie/.test(c.metrique) ? 'Autonomie' : 'Performances'; }
 
 
-  /* ---------- Onglet Tests : les résultats réunis par thème ----------
-     Quatre classements : autonomie (tests publiés), performances (Geekbench 6 multicœur de la puce),
-     écran et photo (fiches des fabricants). Chaque ligne porte la couleur de sa gamme de prix (offre neuve relevée en France). */
+  /* ---------- Onglet Tests : quatre cartes par thème ----------
+     Une carte = un jeu de données comparables. Un classement ne mêle jamais deux protocoles :
+     autonomie par test, Geekbench et FPS par test, photo par duel ou par fiche. */
   var GAMMES_PRIX = [
     { id: 'haut', label: 'Haut de gamme', min: 850 },
     { id: 'milieu', label: 'Milieu de gamme', min: 550 },
@@ -1098,56 +1098,264 @@
     ecran: '<rect x="4.5" y="3" width="15" height="18" rx="2.4"/><path d="m8 13 6-6m-3 9 5-5"/>',
     photo: '<path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/>'
   };
-  function buildRankings() {
-    var themes = [];
-    /* Autonomie : un classement par test. Les protocoles diffèrent (veille, jeu, pourcentage restant) :
-       on choisit un test, puis on trie à l’intérieur ; aucune moyenne entre tests. */
-    if (AUTO) themes.push({ id: 'autonomie', titre: 'Autonomie', lead: 'Chaque test a son protocole : choisissez-en un, le classement suit.',
-      tests: AUTO.tests, cols: ['Capacité testée'], valLabel: 'Résultat', autoRows: function (tid) {
-        var t = AUTO.tests.filter(function (x) { return x.id === tid; })[0];
+  var AUTO_IDS = ['T01', 'T03', 'T12-techmo', 'T07', 'T08', 'T10'];
+  var TEST_SHORT = { T01: 'PhoneBuff, 19 nov.', T03: 'PhoneBuff, 27 août', 'T12-techmo': 'Techmo, 28 oct.', T07: 'Techmo, 11 oct.', T08: 'Techmo, 29 sept.', T10: 'TechNick, 28 oct.' };
+  var PHOTO_RE = /photo|principal|téléobjectif|zoom|nuit|détail|hautes lumières|capteur|grand-angle|portrait/i;
+  var FLUIDE_RE = /fluid|saccad|défilement|Hz|images? par seconde|jeu/i;
+
+  function num(x) { var s = String(x).split('/')[0].replace(/[\s  ]/g, '').replace(',', '.'); var n = parseFloat(s); return isNaN(n) ? null : n; }
+  function dateNum(d) { return Number(String(d || '').replace(/-/g, '')) || 0; }
+  function testNom(id) { var t = TIDX.test[id]; return t ? t.chaine + ', ' + dateFr(t.date, true) : id; }
+  function autoTest(id) { return AUTO && AUTO.tests.filter(function (x) { return x.id === id; })[0]; }
+  function valeurAuto(t, l) { return t.type === 'pourcent' ? l.valeur + ' % restants' : t.type === 'points' ? l.valeur + ' points perdus' : dureeTexte(l.valeur); }
+  function varTxt(v) { return v ? 'version ' + v : ''; }
+  function rowByLabel(testId, re) {
+    var t = TD.tableaux.filter(function (x) { return x.test === testId; })[0];
+    if (!t) return null;
+    var r = t.lignes.filter(function (x) { return re.test(x.cellules[0]); })[0];
+    return r ? { t: t, r: r } : null;
+  }
+  function rowsByLabel(testId, re) {
+    var out = [];
+    TD.tableaux.forEach(function (t) { if (t.test === testId) t.lignes.forEach(function (r) { if (re.test(r.cellules[0])) out.push({ t: t, r: r }); }); });
+    return out;
+  }
+  function perVariant(tb) {
+    return tb.t.colonnes.slice(1).map(function (col, i) { var v = TD.variantes[col]; return v ? { modele: v.modele, i: i + 1 } : null; }).filter(Boolean);
+  }
+  /* Groupes à classer à l’intérieur de chaque groupe (un test, une mesure) ; l’ordre des groupes est celui du tableau. */
+  function groupedRows(groups) {
+    var rows = [];
+    groups.forEach(function (g, gi) {
+      g.items.filter(function (x) { return x.n !== null; }).sort(function (a, b) { return b.n - a.n; }).forEach(function (x, k) {
+        rows.push({ m: TIDX.modele[x.modele], id: x.modele, nom: x.nom, rang: k + 1, score: (100 - gi) * 1000 - (k + 1), cells: [x.txt], sub: g.label + ' · ' + testNom(g.test), src: x.src, val: x.val || x.txt });
+      });
+    });
+    return rows;
+  }
+
+  /* Autonomie : une carte = un test (ou un jeu de tests comparables). */
+  function autoCarte(id, o) {
+    return { id: o.id, titre: o.titre, sub: o.sub, intro: o.intro, note: o.note, cols: o.cols, valLabel: o.valLabel,
+      build: function () {
+        var t = autoTest(id);
         return t.lignes.map(function (l) {
-          var m = TIDX.modele[l.modele];
-          var v = t.type === 'pourcent' ? l.valeur + ' % restants' : t.type === 'points' ? l.valeur + ' points perdus' : dureeTexte(l.valeur);
-          return { m: m, id: l.modele, rang: l.rang, score: t.type === 'points' ? -l.valeur : l.valeur, cells: [l.mah ? fmt(l.mah) + ' mAh' : 'non précisée'],
-            sub: [l.variante ? (/ /.test(l.variante) ? l.variante : 'version ' + l.variante) : '', t.type === 'duree_veille' ? 'dont 16 h de veille, ' + dureeTexte(l.hors_veille) + ' hors veille (calculé)' : ''].filter(Boolean).join(' · '),
-            src: l.source, txt: v };
+          return { m: TIDX.modele[l.modele], id: l.modele, rang: l.rang, score: t.type === 'points' ? -l.valeur : l.valeur,
+            cells: o.cells(l), sub: varTxt(l.variante), src: l.source, val: valeurAuto(t, l) };
         });
-      }, val: function (r) { return r.txt; } });
-    /* Performances : un seul indice commun à tous les modèles, le score Geekbench 6 multicœur de la puce. */
-    themes.push({ id: 'performances', titre: 'Performances', lead: 'La puissance de la puce, mesurée avec le même logiciel pour tous les modèles.',
-      cols: ['Puce', 'Note du guide'],
-      rows: TD.modeles.filter(function (m) { return m.benchmark_puce; }).map(function (m) {
-        var b = m.benchmark_puce, n = F.niveau(m);
-        return { m: m, id: m.id, score: b.multicoeur, cells: [m.specs.puce || '—', n === null ? '—' : n + '/10'], sub: plainChip(n), src: b.source, val: b.multicoeur };
-      }),
-      val: function (r) { return fmt(r.val); }, valLabel: 'Score',
-      note: 'Score Geekbench 6 multicœur de la puce (relevés nanoreview) : il compare les puces entre elles, pas le refroidissement de chaque téléphone. Le guide en tire sa note de 1 à 10' + (TD.bareme_puce ? ' (seuils : ' + TD.bareme_puce.map(fmt).join(' · ') + ')' : '') + '.' });
-    /* Écran et photo : ce que disent les fiches ; aucun test publié ne mesure encore ces points pour tous les modèles. */
-    themes.push({ id: 'ecran', titre: 'Écran', lead: 'Fluidité et technologie annoncées par les fabricants.',
-      cols: ['Technologie', 'Taille'],
-      rows: TD.modeles.filter(function (m) { return m.specs.hz || m.specs.ecran; }).map(function (m) {
-        var s = m.specs, sc = (s.hz || 60) + (s.ecran === 'oled' ? 30 : 0) + (s.ltpo ? 10 : 0);
-        return { m: m, id: m.id, score: sc, cells: [s.ltpo ? 'OLED LTPO' : s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '—', s.pouces ? pouces(s.pouces) : '—'],
-          sub: shortScreen(s), src: m.source_criteres, val: s.hz };
-      }),
-      val: function (r) { return r.val ? r.val + ' Hz' : '—'; }, valLabel: 'Fréquence',
-      note: 'D’après les fiches des fabricants : fréquence maximale, puis technologie (OLED avant LCD, LTPO en plus). Une fréquence très élevée sert surtout dans les jeux compatibles.' });
-    themes.push({ id: 'photo', titre: 'Photo', lead: 'L’équipement photo annoncé, et l’avis des testeurs quand il existe.',
-      cols: ['Équipement', 'Avis'],
-      rows: TD.modeles.map(function (m) {
-        var s = m.specs, sc = (s.tele ? 3 : 0) + (s.ois ? 2 : 0) + (s.ultra ? 1 : 0) + (s.eis ? 0.5 : 0) + (s.capteur ? Math.min(2, Number(s.capteur) * 2) : 0);
-        var avis = TD.observations.filter(function (o) { return (o.modeles || []).indexOf(m.id) >= 0 && /photo|principal|zoom|télé/i.test(o.texte); }).length;
-        return { m: m, id: m.id, score: sc + avis * 0.1, cells: [[s.tele ? 'Téléobjectif' : '', s.ois ? 'OIS' : s.eis ? 'EIS' : '', s.ultra ? 'Ultra grand-angle' : ''].filter(Boolean).join(' · ') || 'Principal seul', avis ? avis + ' avis' : '—'],
-          sub: plainPhoto(s) + (s.capteur ? ' · capteur ' + pouces(s.capteur) : ''), src: m.source_criteres, val: Math.round(sc * 10) / 10 };
-      }).filter(function (r) { return r.score > 0; }),
-      val: function (r) { return r.val + ' pts'; }, valLabel: 'Points',
-      note: 'Points d’équipement d’après les fiches : téléobjectif 3, stabilisation optique 2, ultra grand-angle 1, stabilisation électronique 0,5, et jusqu’à 2 selon la taille du capteur. Les avis des testeurs sont dans la fiche de chaque modèle.' });
+      } };
+  }
+
+  function buildThemes() {
+    var themes = [];
+    themes.push({ id: 'autonomie', titre: 'Autonomie', lead: 'Chaque test a son protocole : une carte, un test. Aucun classement ne mélange deux protocoles.', cartes: [
+      autoCarte('T01', { id: 'iphone', titre: 'iPhone contre iPhone', sub: 'Les cinq iPhone, un seul test',
+        intro: 'Le seul test où plusieurs iPhone sont mesurés dans les mêmes conditions : PhoneBuff, 16 h de veille, puis usage jusqu’à extinction.',
+        note: 'Le temps hors veille est calculé en retirant les 16 h de veille ; ce n’est pas une mesure. L’iPhone 18 Pro ne précise pas sa variante SIM.',
+        cols: ['Capacité', 'Hors veille (calculé)'], valLabel: 'Total',
+        cells: function (l) { return [l.mah ? fmt(l.mah) + ' mAh' : 'non précisée', dureeTexte(l.hors_veille)]; } }),
+      autoCarte('T02', { id: 'jeu', titre: 'Autonomie en jeu', sub: 'Jeu continu, un seul test',
+        intro: 'Des robots jouent à League of Legends jusqu’à extinction. C’est le seul test de jeu du corpus, avec deux téléphones seulement.',
+        note: 'Le REDMAGIC a son ventilateur actif ; la vidéo est sponsorisée par REDMAGIC.',
+        cols: ['Capacité'], valLabel: 'Jeu',
+        cells: function (l) { return [l.mah ? fmt(l.mah) + ' mAh' : '—']; } }),
+      { id: 'tous', titre: 'Tous les tests', sub: 'Chaque modèle dans chaque test où il figure',
+        intro: 'Une colonne par test. Chaque colonne a son protocole : lisez-la sans la comparer aux autres.',
+        note: 'Le rang (1er sur 5) vaut seulement dans sa colonne. Le nombre de tests sert seulement à trier les lignes.',
+        cols: AUTO_IDS.map(function (id) { return TEST_SHORT[id]; }), valLabel: 'Tests', noRank: true,
+        build: function () {
+          var models = {};
+          AUTO_IDS.forEach(function (id) { var t = autoTest(id); if (t) t.lignes.forEach(function (l) { (models[l.modele] = models[l.modele] || {})[id] = { l: l, t: t }; }); });
+          return Object.keys(models).map(function (mid) {
+            var cnt = Object.keys(models[mid]).length;
+            return { m: TIDX.modele[mid], id: mid, score: cnt, val: cnt + ' test' + (cnt > 1 ? 's' : ''),
+              cells: AUTO_IDS.map(function (id) { var x = models[mid][id]; return x ? dureeTexte(x.l.valeur) + (x.l.rang ? ' · ' + rangTxt(x.l.rang) + ' sur ' + x.t.lignes.length : '') : '—'; }) };
+          });
+        } },
+      autoCarte('T10', { id: 'ecran', titre: 'Écran allumé', sub: 'Sept modèles, de 100 à 0 %',
+        intro: 'Wi-Fi sans SIM, luminosité alignée, quinze applications puis benchmarks, jusqu’à extinction. Le temps mesuré est l’écran allumé.',
+        note: 'Le vivo V80 Lite est l’exemplaire du marché sud-africain. Le HONOR 600 Pro testé a 7 000 mAh ; la version française en a 6 400.',
+        cols: ['Capacité'], valLabel: 'Écran allumé',
+        cells: function (l) { return [l.mah ? fmt(l.mah) + ' mAh' : '—']; } })
+    ] });
+
+    themes.push({ id: 'performances', titre: 'Performances', lead: 'Chaque carte compare une même mesure, test par test.', cartes: [
+      { id: 'puce', titre: 'Puce, Geekbench 6', sub: '62 modèles, un même logiciel',
+        intro: 'Score Geekbench 6 multicœur de la puce. Il compare les puces entre elles, pas le refroidissement de chaque téléphone.',
+        note: 'Le guide tire sa note de 1 à 10 de ce score' + (TD.bareme_puce ? ' (seuils : ' + TD.bareme_puce.map(fmt).join(' · ') + ')' : '') + '.',
+        cols: ['Puce', 'Note du guide'], valLabel: 'Score',
+        build: function () {
+          return TD.modeles.filter(function (m) { return m.benchmark_puce; }).map(function (m) {
+            var b = m.benchmark_puce, n = F.niveau(m);
+            return { m: m, id: m.id, score: b.multicoeur, cells: [m.specs.puce || '—', n === null ? '—' : n + '/10'], sub: plainChip(n), src: b.source, val: fmt(b.multicoeur) };
+          });
+        } },
+      { id: 'geekbench7', titre: 'Geekbench 7, tests Techmo', sub: 'Monocœur et multicœur, par test',
+        intro: 'Les scores Geekbench 7 relevés dans les tests Techmo et TechNick. Chaque groupe est un test : on classe à l’intérieur, jamais entre deux tests.',
+        note: 'Un score dépend aussi de l’exécution : un même logiciel peut donner des écarts d’un essai à l’autre.',
+        cols: ['Monocœur / multicœur'], valLabel: 'Monocœur',
+        build: function () {
+          var groups = [];
+          ['T04', 'T05', 'T06'].forEach(function (id) {
+            rowsByLabel(id, /Geekbench/).forEach(function (tb) {
+              groups.push({ test: id, label: tb.r.cellules[0], items: perVariant(tb).map(function (v) {
+                var c = tb.r.cellules[v.i];
+                return { modele: v.modele, n: num(c), txt: c, val: num(c) === null ? c : fmt(num(c)), src: tb.r.sources[0] };
+              }) });
+            });
+          });
+          var c8 = TD.classements.filter(function (c) { return c.test === 'T08'; });
+          var items8 = [];
+          c8.forEach(function (c) { c.lignes.forEach(function (l) {
+            var e = l.extra && l.extra['Geekbench 7 mono / multi (points)'];
+            if (!e) return;
+            var v = /snapdragon/i.test(l.variante || '') ? ' (Snapdragon)' : /exynos/i.test(l.variante || '') ? ' (Exynos)' : /chin|cn/i.test(l.variante || '') ? ' (Chine)' : '';
+            items8.push({ modele: l.modele, nom: (TIDX.modele[l.modele] ? TIDX.modele[l.modele].nom : l.modele) + v, n: num(e), txt: e, val: fmt(num(e)), src: (l.sources || [])[0] });
+          }); });
+          if (items8.length) groups.push({ test: 'T08', label: 'Geekbench 7', items: items8 });
+          return groupedRows(groups);
+        } },
+      { id: 'fps', titre: 'FPS en test, Techmo', sub: 'Images par seconde, par scène',
+        intro: 'Les moyennes de fréquence d’images relevées par Techmo dans ses scènes 3D. Chaque ligne du tableau est une scène : on compare dans une scène, pas d’une scène à l’autre.',
+        note: 'Une seule scène par groupe, sur un nombre limité de téléphones.',
+        cols: ['Résultat'], valLabel: 'FPS',
+        build: function () {
+          var groups = [];
+          ['T04', 'T05', 'T06'].forEach(function (id) {
+            rowsByLabel(id, /FPS/).forEach(function (tb) {
+              groups.push({ test: id, label: tb.r.cellules[0], items: perVariant(tb).map(function (v) {
+                var c = tb.r.cellules[v.i];
+                return { modele: v.modele, n: num(c), txt: String(c).split('/')[0].trim(), src: tb.r.sources[0] };
+              }) });
+            });
+          });
+          return groupedRows(groups);
+        } },
+      { id: 'vitesse', titre: 'Vitesse d’usage, TechNick', sub: 'Points de vitesse, mémoire, batterie',
+        intro: 'Le speed test de TechNick : ouvertures d’applis, jeux, benchmarks et gestion de la mémoire, dans la même série.',
+        note: '19 points contre 18 ne sont pas un classement d’autonomie. La batterie se lit à part.',
+        cols: ['Vitesse', 'Mémoire', 'Batterie départ → fin'], valLabel: 'Vitesse',
+        build: function () {
+          var v = rowByLabel('T09', /^Points vitesse/), mem = rowByLabel('T09', /^Points mémoire/), bat = rowByLabel('T09', /^Batterie/);
+          if (!v) return [];
+          return perVariant(v).map(function (x) {
+            return { m: TIDX.modele[x.modele], id: x.modele, score: num(v.r.cellules[x.i]) || 0, cells: [v.r.cellules[x.i], mem ? mem.r.cellules[x.i] : '—', bat ? bat.r.cellules[x.i] : '—'],
+              sub: 'TechNick, 11 nov.', src: v.r.sources[0], val: v.r.cellules[x.i] + ' pts' };
+          });
+        } }
+    ] });
+
+    themes.push({ id: 'ecran', titre: 'Écran', lead: 'Ce que disent les fiches, et ce que les testeurs ont vu.', cartes: [
+      { id: 'frequence', titre: 'Fréquence maximale', sub: 'D’après les fiches',
+        intro: 'La fréquence maximale annoncée. Elle n’est pas toujours active : une fréquence élevée sert surtout dans les jeux qui la gèrent.',
+        note: 'Source : fiches des fabricants, pas une mesure.',
+        cols: ['Technologie', 'Taille'], valLabel: 'Fréquence',
+        build: function () {
+          return TD.modeles.filter(function (m) { return m.specs.hz; }).map(function (m) {
+            var s = m.specs;
+            return { m: m, id: m.id, score: s.hz, cells: [s.ltpo ? 'OLED LTPO' : s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '—', s.pouces ? pouces(s.pouces) : '—'], sub: shortScreen(s), val: s.hz + ' Hz' };
+          });
+        } },
+      { id: 'taille', titre: 'Taille', sub: 'Diagonale, d’après les fiches',
+        intro: 'La diagonale décide de la prise en main. Au-delà de 6,7 pouces, l’usage à une main devient difficile.',
+        note: 'Source : fiches des fabricants.',
+        cols: ['Technologie', 'Fréquence'], valLabel: 'Diagonale',
+        build: function () {
+          return TD.modeles.filter(function (m) { return m.specs.pouces; }).map(function (m) {
+            var s = m.specs;
+            return { m: m, id: m.id, score: s.pouces, cells: [s.ltpo ? 'OLED LTPO' : s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '—', s.hz ? s.hz + ' Hz' : '—'], sub: plainSize(s.pouces), val: pouces(s.pouces) };
+          });
+        } },
+      { id: 'ltpo', titre: 'Écran LTPO', sub: 'Fréquence qui s’adapte à l’image',
+        intro: 'Un écran LTPO ajuste sa fréquence selon l’image : il peut économiser la batterie sur une image fixe.',
+        note: 'Source : fiches des fabricants.',
+        cols: ['Fréquence', 'Taille'], valLabel: 'Fréquence',
+        build: function () {
+          return TD.modeles.filter(function (m) { return m.specs.ltpo; }).map(function (m) {
+            var s = m.specs;
+            return { m: m, id: m.id, score: s.hz || 0, cells: [s.hz ? s.hz + ' Hz' : '—', s.pouces ? pouces(s.pouces) : '—'], sub: '', val: s.hz ? s.hz + ' Hz' : '—' };
+          });
+        } },
+      { id: 'fluidite', titre: 'Fluidité en test', sub: 'Avis des testeurs, modèle par modèle',
+        intro: 'Ce que les testeurs disent de la fluidité, du défilement ou du jeu sur l’écran. Ce sont des avis, pas des mesures.',
+        note: 'Chaque avis renvoie à son test. Les plus récents sont en tête.',
+        cols: ['Test'], valLabel: 'Avis', noRank: true,
+        build: function () {
+          var out = [];
+          TD.observations.forEach(function (o) {
+            if (!FLUIDE_RE.test(o.texte) || !(o.modeles || []).length) return;
+            o.modeles.forEach(function (mid) {
+              out.push({ m: TIDX.modele[mid], id: mid, score: dateNum(TIDX.test[o.test] && TIDX.test[o.test].date), cells: [TIDX.test[o.test] ? TIDX.test[o.test].chaine : o.test], sub: o.texte, src: (o.sources || [])[0], val: 'Avis' });
+            });
+          });
+          return out;
+        } }
+    ] });
+
+    themes.push({ id: 'photo', titre: 'Photo', lead: 'Peu de tests publiés comparent la photo. Ces cartes montrent ce que les fiches annoncent et ce que les testeurs ont vu, sans note inventée.', cartes: [
+      { id: 'equipement', titre: 'Équipement annoncé', sub: 'Téléobjectif, stabilisation, ultra grand-angle',
+        intro: 'Ce que la fiche annonce pour la photo. Un bon capteur et un bon logiciel comptent autant que cette liste.',
+        note: 'Trois équipements comptés : téléobjectif, stabilisation optique ou électronique, ultra grand-angle. Rangé par ce nombre, puis par mégapixels. Ce n’est pas une note de qualité.',
+        cols: ['Téléobjectif', 'Stabilisation', 'Ultra grand-angle', 'Mégapixels'], valLabel: 'Équipements',
+        build: function () {
+          return TD.modeles.filter(function (m) { return m.specs && m.specs.mp !== undefined; }).map(function (m) {
+            var s = m.specs, count = (s.tele ? 1 : 0) + (s.ois || s.eis ? 1 : 0) + (s.ultra ? 1 : 0);
+            return { m: m, id: m.id, score: count * 1000 + (s.mp || 0), rang: null,
+              cells: [s.tele ? 'Oui' : 'Non', [s.ois ? 'OIS' : '', s.eis ? 'EIS' : ''].filter(Boolean).join(' + ') || 'Non', s.ultra ? 'Oui' : 'Non', s.mp ? s.mp + ' Mpx' : '—'],
+              sub: '', src: m.source_criteres, val: count + ' sur 3' };
+          });
+        } },
+      { id: 'capteur', titre: 'Taille du capteur', sub: 'Quand la fiche la donne',
+        intro: 'Un grand capteur capte plus de lumière : il pèse souvent plus que le nombre de mégapixels, surtout de nuit.',
+        note: 'Source : fiches des fabricants. Peu de fiches donnent la taille du capteur.',
+        cols: ['Mégapixels'], valLabel: 'Capteur',
+        build: function () {
+          return TD.modeles.filter(function (m) { return m.specs && m.specs.capteur; }).map(function (m) {
+            var s = m.specs;
+            return { m: m, id: m.id, score: parseFloat(String(s.capteur).replace(',', '.')) || 0, cells: [s.mp ? s.mp + ' Mpx' : '—'], sub: '', src: m.source_criteres, val: pouces(s.capteur) };
+          });
+        } },
+      { id: 'duels', titre: 'Duels photo des tests', sub: 'Une scène, un verdict du testeur',
+        intro: 'Les comparaisons photo publiées : ce que le testeur préfère, et pourquoi. Ce sont des avis, pas des mesures.',
+        note: 'Chaque ligne renvoie à sa source. Les tests les plus récents sont en tête.',
+        cols: ['Test'], valLabel: 'Avis', noRank: true,
+        build: function () {
+          var out = [];
+          TD.observations.forEach(function (o) {
+            if (!PHOTO_RE.test(o.texte) || !TIDX.test[o.test]) return;
+            var noms = (o.modeles || []).map(mname);
+            out.push({ m: o.modeles && o.modeles.length === 1 ? TIDX.modele[o.modeles[0]] : null, id: (o.modeles || [])[0] || '',
+              nom: noms.length ? noms.join(' contre ') : cap1(TIDX.test[o.test].titre), score: dateNum(TIDX.test[o.test].date),
+              cells: [TIDX.test[o.test].chaine], sub: o.texte, src: (o.sources || [])[0], val: 'Avis' });
+          });
+          TD.notes.forEach(function (n) {
+            if (!/^(Photo|Téléobjectif|Selfie|Zoom)/.test(n.libelle || '') || !TIDX.test[n.test]) return;
+            out.push({ id: '', nom: n.libelle, score: dateNum(TIDX.test[n.test].date), cells: [TIDX.test[n.test].chaine], sub: n.texte, src: (n.sources || [])[0], val: 'Avis' });
+          });
+          return out;
+        } },
+      { id: 'video', titre: 'Vidéo, test TechNick', sub: 'POCO F9 Pro contre F9 Ultra',
+        intro: 'La vidéo arrière et le zoom : le seul test publié qui compare la vidéo de ces deux téléphones.',
+        note: 'Un seul test, deux téléphones : aucun classement n’en est tiré.',
+        cols: ['Ultra grand-angle', 'Principal et télé'], valLabel: 'Vidéo', noRank: true,
+        build: function () {
+          var t = TD.tableaux.filter(function (x) { return x.test === 'T11'; })[0];
+          if (!t) return [];
+          var a = t.lignes.filter(function (r) { return /^Vidéo avec/.test(r.cellules[0]); })[0];
+          var b = t.lignes.filter(function (r) { return /^Vidéo principale/.test(r.cellules[0]); })[0];
+          if (!a || !b) return [];
+          return perVariant({ t: t, r: a }).map(function (v) {
+            return { m: TIDX.modele[v.modele], id: v.modele, score: 0, cells: [a.cellules[v.i], b.cellules[v.i]], sub: 'TechNick, 16 sept.', src: a.sources[0], val: '—' };
+          });
+        } }
+    ] });
     return themes;
   }
+
   function setupRankings() {
     var box = document.getElementById('sg-rankings'), nav = document.getElementById('sg-themes');
     if (!box || !TD) return;
-    var themes = buildRankings();
+    var themes = buildThemes();
     nav.innerHTML = themes.map(function (t) {
       return '<a href="#sg-rk-' + t.id + '" class="sg-theme-link"><svg viewBox="0 0 24 24" aria-hidden="true">' + RK_ICONS[t.id] + '</svg>' + esc(t.titre) + '</a>';
     }).join('');
@@ -1165,51 +1373,57 @@
       return '<section class="sg-rk" id="sg-rk-' + t.id + '" aria-labelledby="sg-rk-h-' + t.id + '">' +
         '<div class="sg-rk-head"><span class="sg-rk-ico" aria-hidden="true"><svg viewBox="0 0 24 24">' + RK_ICONS[t.id] + '</svg></span>' +
         '<h3 id="sg-rk-h-' + t.id + '">' + esc(t.titre) + '</h3><p>' + esc(t.lead) + '</p></div>' +
-        (t.tests ? '<div class="sg-proto-pick" role="group" aria-label="Choisir un test">' + t.tests.map(function (x, k) {
-          return '<button type="button" data-test="' + x.id + '" aria-pressed="' + (k === 0) + '"><b>' + esc(x.titre) + '</b><span>' + esc(x.chaine) + ', ' + esc(dateFr(x.date, true)) + '</span></button>';
-        }).join('') + '</div><div class="sg-proto" data-proto></div>' : '') +
+        '<div class="sg-proto-pick" role="group" aria-label="Cartes de ' + esc(t.titre) + '">' + t.cartes.map(function (c, k) {
+          return '<button type="button" data-carte="' + c.id + '" aria-pressed="' + (k === 0) + '"><b>' + esc(c.titre) + '</b><span>' + esc(c.sub) + '</span></button>';
+        }).join('') + '</div>' +
+        '<div class="sg-proto" data-proto></div>' +
         '<div class="sg-rk-tools"><div class="sg-rk-filter" role="group" aria-label="Filtrer par gamme">' +
         [{ id: 'tout', label: 'Toutes' }].concat(GAMMES_PRIX).map(function (g) {
           return '<button type="button" data-g="' + g.id + '" aria-pressed="' + (g.id === 'tout') + '">' + (g.id !== 'tout' ? '<i class="sg-g sg-g-' + g.id + '"></i>' : '') + esc(g.id === 'tout' ? g.label : g.label.replace(' de gamme', '')) + '</button>';
         }).join('') + '</div>' +
-        '<label class="sg-rk-sort">Trier par <select data-sort><option value="score">' + esc(t.valLabel.toLowerCase() === 'score' ? 'score' : 'classement') + '</option><option value="prix-desc">prix décroissant</option><option value="prix-asc">prix croissant</option></select></label></div>' +
-        '<div class="sg-rk-table" data-table></div>' + legend +
-        (t.note ? '<p class="sg-fine">' + esc(t.note) + '</p>' : '') + '</section>';
+        '<label class="sg-rk-sort">Trier par <select data-sort><option value="score">classement</option><option value="prix-desc">prix décroissant</option><option value="prix-asc">prix croissant</option></select></label></div>' +
+        '<div class="sg-rk-table" data-table></div>' + legend + '</section>';
     }).join('');
+
     themes.forEach(function (t) {
-      var sec = document.getElementById('sg-rk-' + t.id), table = sec.querySelector('[data-table]'), g = 'tout', sort = 'score', all = false;
-      var tid = t.tests ? t.tests[0].id : null;
-      function drawProto() {
-        var box = sec.querySelector('[data-proto]'), tt = t.tests.filter(function (x) { return x.id === tid; })[0];
-        box.innerHTML = '<p class="sg-proto-h"><b>' + esc(tt.titre) + '</b> · ' + esc(tt.chaine) + ', ' + esc(dateFr(tt.date)) + ' · ' + lien(tt.url, 'vidéo') + '</p>' +
-          '<p class="sg-proto-p">' + esc(tt.protocole) + '</p>' + (tt.note ? '<p class="sg-proto-n">' + esc(tt.note) + '</p>' : '');
-      }
+      var sec = document.getElementById('sg-rk-' + t.id), table = sec.querySelector('[data-table]'), proto = sec.querySelector('[data-proto]');
+      var cur = t.cartes[0], g = 'tout', sort = 'score', all = false, cache = {};
+      function rowsOf(c) { if (!cache[c.id]) cache[c.id] = c.build(); return cache[c.id]; }
       function draw() {
-        if (t.tests) { t.rows = t.autoRows(tid); drawProto(); }
-        var rows = t.rows.filter(function (r) { return g === 'tout' || gammePrix(r.m).id === g; });
-        var prix = function (r) { return (r.m && r.m.specs.prix_eur) || 0; };
-        rows.sort(sort === 'score' ? function (a, b) { return b.score - a.score; } : sort === 'prix-asc' ? function (a, b) { return (prix(a) || 1e9) - (prix(b) || 1e9); } : function (a, b) { return prix(b) - prix(a); });
+        proto.innerHTML = '<p class="sg-proto-h"><b>' + esc(cur.titre) + '</b></p><p class="sg-proto-p">' + esc(cur.intro) + '</p>' +
+          (cur.note ? '<p class="sg-proto-n">' + esc(cur.note) + '</p>' : '');
+        var rows = rowsOf(cur).filter(function (r) { return g === 'tout' || (r.m && gammePrix(r.m).id === g); });
+        var prix = function (r) { return (r.m && r.m.specs && r.m.specs.prix_eur) || 0; };
+        rows = rows.slice().sort(sort === 'score' ? function (a, b) { return b.score - a.score; }
+          : sort === 'prix-asc' ? function (a, b) { return (prix(a) || 1e9) - (prix(b) || 1e9); }
+          : function (a, b) { return prix(b) - prix(a); });
         var shown = all ? rows : rows.slice(0, 10);
-        table.innerHTML = rows.length ? '<table><caption class="sg-sr">' + esc(t.titre) + ', ' + (all ? 'tous les modèles' : '10 premiers') + '</caption><thead><tr><th scope="col">Place</th><th scope="col">Téléphone</th>' +
-          t.cols.map(function (c) { return '<th scope="col" class="sg-rk-c">' + esc(c) + '</th>'; }).join('') + '<th scope="col" class="sg-rk-v">' + esc(t.valLabel) + '</th></tr></thead><tbody>' +
+        table.innerHTML = rows.length ? '<table><caption class="sg-sr">' + esc(cur.titre) + '</caption><thead><tr><th scope="col">Place</th><th scope="col">Téléphone</th>' +
+          cur.cols.map(function (c) { return '<th scope="col" class="sg-rk-c">' + esc(c) + '</th>'; }).join('') + '<th scope="col" class="sg-rk-v">' + esc(cur.valLabel) + '</th></tr></thead><tbody>' +
           shown.map(function (r, i) {
-            var gp = gammePrix(r.m), p = r.m && r.m.specs.prix_eur;
-            return '<tr class="sg-g-row sg-gr-' + gp.id + '"><td class="sg-rk-n">' + (t.tests && sort === 'score' ? r.rang : i + 1) + '</td>' +
-              '<th scope="row"><span class="sg-rk-name"><i class="sg-g sg-g-' + gp.id + '" title="' + esc(gp.label) + '"></i>' + esc(r.m ? r.m.nom : mname(r.id)) + '</span>' +
-              '<span class="sg-rk-mob">' + esc(r.cells.filter(function (c) { return c && c !== '—'; }).join(' · ')) + '</span>' +
-              '<small>' + esc(gp.label) + (p ? ' · ' + fmt(Math.round(p)) + ' €' : '') + ' · ' + esc(r.sub) + (r.src ? ' · ' + lien(r.src, 'source') : '') + '</small></th>' +
-              r.cells.map(function (c) { return '<td class="sg-rk-c">' + esc(c) + '</td>'; }).join('') +
-              '<td class="sg-rk-v"><b>' + esc(t.val(r)) + '</b></td></tr>';
+            var gp = r.m ? gammePrix(r.m) : null, p = r.m && r.m.specs && r.m.specs.prix_eur;
+            var rk = cur.noRank ? '—' : (sort === 'score' && r.rang ? r.rang : i + 1);
+            var name = r.nom || (r.m ? r.m.nom : mname(r.id));
+            var parts = [];
+            if (gp) { parts.push(gp.label); if (p) parts.push(fmt(Math.round(p)) + ' €'); }
+            if (r.sub) parts.push(r.sub);
+            return '<tr' + (gp ? ' class="sg-g-row sg-gr-' + gp.id + '"' : '') + '><td class="sg-rk-n">' + esc(rk) + '</td>' +
+              '<th scope="row"><span class="sg-rk-mob">' + esc((r.cells || []).filter(function (c) { return c && c !== '—'; }).join(' · ')) + '</span>' +
+              '<span class="sg-rk-name">' + (gp ? '<i class="sg-g sg-g-' + gp.id + '" title="' + esc(gp.label) + '"></i>' : '') + esc(name) + '</span>' +
+              '<small>' + esc(parts.join(' · ')) + (r.src ? ' · ' + lien(r.src, 'source') : '') + '</small></th>' +
+              (r.cells || []).map(function (c) { return '<td class="sg-rk-c">' + esc(c) + '</td>'; }).join('') +
+              '<td class="sg-rk-v"><b>' + esc(r.val) + '</b></td></tr>';
           }).join('') + '</tbody></table>' +
-          (rows.length > 10 ? '<button type="button" class="sg-link-btn" data-all>' + (all ? 'Afficher les 10 premiers' : 'Afficher les ' + rows.length + ' modèles') + '</button>' : '')
-          : '<p class="sg-fine">Aucun modèle de cette gamme dans ce classement.</p>';
+          (rows.length > 10 ? '<button type="button" class="sg-link-btn" data-all>' + (all ? 'Afficher les 10 premiers' : 'Afficher les ' + rows.length + ' lignes') + '</button>' : '')
+          : '<p class="sg-fine">Aucune ligne pour ce filtre.</p>';
       }
       sec.addEventListener('click', function (e) {
         var b = e.target.closest('button');
         if (!b) return;
-        if (b.dataset.test) {
-          tid = b.dataset.test; all = false;
-          sec.querySelectorAll('[data-test]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        if (b.dataset.carte) {
+          cur = t.cartes.filter(function (c) { return c.id === b.dataset.carte; })[0];
+          all = false;
+          sec.querySelectorAll('[data-carte]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
           draw();
         } else if (b.dataset.g) {
           g = b.dataset.g;
@@ -1220,6 +1434,7 @@
       sec.querySelector('[data-sort]').addEventListener('change', function (e) { sort = e.target.value; draw(); });
       draw();
     });
+
     /* Les tests utilisés, avec leurs conditions. */
     var src = document.getElementById('sg-tests-src');
     if (src) src.innerHTML = '<ul class="sg-tests-notes">' + TD.tests.slice().sort(function (a, b) { return (b.date || '').localeCompare(a.date || ''); }).map(function (t) {
