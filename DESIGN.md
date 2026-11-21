@@ -19,6 +19,6 @@ L’illustration d’accueil `assets/editorial/accueil-atelier.webp` est une ima
 
 ## Guide Smartphones
 
-La page `smartphones.html` suit une direction propre. [Noeinoi](https://noeinoi.com/) inspire la grille à bordures franches et les titres sans empattements. [VOID](https://void.sbs/) inspire le graphite et le jaune acide de la maquette et des commandes actives. Les libellés et leurs photos ont chacun leur espace dans le parcours de critères. L’Analyseur intégré reprend la palette du guide.
+La page `smartphones.html` suit une direction propre. [Noeinoi](https://noeinoi.com/) inspire la grille à bordures franches et les titres sans empattements. [VOID](https://void.sbs/) inspire le graphite et le jaune acide de la maquette et des commandes actives. Les libellés et leurs photos ont chacun leur espace dans le parcours de critères. L’Analyseur intégré reprend la palette du guide. [The Ringer](https://www.theringer.com/) inspire la couverture sombre qui réunit la maquette et l’ouverture du guide, ainsi que les onglets en pastilles. Sur mobile, les actions précèdent l’illustration pour faciliter l’accès au parcours.
 
 Le prisme `assets/editorial/smartphones-prisme.webp` est une illustration originale générée pour le fond de la maquette. Les valeurs qui apparaissent à l’écran viennent de la recommandation courante.
