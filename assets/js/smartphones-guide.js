@@ -109,20 +109,26 @@
     return '<span class="sg-opt-label">' + esc(m ? m[1] : opt.label) + (m ? '<span class="sg-opt-detail">' + esc(m[2]) + '</span>' : '') + '</span>';
   }
 
+  function renderStepVisibility() {
+    guide.steps.forEach(function (step) {
+      var isOpen = openStep === step.id;
+      document.getElementById('sg-step-' + step.id).classList.toggle('is-open', isOpen);
+      document.getElementById('sg-btn-' + step.id).setAttribute('aria-expanded', String(isOpen));
+      document.getElementById('sg-panel-' + step.id).hidden = !isOpen;
+    });
+  }
+
   function renderSteps() {
+    renderStepVisibility();
     guide.steps.forEach(function (s) {
       var li = document.getElementById('sg-step-' + s.id);
-      var btn = document.getElementById('sg-btn-' + s.id);
       var choice = guide.sel[s.id], o = guide.chosen(s.id);
-      var isOpen = openStep === s.id;
       var broken = !!o && !guide.availability(s.id, o.id).available;
       li.hidden = !!s.parent && !refinements[s.parent] && !choice;
-      li.classList.toggle('is-open', isOpen);
       var refine = li.querySelector('[data-refine]');
       if (refine) refine.setAttribute('aria-expanded', String(!!refinements[s.id]));
       li.classList.toggle('is-done', !!o);
       li.classList.toggle('is-broken', broken);
-      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       document.getElementById('sg-status-' + s.id).textContent = !choice ? 'à choisir'
         : choice === L.SKIP ? 'passée' : (broken ? 'À revoir : ' : '') + o.label.replace(/ \(.*\)$/, '');
 
@@ -324,7 +330,7 @@
     if (t.classList.contains('sg-step-btn')) {
       var id = t.id.replace('sg-btn-', '');
       openStep = openStep === id ? null : id;
-      render(); return;
+      renderStepVisibility(); return;
     }
     if (t.hasAttribute('data-replay-fluidite')) {
       document.getElementById('sg-opts-fluidite').getAnimations({ subtree: true }).forEach(function (animation) {
