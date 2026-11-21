@@ -408,7 +408,7 @@
     f.addEventListener('load', function () {
       try {
         var d = f.contentDocument, sheet = d.createElement('link');
-        d.documentElement.classList.add('sg-embedded');
+        d.documentElement.classList.add('sg-embedded', 'dark-theme');
         sheet.rel = 'stylesheet';
         sheet.href = 'assets/css/smartphones.css';
         var fit = function () { f.style.height = Math.ceil(d.body.getBoundingClientRect().height) + 'px'; };
@@ -1054,6 +1054,24 @@
     return '<div class="sg-proof"><p class="sg-proof-h">Dans les tests ' + p.s.map(st).join(' ') + '</p><p>' + esc(p.t) + '</p>' + (p.u ? '<p class="sg-fine">' + lien(p.u, 'Voir le relevé') + '</p>' : '') + '</div>';
   }
 
+  /* Barre « À la une » : le test publié le plus récent, avec un lien vers la section des tests. */
+  function setupUne() {
+    var el = document.getElementById('sg-une');
+    if (!el || !TD || !TD.tests.length) return;
+    var t = null;
+    TD.tests.forEach(function (x) { if (!t || (x.date || '') >= (t.date || '')) t = x; });
+    el.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>' +
+      '<span><b>Dernier test publié</b> : <a href="#presentation" id="sg-une-go">' + esc(cap1(t.titre)) + '</a></span>' +
+      '<small>' + esc(t.chaine) + ' · ' + esc(dateFr(t.date, true)) + '</small>';
+    el.hidden = false;
+    document.getElementById('sg-une-go').addEventListener('click', function (e) {
+      e.preventDefault();
+      showTab(document.getElementById('sg-tab-presentation'), false);
+      var target = document.getElementById('sg-tests');
+      if (target) target.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+  }
+
   /* ---------- Démarrage ---------- */
   function init() {
     setupTabs();
@@ -1090,7 +1108,7 @@
         buildSteps(); render();
         document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(d.modeles.length); });
         document.querySelectorAll('[data-tests]').forEach(function (el) { el.textContent = String(d.tests.length); });
-        setupTestList(); renderSame(); setupFiche(); setupChipTable();
+        setupTestList(); renderSame(); setupFiche(); setupChipTable(); setupUne();
         if (anat) anat.refresh();
       })
       .catch(function () {

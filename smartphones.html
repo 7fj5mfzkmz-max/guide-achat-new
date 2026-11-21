@@ -25,6 +25,7 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/categories.js" defer></script>
 <script src="assets/js/category-menu.js" defer></script>
 <link rel="stylesheet" href="assets/css/actualites.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;display=swap">
 <link rel="stylesheet" href="assets/css/smartphones.css">
 <script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
 function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
@@ -100,6 +101,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <div class="sg-wrap">
+<p class="sg-une" id="sg-une" hidden></p>
 <div class="sg-tabs" role="tablist" aria-label="Parties du guide">
 <button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="true" tabindex="0">Mes critères</button>
 <button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1">Présentation</button>
@@ -120,7 +122,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-zone" hidden>
 
 <section class="sg-anat" id="sg-anat" aria-labelledby="sg-h-anat">
-<div class="sg-sec-head"><h2 id="sg-h-anat">Ce qu’il y a dedans, et ce que ça change pour vous.</h2></div>
+<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Anatomie</span></p><h2 id="sg-h-anat">Ce qu’il y a dedans, et ce que ça change pour vous.</h2></div>
 <div class="sg-anat-grid">
 <div class="sg-anat-stage" id="sg-anat-stage" data-open="false" aria-hidden="true">
 <div class="sg-stack">
@@ -144,7 +146,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section class="sg-tests" id="sg-tests" aria-labelledby="sg-h-tests">
-<div class="sg-sec-head"><h2 id="sg-h-tests">Ce que disent les tests, mesure par mesure.</h2>
+<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Tests</span></p><h2 id="sg-h-tests">Ce que disent les tests, mesure par mesure.</h2>
 <p class="sg-sec-lead">Des essais publiés par des testeurs, avec leurs conditions. Comparez les téléphones à l’intérieur d’un même test, jamais d’un test à l’autre : les protocoles diffèrent.</p></div>
 <div class="sg-tests-grid">
 <div class="sg-tests-list" id="sg-tests-list" role="tablist" aria-label="Tests publiés" aria-orientation="vertical"></div>
@@ -154,7 +156,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section class="sg-fiche" id="sg-fiche" aria-labelledby="sg-h-fiche">
-<div class="sg-sec-head"><h2 id="sg-h-fiche">Un modèle en détail, avec ses preuves.</h2>
+<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Fiches</span></p><h2 id="sg-h-fiche">Un modèle en détail, avec ses preuves.</h2>
 <p class="sg-sec-lead">Caractéristiques annoncées, résultats de tests et observations, chacun rattaché à sa source.</p></div>
 <details class="sg-cond"><summary>Voir le classement des processeurs par modèle</summary>
 <p class="sg-fine">La note situe les puces selon leur score Geekbench 6 multicœur. Les tests de téléphones éclairent ensuite les performances en usage.</p>
@@ -164,7 +166,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section class="sg-feat" aria-labelledby="sg-h-feat">
-<div class="sg-sec-head"><h2 id="sg-h-feat">Ce que la fiche met peu en avant, à vérifier avant d’acheter.</h2></div>
+<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">À vérifier</span></p><h2 id="sg-h-feat">Ce que la fiche met peu en avant, à vérifier avant d’acheter.</h2></div>
 <ul class="sg-feats">
 <li class="sg-feat-card"><span class="sg-fi sg-fi-5g" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h3>5G</h3>
 <p><b>Sert à</b> un débit mobile plus élevé, quand le réseau le permet.</p>
@@ -187,7 +189,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 
 <section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone" hidden>
-<div class="sg-sec-head"><h2>Vérifier un modèle précis.</h2></div>
+<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Analyseur</span></p><h2>Vérifier un modèle précis.</h2></div>
 <div class="sg-frame-wrap"><iframe id="sg-frame" class="sg-frame" title="Analyseur de smartphones" src="about:blank" data-src="analyseur.html?cat=smartphones"></iframe></div>
 <p class="sg-fine"><a href="analyseur.html?cat=smartphones">Ouvrir l’Analyseur dans une page séparée</a></p>
 </section>
