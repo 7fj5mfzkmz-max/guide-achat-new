@@ -1109,3 +1109,21 @@
   .sg-rk-filter button { min-height: 40px; padding: 0 12px; }
 }
 .dark-theme .sg-rk-table tbody tr { background: color-mix(in srgb, var(--g) 6%, transparent); }
+/* Autonomie : un test à la fois */
+.sg-proto-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin: 18px 0 0; }
+.sg .sg-proto-pick button { display: grid; gap: 3px; align-content: start; min-height: 64px; padding: 10px 14px; border: 1px solid var(--ink); border-radius: var(--r); background: var(--card); text-align: start; }
+.sg-proto-pick b { font: 800 .95rem/1.25 var(--sans); }
+.sg-proto-pick span { font: 500 .82rem/1.3 var(--sans); color: var(--ink-soft); }
+.sg .sg-proto-pick button[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-width: 2px; }
+.sg-proto-pick button[aria-pressed="true"] span { color: inherit; }
+.sg-proto { margin: 14px 0 0; padding: 14px 16px; border: 1px solid var(--line-soft); background: var(--card); }
+.sg-proto p { margin: 0; }
+.sg-proto-h { font: 500 .98rem/1.4 var(--sans); }
+.sg-proto-p { margin-top: 4px !important; font: 400 1rem/1.45 var(--serif); }
+.sg-proto-n { margin-top: 6px !important; font: 600 .9rem/1.4 var(--sans); color: var(--ink-soft); }
+/* Cartes d’une même rangée : même hauteur, le bouton en bas, pas de vide entre elles */
+.sg-collage { grid-auto-flow: row dense; align-items: stretch; }
+.sg-card { display: flex; flex-direction: column; gap: 14px; }
+.sg-card > * { flex: none; }
+.sg-card .sg-card-go { margin-top: auto; }
+.sg-card-anat { display: grid; }

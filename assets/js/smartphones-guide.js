@@ -1022,7 +1022,36 @@
 
   /* ---------- Tests publiés, comparaisons et fiches (data/smartphones-tests.json) ----------
      Chaque chiffre garde sa source et son statut. Rien n’est moyenné entre tests : les protocoles diffèrent. */
-  var TD = null, TIDX = null;
+  var TD = null, TIDX = null, AUTO = null;
+  /* Mesures d’autonomie (data/smartphones-autonomie.json) : elles remplacent celles de smartphones-tests.json.
+     Une ligne par modèle, variante et test ; le test de jeu reste à part, le pourcentage restant et les points perdus ne sont pas des durées. */
+  var AUTO_METRIQUE = { T01: 'Autonomie totale avec 16 h de veille', T03: 'Autonomie totale avec 16 h de veille', T12: 'Autonomie en usage mixte exigeant',
+    T07: 'Autonomie en parcours vidéo', T08: 'Autonomie en usage mixte Wi-Fi', T10: 'Autonomie écran allumé', T02: 'Autonomie en jeu continu' };
+  function cleanExtra(prev) {
+    var e = {};
+    if (prev) Object.keys(prev.extra || {}).forEach(function (k) { if (!/h:min$| s$|^Après /.test(k)) e[k] = prev.extra[k]; });
+    return e;
+  }
+  function mergeAutonomie(d, a) {
+    var old = {};
+    d.classements.forEach(function (c) { c.lignes.forEach(function (l) { (old[c.test + '|' + l.modele] = old[c.test + '|' + l.modele] || []).push(l); }); });
+    d.classements = d.classements.filter(function (c) { return !/^Autonomie/.test(c.metrique); });
+    d.tableaux.forEach(function (t) { t.lignes = t.lignes.filter(function (r) { return !/^Autonomie/.test(r.cellules[0]); }); });
+    a.tests.forEach(function (t) {
+      var id = t.id === 'T12' ? 'T12-techmo' : t.id;
+      t.id = id;
+      var known = d.tests.filter(function (x) { return x.id === id; })[0];
+      if (known) { known.titre = t.titre; known.protocole = t.protocole; known.date = t.date; known.chaine = t.chaine; }
+      else d.tests.push({ id: id, titre: t.titre, chaine: t.chaine, date: t.date, url: t.url, protocole: t.protocole });
+      var met = AUTO_METRIQUE[id.replace('-techmo', '')];
+      if (!met) return;
+      d.classements.push({ test: id, metrique: met, unite: 's', lignes: t.lignes.map(function (l) {
+        var prev = (old[id + '|' + l.modele] || []).shift();
+        return { variante: prev ? prev.variante : l.modele + '-' + (l.mah || ''), modele: l.modele, mah: l.mah, marche: l.variante || null, details: [],
+          valeur: l.valeur, unite: 's', rang: l.rang, extra: cleanExtra(prev), sources: [l.source] };
+      }) });
+    });
+  }
   var STATUTS = { mesure_publiee: 'Mesure publiée', estimation: 'Estimation', ordre_de_grandeur: 'Ordre de grandeur', observation: 'Observation du testeur', fonction_prise_en_charge: 'Fonction prise en charge', divergence: 'Divergence' };
   function st(s) { return '<span class="sg-st sg-st-' + esc(s) + '">' + esc(STATUTS[s] || s) + '</span>'; }
   function fmtNum(n) { return Number(n).toLocaleString('fr-FR'); }
@@ -1083,36 +1112,19 @@
   };
   function buildRankings() {
     var themes = [];
-    /* Autonomie : chaque résultat est rapporté au meilleur de son propre test (100 = premier du test). */
-    var auto = {};
-    var push = function (id, test, metrique, valeur, best, n, mah, rang, src) {
-      var idx = Math.round(100 * valeur / best);
-      var cur = auto[id];
-      if (!cur || idx > cur.idx || (idx === cur.idx && n > cur.n)) auto[id] = { id: id, test: test, metrique: metrique, valeur: valeur, idx: idx, n: n, mah: mah, rang: rang, src: src };
-    };
-    TD.classements.filter(function (c) { return c.unite === 's' || /^Autonomie/.test(c.metrique); }).forEach(function (c) {
-      var best = Math.max.apply(null, c.lignes.map(function (l) { return l.valeur; }));
-      c.lignes.forEach(function (l, i) { push(l.modele, c.test, c.metrique, l.valeur, best, c.lignes.length, l.mah, l.rang || i + 1, l.sources[0]); });
-    });
-    TD.tableaux.forEach(function (t) {
-      t.lignes.filter(function (r) { return /^Autonomie/.test(r.cellules[0]); }).forEach(function (r) {
-        var vals = r.cellules.slice(1).map(function (c) { var m = /\((\d+)\)/.exec(c); return m ? Number(m[1]) : null; });
-        var best = Math.max.apply(null, vals.filter(Boolean));
-        t.colonnes.slice(1).forEach(function (col, i) {
-          var v = TD.variantes[col];
-          if (v && vals[i]) push(v.modele, t.test, r.cellules[0].replace(/, h:min.*$/, ''), vals[i], best, vals.filter(Boolean).length, v.mah, null, r.sources[0]);
+    /* Autonomie : un classement par test. Les protocoles diffèrent (veille, jeu, pourcentage restant) :
+       on choisit un test, puis on trie à l’intérieur ; aucune moyenne entre tests. */
+    if (AUTO) themes.push({ id: 'autonomie', titre: 'Autonomie', lead: 'Chaque test a son protocole : choisissez-en un, le classement suit.',
+      tests: AUTO.tests, cols: ['Capacité testée'], valLabel: 'Résultat', autoRows: function (tid) {
+        var t = AUTO.tests.filter(function (x) { return x.id === tid; })[0];
+        return t.lignes.map(function (l) {
+          var m = TIDX.modele[l.modele];
+          var v = t.type === 'pourcent' ? l.valeur + ' % restants' : t.type === 'points' ? l.valeur + ' points perdus' : dureeTexte(l.valeur);
+          return { m: m, id: l.modele, rang: l.rang, score: t.type === 'points' ? -l.valeur : l.valeur, cells: [l.mah ? fmt(l.mah) + ' mAh' : 'non précisée'],
+            sub: [l.variante ? (/ /.test(l.variante) ? l.variante : 'version ' + l.variante) : '', t.type === 'duree_veille' ? 'dont 16 h de veille, ' + dureeTexte(l.hors_veille) + ' hors veille (calculé)' : ''].filter(Boolean).join(' · '),
+            src: l.source, txt: v };
         });
-      });
-    });
-    themes.push({ id: 'autonomie', titre: 'Autonomie', lead: 'Tous les téléphones mesurés, du plus endurant au moins endurant.',
-      cols: ['Capacité', 'Durée mesurée'],
-      rows: Object.keys(auto).map(function (id) {
-        var a = auto[id], t = TIDX.test[a.test], m = TIDX.modele[id];
-        return { m: m, id: id, score: a.idx * 1000 + a.n, cells: [a.mah ? fmt(a.mah) + ' mAh' : '—', dureeTexte(a.valeur)],
-          sub: (a.rang ? rangTxt(a.rang) + ' sur ' + a.n + ' · ' : '') + a.metrique.toLowerCase() + ', ' + t.chaine, src: a.src, val: a.idx };
-      }),
-      val: function (r) { return r.val; }, valLabel: 'Indice',
-      note: 'Indice 100 = meilleur de son test. Chaque testeur a son propre protocole (veille incluse ou non, luminosité, usage) : les durées ne se comparent qu’à l’intérieur d’un même test, l’indice dit seulement où le téléphone s’est placé.' });
+      }, val: function (r) { return r.txt; } });
     /* Performances : un seul indice commun à tous les modèles, le score Geekbench 6 multicœur de la puce. */
     themes.push({ id: 'performances', titre: 'Performances', lead: 'La puissance de la puce, mesurée avec le même logiciel pour tous les modèles.',
       cols: ['Puce', 'Note du guide'],
@@ -1165,17 +1177,27 @@
       return '<section class="sg-rk" id="sg-rk-' + t.id + '" aria-labelledby="sg-rk-h-' + t.id + '">' +
         '<div class="sg-rk-head"><span class="sg-rk-ico" aria-hidden="true"><svg viewBox="0 0 24 24">' + RK_ICONS[t.id] + '</svg></span>' +
         '<h3 id="sg-rk-h-' + t.id + '">' + esc(t.titre) + '</h3><p>' + esc(t.lead) + '</p></div>' +
+        (t.tests ? '<div class="sg-proto-pick" role="group" aria-label="Choisir un test">' + t.tests.map(function (x, k) {
+          return '<button type="button" data-test="' + x.id + '" aria-pressed="' + (k === 0) + '"><b>' + esc(x.titre) + '</b><span>' + esc(x.chaine) + ', ' + esc(dateFr(x.date, true)) + '</span></button>';
+        }).join('') + '</div><div class="sg-proto" data-proto></div>' : '') +
         '<div class="sg-rk-tools"><div class="sg-rk-filter" role="group" aria-label="Filtrer par gamme">' +
         [{ id: 'tout', label: 'Toutes' }].concat(GAMMES_PRIX).map(function (g) {
           return '<button type="button" data-g="' + g.id + '" aria-pressed="' + (g.id === 'tout') + '">' + (g.id !== 'tout' ? '<i class="sg-g sg-g-' + g.id + '"></i>' : '') + esc(g.id === 'tout' ? g.label : g.label.replace(' de gamme', '')) + '</button>';
         }).join('') + '</div>' +
         '<label class="sg-rk-sort">Trier par <select data-sort><option value="score">' + esc(t.valLabel.toLowerCase() === 'score' ? 'score' : 'classement') + '</option><option value="prix-desc">prix décroissant</option><option value="prix-asc">prix croissant</option></select></label></div>' +
         '<div class="sg-rk-table" data-table></div>' + legend +
-        '<p class="sg-fine">' + esc(t.note) + '</p></section>';
+        (t.note ? '<p class="sg-fine">' + esc(t.note) + '</p>' : '') + '</section>';
     }).join('');
     themes.forEach(function (t) {
       var sec = document.getElementById('sg-rk-' + t.id), table = sec.querySelector('[data-table]'), g = 'tout', sort = 'score', all = false;
+      var tid = t.tests ? t.tests[0].id : null;
+      function drawProto() {
+        var box = sec.querySelector('[data-proto]'), tt = t.tests.filter(function (x) { return x.id === tid; })[0];
+        box.innerHTML = '<p class="sg-proto-h"><b>' + esc(tt.titre) + '</b> · ' + esc(tt.chaine) + ', ' + esc(dateFr(tt.date)) + ' · ' + lien(tt.url, 'vidéo') + '</p>' +
+          '<p class="sg-proto-p">' + esc(tt.protocole) + '</p>' + (tt.note ? '<p class="sg-proto-n">' + esc(tt.note) + '</p>' : '');
+      }
       function draw() {
+        if (t.tests) { t.rows = t.autoRows(tid); drawProto(); }
         var rows = t.rows.filter(function (r) { return g === 'tout' || gammePrix(r.m).id === g; });
         var prix = function (r) { return (r.m && r.m.specs.prix_eur) || 0; };
         rows.sort(sort === 'score' ? function (a, b) { return b.score - a.score; } : sort === 'prix-asc' ? function (a, b) { return (prix(a) || 1e9) - (prix(b) || 1e9); } : function (a, b) { return prix(b) - prix(a); });
@@ -1184,7 +1206,7 @@
           t.cols.map(function (c) { return '<th scope="col" class="sg-rk-c">' + esc(c) + '</th>'; }).join('') + '<th scope="col" class="sg-rk-v">' + esc(t.valLabel) + '</th></tr></thead><tbody>' +
           shown.map(function (r, i) {
             var gp = gammePrix(r.m), p = r.m && r.m.specs.prix_eur;
-            return '<tr class="sg-g-row sg-gr-' + gp.id + '"><td class="sg-rk-n">' + (i + 1) + '</td>' +
+            return '<tr class="sg-g-row sg-gr-' + gp.id + '"><td class="sg-rk-n">' + (t.tests && sort === 'score' ? r.rang : i + 1) + '</td>' +
               '<th scope="row"><span class="sg-rk-name"><i class="sg-g sg-g-' + gp.id + '" title="' + esc(gp.label) + '"></i>' + esc(r.m ? r.m.nom : mname(r.id)) + '</span>' +
               '<span class="sg-rk-mob">' + esc(r.cells.filter(function (c) { return c && c !== '—'; }).join(' · ')) + '</span>' +
               '<small>' + esc(gp.label) + (p ? ' · ' + fmt(Math.round(p)) + ' €' : '') + ' · ' + esc(r.sub) + (r.src ? ' · ' + lien(r.src, 'source') : '') + '</small></th>' +
@@ -1197,7 +1219,11 @@
       sec.addEventListener('click', function (e) {
         var b = e.target.closest('button');
         if (!b) return;
-        if (b.dataset.g) {
+        if (b.dataset.test) {
+          tid = b.dataset.test; all = false;
+          sec.querySelectorAll('[data-test]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          draw();
+        } else if (b.dataset.g) {
           g = b.dataset.g;
           sec.querySelectorAll('[data-g]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
           draw();
@@ -1343,9 +1369,12 @@
       if (e.target.closest('[data-reset]')) restartQuiz();
     });
     setupComprendre();
-    fetch('data/smartphones-tests.json')
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (d) {
+    var getJson = function (u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); };
+    Promise.all([getJson('data/smartphones-tests.json'), getJson('data/smartphones-autonomie.json').catch(function () { return null; })])
+      .then(function (res) {
+        var d = res[0];
+        AUTO = res[1];
+        if (AUTO) mergeAutonomie(d, AUTO);
         TD = d; TIDX = { modele: {}, test: {} };
         d.modeles.forEach(function (m) { TIDX.modele[m.id] = m; });
         d.tests.forEach(function (t) { TIDX.test[t.id] = t; });

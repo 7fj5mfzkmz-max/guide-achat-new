@@ -1,0 +1,452 @@
+{
+ "version": "2026-11-21",
+ "source": "Synthèse « Autonomie des smartphones : résultats par test et par modèle », fournie le 21 novembre 2026",
+ "regle": "Classer à l’intérieur d’un test seulement ; aucune moyenne entre protocoles.",
+ "tests": [
+  {
+   "id": "T01",
+   "chaine": "PhoneBuff",
+   "date": "2026-11-19",
+   "titre": "Cinq iPhone, avec 16 h de veille",
+   "type": "duree_veille",
+   "protocole": "iOS 27, écrans à 200 nits, appel, messages, e-mails, web, Instagram, 16 h de veille, puis YouTube, jeu, Maps, Spotify, Snapchat et boucle d’apps jusqu’à extinction.",
+   "note": "Le temps hors veille est calculé en retirant les 16 h de veille programmée ; ce n’est pas un temps écran allumé mesuré.",
+   "lignes": [
+    {
+     "modele": "iphone-18-pro-max",
+     "mah": null,
+     "variante": "",
+     "valeur": 108780,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=548s",
+     "hors_veille": 51180
+    },
+    {
+     "modele": "iphone-18-pro",
+     "mah": null,
+     "variante": "",
+     "valeur": 98280,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=530s",
+     "hors_veille": 40680
+    },
+    {
+     "modele": "iphone-duo",
+     "mah": null,
+     "variante": "écrans externe et interne en alternance",
+     "valeur": 95220,
+     "rang": 3,
+     "source": "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=510s",
+     "hors_veille": 37620
+    },
+    {
+     "modele": "iphone-air",
+     "mah": null,
+     "variante": "",
+     "valeur": 91440,
+     "rang": 4,
+     "source": "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=463s",
+     "hors_veille": 33840
+    },
+    {
+     "modele": "iphone-17",
+     "mah": null,
+     "variante": "",
+     "valeur": 90360,
+     "rang": 5,
+     "source": "https://www.youtube.com/watch?v=bGA-u8tne-Y&t=463s",
+     "hors_veille": 32760
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=bGA-u8tne-Y"
+  },
+  {
+   "id": "T03",
+   "chaine": "PhoneBuff",
+   "date": "2026-08-27",
+   "titre": "REDMI, Reno, Galaxy et iPhone, avec 16 h de veille",
+   "type": "duree_veille",
+   "protocole": "Écrans à 200 nits, même Wi-Fi, 16 h de veille écran éteint, puis usage jusqu’à extinction. Partenariat avec REDMI, qui n’a pas défini le protocole.",
+   "note": "Les versions testées du REDMI (10 000 mAh) et du Reno16 F (7 000 mAh) ont plus de batterie que les versions françaises (9 210 et 6 500 mAh).",
+   "lignes": [
+    {
+     "modele": "redmi-note-17-pro-max-5g",
+     "mah": 10000,
+     "variante": "",
+     "valeur": 128700,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=405s",
+     "hors_veille": 71100
+    },
+    {
+     "modele": "oppo-reno16-f-5g",
+     "mah": 7000,
+     "variante": "",
+     "valeur": 106800,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=376s",
+     "hors_veille": 49200
+    },
+    {
+     "modele": "galaxy-a57-5g",
+     "mah": 5000,
+     "variante": "",
+     "valeur": 100500,
+     "rang": 3,
+     "source": "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=373s",
+     "hors_veille": 42900
+    },
+    {
+     "modele": "iphone-17",
+     "mah": 3692,
+     "variante": "",
+     "valeur": 92580,
+     "rang": 4,
+     "source": "https://www.youtube.com/watch?v=yIXi7YyhvHg&t=343s",
+     "hors_veille": 34980
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=yIXi7YyhvHg"
+  },
+  {
+   "id": "T12",
+   "chaine": "Techmo",
+   "date": "2026-10-28",
+   "titre": "Sept haut de gamme, usage mixte exigeant",
+   "type": "duree",
+   "protocole": "Wi-Fi sans SIM, 500 nits annoncés : YouTube, vidéo 4K, 3 h de web animé, 1 h de jeu, Google Meet, en boucle jusqu’à extinction. Mêmes chiffres repris dans le duel Oppo–Samsung du 30 octobre.",
+   "note": "Les Oppo, vivo, Xiaomi et OnePlus testés sont des versions chinoises.",
+   "lignes": [
+    {
+     "modele": "oneplus-16",
+     "mah": 9000,
+     "variante": "Chine",
+     "valeur": 50580,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=xpgo8T9hhxs&t=458s"
+    },
+    {
+     "modele": "xiaomi-18-pro-max",
+     "mah": null,
+     "variante": "Chine",
+     "valeur": 44340,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=xpgo8T9hhxs&t=421s"
+    },
+    {
+     "modele": "oppo-find-x10-pro-max",
+     "mah": 8000,
+     "variante": "Chine",
+     "valeur": 41940,
+     "rang": 3,
+     "source": "https://www.youtube.com/watch?v=xpgo8T9hhxs&t=403s"
+    },
+    {
+     "modele": "vivo-x500-pro-max",
+     "mah": null,
+     "variante": "Chine",
+     "valeur": 39960,
+     "rang": 4,
+     "source": "https://www.youtube.com/watch?v=xpgo8T9hhxs&t=389s"
+    },
+    {
+     "modele": "iphone-18-pro-max",
+     "mah": null,
+     "variante": "nano-SIM",
+     "valeur": 30120,
+     "rang": 5,
+     "source": "https://www.youtube.com/watch?v=xpgo8T9hhxs&t=350s"
+    },
+    {
+     "modele": "pixel-11-pro-xl",
+     "mah": null,
+     "variante": "",
+     "valeur": 29040,
+     "rang": 6,
+     "source": "https://www.youtube.com/watch?v=xpgo8T9hhxs&t=312s"
+    },
+    {
+     "modele": "galaxy-s26-ultra",
+     "mah": null,
+     "variante": "",
+     "valeur": 26520,
+     "rang": 7,
+     "source": "https://www.youtube.com/watch?v=xpgo8T9hhxs&t=295s"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=xpgo8T9hhxs"
+  },
+  {
+   "id": "T07",
+   "chaine": "Techmo",
+   "date": "2026-10-11",
+   "titre": "Six haut de gamme, parcours vidéo",
+   "type": "duree",
+   "protocole": "500 nits : environ 5 h de YouTube, 1 h de vidéo 4K, 2 h de Google Meet, puis Meet et YouTube Shorts jusqu’à extinction.",
+   "note": "Les vivo, Oppo et Xiaomi testés sont des versions chinoises achetées à l’import ; l’iPhone est la version européenne.",
+   "lignes": [
+    {
+     "modele": "vivo-x500-pro-max",
+     "mah": 8000,
+     "variante": "Chine",
+     "valeur": 45000,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=48RnplrImcE&t=294s"
+    },
+    {
+     "modele": "oppo-find-x10-pro-max",
+     "mah": 8000,
+     "variante": "Chine",
+     "valeur": 43020,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=48RnplrImcE&t=270s"
+    },
+    {
+     "modele": "xiaomi-18-pro-max",
+     "mah": null,
+     "variante": "Chine",
+     "valeur": 41580,
+     "rang": 3,
+     "source": "https://www.youtube.com/watch?v=48RnplrImcE&t=245s"
+    },
+    {
+     "modele": "iphone-18-pro-max",
+     "mah": null,
+     "variante": "Europe",
+     "valeur": 38340,
+     "rang": 4,
+     "source": "https://www.youtube.com/watch?v=48RnplrImcE&t=224s"
+    },
+    {
+     "modele": "pixel-11-pro-xl",
+     "mah": null,
+     "variante": "",
+     "valeur": 34680,
+     "rang": 5,
+     "source": "https://www.youtube.com/watch?v=48RnplrImcE&t=205s"
+    },
+    {
+     "modele": "galaxy-s26-ultra",
+     "mah": null,
+     "variante": "",
+     "valeur": 33120,
+     "rang": 6,
+     "source": "https://www.youtube.com/watch?v=48RnplrImcE&t=185s"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=48RnplrImcE"
+  },
+  {
+   "id": "T08",
+   "chaine": "Techmo",
+   "date": "2026-09-29",
+   "titre": "Six compacts, usage mixte en Wi-Fi",
+   "type": "duree",
+   "protocole": "Luminosité alignée au luxmètre, Wi-Fi seul : environ 6 h de YouTube, 1 h de vidéo 4K, 1 h de web animé, puis Meet et Shorts jusqu’à extinction.",
+   "note": "Le Xiaomi 17 testé est la version chinoise ; la version internationale a une batterie plus petite.",
+   "lignes": [
+    {
+     "modele": "xiaomi-17",
+     "mah": null,
+     "variante": "Chine",
+     "valeur": 47700,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=318s"
+    },
+    {
+     "modele": "pixel-11",
+     "mah": null,
+     "variante": "",
+     "valeur": 39600,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=302s"
+    },
+    {
+     "modele": "iphone-18-pro",
+     "mah": null,
+     "variante": "",
+     "valeur": 38460,
+     "rang": 3,
+     "source": "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=279s"
+    },
+    {
+     "modele": "galaxy-s26",
+     "mah": null,
+     "variante": "Snapdragon",
+     "valeur": 37800,
+     "rang": 4,
+     "source": "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=268s"
+    },
+    {
+     "modele": "pixel-11-pro",
+     "mah": null,
+     "variante": "",
+     "valeur": 37620,
+     "rang": 5,
+     "source": "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=251s"
+    },
+    {
+     "modele": "galaxy-s26",
+     "mah": null,
+     "variante": "Exynos",
+     "valeur": 37320,
+     "rang": 6,
+     "source": "https://www.youtube.com/watch?v=tcpeWJQO8DA&t=236s"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=tcpeWJQO8DA"
+  },
+  {
+   "id": "T10",
+   "chaine": "TechNick",
+   "date": "2026-10-28",
+   "titre": "Sept modèles, écran allumé de 100 à 0 %",
+   "type": "duree",
+   "protocole": "Wi-Fi sans SIM, luminosité alignée au luxmètre, quinze applications dont caméra et une heure de benchmarks, jusqu’à extinction. Partenariat avec vivo Afrique du Sud.",
+   "note": "Le HONOR 600 Pro testé a 7 000 mAh ; la version française en a 6 400.",
+   "lignes": [
+    {
+     "modele": "vivo-v80-lite-5g",
+     "mah": 10000,
+     "variante": "Afrique du Sud",
+     "valeur": 67380,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1117s"
+    },
+    {
+     "modele": "honor-x9d",
+     "mah": 8300,
+     "variante": "",
+     "valeur": 65880,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1105s"
+    },
+    {
+     "modele": "honor-600-pro",
+     "mah": 7000,
+     "variante": "",
+     "valeur": 63720,
+     "rang": 3,
+     "source": "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1097s"
+    },
+    {
+     "modele": "poco-x8",
+     "mah": 8340,
+     "variante": "",
+     "valeur": 59100,
+     "rang": 4,
+     "source": "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1086s"
+    },
+    {
+     "modele": "galaxy-a57-5g",
+     "mah": 5000,
+     "variante": "",
+     "valeur": 42000,
+     "rang": 5,
+     "source": "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1078s"
+    },
+    {
+     "modele": "galaxy-s26",
+     "mah": 4300,
+     "variante": "global",
+     "valeur": 39660,
+     "rang": 6,
+     "source": "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1066s"
+    },
+    {
+     "modele": "iphone-17",
+     "mah": 3692,
+     "variante": "",
+     "valeur": 34560,
+     "rang": 7,
+     "source": "https://www.youtube.com/watch?v=gEPCdMFG5lE&t=1055s"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=gEPCdMFG5lE"
+  },
+  {
+   "id": "T02",
+   "chaine": "PhoneBuff",
+   "date": "2026-11-10",
+   "titre": "Jeu continu dans League of Legends",
+   "type": "duree",
+   "protocole": "Des robots jouent réellement jusqu’à extinction ; ventilateur du REDMAGIC actif. Vidéo sponsorisée par REDMAGIC.",
+   "note": "À lire comme une autonomie en jeu continu, pas en usage mixte.",
+   "lignes": [
+    {
+     "modele": "redmagic-12-pro",
+     "mah": 8400,
+     "variante": "",
+     "valeur": 32520,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=302s"
+    },
+    {
+     "modele": "galaxy-s26-ultra",
+     "mah": null,
+     "variante": "",
+     "valeur": 21720,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=xDHHvWxxbxc&t=320s"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=xDHHvWxxbxc"
+  },
+  {
+   "id": "T05",
+   "chaine": "Techmo",
+   "date": "2026-10-24",
+   "titre": "Session terrain en 5G",
+   "type": "pourcent",
+   "protocole": "Session avec prises de vue vidéo et SIM 5G ; batterie restante à la fin. Aucune durée jusqu’à extinction.",
+   "note": "Un pourcentage restant, pas une durée.",
+   "lignes": [
+    {
+     "modele": "oneplus-16",
+     "mah": 9000,
+     "variante": "Chine",
+     "valeur": 69,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=H56aC0rJ23I&t=550s"
+    },
+    {
+     "modele": "oppo-find-x10-pro-max",
+     "mah": 8000,
+     "variante": "Chine",
+     "valeur": 60,
+     "rang": 2,
+     "source": "https://www.youtube.com/watch?v=H56aC0rJ23I&t=550s"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=H56aC0rJ23I"
+  },
+  {
+   "id": "T09",
+   "chaine": "TechNick",
+   "date": "2026-11-11",
+   "titre": "Points perdus pendant un test de vitesse",
+   "type": "points",
+   "protocole": "Ouvertures d’apps, jeux, benchmarks et gestion de la mémoire ; batterie perdue pendant la série.",
+   "note": "Même baisse en points ne veut dire ni même charge consommée ni même durée jusqu’à extinction.",
+   "lignes": [
+    {
+     "modele": "redmagic-12-pro",
+     "mah": 8400,
+     "variante": "",
+     "valeur": 6,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=613s"
+    },
+    {
+     "modele": "iphone-18-pro-max",
+     "mah": 5391,
+     "variante": "nano-SIM",
+     "valeur": 6,
+     "rang": 1,
+     "source": "https://www.youtube.com/watch?v=KL2cYuBqaZ0&t=613s"
+    }
+   ],
+   "url": "https://www.youtube.com/watch?v=KL2cYuBqaZ0"
+  }
+ ]
+}
