@@ -233,7 +233,7 @@
   function card(top, body) {
     var restart = !catalogueError && Object.keys(guide.sel).length
       ? '<button type="button" class="sg-link-btn" data-reset>Recommencer</button>' : '';
-    return '<div class="sg-res-top">' + top + '<span class="sg-res-phone" aria-hidden="true"></span></div><div class="sg-res-body">' + body + restart + '</div>';
+    return '<div class="sg-res-top">' + top + '</div><div class="sg-res-body">' + body + restart + '</div>';
   }
   function renderResult() {
     var box = document.getElementById('sg-result');
@@ -399,8 +399,7 @@
     var h = (location.hash || '').slice(1);
     if (h in map) showTab(tabs[map[h]], false, true);
   }
-  /* ---------- Analyseur : l’outil n’est pas modifié. Dans le cadre, on masque seulement l’en-tête et le pied de page
-     communs, et l’introduction de la page Analyseur (titre et choix Smartphone / PC, déjà donnés par l’onglet). ---------- */
+  /* ---------- Analyseur intégré : appliquer le cadre visuel du guide au formulaire existant. ---------- */
   var frameLoaded = false;
   function loadFrame() {
     var f = document.getElementById('sg-frame');
@@ -408,11 +407,13 @@
     frameLoaded = true;
     f.addEventListener('load', function () {
       try {
-        var d = f.contentDocument, st = d.createElement('style');
-        st.textContent = '.site-header,.header-meta,.site-footer,.search-panel,.pl-sections,.page-simple-hero{display:none!important}body{background:transparent!important}.smartphone-analyzer-section{padding-top:16px!important}';
-        d.head.appendChild(st);
-        var fit = function () { f.style.height = Math.max(560, d.documentElement.scrollHeight) + 'px'; };
-        fit();
+        var d = f.contentDocument, sheet = d.createElement('link');
+        d.documentElement.classList.add('sg-embedded');
+        sheet.rel = 'stylesheet';
+        sheet.href = 'assets/css/smartphones.css';
+        var fit = function () { f.style.height = Math.ceil(d.body.getBoundingClientRect().height) + 'px'; };
+        sheet.addEventListener('load', fit, { once: true });
+        d.head.appendChild(sheet);
         if (window.ResizeObserver) new ResizeObserver(fit).observe(d.body); else setInterval(fit, 800);
       } catch (e) { /* autre origine : affichage par défaut */ }
     });
