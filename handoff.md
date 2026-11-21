@@ -1,89 +1,77 @@
 # Handoff — Guide·Achat
 
-Document de reprise pour l'agent qui prend le relais (Codex). État au 20 novembre 2026.
+Document de reprise pour l'agent qui prend le relais. État au 21 novembre 2026. Remplace la version du 20 novembre.
 
 ## 1. Objectif
 
-Site statique en français (dépôt `7fj5mfzkmz-max/guide-achat-new`) qui aide à choisir smartphones, PC portables, montres, batteries, écouteurs et projecteurs.
+Site statique en français (dépôt `7fj5mfzkmz-max/guide-achat-new`) qui aide à choisir smartphones, PC portables, montres, batteries externes, écouteurs et projecteurs.
 
-Chantier en cours : refaire la page **Smartphones** (`smartphones.html`) sur les nouvelles bases fournies par l'utilisateur (spécifications et résultats de tests), à la place de l'ancien catalogue `data/smartphones.json`, qui est obsolète.
+Chantier en cours : la page **Smartphones** (`smartphones.html`). Elle recommande des modèles d'après des critères choisis par le lecteur, vérifie les caractéristiques annoncées avec des tests publiés, et explique les notions. Elle repose sur les données fournies par l'utilisateur, pas sur l'ancien catalogue `data/smartphones.json` (obsolète).
 
 ## 2. État actuel
 
-- **Branches** : `main` est sur `b853c25`. `dev` a reçu deux commits de Damir Houmadi Abdallah le 20 novembre (`ba24496` relevés France, `8111e91` critères et choix), plus le commit `handoff.md`. Ne pas écraser ces commits : rebaser ou fusionner.
+- **`main`** : `d4b61a9`, déployé (GitHub Pages, Vercel). Contient la refonte « La Une » validée par l'utilisateur, avec les commits de Codex sur lesquels elle repose.
+- **`style/claude`** : `653b1ac`, poussée. Même refonte, plus la mise à jour de `DESIGN.md`. Les photos ont été ajoutées puis retirées sur demande de l'utilisateur : elles n'existent plus dans cette branche.
+- **`dev`** : `59ddafd`, travail de Codex (style « ardoise et abricot », polices Gloock et Rethink Sans, couverture éditoriale). Ce n'est pas dans `main`. Il touche les mêmes fichiers Smartphones : tout merge demandera un arbitrage.
 - **Branche par défaut sur GitHub** : `main`. Ne pas la changer.
-- **Règle** : développer et pousser sur `dev` uniquement. `main` n'est fusionnée depuis `dev` (fast-forward) que sur demande explicite de l'utilisateur.
-- **Tests** : `npm test` passe (exit 0).
-- **Page Smartphones** :
-  - « Mes critères » lit `data/smartphones-tests.json` (62 modèles, 16 tests publiés).
-  - Étapes : priorité (ordre seulement, ne retire aucun modèle), taille, écran, processeur, batterie, charge, photo, tests.
-  - Prix France, indices IP et durées de mises à jour existent désormais dans `data/sources/base-smartphones-prix-france-ip-mises-a-jour.md` (version du 20 novembre). Vérifier comment `dev` les branche dans le parcours avant de les rajouter : ne pas supposer qu'il manque encore une étape.
-  - La vue éclatée a été remplacée par une maquette de téléphone en couches.
-- **Visuel** : ombres décalées réduites, halos colorés retirés, points orange retirés des étiquettes.
-- **Impeccable** : lanceur `scripts/impeccable` ajouté (renvoi vers le moteur du skill). Sur `smartphones.html`, 2 points restent (voir section 6).
+- **Règle** : `main` n'est fusionnée (fast-forward) que sur demande explicite de l'utilisateur. Développer sur `dev` ou sur la branche de travail désignée, jamais directement sur `main`.
+- **Tests** : `npm test` passe (exit 0). Le gabarit commun est conforme (`npm run gabarit:test`).
+- **Détecteur Impeccable** sur la page : 2 points restants, non corrigés (bandeau défilant de `pc-portables.html` hérité du CSS commun ; halo de la démo de rétroéclairage LCD, voulu).
+- **Visuel validé** : papier gris clair, encre bleu-noir, jaune manchette, rouge d'édition, marine ; Bricolage Grotesque (titres) et Source Serif 4 (lecture). Pas de photo sur la page. Le thème sombre existe mais n'est pas le défaut.
 
 ## 3. Fichiers en cours
 
-Chantier Smartphones :
-- `smartphones.html` : structure de la page (trois onglets).
-- `assets/js/smartphones-guide-logic.js` : logique pure du parcours (filtres, preuves, classement). Testée.
-- `assets/js/smartphones-guide.js` : interface (étapes, carte de résultat, maquette, anatomie, tests, fiches).
-- `assets/css/smartphones.css` : styles de la page.
-- `scripts/smartphones-guide-test.js` : 15 vérifications du parcours.
+Page Smartphones :
+- `smartphones.html` : structure (la une, Mes critères, Présentation, Analyseur).
+- `assets/css/smartphones.css` : tout le style (refonte « La Une »). Les polices sont dans `assets/fonts/`.
+- `assets/js/smartphones-guide.js` : interface (étapes, carte de recommandation, anatomie, tests, fiches, bandeau « dernier test publié »).
+- `assets/js/smartphones-guide-logic.js` : logique pure du parcours. Testée.
+- `scripts/smartphones-guide-test.js` : vérifications du parcours.
 - `data/smartphones-tests.json` : **généré**, ne pas modifier à la main.
-- `data/sources/base-smartphones-prix-france-ip-mises-a-jour.md` : prix France (offre vérifiée uniquement), IP, mises à jour. `data/sources/smartphones-criteres.json` : critères ajoutés le 20 novembre (ajouté par Damir).
-- `data/sources/base-tests-T01-T11.md`, `data/sources/base-tests-T12-T16.md` : bases fournies par l'utilisateur, qui font foi. `data/sources/LISEZMOI.md` explique la régénération.
-- `tools/donnees/construire-tests.py` : génère le JSON, et extrait les caractéristiques filtrables (`specs`) des fiches.
-- `scripts/smartphones-tests-data-test.js` : 14 vérifications des données.
+- `data/sources/base-tests-T01-T11.md`, `base-tests-T12-T16.md` : bases de tests, qui font foi. `data/sources/base-smartphones-prix-france-ip-mises-a-jour.md` : prix France (offre vérifiée), IP, mises à jour. `data/sources/smartphones-criteres.json` : critères (ajouté par Codex).
+- `tools/donnees/construire-tests.py` : génère le JSON et extrait les caractéristiques filtrables.
 
-CSS partagé (touche toutes les pages) :
-- `assets/css/design-system.css` : bandeau `.header-meta`, ticker `.ga-ticker`.
-- `assets/css/actualites.css` : point `.last-update-dot` (statique maintenant).
-
-Documentation :
-- `AGENTS.md` : point d'entrée pour les agents.
-- `docs/outils-ia/AGENT.md` (version agent) et `docs/outils-ia/README.md` (version humaine).
-- `docs/PISTES-OUVERTES.md` : pistes ouvertes et règles d'éthique (pas d'anti-robot, NotebookCheck ne remplit que les champs vides, l'inconnu reste inconnu).
+Documentation et contexte :
+- `DESIGN.md` : section « Guide Smartphones » réécrite pour « La Une » (couleurs, typographie, disposition, composants, à faire et à éviter). Le reste du fichier, qui décrit le site entier, est conservé.
+- `PRODUCT.md` : contexte produit (lecteur, mécanisme, contraintes, principes). Créé pour le skill Impeccable.
+- `.impeccable/surfaces/smartphones-html.md` : brief de surface avec le contrat de direction.
+- `AGENTS.md`, `docs/outils-ia/` : consignes et outils pour les agents.
 - `CLAUDE.md` : consignes de travail.
+
+CSS partagé (touche toutes les pages) : `assets/css/design-system.css`, `assets/css/actualites.css`.
 
 ## 4. Modifications faites
 
 Dans l'ordre :
-1. **Données** : `construire-tests.py` produit le JSON à partir des deux bases. Ajout de `specs` par modèle : puce, écran (technologie, pouces, Hz), batterie (plus petite et plus grande capacité, charge filaire, sans fil), photo (téléobjectif, OIS).
-2. **Parcours** : logique réécrite sur les nouvelles données. Une option n'est proposée que si au moins un modèle la respecte avec les autres choix. Une donnée absente vaut « inconnu » : ni correspondance, ni échec. Les tests départagent les modèles, en gardant le rang dans chaque test (jamais comparé d'un test à l'autre).
-3. **Interface** : étapes, carte de résultat avec preuves, maquette d'accueil, rappel en bas d'écran (seulement après un premier choix), textes d'accueil mis à jour.
-4. **Anatomie** : vue éclatée remplacée par une maquette de téléphone en couches.
-5. **Visuel** : ombres décalées de 4–8 px ramenées à 2–3 px ; points orange retirés des étiquettes et onglets ; halo jaune de la maquette et halo orange de la démo de fluidité remplacés par des ombres neutres ; bandeau méta à 11 px avec plus d'espace ; ticker en pause au survol ; point « dernière mise à jour » statique.
-6. **Outils** : skills réduits à `impeccable` et `emil-design-eng` ; hooks et skill graphify retirés ; notes de reprise supprimées, pistes ouvertes regroupées dans `docs/PISTES-OUVERTES.md`.
-7. **Lanceur Impeccable** : `scripts/impeccable` créé pour que la doc soit exacte.
+1. **Données** : `construire-tests.py` produit le JSON depuis les deux bases ; ajout de `specs` par modèle (puce, écran, batterie, charge, photo).
+2. **Parcours** : logique sur les nouvelles données. Une option n'est proposée que si au moins un modèle la respecte avec les autres choix. Une donnée absente vaut « inconnu » (ni correspondance ni échec). Les tests départagent, dans leur propre test.
+3. **Refonte « La Une »** (`d4b61a9`) : disposition, style et éditorial refaits selon la direction « une de quotidien », choisie par l'utilisateur parmi quatre. Titres et introductions réécrits ; explications, valeurs et sources inchangées.
+4. **Mise à jour de `DESIGN.md`** (`406daae`, `653b1ac`).
+5. **Retrait des photos** (`653b1ac`) : couverture et vignettes des critères retirées, à la demande de l'utilisateur.
+6. **Impeccable** : lanceur `scripts/impeccable` (renvoi vers le moteur du skill, dans `.agents/skills/impeccable/`).
 
 ## 5. Tentatives ratées (à ne pas reproduire)
 
-- **Audit modifié à tort** : j'ai appliqué des corrections alors que l'utilisateur demandait seulement une lecture. Annulé par un commit de revert sur `main` (`8a5c674`).
-- **Script lancé par erreur** : `node -e "require('./scripts/e2e-pc-live.js')"` a exécuté le script et fait une requête réelle vers une page marchande. Ne plus lancer ce script ; `node --check` suffit pour la syntaxe.
-- **Skills installés sans revue** : beaucoup de skills tiers installés avant d'être examinés. Un scan après coup n'a rien trouvé, mais ils ont été élagués.
-- **Règle graphify trop large** : une règle imposait une requête graphe avant tout `grep`. Mesure : la requête coûte environ 6 600 caractères contre 720 pour `grep`. Règle restreinte aux questions de structure, puis hooks retirés.
-- **Phrase générée dans les consignes** : une phrase sur le churn, générée sans raison, a été retirée de `CLAUDE.md` et `AGENTS.md`.
-- **Test cassé** : « Fiche Pixel 11 » échouait car la colonne du tableau T08 s'appelle « Rang autonomie ». Corrigé dans `construire-tests.py`.
-- **Launcher Impeccable absent** : `scripts/impeccable` n'avait jamais été commité, alors que la doc et l'historique le supposaient. Le moteur était là, dans `.agents/skills/impeccable/scripts/`. Corrigé par le lanceur.
-- **Commit au mauvais endroit** : le lanceur a été committé sur `main` en local par erreur. Remis à `origin/main` avant tout push ; la version finale est passée par `dev`, puis fusionnée sur demande.
-- **README faux** : il disait que la page Smartphones avait été retirée. Corrigé.
-- **Stylesheet orpheline** : une déclaration CSS sans sélecteur (héritée d'un ancien bloc) ne s'appliquait à rien. Supprimée.
+- **Première refonte rejetée** : je n'avais gardé ni la disposition ni le style d'origine, et proposé un fond sombre. L'utilisateur l'a rejetée : refonte complète demandée. Ne plus traiter une refonte comme une simple retouche de couleurs.
+- **Photos ajoutées puis retirées** : j'ai réintégré les photos de Codex (couverture, vignettes des critères). L'utilisateur les a jugées gâchantes et demandé leur retrait. Ne pas les remettre sans validation. Les fichiers `assets/editorial/smartphones-dossier.webp` et `assets/editorial/criteres-smartphones/` restent dans le dépôt sur `dev`, mais la page ne les utilise pas.
+- **Audit modifié à tort** (historique) : corrections appliquées alors que l'utilisateur demandait une lecture. Annulé.
+- **Script lancé par erreur** : `scripts/e2e-pc-live.js` exécuté par `require` a fait une requête réelle vers une page marchande. Ne jamais lancer ce script ; `node --check` suffit pour la syntaxe.
+- **Commit au mauvais endroit** : un commit posé sur `main` en local a été remis à `origin/main` avant tout push.
+- **Launcher Impeccable absent** : `scripts/impeccable` n'avait jamais été commité. Corrigé.
+- **Capture du skill** : la capture automatique Impeccable s'ouvre en `file://`, où les données ne se chargent pas. Ne pas s'en servir comme preuve : utiliser Playwright sur un serveur local.
+- **Revue du skill faite en interne** : les sous-agents spécialisés du skill n'étaient pas disponibles ; la revue finale a été faite sans eux, donc moins indépendante.
 
 ## 6. Prochaines étapes
 
 Décisions de l'utilisateur d'abord :
-1. **Prix, IP et mises à jour** : les données existent maintenant (voir section 3). Vérifier ce que `dev` en fait déjà, puis compléter le parcours si besoin, sans afficher de prix non vérifié (« Prix neuf France non vérifié » si aucune offre).
-2. **Puces non classées** : Snapdragon 6 Gen 5, 6s Gen 4, 7s Gen 4, Helio G100-Ultra (6 modèles, « puce non classée »). Ajouter une règle dans `phone-analyzer/chips.js` seulement si l'utilisateur donne la gamme. Ne pas inventer de note.
-
-Impeccable :
-3. **Page Smartphones** : 2 points restants. Le bandeau gris est une heuristique (il a 8 px d'espace vertical et 16 px horizontal). Le bandeau défilant est sur `pc-portables.html`, pas sur cette page ; il est gardé avec pause au survol.
-4. **`pc-portables.html`** : 21 points (contraste, majuscules, bandeaux). Hors périmètre actuel, à traiter si demandé.
-
-Mise en ligne :
-5. `main` est en retard sur `dev` (commits de Damir et `handoff.md`). Toute fusion sur `main` demande un accord explicite.
+1. **Fusion sur `main`** : la mise à jour de `DESIGN.md` (`653b1ac`) n'est pas encore sur `main`. Ne fusionner que sur demande explicite.
+2. **Conflit avec `dev`** : Codex a sur `dev` un autre style pour la même page. L'utilisateur doit choisir entre les deux directions ; ne pas fusionner `dev` dans `style/claude` sans arbitrage.
+3. **Prix, IP, mises à jour** : les données existent (`data/sources/base-smartphones-prix-france-ip-mises-a-jour.md`). Vérifier ce que la nouvelle page en affiche. Si aucune offre n'est vérifiée, afficher « Prix neuf France non vérifié ».
+4. **Puces non classées** : Snapdragon 6 Gen 5, 6s Gen 4, 7s Gen 4, Helio G100-Ultra. Ajouter une règle dans `phone-analyzer/chips.js` seulement si l'utilisateur donne la gamme. Ne pas inventer de note.
+5. **Traductions** : les nouveaux libellés (« Édition du jour », « Dernier test publié », « Les mots à connaître », etc.) sont en français. Ils doivent passer par DeepL, pas être écrits à la main dans `assets/i18n/*.json` ni `tools/i18n/*.tsv`.
+6. **`pc-portables.html`** : 21 points Impeccable (contraste, majuscules, bandeaux). Hors périmètre, à traiter si demandé.
 
 Vérifications avant tout push :
 - `npm test` vert.
-- `smartphones.html` sur ordinateur et mobile : pas de débordement horizontal, pas d'erreur console. Captures de référence possibles avec Playwright (`/opt/pw-browsers/chromium`, `--no-sandbox`).
+- `smartphones.html` sur ordinateur et mobile (390 px) : pas de débordement horizontal, pas d'erreur console. Capture avec Playwright (`/opt/pw-browsers/chromium`, `--no-sandbox`) sur un serveur local.
 - Ne pas modifier `data/smartphones-tests.json` à la main ; régénérer avec `python3 tools/donnees/construire-tests.py`.
