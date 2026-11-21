@@ -10,7 +10,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
 <link rel="canonical" href="https://guide-achat-new.vercel.app/smartphones.html"/>
-<meta name="description" content="Trouvez le smartphone qui vous convient : priorité, taille, écran, processeur, batterie, charge et photo. Fiches constructeur vérifiées par des tests publiés, notions expliquées."/>
+<meta name="description" content="Vous avez repéré un smartphone ? L’analyseur dit, sans jargon, s’il répond à vos besoins et ce qu’en disent les tests publiés. Quiz de recommandation et sélection du mois."/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
@@ -25,7 +25,6 @@ if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.ha
 <script src="assets/js/categories.js" defer></script>
 <script src="assets/js/category-menu.js" defer></script>
 <link rel="stylesheet" href="assets/css/actualites.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;display=swap">
 <link rel="stylesheet" href="assets/css/smartphones.css">
 <script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
 function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
@@ -50,55 +49,78 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="sg-hero-grid">
 <div class="sg-hero-text">
 <div class="sg-hero-copy">
-<h1 id="sg-title">Quel smartphone <span>choisir&nbsp;?</span></h1>
-<p class="sg-lead">Dites ce qui compte pour vous : la sélection ci-contre change à chaque réponse. Chaque chiffre vient d’une fiche de fabricant ou d’un test publié, avec sa source.</p>
+<h1 id="sg-title">Ce téléphone est-il fait <span>pour vous&nbsp;?</span></h1>
+<p class="sg-lead">Vous avez repéré un smartphone sur Internet, ou quelqu’un vous en a parlé&nbsp;? Collez son lien ou tapez son nom&nbsp;: l’analyseur vous dit, en mots simples, s’il répond à vos besoins, et ce qu’en disent les tests publiés.</p>
 </div>
-<div class="sg-hero-actions">
-<button type="button" class="sg-entry sg-cta" id="sg-cta-start">Choisir mes critères<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></button>
-<button type="button" class="sg-entry sg-cta-ghost" id="sg-cta-analyse"><span>Analyser un modèle<small>J’ai déjà un modèle en tête</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M7 6h11v11"/></svg></button>
+<form class="sg-quick" id="sg-quick" role="search" aria-label="Analyser un téléphone">
+<label class="sg-quick-l" for="sg-quick-in">Le téléphone à analyser</label>
+<div class="sg-quick-row">
+<input id="sg-quick-in" type="text" autocomplete="off" inputmode="url" placeholder="Lien ou nom, ex. Pixel 10" required>
+<button type="submit" class="sg-quick-go">Analyser<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
 </div>
+</form>
+<ul class="sg-offer" aria-label="Ce que fait le guide">
+<li><b>Selon vos besoins</b> Étudiant, pro, photo ou jeu : le verdict dépend de votre usage.</li>
+<li><b>Des tests publiés</b> Autonomie et performances mesurées en laboratoire, avec leur source.</li>
+<li><b>Sans jargon</b> « OLED 144 Hz » devient « belles couleurs, très fluide ».</li>
+</ul>
+<p class="sg-alt">Pas encore de modèle en tête&nbsp;? <button type="button" class="sg-alt-btn" id="sg-cta-start">Répondez au quiz : on vous en propose trois</button></p>
 </div>
-<div class="sg-hero-visual">
+<aside class="sg-hero-visual" aria-labelledby="sg-mois-h">
 <div class="sg-phone">
-<div class="sg-phone-notch"></div>
 <div class="sg-phone-screen">
-<p class="sg-mock-k">Notre sélection du moment</p>
-<p class="sg-mock-name" id="sg-mock-name">Votre modèle</p>
-<p class="sg-mock-price" id="sg-mock-price">Choisissez vos critères</p>
-<div class="sg-mock-meter" id="sg-mock-meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<div class="sg-mock-rows" id="sg-mock-rows"><span></span><span></span><span></span></div>
+<p class="sg-mock-k" id="sg-mois-h">Recommandation du mois</p>
+<p class="sg-mock-name" id="sg-mock-name">Chargement…</p>
+<p class="sg-mock-price" id="sg-mock-price"></p>
+<div class="sg-mois" id="sg-mock-rows"></div>
 </div>
 </div>
+</aside>
 </div>
-</div>
-<p class="sg-une" id="sg-une" hidden></p>
-<div class="sg-lexique">
-<p class="sg-lexique-h">Les mots à connaître</p>
-<div class="sg-callouts">
-<div class="sg-callout"><button type="button" aria-controls="sg-tip-screen" aria-expanded="false">Écran</button><p class="sg-definition" id="sg-tip-screen" hidden>La dalle que vous regardez. LCD et OLED produisent l’image de façon différente.</p></div>
-<div class="sg-callout"><button type="button" aria-controls="sg-tip-photo" aria-expanded="false">Photo</button><p class="sg-definition" id="sg-tip-photo" hidden>Les appareils photo arrière servent au cadrage large, au zoom et aux détails.</p></div>
-<div class="sg-callout"><button type="button" aria-controls="sg-tip-ip" aria-expanded="false">Indice IP</button><p class="sg-definition" id="sg-tip-ip" hidden>Les chiffres indiquent la résistance à la poussière puis à l’eau.</p></div>
-<div class="sg-callout"><button type="button" aria-controls="sg-tip-chip" aria-expanded="false">Puce</button><p class="sg-definition" id="sg-tip-chip" hidden>La puce, ou processeur, exécute les applications et les jeux.</p></div>
-<div class="sg-callout"><button type="button" aria-controls="sg-tip-battery" aria-expanded="false">Batterie</button><p class="sg-definition" id="sg-tip-battery" hidden>La capacité, exprimée en mAh, donne un indice. Les tests mesurent l’autonomie réelle.</p></div>
-<div class="sg-callout"><button type="button" aria-controls="sg-tip-updates" aria-expanded="false">Mises à jour</button><p class="sg-definition" id="sg-tip-updates" hidden>Le fabricant annonce pendant combien de temps il fournit de nouvelles versions et des correctifs.</p></div>
-</div>
-</div>
+<div class="sg-une" id="sg-une" hidden></div>
 </div>
 </section>
 
 <div class="sg-rubriques">
 <div class="sg-wrap">
 <div class="sg-tabs" role="tablist" aria-label="Parties du guide">
-<button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="true" tabindex="0">Mes critères</button>
-<button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1">Présentation</button>
-<button type="button" role="tab" id="sg-tab-analyseur" data-hash="analyseur" aria-controls="sg-zone-analyseur" aria-selected="false" tabindex="-1">Analyseur</button>
+<button type="button" role="tab" id="sg-tab-analyseur" data-hash="analyseur" aria-controls="sg-zone-analyseur" aria-selected="true" tabindex="0">Analyseur</button>
+<button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="false" tabindex="-1">Quiz</button>
+<button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1">Comprendre</button>
 </div>
 </div>
 </div>
 
 <div class="sg-wrap">
-<section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone">
-<div class="sg-quiz-actions"><h2>Vos critères, votre sélection</h2><button type="button" class="sg-link-btn" id="sg-reset" disabled>Recommencer</button></div>
+<section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone sg-ana">
+<div class="sg-sec-head"><h2>Analyser un téléphone précis</h2>
+<p class="sg-sec-lead">Collez le lien d’une fiche produit (Amazon, Fnac, Boulanger, site du fabricant…) ou tapez la marque et le modèle. Le guide retrouve ses caractéristiques, les traduit et les compare à votre usage.</p></div>
+<article class="sg-ana-card" id="analyse-modele" data-analyzer-category="smartphones">
+<form class="model-analyzer-form" id="phone-analyzer-form">
+<label class="sg-quick-l" for="phone-product-url">Lien ou nom du modèle</label>
+<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="https://… ou Galaxy S26" required type="text"/><button class="btn" type="submit">Analyser</button></div>
+<p class="model-analyzer-manual-entry"><button class="btn btn-secondary" type="button" id="phone-manual-toggle">Je connais déjà le modèle</button></p>
+</form>
+<div id="phone-manual-entry" hidden></div>
+<div aria-live="polite" class="model-analyzer-result" hidden id="phone-analyzer-result"></div>
+<p class="sg-ana-wait" id="sg-ana-wait" hidden>Chargement de l’analyseur…</p>
+</article>
+</section>
+</div>
+
+<div class="sg-wrap">
+<section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone" hidden>
+<div class="sg-quiz-actions"><h2>Trois téléphones choisis pour vous</h2><button type="button" class="sg-restart" id="sg-reset" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg>Recommencer</button></div>
+<fieldset class="sg-profil" id="sg-profil">
+<legend>D’abord, vous êtes plutôt…</legend>
+<div class="sg-profil-opts">
+<button type="button" class="sg-pf sg-pf-etudiant" data-profil="etudiant" aria-pressed="false"><b>Étudiant</b><span>Budget serré, batterie qui tient</span></button>
+<button type="button" class="sg-pf sg-pf-professionnel" data-profil="professionnel" aria-pressed="false"><b>Professionnel</b><span>Autonomie, robustesse, suivi long</span></button>
+<button type="button" class="sg-pf sg-pf-photographe" data-profil="photographe" aria-pressed="false"><b>Photo</b><span>Zoom, stabilisation, beau capteur</span></button>
+<button type="button" class="sg-pf sg-pf-gamer" data-profil="gamer" aria-pressed="false"><b>Gamer</b><span>Puce puissante, écran rapide</span></button>
+</div>
+<p class="sg-profil-note" id="sg-profil-note">Votre profil colore, dans les résultats, les caractéristiques qui comptent pour vous.</p>
+</fieldset>
 <div class="sg-parcours" id="sg-parcours">
 <aside class="sg-result-col" aria-label="Recommandation">
 <div id="sg-result" class="sg-result" aria-live="polite"></div>
@@ -192,14 +214,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </section>
 </section>
 
-<div class="sg-wrap">
-<section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone" hidden>
-<div class="sg-sec-head"><h2>Vérifier un modèle précis</h2>
-<p class="sg-sec-lead">Collez le lien d’une fiche produit ou saisissez un nom de modèle.</p></div>
-<div class="sg-frame-wrap"><iframe id="sg-frame" class="sg-frame" title="Analyseur de smartphones" src="about:blank" data-src="analyseur.html?cat=smartphones"></iframe></div>
-<p class="sg-fine"><a href="analyseur.html?cat=smartphones">Ouvrir l’Analyseur dans une page séparée</a></p>
-</section>
-</div>
 </main>
 
 
@@ -212,6 +226,23 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div>
 </footer>
 <script src="phone-analyzer/chips.js" defer></script>
+<!-- Analyseur : modules chargés à la demande, dans cet ordre, par smartphones-guide.js (type text/plain : non téléchargés au chargement). -->
+<script type="text/plain" data-analyzer-module src="sources/catalogue.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/normalizer.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/identify.js"></script>
+<script type="text/plain" data-analyzer-module src="category-kit/index.js"></script>
+<script type="text/plain" data-analyzer-module src="category-kit/smartphones.js"></script>
+<script type="text/plain" data-analyzer-module src="category-kit/pc-portables.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/identity.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/crosscheck.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/static-resolver.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/fetcher.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/capture.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/profile-fit.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/references.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/spec-insights.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/spec-score.js"></script>
+<script type="text/plain" data-analyzer-module src="phone-analyzer/ui.js"></script>
 <script src="assets/js/smartphones-guide-logic.js" defer></script>
 <script src="assets/js/smartphones-guide.js" defer></script>
 <script src="assets/js/theme.js" defer></script>

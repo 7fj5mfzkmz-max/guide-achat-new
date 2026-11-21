@@ -80,6 +80,68 @@
     return 'Aucun modèle ne correspond à vos autres choix.';
   }
 
+  /* ---------- Traduction des caractéristiques en mots simples ----------
+     Chaque valeur technique reçoit une phrase courte. Les seuils de batterie viennent du catalogue lui-même
+     (quartiles des capacités), pas d’une norme inventée. */
+  var BAT = { q1: 5200, med: 6400, q3: 7000 };
+  function setBatteryScale(modeles) {
+    var m = modeles.map(function (x) { return x.specs && x.specs.mah; }).filter(Boolean).sort(function (a, b) { return a - b; });
+    if (m.length < 8) return;
+    var at = function (q) { return m[Math.floor((m.length - 1) * q)]; };
+    BAT = { q1: at(0.25), med: at(0.5), q3: at(0.75) };
+  }
+  function plainScreen(s) {
+    var t = s.ecran === 'oled' ? 'De belles couleurs, des noirs profonds' : s.ecran === 'lcd' ? 'Des couleurs correctes, des noirs un peu gris' : '';
+    var f = !s.hz ? '' : s.hz >= 120 ? 'très fluide' : s.hz >= 90 ? 'fluide' : 'fluidité standard';
+    if (t && f) return 'Écran avec ' + t.charAt(0).toLowerCase() + t.slice(1) + ', ' + f;
+    return t || (f ? 'Écran ' + f : 'Écran non renseigné');
+  }
+  function plainChip(n) {
+    if (n === null || n === undefined) return 'Puce non classée par le guide';
+    if (n >= 9) return 'Très performant et fluide';
+    if (n >= 7) return 'Performant, à l’aise en jeu';
+    if (n >= 4) return 'Suffisant au quotidien';
+    return 'Pour un usage léger';
+  }
+  function batteryLevel(mah) {
+    if (!mah) return null;
+    if (mah > BAT.q3) return { id: 'plus', txt: 'Batterie supérieure à la normale' };
+    if (mah < BAT.q1) return { id: 'moins', txt: 'Batterie inférieure à la normale' };
+    return { id: 'normale', txt: 'Batterie normale' };
+  }
+  function plainCharge(w) { return w >= 100 ? 'Charge très rapide' : w >= 45 ? 'Charge rapide' : w >= 25 ? 'Charge correcte' : 'Charge lente'; }
+  function plainSize(x) { return x <= 6.4 ? 'Compact, tient dans une main' : x < 6.75 ? 'Taille courante' : 'Grand écran, plutôt à deux mains'; }
+  function plainIp(list) {
+    var best = (list || []).map(function (x) { var m = /IP\d?(\d)/i.exec(x); return m ? Number(m[1]) : 0; }).sort().pop() || 0;
+    return best >= 8 ? 'Résiste à une immersion' : best === 7 ? 'Résiste à une immersion brève' : best >= 4 ? 'Résiste aux éclaboussures' : 'Protection contre l’eau limitée';
+  }
+  /* Rang dans un test, traduit : la position compte, pas la valeur d’un test à l’autre. */
+  function placeTxt(e, quoi) {
+    var p = L.place(e);
+    if (e.rang === 1) return quoi + ' : la meilleure du comparatif';
+    if (p === null) return quoi + ' mesurée par un testeur';
+    if (p >= 0.6) return quoi + ' parmi les meilleures du comparatif';
+    if (p >= 0.35) return quoi + ' dans la moyenne du comparatif';
+    return quoi + ' correcte, mais inférieure aux meilleurs téléphones testés';
+  }
+  /* Ce que les tests disent de la batterie en pratique (meilleur rang retenu). */
+  function batteryInTests(p) {
+    var e = guide && guide.evidence[p.id];
+    if (!e || !e.autonomie.length) return null;
+    var best = e.autonomie.slice().sort(function (a, b) { return (L.place(b) || 0) - (L.place(a) || 0); })[0];
+    var pl = L.place(best);
+    return { good: best.rang === 1 || (pl !== null && pl >= 0.6), txt: best.rang === 1 || (pl !== null && pl >= 0.6) ? 'Bonne en pratique' : pl !== null && pl >= 0.35 ? 'Correcte en pratique' : 'En retrait en pratique', e: best };
+  }
+
+  /* Profil déclaré : une couleur par profil, et les caractéristiques qui comptent pour lui. */
+  var PROFILS = {
+    etudiant: { nom: 'Étudiant', kinds: { mah: 1, charge: 1, ip: 1, taille: 1 }, prio: 'autonomie' },
+    professionnel: { nom: 'Professionnel', kinds: { mah: 1, ip: 1, charge: 1, sansfil: 1, puce: 1 }, prio: 'equilibre' },
+    photographe: { nom: 'Photo', kinds: { tele: 1, ultra: 1, stab: 1, mp: 1, capteur: 1, ecran: 1 }, prio: 'photo' },
+    gamer: { nom: 'Gamer', kinds: { puce: 1, ecran: 1, mah: 1, charge: 1 }, prio: 'puissance' }
+  };
+  var profil = null;
+
   /* ---------- Étapes ---------- */
   function buildSteps() {
     document.getElementById('sg-steps').style.setProperty('--n', guide.steps.length);
@@ -183,23 +245,32 @@
         (r[2] ? ' ' + lien(r[2], 'Source') : '') + '</dd></div>';
     }).join('') + '</dl>';
   }
-  /* Pastilles courtes tirées de la fiche ; celles qui répondent à un choix actif sont marquées. */
+  /* Pastilles tirées de la fiche : la valeur, sa traduction (au survol ou au focus ; toujours visible au toucher),
+     la couleur du profil quand la caractéristique compte pour lui et qu’elle est bonne, et une coche si elle répond à un choix. */
   function specChips(p) {
     var chips = [], s = p.specs || {}, n = F.niveau(p);
     var m = function (step) { var o = guide && guide.chosen(step); return !!o && o.test(p) === true; };
-    if (s.pouces) chips.push([pouces(s.pouces), m('taille')]);
-    if (s.ecran || s.hz) chips.push([[s.ltpo ? 'OLED LTPO' : s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '', s.hz ? s.hz + ' Hz' : ''].filter(Boolean).join(' '), m('ecran') || m('fluidite')]);
-    chips.push([n === null ? 'Puce non classée' : 'Puce ' + n + '/10', m('processeur')]);
-    if (s.mah) chips.push([fmt(s.mah) + ' mAh', m('batterie')]);
-    if (s.charge_w) chips.push([s.charge_w + ' W', m('charge')]);
-    else if (s.sans_fil) chips.push(['Sans fil', m('charge')]);
-    if (s.indices_ip && m('protection')) chips.push([s.indices_ip.join(' / '), true]);
-    if (s.tele) chips.push(['Téléobjectif', m('photo')]);
-    if (s.ultra && m('photo')) chips.push(['Ultra grand-angle', true]);
-    if (s.ois || s.eis) chips.push([[s.ois ? 'OIS' : '', s.eis ? 'EIS' : ''].filter(Boolean).join(' + '), m('stabilisation')]);
-    if (s.mp && m('resolution')) chips.push([s.mp + ' Mpx', true]);
-    if (s.capteur && m('capteur')) chips.push([pouces(s.capteur), true]);
-    return '<ul class="sg-chips">' + chips.map(function (x) { return '<li' + (x[1] ? ' class="is-match"' : '') + '>' + esc(x[0]) + '</li>'; }).join('') + '</ul>';
+    var add = function (kind, v, plain, good, match) { chips.push({ kind: kind, v: v, plain: plain, good: good, match: match }); };
+    if (s.pouces) add('taille', pouces(s.pouces), plainSize(s.pouces), s.pouces <= 6.7, m('taille'));
+    if (s.ecran || s.hz) add('ecran', [s.ltpo ? 'OLED LTPO' : s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '', s.hz ? s.hz + ' Hz' : ''].filter(Boolean).join(' '),
+      plainScreen(s), s.ecran === 'oled' || s.hz >= 120, m('ecran') || m('fluidite'));
+    add('puce', n === null ? 'Puce non classée' : 'Puce ' + n + '/10', plainChip(n), n !== null && n >= 7, m('processeur'));
+    var bl = batteryLevel(s.mah);
+    if (s.mah) add('mah', fmt(s.mah) + ' mAh', bl.txt, bl.id !== 'moins', m('batterie'));
+    if (s.charge_w) add('charge', s.charge_w + ' W', plainCharge(s.charge_w), s.charge_w >= 45, m('charge'));
+    else if (s.sans_fil) add('sansfil', 'Sans fil', 'Se recharge posé sur un socle', true, m('charge'));
+    if (s.indices_ip && s.indices_ip.length) add('ip', s.indices_ip.join(' / '), plainIp(s.indices_ip), /IP\d?[78]/i.test(s.indices_ip.join(' ')), m('protection'));
+    if (s.tele) add('tele', 'Téléobjectif', 'Zoom sans perte de détail', true, m('photo'));
+    if (s.ultra) add('ultra', 'Ultra grand-angle', 'Cadre très large : paysages, groupes', true, m('photo'));
+    if (s.ois || s.eis) add('stab', [s.ois ? 'OIS' : '', s.eis ? 'EIS' : ''].filter(Boolean).join(' + '), 'Photos et vidéos stabilisées', true, m('stabilisation'));
+    if (s.mp && m('resolution')) add('mp', s.mp + ' Mpx', 'Beaucoup de détails à recadrer', true, true);
+    if (s.capteur && m('capteur')) add('capteur', pouces(s.capteur), 'Grand capteur : meilleur de nuit', true, true);
+    return '<ul class="sg-chips' + (profil ? ' has-profil' : '') + '">' + chips.map(function (x) {
+      var hit = profil && PROFILS[profil].kinds[x.kind] && x.good;
+      var cls = [hit ? 'is-pf sg-c-' + profil : '', x.match ? 'is-match' : ''].filter(Boolean).join(' ');
+      return '<li' + (cls ? ' class="' + cls + '"' : '') + ' tabindex="0"><span class="sg-chip-v">' + esc(x.v) + '</span>' +
+        '<span class="sg-chip-t">' + esc(x.plain) + (hit ? ' · compte pour le profil ' + esc(PROFILS[profil].nom) : '') + (x.match ? ' · répond à votre choix' : '') + '</span></li>';
+    }).join('') + '</ul>';
   }
   function rangTxt(r) { return r === 1 ? '1er' : r + 'e'; }
   /* Ce que les tests publiés disent du modèle : rangs dans les tests d’autonomie, mesures de performances, observations. */
@@ -208,11 +279,14 @@
     if (!e) return out;
     e.autonomie.slice().sort(function (a, b) { return (L.place(b) || 0) - (L.place(a) || 0); }).slice(0, 2).forEach(function (x) {
       var t = TIDX && TIDX.test[x.test];
-      out.push((x.rang ? rangTxt(x.rang) + ' sur ' + x.n : 'Mesuré') + ' · ' + x.metrique.toLowerCase() + (t ? ' (' + t.chaine + ')' : '') + (x.mah && p.specs.mah && x.mah !== p.specs.mah ? ', version ' + fmt(x.mah) + ' mAh' : ''));
+      out.push({ txt: placeTxt(x, 'Autonomie'), detail: (x.rang ? rangTxt(x.rang) + ' sur ' + x.n + ', ' : '') + x.metrique.toLowerCase() + (t ? ', test ' + t.chaine : '') + (x.mah && p.specs.mah && x.mah !== p.specs.mah ? ', version ' + fmt(x.mah) + ' mAh' : '') });
     });
-    var perf = e.perf.length + e.tableaux.length;
-    if (perf) out.push(perf + ' mesure' + (perf > 1 ? 's' : '') + ' de performances publiée' + (perf > 1 ? 's' : ''));
-    if (e.observations) out.push(e.observations + ' observation' + (e.observations > 1 ? 's' : '') + ' de testeurs');
+    var perfs = e.perf.filter(function (x) { return x.rang; }).sort(function (a, b) { return (L.place(b) || 0) - (L.place(a) || 0); });
+    if (perfs.length) {
+      var t2 = TIDX && TIDX.test[perfs[0].test];
+      out.push({ txt: placeTxt(perfs[0], 'Puissance').replace('la meilleure', 'la plus élevée').replace('parmi les meilleures', 'parmi les plus élevées'), detail: rangTxt(perfs[0].rang) + ' sur ' + perfs[0].n + ', ' + perfs[0].metrique + (t2 ? ', test ' + t2.chaine : '') });
+    } else if (e.perf.length + e.tableaux.length) out.push({ txt: 'Performances mesurées en test', detail: (e.perf.length + e.tableaux.length) + ' mesure' + (e.perf.length + e.tableaux.length > 1 ? 's' : '') + ' publiée' + (e.perf.length + e.tableaux.length > 1 ? 's' : '') });
+    if (e.observations) out.push({ txt: 'Des testeurs l’ont eu en main', detail: e.observations + ' observation' + (e.observations > 1 ? 's' : '') + ' dans la fiche' });
     return out;
   }
   var PRIO_TXT = {
@@ -233,57 +307,80 @@
   var lastReco = null;
   function card(top, body) {
     var restart = !catalogueError && Object.keys(guide.sel).length
-      ? '<button type="button" class="sg-link-btn" data-reset>Recommencer</button>' : '';
+      ? '<button type="button" class="sg-restart sg-restart-in" data-reset><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg>Recommencer le quiz</button>' : '';
     return '<div class="sg-res-top">' + top + '</div><div class="sg-res-body">' + body + restart + '</div>';
   }
   function renderResult() {
     var box = document.getElementById('sg-result');
     if (catalogueError) {
       box.innerHTML = card('', '<h2 class="sg-res-title" id="sg-result-title">Données indisponibles</h2><p class="sg-res-empty">Les fiches n’ont pas pu être chargées. Rechargez la page ou utilisez l’Analyseur.</p>');
-      updateDock(null); updateMock(null); return;
+      updateDock(null); return;
     }
     var pr = guide.progress();
+    if (!Object.keys(guide.sel).length) {
+      box.innerHTML = '<div class="sg-res-start"><p class="sg-res-start-h">Votre sélection apparaîtra ici</p><p>Choisissez votre profil, puis répondez aux questions ci-dessous : à chaque réponse, les trois téléphones proposés s’ajustent. Les questions inutiles se passent.</p></div>';
+      updateDock(null); return;
+    }
     var count = '<span class="sg-res-count">' + pr.confirmed + ' / ' + pr.total + '</span>';
     var recos = guide.recommend(3), blocking = guide.blocking();
     if (!recos.length) {
       var names = blocking.map(function (b) { return '« ' + b.option.label + ' »'; });
       box.innerHTML = card(count, '<h2 class="sg-res-title" id="sg-result-title">Aucun modèle ne correspond à ces critères</h2>' +
         '<p class="sg-res-empty">' + (names.length ? 'En cause : ' + esc(names.join(', ')) + '. ' : '') + 'Retirez un critère : vos autres réponses sont gardées.</p>' + meter(pr));
-      updateDock(null); updateMock(null); return;
+      updateDock(null); return;
     }
     var p = recos[0], total = guide.results().length, prio = guide.chosen('priorite') ? guide.chosen('priorite').id : 'equilibre';
     var proofs = preuvesDe(p);
     var img = PHOTOS[p.id] ? '<img class="sg-res-img" src="' + esc(PHOTOS[p.id]) + '" alt="' + esc(PHOTOS_ALT[p.id] || '') + '" width="1200" height="900" loading="lazy" decoding="async">' : '';
-    box.innerHTML = card('<span class="sg-res-badge">' + (pr.answered || guide.sel.priorite ? 'Pour vous' : 'Pour commencer') + '</span>' + count,
+    box.innerHTML = card('<span class="sg-res-badge">Pour vous' + (profil ? ', profil ' + esc(PROFILS[profil].nom) : '') + '</span>' + count,
       img + '<h2 class="sg-res-title" id="sg-result-title">' + esc(nameOf(p)) + '</h2>' +
-      '<p class="sg-res-var">' + esc(chipText(p)) + '</p>' +
+      '<p class="sg-res-var">' + esc(plainChip(F.niveau(p))) + ', ' + esc(plainScreen(p.specs || {}).charAt(0).toLowerCase() + plainScreen(p.specs || {}).slice(1)) + '</p>' +
       specChips(p) +
       '<div class="sg-res-proof"><p class="sg-res-sub">Ce que disent les tests</p>' + (proofs.length
-        ? '<ul>' + proofs.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>'
+        ? '<ul>' + proofs.map(function (x) { return '<li><b>' + esc(x.txt) + '.</b> <small>' + esc(cap1(x.detail)) + '</small></li>'; }).join('') + '</ul>'
         : '<p class="sg-fine">Aucun test publié pour ce modèle dans les bases actuelles : la recommandation repose sur sa fiche.</p>') + '</div>' +
       meter(pr) +
       '<p class="sg-res-why">' + esc(PRIO_TXT[prio]) + ' ' + total + ' modèle' + (total > 1 ? 's' : '') + ' respecte' + (total > 1 ? 'nt' : '') + ' vos choix.</p>' +
       '<details class="sg-res-more"><summary>Voir sa fiche</summary>' + specRows(p) + '</details>' +
       (recos.length > 1 ? '<div class="sg-res-also"><p class="sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
         var e = guide.measured(q.id);
-        return '<li><span>' + esc(nameOf(q)) + '</span><b>' + (q.specs.mah ? fmt(q.specs.mah) + ' mAh' : '') + '</b><small>' + esc(chipText(q)) + (e ? ' · mesuré ' + e + ' fois' : ' · pas encore testé') + '</small></li>';
+        return '<li><span>' + esc(nameOf(q)) + '</span><b>' + esc(q.specs.prix_eur ? fmt(Math.round(q.specs.prix_eur)) + ' €' : '') + '</b><small>' + esc(plainChip(F.niveau(q))) + (q.specs.mah ? ' · ' + batteryLevel(q.specs.mah).txt.toLowerCase() : '') + (e ? ' · mesuré ' + e + ' fois' : ' · pas encore testé') + '</small></li>';
       }).join('') + '</ol></div>' : '') +
       (p.specs.prix_eur !== null && p.specs.prix_eur !== undefined ? '<p class="sg-fine">Offre relevée le 20 novembre 2026 · ' + esc(p.france.offre.texte) + ' ' + lien(p.france.offre.sources[0], 'Voir l’offre') + '</p>' : '<p class="sg-fine">Prix neuf France indisponible pour le filtre. Voir les relevés dans la fiche.</p>'));
-    updateDock(p); updateMock(p);
+    updateDock(p);
   }
 
-  /* Téléphone dessiné de l’accueil : il reprend la recommandation en cours. */
-  function updateMock(p) {
-    var name = document.getElementById('sg-mock-name'), price = document.getElementById('sg-mock-price'), rows = document.getElementById('sg-mock-rows'), bar = document.getElementById('sg-mock-meter');
-    if (!name) return;
-    var pr = guide ? guide.progress() : { confirmed: 0 };
-    bar.querySelectorAll('i').forEach(function (i, k) { i.classList.toggle('on', k < pr.confirmed); });
-    if (!p) { name.textContent = 'Votre modèle'; price.textContent = 'Choisissez vos critères'; rows.innerHTML = '<span></span><span></span><span></span>'; return; }
-    var s = p.specs || {}, n = F.niveau(p), m = guide.measured(p.id);
+  /* Recommandation du mois (aplat jaune de la Une) : le premier du classement équilibré, sans aucun critère.
+     Chaque ligne traduit la fiche, avec une petite animation qui montre l’idée. */
+  function renderMois() {
+    var name = document.getElementById('sg-mock-name'), sub = document.getElementById('sg-mock-price'), rows = document.getElementById('sg-mock-rows');
+    if (!name || !TD) return;
+    var p = new L.Guide(TD.modeles, TD).recommend(1)[0];
+    if (!p) { name.textContent = 'Indisponible'; return; }
+    var s = p.specs || {}, n = F.niveau(p), m = guide.measured(p.id), bl = batteryLevel(s.mah), bt = batteryInTests(p);
     name.textContent = nameOf(p);
-    price.textContent = m ? 'Mesuré dans ' + m + ' test' + (m > 1 ? 's' : '') : 'Fiche constructeur';
-    rows.innerHTML = '<span>Écran <b>' + esc(s.ecran === 'oled' ? 'OLED' : s.ecran === 'lcd' ? 'LCD' : '—') + (s.hz ? ' ' + s.hz + ' Hz' : '') + '</b></span>' +
-      '<span>Puce <b>' + (n === null ? '?' : n + '/10') + '</b></span><span>Batterie <b>' + (s.mah ? fmt(s.mah) + ' mAh' : '—') + '</b></span>';
+    sub.textContent = (m ? 'Testé ' + m + ' fois par des testeurs indépendants' : 'D’après sa fiche constructeur') + (s.prix_eur ? ' · ' + fmt(Math.round(s.prix_eur)) + ' €' : '');
+    var tech = [s.ecran === 'oled' ? (s.ltpo ? 'OLED LTPO' : 'OLED') : s.ecran === 'lcd' ? 'LCD' : '', s.hz ? s.hz + ' Hz' : ''].filter(Boolean).join(' ');
+    var gauge = '';
+    for (var i = 1; i <= 10; i++) gauge += '<i' + (n !== null && i <= n ? ' class="on"' : '') + ' style="--i:' + i + '"></i>';
+    var fillPct = s.mah ? Math.min(100, Math.round(s.mah / 10000 * 100)) : 0, medPct = Math.round(BAT.med / 10000 * 100);
+    rows.innerHTML =
+      '<div class="sg-mr"><span class="sg-anim sg-anim-ecran' + (s.ecran === 'lcd' ? ' is-lcd' : '') + '" aria-hidden="true"><i class="px"></i><i class="px"></i><i class="px"></i><i class="px"></i><i class="px"></i><i class="px"></i><b style="--hz:' + (s.hz || 60) + '"></b></span>' +
+        '<p><b>' + esc(plainScreen(s)) + '</b><small>' + esc(tech || 'Écran') + (s.ecran === 'oled' ? ' : chaque point s’allume seul, le noir est vraiment éteint.' : s.ecran === 'lcd' ? ' : un éclairage derrière l’image, le noir reste un peu gris.' : '') +
+        (s.hz ? ' ' + s.hz + ' Hz : l’image change ' + s.hz + ' fois par seconde' + (s.hz >= 120 ? ', le défilement paraît très doux.' : '.') : '') + '</small></p></div>' +
+      '<div class="sg-mr"><span class="sg-anim sg-anim-puce" aria-hidden="true">' + gauge + '</span>' +
+        '<p><b>' + esc(plainChip(n)) + '</b><small>' + esc(s.puce || 'Puce') + (n !== null ? ', note du guide ' + n + '/10' : '') + '.</small></p></div>' +
+      (s.mah ? '<div class="sg-mr"><span class="sg-anim sg-anim-bat" aria-hidden="true" style="--fill:' + fillPct + '%;--med:' + medPct + '%"><i></i><u></u></span>' +
+        '<p><b>' + esc(bl.txt) + (bt ? ' · ' + esc(bt.txt.toLowerCase()) : '') + '</b><small>' + fmt(s.mah) + ' mAh ; un téléphone courant en a ' + fmt(BAT.q1) + ' à ' + fmt(BAT.q3) + '.' +
+        (bt ? ' En test : ' + esc(rangTxt(bt.e.rang)) + ' sur ' + bt.e.n + ' (' + esc(bt.e.metrique.toLowerCase()) + ', ' + esc(TIDX.test[bt.e.test].chaine) + ').' : ' Pas encore testée en pratique.') + '</small></p></div>' : '') +
+      '<button type="button" class="sg-mois-go" data-mois="' + esc(p.id) + '">Voir ses tests et sa fiche</button>';
+    rows.querySelector('[data-mois]').addEventListener('click', function () {
+      showTab(document.getElementById('sg-tab-presentation'), false);
+      var sel = document.getElementById('sg-fiche-sel');
+      if (sel) { sel.value = p.id; sel.dispatchEvent(new Event('change')); }
+      var f = document.getElementById('sg-fiche');
+      if (f) f.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
   }
 
   /* Rappel en bas d’écran (téléphone) : visible quand la carte n’est pas à l’écran. */
@@ -292,7 +389,7 @@
     lastReco = p;
     var dock = document.getElementById('sg-dock');
     if (!dock) return;
-    if (p) document.getElementById('sg-dock-txt').textContent = nameOf(p) + ' · ' + chipText(p);
+    if (p) document.getElementById('sg-dock-txt').textContent = nameOf(p) + ' · ' + plainChip(F.niveau(p)).toLowerCase();
     var touched = guide && Object.keys(guide.sel).length > 0; // pas de rappel tant que le visiteur n’a rien choisi
     dock.hidden = !p || !touched || dockVisibleCard || document.getElementById('sg-zone-criteres').hidden;
   }
@@ -309,7 +406,7 @@
 
   function render() {
     renderSteps(); renderResult();
-    document.getElementById('sg-reset').disabled = Object.keys(guide.sel).length === 0;
+    document.getElementById('sg-reset').disabled = Object.keys(guide.sel).length === 0 && !profil;
   }
 
   function nextStep(after) {
@@ -380,7 +477,7 @@
     });
     if (focus) tab.focus();
     if (!keepHash && history.replaceState) history.replaceState(null, '', '#' + tab.dataset.hash);
-    if (tab.id === 'sg-tab-analyseur') loadFrame();
+    if (tab.id === 'sg-tab-analyseur') loadAnalyzer();
     updateDock(lastReco);
   }
   function setupTabs() {
@@ -396,88 +493,66 @@
         if (n !== null) { e.preventDefault(); showTab(tabs[n], true); }
       });
     });
-    var map = { criteres: 0, 'sg-parcours': 0, presentation: 1, analyseur: 2 };
+    var map = { analyseur: 'sg-tab-analyseur', 'analyse-modele': 'sg-tab-analyseur', criteres: 'sg-tab-criteres', 'sg-parcours': 'sg-tab-criteres', quiz: 'sg-tab-criteres', presentation: 'sg-tab-presentation' };
     var h = (location.hash || '').slice(1);
-    if (h in map) showTab(tabs[map[h]], false, true);
+    if (h in map) showTab(document.getElementById(map[h]), false, true);
+    else loadAnalyzer();
   }
-  /* ---------- Analyseur intégré : appliquer le cadre visuel du guide au formulaire existant. ---------- */
-  var frameLoaded = false;
-  function loadFrame() {
-    var f = document.getElementById('sg-frame');
-    if (!f || frameLoaded) return;
-    frameLoaded = true;
-    f.addEventListener('load', function () {
-      try {
-        var d = f.contentDocument, sheet = d.createElement('link');
-        d.documentElement.classList.add('sg-embedded', 'dark-theme');
-        sheet.rel = 'stylesheet';
-        sheet.href = 'assets/css/smartphones.css';
-        var fit = function () { f.style.height = Math.ceil(d.body.getBoundingClientRect().height) + 'px'; };
-        sheet.addEventListener('load', fit, { once: true });
-        d.head.appendChild(sheet);
-        if (window.ResizeObserver) new ResizeObserver(fit).observe(d.body); else setInterval(fit, 800);
-      } catch (e) { /* autre origine : affichage par défaut */ }
+  /* ---------- Analyseur intégré ----------
+     Le formulaire est dans la page (plus d’iframe ni de seconde feuille de style) ; ses scripts sont chargés
+     à la demande, dans l’ordre des balises <script type="text/plain" data-analyzer-module> de la page, à l’ouverture de l’onglet
+     ou à l’envoi du champ de la Une. */
+  var ANALYZER_SCRIPTS = Array.prototype.map.call(document.querySelectorAll('script[data-analyzer-module]'), function (el) { return el.getAttribute('src'); });
+  var analyzerReady = null;
+  function loadAnalyzer() {
+    if (analyzerReady) return analyzerReady;
+    var wait = document.getElementById('sg-ana-wait'), form = document.getElementById('phone-analyzer-form');
+    if (wait) wait.hidden = false;
+    analyzerReady = ANALYZER_SCRIPTS.reduce(function (chain, src) {
+      return chain.then(function () {
+        return new Promise(function (ok, ko) {
+          var el = document.createElement('script');
+          el.src = src; el.async = false;
+          el.onload = ok; el.onerror = function () { ko(new Error(src)); };
+          document.body.appendChild(el);
+        });
+      });
+    }, Promise.resolve()).then(function () {
+      if (wait) wait.hidden = true;
+    }, function () {
+      if (wait) { wait.hidden = false; wait.textContent = 'L’analyseur n’a pas pu se charger. Rechargez la page, ou ouvrez-le dans une page séparée : '; wait.insertAdjacentHTML('beforeend', '<a href="analyseur.html?cat=smartphones">analyseur</a>.'); }
+      if (form) form.hidden = true;
     });
-    f.src = f.dataset.src;
+    return analyzerReady;
   }
 
   /* ---------- Accueil ---------- */
   function setupHero() {
-    var start = document.getElementById('sg-cta-start'), an = document.getElementById('sg-cta-analyse');
+    var start = document.getElementById('sg-cta-start'), quick = document.getElementById('sg-quick');
     if (start) start.addEventListener('click', function () {
-      showTab(document.getElementById('sg-tab-criteres'), false);
-      openStep = 'priorite';
+      var t = document.getElementById('sg-tab-criteres');
+      showTab(t, false);
       if (guide) render();
-      var b = document.getElementById('sg-btn-priorite') || document.getElementById('sg-steps');
-      b.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' });
-      if (b.focus) b.focus({ preventScroll: true });
+      t.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+      var first = document.querySelector('.sg-pf');
+      if (first) first.focus({ preventScroll: true });
     });
-    if (an) an.addEventListener('click', function () {
+    if (quick) quick.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = document.getElementById('sg-quick-in').value.trim();
+      if (!v) return;
       var t = document.getElementById('sg-tab-analyseur');
       showTab(t, false);
       t.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
-      t.focus({ preventScroll: true });
-    });
-    var active = null, pinned = false;
-    function showDefinition(button) {
-      if (active) {
-        active.setAttribute('aria-expanded', 'false');
-        document.getElementById(active.getAttribute('aria-controls')).hidden = true;
-      }
-      active = button;
-      if (active) {
-        active.setAttribute('aria-expanded', 'true');
-        document.getElementById(active.getAttribute('aria-controls')).hidden = false;
-      } else pinned = false;
-    }
-    document.querySelectorAll('.sg-callout').forEach(function (callout) {
-      var button = callout.querySelector('button');
-      button.addEventListener('click', function () {
-        if (active === button && pinned) showDefinition(null);
-        else {
-          showDefinition(button);
-          pinned = true;
-        }
-      });
-      callout.addEventListener('pointerenter', function (event) {
-        if (event.pointerType === 'mouse' && !pinned) showDefinition(button);
-      });
-      callout.addEventListener('pointerleave', function () {
-        if (active === button && !pinned) showDefinition(null);
+      loadAnalyzer().then(function () {
+        var input = document.getElementById('phone-product-url'), form = document.getElementById('phone-analyzer-form');
+        if (!input || !form) return;
+        var back = document.querySelector('#phone-analyzer-result [data-act="reset"]');
+        if (back) back.click();
+        input.value = v;
+        if (form.requestSubmit) form.requestSubmit(); else form.dispatchEvent(new Event('submit', { cancelable: true }));
       });
     });
-    document.addEventListener('click', function (event) {
-      if (active && !event.target.closest('.sg-callout')) showDefinition(null);
-    });
-    document.addEventListener('focusin', function (event) {
-      if (active && !active.parentElement.contains(event.target)) showDefinition(null);
-    });
-    document.addEventListener('keydown', function (event) {
-      if (active && event.key === 'Escape') showDefinition(null);
-    });
-    window.addEventListener('scroll', function () {
-      if (active) showDefinition(null);
-    }, { passive: true });
   }
 
   /* ---------- Comprendre votre téléphone : vue éclatée animée + une démonstration par composant.
@@ -998,7 +1073,7 @@
       html += res.length ? '<ul class="sg-fl">' + res.map(function (x) {
         var t = TIDX.test[x.c.test], n = x.c.lignes.length;
         return '<li><span><b>' + esc(x.c.metrique) + '</b> · ' + esc(cap1(t.titre)) + ' (' + esc(t.chaine) + ')' + badges(x.l) +
-          '<small>' + (x.l.rang ? x.l.rang + (x.l.rang === 1 ? 'er' : 'e') + ' sur ' + n + ' dans ce test · ' : '') + esc(extrasTexte(x.l)) + ' ' + (x.l.sources[0] ? lien(x.l.sources[0], 'relevé') : '') + '</small></span><b class="sg-fl-v">' + esc(valeurTexte(x.l)) + '</b></li>';
+          '<small>' + (x.l.rang ? '<b class="sg-verdict">' + esc(placeTxt({ rang: x.l.rang, n: n }, genre(x.c) === 'Autonomie' ? 'Autonomie' : 'Résultat').replace('Résultat : la meilleure', 'Meilleur résultat').replace('Résultat parmi les meilleures', 'Parmi les meilleurs résultats').replace('Résultat dans la moyenne', 'Dans la moyenne').replace('Résultat correcte, mais inférieure aux meilleurs téléphones testés', 'En retrait des meilleurs téléphones testés')) + '</b> ' + x.l.rang + (x.l.rang === 1 ? 'er' : 'e') + ' sur ' + n + ' dans ce test · ' : '') + esc(extrasTexte(x.l)) + ' ' + (x.l.sources[0] ? lien(x.l.sources[0], 'relevé') : '') + '</small></span><b class="sg-fl-v">' + esc(valeurTexte(x.l)) + '</b></li>';
       }).join('') + '</ul>' : '<p class="sg-fine">Aucun classement publié pour ce modèle dans les bases actuelles.</p>';
       var og = TD.ordres_de_grandeur.filter(function (o) { return o.modele === id; });
       if (og.length) html += '<p class="sg-tests-h">Durées rapportées par les testeurs</p><ul class="sg-fl">' + og.map(function (o) {
@@ -1055,32 +1130,60 @@
     return '<div class="sg-proof"><p class="sg-proof-h">Dans les tests ' + p.s.map(st).join(' ') + '</p><p>' + esc(p.t) + '</p>' + (p.u ? '<p class="sg-fine">' + lien(p.u, 'Voir le relevé') + '</p>' : '') + '</div>';
   }
 
-  /* Barre « À la une » : le test publié le plus récent, avec un lien vers la section des tests. */
+  /* Dernier test publié : ce qui a été mesuré, par qui, quand, et qui arrive en tête, regroupés en un seul encadré. */
   function setupUne() {
     var el = document.getElementById('sg-une');
     if (!el || !TD || !TD.tests.length) return;
     var t = null;
     TD.tests.forEach(function (x) { if (!t || (x.date || '') >= (t.date || '')) t = x; });
-    el.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>' +
-      '<span><b>Dernier test publié</b> : <a href="#presentation" id="sg-une-go">' + esc(cap1(t.titre)) + '</a></span>' +
-      '<small>' + esc(t.chaine) + ' · ' + esc(dateFr(t.date, true)) + '</small>';
+    var c = classementsDe(t.id)[0], top = c && c.lignes.filter(function (l) { return l.rang === 1; })[0] || (c && c.lignes[0]);
+    var n = c ? c.lignes.length : 0;
+    el.innerHTML = '<p class="sg-une-k">Dernier test publié <span>' + esc(dateFr(t.date)) + '</span></p>' +
+      '<p class="sg-une-t"><a href="#presentation" id="sg-une-go">' + esc(cap1(t.titre)) + '</a> <span>par ' + esc(t.chaine) + (n ? ', ' + n + ' téléphones comparés' : '') + '</span></p>' +
+      (top ? '<p class="sg-une-w">En tête : <b>' + esc(mname(top.modele)) + '</b>, ' + esc(valeurTexte(top)) + ' <span>(' + esc(c.metrique.toLowerCase()) + ')</span></p>' : '') +
+      '<a class="sg-une-more" href="#presentation" id="sg-une-go2">Voir tous les résultats</a>';
     el.hidden = false;
     var ed = document.getElementById('sg-edition');
     if (ed && TD.version) ed.textContent = 'Édition du ' + dateFr(TD.version);
-    document.getElementById('sg-une-go').addEventListener('click', function (e) {
+    var go = function (e) {
       e.preventDefault();
       showTab(document.getElementById('sg-tab-presentation'), false);
+      if (tshow) tshow(t.id, false);
       var target = document.getElementById('sg-tests');
       if (target) target.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+    document.getElementById('sg-une-go').addEventListener('click', go);
+    document.getElementById('sg-une-go2').addEventListener('click', go);
+  }
+  /* Profil : colore les pastilles, règle la priorité si elle n’est pas encore choisie, et sert à l’analyseur. */
+  function setupProfil() {
+    var box = document.getElementById('sg-profil'), note = document.getElementById('sg-profil-note');
+    if (!box) return;
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-profil]');
+      if (!b || !guide) return;
+      profil = profil === b.dataset.profil ? null : b.dataset.profil;
+      box.querySelectorAll('[data-profil]').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset.profil === profil)); });
+      box.dataset.profil = profil || '';
+      try { if (profil) localStorage.setItem('guide-profile', profil); } catch (err) { /* stockage indisponible */ }
+      var prioTxt = '';
+      if (profil && !guide.sel.priorite) {
+        guide.applyOption('priorite', PROFILS[profil].prio);
+        prioTxt = ' Priorité réglée sur « ' + guide.chosen('priorite').label + ' » : modifiable à la première question.';
+        openStep = nextStep('priorite');
+      }
+      note.textContent = profil ? 'Profil ' + PROFILS[profil].nom + ' : ses caractéristiques utiles sont colorées dans les résultats.' + prioTxt
+        : 'Votre profil colore, dans les résultats, les caractéristiques qui comptent pour vous.';
+      render();
     });
   }
-
   /* ---------- Démarrage ---------- */
   function init() {
     setupTabs();
     var anat = setupAnatomy();
     setupHero();
     setupDock();
+    setupProfil();
     var steps = document.getElementById('sg-steps');
     steps.addEventListener('click', onStepsClick);
     steps.addEventListener('input', function (e) {
@@ -1091,11 +1194,17 @@
       if (!guide) return;
       guide.reset();
       refinements = {};
+      profil = null;
+      document.querySelectorAll('[data-profil]').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      document.getElementById('sg-profil').dataset.profil = '';
+      document.getElementById('sg-profil-note').textContent = 'Votre profil colore, dans les résultats, les caractéristiques qui comptent pour vous.';
       openStep = 'priorite';
       var contrast = steps.querySelector('[data-contrast]');
       contrast.value = contrast.defaultValue;
       contrast.dispatchEvent(new Event('input', { bubbles: true }));
-      render(); focusStep(openStep);
+      render();
+      var pf = document.querySelector('.sg-pf');
+      if (pf) { pf.focus({ preventScroll: true }); pf.scrollIntoView({ block: 'center', behavior: reduceMotion ? 'auto' : 'smooth' }); }
     }
     document.getElementById('sg-reset').addEventListener('click', restart);
     document.getElementById('sg-result').addEventListener('click', function (e) {
@@ -1107,8 +1216,9 @@
         TD = d; TIDX = { modele: {}, test: {} };
         d.modeles.forEach(function (m) { TIDX.modele[m.id] = m; });
         d.tests.forEach(function (t) { TIDX.test[t.id] = t; });
+        setBatteryScale(d.modeles);
         guide = new L.Guide(d.modeles, d);
-        buildSteps(); render();
+        buildSteps(); render(); renderMois();
         document.querySelectorAll('[data-count]').forEach(function (el) { el.textContent = String(d.modeles.length); });
         document.querySelectorAll('[data-tests]').forEach(function (el) { el.textContent = String(d.tests.length); });
         setupTestList(); renderSame(); setupFiche(); setupChipTable(); setupUne();
