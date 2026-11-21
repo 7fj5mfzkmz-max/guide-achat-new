@@ -82,6 +82,7 @@
 
   /* ---------- Étapes ---------- */
   function buildSteps() {
+    document.getElementById('sg-steps').style.setProperty('--n', guide.steps.length);
     document.getElementById('sg-steps').innerHTML = guide.steps.map(function (s) {
       return '<li class="sg-step' + (s.parent ? ' sg-refined-step' : '') + '" id="sg-step-' + s.id + '">' +
         '<h3 class="sg-step-h"><button type="button" class="sg-step-btn" id="sg-btn-' + s.id + '" aria-expanded="false" aria-controls="sg-panel-' + s.id + '">' +
@@ -263,10 +264,10 @@
       meter(pr) +
       '<p class="sg-res-why">' + esc(PRIO_TXT[prio]) + ' ' + total + ' modèle' + (total > 1 ? 's' : '') + ' respecte' + (total > 1 ? 'nt' : '') + ' vos choix.</p>' +
       '<details class="sg-res-more"><summary>Voir sa fiche</summary>' + specRows(p) + '</details>' +
-      (recos.length > 1 ? '<p class="sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
+      (recos.length > 1 ? '<div class="sg-res-also"><p class="sg-res-sub">Aussi compatibles</p><ol class="sg-also">' + recos.slice(1).map(function (q) {
         var e = guide.measured(q.id);
         return '<li><span>' + esc(nameOf(q)) + '</span><b>' + (q.specs.mah ? fmt(q.specs.mah) + ' mAh' : '') + '</b><small>' + esc(chipText(q)) + (e ? ' · mesuré ' + e + ' fois' : ' · pas encore testé') + '</small></li>';
-      }).join('') + '</ol>' : '') +
+      }).join('') + '</ol></div>' : '') +
       (p.specs.prix_eur !== null && p.specs.prix_eur !== undefined ? '<p class="sg-fine">Offre relevée le 20 novembre 2026 · ' + esc(p.france.offre.texte) + ' ' + lien(p.france.offre.sources[0], 'Voir l’offre') + '</p>' : '<p class="sg-fine">Prix neuf France indisponible pour le filtre. Voir les relevés dans la fiche.</p>'));
     updateDock(p); updateMock(p);
   }
@@ -1064,6 +1065,8 @@
       '<span><b>Dernier test publié</b> : <a href="#presentation" id="sg-une-go">' + esc(cap1(t.titre)) + '</a></span>' +
       '<small>' + esc(t.chaine) + ' · ' + esc(dateFr(t.date, true)) + '</small>';
     el.hidden = false;
+    var ed = document.getElementById('sg-edition');
+    if (ed && TD.version) ed.textContent = 'Édition du ' + dateFr(TD.version);
     document.getElementById('sg-une-go').addEventListener('click', function (e) {
       e.preventDefault();
       showTab(document.getElementById('sg-tab-presentation'), false);

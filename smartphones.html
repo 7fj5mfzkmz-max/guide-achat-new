@@ -45,84 +45,76 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <section aria-label="Recherche" class="search-panel" hidden id="search-panel"><button aria-label="Fermer la recherche" class="search-panel-backdrop" type="button"></button><div aria-labelledby="search-panel-title" aria-modal="true" class="search-panel-sheet" role="dialog"><div class="search-panel-head"><div><span class="drawer-kicker" translate="no">Guide·Achat</span><p class="drawer-title" id="search-panel-title">Rechercher</p></div><button aria-label="Fermer la recherche" class="drawer-close" id="search-close" type="button">×</button></div><label class="drawer-search-field" for="site-search-input"><svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input autocomplete="off" id="site-search-input" placeholder="Rechercher dans le guide…" type="search"/></label><div class="site-search-results" id="site-search-results"><p class="search-empty">Recherchez une caractéristique, un usage ou un modèle.</p></div></div></section>
 <main id="main" class="sg">
 <section class="sg-hero" aria-labelledby="sg-title">
-<div class="sg-wrap sg-hero-grid">
+<div class="sg-wrap">
+<p class="sg-dateline"><span id="sg-edition">Édition du jour</span><span class="sg-evidence"><b data-count>62</b> modèles passés au crible, <b data-tests>16</b> tests publiés</span></p>
+<div class="sg-hero-grid">
 <div class="sg-hero-text">
 <div class="sg-hero-copy">
 <h1 id="sg-title">Quel smartphone <span>choisir&nbsp;?</span></h1>
-<p class="sg-lead">Comparez les caractéristiques et les résultats des tests. Trouvez les modèles adaptés à vos usages, ou analysez le téléphone que vous avez déjà repéré.</p>
+<p class="sg-lead">Dites ce qui compte pour vous : la sélection ci-contre change à chaque réponse. Chaque chiffre vient d’une fiche de fabricant ou d’un test publié, avec sa source.</p>
 </div>
-<p class="sg-evidence"><span><b data-count>62</b> modèles</span><span><b data-tests>16</b> tests publiés</span></p>
 <div class="sg-hero-actions">
 <button type="button" class="sg-entry sg-cta" id="sg-cta-start">Choisir mes critères<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v15m-6-6 6 6 6-6"/></svg></button>
-<button type="button" class="sg-entry sg-cta-ghost" id="sg-cta-analyse"><span>Lancer l’analyseur<small>J’ai déjà un modèle en tête</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M7 6h11v11"/></svg></button>
+<button type="button" class="sg-entry sg-cta-ghost" id="sg-cta-analyse"><span>Analyser un modèle<small>J’ai déjà un modèle en tête</small></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M7 6h11v11"/></svg></button>
 </div>
 </div>
 <div class="sg-hero-visual">
-<div class="sg-phone" aria-hidden="true">
+<div class="sg-phone">
 <div class="sg-phone-notch"></div>
 <div class="sg-phone-screen">
-<p class="sg-mock-k">Recommandation</p>
+<p class="sg-mock-k">Notre sélection du moment</p>
 <p class="sg-mock-name" id="sg-mock-name">Votre modèle</p>
 <p class="sg-mock-price" id="sg-mock-price">Choisissez vos critères</p>
 <div class="sg-mock-meter" id="sg-mock-meter"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <div class="sg-mock-rows" id="sg-mock-rows"><span></span><span></span><span></span></div>
 </div>
 </div>
+</div>
+</div>
+<p class="sg-une" id="sg-une" hidden></p>
+<div class="sg-lexique">
+<p class="sg-lexique-h">Les mots à connaître</p>
 <div class="sg-callouts">
-<div class="sg-callout">
-<button type="button" aria-controls="sg-tip-screen" aria-expanded="false">Écran</button>
-<p class="sg-definition" id="sg-tip-screen" hidden>La dalle que vous regardez. LCD et OLED produisent l’image de façon différente.</p>
-</div>
-<div class="sg-callout">
-<button type="button" aria-controls="sg-tip-photo" aria-expanded="false">Photo</button>
-<p class="sg-definition" id="sg-tip-photo" hidden>Les appareils photo arrière servent au cadrage large, au zoom et aux détails.</p>
-</div>
-<div class="sg-callout">
-<button type="button" aria-controls="sg-tip-ip" aria-expanded="false">Indice IP</button>
-<p class="sg-definition" id="sg-tip-ip" hidden>Les chiffres indiquent la résistance à la poussière puis à l’eau.</p>
-</div>
-</div>
-<div class="sg-callouts">
-<div class="sg-callout">
-<button type="button" aria-controls="sg-tip-chip" aria-expanded="false">Puce</button>
-<p class="sg-definition" id="sg-tip-chip" hidden>La puce, ou processeur, exécute les applications et les jeux.</p>
-</div>
-<div class="sg-callout">
-<button type="button" aria-controls="sg-tip-battery" aria-expanded="false">Batterie</button>
-<p class="sg-definition" id="sg-tip-battery" hidden>La capacité, exprimée en mAh, donne un indice. Les tests mesurent l’autonomie réelle.</p>
-</div>
-<div class="sg-callout">
-<button type="button" aria-controls="sg-tip-updates" aria-expanded="false">Mises à jour</button>
-<p class="sg-definition" id="sg-tip-updates" hidden>Le fabricant annonce pendant combien de temps il fournit de nouvelles versions et des correctifs.</p>
-</div>
+<div class="sg-callout"><button type="button" aria-controls="sg-tip-screen" aria-expanded="false">Écran</button><p class="sg-definition" id="sg-tip-screen" hidden>La dalle que vous regardez. LCD et OLED produisent l’image de façon différente.</p></div>
+<div class="sg-callout"><button type="button" aria-controls="sg-tip-photo" aria-expanded="false">Photo</button><p class="sg-definition" id="sg-tip-photo" hidden>Les appareils photo arrière servent au cadrage large, au zoom et aux détails.</p></div>
+<div class="sg-callout"><button type="button" aria-controls="sg-tip-ip" aria-expanded="false">Indice IP</button><p class="sg-definition" id="sg-tip-ip" hidden>Les chiffres indiquent la résistance à la poussière puis à l’eau.</p></div>
+<div class="sg-callout"><button type="button" aria-controls="sg-tip-chip" aria-expanded="false">Puce</button><p class="sg-definition" id="sg-tip-chip" hidden>La puce, ou processeur, exécute les applications et les jeux.</p></div>
+<div class="sg-callout"><button type="button" aria-controls="sg-tip-battery" aria-expanded="false">Batterie</button><p class="sg-definition" id="sg-tip-battery" hidden>La capacité, exprimée en mAh, donne un indice. Les tests mesurent l’autonomie réelle.</p></div>
+<div class="sg-callout"><button type="button" aria-controls="sg-tip-updates" aria-expanded="false">Mises à jour</button><p class="sg-definition" id="sg-tip-updates" hidden>Le fabricant annonce pendant combien de temps il fournit de nouvelles versions et des correctifs.</p></div>
 </div>
 </div>
 </div>
 </section>
 
+<div class="sg-rubriques">
 <div class="sg-wrap">
-<p class="sg-une" id="sg-une" hidden></p>
 <div class="sg-tabs" role="tablist" aria-label="Parties du guide">
 <button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="true" tabindex="0">Mes critères</button>
 <button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1">Présentation</button>
 <button type="button" role="tab" id="sg-tab-analyseur" data-hash="analyseur" aria-controls="sg-zone-analyseur" aria-selected="false" tabindex="-1">Analyseur</button>
 </div>
+</div>
+</div>
 
+<div class="sg-wrap">
 <section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone">
-<div class="sg-quiz-actions"><h2>Vos critères</h2><button type="button" class="sg-link-btn" id="sg-reset" disabled>Recommencer</button></div>
+<div class="sg-quiz-actions"><h2>Vos critères, votre sélection</h2><button type="button" class="sg-link-btn" id="sg-reset" disabled>Recommencer</button></div>
 <div class="sg-parcours" id="sg-parcours">
-<ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement des fiches…</li></ol>
 <aside class="sg-result-col" aria-label="Recommandation">
 <div id="sg-result" class="sg-result" aria-live="polite"></div>
 </aside>
+<ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement des fiches…</li></ol>
 </div>
 <div class="sg-dock" id="sg-dock" hidden><span class="sg-dock-txt" id="sg-dock-txt"></span><button type="button" class="sg-dock-btn" id="sg-dock-btn">Voir</button></div>
 </section>
+</div>
 
-<section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-zone" hidden>
+<section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-presentation" hidden>
 
-<section class="sg-anat" id="sg-anat" aria-labelledby="sg-h-anat">
-<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Anatomie</span></p><h2 id="sg-h-anat">Ce qu’il y a dedans, et ce que ça change pour vous.</h2></div>
+<section class="sg-anat sg-band sg-band-jaune" id="sg-anat" aria-labelledby="sg-h-anat">
+<div class="sg-wrap">
+<div class="sg-sec-head"><h2 id="sg-h-anat">Ce qu’il y a dedans, et ce que ça change pour vous</h2>
+<p class="sg-sec-lead">Un téléphone se lit par couches : l’écran, la carte, la batterie, la coque. Choisissez une pièce, on vous dit ce qu’elle change, ce qu’il faut regarder et où se trouve le piège.</p></div>
 <div class="sg-anat-grid">
 <div class="sg-anat-stage" id="sg-anat-stage" data-open="false" aria-hidden="true">
 <div class="sg-stack">
@@ -143,30 +135,41 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div class="sg-anat-panel" role="tabpanel" id="sg-anat-panel" tabindex="0"><p class="sg-loading">Chargement…</p></div>
 </div>
 </div>
+</div>
 </section>
 
 <section class="sg-tests" id="sg-tests" aria-labelledby="sg-h-tests">
-<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Tests</span></p><h2 id="sg-h-tests">Ce que disent les tests, mesure par mesure.</h2>
+<div class="sg-wrap">
+<div class="sg-sec-head sg-sec-head-split"><h2 id="sg-h-tests">Ce que disent les tests, mesure par mesure</h2>
 <p class="sg-sec-lead">Des essais publiés par des testeurs, avec leurs conditions. Comparez les téléphones à l’intérieur d’un même test, jamais d’un test à l’autre : les protocoles diffèrent.</p></div>
 <div class="sg-tests-grid">
-<div class="sg-tests-list" id="sg-tests-list" role="tablist" aria-label="Tests publiés" aria-orientation="vertical"></div>
+<div class="sg-tests-list" id="sg-tests-list" role="tablist" aria-label="Tests publiés" aria-orientation="horizontal"></div>
 <div class="sg-tests-panel" id="sg-tests-panel" role="tabpanel" tabindex="0"><p class="sg-loading">Chargement des tests…</p></div>
 </div>
-<div class="sg-same" id="sg-same"></div>
+</div>
+</section>
+
+<section class="sg-same-wrap sg-band sg-band-rouge" id="sg-same-band" aria-label="Un même téléphone, plusieurs chiffres">
+<div class="sg-wrap"><div class="sg-same" id="sg-same"></div></div>
 </section>
 
 <section class="sg-fiche" id="sg-fiche" aria-labelledby="sg-h-fiche">
-<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Fiches</span></p><h2 id="sg-h-fiche">Un modèle en détail, avec ses preuves.</h2>
-<p class="sg-sec-lead">Caractéristiques annoncées, résultats de tests et observations, chacun rattaché à sa source.</p></div>
+<div class="sg-wrap sg-fiche-grid">
+<div class="sg-fiche-head">
+<h2 id="sg-h-fiche">Un modèle en détail, avec ses preuves</h2>
+<p class="sg-sec-lead">Choisissez un modèle : caractéristiques annoncées, résultats de tests et observations, chacun rattaché à sa source.</p>
+<div class="sg-fiche-pick"><label for="sg-fiche-sel">Choisir un modèle</label><select id="sg-fiche-sel" class="sg-select"></select></div>
 <details class="sg-cond"><summary>Voir le classement des processeurs par modèle</summary>
 <p class="sg-fine">La note situe les puces selon leur score Geekbench 6 multicœur. Les tests de téléphones éclairent ensuite les performances en usage.</p>
 <div id="sg-puces"></div></details>
-<div class="sg-fiche-pick"><label for="sg-fiche-sel">Choisir un modèle</label><select id="sg-fiche-sel" class="sg-select"></select></div>
+</div>
 <div class="sg-fiche-card" id="sg-fiche-card" aria-live="polite"></div>
+</div>
 </section>
 
 <section class="sg-feat" aria-labelledby="sg-h-feat">
-<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">À vérifier</span></p><h2 id="sg-h-feat">Ce que la fiche met peu en avant, à vérifier avant d’acheter.</h2></div>
+<div class="sg-wrap">
+<h2 id="sg-h-feat">Cinq points que la fiche met peu en avant</h2>
 <ul class="sg-feats">
 <li class="sg-feat-card"><span class="sg-fi sg-fi-5g" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h3>5G</h3>
 <p><b>Sert à</b> un débit mobile plus élevé, quand le réseau le permet.</p>
@@ -185,11 +188,14 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <p><b>À vérifier</b> sa présence et sa puissance : elle est souvent plus lente que le câble, et absente de nombreux modèles.</p></li>
 </ul>
 <p class="sg-fine">Le guide ne s’en sert pas pour recommander : vérifiez ces points sur la fiche du fabricant.</p>
+</div>
 </section>
 </section>
 
+<div class="sg-wrap">
 <section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone" hidden>
-<div class="sg-sec-head"><p class="sg-kick"><span class="sg-tag">Analyseur</span></p><h2>Vérifier un modèle précis.</h2></div>
+<div class="sg-sec-head"><h2>Vérifier un modèle précis</h2>
+<p class="sg-sec-lead">Collez le lien d’une fiche produit ou saisissez un nom de modèle.</p></div>
 <div class="sg-frame-wrap"><iframe id="sg-frame" class="sg-frame" title="Analyseur de smartphones" src="about:blank" data-src="analyseur.html?cat=smartphones"></iframe></div>
 <p class="sg-fine"><a href="analyseur.html?cat=smartphones">Ouvrir l’Analyseur dans une page séparée</a></p>
 </section>
