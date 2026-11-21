@@ -99,9 +99,10 @@ def footer(page):
 
 def head_tags(page):
     url = SITE + page
+    light, dark = ("#edf2f6", "#202b39") if page == "smartphones.html" else ("#f5f4eb", "#141e19")
     return ('<meta name="color-scheme" content="light dark"/>\n'
-            '<meta name="theme-color" content="#f5f4eb" media="(prefers-color-scheme: light)"/>\n'
-            '<meta name="theme-color" content="#141e19" media="(prefers-color-scheme: dark)"/>\n'
+            f'<meta name="theme-color" content="{light}" media="(prefers-color-scheme: light)"/>\n'
+            f'<meta name="theme-color" content="{dark}" media="(prefers-color-scheme: dark)"/>\n'
             '<link rel="icon" href="favicon.svg" type="image/svg+xml"/>\n'
             '<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>\n'
             f'<link rel="canonical" href="{url}"/>')
