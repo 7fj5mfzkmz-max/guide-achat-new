@@ -47,9 +47,9 @@ Le texte sur le jaune est toujours `#11151c`. Sur le rouge, le texte est blanc e
 ### Disposition
 
 - Bandeau de date sous double filet, puis la manchette sur 8 colonnes et la sélection en direct sur 4 colonnes (aplat jaune).
-- Le sommaire des critères est une rangée d’entrées à vignette photo ; l’étape ouverte s’étale dessous en pleine largeur. La sélection recommandée est en tête, sur trois colonnes.
+- Le sommaire des critères est une rangée d’entrées ; l’étape ouverte s’étale dessous en pleine largeur. La sélection recommandée est en tête, sur trois colonnes.
 - La présentation alterne des bandes pleines largeur de tailles différentes : grande bande jaune (anatomie), grille de titres de presse (tests, le premier en double largeur), bande rouge (un même téléphone, plusieurs chiffres), fiche à titre collant, petite rangée finale.
-- Sous 900 px, le sommaire devient un accordéon et les vignettes passent à droite de chaque entrée.
+- Sous 900 px, le sommaire devient un accordéon.
 
 ### Profondeur et formes
 
@@ -57,8 +57,7 @@ Pas d’ombre portée sur les modules : les filets de 1 px et de 3 px marquent l
 
 ### Photos
 
-- `assets/editorial/smartphones-dossier.webp` : photo de couverture, bandeau pleine largeur sous la une, avec la légende jaune « Illustration du dossier Smartphones ». Illustration originale générée pour le site.
-- `assets/editorial/criteres-smartphones/*.webp` : une photo par critère, en vignette du sommaire (en noir et blanc, en couleur à l’ouverture ou au survol) et en bandeau de l’étape ouverte. Elles ne portent aucune information : les valeurs viennent des données.
+La page n’utilise aucune photo : elle repose sur la typographie, les aplats de couleur et les filets. Les illustrations du dossier et des critères (`assets/editorial/smartphones-dossier.webp`, `assets/editorial/criteres-smartphones/`) ont été essayées puis retirées : elles alourdissaient la une et brouillaient les aplats. Ne pas les remettre sans validation. Aucune photo de modèle n’est disponible ; n’en inventer aucune.
 
 ### Composants
 
@@ -70,7 +69,7 @@ Pas d’ombre portée sur les modules : les filets de 1 px et de 3 px marquent l
 ### À faire et à éviter
 
 - Garder une seule zone de couleur forte par section ; ne pas mélanger le jaune et le rouge dans la même bande.
-- Ne pas ajouter de photo qui illustre un produit précis : aucune photo de modèle n’est disponible.
+- Pas de photo dans cette page (voir « Photos »).
 - Pas de fond sombre par défaut, pas d’ombre décalée, pas de dégradé sur le texte, pas de numérotation de sections.
 - Le jaune est réservé aux sélections et aux actions ; ne pas l’utiliser pour décorer.
 
