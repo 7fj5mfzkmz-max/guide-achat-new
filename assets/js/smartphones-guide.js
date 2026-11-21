@@ -990,24 +990,12 @@
       if (c) c.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
     });
     box.addEventListener('click', function (e) { var g = e.target.closest('[data-goto]'); if (g) goStep(g.dataset.goto); });
-    /* Démonstrations : lancées à l’entrée de leur carte dans l’écran, arrêtées à la sortie. */
-    var stops = {};
-    var start = function (el) {
+    /* Démonstrations : toutes rendues dès le chargement. Leur animation tourne en continu ; elles ne se vident jamais
+       (un cadre vide ressemblait à une erreur). */
+    box.querySelectorAll('[data-demo]').forEach(function (el) {
       var k = el.dataset.demo;
-      if (stops[k] !== undefined) return;
-      stops[k] = DEMOS[k](el) || null;
-    };
-    var stop = function (el) {
-      var k = el.dataset.demo;
-      if (stops[k]) stops[k]();
-      if (k in stops) { delete stops[k]; el.innerHTML = ''; }
-    };
-    var demos = box.querySelectorAll('[data-demo]');
-    if (!('IntersectionObserver' in window)) { demos.forEach(start); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) start(e.target); else stop(e.target); });
-    }, { rootMargin: '120px 0px' });
-    demos.forEach(function (d) { io.observe(d); });
+      if (DEMOS[k]) DEMOS[k](el);
+    });
   }
   function refreshProofs() {
     document.querySelectorAll('[data-proof]').forEach(function (el) { el.innerHTML = preuveHtml(el.dataset.proof); });
