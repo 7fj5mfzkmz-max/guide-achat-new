@@ -885,6 +885,7 @@
 .sg-embedded body { background: var(--paper-2); }
 .sg-embedded .analyseur-page .container-wide { width: 100%; }
 .sg-embedded .smartphone-analyzer-section { padding: clamp(12px, 3vw, 28px); }
+.sg-embedded .model-analyzer-form > p:first-child { display: none; }
 .sg-embedded .sp-card { margin: 0; border: 0; border-radius: 0; padding: 0; box-shadow: none; }
 .sg-embedded :is(.btn, .model-analyzer-input-row input, .model-analyzer-card, .decision-profile-chip) { border-radius: 0; }
 .sg-embedded .model-analyzer-input-row .btn { background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent-ink); }
