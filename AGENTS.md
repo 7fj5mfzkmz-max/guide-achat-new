@@ -7,8 +7,8 @@ Guide·Achat : site statique (HTML, CSS, JavaScript) avec un petit backend Node 
 
 ## Branches : à lire avant tout
 - **`main`** : branche déployée (GitHub Pages et Vercel). Elle est la branche par défaut du dépôt.
-- **`dev`** : branche de travail courante. Les dernières évolutions de la page Smartphones (vue éclatée, tests publiés, fiches de modèles, skills) sont **sur `dev`**. Si vous lisez `main`, vous ne voyez pas ce travail.
-- Règle du projet : travailler et pousser sur `dev`. Ne mettre à jour `main` que sur demande explicite. Pas de nouvelle branche sans accord.
+- **`dev`** : obsolète depuis le 21 novembre 2026 (ancien style de Codex, abandonné), à supprimer. Le même état est conservé dans `archive/dev-codex`. Ne plus travailler dessus.
+- Règle du projet : travailler sur une branche de travail, et ne mettre à jour `main` que sur demande explicite.
 
 ## Carte rapide
 - Pages : `index.html`, `actualites.html`, `smartphones.html`, `analyseur.html`, `montres.html`, `pc-portables.html`, `batteries-externes.html`, `ecouteurs.html`, `projecteurs.html`, `a-propos.html`.

@@ -1,6 +1,6 @@
 # Consignes de travail
 
-- **Développement sur `dev`.** Travailler et pousser sur `dev`, jamais directement sur `main` pendant le développement. `main` est la branche déployée : elle n'est mise à jour (merge depuis `dev`) que sur demande explicite.
+- **Branches.** `main` est la branche déployée (Vercel, GitHub Pages). Travailler sur une branche de travail, puis mettre `main` à jour (avance rapide) seulement sur demande explicite. La branche `dev` est obsolète (ancien style de Codex, abandonné ; copie : `archive/dev-codex`) : ne plus s'en servir.
 - **Traductions : ne pas les écrire à la main.** DeepL produit les versions EN/ES. Ne pas ajouter de paires dans
   `tools/i18n/*.tsv` ni modifier `assets/i18n/*.json` : écrire le français, c'est tout.
 

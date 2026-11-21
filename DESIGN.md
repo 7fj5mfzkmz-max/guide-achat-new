@@ -38,8 +38,10 @@ Le papier est un gris clair froid ; la chaleur vient de deux aplats posés à l�
 | Profil Professionnel | `--pf-professionnel` | `#a84b00` orange (sombre : `#ffad66`) |
 | Profil Photo | `--pf-photographe` | `#c42c19` rouge (sombre : `#ff9d94`) |
 | Profil Gamer | `--pf-gamer` | `#1b4fe0` bleu (sombre : `#9db8ff`) |
+| Profil Au quotidien | `--pf-quotidien` | `#6b3fa0` violet (sombre : `#c9a8f2`) |
+| Gamme haut / milieu / entrée / bas | `--g-haut` … `--g-bas` | `#12306b`, `#2f8f83`, `#c98a00`, `#c2452d` ; prix non relevé `#b9b6ab`. Seuils : 850, 550, 300 € |
 
-Les quatre couleurs de profil ne servent qu’au profil déclaré : le bouton du profil choisi et les pastilles de caractéristiques utiles à ce profil. Texte blanc dessus (sombre : encre).
+Les couleurs de profil servent au profil déclaré : la carte du profil choisi, les choix du quiz (couleur du premier profil choisi, à la place du jaune) et les pastilles de caractéristiques utiles. Les couleurs de gamme ne servent qu’aux classements de l’onglet Tests. Texte blanc dessus (sombre : encre).
 
 Le texte sur le jaune est toujours `#11151c`. Sur le rouge, le texte est blanc et gras ou grand. Le thème sombre existe mais n’est pas le thème par défaut ; les bandes jaune et rouge gardent leurs couleurs dans les deux thèmes.
 
@@ -52,13 +54,12 @@ Le texte sur le jaune est toujours `#11151c`. Sur le rouge, le texte est blanc e
 
 ### Disposition
 
-- Bandeau de date sous double filet, puis, sur 8 colonnes : la manchette (« Ce téléphone est-il fait pour vous ? »), le chapeau, le champ de l’analyseur (lien ou nom) et trois brèves sur le service ; sur 4 colonnes : la recommandation du mois (aplat jaune), traduite en mots simples avec une petite animation par ligne (écran OLED et fréquence, puce, batterie comparée à la normale du catalogue).
-- Sous la une, l’encadré « Dernier test publié » regroupe date, titre, testeur, nombre de téléphones, modèle en tête et lien vers les résultats.
-- Onglets dans l’ordre du parcours : Analyseur (ouvert par défaut), Quiz, Comprendre.
-- L’analyseur est dans la page (plus d’iframe) ; ses modules sont déclarés en `<script type="text/plain" data-analyzer-module>` et chargés à la demande.
-- Le quiz commence par le profil (Étudiant, Professionnel, Photo, Gamer), puis le sommaire des critères, une rangée d’entrées ; l’étape ouverte s’étale dessous en pleine largeur. La sélection recommandée est en tête, sur trois colonnes ; avant toute réponse, un encadré d’accueil la remplace (aucun résultat affiché d’office).
-- La présentation alterne des bandes pleines largeur de tailles différentes : grande bande jaune (anatomie), grille de titres de presse (tests, le premier en double largeur), bande rouge (un même téléphone, plusieurs chiffres), fiche à titre collant, petite rangée finale.
-- Sous 900 px, le sommaire devient un accordéon.
+- Une : bandeau de date sous double filet ; à gauche (8 colonnes) la manchette « Ce téléphone est-il fait pour vous ? », un chapeau d’une phrase et deux boutons, « Analyser un téléphone » (encre) et « Mon profil » (contour) ; à droite (4 colonnes) la recommandation du mois sur papier blanc, le jaune réduit à son étiquette. Une ligne courte par point (écran, puissance, batterie, photo, étanchéité), chacune avec une petite animation : points OLED et fréquence, cadran dont l’aiguille monte à la note, batterie et repère de la norme du catalogue, objectif qui fait la mise au point, gouttes sur la coque.
+- Sous la une, l’encadré « Dernier test publié » (date, titre, testeur, modèle en tête, lien vers le classement).
+- Onglets : Analyseur (par défaut), Quiz, Comprendre, Tests. L’analyseur est dans la page ; ses modules sont déclarés en `<script type="text/plain" data-analyzer-module>` et chargés à la demande.
+- Quiz : sommaire en rangée (accordéon sous 900 px). Première étape : le profil, cinq choix cumulables. Le résultat n’apparaît qu’après la première réponse, au-dessus du sommaire. Une bande fine fixée en bas de l’écran donne le pourcentage de compatibilité du premier modèle proposé et son nom.
+- Comprendre : collage de grandes cartes (coins de 16 px) sur une grille de 12 colonnes, de largeurs inégales ; autocollants d’icônes posés de travers sur le bord, chiffre à regarder sur une bande de ruban inclinée, démonstration interactive, preuve tirée des tests. La maquette en couches ouvre la série.
+- Tests : quatre classements (autonomie, performances, écran, photo), dix premiers puis tous ; filtre par gamme et tri par prix.
 
 ### Profondeur et formes
 
@@ -70,10 +71,12 @@ La page n’utilise aucune photo : elle repose sur la typographie, les aplats de
 
 ### Composants
 
-- Bouton principal : fond encre, texte papier, au survol fond jaune. Lien secondaire souligné en jaune.
-- Option choisie : fond jaune, bordure de 2 px. Option indisponible : pointillés, texte atténué.
+- Bouton principal : fond encre, texte papier, au survol fond jaune. Bouton secondaire : contour encre de 2 px.
+- Option choisie : fond de la couleur du premier profil choisi (jaune sans profil), bordure de 2 px. Option indisponible : pointillés, texte atténué.
 - Pastilles de caractéristiques : valeur technique, et sa traduction en mots simples au survol ou au focus (toujours visible sur écran tactile). Fond de la couleur du profil quand la caractéristique compte pour ce profil et qu’elle est bonne ; coche dessinée quand elle répond à un choix.
-- « Recommencer » : bouton cerné de 2 px avec icône, en haut du quiz ; un second, jaune, sous le résultat.
+- « Recommencer » : bouton cerné de 2 px avec icône, en haut du quiz dès la première réponse ; un second, jaune, sous le résultat.
+- Compatibilité : chaque critère choisi vaut 1 s’il est respecté d’après la fiche, 0,5 si la donnée manque ; chaque profil pèse comme deux critères, au prorata de ses caractéristiques utiles qui sont bonnes.
+- Classement d’autonomie : indice 100 = meilleur de son propre test ; les durées restent affichées, avec le test d’où elles viennent, et ne se comparent pas d’un test à l’autre.
 - Les rangs de test sont traduits (« Autonomie parmi les meilleures du comparatif »), le rang brut reste en petit dessous.
 - Statut d’une mesure : « Mesure publiée » en plein, « Estimation » et « Ordre de grandeur » en pointillés.
 

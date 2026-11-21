@@ -48,33 +48,18 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <p class="sg-dateline"><span id="sg-edition">Édition du jour</span><span class="sg-evidence"><b data-count>62</b> modèles passés au crible, <b data-tests>16</b> tests publiés</span></p>
 <div class="sg-hero-grid">
 <div class="sg-hero-text">
-<div class="sg-hero-copy">
 <h1 id="sg-title">Ce téléphone est-il fait <span>pour vous&nbsp;?</span></h1>
-<p class="sg-lead">Vous avez repéré un smartphone sur Internet, ou quelqu’un vous en a parlé&nbsp;? Collez son lien ou tapez son nom&nbsp;: l’analyseur vous dit, en mots simples, s’il répond à vos besoins, et ce qu’en disent les tests publiés.</p>
-</div>
-<form class="sg-quick" id="sg-quick" role="search" aria-label="Analyser un téléphone">
-<label class="sg-quick-l" for="sg-quick-in">Le téléphone à analyser</label>
-<div class="sg-quick-row">
-<input id="sg-quick-in" type="text" autocomplete="off" inputmode="url" placeholder="Lien ou nom, ex. Pixel 10" required>
-<button type="submit" class="sg-quick-go">Analyser<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
-</div>
-</form>
-<ul class="sg-offer" aria-label="Ce que fait le guide">
-<li><b>Selon vos besoins</b> Étudiant, pro, photo ou jeu : le verdict dépend de votre usage.</li>
-<li><b>Des tests publiés</b> Autonomie et performances mesurées en laboratoire, avec leur source.</li>
-<li><b>Sans jargon</b> « OLED 144 Hz » devient « belles couleurs, très fluide ».</li>
-</ul>
-<p class="sg-alt">Pas encore de modèle en tête&nbsp;? <button type="button" class="sg-alt-btn" id="sg-cta-start">Répondez au quiz : on vous en propose trois</button></p>
-</div>
-<aside class="sg-hero-visual" aria-labelledby="sg-mois-h">
-<div class="sg-phone">
-<div class="sg-phone-screen">
-<p class="sg-mock-k" id="sg-mois-h">Recommandation du mois</p>
-<p class="sg-mock-name" id="sg-mock-name">Chargement…</p>
-<p class="sg-mock-price" id="sg-mock-price"></p>
-<div class="sg-mois" id="sg-mock-rows"></div>
+<p class="sg-lead">Un modèle vous tente&nbsp;? Donnez son nom ou son lien&nbsp;: on vous dit, sans jargon, s’il vous convient vraiment.</p>
+<div class="sg-hero-actions">
+<button type="button" class="sg-btn sg-btn-main" id="sg-cta-analyse">Analyser un téléphone<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+<button type="button" class="sg-btn sg-btn-alt" id="sg-cta-start"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Mon profil</button>
 </div>
 </div>
+<aside class="sg-mois" aria-labelledby="sg-mois-k">
+<p class="sg-mois-k" id="sg-mois-k">Recommandation du mois</p>
+<p class="sg-mois-name" id="sg-mois-name">Chargement…</p>
+<p class="sg-mois-sub" id="sg-mois-sub"></p>
+<div class="sg-mois-rows" id="sg-mois-rows"></div>
 </aside>
 </div>
 <div class="sg-une" id="sg-une" hidden></div>
@@ -87,17 +72,18 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <button type="button" role="tab" id="sg-tab-analyseur" data-hash="analyseur" aria-controls="sg-zone-analyseur" aria-selected="true" tabindex="0">Analyseur</button>
 <button type="button" role="tab" id="sg-tab-criteres" data-hash="criteres" aria-controls="sg-zone-criteres" aria-selected="false" tabindex="-1">Quiz</button>
 <button type="button" role="tab" id="sg-tab-presentation" data-hash="presentation" aria-controls="sg-zone-presentation" aria-selected="false" tabindex="-1">Comprendre</button>
+<button type="button" role="tab" id="sg-tab-tests" data-hash="tests" aria-controls="sg-zone-tests" aria-selected="false" tabindex="-1">Tests</button>
 </div>
 </div>
 </div>
 
 <div class="sg-wrap">
 <section role="tabpanel" id="sg-zone-analyseur" aria-labelledby="sg-tab-analyseur" class="sg-zone sg-ana">
-<div class="sg-sec-head"><h2>Analyser un téléphone précis</h2>
-<p class="sg-sec-lead">Collez le lien d’une fiche produit (Amazon, Fnac, Boulanger, site du fabricant…) ou tapez la marque et le modèle. Le guide retrouve ses caractéristiques, les traduit et les compare à votre usage.</p></div>
+<div class="sg-sec-head"><h2>Analyser un téléphone</h2>
+<p class="sg-sec-lead">Collez le lien d’une fiche produit (Amazon, Fnac, Boulanger, site du fabricant…) ou tapez la marque et le modèle.</p></div>
 <article class="sg-ana-card" id="analyse-modele" data-analyzer-category="smartphones">
 <form class="model-analyzer-form" id="phone-analyzer-form">
-<label class="sg-quick-l" for="phone-product-url">Lien ou nom du modèle</label>
+<label class="sg-field-l" for="phone-product-url">Lien ou nom du modèle</label>
 <div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="https://… ou Galaxy S26" required type="text"/><button class="btn" type="submit">Analyser</button></div>
 <p class="model-analyzer-manual-entry"><button class="btn btn-secondary" type="button" id="phone-manual-toggle">Je connais déjà le modèle</button></p>
 </form>
@@ -106,39 +92,21 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <p class="sg-ana-wait" id="sg-ana-wait" hidden>Chargement de l’analyseur…</p>
 </article>
 </section>
-</div>
 
-<div class="sg-wrap">
-<section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone" hidden>
-<div class="sg-quiz-actions"><h2>Trois téléphones choisis pour vous</h2><button type="button" class="sg-restart" id="sg-reset" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg>Recommencer</button></div>
-<fieldset class="sg-profil" id="sg-profil">
-<legend>D’abord, vous êtes plutôt…</legend>
-<div class="sg-profil-opts">
-<button type="button" class="sg-pf sg-pf-etudiant" data-profil="etudiant" aria-pressed="false"><b>Étudiant</b><span>Budget serré, batterie qui tient</span></button>
-<button type="button" class="sg-pf sg-pf-professionnel" data-profil="professionnel" aria-pressed="false"><b>Professionnel</b><span>Autonomie, robustesse, suivi long</span></button>
-<button type="button" class="sg-pf sg-pf-photographe" data-profil="photographe" aria-pressed="false"><b>Photo</b><span>Zoom, stabilisation, beau capteur</span></button>
-<button type="button" class="sg-pf sg-pf-gamer" data-profil="gamer" aria-pressed="false"><b>Gamer</b><span>Puce puissante, écran rapide</span></button>
-</div>
-<p class="sg-profil-note" id="sg-profil-note">Votre profil colore, dans les résultats, les caractéristiques qui comptent pour vous.</p>
-</fieldset>
+<section role="tabpanel" id="sg-zone-criteres" aria-labelledby="sg-tab-criteres" class="sg-zone sg-quiz" hidden>
+<div class="sg-quiz-actions"><button type="button" class="sg-restart" id="sg-reset" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v5h5"/></svg>Recommencer</button></div>
 <div class="sg-parcours" id="sg-parcours">
-<aside class="sg-result-col" aria-label="Recommandation">
-<div id="sg-result" class="sg-result" aria-live="polite"></div>
-</aside>
+<div id="sg-result" class="sg-result" aria-live="polite" hidden></div>
 <ol id="sg-steps" class="sg-steps"><li class="sg-loading">Chargement des fiches…</li></ol>
 </div>
-<div class="sg-dock" id="sg-dock" hidden><span class="sg-dock-txt" id="sg-dock-txt"></span><button type="button" class="sg-dock-btn" id="sg-dock-btn">Voir</button></div>
 </section>
-</div>
 
-<section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-presentation" hidden>
-
-<section class="sg-anat sg-band sg-band-jaune" id="sg-anat" aria-labelledby="sg-h-anat">
-<div class="sg-wrap">
-<div class="sg-sec-head"><h2 id="sg-h-anat">Ce qu’il y a dedans, et ce que ça change pour vous</h2>
-<p class="sg-sec-lead">Un téléphone se lit par couches : l’écran, la carte, la batterie, la coque. Choisissez une pièce, on vous dit ce qu’elle change, ce qu’il faut regarder et où se trouve le piège.</p></div>
-<div class="sg-anat-grid">
-<div class="sg-anat-stage" id="sg-anat-stage" data-open="false" aria-hidden="true">
+<section role="tabpanel" id="sg-zone-presentation" aria-labelledby="sg-tab-presentation" class="sg-zone sg-comprendre" hidden>
+<div class="sg-sec-head"><h2>Ce qu’il y a dans un téléphone</h2>
+<p class="sg-sec-lead">Chaque pièce, ce qu’elle change pour vous, et le chiffre à regarder sur la fiche.</p></div>
+<div class="sg-collage" id="sg-collage">
+<article class="sg-card sg-card-anat" id="sg-anat">
+<div class="sg-anat-stage" id="sg-anat-stage" data-open="true" aria-hidden="true">
 <div class="sg-stack">
 <div class="sg-ly sg-ly-frame" data-layer="frame"><span class="sg-bump"></span><i class="sg-seal"></i><span class="sg-drops"><b></b><b></b><b></b></span></div>
 <div class="sg-ly sg-ly-batt" data-layer="batt"><span class="sg-cell"><i class="sg-level"></i></span><span class="sg-bolt"></span><span class="sg-port"></span></div>
@@ -150,70 +118,35 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </span></div>
 <div class="sg-ly sg-ly-screen" data-layer="screen"><span class="sg-notch"></span><span class="sg-scan"></span><span class="sg-app"></span><span class="sg-app"></span><span class="sg-app"></span></div>
 </div>
-<p class="sg-stage-cap">Maquette simplifiée, couche par couche</p>
 </div>
-<div class="sg-anat-side">
-<div class="sg-anat-tabs" role="tablist" aria-label="Composants du téléphone" id="sg-anat-tabs"></div>
-<div class="sg-anat-panel" role="tabpanel" id="sg-anat-panel" tabindex="0"><p class="sg-loading">Chargement…</p></div>
+<div class="sg-anat-txt">
+<h3>Quatre couches</h3>
+<p>Écran, carte mère, batterie, coque. Touchez une couche pour aller à sa carte.</p>
+<div class="sg-anat-keys" id="sg-anat-keys"></div>
 </div>
-</div>
-</div>
-</section>
-
-<section class="sg-tests" id="sg-tests" aria-labelledby="sg-h-tests">
-<div class="sg-wrap">
-<div class="sg-sec-head sg-sec-head-split"><h2 id="sg-h-tests">Ce que disent les tests, mesure par mesure</h2>
-<p class="sg-sec-lead">Des essais publiés par des testeurs, avec leurs conditions. Comparez les téléphones à l’intérieur d’un même test, jamais d’un test à l’autre : les protocoles diffèrent.</p></div>
-<div class="sg-tests-grid">
-<div class="sg-tests-list" id="sg-tests-list" role="tablist" aria-label="Tests publiés" aria-orientation="horizontal"></div>
-<div class="sg-tests-panel" id="sg-tests-panel" role="tabpanel" tabindex="0"><p class="sg-loading">Chargement des tests…</p></div>
-</div>
+</article>
 </div>
 </section>
 
-<section class="sg-same-wrap sg-band sg-band-rouge" id="sg-same-band" aria-label="Un même téléphone, plusieurs chiffres">
-<div class="sg-wrap"><div class="sg-same" id="sg-same"></div></div>
-</section>
-
+<section role="tabpanel" id="sg-zone-tests" aria-labelledby="sg-tab-tests" class="sg-zone sg-tests-zone" hidden>
+<div class="sg-sec-head"><h2>Les tests, réunis par thème</h2>
+<p class="sg-sec-lead">Tous les téléphones mesurés, classés thème par thème. La couleur de chaque ligne indique sa gamme de prix.</p></div>
+<nav class="sg-themes" id="sg-themes" aria-label="Thèmes des classements"></nav>
+<div id="sg-rankings"></div>
 <section class="sg-fiche" id="sg-fiche" aria-labelledby="sg-h-fiche">
-<div class="sg-wrap sg-fiche-grid">
+<div class="sg-fiche-grid">
 <div class="sg-fiche-head">
-<h2 id="sg-h-fiche">Un modèle en détail, avec ses preuves</h2>
-<p class="sg-sec-lead">Choisissez un modèle : caractéristiques annoncées, résultats de tests et observations, chacun rattaché à sa source.</p>
+<h2 id="sg-h-fiche">Un modèle en détail</h2>
+<p class="sg-sec-lead">Caractéristiques, résultats et avis des testeurs, chacun avec sa source.</p>
 <div class="sg-fiche-pick"><label for="sg-fiche-sel">Choisir un modèle</label><select id="sg-fiche-sel" class="sg-select"></select></div>
-<details class="sg-cond"><summary>Voir le classement des processeurs par modèle</summary>
-<p class="sg-fine">La note situe les puces selon leur score Geekbench 6 multicœur. Les tests de téléphones éclairent ensuite les performances en usage.</p>
-<div id="sg-puces"></div></details>
 </div>
 <div class="sg-fiche-card" id="sg-fiche-card" aria-live="polite"></div>
 </div>
 </section>
-
-<section class="sg-feat" aria-labelledby="sg-h-feat">
-<div class="sg-wrap">
-<h2 id="sg-h-feat">Cinq points que la fiche met peu en avant</h2>
-<ul class="sg-feats">
-<li class="sg-feat-card"><span class="sg-fi sg-fi-5g" aria-hidden="true"><i></i><i></i><i></i><i></i></span><h3>5G</h3>
-<p><b>Sert à</b> un débit mobile plus élevé, quand le réseau le permet.</p>
-<p><b>À vérifier</b> que le téléphone prend en charge les bandes de votre opérateur, et que votre zone est couverte.</p></li>
-<li class="sg-feat-card"><span class="sg-fi sg-fi-wifi" aria-hidden="true"><i></i><i></i><i></i><u></u></span><h3>Wi-Fi 6 ou 7</h3>
-<p><b>Sert à</b> une connexion domestique plus rapide et plus stable.</p>
-<p><b>À vérifier</b> que votre box est compatible : sans elle, le gain est faible.</p></li>
-<li class="sg-feat-card"><span class="sg-fi sg-fi-nfc" aria-hidden="true"><i></i><i></i><i></i><u></u></span><h3>NFC</h3>
-<p><b>Sert à</b> payer sans contact avec le téléphone, ou à badger.</p>
-<p><b>À vérifier</b> sa présence sur la fiche : certains modèles d’entrée de gamme n’en ont pas.</p></li>
-<li class="sg-feat-card"><span class="sg-fi sg-fi-sim" aria-hidden="true"><i></i><u></u></span><h3>eSIM et double SIM</h3>
-<p><b>Sert à</b> garder deux lignes, ou à activer une ligne par code QR, sans carte.</p>
-<p><b>À vérifier</b> la combinaison offerte (SIM + eSIM, deux SIM) et la compatibilité de votre opérateur.</p></li>
-<li class="sg-feat-card"><span class="sg-fi sg-fi-wl" aria-hidden="true"><i></i><i></i><u></u></span><h3>Charge sans fil</h3>
-<p><b>Sert à</b> recharger en posant le téléphone sur un socle.</p>
-<p><b>À vérifier</b> sa présence et sa puissance : elle est souvent plus lente que le câble, et absente de nombreux modèles.</p></li>
-</ul>
-<p class="sg-fine">Le guide ne s’en sert pas pour recommander : vérifiez ces points sur la fiche du fabricant.</p>
+<details class="sg-cond sg-tests-src"><summary>Les tests utilisés et leurs conditions</summary><div id="sg-tests-src"></div></details>
+</section>
 </div>
-</section>
-</section>
-
+<div class="sg-compat" id="sg-compat" hidden><button type="button" class="sg-compat-in" id="sg-compat-btn"><span class="sg-compat-pct" id="sg-compat-pct"></span><span class="sg-compat-txt" id="sg-compat-txt"></span><span class="sg-compat-go">Voir</span><i class="sg-compat-bar" aria-hidden="true"><b id="sg-compat-fill"></b></i></button></div>
 </main>
 
 
