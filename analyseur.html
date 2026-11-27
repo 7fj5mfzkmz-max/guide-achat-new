@@ -58,7 +58,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <div>
 <nav class="breadcrumb" aria-label="Fil d’Ariane"><a href="index.html">Accueil</a> / Analyseur</nav>
 <h1>Analysez un produit <mark>en collant son lien</mark></h1>
-<p class="pg-lead">Le guide lit le nom et la référence du modèle, retrouve ses caractéristiques techniques, les explique et indique à quels usages il convient. Chaque type de produit a sa propre base de données : choisissez-le d’abord.</p>
+<p class="pg-lead">Collez le lien d’une fiche produit ou tapez un nom de modèle. Le guide retrouve ses caractéristiques, les explique et vous dit à quels usages il convient.</p>
 <nav class="analyzer-switch" aria-label="Type de produit"><a class="btn btn-secondary" id="sw-sp" href="analyseur.html?cat=smartphones">Smartphone</a><a class="btn btn-secondary" id="sw-pc" href="analyseur.html?cat=pc-portables">PC portable</a></nav>
 </div>
 </header>
@@ -66,7 +66,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <article class="sp-card sp-analyzer" id="analyse-modele" data-analyzer-category="smartphones">
 <h2 class="sp-card-title">Collez le lien ou le nom du modèle</h2>
 <form class="model-analyzer-form" id="phone-analyzer-form">
-<p>Choisissez d’abord le type de produit ci-dessus : chaque analyseur a sa propre base de données. Collez ensuite le lien d’une fiche produit. Le guide lit d’abord le nom et la référence du modèle, puis récupère ses caractéristiques techniques.</p>
+<p>Choisissez le type de produit, puis collez le lien de la fiche ou tapez le nom du modèle. Le guide identifie d’abord le modèle exact, puis récupère ses caractéristiques.</p>
 <label class="visually-hidden" for="phone-product-url">Lien du produit</label>
 <div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="text" placeholder="Collez un lien ou tapez un nom (ex. Galaxy S26)" required="" type="text"/><button class="btn" type="submit">Analyser</button></div></form>
 <div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>

@@ -2,20 +2,31 @@
 
 Guide·Achat est un site de conseil avant achat pour le grand public. L’accueil donne accès aux catégories et à l’analyse d’un modèle. Les guides aident à faire un choix et à comprendre les résultats de tests.
 
-## Références
+## Direction commune
 
-- [Wispr Flow](https://wisprflow.ai/) pour le fond papier et l’alternance romain et italique dans les grands titres.
-- [Noeinoi](https://noeinoi.com/) pour le cadrage rectangulaire des grandes compositions et la grille de sélection.
-- [VOID](https://void.sbs/) pour le contraste des outils et des maquettes sur un fond sombre avec un accent citron.
+Tout le site reprend le style de la page Smartphones (« La Une », détaillée plus bas) : papier gris clair, encre, jaune manchette, rouge d’édition, marine, filets de 1 et 3 px, coins de 2 px, aucune ombre décalée. Les variables sont dans `assets/css/design-system.css` (`:root` et `.dark-theme`) ; chaque catégorie peut redéfinir `--accent` dans sa propre feuille pour se distinguer, sans toucher au reste.
 
-## Application
+- Typographie : Bricolage Grotesque pour les titres, libellés et boutons ; Source Serif 4 pour la lecture. Les deux sont hébergées dans `assets/fonts/` et préchargées par le gabarit. Dans un titre, `<em>` passe en romain, couleur `--dot` (rouge).
+- Boutons : encre pleine ou contour de 2 px, jamais de dégradé.
+- En-tête, recherche, pied de page et balises `<head>` (SEO, partage, icônes) viennent de `tools/site/gabarit.py` : modifier ce fichier puis lancer `python3 tools/site/gabarit.py`.
 
-Le système commun définit la palette et les composants de navigation dans `assets/css/design-system.css`. Baskervville est réservé aux grands titres. Archivo sert aux libellés et titres des outils, Public Sans à la lecture et aux contrôles. Le monospace signale les mesures et métadonnées.
+### Illustrations
 
-Le citron sert aux actions principales et aux sélections. Les zones sombres mettent en valeur la démonstration, l’analyseur et le schéma. Les zones de lecture et de sélection suivent le thème choisi. Le focus clavier reste visible sur chaque surface.
+Les illustrations sont des SVG au trait dans `assets/illustrations/` (un fichier par catégorie et par profil PC) : trait encre de 3 px, aplats papier, une seule touche de jaune ou de rouge. Elles ne représentent aucun modèle réel. La seule photo conservée est celle des projecteurs (`assets/editorial/projecteurs-category-cinema.webp`).
 
-L’illustration d’accueil `assets/editorial/accueil-atelier.webp` est une image originale générée pour le site, exportée en WebP. Elle représente des appareils génériques.
+### Emplacements photo
 
+Les cadres suivants sont prévus pour recevoir des photos plus tard ; il suffit de remplacer le `src` de l’`<img>` (format 4:3, WebP, largeur 1600 px conseillée) et d’ajuster `alt` :
+
+| Cadre | Où |
+|---|---|
+| `.guide-photo` | cartes de catégorie de l’accueil (`index.html`) |
+| `.intro-photo` | héros de l’accueil |
+| `.pg-shot` | héros de la page PC portables |
+| `.pl-profile-photo` | les quatre profils de la page PC portables |
+| `.be-stage` | héros de la page Batteries externes |
+
+L’image est recadrée par `object-fit` ; pour une photo à la place d’une illustration détourée, passer `contain` à `cover` si besoin (accueil : règle `.photo-guide:is(…)` de `home.css`).
 
 ## Guide Smartphones : « La Une »
 
@@ -67,7 +78,7 @@ Pas d’ombre portée sur les modules : les filets de 1 px et de 3 px marquent l
 
 ### Photos
 
-La page n’utilise aucune photo : elle repose sur la typographie, les aplats de couleur et les filets. Les illustrations du dossier et des critères (`assets/editorial/smartphones-dossier.webp`, `assets/editorial/criteres-smartphones/`) ont été essayées puis retirées : elles alourdissaient la une et brouillaient les aplats. Ne pas les remettre sans validation. Aucune photo de modèle n’est disponible ; n’en inventer aucune.
+La page n’utilise aucune photo : elle repose sur la typographie, les aplats de couleur et les filets. Aucune photo de modèle n’est disponible ; n’en inventer aucune.
 
 ### Composants
 
@@ -83,7 +94,6 @@ La page n’utilise aucune photo : elle repose sur la typographie, les aplats de
 ### À faire et à éviter
 
 - Garder une seule zone de couleur forte par section ; ne pas mélanger le jaune et le rouge dans la même bande.
-- Pas de photo dans cette page (voir « Photos »).
 - Pas de fond sombre par défaut, pas d’ombre décalée, pas de dégradé sur le texte, pas de numérotation de sections.
 - Le jaune est réservé aux sélections et aux actions ; ne pas l’utiliser pour décorer.
 

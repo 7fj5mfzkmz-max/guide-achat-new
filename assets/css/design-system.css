@@ -29,7 +29,7 @@
   --lilac: #dfe6f5;
   --line: #8b909a;
   --line-soft: #cdcabd;
-  --dot: #d4331f;
+  --dot: #c42c19;
   --dot-ring: transparent;
   --jaune: #ffd028;
   --rouge: #d4331f;
@@ -279,7 +279,7 @@ button { cursor: pointer; background: none; border: 0; }
 @keyframes drawer-in { from { transform: translateX(40px); opacity: 0; } to { transform: none; opacity: 1; } }
 .search-panel-head, .category-menu-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 20px; }
 .search-panel-head h2, .search-panel-head .drawer-title, .category-menu-head h2 { font: 800 2rem/1.05 var(--display); letter-spacing: -.02em; margin: 4px 0 0; }
-.drawer-kicker { font: 700 10.5px var(--mono); letter-spacing: .14em; color: var(--ink-mute); text-transform: uppercase; }
+.drawer-kicker { font: 700 11px var(--mono); letter-spacing: .14em; color: var(--ink-mute); text-transform: uppercase; }
 .drawer-close {
   width: 44px; height: 44px;
   border-radius: 2px;

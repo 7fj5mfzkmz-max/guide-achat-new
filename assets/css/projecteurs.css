@@ -5,7 +5,6 @@
 
 /* ——— Accroche ——— */
 .pj-stage { position: relative; min-height: clamp(340px, 40vw, 430px); border: 1px solid var(--ink); background-color: var(--paper-2);
-  background-image: linear-gradient(var(--line-soft) 1px, transparent 1px), linear-gradient(90deg, var(--line-soft) 1px, transparent 1px); background-size: 28px 28px;
   box-shadow: var(--shadow-lg); overflow: hidden; display: grid; place-items: center; }
 .pj-stage .pj-art { width: 100%; max-width: 520px; }
 .pj-chip { position: absolute; z-index: 2; display: inline-flex; align-items: center; gap: 8px; padding: 8px 11px; border: 1px solid var(--ink); background: var(--paper-2);
@@ -19,7 +18,7 @@
 /* ——— Illustrations ——— */
 .pj-art { display: block; width: 100%; height: auto; overflow: visible; }
 .pj-art text { font-family: var(--mono, monospace); }
-.pj-t-s, .pj-dim-t { font: 600 10px var(--mono); fill: var(--ink-mute); }
+.pj-t-s, .pj-dim-t { font: 600 11px var(--mono); fill: var(--ink-mute); }
 .pj-t-m { font: 800 14px var(--head); fill: var(--ink); }
 .pj-screen-frame { fill: var(--pj-screen); stroke: var(--ink); stroke-width: 3; }
 .pj-beam { transform-origin: 118px 244px; animation: pjBeam 3.4s ease-in-out infinite alternate; }
@@ -107,11 +106,11 @@
 .pj-ranking { margin: 22px 0 0; display: grid; gap: 0; border: 1px solid var(--ink); background: var(--paper-2); }
 .pj-row { display: grid; grid-template-columns: 38px minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)) 120px; gap: 10px; align-items: center; padding: 11px 14px; border-top: 1px solid var(--line-soft); font-size: 14px; }
 .pj-row:first-child { border-top: 0; }
-.pj-row.pj-row-head { font: 700 10.5px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); background: var(--paper-3); }
+.pj-row.pj-row-head { font: 700 11px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-mute); background: var(--paper-3); }
 .pj-row b.pj-n { font: 800 18px var(--head); }
 .pj-row .pj-name { font-weight: 700; }
 .pj-row small { display: block; color: var(--ink-mute); font-size: 12px; }
-.pj-badge { display: inline-block; padding: 3px 7px; border: 1px solid var(--ink); font: 700 10px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; background: var(--paper); }
+.pj-badge { display: inline-block; padding: 3px 7px; border: 1px solid var(--ink); font: 700 11px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase; background: var(--paper); }
 .pj-badge.is-lab { background: var(--accent); color: #11151c; }
 .pj-badge.is-no { border-style: dashed; color: var(--ink-mute); }
 .pj-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 14px; }
@@ -177,7 +176,7 @@
 .pj-price { font: 700 14px var(--mono); }
 .pj-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; }
 .pj-metrics div { padding: 8px; background: var(--paper-3); }
-.pj-metrics dt { font: 600 10px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-mute); }
+.pj-metrics dt { font: 600 11px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-mute); }
 .pj-metrics dd { margin: 3px 0 0; font: 800 15px var(--head); }
 .pj-metrics dd.is-na { color: var(--ink-mute); font-weight: 600; font-size: 12px; }
 .pj-card ul { margin: 0; font-size: 13.5px; line-height: 1.45; }
@@ -206,7 +205,7 @@
   .pj-podium { grid-template-columns: 1fr; }
   .pj-pod, .pj-pod.is-1, .pj-pod.is-2, .pj-pod.is-3 { min-height: 0; padding-top: 52px; }
   .pj-prof-item { grid-template-columns: 28px 1fr 84px; }
-  .pj-chip { font-size: 10px; padding: 6px 8px; }
+  .pj-chip { font-size: 11px; padding: 6px 8px; }
   .pj-chip-a { left: 3%; }
   .pj-chip-b, .pj-chip-c { right: 3%; }
 }
