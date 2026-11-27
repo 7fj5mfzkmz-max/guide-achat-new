@@ -37,6 +37,7 @@ const cmp = (a, b) => identity.compare(a, b, kit).verdict;
   /* Lettre collée au numéro : un autre modèle (audit du 27/11 : 17e, 15C et 15T étaient pris pour 17 et 15) */
   /* Lien Amazon sans marque dans le titre (C81 Pro) : la fiche trouvée ne doit pas être refusée pour cela */
   await check('C81 Pro sans marque accepté (pas de conflit)', () => assert.notEqual(cmp('C81 Pro Smartphone Batterie 6000mAh', 'Cubot C81 Pro'), 'different'));
+  await check('Poco C81 Pro ≠ Poco C81', () => assert.equal(cmp('Poco C81 Pro', 'Poco C81 Pro 6,88 pouces 8 Go 256 Go Batterie 6000mAh'), 'same'));
   await check('Galaxy S25 ≠ S25 Ultra reste refusé', () => assert.equal(cmp('Samsung Galaxy S25', 'Samsung Galaxy S25 Ultra'), 'different'));
   await check('iPhone 17 ≠ iPhone 17e', () => assert.equal(cmp('Apple iPhone 17', 'Apple iPhone 17e 128 Go'), 'different'));
   await check('Xiaomi 15 ≠ Redmi 15C', () => assert.equal(cmp('Xiaomi 15', 'Xiaomi Redmi 15C 128 Go'), 'different'));
