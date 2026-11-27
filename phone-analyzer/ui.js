@@ -126,14 +126,7 @@
     stage.querySelector('[data-act="no"]').addEventListener("click", onNo);
   }
   function viewManual(note, withCapture) {
-    /* Site qui bloque les robots : la lecture se fait dans le navigateur de la personne (signet « Capturer »),
-       qui voit la page comme elle la voit. Le nom capturé est ensuite confirmé avant toute analyse. */
-    var bm = withCapture && window.PhoneAnalyzerCapture ? window.PhoneAnalyzerCapture.bookmarklet(window.location.origin, state.category) : "";
-    var capture = withCapture ? '<div class="model-analyzer-capture"><strong>Le site bloque la lecture automatique.</strong>' +
-      (bm ? '<p>Deux façons de continuer :</p><ol><li>Glissez le bouton <a class="btn btn-secondary" href="' + esc(bm) + '" title="À glisser dans la barre de favoris">Capturer cette page</a> dans vos favoris.</li>' +
-        '<li>Ouvrez la fiche du produit dans votre navigateur, là où elle s’affiche normalement, puis cliquez sur ce favori.</li></ol>' +
-        '<p>Ou saisissez la marque et la référence ci-dessous.</p>' :
-        '<p>Saisissez la marque et la référence affichées sur la fiche : le guide retrouve ensuite ses caractéristiques.</p>') + '</div>' : '';
+    var capture = withCapture ? '<div class="model-analyzer-capture"><strong>Le site bloque la lecture automatique.</strong><p>Tapez simplement le nom du modèle ci-dessous : le guide le retrouve dans les fiches techniques publiques.</p></div>' : '';
     show('<div class="model-analyzer-card"><h3>Quel modèle recherchez-vous ?</h3><p>' + esc(note || "Le lien ne permet pas d’identifier le modèle avec certitude.") + " Saisissez sa marque et sa référence complète.</p>" + capture +
       '<form class="model-analyzer-input-row" data-manual><input type="text" data-autofocus required placeholder="' + (state.category === "pc-portables" ? "Ex. Asus Vivobook 15" : "Ex. Nokia G10") + '" aria-label="Marque et modèle" autocomplete="off"><button class="btn" type="submit">Utiliser ce modèle</button></form>' + retryButton() + "</div>");
     stage.querySelector("[data-manual]").addEventListener("submit", function (e) {
@@ -270,8 +263,7 @@
     var fromRef = Object.keys(sources).filter(function (k) { return sources[k] === "icecat"; }).map(function (k) { return SPEC_LABELS[k] || k; });
     var unknownKeys = CORE_SPECS.filter(function (k) { return !merged[k]; }).map(function (k) { return SPEC_LABELS[k] || k; });
     var identityConfirmed = !!(state.identity && state.identity.status === "identified");
-    if (page && page.captured) notes += '<p class="model-analyzer-note">Modèle repéré d’après votre capture de page (« ' + esc(page.captured.name) + ' »), puis retrouvé dans nos bases techniques. Les indices relevés ne remplacent pas les caractéristiques vérifiées.</p>';
-    else if (!c && identityConfirmed) notes += "<p>Modèle retrouvé. Ses caractéristiques sont rassemblées à partir de plusieurs sources fiables.</p>";
+    if (!c && identityConfirmed) notes += "<p>Modèle retrouvé. Ses caractéristiques sont rassemblées à partir de plusieurs sources fiables.</p>";
     else if (!c) notes += '<p class="model-analyzer-note"><strong>Identification non confirmée :</strong> le nom provient d’un indice (adresse ou saisie) et aucune fiche technique n’a pu y être rattachée avec certitude.</p>';
     if (page && page.warning) notes += '<p class="model-analyzer-note">' + esc(page.warning) + "</p>";
     if (state.identity && state.identity.conflict) notes += '<p class="model-analyzer-note">' + esc(state.identity.conflict) + "</p>";
@@ -371,49 +363,6 @@
       searchAndContinue();
     });
   });
-  /* Capture faite dans le navigateur : le nom capturé est un INDICE. On le résout comme une saisie de modèle,
-     puis on vérifie que la fiche trouvée est bien la même (identité) ; au moindre doute, confirmation demandée.
-     Les indices capturés ne deviennent jamais des caractéristiques vérifiées. */
-  function resolveCaptured(cap) {
-    var ck = cap.clues || {};
-    var names = [];
-    [cap.product && cap.product.name, ck.name, ck.title, ck.urlHint].forEach(function (n) {
-      n = String(n || "").trim();
-      if (n && names.indexOf(n) < 0) names.push(n);
-    });
-    if (!names.length) return viewManual("La capture ne contient aucun nom de modèle exploitable.", false);
-    var shown = names[0], index = 0, unavailable = false;
-    var I = window.PhoneAnalyzerIdentity;
-    function verdict(a, b) { try { return I && I.compare ? I.compare(a, b, KIT).verdict : "unknown"; } catch (_) { return "unknown"; } }
-    loading("Recherche technique du modèle capturé…");
-    function attempt() {
-      if (index >= names.length) {
-        return viewManual(unavailable ? UNAVAILABLE_NOTE : "Le modèle capturé « " + shown + " » n’a pas été retrouvé automatiquement. Saisissez sa marque et sa référence complète.", false);
-      }
-      var query = names[index++];
-      return lookupModel(query).then(function (data) {
-        if (data && data.reason === "wrong-category") return viewWrongCategory(data);
-        if (data && data.reason === "resolver-unavailable") unavailable = true;
-        if (!isVerifiedModel(data)) return attempt();
-        var found = (data.identity && data.identity.name) || (data.product && data.product.name) || query;
-        var v = verdict(shown, found);
-        if (v === "different") return viewManual("La capture indique « " + shown + " » mais la fiche trouvée est « " + found + " » : ce n’est pas le même modèle. Saisissez la référence exacte.", false);
-        data.captured = { name: shown };
-        state.page = data; state.identity = data.identity || null; state.year = ck.year || null;
-        /* Une capture ne part jamais en analyse sans confirmation : la personne valide le modèle trouvé. */
-        return viewConfirm(found, function () { showAnalysis(null, data); }, function () { viewManual("Saisissez la référence exacte du modèle.", false); });
-      }, function () { return attempt(); });
-    }
-    return attempt();
-  }
-  /* Arrivée depuis le signet de capture : #capture=… */
-  var captured = window.PhoneAnalyzerCapture && window.PhoneAnalyzerCapture.fromHash(location.hash, window.PhoneAnalyzerIdentify);
-  if (captured) {
-    try { history.replaceState(null, "", location.pathname + location.search + "#analyse-modele"); } catch (_) {}
-    state.page = null; state.identity = null; state.queue = []; state.pageOffered = true; state.needsCapture = false;
-    resolveCaptured(captured);
-    if (card.scrollIntoView) card.scrollIntoView({ block: "start" });
-  }
   stage.addEventListener("click", function(event){
     var jump=event.target.closest&&event.target.closest('[data-profile-jump]');
     if(!jump||!state.shown) return;

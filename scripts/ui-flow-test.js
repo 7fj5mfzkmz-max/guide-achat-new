@@ -137,41 +137,6 @@ async function main() {
   }
 
   for (const pageName of [A]) {
-    await run('Capture navigateur : le nom capturé est résolu puis analysé [' + pageName + ']', async () => {
-      const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.amazon.fr/Samsung-Galaxy-A56/dp/B0TEST1234', t: 'Samsung Galaxy A56' }));
-      const page = await open(pageName.split('#')[0] + '#capture=' + cap, 'real');
-      /* Une capture est confirmée par la personne avant toute analyse */
-      await page.waitForSelector('[data-act="yes"]', { timeout: 20000 });
-      await page.click('[data-act="yes"]');
-      await waitAnalysis(page);
-      const t = await stageText(page);
-      assert(/Samsung Galaxy A56/.test(t), 'le modèle capturé doit être analysé');
-      assert(/capture de page/i.test(t), 'la provenance « capture de page » doit être indiquée');
-      assert(!/n’a pas été retrouvé/.test(t), 'aucun message « non retrouvé »');
-      assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
-      await close(page);
-    });
-  }
-
-  await run('Capture : une fiche trouvée pour une autre variante est refusée, jamais acceptée en silence', async () => {
-    const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.amazon.fr/dp/B0TEST1234', t: 'Samsung Galaxy A56' }));
-    const page = await open(A + '#capture=' + cap, 'stub', () => okResult('Samsung Galaxy A36'));
-    await waitText(page, /pas le même modèle/);
-    await noAnalysis(page, 'capture contradictoire');
-    await close(page);
-  });
-
-  await run('Capture : un indice d’adresse contradictoire exige une confirmation explicite', async () => {
-    const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.cdiscount.com/telephonie/f-1440402-samsunggalaxya36.html', t: 'Samsung Galaxy A56' }));
-    const page = await open(A + '#capture=' + cap, 'stub', () => okResult('Samsung Galaxy A56'));
-    await waitText(page, /Avez-vous bien sélectionné/);
-    assert((await page.locator('#phone-analyzer-result .model-analyzer-profiles').count()) === 0, 'aucune analyse avant confirmation');
-    await page.click('#phone-analyzer-result [data-act="yes"]');
-    await waitAnalysis(page);
-    await close(page);
-  });
-
-  for (const pageName of [A]) {
     await run('Modèle introuvable : échec honnête, pas de résultat vide [' + pageName + ']', async () => {
       const page = await open(pageName, 'stub', () => NOT_FOUND);
       await submitMain(page, 'ModeleIntrouvableXYZ999');
