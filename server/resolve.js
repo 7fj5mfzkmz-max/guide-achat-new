@@ -622,8 +622,8 @@ async function resolveModelRaw(model, options) {
     const found = await search.lookup({ urlHint: query, name: query, title: query }, Math.min(3500, budget), profile).catch(() => null);
     if (found && found.best) {
       const rr = await externalSpecEnrich(found.best, {}, Math.min(3500, budget), trace, profile).catch(() => null);
-      // La fiche trouvée par recherche doit porter le même nom que la demande (sinon : variante Ultra servie pour le modèle de base).
-      if (rr && identity.compare(rr.name, query, profile).verdict === 'same') return { ok:true, kind:'product', strategy:'search+' + rr.source, product:{name:rr.name,source:rr.source}, specs:rr.specs,
+      // La fiche trouvée par recherche ne doit pas désigner une autre variante (Ultra, Pro Max, 17e…). Un nom sans marque reste accepté : « unknown » n'est pas un conflit.
+      if (rr && identity.compare(rr.name, query, profile).verdict !== 'different') return { ok:true, kind:'product', strategy:'search+' + rr.source, product:{name:rr.name,source:rr.source}, specs:rr.specs,
         specSources:Object.fromEntries(Object.keys(rr.specs || {}).map(k => [k,rr.source])), identity:{status:rr.confidence>=.9?'identified':'partial',name:rr.name,basis:['recherche externe','fiche technique publique'],confidence:rr.confidence}, evidence:['fiche technique publique ' + (rr.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')], trace };
     }
   }
