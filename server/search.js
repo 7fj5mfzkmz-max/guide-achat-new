@@ -64,6 +64,12 @@ async function rawTitles(query, timeout) {
   return parseResults(await fetchText('https://www.bing.com/search?q=' + encodeURIComponent(query) + '&setlang=fr-fr', timeout), 'bing');
 }
 
+function rankResults(results, hintText) {
+  const hint = String(hintText || '').toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length >= 2);
+  const score = t => { const words = new Set(String(t).toLowerCase().split(/[^a-z0-9]+/)); return hint.filter(w => words.has(w)).length; };
+  return results.map((r, i) => ({ r, i, s: score(r.title) })).sort((x, y) => (y.s - x.s) || (x.i - y.i)).map(x => x.r);
+}
+
 async function lookup(clues, timeout, profile) {
   const PHONE_WORD = (profile || kit.get()).productWord;
   const titles = [], results = [];
@@ -75,7 +81,11 @@ async function lookup(clues, timeout, profile) {
     });
     if (titles.length >= 5) break;
   }
-  return titles.length ? { titles:titles.slice(0,5), best:titles[0], results:results.slice(0,8), provider:process.env.BRAVE_API_KEY?'brave':process.env.SERPER_API_KEY?'serper':'public-web' } : null;
+  /* Classement par proximité avec le titre lu dans l'adresse (mots communs, sans tenir compte de la casse) :
+     le premier résultat n'est pas forcément la fiche du modèle demandé. */
+  const ranked = rankResults(results, clues.urlHint || clues.name || '');
+  const rankedTitles = ranked.map(r => r.title);
+  return titles.length ? { titles:rankedTitles.slice(0,5), best:rankedTitles[0], results:ranked.slice(0,8), provider:process.env.BRAVE_API_KEY?'brave':process.env.SERPER_API_KEY?'serper':'public-web' } : null;
 }
 
-module.exports = { lookup, enabled, queriesFor, parseResults };
+module.exports = { rankResults, lookup, enabled, queriesFor, parseResults };
