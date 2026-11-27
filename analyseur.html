@@ -9,7 +9,18 @@
 <meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
+<link rel="manifest" href="site.webmanifest"/>
 <link rel="canonical" href="https://guide-achat-new.vercel.app/analyseur.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Guide·Achat"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:url" content="https://guide-achat-new.vercel.app/analyseur.html"/>
+<meta property="og:title" content="Analyseur de lien : Guide·Achat"/>
+<meta property="og:description" content="Collez le lien ou le nom d’un smartphone ou d’un PC portable : le guide retrouve ses caractéristiques, les explique et dit à quels usages il convient."/>
+<meta property="og:image" content="https://guide-achat-new.vercel.app/assets/brand/partage.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta name="description" content="Collez le lien ou le nom d’un smartphone ou d’un PC portable : le guide retrouve ses caractéristiques, les explique et dit à quels usages il convient."/>
 <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin/>
@@ -57,9 +68,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <form class="model-analyzer-form" id="phone-analyzer-form">
 <p>Choisissez d’abord le type de produit ci-dessus : chaque analyseur a sa propre base de données. Collez ensuite le lien d’une fiche produit. Le guide lit d’abord le nom et la référence du modèle, puis récupère ses caractéristiques techniques.</p>
 <label class="visually-hidden" for="phone-product-url">Lien du produit</label>
-<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="https://…" required="" type="text"/><button class="btn" type="submit">Analyser</button></div><p class="model-analyzer-manual-entry"><button class="btn btn-secondary" type="button" id="phone-manual-toggle">Je connais déjà le modèle</button></p>
-</form>
-<div id="phone-manual-entry" hidden></div>
+<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="text" placeholder="Collez un lien ou tapez un nom (ex. Galaxy S26)" required="" type="text"/><button class="btn" type="submit">Analyser</button></div></form>
 <div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
 </article>
 </section>

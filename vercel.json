@@ -5,10 +5,71 @@
     }
   },
   "redirects": [
-    { "source": "/comparateur.html", "destination": "/analyseur.html?cat=smartphones", "permanent": true },
-    { "source": "/lexique.html", "destination": "/index.html#categories", "permanent": true },
-    { "source": "/lexique-pc-portables.html", "destination": "/pc-portables.html#lexique", "permanent": true },
-    { "source": "/capture.html", "destination": "/analyseur.html", "permanent": true },
-    { "source": "/diagnostic.html", "destination": "/analyseur.html", "permanent": true }
+    {
+      "source": "/comparateur.html",
+      "destination": "/analyseur.html?cat=smartphones",
+      "permanent": true
+    },
+    {
+      "source": "/lexique.html",
+      "destination": "/index.html#categories",
+      "permanent": true
+    },
+    {
+      "source": "/lexique-pc-portables.html",
+      "destination": "/pc-portables.html#lexique",
+      "permanent": true
+    },
+    {
+      "source": "/capture.html",
+      "destination": "/analyseur.html",
+      "permanent": true
+    },
+    {
+      "source": "/diagnostic.html",
+      "destination": "/analyseur.html",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        }
+      ]
+    },
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/assets/(illustrations|brand|editorial)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
   ]
 }

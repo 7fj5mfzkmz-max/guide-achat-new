@@ -136,28 +136,6 @@ async function main() {
     });
   }
 
-  await run('Saisie manuelle dédiée : ouverture, analyse, nouvelle analyse dans les deux sens [analyseur]', async () => {
-    const page = await open(A, 'real');
-    await page.click('#phone-manual-toggle');
-    await page.waitForSelector('[data-direct-manual] input', { state: 'visible', timeout: 5000 });
-    await page.fill('[data-direct-manual] input', 'Samsung Galaxy A56');
-    await page.press('[data-direct-manual] input', 'Enter');
-    await waitAnalysis(page);                                   // manuel -> résultat
-    await page.click('#phone-analyzer-result [data-act="reset"]');
-    assert(await page.locator('#phone-analyzer-form').isVisible(), 'le formulaire principal doit réapparaître');
-    assert(!(await page.locator('#phone-manual-entry').isVisible()), 'la saisie manuelle doit être refermée');
-    await submitMain(page, 'Samsung Galaxy A56');
-    await waitAnalysis(page);                                   // résultat -> analyse principale
-    await page.click('#phone-analyzer-result [data-act="reset"]');
-    await page.click('#phone-manual-toggle');                   // principal -> manuel
-    await page.waitForSelector('[data-direct-manual] input', { state: 'visible', timeout: 5000 });
-    await page.fill('[data-direct-manual] input', 'Samsung Galaxy A56');
-    await page.press('[data-direct-manual] input', 'Enter');
-    await waitAnalysis(page);
-    assert(page.errors.length === 0, 'erreurs JavaScript : ' + page.errors.join(' | '));
-    await close(page);
-  });
-
   for (const pageName of [A]) {
     await run('Capture navigateur : le nom capturé est résolu puis analysé [' + pageName + ']', async () => {
       const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.amazon.fr/Samsung-Galaxy-A56/dp/B0TEST1234', t: 'Samsung Galaxy A56' }));
@@ -201,16 +179,6 @@ async function main() {
       await close(page);
     });
   }
-  await run('Modèle introuvable via la saisie manuelle dédiée [analyseur]', async () => {
-    const page = await open(A, 'stub', () => NOT_FOUND);
-    await page.click('#phone-manual-toggle');
-    await page.fill('[data-direct-manual] input', 'ModeleIntrouvableXYZ999');
-    await page.press('[data-direct-manual] input', 'Enter');
-    await waitText(page, /n’a pas été retrouvé/);
-    await noAnalysis(page, 'saisie manuelle');
-    await close(page);
-  });
-
   await run('Service injoignable : le catalogue local prend le relais, un modèle inconnu est refusé', async () => {
     let page = await open(A, 'down');
     await submitMain(page, 'Samsung Galaxy A56');

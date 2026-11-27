@@ -9,7 +9,18 @@
 <meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
+<link rel="manifest" href="site.webmanifest"/>
 <link rel="canonical" href="https://guide-achat-new.vercel.app/pc-portables.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Guide·Achat"/>
+<meta property="og:locale" content="fr_FR"/>
+<meta property="og:url" content="https://guide-achat-new.vercel.app/pc-portables.html"/>
+<meta property="og:title" content="Bien choisir un PC portable, sans jargon : Guide·Achat"/>
+<meta property="og:description" content="Quel PC portable choisir ? Un guide visuel et sans jargon : les 7 critères qui comptent expliqués en dessins, quatre questions pour trouver votre profil (étudiant, pro, créateur, joueur) et 71 modèles repérés."/>
+<meta property="og:image" content="https://guide-achat-new.vercel.app/assets/brand/partage.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <meta name="description" content="Quel PC portable choisir ? Un guide visuel et sans jargon : les 7 critères qui comptent expliqués en dessins, quatre questions pour trouver votre profil (étudiant, pro, créateur, joueur) et 71 modèles repérés."/>
 <link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin/>
@@ -90,7 +101,7 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <form class="model-analyzer-form" id="phone-analyzer-form">
 <p>Collez le lien de sa fiche ou saisissez son nom, par exemple « Lenovo Legion 5 ». Cet analyseur ne traite que les PC portables : il cherche dans le catalogue PC et sur NotebookCheck, et vous dit s’il convient à votre usage.</p>
 <label class="visually-hidden" for="phone-product-url">Lien ou nom du PC portable</label>
-<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="url" placeholder="Collez un lien ou saisissez un modèle" required="" type="text"/><button class="btn" type="submit">Analyser</button></div>
+<div class="model-analyzer-input-row"><input autocomplete="off" id="phone-product-url" inputmode="text" placeholder="Collez un lien ou tapez un nom (ex. Lenovo Legion 5)" required="" type="text"/><button class="btn" type="submit">Analyser</button></div>
 </form>
 <div aria-live="polite" class="model-analyzer-result" hidden="" id="phone-analyzer-result"></div>
 </article>

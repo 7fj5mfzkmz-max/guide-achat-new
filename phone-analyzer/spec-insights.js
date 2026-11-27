@@ -36,7 +36,9 @@ function verdict(profile,key,value,ctx){
   if(profile==='photographe'){set(tele&&ois?'good':(ois||tele)?'warn':'bad',tele&&ois?'Configuration photo intéressante':(ois||tele)?'Photo correcte, avec des limites':'Photo basique','Capteur, OIS et téléobjectif comptent plus que les mégapixels.');}
   else{set(ois?'good':'neutral',ois?'Stabilisation optique présente':'Photo à évaluer selon vos besoins','L’OIS aide en basse lumière et en vidéo.');}
   return out;}
- if(key==='processeur'){var high=/snapdragon\s*8|dimensity\s*9|a1[7-9]|a2\d|tensor\s*g[4-5]/i.test(v),mid=/snapdragon\s*7|dimensity\s*[678]|exynos\s*1|tensor\s*g[23]|a1[0-6]/i.test(v);
+ if(key==='processeur'){/* Même échelle 1-10 que le catalogue et la note (chips.js) ; une puce inconnue reste neutre, jamais un défaut. */
+  var chips=root.PhoneChips||(typeof require==='function'?require('./chips.js'):null),cl=chips?chips.level(v):null;if(cl==null)return out;
+  var high=cl>=7,mid=cl>=4;
   if(profile==='gamer'){set(high?'good':mid?'warn':'bad',high?'Puce adaptée aux jeux exigeants':mid?'Correct pour les jeux courants':'Peu adapté aux jeux exigeants','La puissance brute ne garantit pas des FPS stables sans refroidissement.');}
   else if(profile==='professionnel'){set(high?'good':mid?'warn':'bad',high?'Réactif pour fichiers et multitâche':'Correct pour la bureautique','Pour les plans, tableurs lourds et visioconférences, une puce récente évite les ralentissements.');}
   else{set(high?'good':mid?'warn':'bad',high?'Très réactif':'Correct pour l’usage courant','Une puce récente rend les applications plus fluides.');}

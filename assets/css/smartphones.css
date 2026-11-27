@@ -706,7 +706,6 @@
 .sg-ana .model-analyzer-input-row input { flex: 1 1 280px; min-width: 0; min-height: 56px; padding: 0 16px; border: 2px solid var(--ink); border-radius: var(--r); background: var(--paper-2); color: var(--ink); font: 500 1.05rem/1.2 var(--sans); caret-color: var(--rouge); }
 .sg-ana .model-analyzer-input-row input::placeholder { color: var(--ink-mute); }
 .sg-ana .model-analyzer-input-row input:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
-.sg-ana .model-analyzer-manual-entry { margin: 0; }
 .sg-ana .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border: 2px solid var(--ink); border-radius: var(--r); background: var(--ink); color: var(--paper); box-shadow: none; font: 800 1rem/1.1 var(--sans); text-transform: none; letter-spacing: 0; text-decoration: none; transition: background-color 150ms, color 150ms; }
 .sg-ana .btn:hover { background: var(--jaune); color: #11151c; }
 .sg-ana .model-analyzer-input-row .btn { background: var(--jaune); color: #11151c; }

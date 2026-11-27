@@ -20,6 +20,7 @@ PAGES = {
     'batteries-externes.html': '#choisir',
     'a-propos.html': 'index.html#essayer',
     'analyseur.html': 'index.html#essayer',
+    '404.html': 'index.html#essayer',
 }
 
 CATEGORIES = [
@@ -99,14 +100,32 @@ def footer(page):
             '</div>\n</footer>')
 
 
-def head_tags(page):
-    url = SITE + page
-    return ('<meta name="color-scheme" content="light dark"/>\n'
+def attr(text):
+    return text.replace('&', '&amp;').replace('"', '&quot;')
+
+
+def head_tags(page, title, description):
+    url = SITE + ('' if page == 'index.html' else page)
+    tags = ('<meta name="color-scheme" content="light dark"/>\n'
             '<meta name="theme-color" content="#f1f3f3" media="(prefers-color-scheme: light)"/>\n'
             '<meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)"/>\n'
             '<link rel="icon" href="favicon.svg" type="image/svg+xml"/>\n'
             '<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>\n'
-            f'<link rel="canonical" href="{url}"/>')
+            '<link rel="manifest" href="site.webmanifest"/>\n')
+    if page == '404.html':
+        return tags + '<meta name="robots" content="noindex"/>'
+    # Partage (Open Graph, X) : titre et description de la page, image commune.
+    return tags + (f'<link rel="canonical" href="{url}"/>\n'
+                   '<meta property="og:type" content="website"/>\n'
+                   '<meta property="og:site_name" content="Guide·Achat"/>\n'
+                   '<meta property="og:locale" content="fr_FR"/>\n'
+                   f'<meta property="og:url" content="{url}"/>\n'
+                   f'<meta property="og:title" content="{attr(title)}"/>\n'
+                   f'<meta property="og:description" content="{attr(description)}"/>\n'
+                   f'<meta property="og:image" content="{SITE}assets/brand/partage.png"/>\n'
+                   '<meta property="og:image:width" content="1200"/>\n'
+                   '<meta property="og:image:height" content="630"/>\n'
+                   '<meta name="twitter:card" content="summary_large_image"/>')
 
 
 def one(pattern, repl, text, page, what):
@@ -121,8 +140,11 @@ def apply(page, text):
     head, body = text[:head_end], text[head_end:]
     # Balises de tête : on retire les anciennes, puis on pose le jeu commun après <title>.
     head = re.sub(r'<meta[^>]*name="(?:theme-color|color-scheme)"[^>]*>\n?', '', head)
-    head = re.sub(r'<link[^>]*rel="(?:icon|apple-touch-icon|canonical)"[^>]*>\n?', '', head)
-    head = one(r'(?<=</title>)', '\n' + head_tags(page), head, page, '<title>')
+    head = re.sub(r'<link[^>]*rel="(?:icon|apple-touch-icon|canonical|manifest)"[^>]*>\n?', '', head)
+    head = re.sub(r'<meta[^>]*(?:property="og:|name="twitter:|name="robots")[^>]*>\n?', '', head)
+    title = re.search(r'<title>(.*?)</title>', head, re.S).group(1).strip()
+    desc = re.search(r'<meta name="description" content="([^"]*)"', head)
+    head = one(r'(?<=</title>)', '\n' + head_tags(page, title, desc.group(1) if desc else ''), head, page, '<title>')
     head = re.sub(r'<link[^>]*href="https://fonts\.(?:googleapis|gstatic)\.com"[^>]*>\n?', '', head)
     head = one(r'<link href="https://fonts\.googleapis\.com/css2[^>]*>|<link rel="preload" href="assets/fonts/bricolage[^>]*>\n<link rel="preload" href="assets/fonts/source-serif[^>]*>', FONTS, head, page, 'police')
     head = one(r'<script id="ga-early">.*?</script>', EARLY, head, page, 'script de thème')
@@ -132,9 +154,19 @@ def apply(page, text):
     return head + body
 
 
+def sitemap():
+    import datetime
+    day = datetime.date.today().isoformat()
+    urls = ''.join(f'  <url><loc>{SITE}{"" if p == "index.html" else p}</loc><lastmod>{day}</lastmod></url>\n'
+                   for p in PAGES if p != '404.html')
+    return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '</urlset>\n'
+
+
 def main():
     check = '--verifier' in sys.argv
     bad = []
+    if not check:
+        (ROOT / 'sitemap.xml').write_text(sitemap(), encoding='utf-8')
     for page in PAGES:
         path = ROOT / page
         text = path.read_text(encoding='utf-8')

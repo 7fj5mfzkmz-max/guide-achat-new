@@ -137,8 +137,13 @@
       }, false);
     }
 
+    var lastFocus = null;
+    if (searchResults) searchResults.setAttribute("aria-live", "polite");
     function setSearch(open) {
       if (!searchPanel) return;
+      if (open === !searchPanel.hidden) return;
+      if (open) { lastFocus = document.activeElement; loadIndex(); }
+      else if (lastFocus && lastFocus.focus) lastFocus.focus();
       searchPanel.hidden = !open;
       searchPanel.setAttribute("aria-hidden", open ? "false" : "true");
       document.body.classList.toggle("search-open", open);
@@ -184,8 +189,12 @@
       { url: "ecouteurs.html", label: "Écouteurs Bluetooth" },
       { url: "projecteurs.html", label: "Projecteurs" },
       { url: "montres.html", label: "Montres et bracelets" },
-      { url: "actualites.html", label: "Mises à jour du site : nouveaux produits, tests et guides" }
+      { url: "actualites.html", label: "Mises à jour du site : nouveaux produits, tests et guides" },
+      { url: "analyseur.html", label: "Analyseur" },
+      { url: "a-propos.html", label: "À propos et méthode" }
     ];
+    /* En-tête, menus, recherche et pied sont communs à toutes les pages : on ne les indexe pas. */
+    var CHROME = ".site-header, .search-panel, .category-menu, .site-footer, nav, form, script, style";
 
     function addRecord(record) {
       if (!record || !record.title) return;
@@ -200,7 +209,8 @@
 
     function addPageToIndex(doc, page) {
       var seen = {};
-      doc.querySelectorAll("h1, h2, h3, h4, .faq-item summary, .eyebrow").forEach(function (heading) {
+      doc.querySelectorAll("h1, h2, h3, h4, .faq-item summary").forEach(function (heading) {
+        if (heading.closest(CHROME)) return;
         var title = cleanText(heading.textContent);
         if (!title || seen[title]) return;
         seen[title] = true;
@@ -212,7 +222,8 @@
       });
       // Add dense technical blocks that have no heading of their own. This makes
       // short queries such as 5G, IP68, OIS, 4K and Hz discoverable.
-      doc.querySelectorAll("[id], .check-item, .signal-row, .detail-content, .deep-block").forEach(function (node) {
+      doc.querySelectorAll("main [id]").forEach(function (node) {
+        if (node.closest(CHROME) || node.matches("input, select, button, [hidden]") || node.querySelector("form")) return;
         var text = cleanText(node.textContent);
         if (!text || text.length < 18) return;
         var titleNode = node.querySelector("strong, h3, span") || node;
@@ -228,8 +239,25 @@
     }
 
 
+    /* Les noms de modèles viennent des données : ils ne sont pas dans le HTML statique. */
+    var PRODUCTS = [
+      { url: "data/smartphones-tests.json", list: "modeles", page: "Smartphones", href: "smartphones.html#tests" },
+      { url: "data/pc-portables.json", list: "produits", page: "PC portables", href: "pc-portables.html#modeles" }
+    ];
+    function loadProducts(src) {
+      return fetch(src.url).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+        ((d && d[src.list]) || []).forEach(function (m) {
+          var specs = m.caracteristiques || {};
+          var ip = m.specs && m.specs.indices_ip ? m.specs.indices_ip.join(" ") : "";
+          addRecord({ title: m.nom, text: [m.nom, m.puce_ecran, m.batterie_charge, ip, specs.processeur, specs.ecran].filter(Boolean).join(" · "),
+            page: src.page, url: src.href, type: "product", brand: m.marque || "" });
+        });
+      }).catch(function () {});
+    }
+    var indexReady = null;
     function loadIndex() {
-      var jobs = pages.map(function (page) {
+      if (indexReady) return indexReady;
+      var jobs = PRODUCTS.map(loadProducts).concat(pages.map(function (page) {
         var current = location.pathname.split("/").pop() || "index.html";
         if (current === page.url) {
           addPageToIndex(document, page);
@@ -239,8 +267,9 @@
           if (!html) return;
           addPageToIndex(new DOMParser().parseFromString(html, "text/html"), page);
         }).catch(function () {});
-      });
-      return Promise.all(jobs);
+      }));
+      indexReady = Promise.all(jobs).then(function () { if (searchInput && searchInput.value) renderResults(searchInput.value); });
+      return indexReady;
     }
 
     // Mots trop courts ou trop fréquents pour porter un sens de recherche à eux seuls.
@@ -261,12 +290,13 @@
       candidateTokens.forEach(function (candidate) {
         if (candidate.length < 4) return;
         // Préfixe partagé significatif seulement (au moins 4 caractères communs), pas un simple "e" ou "de".
-        if (queryToken.length >= 2 && candidate.length >= 2) {
-          if (candidate.indexOf(queryToken) === 0 || queryToken.indexOf(candidate) === 0) best = Math.max(best, queryToken.length === 2 ? .55 : .7);
+        if (queryToken.length >= 4) {
+          /* Mot en cours de frappe : la requête est le début du mot (« batt » → « batterie »), pas l’inverse. */
+          if (candidate.indexOf(queryToken) === 0) best = Math.max(best, queryToken.length === 2 ? .55 : .7);
         }
         if (queryToken.length >= 6 && candidate.length >= 6) {
           var d = levenshtein(queryToken, candidate);
-          if (d <= 1) best = Math.max(best, .5);
+          if (d <= 1 || (d === 2 && candidate.length >= 7)) best = Math.max(best, .5);
         }
       });
       return best;
@@ -276,7 +306,7 @@
       var expanded = expandTerms(query);
       var qnorm = normalize(query);
       if (record.type === 'product' && record.normalizedTitle === qnorm) return 100;
-      if (record.type === 'product' && qnorm.length >= 3 && record.normalizedTitle.indexOf(qnorm) !== -1) return 25;
+      if (record.type === 'product' && qnorm.length >= 3 && record.normalizedTitle.indexOf(qnorm) !== -1) return 90;
       var base = expanded.base.filter(function (t) { return !isStopword(t); });
       if (!base.length) return 0;
       var score = 0;
@@ -286,8 +316,11 @@
       var phrase = normalize(query);
       var matchedTerms = 0;
       if (phrase.length >= 2 && title === phrase) score += 100;
-      if (phrase.length >= 2 && title.indexOf(phrase) !== -1) score += 55;
-      if (phrase.length >= 2 && text.indexOf(phrase) !== -1) score += 22;
+      /* Moins de 4 caractères : mot entier seulement (« ram » ne doit pas remonter « programme »). */
+      var inside = phrase.length >= 4 ? function (hay) { return hay.indexOf(phrase) !== -1; }
+        : function (hay) { return new RegExp("(^| )" + phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "( |$)").test(hay); };
+      if (phrase.length >= 2 && inside(title)) score += 55;
+      if (phrase.length >= 2 && inside(text)) score += 22;
       base.forEach(function (term) {
         var titleMatch = tokenMatches(term, record.titleTokens, title);
         var textMatch = tokenMatches(term, allTokens, text);
@@ -317,9 +350,10 @@
       searchResults.innerHTML = "";
       var q = cleanText(query);
       if (!q) {
-        searchResults.innerHTML = '<p class="search-empty">Recherchez un modèle, une marque, une caractéristique ou un usage.</p>';
+        searchResults.innerHTML = '<p class="search-empty">Tapez un modèle, une marque, une caractéristique ou un usage.</p>';
         return;
       }
+      if (!index.length) { searchResults.innerHTML = '<p class="search-empty">Chargement de l’index…</p>'; return; }
       var ranked = index.map(function (item) {
         return { item: item, score: scoreRecord(item, q) };
       }).filter(function (entry) { return entry.score >= 12; })
@@ -372,294 +406,7 @@
       window.clearTimeout(searchDebounce);
       searchDebounce = window.setTimeout(function () { renderResults(value); }, 90);
     });
-    loadIndex();
 
-    function initEditorialMotion() {
-      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-      if (!window.gsap) return;
-      var reveal = document.querySelectorAll(".site-redesign .section, .site-redesign .cat-card, .site-redesign .lex-entry, .site-redesign .article-hero-stage");
-      reveal.forEach(function (el, i) {
-        window.gsap.fromTo(el, { autoAlpha: 0, y: 22 }, { autoAlpha: 1, y: 0, duration: .65, ease: "power2.out", delay: Math.min(i * .025, .18) });
-      });
-    }
-    (function bindPurchaseAudit(){
-      var board=document.getElementById("purchase-audit");
-      if(!board) return;
-      var configs={
-        price:{
-          intro:"Le prix décide de tout le reste : fixez d’abord le palier, les autres critères se jugent ensuite à l’intérieur. Un modèle moins cher que votre palier reste proposé, un modèle plus cher est écarté s’il dépasse trop.",
-          groups:[
-            {key:"budget",label:"Budget",type:"choice",options:[
-              ["bas","80 à 150 €","Bas prix : l’essentiel pour téléphoner, naviguer et regarder des vidéos."],["entree","150 à 300 €","Entrée de gamme : écran fluide et bonne batterie au quotidien."],["milieu","300 à 500 €","Milieu de gamme : bonne photo, puce rapide, écran lumineux."],["milieu_haut","500 à 800 €","Milieu de gamme supérieur : puce de haut de gamme, bonne photo, parfois un téléobjectif."],["haut","800 à 1 000 €","Haut de gamme : grand capteur, écran lumineux, suivi logiciel long."],["tres_haut","1 000 à 1 200 €","Très haut de gamme : les meilleurs composants, matériaux premium."],["premium","1 200 € et plus","Premium : le maximum dans chaque domaine, suivi logiciel très long."]]}
-          ]
-        },
-        screen:{
-          intro:"Trois choses changent ce que vous voyez : le type d’écran (couleurs et noirs), la fluidité quand vous faites défiler, et la luminosité pour lire dehors. En cas de doute, partez de votre usage plutôt que du plus gros chiffre.",
-          groups:[
-            {key:"tech",label:"Technologie",type:"pill",options:[
-              ["oled","OLED","Chaque pixel s’éteint seul : noirs profonds, image contrastée."],["amoled","AMOLED","Variante d’OLED : même principe, sans garantie de qualité à lui seul."],["lcd","LCD","Un seul rétroéclairage : noirs plus gris, écran souvent moins cher."],["ltpo","LTPO","Fréquence variable : elle baisse à l’arrêt et économise la batterie."]]},
-            {key:"refresh",label:"Fréquence",type:"pill",options:[
-              ["60","60 Hz","60 images par seconde : correct au quotidien."],["90","90 Hz","Plus fluide que 60 Hz, sans trop consommer."],["120","120 Hz","Défilement très fluide, visible partout."],["144","144 Hz","Utile surtout en jeu, si la puce suit."]]},
-            {key:"brightness",label:"Luminosité",type:"brightness",options:[
-              ["600","600 nits","Lisible à l’ombre, limité en plein soleil."],["1000","1 000 nits","Correct dehors, sauf sous un soleil fort."],["1600","1 600 nits","Lisible dehors dans presque toutes les situations."],["2500","2 500+ nits","Très lumineux ; vérifiez la luminosité tenue dans la durée."]]}
-          ]
-        },
-        battery:{
-          intro:"Choisissez la taille de batterie et la vitesse de recharge qui vous conviennent. Les mAh sont la taille du réservoir, pas la durée : l’écran et la puce décident de la vitesse à laquelle il se vide.",
-          groups:[
-            {key:"capacity",label:"Capacité",type:"pill-meter",options:[["3000","3 000 mAh","Petite batterie : recharge souvent dans la journée."],["4000","4 000 mAh","Une journée d’usage normal."],["5000","5 000 mAh","La norme : une bonne journée, parfois plus."],["6000","6 000+ mAh","Plus d’autonomie, mais un téléphone souvent plus lourd."]]},
-            {key:"chemistry",label:"Technologie / chimie",advanced:true,type:"pill",options:[["liion","Li-ion","Batterie classique, dans la plupart des téléphones."],["lipoly","Li-polymère","Format plat et souple ; ne change pas l’autonomie en soi."],["silicon","Silicium-carbone","Plus d’énergie pour le même volume : batterie plus fine à capacité égale."]]},
-            {key:"charge",label:"Recharge",type:"pill-charge",options:[["25","25 W","Environ 1 h 30 pour une charge complète."],["45","45 W","Environ 1 h : bon équilibre entre vitesse et chaleur."],["67","67 W","Environ 45 min : plusieurs heures d’usage en une pause café."],["100","100 W+","Environ 30 min, mais chargeur souvent vendu à part."]]}
-          ]
-        },
-        performance:{
-          intro:"Deux choses décident : le niveau de la puce et ce que vous en faites. Pour jouer souvent, visez une puce haut de gamme bien refroidie ; pour le reste, le milieu de gamme suffit.",
-          groups:[
-            {key:"reference",label:"Niveau de puce",type:"choice",options:[
-              ["basic","Entrée de gamme (niveaux 1 à 3)","Helio G99, Snapdragon 685, Exynos 1330 : messages, web, vidéo. Les jeux 3D récents saccadent."],["mid","Milieu de gamme (4 à 6)","Snapdragon 6 Gen 3, Exynos 1580, Snapdragon 7 Gen 3 : la plupart des jeux tournent bien."],["high","Haut de gamme (7 à 8)","Dimensity 8400, Snapdragon 8s Gen 3, Snapdragon 8 Gen 3 : jeux 3D, montage et multitâche sans effort."],["top","Très haut de gamme (9 à 10)","Snapdragon 8 Elite, Dimensity 9500, puces Apple A18 Pro et A19 Pro : le sommet du marché, sur Android comme sur iPhone."]]},
-            {key:"gaming",label:"Votre usage",type:"choice",options:[
-              ["daily","Quotidien","Messages, web, vidéo, réseaux sociaux : n’importe quelle puce récente suffit."],["heavy","Jeux et montage","Jeux 3D comme Genshin Impact, montage vidéo, nombreux onglets : visez au moins le niveau 6 (haut du milieu de gamme)."],["pro","Jeux très lourds","Graphismes élevés pendant des heures : visez le niveau 8 ou plus et lisez les tests de chauffe."]]}
-          ]
-        },
-        photo:{
-          intro:"Pour la photo, regardez d’abord la taille du capteur, la stabilisation et le zoom. Le nombre de mégapixels seul ne dit pas si les photos seront bonnes, surtout de nuit.",
-          groups:[
-            {key:"sensor",label:"Capteur principal",type:"choice",options:[
-              ["small","Petit capteur (1/2,8″ et moins)","Entrée de gamme : peu de lumière par pixel, donc du grain le soir."],["medium","Capteur moyen (1/2,3″ à 1/1,7″)","Milieu de gamme : soirées et intérieurs plus propres."],["large","Grand capteur (1/1,56″ à 1/1,3″)","Haut de gamme : nuit nette, flou d’arrière-plan ; bloc photo plus épais et plus cher."],["xl","Très grand capteur (1/1,2″ à 1″)","Le sommet des photophones : le maximum de lumière, nuit très nette ; bloc photo épais, prix très élevé."]]},
-            {key:"stabilization",label:"Stabilisation",type:"choice",options:[
-              ["none","EIS / numérique","Le logiciel recadre pour gommer les tremblements : bien en vidéo."],["ois","OIS / optique","La lentille bouge : photos nettes le soir."],["both","OIS + EIS","Photos nettes le soir et vidéos stables en marchant."]]},
-            {key:"zoom",label:"Zoom",type:"choice",options:[
-              ["digital","Recadrage numérique","Agrandit l’image existante : flou dès que l’on zoome."],["2x","Téléobjectif ~2×","Vrai objectif : portraits nets à distance."],["5x","Téléobjectif ~5×","Concerts, monuments, animaux ; vérifiez les zooms intermédiaires."]]},
-            {key:"resolution",label:"Résolution",type:"choice",options:[
-              ["12","12 mégapixels","Assez pour partager et imprimer petit ; avec un bon capteur, souvent meilleur de nuit qu’un capteur minuscule à 200 MP."],["50","50 mégapixels","Bons détails et possibilité de recadrer ; la taille du capteur reste décisive pour la nuit."],["108","108 mégapixels","Beaucoup de détails de jour, mais si les pixels sont minuscules, la nuit reste difficile."],["200","200 mégapixels","Définition impressionnante, mais cela ne crée pas de lumière : un grand capteur reste plus important pour la nuit."]]}
-          ]
-        },
-        longevity:{
-          intro:"Si vous gardez votre téléphone longtemps, trois points comptent plus qu’un petit gain de vitesse : combien d’années de mises à jour, s’il se répare facilement, et s’il résiste à l’eau et à la poussière.",
-          groups:[
-            {key:"updates",label:"Mises à jour",advanced:true,type:"choice",options:[["3","3 ans ou moins","Pour changer de téléphone tous les 2 à 3 ans."],["5","Environ 5 ans","Pour le garder 4 à 5 ans sans faille de sécurité."],["7","7 ans ou plus","Pour le garder 6 ans ou plus ; vérifiez la batterie remplaçable."]]},
-            {key:"repair",label:"Réparation",advanced:true,type:"choice",options:[["low","Pièces limitées","Écran ou batterie : souvent cher, parfois chez le fabricant seul."],["standard","Pièces disponibles","Les pièces courantes se trouvent chez un réparateur."],["good","Réparable + pièces accessibles","Batterie et écran se changent facilement, à prix correct."]]},
-            {key:"protection",label:"Protection",type:"choice",options:[["basic","Protection basique","Pas d’étanchéité : prévoyez coque et verre de protection."],["ip67","IP67","Poussière et environ 1 m d’eau douce pendant 30 min."],["ip68","IP68","Poussière et immersion plus profonde, selon le fabricant."]]}
-          ]
-        }
-      };
-      var totalGroups=Object.keys(configs).length;
-      var AUDIT_KEY='guide-achat-audit-v57';
-      var auditStartedAt=null;
-      var state={};
-      try { var saved=JSON.parse(localStorage.getItem(AUDIT_KEY)||'null'); if(saved&&saved.state&&(Date.now()-(saved.updatedAt||0))<12*3600*1000) state=saved.state; } catch(e) {}
-      if(state.student && window.StudentRecommendations) state.student.answers=window.StudentRecommendations.sanitize(state.student.answers);
-      window.GuideAuditState = state;
-      function studentSummary() {
-        var summary=document.getElementById('student-quiz-summary');
-        if(!summary){summary=document.createElement('div');summary.id='student-quiz-summary';board.prepend(summary);}
-        summary.hidden=!state.student;
-        if(!state.student) return;
-        var a=state.student.answers;
-        var active=Object.keys(a.strict).filter(function(k){return a.strict[k];}).map(function(k){return window.StudentRecommendations.STRICT[k]+(typeof a.strict[k]==='number'?' : '+a.strict[k]:'');});
-        summary.textContent='Vos critères actifs : '+(a.budget?'jusqu’à '+a.budget+' €':state.price&&state.price.budget?'budget choisi dans le quiz':'sans plafond de prix')+'. '+(active.join(' ; ')||'Aucune autre exigence indispensable')+'. ';
-        var edit=document.createElement('button');edit.type='button';edit.textContent='Modifier dans Mon profil';
-        edit.addEventListener('click',function(){document.getElementById('tab-profil').click();var b=document.querySelector('[data-need="etudiant"]');if(b)b.click();document.getElementById('tab-profil').focus();});
-        summary.appendChild(edit);
-      }
-      window.addEventListener('guide:student-criteria',function(event){
-        var a=window.StudentRecommendations.sanitize(event.detail.answers);
-        state.price=state.price||{};
-        // Un choix de budget déjà explicite dans le quiz n'est jamais écrasé.
-        if(state.price.budget) a.budget=null;
-        state.student={answers:a};
-        if(a.budget) state.price.maxBudget=a.budget;
-        else delete state.price.maxBudget;
-        persistAudit(); studentSummary();
-        board.querySelectorAll('.audit-card').forEach(function(card){updateCard(card,card.getAttribute('data-audit-card'));});
-        window.dispatchEvent(new CustomEvent('guide:audit-change',{detail:{state:state,user:true}}));
-      });
-      window.addEventListener('guide:student-reset',function(){
-        if(state.student){delete state.student;if(state.price)delete state.price.maxBudget;persistAudit();studentSummary();board.querySelectorAll('.audit-card').forEach(function(card){updateCard(card,card.getAttribute('data-audit-card'));});window.dispatchEvent(new CustomEvent('guide:audit-change',{detail:{state:state}}));}
-      });
-      studentSummary();
-      function persistAudit(){ try{ localStorage.setItem(AUDIT_KEY,JSON.stringify({state:state,updatedAt:Date.now()})); }catch(e){} }
-      function esc(v){return String(v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c];});}
-      function svgIcon(type){
-        var common='viewBox="0 0 72 48" aria-hidden="true" focusable="false"';
-        var icons={
-          book:'<svg '+common+'><path d="M10 9c8-4 16-3 26 2v28c-10-5-18-6-26-2z"/><path d="M62 9c-8-4-16-3-26 2v28c10-5 18-6 26-2z"/><path d="M36 11v28"/></svg>',
-          crane:'<svg '+common+'><path d="M13 40V8h6v32M13 10h43M28 10v8M22 18h28l9 7"/><path d="M50 18v16h-7M43 34h14M57 25v9"/><path d="M8 40h58"/></svg>',
-          craneGame:'<svg '+common+'><path d="M8 40h56M13 40V8h5M13 10h39l11 8"/><path d="M52 18v15M52 33l-4 5M52 33l4 5"/><rect x="31" y="26" width="26" height="11" rx="2"/><circle cx="38" cy="31" r="2"/><path d="M44 29h8M48 27v8"/></svg>',
-          bike:'<svg '+common+'><circle cx="20" cy="34" r="9"/><circle cx="53" cy="34" r="9"/><path d="M20 34l10-17h11l12 17M30 17l-5 0M41 17l-4 17M34 27h13"/></svg>',
-          car:'<svg '+common+'><path d="M10 34h54l-5-13H25l-7 13z"/><circle cx="22" cy="36" r="5"/><circle cx="54" cy="36" r="5"/><path d="M27 21l5-8h14l7 8"/></svg>',
-          moto:'<svg '+common+'><circle cx="20" cy="36" r="8"/><circle cx="54" cy="36" r="8"/><path d="M20 36l9-15h13l12 15M31 21l-6 0M42 21l8-7h7"/></svg>',
-          rocket:'<svg '+common+'><path d="M42 7c13 5 18 16 16 27L43 48 28 33C26 22 31 12 42 7z"/><circle cx="43" cy="23" r="4"/><path d="M30 36l-9 3 3-9M38 47l-3 8 9-5"/></svg>',
-          plug:'<svg '+common+'><path d="M31 7v13M41 7v13M27 19h18v5a9 9 0 0 1-9 9v8"/><path d="M36 41v-8M36 41h18"/><path d="m57 27-6 8h6l-5 8"/></svg>',
-          battery:'<svg '+common+'><rect x="7" y="12" width="55" height="25" rx="5"/><path d="M62 20h4v9h-4"/><rect x="13" y="18" width="9" height="13" rx="2"/><rect x="25" y="18" width="9" height="13" rx="2"/><rect x="37" y="18" width="9" height="13" rx="2"/><path d="M49 18v13"/></svg>'
-        }; return icons[type]||icons.battery;
-      }
-      function groupVisual(group,o){ return window.AuditVisuals?window.AuditVisuals.render(group.key,o[0]):''; }
-      /* Aides courtes, en langage courant, pour chaque groupe de critères. */
-      var HINTS={budget:'palier de prix',tech:'couleurs et noirs',refresh:'fluidité du défilement',brightness:'lisibilité en extérieur',capacity:'taille du réservoir',chemistry:'format interne',charge:'vitesse de recharge',reference:'le moteur du téléphone',gaming:'puissance nécessaire',sensor:'lumière captée, surtout la nuit',stabilization:'photos nettes le soir',zoom:'portraits et sujets éloignés',resolution:'détails et recadrage',updates:'durée de vie logicielle',repair:'coût et facilité d’entretien',protection:'eau et poussière'};
-      function renderGroup(group, selected){
-        var opts=group.options.map(function(o){
-          var active=selected===o[0];
-          var cls='audit-pill audit-pill--'+esc(group.key)+' audit-pill--'+esc(o[0])+(active?' is-selected':'');
-          return '<button type="button" class="'+cls+'" data-value="'+esc(o[0])+'" aria-pressed="'+active+'">'+groupVisual(group,o)+'<span class="pill-copy"><strong>'+esc(o[1])+'</strong></span></button>';
-        }).join('');
-                return '<div class="audit-control" data-group="'+group.key+'"><div class="audit-control-head"><span class="audit-control-label"><strong>'+esc(group.label)+'</strong><small class="audit-hint">'+esc(HINTS[group.key]||'')+'</small></span><span class="audit-control-value">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','Choisir'])[1]):'Choisir')+'</span></div><div class="audit-pills">'+opts+'</div><p class="audit-def">'+(selected?esc((group.options.find(function(x){return x[0]===selected;})||['','',''])[2]):'Touchez une option pour voir ce qu’elle change.')+(selected?' <a class="audit-more" href="lexique.html">En savoir plus →</a>':'')+'</p></div>';
-      }
-      function panelHtml(key){
-        var cfg=configs[key];
-        if(window.SmartphoneQuizUI) return window.SmartphoneQuizUI.renderPanel(key,cfg,state[key]||{});
-        var basic=cfg.groups.filter(function(g){return !g.advanced;}), advanced=cfg.groups.filter(function(g){return g.advanced;});
-        var html=basic.map(function(g){return renderGroup(g,state[key][g.key]);}).join('');
-        if(advanced.length){
-          html+='<details class="audit-advanced"><summary>Critères avancés</summary>'+advanced.map(function(g){return renderGroup(g,state[key][g.key]);}).join('')+'<p class="audit-def">Ces critères ne sont pas toujours documentés. S’ils sont absents, ils ne sont ni bonifiés ni pénalisés.</p></details>';
-        }
-        return html;
-      }
-      /* Quand le budget change, les choix qui n'ont plus aucun modèle correspondant sont retirés (et signalés). */
-      var prunedNote='';
-      function pruneUnavailable(){
-        var D=window.GuideDisponibilite; if(!D||!D.ready) return 0;
-        var n=0;
-        Object.keys(configs).forEach(function(k){
-          configs[k].groups.forEach(function(g){
-            var v=state[k]&&state[k][g.key];
-            if(g.key==='budget'||!v) return;
-            if(!D.option(g.key,v,g.options.map(function(o){return o[0];})).ok){ delete state[k][g.key]; n++; }
-          });
-        });
-        if(n){
-          prunedNote=n===1?'Un choix a été retiré : plus aucun modèle ne correspond dans ce budget.':n+' choix ont été retirés : plus aucun modèle ne correspond dans ce budget.';
-          board.querySelectorAll('.audit-card').forEach(function(card){ updateCard(card,card.getAttribute('data-audit-card')); });
-        } else prunedNote='';
-        return n;
-      }
-      window.addEventListener('guide:disponibilite',function(){
-        pruneUnavailable();
-        board.querySelectorAll('.audit-card').forEach(function(card){
-          var tr=card.querySelector('.audit-card-trigger');
-          if(tr.getAttribute('aria-expanded')==='true') card.querySelector('.audit-panel').innerHTML=panelHtml(card.getAttribute('data-audit-card'));
-        });
-        persistAudit();
-        window.dispatchEvent(new CustomEvent('guide:audit-change',{detail:{state:state}}));
-      });
-      /* Un panneau qui se referme est masqué après l'animation ; rouvert entre-temps, il ne doit pas être masqué par ce délai. */
-      function hidePanel(p){ p.classList.remove('is-open'); window.clearTimeout(p._hideTimer); p._hideTimer=window.setTimeout(function(){p.hidden=true;},180); }
-      function renderCard(card,key){
-        state[key]=state[key]||{};
-        var panel=card.querySelector('.audit-panel');
-        window.clearTimeout(panel._hideTimer);
-        panel.innerHTML=panelHtml(key);
-        panel.hidden=false;
-        requestAnimationFrame(function(){panel.classList.add('is-open');});
-      }
-      function updateCard(card,key){
-        /* Une famille est « renseignée » dès qu'un choix y est fait — même définition
-           que les recommandations (site côté scoring : au moins un groupe répondu). */
-        var cfg=configs[key], complete=(key==='price'&&state.price&&state.price.maxBudget)||cfg.groups.some(function(g){return state[key]&&state[key][g.key];});
-        card.querySelector('.audit-status').textContent=complete?'Répondu':'À répondre';
-        card.classList.toggle('is-complete',complete);
-        updateTotal();
-      }
-      function updateTotal(){
-        var done=Object.keys(configs).reduce(function(n,k){return n+((k==='price'&&state.price&&state.price.maxBudget)||configs[k].groups.some(function(g){return state[k]&&state[k][g.key];})?1:0);},0);
-        var count=document.getElementById('audit-count'),msg=document.getElementById('audit-message');
-        if(count) count.textContent=done+(done<=1?' réponse sur '+totalGroups:' réponses sur '+totalGroups);
-        if(msg&&prunedNote) msg.textContent=prunedNote;
-        else if(msg) msg.textContent=done===totalGroups?'Vous avez répondu aux six questions : voici les modèles les plus proches de vos choix.':done?'Chaque réponse resserre la liste. Les autres questions peuvent rester vides.':'Une question peut rester sans réponse.';
-        var see=document.getElementById('audit-see-results');
-        if(see) see.hidden=done<1;
-      }
-      board.querySelectorAll('.audit-card').forEach(function(card){
-        var key=card.getAttribute('data-audit-card');
-        var trigger=card.querySelector('.audit-card-trigger');
-        trigger.addEventListener('click',function(){
-          if(!auditStartedAt) auditStartedAt=Date.now();
-          var open=trigger.getAttribute('aria-expanded')==='true';
-          board.querySelectorAll('.audit-card').forEach(function(other){
-            if(other!==card){other.querySelector('.audit-card-trigger').setAttribute('aria-expanded','false');var p=other.querySelector('.audit-panel');hidePanel(p);}
-          });
-          trigger.setAttribute('aria-expanded',String(!open));
-          if(!open) {
-            var anchorTop=card.getBoundingClientRect().top;
-            renderCard(card,key);
-            requestAnimationFrame(function(){
-              var drift=card.getBoundingClientRect().top-anchorTop;
-              if(Math.abs(drift)>1) window.scrollBy(0,drift);
-            });
-          } else {
-            hidePanel(card.querySelector('.audit-panel'));
-          }
-        });
-        card.addEventListener('click',function(e){
-          var opt=e.target.closest('.audit-pill');
-          if(!opt) return;
-          if(opt.getAttribute('aria-disabled')==='true') return; // option sans modèle correspondant : on n'enregistre rien
-          var group=opt.closest('.audit-control').getAttribute('data-group');
-          state[key]=state[key]||{}; state[key][group]=opt.getAttribute('data-value');
-          if(group==='budget'&&state.student){delete state.price.maxBudget;state.student.answers.budget=null;studentSummary();}
-          prunedNote='';
-          if(group==='budget') pruneUnavailable();
-          persistAudit();
-          var panel=card.querySelector('.audit-panel');
-          /* Re-render complet du panneau via panelHtml : les critères avancés
-             restent repliés dans leur <details>, comme à l'ouverture. */
-          var advanced=panel.querySelector(".audit-advanced"), advancedOpen=advanced&&advanced.open;
-          panel.innerHTML=panelHtml(key);
-          if(window.SmartphoneQuizUI&&advancedOpen) panel.querySelector(".audit-advanced").open=true;
-          updateCard(card,key);
-          if (window.dispatchEvent) window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state, user: true } }));
-          var active=panel.querySelector('.audit-control[data-group="'+group+'"]').querySelector('.audit-pill[data-value="'+CSS.escape(state[key][group])+'"]');
-          if(active){
-            /* Le re-render remplace le bouton focus : rendre le focus à l'option
-               choisie pour que la navigation clavier continue sans saut. */
-            active.focus({preventScroll:true});
-            if(!window.SmartphoneQuizUI&&!matchMedia('(prefers-reduced-motion: reduce)').matches) active.animate([{transform:'translateY(3px) scale(.97)'},{transform:'translateY(0) scale(1)'}],{duration:300,easing:'cubic-bezier(.2,.8,.2,1)'});
-          }
-        });
-      });
-      board.querySelectorAll('.audit-card').forEach(function(card){ var k=card.getAttribute('data-audit-card'); if(state[k]&&Object.keys(state[k]).length) updateCard(card,k); });
-      function resetAudit(){
-        Object.keys(state).forEach(function(k){ delete state[k]; });
-        try{ localStorage.removeItem(AUDIT_KEY); }catch(e){}
-        board.querySelectorAll('.audit-card').forEach(function(card){
-          card.classList.remove('is-complete');
-          card.querySelector('.audit-status').textContent='À renseigner';
-          var tr=card.querySelector('.audit-card-trigger'); tr.setAttribute('aria-expanded','false');
-          var p=card.querySelector('.audit-panel'); p.classList.remove('is-open'); p.hidden=true; p.innerHTML='';
-        });
-        updateTotal();
-        studentSummary();
-        openFirstCard();
-        window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state } }));
-      }
-      /* Premier critère ouvert par défaut : les options sont visibles dès l'arrivée,
-         l'utilisateur comprend immédiatement ce qu'on lui demande. */
-      function openFirstCard(){
-        var first=board.querySelector('.audit-card');
-        if(!first) return;
-        var tr=first.querySelector('.audit-card-trigger');
-        if(tr.getAttribute('aria-expanded')==='true') return;
-        tr.setAttribute('aria-expanded','true');
-        renderCard(first, first.getAttribute('data-audit-card'));
-      }
-      var seeBtn=document.getElementById('audit-see-results');
-      if(seeBtn) seeBtn.addEventListener('click',function(){
-        var t=document.getElementById('criteria-recommendations');
-        if(!t) return;
-        t.scrollIntoView({behavior:'smooth',block:'start'});
-        /* Les panneaux du quiz se replient pendant le défilement : on recale une fois la mise en page stable. */
-        window.setTimeout(function(){ t.scrollIntoView({behavior:'smooth',block:'start'}); },650);
-      });
-      window.GuideAuditReset = resetAudit;
-      document.addEventListener('click',function(e){ if(e.target.closest&&e.target.closest('[data-audit-reset]')) resetAudit(); });
-      var bar=document.querySelector('.audit-result-live');
-      if(bar&&!bar.querySelector('[data-audit-reset]')){ var rb=document.createElement('button'); rb.type='button'; rb.className='audit-reset-btn'; rb.setAttribute('data-audit-reset',''); rb.textContent='Réinitialiser la sélection'; bar.appendChild(rb); }
-      updateTotal();
-      if(!Object.keys(state).length) openFirstCard();
-      if (window.dispatchEvent) window.dispatchEvent(new CustomEvent("guide:audit-change", { detail: { state: state } }));
-    })();
-
-    initEditorialMotion();
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initGuideTools, { once: true });

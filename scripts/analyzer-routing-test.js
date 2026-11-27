@@ -8,7 +8,7 @@ assert.match(html, /phone-analyzer\/static-resolver\.js/,
   'Le résolveur de secours doit être chargé avant le fetcher.');
 const source = fs.readFileSync(path.join(__dirname, '..', 'phone-analyzer', 'fetcher.js'), 'utf8');
 const home = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
-assert.match(home, /rel="canonical" href="https:\/\/guide-achat-new\.vercel\.app\/index\.html"/);
+assert.match(home, /rel="canonical" href="https:\/\/guide-achat-new\.vercel\.app\/"/);
 assert.match(home, /"url":"https:\/\/guide-achat-new\.vercel\.app\/"/);
 assert.ok(!home.includes('guide-achat-new-1.vercel.app'), 'Le doublon ne doit pas être déclaré comme site officiel.');
 let requestUrl = null;

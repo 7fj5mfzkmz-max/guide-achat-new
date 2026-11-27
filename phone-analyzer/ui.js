@@ -4,8 +4,6 @@
   var form = document.getElementById("phone-analyzer-form");
   var input = document.getElementById("phone-product-url");
   var stage = document.getElementById("phone-analyzer-result");
-  var manualToggle = document.getElementById("phone-manual-toggle");
-  var manualEntry = document.getElementById("phone-manual-entry");
   if (!card || !form || !input || !stage) return;
 
   var PROFILS = { etudiant: "Étudiant", professionnel: "Professionnel", gamer: "Gamer", photographe: "Photographe" };
@@ -46,12 +44,11 @@
   function norm(s) { return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim(); }
   function shorten(s, n) { s = String(s || ""); return s.length > n ? s.slice(0, n - 1).trim() + "…" : s; }
   function usable(v) { return v != null && String(v).trim() !== "" && !/^\s*à documenter\s*$/i.test(String(v)); }
-  function myProfile() { try { return localStorage.getItem("guide-profile"); } catch (_) { return null; } }
+  function myProfile() { try { return localStorage.getItem("guide-profile") || state.profile || null; } catch (_) { return state.profile || null; } }
 
   /* Un seul écran visible à la fois : le formulaire est masqué dès qu'une étape s'affiche. */
   function show(html, opts) {
     form.hidden = true;
-    if (manualEntry) { manualEntry.hidden = true; manualEntry.innerHTML = ""; }
     stage.hidden = false;
     stage.setAttribute("aria-busy", opts && opts.busy ? "true" : "false");
     stage.innerHTML = html;
@@ -146,6 +143,7 @@
   /* Analyse finale, toujours avec un score quand au moins un critère est documenté.
      c = fiche du catalogue (ou null), page = résultat du serveur (ou null). */
   function showAnalysis(c, page) {
+    state.shown = { c: c, page: page }; /* pour réafficher l’analyse quand le profil change */
     var cat = c || (page && page.catalogProduct) || {}; /* Fiche du catalogue quand le serveur l'a reconnue ; les caractéristiques restent dans page.specs. */
     var pageSpecs = (page && page.specs) || {};
     var merged = {};
@@ -186,7 +184,7 @@
     var mine = myProfile();
     var profs = Object.keys(PROFILS).filter(function (k) { return scores[k]; }).map(function (k) {
       var s = scores[k];
-      return '<li' + (k === mine ? ' class="is-mine"' : "") + "><span>" + esc(PROFILS[k]) + "</span>" + scoreBar(s.score) + "<strong title=\"" + Math.round((s.coverage || 0) * 100) + "% des critères pondérés documentés\">" + s.score + "/10" + (s.provisional ? " *" : "") + "</strong></li>";
+      return '<li' + (k === mine ? ' class="is-mine"' : "") + "><span>" + esc(PROFILS[k]) + "</span>" + scoreBar(s.score) + "<strong title=\"" + Math.round((s.coverage || 0) * 100) + "% des critères pondérés documentés\">" + s.score + "/10</strong></li>";
     }).join("");
     var insights = window.PhoneSpecInsights || {};
     var profileForInsights = myProfile() || 'etudiant';
@@ -282,19 +280,16 @@
     if (!sourceNames.length) sourceNames = ['source du produit'];
     var sourceLabel = sourceNames.join(' + ');
     var confidenceBlock = '<div class="decision-confidence"><span>Sources : <strong>' + esc(sourceLabel) + '</strong></span><small>Quand les sources ne sont pas d’accord, on vous le signale plutôt que de choisir à votre place.</small></div>'; 
-    var profileLinks = Object.keys(PROFILS).filter(function(k){return scores[k];}).map(function(k){return '<a class="decision-profile-chip'+(k===mine?' is-current':'')+'" href="#choisir-profil" data-profile-jump="'+esc(k)+'">'+esc(PROFILS[k])+'</a>';}).join('');
+    var profileLinks = Object.keys(PROFILS).filter(function(k){return scores[k];}).map(function(k){return '<button type="button" class="decision-profile-chip'+(k===mine?' is-current':'')+'" aria-pressed="'+(k===mine)+'" data-profile-jump="'+esc(k)+'">'+esc(PROFILS[k])+'</button>';}).join('');
     var decisionBlock = profileLinks ? '<div class="decision-profile-block"><div><strong>Votre lecture par usage</strong><small>La note change selon ce que vous faites ' + (state.category === "pc-portables" ? "du PC" : "du téléphone") + '.</small></div><div class="decision-profile-chips">'+profileLinks+'</div></div>' : '';
     var coreKnown = CORE_SPECS.filter(function(k){ return usable(merged[k]); }).length;
-    var analysisIndex = Math.round((coreKnown / CORE_SPECS.length) * 100);
-    var indexSourceLabel = sourceLabel;
-    var indexWord = analysisIndex >= 80 ? 'fiable' : (analysisIndex >= 50 ? 'à affiner' : 'à vérifier ailleurs');
     var analysisIndexBlock = !profs && state.category === 'smartphones'
-      ? '<div class="analysis-index"><span>Analyse incomplète</span><small>Note indisponible</small><em>Sources : '+esc(indexSourceLabel)+'. Vérifiez le nom exact du modèle, ou regardez nos modèles bien documentés.</em></div>'
-      : '<div class="analysis-index"><span>Fiabilité de l’analyse <strong>'+analysisIndex+'/100</strong></span><small>'+indexWord+'</small><em>Sources : '+esc(indexSourceLabel)+'. Une information absente n’enlève pas de points.</em></div>';
+      ? '<div class="analysis-index"><span>Analyse incomplète</span><small>Note indisponible</small><em>Sources : '+esc(sourceLabel)+'. Vérifiez le nom exact du modèle, ou regardez nos modèles bien documentés.</em></div>'
+      : '<div class="analysis-index"><span>Informations trouvées : <strong>'+coreKnown+' sur '+CORE_SPECS.length+'</strong></span><em>Sources : '+esc(sourceLabel)+'. Une information absente n’enlève pas de points.</em></div>';
     var sourceBlock = analysisIndexBlock + confidenceBlock + decisionBlock + (profs && domainRows ? '<details class="model-analyzer-why"><summary>Pourquoi cette note ?</summary><div class="model-analyzer-why-body"><p>La note par profil ne part pas d’un chiffre marketing unique. Elle combine plusieurs domaines documentés, avec une pondération différente selon l’usage.</p><div class="model-analyzer-domains">' + domainRows + '</div><p class="model-analyzer-note">Une note élevée exige des caractéristiques documentées sur plusieurs critères. 120 Hz, beaucoup de RAM ou une grosse batterie ne suffisent pas à eux seuls ; les fiches techniques ne remplacent pas les essais terrain.</p></div></details>' : '');
     var hasProvisional = Object.keys(scores).some(function(k){ return scores[k] && scores[k].provisional; });
     var scoreNote = !profs ? "<p><strong>Note indisponible pour le moment :</strong> nous n’avons pas d’informations fiables pour ce modèle. Une information absente n’est jamais comptée comme un défaut.</p>"
-      : '<p class="model-analyzer-note">Note calculée d’après les caractéristiques disponibles (' + esc(sourceLabel) + '). C’est une note d’<strong>adéquation à votre usage</strong>, pas une note de qualité générale.</p>' + (hasProvisional ? '<p class="model-analyzer-note"><strong>* Note provisoire :</strong> il nous manque des tests réels' + (state.category === 'pc-portables' ? ' (processeur graphique ou autonomie) : à confirmer.' : ', surtout en jeu et en photo. La note ne montera pas tant qu’on n’a pas vérifié.') + '</p>' : '') + (chemistry && chemistry.status !== "documente" ? '<p class="model-analyzer-note">Technologie de batterie détectée : ' + esc(chemistry.label) + ". Son effet n’est pas bonifié automatiquement sans source comparable.</p>" : "") + '<p class="model-analyzer-note">Ce qu’on regarde : ' + esc(documented.map(function (k) { return CRIT_LABELS[k] || k; }).join(", ")) + ". Une information manquante n’est jamais comptée comme un défaut.</p>";
+      : '<p class="model-analyzer-note">Note calculée d’après les caractéristiques disponibles (' + esc(sourceLabel) + '). C’est une note d’<strong>adéquation à votre usage</strong>, pas une note de qualité générale.</p>' + (hasProvisional ? '<p class="model-analyzer-note"><strong>Notes provisoires :</strong> il nous manque des tests réels, ' + (state.category === 'pc-portables' ? 'surtout pour la carte graphique et l’autonomie.' : 'surtout en jeu et en photo.') + '</p>' : '') + (chemistry && chemistry.status !== "documente" ? '<p class="model-analyzer-note">Technologie de batterie détectée : ' + esc(chemistry.label) + ". Son effet n’est pas bonifié automatiquement sans source comparable.</p>" : "") + '<p class="model-analyzer-note">Ce qu’on regarde : ' + esc(documented.map(function (k) { return CRIT_LABELS[k] || k; }).join(", ")) + ". Une information manquante n’est jamais comptée comme un défaut.</p>";
 
     var imageCandidate = (page && page.product && page.product.image) || cat.image || cat.image_url || null;
     var productImage = /^https?:\/\//i.test(String(imageCandidate || '')) ? String(imageCandidate) : null;
@@ -309,7 +304,7 @@
       (rows ? '<div class="model-analyzer-specs" aria-label="Caractéristiques et interprétation">' + rows + "</div>" : "") +
       (fromRef.length ? '<p class="model-analyzer-note">Issu du référentiel produit (code-barres) : ' + esc(fromRef.join(", ")) + ".</p>" : "") +
       (unknownKeys.length ? '<p class="model-analyzer-note"><strong>Informations non trouvées :</strong> ' + esc(unknownKeys.join(", ")) + ". Une information manquante n’enlève pas de points." + (/apple|iphone/i.test(title) && unknownKeys.some(function (k) { return /ram|mémoire|batterie/i.test(k); }) ? " Apple ne publie ni la RAM ni la capacité de la batterie en mAh : ce n’est pas un oubli du guide." : "") + "</p>" : "") +
-      (profs ? '<h4>Ce téléphone selon votre usage</h4><ul class="model-analyzer-profiles">' + profs + "</ul>" : "") + pcBlock + sourceBlock + scoreNote +
+      (profs ? '<h4>' + (state.category === 'pc-portables' ? 'Ce PC' : 'Ce téléphone') + ' selon votre usage</h4><ul class="model-analyzer-profiles">' + profs + "</ul>" : "") + pcBlock + sourceBlock + scoreNote +
       ((cat.points_forts && cat.points_forts.length) ? "<h4>Points forts</h4><ul>" + list(cat.points_forts) + "</ul>" : "") +
       ((cat.points_faibles && cat.points_faibles.length) ? "<h4>Points de vigilance</h4><ul>" + list(cat.points_faibles) + "</ul>" : "") +
       auditLink + retryButton("Analyser un autre modèle") + "</div>");
@@ -326,34 +321,15 @@
     }
     viewManual("Aucun autre modèle ne correspond.", state.needsCapture);
   }
-  function searchAndContinue(clues, manual) {
-    /* Le serveur a déjà identifié le modèle puis interrogé PhonesData.
-       Le catalogue local ne décide plus de l’identité et ne complète plus les caractéristiques. */
-    if (state.page && state.page.ok && state.page.specs) return showAnalysis(null, state.page);
-    viewManual("Le modèle n’a pas été retrouvé dans le référentiel PhonesData.", state.needsCapture);
+  function searchAndContinue() {
+    /* Une analyse seulement si le serveur a fourni de vraies caractéristiques : jamais une page vide nommée d’après l’adresse. */
+    if (isVerifiedModel(state.page)) return showAnalysis(null, state.page);
+    viewManual("Nous n’avons pas pu lire cette page. Tapez simplement le nom " + (state.category === "pc-portables" ? "du PC, par exemple Lenovo Legion 5." : "du téléphone, par exemple Galaxy S26."), state.needsCapture);
   }
   function localFallback(raw) {
     var local = window.PhoneAnalyzerIdentify.identifyFromUrl(raw);
     var cls = window.PhoneAnalyzerIdentify.classifyUrl(raw);
     return { ok: false, kind: cls.kind, pageLabel: cls.label, clues: { urlHint: local.titleHint, asin: local.asin, ean: local.ean } };
-  }
-
-  function openManualEntry() {
-    if (!manualEntry) return viewManual('');
-    manualEntry.hidden = false;
-    /* Ce bloc est placé HORS du formulaire principal : un <form> imbriqué serait supprimé par le navigateur. */
-    manualEntry.innerHTML = '<form class="model-analyzer-input-row" data-direct-manual><input type="text" data-autofocus required placeholder="Ex. Samsung Galaxy A56 5G" aria-label="Marque et modèle" autocomplete="off"><button class="btn" type="submit">Analyser le modèle</button></form>';
-    var f = manualEntry.querySelector('[data-direct-manual]');
-    if (!f) return viewManual('');
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var value = f.querySelector('input').value.trim();
-      if (!value) return;
-      searchByModel(value, techSearchLabel(),
-        'Le modèle « ' + value + ' » n’a pas été retrouvé dans les référentiels disponibles. Vérifiez la marque et la référence complète.',
-        'La recherche technique a échoué. Réessayez avec la référence complète du modèle.');
-    });
-    var inp = manualEntry.querySelector('input'); if (inp) inp.focus({ preventScroll: true });
   }
 
   form.addEventListener("submit", function (event) {
@@ -378,12 +354,11 @@
       var k = data.clues || {};
       state.year = k.year || null;
       state.needsCapture = !!data.needsCapture;
-      if (data.ok && data.kind === "product") { state.page = data; state.identity = data.identity || null; }
-      var idName = state.identity && state.identity.status === "identified" ? state.identity.name : null;
-      searchAndContinue({ hints: [idName, k.name, k.title, k.urlHint].concat(k.searchTitles || []), ean: k.ean, asin: k.asin }, false);
+      /* Une page lue avec succès compte même si elle n’est pas typée « product » (page fabricant sans JSON-LD). */
+      if (data.ok) { state.page = data; state.identity = data.identity || null; }
+      searchAndContinue();
     });
   });
-  if (manualToggle) manualToggle.addEventListener("click", openManualEntry);
   /* Capture faite dans le navigateur : le nom capturé est un INDICE. On le résout comme une saisie de modèle,
      puis on vérifie que la fiche trouvée est bien la même (identité) ; au moindre doute, confirmation demandée.
      Les indices capturés ne deviennent jamais des caractéristiques vérifiées. */
@@ -430,7 +405,12 @@
   }
   stage.addEventListener("click", function(event){
     var jump=event.target.closest&&event.target.closest('[data-profile-jump]');
-    if(jump){ try{localStorage.setItem('guide-profile',jump.getAttribute('data-profile-jump'));}catch(_){} }
+    if(!jump||!state.shown) return;
+    var k=jump.getAttribute('data-profile-jump');
+    try{localStorage.setItem('guide-profile',k);}catch(_){}
+    state.profile=k; /* garde le choix même si le stockage du navigateur est bloqué */
+    showAnalysis(state.shown.c, state.shown.page);
+    var again=stage.querySelector('[data-profile-jump="'+k+'"]'); if(again&&again.focus) again.focus({ preventScroll: true });
   });
   stage.addEventListener("click", function (event) {
     var t = event.target.closest && event.target.closest('[data-act="reset"]');

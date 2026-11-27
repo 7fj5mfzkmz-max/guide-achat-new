@@ -252,3 +252,6 @@
 
 /* Ligne d’en-tête de page : la ligne de date de la une, sous double filet (comme la page Smartphones). */
 .pg-hero .pg-kick { display: block; margin: 0 0 clamp(16px, 2.4vw, 28px); padding: 9px 0; border-block: 1px solid var(--ink); box-shadow: 0 3px 0 var(--paper), 0 4px 0 var(--ink); font: 600 .84rem/1.3 var(--sans); letter-spacing: .02em; text-transform: uppercase; color: var(--ink); }
+/* Page 404 */
+.nf-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+.nf-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 26px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line-soft); list-style: none; font: 700 1rem/1.4 var(--sans); }

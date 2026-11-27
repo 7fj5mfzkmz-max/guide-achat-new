@@ -22,7 +22,8 @@
   var CRITICAL = { gamer: 'gaming', photographe: 'photo' };
   var REFERENCE = { method: 'pondération par profil, couverture explicite et proxys documentés; aucune prime liée au nom du modèle' };
 
-  function text(v) { return String(v == null ? '' : v).toLowerCase(); }
+  /* Minuscules sans accents : « téléobjectif » et « périscope » se lisent comme « teleobjectif », « periscope ». */
+  function text(v) { return String(v == null ? '' : v).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
   function clamp(x) { return Math.max(0, Math.min(MAX, Math.round(Number(x) * 10) / 10)); }
   function firstNumber(values, re, min, max) {
     values = Array.isArray(values) ? values : [values];
@@ -146,7 +147,7 @@
     var camKnown = !!(specs.photo || specs.photo_sensor || specs.photo_aperture || specs.photo_modules || specs.photo_zoom || specs.photo_ois || specs.video);
     if (camKnown) {
       if (/periscope/.test(cam)) push(8.6, 2.5);
-      else if (/telephoto/.test(cam)) push(7.4, 2.5);
+      else if (/telephoto|teleobjectif/.test(cam)) push(7.4, 2.5);
       else push(2.8, 2.5);                         /* pas de télé dédié = zoom numérique */
     }
     if (ap) {
@@ -171,7 +172,7 @@
     /* Plafonds de cohérence : un petit capteur ne rattrape jamais un grand. */
     if (sensorSize != null && sensorSize >= 2.5) score = Math.min(score, 4.2);
     if (sensorSize != null && sensorSize >= 3.2) score = Math.min(score, 3.4);
-    if (!/periscope|telephoto/.test(cam)) score = Math.min(score, 6.6);
+    if (!/periscope|telephoto|teleobjectif/.test(cam)) score = Math.min(score, 6.6);
     var test = firstNumber([specs.photo_test_score, specs.camera_test_score], /(\d+(?:[.,]\d+)?)/, 0, 10);
     /* Ancre haute : 9.5 seulement pour le top absolu (capteur ~1" + périscope + 4K),
        et uniquement si un test terrain l'atteste. Sans test, le plafond reste 7.4. */
@@ -210,7 +211,7 @@
   }
   function autonomyScore(specs) {
     var mah = firstNumber([specs.batterie, specs.battery], /(\d{4,5})\s*mah/i, 1000, 15000);
-    var diagonal = firstNumber([specs.ecran, specs.screen_size, specs.diagonale], /(\d(?:[.,]\d)?)\s*(?:pouces?|inches?|in\b|")/i, 4, 9);
+    var diagonal = firstNumber([specs.ecran, specs.screen_size, specs.diagonale], /(\d(?:[.,]\d{1,2})?)\s*(?:pouces?|inches?|in\b|"|″)/i, 4, 9);
     var measuredHours = firstNumber([specs.autonomie_test, specs.battery_test, specs.battery_life], /(\d+(?:[.,]\d+)?)\s*(?:h|heures?)/i, 1, 40);
     if (measuredHours != null) return measuredHours < 8 ? 4.5 : measuredHours < 10 ? 5.8 : measuredHours < 12 ? 6.8 : measuredHours < 14 ? 7.6 : measuredHours < 16 ? 8.3 : 8.8;
     return batteryCapacityScore(mah, diagonal);
@@ -260,8 +261,9 @@
     return clamp(score);
   }
   function connectivityScore(specs) {
-    var s=text(Object.keys(specs).map(function(k){return specs[k];}).join(' ')), vals=[];
-    if(/5g/.test(s)) vals.push(8.0); else if(/4g|lte/.test(s)) vals.push(6.0);
+    /* Seules les clés réseau comptent : « 64GB » dans le stockage n'est pas de la 4G. */
+    var s=text(Object.keys(specs).filter(function(k){return /r[ée]seau|network|connectivit|wi-?fi|bluetooth|\b[45]g\b|lte/i.test(k);}).map(function(k){return specs[k];}).join(' ')), vals=[];
+    if(/\b5g\b/.test(s)) vals.push(8.0); else if(/\b4g\b|\blte\b/.test(s)) vals.push(6.0);
     if(/wifi\s*7/.test(s)) vals.push(9); else if(/wifi\s*6e/.test(s)) vals.push(8.5); else if(/wifi\s*6/.test(s)) vals.push(7.5);
     if(/bluetooth\s*6|bluetooth\s*5\.4/.test(s)) vals.push(8.5); else if(/bluetooth\s*5/.test(s)) vals.push(7);
     return vals.length?vals.reduce(function(a,b){return a+b;},0)/vals.length:null;
