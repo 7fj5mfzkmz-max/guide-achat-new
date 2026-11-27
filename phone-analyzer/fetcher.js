@@ -82,7 +82,7 @@
     var request = fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ model: model, category: category || "smartphones", strict: true }), signal: controller ? controller.signal : undefined })
       .then(function (r) {
         return r.json().catch(function () { return null; }).then(function (d) {
-          if (d && (d.ok === true || (d.ok === false && (d.reason === "model-not-found" || d.reason === "wrong-category")))) return d;
+          if (d && (d.ok === true || (d.ok === false && (d.reason === "model-not-found" || d.reason === "wrong-category" || d.reason === "timeout")))) return d;
           throw new Error((d && d.error) || ("HTTP " + r.status));
         });
       });

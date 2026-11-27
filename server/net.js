@@ -1,8 +1,12 @@
 'use strict';
 /* Réseau : garde-fous SSRF, récupération HTTP avec les en-têtes d'un navigateur ordinaire,
    redirections suivies à la main (chaque saut est revalidé), cookies de session minimaux. */
-const dns = require('node:dns').promises;
+const dnsCb = require('node:dns');
+const dns = dnsCb.promises;
 const net = require('node:net');
+const http = require('node:http');
+const https = require('node:https');
+const zlib = require('node:zlib');
 const { URL } = require('node:url');
 
 const MAX_BYTES = 2 * 1024 * 1024;
@@ -54,6 +58,55 @@ async function assertPublicHost(hostname) {
   if (!addrs.length || addrs.some(a => isPrivateIp(a.address))) throw new Error('Adresse non publique refusée.');
 }
 
+/* Résolution faite au moment de la connexion : l'adresse vérifiée est celle utilisée.
+   Sans cela, un nom peut répondre une adresse publique au contrôle puis 127.0.0.1 à la
+   connexion (« DNS rebinding »). Accepte les deux formes d'appel de Node (all ou non). */
+function safeLookup(hostname, options, callback) {
+  if (typeof options === 'function') { callback = options; options = {}; }
+  dnsCb.lookup(hostname, { all: true }, (err, addrs) => {
+    if (err) return callback(err);
+    if (!addrs.length || addrs.some(a => isPrivateIp(a.address))) return callback(Object.assign(new Error('Adresse non publique refusée.'), { code: 'EPRIVATE' }));
+    if (options && options.all) return callback(null, addrs);
+    callback(null, addrs[0].address, addrs[0].family);
+  });
+}
+
+/* GET via node:http(s) avec la résolution épinglée. Renvoie le statut, les en-têtes et le corps
+   (décompressé, plafonné à MAX_BYTES). Le signal coupe aussi la lecture du corps. */
+function pinnedGet(target, headers, signal, lookup) {
+  return new Promise((resolve, reject) => {
+    const u = new URL(target);
+    const lib = u.protocol === 'https:' ? https : http;
+    const req = lib.request(u, { method: 'GET', headers: Object.assign({ 'accept-encoding': 'gzip, deflate, br' }, headers), lookup: lookup || safeLookup, signal }, res => {
+      const enc = String(res.headers['content-encoding'] || '').toLowerCase();
+      const stream = enc === 'gzip' ? res.pipe(zlib.createGunzip()) : enc === 'deflate' ? res.pipe(zlib.createInflate()) : enc === 'br' ? res.pipe(zlib.createBrotliDecompress()) : res;
+      const chunks = []; let total = 0, done = false;
+      const finish = () => {
+        if (done) return; done = true;
+        resolve({
+          status: res.statusCode,
+          headers: { get: n => { const v = res.headers[String(n).toLowerCase()]; return v == null ? null : Array.isArray(v) ? v.join(', ') : String(v); } },
+          cookies: [].concat(res.headers['set-cookie'] || []),
+          buffer: Buffer.concat(chunks)
+        });
+      };
+      stream.on('data', c => {
+        if (done) return;
+        total += c.length;
+        chunks.push(total > MAX_BYTES ? c.subarray(0, c.length - (total - MAX_BYTES)) : c);
+        if (total >= MAX_BYTES) { finish(); res.destroy(); }
+      });
+      stream.on('end', finish);
+      stream.on('error', e => { if (!done) { done = true; reject(e); } });
+      res.on('error', e => { if (!done) { done = true; reject(e); } });
+      // Connexion coupée en cours de corps (échéance atteinte) : la promesse ne doit pas rester en attente.
+      res.on('close', () => { if (!done && !res.complete) { done = true; reject(Object.assign(new Error('Lecture interrompue.'), { name: 'AbortError' })); } });
+    });
+    req.on('error', reject);
+    req.end();
+  });
+}
+
 /* En-têtes d'un navigateur de bureau courant. Ce sont des en-têtes ordinaires : aucune
    falsification d'empreinte TLS/JS, aucun proxy tournant, aucune résolution de CAPTCHA. */
 const BROWSER_HEADERS = {
@@ -90,12 +143,15 @@ async function readCapped(response) {
 }
 
 function cookiePairs(response) {
-  const list = typeof response.headers.getSetCookie === 'function' ? response.headers.getSetCookie() : [];
-  return list.map(c => c.split(';')[0]).filter(Boolean);
+  return (response.cookies || []).map(c => c.split(';')[0]).filter(Boolean);
 }
 
+/* `timeout` est l'échéance TOTALE de l'appel : redirections, nouvelles tentatives, pauses
+   et lecture du corps comprises. Aucune nouvelle tentative ne part si le temps restant ne suffit pas. */
 async function fetchHtml(target, options) {
   const timeout = (options && options.timeout) || 9000;
+  const deadline = Date.now() + timeout;
+  const remaining = () => deadline - Date.now();
   const jar = new Map();
   let current = target;
   const attempts = [];
@@ -107,28 +163,26 @@ async function fetchHtml(target, options) {
     let response = null;
     for (let attempt = 0; attempt <= RETRY_LIMIT; attempt++) {
       await paceHost(u.hostname);
+      if (remaining() <= 0) throw Object.assign(new Error('Délai dépassé.'), { name: 'AbortError' });
       const controller = new AbortController();
-      const timer = setTimeout(() => controller.abort(), timeout);
+      const timer = setTimeout(() => controller.abort(), remaining());
       const headers = Object.assign({}, BROWSER_HEADERS);
       if (jar.size) headers.cookie = Array.from(jar, ([k, v]) => k + '=' + v).join('; ');
       try {
-        response = await fetch(current, { headers, redirect: 'manual', signal: controller.signal });
+        response = await pinnedGet(current, headers, controller.signal);
+        clearTimeout(timer);
         attempts.push({ host: u.hostname, status: response.status, attempt: attempt + 1 });
         cookiePairs(response).forEach(pair => { const i = pair.indexOf('='); if (i > 0) jar.set(pair.slice(0, i), pair.slice(i + 1)); });
-        if (retryableStatus(response.status) && attempt < RETRY_LIMIT) {
-          const delay = retryDelay(response, attempt);
-          await response.body?.cancel().catch(() => {});
-          clearTimeout(timer);
-          await sleep(delay);
-          continue;
-        }
-        clearTimeout(timer);
+        const delay = retryDelay(response, attempt);
+        if (retryableStatus(response.status) && attempt < RETRY_LIMIT && delay + 1500 < remaining()) { await sleep(delay); continue; }
         break;
       } catch (error) {
         clearTimeout(timer);
-        if (attempt >= RETRY_LIMIT || (error && error.name === 'AbortError')) throw error;
+        if (error && error.code === 'EPRIVATE') throw new Error('Adresse non publique refusée.');
+        const delay = Math.min(4000, 500 * (2 ** attempt));
+        if (attempt >= RETRY_LIMIT || (error && error.name === 'AbortError') || delay + 1500 >= remaining()) throw error;
         attempts.push({ host: u.hostname, error: error && error.message || 'network-error', attempt: attempt + 1 });
-        await sleep(Math.min(4000, 500 * (2 ** attempt)));
+        await sleep(delay);
       }
     }
     if (!response) throw new Error('Aucune réponse HTTP reçue.');
@@ -137,10 +191,9 @@ async function fetchHtml(target, options) {
       current = new URL(location, current).toString();
       continue;
     }
-    const buffer = await readCapped(response);
     return {
       status: response.status, finalUrl: current,
-      html: decodeBody(buffer, response.headers.get('content-type')),
+      html: decodeBody(response.buffer, response.headers.get('content-type')),
       headers: { server: response.headers.get('server') || '', cfMitigated: response.headers.get('cf-mitigated') || '', retryAfter: response.headers.get('retry-after') || '' },
       attempts
     };
@@ -175,4 +228,4 @@ async function fetchReader(target, options) {
   } finally { clearTimeout(timer); }
 }
 
-module.exports = { isPrivateIp, assertPublicHost, fetchHtml, fetchReader, MAX_BYTES, retryableStatus, parseRetryAfter, HOST_MIN_INTERVAL_MS };
+module.exports = { isPrivateIp, assertPublicHost, safeLookup, pinnedGet, fetchHtml, fetchReader, MAX_BYTES, retryableStatus, parseRetryAfter, HOST_MIN_INTERVAL_MS };

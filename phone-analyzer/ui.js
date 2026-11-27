@@ -77,7 +77,7 @@
     loading(loadingText);
     return lookupModel(text).then(function (data) {
       if (data && data.reason === "wrong-category") return viewWrongCategory(data);
-      if (!isVerifiedModel(data)) return viewManual(data && data.reason === "resolver-unavailable" ? UNAVAILABLE_NOTE : notFound, false);
+      if (!isVerifiedModel(data)) return viewManual(data && data.reason === "resolver-unavailable" ? UNAVAILABLE_NOTE : data && data.reason === "timeout" ? failure : notFound, false);
       state.page = data; state.identity = data.identity || null;
       showAnalysis(null, data);
     }).catch(function (error) {
@@ -108,6 +108,11 @@
     show('<div class="model-analyzer-card"><h3>Ce lien correspond à ' + esc(label || "une page générale") + '.</h3><p>Collez le lien d’une fiche produit précise pour poursuivre l’analyse.</p>' + retryButton() + "</div>");
   }
   function viewWrongCategory(data) {
+    if (data && data.detectedCategory === "tablettes") {
+      return show('<div class="model-analyzer-card" role="alert"><h3>Les tablettes ne sont pas encore couvertes.</h3><p>' +
+        esc(data.error || "Ce produit semble être une tablette.") + ' Le guide analyse les smartphones et les PC portables.</p>' +
+        '<div class="model-analyzer-actions">' + retryButton("Essayer un autre modèle") + "</div></div>");
+    }
     var other = OTHER[state.category], here = OTHER[other.id];
     show('<div class="model-analyzer-card" role="alert"><h3>Ce produit n’est pas ' + esc(here.noun) + '.</h3><p>' +
       esc(data && data.error ? data.error : "Il relève de l’autre analyseur.") + ' Cet analyseur ne traite que les ' + (state.category === "pc-portables" ? "PC portables" : "smartphones") + ' et sa propre base de données.</p>' +
@@ -339,7 +344,7 @@
     if (!/^https?:\/\//i.test(raw)) {
       searchByModel(raw, techSearchLabel(),
         'Le modèle « ' + raw + ' » n’a pas été retrouvé dans les référentiels disponibles. Essayez avec la marque et la référence complète.',
-        'La recherche technique a échoué. Réessayez avec la référence complète du modèle.');
+        'La recherche technique n’a pas abouti à temps. Réessayez dans un instant, avec la référence complète du modèle.');
       return;
     }
     try { new URL(raw); } catch (_) { return viewManual("Ce lien n’est pas valide."); }

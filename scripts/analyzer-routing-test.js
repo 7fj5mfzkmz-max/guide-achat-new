@@ -37,3 +37,30 @@ context.window.PhoneAnalyzerFetcher.resolveProduct('https://www.amazon.fr/dp/B0A
   ['Samsung Galaxy Book4 Pro', 'Acer Nitro V 15', 'Lenovo ThinkBook 14', 'Dell Inspiron 15', 'MSI Katana 15', 'Asus ExpertBook B1']
     .forEach(n => assert.equal(R.categoryOfName(n), 'pc-portables', n + ' doit aller vers l’analyseur PC'));
   assert.equal(R.categoryOfName('Samsung Galaxy S26 Ultra'), 'smartphones'); }
+
+/* Tablettes : refusées clairement, même sans catégorie stricte ; les téléphones et PC ne sont pas touchés */
+{ const R = require('../server/resolve.js');
+  ['Apple iPad Air 11', 'Samsung Galaxy Tab S10 FE', 'Xiaomi Pad 7', 'Redmi Pad SE', 'Lenovo Tab P12', 'OnePlus Pad 2', 'Huawei MatePad 11.5', 'Google Pixel Tablet', 'Tablette Android 10 pouces']
+    .forEach(n => assert.equal(R.categoryOfName(n), 'tablettes', n + ' doit être reconnue comme tablette'));
+  [['Xiaomi Redmi Note 15 Pro', 'smartphones'], ['Samsung Galaxy S26', 'smartphones'], ['OnePlus 13', 'smartphones'], ['Lenovo Legion 5 Pro', 'pc-portables'], ['Samsung Galaxy Book4 Pro', 'pc-portables']]
+    .forEach(([n, c]) => assert.equal(R.categoryOfName(n), c, n + ' ne doit pas être pris pour une tablette'));
+  (async () => {
+    for (const strict of [true, false]) {
+      const r = await R.resolveModel('Apple iPad Air 11', { category: 'smartphones', strict, catalogue: [] });
+      assert.equal(r.reason, 'wrong-category'); assert.equal(r.detectedCategory, 'tablettes'); assert.equal(r.unsupported, true);
+      assert.match(r.error, /ne couvre pas encore les tablettes/);
+    }
+    /* Échéance globale : une source qui ne répond jamais ne bloque pas la réponse */
+    const never = () => new Promise(() => {});
+    const gs = require('../sources/gsmarena.js'), pd = require('../sources/phonesdata.js'), kv = require('../sources/kimovil.js');
+    const saved = [gs.resolve, pd.resolve, kv.resolve];
+    gs.resolve = never; pd.resolve = never; kv.resolve = never;
+    try {
+      const t0 = Date.now();
+      const r = await R.resolveModel('Marque Inconnue Z9', { category: 'smartphones', timeout: 100, catalogue: [] });
+      assert.equal(r.reason, 'timeout', 'une analyse trop longue doit répondre « timeout »');
+      assert(Date.now() - t0 < 6000, 'la réponse doit partir à l’échéance');
+    } finally { [gs.resolve, pd.resolve, kv.resolve] = saved; }
+    console.log('OK : tablettes refusées clairement ; échéance globale respectée.');
+  })().catch(e => { console.error(e); process.exitCode = 1; });
+}

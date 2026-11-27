@@ -163,8 +163,12 @@ function candidateFromText(text, product, profile, structuredPairs) {
      (« PC portables », « Ordinateurs portables »…) qui ne disent rien du produit affiché. */
 const LAPTOP_HINT = /\b(?:pc portables?|ordinateurs? portables?|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book\d*|matebook|thinkbook|expertbook|inspiron|vostro|nitro|katana|predator|surface laptop|victus|legion(?!\s*(?:phone|y\d))|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga(?!\s*tab)|pavilion|envy|spectre|rog(?!\s*phone)|ultrabook|extensa|travelmate|loq)\b/i;
 const PHONE_HINT = /\b(?:smartphones?|t[ée]l[ée]phones? (?:portable|mobile)|iphone|galaxy (?:[samzf]\d{1,2}|note|fold|flip)|pixel \d|redmi|poco|xperia|oneplus|fairphone|nothing phone|rog phone|legion (?:phone|y\d))\b/i;
+/* Tablettes : aucune catégorie du guide ne les couvre. Elles sont reconnues pour être refusées
+   clairement, au lieu d'être analysées comme un téléphone ou un PC. */
+const TABLET_HINT = /\b(?:tablettes?|tablets?|ipad|galaxy tab|matepad|(?:xiaomi|redmi|poco|honor|oneplus|oppo|realme|nokia|nothing) pad|(?:lenovo|yoga) tab|tab [sap]\d|tab m\d{1,2}|fire (?:hd|max) ?\d)/i;
 function categoryOfName(text) {
   const t = String(text || '');
+  if (TABLET_HINT.test(t)) return 'tablettes';
   const laptop = LAPTOP_HINT.test(t), phone = PHONE_HINT.test(t);
   if (laptop && !phone) return 'pc-portables';
   if (phone && !laptop) return 'smartphones';
@@ -186,9 +190,11 @@ function detectCategoryFromText(text) { return categoryOfName(text); }
 /* Réponse « mauvais analyseur » : le produit relève de l'autre catégorie. Aucune donnée n'est
    cherchée dans la mauvaise base ; l'interface renvoie l'utilisateur vers le bon analyseur. */
 function wrongCategory(requested, detected, name, trace, extra) {
-  const label = { 'pc-portables': 'un PC portable', smartphones: 'un smartphone' };
-  return Object.assign({ ok: false, kind: 'product', reason: 'wrong-category', category: requested, detectedCategory: detected,
-    error: 'Ce produit semble être ' + (label[detected] || 'un autre produit') + (name ? ' (« ' + String(name).slice(0, 80) + ' »)' : '') + ' : il relève de l’autre analyseur.', trace: trace || [] }, extra || {});
+  const label = { 'pc-portables': 'un PC portable', smartphones: 'un smartphone', tablettes: 'une tablette' };
+  const tablet = detected === 'tablettes';
+  return Object.assign({ ok: false, kind: 'product', reason: 'wrong-category', category: requested, detectedCategory: detected, unsupported: tablet,
+    error: 'Ce produit semble être ' + (label[detected] || 'un autre produit') + (name ? ' (« ' + String(name).slice(0, 80) + ' »)' : '') +
+      (tablet ? ' : le guide ne couvre pas encore les tablettes.' : ' : il relève de l’autre analyseur.'), trace: trace || [] }, extra || {});
 }
 /* Comparaison de noms tolérante aux normalisations (espaces des références,
    casse, ponctuation) — utilisée pour repérer une fiche de famille. */
@@ -368,7 +374,7 @@ async function externalSpecEnrich(name, existing, timeout, trace, profile) {
        GSMArena. Même discipline : ne complète que les cases vides, ne remplace
        jamais une valeur déjà lue, aucune valeur non documentée présentée comme vérifiée. */
     if (profile && profile.id === 'pc-portables') {
-      const r = await notebookcheck.resolve(query, { timeout: Math.max(2500, timeout || 6000), profile });
+      const r = await notebookcheck.resolve(query, { timeout: timeout || 6000, profile });
       if (!r || !r.found) { trace.push({ step: 'notebookcheck', outcome: 'rien' }); return null; }
       /* Règle du projet : la source externe ne complète que les cases vides,
          elle ne remplace JAMAIS une valeur lue sur la page marchande — deux
@@ -383,7 +389,7 @@ async function externalSpecEnrich(name, existing, timeout, trace, profile) {
       trace.push({ step: 'notebookcheck', outcome: 'trouvé', name: r.name, confidence: r.confidence, specs: Object.keys(r.specs || {}).length, added: added.length, familySheet });
       return { name: r.name, specs, source: 'notebookcheck', confidence: r.confidence || 0.8, url: r.url, added, familySheet };
     }
-    const r = await gsmarena.resolve(query, { timeout: Math.max(2500, timeout || 6000) });
+    const r = await gsmarena.resolve(query, { timeout: timeout || 6000 });
     if (!r || !r.found) { trace.push({ step: 'gsmarena', outcome: 'rien' }); return null; }
     const specs = Object.assign({}, existing || {}, r.specs || {});
     const added = Object.keys(r.specs || {}).filter(k => !existing || !existing[k]);
@@ -425,7 +431,7 @@ async function crossCheckTechnicalSources(name, initialSpecs, initialSources, ti
   const specs = Object.assign({}, initialSpecs || {});
   const specSources = Object.assign({}, initialSources || {});
   if (query.length < 3) return { specs, specSources, kimovil: null, sourcesUsed: [] };
-  const perSource = Math.max(2500, Math.min(6000, Number(timeout) || 6000));
+  const perSource = Math.max(1, Math.min(6000, Number(timeout) || 6000));
   /* Isolation des catégories : sur pc-portables, la recoupe technique passe par
      NotebookCheck seul (l'équivalent de PhonesData/Kimovil/GSMArena) — les sources
      smartphones ne sont jamais interrogées pour un PC, et inversement. */
@@ -624,12 +630,31 @@ async function resolveModelRaw(model, options) {
   return { ok:false, kind:'product', reason:'model-not-found', error:'Modèle non retrouvé dans les sources techniques publiques.', trace };
 }
 
-async function resolve(target, options) {
+/* Échéance globale : quelle que soit la source qui traîne, la réponse part avant la limite de la
+   plateforme (Vercel : 30 s ; le navigateur abandonne à 28 s). Le travail en cours est abandonné. */
+function withDeadline(work, ms, onTimeout) {
+  let timer;
+  const cut = new Promise(done => { timer = setTimeout(() => done(onTimeout()), Math.max(0, ms)); });
+  return Promise.race([work, cut]).finally(() => clearTimeout(timer));
+}
+const TIMEOUT_ERROR = 'L’analyse a pris trop de temps : le site du marchand ou les fiches techniques répondent lentement.';
+
+function resolve(target, options) {
+  const budget = Math.min(BUDGET_MS, Number(options && options.budget) || BUDGET_MS);
+  return withDeadline(resolveUrl(target, Object.assign({}, options, { budget })), budget + 1500, () => {
+    let clues = null;
+    try { clues = buildClues([target], null, null); } catch (_) {}
+    return { ok: false, kind: 'product', reason: 'timeout', needsCapture: true, clues, error: TIMEOUT_ERROR, trace: [{ step: 'échéance', outcome: 'délai global atteint' }] };
+  });
+}
+
+async function resolveUrl(target, options) {
   const strict = !!(options && options.strict);   // le front fixe la catégorie : jamais de bascule silencieuse
   let profile = kit.get((options && options.category) || kit.DEFAULT);
   if (!profile || profile.status !== 'active') return { ok: false, error: 'Catégorie non disponible : ' + String((options && options.category) || '') };
   const started = Date.now();
-  const left = () => BUDGET_MS - (Date.now() - started);
+  const budgetMs = (options && options.budget) || BUDGET_MS;
+  const left = () => budgetMs - (Date.now() - started);
   const trace = [];
   let parsed;
   try { parsed = new URL(target); } catch (_) { return { ok: false, error: 'URL invalide.' }; }
@@ -694,7 +719,7 @@ async function resolve(target, options) {
        on bascule avant extraction : règles PC, source NotebookCheck, et la
        réponse porte la catégorie effective pour que l'interface s'aligne. */
     const pageCategory = categoryOfPage(page);
-    if (strict && pageCategory && pageCategory !== profile.id) {
+    if ((strict || pageCategory === 'tablettes') && pageCategory && pageCategory !== profile.id) {
       trace.push({ step: 'category', outcome: 'refusé : la page décrit ' + pageCategory + ', l’analyseur demandé est ' + profile.id });
       return wrongCategory(profile.id, pageCategory, (page.product && page.product.name) || (page.list[0] && page.list[0].name), trace, { finalUrl: fetched.finalUrl, merchantHost: parsed.hostname });
     }
@@ -731,7 +756,7 @@ async function resolve(target, options) {
     const appleUrl = apple.specsUrl(fetched.finalUrl || target);
     if (appleUrl && profile.coreSpecs.filter(k => !merged.specs[k]).length >= 2) {
       try {
-        const sp = await netlib.fetchHtml(appleUrl, { timeout: Math.min(FETCH_TIMEOUT, Math.max(2500, left() - 3000)) });
+        const sp = await netlib.fetchHtml(appleUrl, { timeout: Math.min(FETCH_TIMEOUT, Math.max(1, left() - 3000)) });
         const found = apple.parseSpecs(ex.htmlToText(sp.html || ''));
         const added = Object.keys(found).filter(k => !merged.specs[k]);
         trace.push({ step: 'apple-specs', outcome: added.length ? 'trouvé' : 'page lue sans valeur', url: appleUrl, added: added.length });
@@ -747,11 +772,11 @@ async function resolve(target, options) {
     // Recoupe systématiquement le modèle lu sur la page avec les référentiels techniques.
     // Les sources externes complètent les cases vides seulement, après vérification d'identité.
     const technical = await crossCheckTechnicalSources(product.name || best.name, merged.specs, merged.specSources,
-      Math.min(6000, Math.max(2500, left() - 1000)), trace, profile);
+      Math.min(6000, Math.max(1, left() - 1000)), trace, profile);
     merged = { specs: technical.specs, specSources: technical.specSources,
       specsUnknown: profile.coreSpecs.filter(k => !technical.specs[k]) };
     const kim = technical.kimovil;
-    const review = kim ? null : await reviewEnrich(product.name || best.name, Math.min(3500, Math.max(2500, left() - 500)), trace);
+    const review = kim ? null : await reviewEnrich(product.name || best.name, Math.min(3500, Math.max(1, left() - 500)), trace);
     const warnings = [];
     if (!page.product || page.product.evidence !== 'JSON-LD Product') warnings.push('Aucun objet Product structuré confirmé ; titre du marchand utilisé, identité à vérifier.');
     if (!product.price) warnings.push('Prix non détecté dans la page accessible.');
@@ -803,7 +828,7 @@ async function resolve(target, options) {
              pc-portables AVANT l'extraction et l'enrichissement (sinon GSMArena
              serait interrogé pour un PC). La réponse porte la catégorie effective. */
           const pageCategory = categoryOfPage(page);
-          if (strict && pageCategory && pageCategory !== profile.id) {
+          if ((strict || pageCategory === 'tablettes') && pageCategory && pageCategory !== profile.id) {
             trace.push({ step: 'category', outcome: 'refusé : la page décrit ' + pageCategory + ', l’analyseur demandé est ' + profile.id });
             return wrongCategory(profile.id, pageCategory, (page.product && page.product.name) || (page.list[0] && page.list[0].name), trace, { finalUrl: target, merchantHost: parsed.hostname });
           }
@@ -823,7 +848,7 @@ async function resolve(target, options) {
              d'interroger la source technique (NotebookCheck). */
           const missingCore = profile.coreSpecs.filter(k => !pageSpecs[k]).length;
           const needExternal = missingCore >= 2 || (profile.id === 'pc-portables' && !pageSpecs.gpu);
-          const external = needExternal ? await externalSpecEnrich((page.product && page.product.name) || best.name, pageSpecs, Math.min(5500, Math.max(2500, left() - 1000)), trace, profile) : null;
+          const external = needExternal ? await externalSpecEnrich((page.product && page.product.name) || best.name, pageSpecs, Math.min(5500, Math.max(1, left() - 1000)), trace, profile) : null;
           const finalSpecs = external ? external.specs : pageSpecs;
           const finalSources = {}; Object.keys(finalSpecs).forEach(k => { finalSources[k] = external && external.specs[k] && !pageSpecs[k] ? external.source : 'reader'; });
           const readerWarnings = ['Informations extraites par un lecteur secondaire ; à confirmer si la page affiche plusieurs variantes.'];
@@ -852,7 +877,7 @@ async function resolve(target, options) {
     /* L'indice de nom peut dire la catégorie (slug « pc-portable-… », famille
        connue) : on la suit pour interroger la bonne source technique. */
     const hinted = detectCategoryFromText(urlNameHintRaw);
-    if (strict && hinted && hinted !== profile.id) return wrongCategory(profile.id, hinted, urlNameHintRaw, trace, { finalUrl, merchantHost: parsed.hostname });
+    if ((strict || hinted === 'tablettes') && hinted && hinted !== profile.id) return wrongCategory(profile.id, hinted, urlNameHintRaw, trace, { finalUrl, merchantHost: parsed.hostname });
     const hintCategory = strict ? profile.id : (hinted || (options && options.category) || 'smartphones');
     const technical = await resolveModel(urlNameHint, { category: hintCategory, timeout: Math.min(7000, left() - 500) });
     if (technical && technical.ok) {
@@ -887,7 +912,7 @@ async function resolve(target, options) {
       const indexedName = indexedHint && cleanHint(indexedHint).length >= 4 ? cleanHint(indexedHint) : null;
       if (indexedName && left() > 3500) {
         const indexedDetected = detectCategoryFromText(indexedHint);
-        if (strict && indexedDetected && indexedDetected !== profile.id) return wrongCategory(profile.id, indexedDetected, indexedHint, trace, { finalUrl, merchantHost: parsed.hostname });
+        if ((strict || indexedDetected === 'tablettes') && indexedDetected && indexedDetected !== profile.id) return wrongCategory(profile.id, indexedDetected, indexedHint, trace, { finalUrl, merchantHost: parsed.hostname });
         const indexedCategory = strict ? profile.id : (indexedDetected || (options && options.category) || 'smartphones');
         const technical = await resolveModel(indexedName, { category: indexedCategory, timeout: Math.min(7000, left() - 500) });
         if (technical && technical.ok) {
@@ -906,7 +931,7 @@ async function resolve(target, options) {
       if (wantedId) {
         trace.push({ step: 'search', outcome: 'écarté', detail: 'aucune adresse indexée ne porte l’identifiant du lien' });
       } else {
-      const ext0 = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(2500, left() - 1000)), trace, profile);
+      const ext0 = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(1, left() - 1000)), trace, profile);
       const external = ext0 && identity.compare(ext0.name, found.best, profile).verdict !== 'different' ? ext0 : null;
       return {
         ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external ? 'search+' + external.source : 'search',
@@ -945,12 +970,13 @@ module.exports = {
   pairSpecs, candidateFromText, apple, resolve, resolveModel, externalSpecEnrich, crossCheckTechnicalSources, kit, classifyContent, candidateFromText, inspectHtml, readerPage, looksLikeLaptop, categoryOfName, categoryOfPage, isPrivateIp: netlib.isPrivateIp, assertPublicHost: netlib.assertPublicHost, looksBlocked: ex.detectBlock, readTitle: html => { const c = ex.candidates(html).list[0]; return c ? c.name : null; }, pageTitle: ex.pageTitle };
 
 async function resolveModel(model, options) {
-  if (options && options.strict) {
-    const requested = options.category || kit.DEFAULT;
-    const detected = categoryOfName(model);
+  const detected = categoryOfName(model);
+  if ((options && options.strict) || detected === 'tablettes') {
+    const requested = (options && options.category) || kit.DEFAULT;
     if (detected && detected !== requested) return wrongCategory(requested, detected, model, [{ step: 'category', outcome: 'refusé : le nom décrit ' + detected }]);
   }
-  const result = await resolveModelRaw(model, options);
+  const cap = Math.min(BUDGET_MS, (Number(options && options.timeout) || 8000) + 4000);
+  const result = await withDeadline(resolveModelRaw(model, options), cap, () => ({ ok: false, kind: 'product', reason: 'timeout', error: TIMEOUT_ERROR, trace: [{ step: 'échéance', outcome: 'délai global atteint' }] }));
   if (result && result.ok) {
     const ref = referenceScores((result.product && result.product.name) || result.identity && result.identity.name, result.product && result.product.evidence);
     result.references = ref.details;
