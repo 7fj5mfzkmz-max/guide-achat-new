@@ -57,8 +57,12 @@
         return data;
       }, function (err) {
         if (timer) clearTimeout(timer);
-        return staticFallback().catch(function () {
-          if (err && err.name === "AbortError") throw new Error("Le serveur n’a pas répondu dans les 28 secondes.");
+        /* Serveur injoignable : seul un modèle réellement reconnu dans le catalogue est accepté, jamais un nom tiré de l’adresse. */
+        return staticFallback().then(function (local) {
+          if (local && local.ok && local.strategy === "static-catalogue") return local;
+          throw err;
+        }).catch(function () {
+          if (err && err.name === "AbortError") throw new Error("Le site du marchand répond trop lentement. Tapez simplement le nom du modèle.");
           throw err;
         });
       });

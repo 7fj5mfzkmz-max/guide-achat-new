@@ -20,7 +20,7 @@ const server = http.createServer(async (req, res) => {
       ? await resolveModel(data.model, { category: data.category || 'smartphones', strict: data.strict === true, timeout: 8000 })
       : await resolve(data.url, { category: data.category || 'smartphones', strict: data.strict === true });
     return json(res, result.ok ? 200 : (result.reason === 'wrong-category' ? 409 : 502), result);
-  } catch (error) { return json(res, 500, { error: 'Erreur interne.', detail: error.message }); }
+  } catch (error) { console.error(error); return json(res, 500, { error: 'Erreur interne.' }); }
 });
 server.listen(PORT, () => console.log(`Guide-Achat resolver: http://localhost:${PORT}`));
 

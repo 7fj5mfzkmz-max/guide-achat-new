@@ -39,8 +39,8 @@ function isPrivateIp(ip) {
   }
   if (net.isIPv6(ip)) {
     const v = ip.toLowerCase();
-    if (v === '::1' || v === '::') return true;
-    if (v.startsWith('::ffff:')) return isPrivateIp(v.slice(7));
+    if (v.startsWith('::ffff:') && net.isIPv4(v.slice(7))) return isPrivateIp(v.slice(7));
+    if (v.startsWith('::')) return true;   // ::1, ::, adresses IPv4 compatibles ou mappées en hexadécimal (::7f00:1)
     return /^f[cd]/.test(v) || /^fe[89ab]/.test(v);
   }
   return true;
@@ -102,6 +102,7 @@ async function fetchHtml(target, options) {
   for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
     const u = new URL(current);
     if (!/^https?:$/.test(u.protocol)) throw new Error('Protocole non autorisé.');
+    if (u.port && u.port !== '80' && u.port !== '443') throw new Error('Port non autorisé.');
     await assertPublicHost(u.hostname);
     let response = null;
     for (let attempt = 0; attempt <= RETRY_LIMIT; attempt++) {

@@ -34,6 +34,21 @@ const cmp = (a, b) => identity.compare(a, b, kit).verdict;
   await check('Note 15 5G ≠ Note 15 4G', () => assert.equal(cmp('Xiaomi Redmi Note 15 4G', 'Xiaomi Redmi Note 15 5G 256 Go'), 'different'));
   await check('Moto G06 ≠ G06 Power', () => assert.equal(cmp('Motorola Moto G06', 'Motorola Moto G06 Power 4 Go'), 'different'));
   await check('Moto G06 Power ≠ G06', () => assert.notEqual(cmp('Motorola Moto G06 Power', 'Motorola Moto G06 64 Go'), 'same'));
+  /* Lettre collée au numéro : un autre modèle (audit du 27/11 : 17e, 15C et 15T étaient pris pour 17 et 15) */
+  await check('iPhone 17 ≠ iPhone 17e', () => assert.equal(cmp('Apple iPhone 17', 'Apple iPhone 17e 128 Go'), 'different'));
+  await check('Xiaomi 15 ≠ Redmi 15C', () => assert.equal(cmp('Xiaomi 15', 'Xiaomi Redmi 15C 128 Go'), 'different'));
+  await check('Xiaomi 15 ≠ 15T Pro', () => assert.equal(cmp('Xiaomi 15', 'Xiaomi 15T Pro 512 Go'), 'different'));
+  await check('iPhone 17 = iPhone 17 256 Go noir', () => assert.equal(cmp('Apple iPhone 17', 'Apple iPhone 17 256 Go Noir'), 'same'));
+  await check('Lien produit avec ?q= : le nom de l’adresse prime', () => {
+    const u = 'https://www.darty.com/nav/achat/telephonie/apple_iphone_17_pro_max_256go.html?utm_campaign=promo&q=coque';
+    assert.notEqual(identify.classifyUrl(u).kind, 'page');
+    assert.match(identify.identifyFromUrl(u).titleHint, /iphone 17 pro max/i);
+  });
+  /* Fiche sans marque dans le nom (« 13 » pour l’iQOO 13) : jamais retenue pour un autre fabricant */
+  await check('iPhone 13 ≠ iQOO 13 (catalogue)', async () => {
+    const r = await resolver.resolve('https://www.amazon.fr/Apple-iPhone-13-128-Go-Minuit/dp/B09G9HD6PD', 'smartphones');
+    assert.ok(!(r.catalogProduct && /iqoo/i.test(r.catalogProduct.marque || '')), 'iPhone 13 ne doit pas devenir un iQOO 13');
+  });
 
   /* 2. Liens marchands → nom reconnu */
   const cases = [

@@ -9,7 +9,6 @@
    * Ordre :
    * 1. slug Amazon/Cdiscount -> correspondance catalogue
    * 2. titre lisible dans l'URL -> correspondance catalogue
-   * 3. tentative de lecture publique via Jina Reader (si CORS disponible)
    * 4. identification générique du slug, sans inventer de caractéristiques
    */
 
@@ -126,17 +125,23 @@
     return catalogPromise;
   }
 
+  /* Nom complet : beaucoup de fiches ont un nom sans marque (« 13 » pour l’iQOO 13). */
+  function fullName(item) {
+    var nom = item.nom || item.name || "", brand = item.marque || item.brand || "";
+    return brand && norm(nom).indexOf(norm(brand)) < 0 ? brand + " " + nom : nom;
+  }
   function candidateScore(item, hint) {
-    var name = item.nom || item.name || "";
+    var name = fullName(item);
     if (!name || !hint) return 0;
     var n = norm(name), h = norm(hint);
     if (n === h) return 1;
+    /* L’identité passe avant tout raccourci : « Galaxy S26+ » n’est pas le S26, « iPhone 13 » n’est pas l’iQOO 13. */
+    var cmp = identity && identity.compare ? identity.compare(name, hint, kit) : { verdict: "unknown" };
+    if (cmp.verdict === "different") return 0;
     var ns0 = squash(name), hs0 = squash(hint);
     /* Correspondance alphanumérique exacte : très forte preuve, notamment pour les slugs
        Cdiscount collés (realmegtneo7, oneplus12hasselbladedition, etc.). */
     if (ns0 === hs0) return 1.50 + Math.min(0.08, tokens(name).length * 0.012);
-    var cmp = identity && identity.compare ? identity.compare(name, hint, kit) : { verdict: "unknown" };
-    if (cmp.verdict === "different") return 0;
     var A = identity && identity.tokens ? identity.tokens(name, kit).words : tokens(name);
     var B = identity && identity.tokens ? identity.tokens(hint, kit).words : tokens(hint);
     var set = {}; B.forEach(function (x) { set[x] = true; });
@@ -258,22 +263,6 @@
     };
   }
 
-  async function jina(raw) {
-    /* Lecture publique facultative. Si le navigateur bloque CORS, on ignore simplement. */
-    var target = "https://r.jina.ai/http://" + raw.replace(/^https?:\/\//i, "");
-    var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
-    var timer = controller ? setTimeout(function () { controller.abort(); }, 9000) : null;
-    try {
-      var r = await fetch(target, { headers: { "accept": "text/plain" }, signal: controller ? controller.signal : undefined });
-      if (!r.ok) return null;
-      var text = await r.text();
-      if (!text || text.length < 40) return null;
-      var title = (text.match(/^#\s+(.+)$/m) || text.match(/^Title:\s*(.+)$/im) || [])[1] || "";
-      var specs = extractSpecs(text);
-      return { title: clean(title), specs: specs, text: text };
-    } catch (_) { return null; } finally { if (timer) clearTimeout(timer); }
-  }
-
   async function resolve(raw, category) {
     category = category === "pc-portables" ? "pc-portables" : "smartphones";
     if (root.GuideCategoryKit && root.GuideCategoryKit.get) kit = root.GuideCategoryKit.get(category) || kit;
@@ -283,28 +272,7 @@
     var local = fromCatalog(raw, info.hints, products);
     if (local) return local;
 
-    /* « local.invalid » est l'adresse artificielle d'une recherche par nom : aucune page à lire. */
-    var read = /(^|\.)local\.invalid$/i.test(host(raw)) ? null : await jina(raw);
-    if (read && read.title) {
-      var hints = [read.title].concat(info.hints);
-      var byPage = fromCatalog(raw, hints, products);
-      if (byPage) {
-        byPage.trace.push({ step: "static-reader", outcome: "titre de page lu" });
-        Object.assign(byPage.specs, read.specs || {});
-        Object.keys(read.specs || {}).forEach(function (k) { byPage.specSources[k] = "page-source"; });
-        return byPage;
-      }
-      var generic = fromGeneric(raw, [read.title]);
-      if (generic) {
-        generic.specs = read.specs || {};
-        generic.specSources = {};
-        Object.keys(generic.specs).forEach(function (k) { generic.specSources[k] = "page-source"; });
-        generic.specsConfidence = .82;
-        generic.trace.push({ step: "static-reader", outcome: "titre + caractéristiques lus" });
-        return generic;
-      }
-    }
-
+    /* Pas de lecture de page depuis le navigateur : le serveur s’en charge déjà (et l’adresse ne part pas chez un tiers). */
     return fromGeneric(raw, info.hints, info.display) || { ok: false, kind: "unknown", reason: "model-not-found", needsCapture: true, clues: { urlHint: info.hints[0] || null, asin: info.asin || null } };
   }
 

@@ -161,7 +161,7 @@ function candidateFromText(text, product, profile, structuredPairs) {
      (« ROG Phone », « Legion Phone », « Yoga Tab » restent des appareils mobiles) ;
    - seule l'identité du produit (nom, titre) compte : le texte entier d'une page marchande contient des menus
      (« PC portables », « Ordinateurs portables »…) qui ne disent rien du produit affiché. */
-const LAPTOP_HINT = /\b(?:pc portables?|ordinateurs? portables?|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book|matebook|surface laptop|victus|legion(?!\s*(?:phone|y\d))|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga(?!\s*tab)|pavilion|envy|spectre|rog(?!\s*phone)|ultrabook|extensa|travelmate|loq)\b/i;
+const LAPTOP_HINT = /\b(?:pc portables?|ordinateurs? portables?|laptop|notebook|macbook|zenbook|ideapad|thinkpad|vivobook|chromebook|omnibook|galaxy book\d*|matebook|thinkbook|expertbook|inspiron|vostro|nitro|katana|predator|surface laptop|victus|legion(?!\s*(?:phone|y\d))|tuf|aspire|swift go|elitebook|probook|latitude|xps|yoga(?!\s*tab)|pavilion|envy|spectre|rog(?!\s*phone)|ultrabook|extensa|travelmate|loq)\b/i;
 const PHONE_HINT = /\b(?:smartphones?|t[ée]l[ée]phones? (?:portable|mobile)|iphone|galaxy (?:[samzf]\d{1,2}|note|fold|flip)|pixel \d|redmi|poco|xperia|oneplus|fairphone|nothing phone|rog phone|legion (?:phone|y\d))\b/i;
 function categoryOfName(text) {
   const t = String(text || '');
@@ -534,15 +534,18 @@ async function resolveModelRaw(model, options) {
   const trace = [{ step: 'model-query', original: originalQuery, normalized: query }];
   const budget = Math.min(8000, Math.max(5000, (options && options.timeout) || 8000));
 
-  // 1. Le catalogue est une accélération, jamais une condition de réussite.
+  // 1. Le catalogue local. Pour les PC portables, il est à jour : on s’en sert d’abord.
+  //    Pour les smartphones, data/smartphones.json est ancien : il ne sert qu’en dernier recours,
+  //    après les fiches publiques (sinon l’analyseur contredit les fiches du guide).
   const cat = Array.isArray(options && options.catalogue) ? options.catalogue : localCatalogue((options && options.category) || 'smartphones');
   const exact = cat.find(p => identity.verifyReference(p.nom || p.model || '', [query], [], profile).verdict === 'confirmed');
-  if (exact) {
+  const fromCatalogue = () => {
     trace.push({ step: 'catalogue', outcome: 'exact', name: exact.nom || exact.model });
     return { ok: true, kind: 'product', strategy: 'catalogue', product: { name: exact.nom || exact.model, source: 'Guide·Achat catalogue', evidence: exact.id || null, id: exact.id || null }, specs: exact.caracteristiques || {},
       specSources: Object.fromEntries(Object.keys(exact.caracteristiques || {}).map(k => [k, 'catalogue'])),
       identity: { status: 'identified', name: exact.nom || exact.model, basis: ['correspondance exacte du catalogue'] }, trace };
-  }
+  };
+  if (exact && (profile.id === 'pc-portables' || (options && options.catalogue))) return fromCatalogue();
 
   // 2. PC portables : la source technique publique est NotebookCheck (miroir
   //    francophone lisible). Exigence d'identité identique aux smartphones : la fiche
@@ -605,6 +608,7 @@ async function resolveModelRaw(model, options) {
       specsConfidence:g.confidence, reviews:review, identity:{status:g.confidence>=.9?'identified':'partial',name:g.name,basis:['fiche technique publique GSMArena'],confidence:g.confidence},
       evidence:['fiche technique publique GSMArena'].concat(review ? ['analyses publiques'] : []), trace };
   }
+  if (exact) return fromCatalogue();
   } // fin du branchement smartphones (les PC portables passent par NotebookCheck)
 
   // 3. Dernier recours : recherche externe si disponible.
@@ -612,7 +616,8 @@ async function resolveModelRaw(model, options) {
     const found = await search.lookup({ urlHint: query, name: query, title: query }, Math.min(3500, budget), profile).catch(() => null);
     if (found && found.best) {
       const rr = await externalSpecEnrich(found.best, {}, Math.min(3500, budget), trace, profile).catch(() => null);
-      if (rr) return { ok:true, kind:'product', strategy:'search+' + rr.source, product:{name:rr.name,source:rr.source}, specs:rr.specs,
+      // La fiche trouvée par recherche doit porter le même nom que la demande (sinon : variante Ultra servie pour le modèle de base).
+      if (rr && identity.compare(rr.name, query, profile).verdict === 'same') return { ok:true, kind:'product', strategy:'search+' + rr.source, product:{name:rr.name,source:rr.source}, specs:rr.specs,
         specSources:Object.fromEntries(Object.keys(rr.specs || {}).map(k => [k,rr.source])), identity:{status:rr.confidence>=.9?'identified':'partial',name:rr.name,basis:['recherche externe','fiche technique publique'],confidence:rr.confidence}, evidence:['fiche technique publique ' + (rr.source === 'notebookcheck' ? 'NotebookCheck' : 'GSMArena')], trace };
     }
   }
@@ -901,7 +906,8 @@ async function resolve(target, options) {
       if (wantedId) {
         trace.push({ step: 'search', outcome: 'écarté', detail: 'aucune adresse indexée ne porte l’identifiant du lien' });
       } else {
-      const external = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(2500, left() - 1000)), trace, profile);
+      const ext0 = await externalSpecEnrich(found.best, {}, Math.min(6500, Math.max(2500, left() - 1000)), trace, profile);
+      const external = ext0 && identity.compare(ext0.name, found.best, profile).verdict !== 'different' ? ext0 : null;
       return {
         ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external ? 'search+' + external.source : 'search',
         product: { name: external ? external.name : found.best, brand: null, sku: null, mpn: null, gtin: null, price: null, currency: null, availability: null, source: external ? external.source : 'search', evidence: 'recherche web' },
@@ -916,7 +922,7 @@ async function resolve(target, options) {
   const technicalHint = urlLocal.titleHint || (baseClues && baseClues.name);
   if (technicalHint && left() > 2500) {
     const external = await externalSpecEnrich(technicalHint, {}, Math.min(6500, left() - 800), trace, profile);
-    if (external) {
+    if (external && identity.compare(external.name, technicalHint, profile).verdict !== 'different') {
       return { ok: true, kind: 'product', finalUrl, merchantHost: parsed.hostname, strategy: external.source,
         product: { name: external.name, brand: null, source: external.source, evidence: external.url }, specs: external.specs,
         specSources: Object.fromEntries(Object.keys(external.specs).map(k => [k, external.source])), specsConfidence: external.confidence,

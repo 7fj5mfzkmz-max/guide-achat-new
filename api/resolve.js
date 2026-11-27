@@ -12,6 +12,8 @@ module.exports = async function handler(req, res) {
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
     if (!body.url && !body.model) { res.statusCode = 400; return res.end(JSON.stringify({ error: 'URL ou modèle manquant.' })); }
+    // Entrées bornées : une adresse ne dépasse pas 2 048 caractères, un nom de modèle 120.
+    if (String(body.url || '').length > 2048 || String(body.model || '').length > 120) { res.statusCode = 413; return res.end(JSON.stringify({ error: 'Entrée trop longue.' })); }
     const result = body.model ? await require('../server/resolve').resolveModel(body.model, { category: body.category, strict: body.strict === true, timeout: 8000 }) : await resolve(body.url, { category: body.category, strict: body.strict === true });
     res.statusCode = result.ok ? 200 : (result.reason === 'wrong-category' ? 409 : 502);
     res.setHeader('content-type', 'application/json; charset=utf-8');
@@ -20,6 +22,7 @@ module.exports = async function handler(req, res) {
   } catch (error) {
     res.statusCode = 500;
     res.setHeader('content-type', 'application/json; charset=utf-8');
-    return res.end(JSON.stringify({ error: 'Erreur interne.', detail: error.message }));
+    if (process.env.NODE_ENV !== 'test') console.error(error);
+    return res.end(JSON.stringify({ error: 'Erreur interne.' }));
   }
 };

@@ -76,9 +76,11 @@
     var p = params(rawUrl);
     var asin = (path.match(/\/(?:dp|gp\/product|gp\/aw\/d|product|exec\/obidos\/ASIN)\/([A-Z0-9]{10})(?:[/?\s]|$)/i) || [])[1];
     var ean = (path.match(/(?:ean|gtin)[=/:-]?(\d{8,14})/i) || [])[1] || p.ean || p.gtin;
-    var titleHint = p.q || p.search || p.title || p.name || "";
-    if (!titleHint && merchant === "amazon") titleHint = (path.match(/\/([^/]+?)(?:\/dp|\/gp\/)/i) || [])[1] || "";
+    /* Le nom lisible dans l’adresse prime sur un paramètre de recherche (« …iphone_17_pro_max.html?q=coque »). */
+    var titleHint = "";
+    if (merchant === "amazon") titleHint = (path.match(/\/([^/]+?)(?:\/dp|\/gp\/)/i) || [])[1] || "";
     if (!titleHint) titleHint = slugHint(url.pathname);
+    if (!titleHint) titleHint = p.q || p.search || p.title || p.name || "";
     /* Fiche Fnac courte (Google Shopping, app) : /a21318597/w-4 ne contient pas le nom du modèle.
        L'identifiant est conservé comme indice : il permet de retrouver l'adresse complète indexée
        par un moteur de recherche, qui elle contient le nom. La page Fnac reste non lue (403 anti-robot). */
@@ -114,6 +116,8 @@
     if (isProductPath) return { kind: "product", label: null, strong: false };
     var hasSearch = false;
     u.searchParams.forEach(function (v, k) { if (SEARCH_KEYS.indexOf(k.toLowerCase()) >= 0 && v) hasSearch = true; });
+    /* Un paramètre de recherche ne fait pas d’une fiche lisible (au moins 3 mots dans l’adresse) une page de résultats. */
+    if (hasSearch && slugHint(u.pathname).split(/[-_+\s]+/).filter(function (w) { return /[a-z]/i.test(w); }).length >= 3) hasSearch = false;
     if (hasSearch || /\/(?:search|recherche|searchresult|resultats?)(?:\/|\.|$)/i.test(path)) return page("une page de résultats de recherche", true);
     if (merchant === "amazon" && /^\/(?:b|s|stores|gp\/(?:bestsellers|browse|new-releases|movers-and-shakers)|hz)(?:\/|$)/i.test(path)) return page("une page de catégorie ou de sélection de produits", true);
     if (/\/l-\d+(?:\.html)?$/i.test(path) || /(?:^|\/)(?:categorie|categories|category|collection|collections|rayon|rayons|catalogue|marques?|brands?)(?:\/|$)/i.test(path)) return page("une page de catégorie ou de liste de produits", false);

@@ -19,7 +19,7 @@ exports.handler = async function (event) {
       : await resolve(body.url, { category: body.category || 'smartphones', strict: body.strict === true });
     return { statusCode: result.ok ? 200 : (result.reason === 'wrong-category' ? 409 : 502), headers, body: JSON.stringify(result) };
   } catch (error) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: 'Erreur interne pendant l’analyse.', detail: error.message }) };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: 'Erreur interne pendant l’analyse.' }) };
   }
 };
 

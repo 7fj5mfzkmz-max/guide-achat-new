@@ -117,7 +117,9 @@
     var at = findSeq(T.words, core);
     if (at >= 0) {
       var next = T.words[at + core.length];
-      if (next && variants.indexOf(next) >= 0 && core.indexOf(next) < 0) return { verdict: "different", reason: "le texte ajoute la variante « " + next + " » juste après le modèle" };
+      /* Une variante (« pro », « plus »…) ou une lettre collée au numéro (« 17e », « 15T », « 15C ») désigne un autre modèle. */
+      if (next && core.indexOf(next) < 0 && (variants.indexOf(next) >= 0 || (/^[a-z]$/.test(next) && isNum(core[core.length - 1]))))
+        return { verdict: "different", reason: "le texte ajoute « " + next + " » juste après le modèle" };
       return { verdict: "same", reason: "même nom de modèle" };
     }
     var numAt = -1;
