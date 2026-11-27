@@ -174,7 +174,7 @@ check('pages : dépendances locales présentes, catégories ouvertes, un seul h1
   const cats = fs.readFileSync(path.join(root, 'assets/js/categories.js'), 'utf8');
   assert.ok(/id: "projecteurs"[^}]*live: true, href: "projecteurs.html"/.test(cats));
   assert.ok(/id: "ecouteurs"[^}]*live: true, href: "ecouteurs.html"/.test(cats));
-  ['assets/editorial/projecteurs.svg', 'assets/editorial/ecouteurs.svg'].forEach(f => assert.ok(fs.existsSync(path.join(root, f)), f));
+  ['assets/illustrations/projecteurs.svg', 'assets/illustrations/ecouteurs.svg'].forEach(f => assert.ok(fs.existsSync(path.join(root, f)), f));
 });
 check('aucun analyseur sur ces deux pages (réservé aux smartphones et PC portables)', () => {
   ['projecteurs.html', 'ecouteurs.html'].forEach(page => { const html = fs.readFileSync(path.join(root, page), 'utf8'); assert.ok(!html.includes('phone-analyzer-form') && !html.includes('phone-analyzer/ui.js'), page); });

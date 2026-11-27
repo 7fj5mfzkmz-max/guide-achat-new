@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration : un portable, un carnet et un crayon pour les études">
+<title>Illustration : un portable, un carnet et un crayon pour les études</title>
+<rect width="800" height="600" fill="#e4e7e8"/>
+
+<rect x="460" y="110" width="220" height="290" rx="8" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" transform="rotate(8 570 255)"/>
+<path d="M500 170 H640 M500 210 H640 M500 250 H600" stroke="#dfe6f5" stroke-width="10" stroke-linecap="round" transform="rotate(8 570 255)"/>
+<g transform="translate(330 330) scale(1)"><rect x="-150" y="-110" width="300" height="190" rx="12" fill="#11151c"/><rect x="-138" y="-98" width="276" height="166" rx="6" fill="#12306b"/><path d="M-170 82 H170 L192 116 H-192 Z" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/></g>
+<rect x="230" y="245" width="120" height="14" rx="7" fill="#ffffff"/><rect x="230" y="272" width="80" height="14" rx="7" fill="#ffffff" opacity=".6"/>
+<rect x="610" y="380" width="22" height="160" rx="6" fill="#ffd028" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" transform="rotate(-35 620 460)"/>
+</svg>

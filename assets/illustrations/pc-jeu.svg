@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration : un portable de jeu, une manette et un casque">
+<title>Illustration : un portable de jeu, une manette et un casque</title>
+<rect width="800" height="600" fill="#e4e7e8"/>
+
+<rect x="100" y="120" width="600" height="300" fill="#12306b"/>
+<g transform="translate(320 330) scale(1)"><rect x="-150" y="-110" width="300" height="190" rx="12" fill="#11151c"/><rect x="-138" y="-98" width="276" height="166" rx="6" fill="#12306b"/><path d="M-170 82 H170 L192 116 H-192 Z" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/></g>
+<path d="M200 250 L250 210 L300 260 L350 200 L420 270" fill="none" stroke="#ffd028" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M540 380 h120 a40 40 0 0 1 40 40 v10 a30 30 0 0 1 -52 20 l-18 -20 h-60 l-18 20 a30 30 0 0 1 -52 -20 v-10 a40 40 0 0 1 40 -40 z" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="640" cy="414" r="8" fill="#d4331f"/><circle cx="664" cy="430" r="8" fill="#ffd028" stroke="#11151c" stroke-width="3"/>
+<path d="M560 230 a70 70 0 0 1 140 0" fill="none" stroke="#11151c" stroke-width="14"/><rect x="546" y="222" width="34" height="62" rx="12" fill="#d4331f" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><rect x="680" y="222" width="34" height="62" rx="12" fill="#d4331f" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

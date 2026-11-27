@@ -31,7 +31,7 @@ Le podium affiché est celui de la vidéo ; les notes par usage combinent mesure
 
 ## Écouteurs et casques
 
-**Source** : « Banc d'Essai Audio : Sélection Picky Audio (2026) » (retranscription de 3 pages avec horodatages, fournie au projet). Trois modèles : Roseselsa Ceramics Ultra (< 50 $), Anker Soundcore Liberty Buds 2 (~129 $), Nothing Headphone (1) Pro (~299 $, **casque** de 328 g). Fabrication : `node tools/ecouteurs/construire.js` (textes du guide dans `tools/ecouteurs/textes.json`) écrit `data/ecouteurs.json`, puis `python3 tools/categories/pages.py` régénère la page.
+**Source** : « Banc d'Essai Audio : Sélection Picky Audio (2026) » (retranscription de 3 pages avec horodatages, fournie au projet). Trois modèles : Roseselsa Ceramics Ultra (< 50 $), Anker Soundcore Liberty Buds 2 (~129 $), Nothing Headphone (1) Pro (~299 $, **casque** de 328 g). Fabrication : `node tools/ecouteurs/construire.js` (textes du guide dans `tools/ecouteurs/textes.json`) écrit `data/ecouteurs.json`. La page `ecouteurs.html` se modifie ensuite à la main (le générateur de pages a été retiré : il n'était plus à jour).
 
 **Du relevé aux notes (`assets/js/ecouteurs-scoring.js`)**
 
@@ -59,4 +59,4 @@ Le testeur n'applique pas les mêmes critères à chaque modèle : un critère s
 
 ## Pages
 
-`python3 tools/categories/pages.py` régénère `projecteurs.html` et `ecouteurs.html` à partir de l'en-tête et du pied de `pc-portables.html`. Ces deux catégories n'ont pas d'analyseur de lien (réservé aux smartphones et aux PC portables).
+`projecteurs.html` et `ecouteurs.html` se modifient à la main ; l'en-tête, la recherche et le pied viennent du gabarit commun (`tools/site/gabarit.py`). Ces deux catégories n'ont pas d'analyseur de lien (réservé aux smartphones et aux PC portables).

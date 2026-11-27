@@ -1,12 +1,8 @@
-
-}
-.photo-editorial .hm-card.is-live .hm-card-photo img { object-position: 62% center; }
 .photo-editorial .photo-shot { padding: 0; overflow: hidden; align-self: center; }
 .photo-editorial .photo-shot picture, .photo-editorial .photo-shot img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 62% center; animation: none; }
 .photo-editorial .pl-profile-photo img { object-fit: cover; }
 .photo-editorial .pl-profile:hover .pl-profile-photo img { transform: scale(1.04); }
 .photo-editorial .pl-profile-photo img { transition: transform .5s ease; }
-
 .photo-editorial .pl-note-hand {
   display: inline-flex; align-items: flex-start; gap: 6px; margin: 0 0 14px;
   font: 600 clamp(20px, 2vw, 26px)/1.1 'Caveat', 'Segoe Script', cursive;
@@ -25,18 +21,6 @@
 }
 
 /* Group portraits and the real projector photo stay entirely visible, including on hover. */
-.photo-editorial .hm-card[data-cat="pc"] .hm-card-photo,
-.photo-editorial .hm-card[data-cat="batteries"] .hm-card-photo,
-.photo-editorial .hm-card[data-cat="ecouteurs"] .hm-card-photo,
-.photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo { background: #aeb5bf; }
-.photo-editorial .hm-card[data-cat="pc"] .hm-card-photo img,
-.photo-editorial .hm-card[data-cat="batteries"] .hm-card-photo img,
-.photo-editorial .hm-card[data-cat="ecouteurs"] .hm-card-photo img,
-.photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo img { object-fit: contain; object-position: center; transform: none; }
 
 /* Match the actual photo proportions: no side bars or artificial zoom. */
-.photo-editorial .hm-card[data-cat="pc"] .hm-card-photo { aspect-ratio: 1000 / 562; }
-.photo-editorial .hm-card[data-cat="projecteurs"] .hm-card-photo { aspect-ratio: 1000 / 667; }
 /* Lifestyle scenes keep their native framing, without the former gray side strips. */
-.photo-editorial .hm-card[data-cat="batteries"] .hm-card-photo,
-.photo-editorial .hm-card[data-cat="ecouteurs"] .hm-card-photo { aspect-ratio: 3 / 2; }

@@ -49,7 +49,9 @@ ICO = {
     'arrow': '<svg class="ga-ico" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>',
 }
 
-FONTS = '<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>'
+# Polices hébergées dans assets/fonts/ (déclarées dans design-system.css) : on précharge les deux fichiers du premier écran.
+FONTS = ('<link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>\n'
+         '<link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin/>')
 
 EARLY = ('<script id="ga-early">(function(){var r=document.documentElement,t=null;r.classList.add("dual");try{t=localStorage.getItem("guide-achat-theme")}catch(e){}\n'
          'if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";\n'
@@ -100,8 +102,8 @@ def footer(page):
 def head_tags(page):
     url = SITE + page
     return ('<meta name="color-scheme" content="light dark"/>\n'
-            '<meta name="theme-color" content="#f5f4eb" media="(prefers-color-scheme: light)"/>\n'
-            '<meta name="theme-color" content="#141e19" media="(prefers-color-scheme: dark)"/>\n'
+            '<meta name="theme-color" content="#f1f3f3" media="(prefers-color-scheme: light)"/>\n'
+            '<meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)"/>\n'
             '<link rel="icon" href="favicon.svg" type="image/svg+xml"/>\n'
             '<link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>\n'
             f'<link rel="canonical" href="{url}"/>')
@@ -121,7 +123,8 @@ def apply(page, text):
     head = re.sub(r'<meta[^>]*name="(?:theme-color|color-scheme)"[^>]*>\n?', '', head)
     head = re.sub(r'<link[^>]*rel="(?:icon|apple-touch-icon|canonical)"[^>]*>\n?', '', head)
     head = one(r'(?<=</title>)', '\n' + head_tags(page), head, page, '<title>')
-    head = one(r'<link href="https://fonts\.googleapis\.com/css2[^>]*>', FONTS, head, page, 'police')
+    head = re.sub(r'<link[^>]*href="https://fonts\.(?:googleapis|gstatic)\.com"[^>]*>\n?', '', head)
+    head = one(r'<link href="https://fonts\.googleapis\.com/css2[^>]*>|<link rel="preload" href="assets/fonts/bricolage[^>]*>\n<link rel="preload" href="assets/fonts/source-serif[^>]*>', FONTS, head, page, 'police')
     head = one(r'<script id="ga-early">.*?</script>', EARLY, head, page, 'script de thème')
     body = one(r'<header class="site-header">.*?</header>', header(page), body, page, 'en-tête')
     body = one(r'<section aria-label="Recherche" class="search-panel".*?</section>', SEARCH, body, page, 'recherche')

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration : un portable, une palette de couleurs et un stylet">
+<title>Illustration : un portable, une palette de couleurs et un stylet</title>
+<rect width="800" height="600" fill="#e4e7e8"/>
+
+<circle cx="560" cy="210" r="150" fill="#ffd028"/>
+<g transform="translate(330 330) scale(1)"><rect x="-150" y="-110" width="300" height="190" rx="12" fill="#11151c"/><rect x="-138" y="-98" width="276" height="166" rx="6" fill="#12306b"/><path d="M-170 82 H170 L192 116 H-192 Z" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/></g>
+<path d="M220 300 C270 220 330 330 390 250" fill="none" stroke="#ffd028" stroke-width="16" stroke-linecap="round"/>
+<circle cx="430" cy="300" r="22" fill="#d4331f"/>
+<rect x="560" y="330" width="150" height="110" rx="12" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="600" cy="370" r="16" fill="#d4331f"/><circle cx="645" cy="370" r="16" fill="#12306b"/><circle cx="600" cy="410" r="16" fill="#ffd028" stroke="#11151c" stroke-width="3"/>
+<rect x="600" y="120" width="16" height="170" rx="6" fill="#11151c" transform="rotate(30 608 205)"/>
+</svg>

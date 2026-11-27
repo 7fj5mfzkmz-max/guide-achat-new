@@ -5,15 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Quel smartphone choisir ? Guide·Achat</title>
 <meta name="color-scheme" content="light dark"/>
-<meta name="theme-color" content="#f5f4eb" media="(prefers-color-scheme: light)"/>
-<meta name="theme-color" content="#141e19" media="(prefers-color-scheme: dark)"/>
+<meta name="theme-color" content="#f1f3f3" media="(prefers-color-scheme: light)"/>
+<meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
 <link rel="canonical" href="https://guide-achat-new.vercel.app/smartphones.html"/>
 <meta name="description" content="Vous avez repéré un smartphone ? L’analyseur dit, sans jargon, s’il répond à vos besoins et ce qu’en disent les tests publiés. Quiz de recommandation et sélection du mois."/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/css/design-system.css">
 <script>document.documentElement.classList.add("hx-js")</script>
 <noscript><style>.hx-js .hx-reveal{opacity:1!important;transform:none!important}</style></noscript>
@@ -24,7 +23,6 @@ var n=navigator,c=n.connection||{};
 if(c.saveData||(n.deviceMemory&&n.deviceMemory<=2)||(n.hardwareConcurrency&&n.hardwareConcurrency<=2))r.classList.add("fx-lite");})()</script>
 <script src="assets/js/categories.js" defer></script>
 <script src="assets/js/category-menu.js" defer></script>
-<link rel="stylesheet" href="assets/css/actualites.css">
 <link rel="stylesheet" href="assets/css/smartphones.css">
 <script id="i18n-early">(function(){var r=document.documentElement,p="auto",l;try{p=localStorage.getItem("guide-achat-lang")||"auto"}catch(e){}
 function d(){var a=navigator.languages||[navigator.language||"fr"];for(var i=0;i<a.length;i++){var c=String(a[i]).toLowerCase().slice(0,2);if(c==="fr"||c==="es"||c==="en")return c}return"en"}
@@ -160,8 +158,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </footer>
 <script src="phone-analyzer/chips.js" defer></script>
 <!-- Analyseur : modules chargés à la demande, dans cet ordre, par smartphones-guide.js (type text/plain : non téléchargés au chargement). -->
-<script type="text/plain" data-analyzer-module src="sources/catalogue.js"></script>
-<script type="text/plain" data-analyzer-module src="phone-analyzer/normalizer.js"></script>
 <script type="text/plain" data-analyzer-module src="phone-analyzer/identify.js"></script>
 <script type="text/plain" data-analyzer-module src="category-kit/index.js"></script>
 <script type="text/plain" data-analyzer-module src="category-kit/smartphones.js"></script>
@@ -171,7 +167,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script type="text/plain" data-analyzer-module src="phone-analyzer/static-resolver.js"></script>
 <script type="text/plain" data-analyzer-module src="phone-analyzer/fetcher.js"></script>
 <script type="text/plain" data-analyzer-module src="phone-analyzer/capture.js"></script>
-<script type="text/plain" data-analyzer-module src="phone-analyzer/profile-fit.js"></script>
 <script type="text/plain" data-analyzer-module src="phone-analyzer/references.js"></script>
 <script type="text/plain" data-analyzer-module src="phone-analyzer/spec-insights.js"></script>
 <script type="text/plain" data-analyzer-module src="phone-analyzer/spec-score.js"></script>
@@ -180,7 +175,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="assets/js/smartphones-guide.js" defer></script>
 <script src="assets/js/theme.js" defer></script>
 <script src="assets/js/site-tools.js" defer></script>
-<script src="assets/js/site-motion.js" defer></script>
 <script src="assets/js/i18n.js" defer></script>
 </body>
 </html>

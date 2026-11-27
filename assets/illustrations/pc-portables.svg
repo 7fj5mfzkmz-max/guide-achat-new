@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration : un ordinateur portable ouvert">
+<title>Illustration : un ordinateur portable ouvert</title>
+<rect width="800" height="600" fill="#e4e7e8"/>
+
+<rect x="120" y="96" width="560" height="300" fill="#ffd028" transform="rotate(-3 400 246)"/>
+<rect x="190" y="120" width="420" height="270" rx="16" fill="#11151c"/>
+<rect x="206" y="136" width="388" height="238" rx="8" fill="#12306b"/>
+<rect x="232" y="170" width="150" height="16" rx="8" fill="#ffffff"/>
+<rect x="232" y="200" width="110" height="16" rx="8" fill="#ffffff" opacity=".6"/>
+<rect x="420" y="300" width="28" height="50" fill="#ffd028"/><rect x="460" y="270" width="28" height="80" fill="#ffffff"/><rect x="500" y="236" width="28" height="114" fill="#d4331f"/><rect x="540" y="200" width="28" height="150" fill="#ffd028"/>
+<path d="M130 398 H670 L700 444 H100 Z" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="352" y="410" width="96" height="14" rx="7" fill="#11151c"/>
+<circle cx="650" cy="140" r="30" fill="#d4331f" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

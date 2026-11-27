@@ -5,15 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Analyseur de lien : Guide·Achat</title>
 <meta name="color-scheme" content="light dark"/>
-<meta name="theme-color" content="#f5f4eb" media="(prefers-color-scheme: light)"/>
-<meta name="theme-color" content="#141e19" media="(prefers-color-scheme: dark)"/>
+<meta name="theme-color" content="#f1f3f3" media="(prefers-color-scheme: light)"/>
+<meta name="theme-color" content="#15171c" media="(prefers-color-scheme: dark)"/>
 <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"/>
 <link rel="canonical" href="https://guide-achat-new.vercel.app/analyseur.html"/>
 <meta name="description" content="Collez le lien ou le nom d’un smartphone ou d’un PC portable : le guide retrouve ses caractéristiques, les explique et dit à quels usages il convient."/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="preload" href="assets/fonts/bricolage-grotesque-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/source-serif-4-latin.woff2" as="font" type="font/woff2" crossorigin/>
 <link rel="stylesheet" href="assets/css/design-system.css">
 <link rel="stylesheet" href="assets/css/category-page.css">
 <link rel="stylesheet" href="assets/css/analyzer.css">
@@ -74,8 +73,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 </div>
 </footer>
 <script src="assets/js/categories.js"></script>
-<script src="sources/catalogue.js"></script>
-<script src="phone-analyzer/normalizer.js"></script>
 <script src="phone-analyzer/identify.js"></script>
 <script src="category-kit/index.js"></script>
 <script src="category-kit/smartphones.js"></script>
@@ -85,7 +82,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="phone-analyzer/static-resolver.js"></script>
 <script src="phone-analyzer/fetcher.js"></script>
 <script src="phone-analyzer/capture.js"></script>
-<script src="phone-analyzer/profile-fit.js"></script>
 <script src="phone-analyzer/references.js"></script>
 <script src="phone-analyzer/chips.js"></script>
 <script src="phone-analyzer/spec-insights.js"></script>
@@ -94,8 +90,6 @@ l=p==="auto"?d():p;if(l!=="fr"&&l!=="en"&&l!=="es")l="fr";r.setAttribute("data-l
 <script src="phone-analyzer/ui.js"></script>
 <script src="assets/js/site-tools.js"></script>
 <script src="assets/js/scoring-engine.js"></script>
-<script src="assets/js/profiles.js"></script>
-<script src="assets/js/smartphones-scoring.js"></script>
 <script src="assets/js/category-menu.js"></script>
 <script src="assets/js/i18n.js" defer></script>
 </body>

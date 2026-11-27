@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration : un portable, un smartphone, une montre et des écouteurs posés ensemble">
+<title>Illustration : un portable, un smartphone, une montre et des écouteurs posés ensemble</title>
+<rect width="800" height="600" fill="#e4e7e8"/>
+
+<circle cx="430" cy="300" r="250" fill="#ffd028"/>
+<rect x="60" y="500" width="720" height="18" fill="#11151c"/>
+<g transform="translate(380 380) scale(1.25)"><rect x="-150" y="-110" width="300" height="190" rx="12" fill="#11151c"/><rect x="-138" y="-98" width="276" height="166" rx="6" fill="#12306b"/><path d="M-170 82 H170 L192 116 H-192 Z" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/></g>
+<rect x="235" y="260" width="190" height="18" rx="9" fill="#ffffff"/><rect x="235" y="292" width="130" height="18" rx="9" fill="#ffffff" opacity=".6"/>
+<g transform="rotate(-8 600 300)"><rect x="560" y="200" width="130" height="260" rx="22" fill="#11151c"/><rect x="570" y="210" width="110" height="240" rx="14" fill="#dfe6f5"/><rect x="590" y="250" width="70" height="70" rx="10" fill="#d4331f"/><rect x="590" y="340" width="70" height="12" rx="6" fill="#12306b"/></g>
+<rect x="110" y="410" width="90" height="90" rx="24" fill="#11151c"/><rect x="122" y="422" width="66" height="66" rx="16" fill="#1c2230"/><path d="M130 456 h14 l8 -16 l10 30 l8 -14 h12" fill="none" stroke="#d4331f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="660" y="450" width="96" height="54" rx="27" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+</svg>

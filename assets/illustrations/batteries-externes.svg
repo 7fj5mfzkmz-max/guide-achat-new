@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Illustration : une batterie externe qui recharge un téléphone">
+<title>Illustration : une batterie externe qui recharge un téléphone</title>
+<rect width="800" height="600" fill="#e4e7e8"/>
+
+<circle cx="250" cy="300" r="190" fill="#ffd028"/>
+<rect x="150" y="150" width="220" height="320" rx="30" fill="#ffffff" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="190" y="200" width="140" height="30" rx="6" fill="#12306b"/><rect x="190" y="242" width="140" height="30" rx="6" fill="#12306b"/><rect x="190" y="284" width="140" height="30" rx="6" fill="#12306b"/><rect x="190" y="326" width="140" height="30" rx="6" fill="#dfe6f5"/>
+<path d="M262 386 l-22 40 h26 l-12 34 l40 -50 h-26 l14 -24 z" fill="#d4331f" stroke="#11151c" stroke-width="4" stroke-linejoin="round"/>
+<path d="M370 420 C 470 420, 470 300, 540 300" fill="none" stroke="#11151c" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="520" y="150" width="150" height="290" rx="26" fill="#11151c"/>
+<rect x="533" y="163" width="124" height="264" rx="16" fill="#12306b"/>
+<rect x="560" y="250" width="70" height="36" rx="6" fill="none" stroke="#ffffff" stroke-width="5"/><rect x="566" y="256" width="40" height="24" fill="#ffd028"/><rect x="630" y="262" width="6" height="12" fill="#ffffff"/>
+</svg>

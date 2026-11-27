@@ -6,7 +6,6 @@
   "use strict";
   var LIST = [
     { id: "smartphones", label: "Smartphones", live: true, href: "smartphones.html", tone: "orchid", icon: "phone",
-      photo: "assets/editorial/smartphones-photo.webp", photoAlt: "Vue rapprochée d’un smartphone sur fond sombre",
       blurb: "Écran, autonomie, photo et performances : les points qui changent réellement l’usage.",
       terms: ["Écran", "Batterie", "Photo", "Puce", "Autonomie", "Charge", "Étanchéité", "Mises à jour", "Stockage", "Prix"],
       chips: [["Écran fluide", "hz"], ["Longue autonomie", "battery"], ["Résiste à l’eau", "drop"], ["Écran net", "pixels"]],
@@ -25,23 +24,18 @@
       example: { name: "Samsung Galaxy A56", note: "300 € indicatif", scores: [["Étudiant", 8], ["Professionnel", 8], ["Photographe", 7], ["Gamer", 6]] },
       stage: { title: "Adapté à votre usage", bars: [89, 78, 67], labels: ["Autonomie", "Écran", "Performance"], score: 8 } },
     { id: "pc", label: "PC portables", live: true, href: "pc-portables.html", tone: "teal", icon: "laptop",
-      photo: "assets/editorial/pc-photo.webp", photoAlt: "Un ordinateur portable sous un éclairage bleu et violet",
       blurb: "Choisir un PC selon les logiciels, la mobilité et le budget.", terms: ["Processeur", "RAM", "Stockage", "Écran", "Poids", "Autonomie"],
       chips: [["16 Go de RAM", "ram"], ["SSD 512 Go", "storage"], ["OLED", "pixels"]], weights: "pc-portables", example: { name: "PC portable polyvalent", note: "Catalogue 2026", scores: [["Étudiant", 8], ["Professionnel", 8], ["Créateur", 7], ["Gamer", 6]] }, stage: { title: "Compatibilité", bars: [86, 78, 70], labels: ["Processeur", "Mémoire", "Écran"], score: 8 }, pairs: [["Processeur","Le cerveau de l’ordinateur : il décide si le PC reste fluide quand vous ouvrez beaucoup d’onglets ou un logiciel lourd."],["16 Go de RAM","La mémoire de travail. Pour le web et la bureautique 8 Go suffisent souvent ; 16 Go laissent de la marge quand on garde beaucoup de choses ouvertes."],["SSD 512 Go","Le stockage, sur mémoire flash. Il rend le démarrage et l’ouverture des logiciels rapides ; la capacité dit combien de fichiers vous gardez."],["Carte graphique dédiée","Un composant séparé pour les jeux, le montage vidéo et la 3D. Pour le web et la bureautique, la partie graphique intégrée au processeur suffit."],["Écran IPS","Un type de dalle aux angles de vision larges et aux couleurs stables. Regardez aussi la luminosité : un écran terne se lit mal près d’une fenêtre."],["1,3 kg","Un PC léger se transporte tous les jours sans y penser ; plus lourd, on le sent dans le sac au bout de quelques semaines."],["Autonomie annoncée","La durée donnée par le constructeur est mesurée dans des conditions favorables : en usage réel, comptez nettement moins."]] },
     { id: "batteries", label: "Batteries externes", live: true, href: "batteries-externes.html", tone: "peach", icon: "battery",
-      photo: "assets/editorial/batteries-photo.webp", photoAlt: "Une batterie externe Green Cell sur fond clair",
       blurb: "Capacité, puissance de charge et compatibilité USB-C.", terms: ["Capacité", "Puissance", "USB-C", "Poids"],
       pairs: [["10 000 mAh","La capacité de la batterie. Elle recharge un smartphone d’environ une à deux fois, un peu moins en pratique à cause des pertes de conversion."],["Wh","La capacité exprimée en énergie, et c’est elle qui compte en avion : les consignes IATA 2026 limitent les batteries externes à 100 Wh chacune et deux par passager ; vérifiez les règles de votre compagnie."],["USB-C PD 65 W","La puissance de charge. Un téléphone se contente de 20 à 30 W ; il en faut davantage pour recharger un ordinateur portable."],["Power Delivery","Un standard de charge rapide par USB-C. Il marche avec beaucoup d’appareils, mais chargeur, câble et appareil doivent tous le gérer."],["Charge passthrough","Elle permet de recharger la batterie pendant qu’elle alimente un appareil. Pratique, mais pas toujours possible : vérifiez la fiche."],["Poids","Plus la capacité monte, plus la batterie pèse : au-delà de 20 000 mAh, elle dépasse souvent 350 g."]] },
     { id: "ecouteurs", label: "Écouteurs Bluetooth", live: true, href: "ecouteurs.html", tone: "coral", icon: "buds",
-      photo: "assets/editorial/ecouteurs-photo.webp", photoAlt: "Des écouteurs sans fil blancs avec leur boîtier sur fond clair",
       blurb: "Qualité sonore, confort, autonomie et réduction de bruit.", terms: ["Son", "Confort", "Autonomie", "Réduction de bruit"],
       pairs: [["Réduction de bruit (ANC)","Des micros captent le bruit ambiant et l’écouteur émet un son inverse pour l’atténuer. C’est efficace sur les bruits graves et réguliers (train, avion), moins sur les voix."],["Codec (AAC, LDAC, aptX)","Le format utilisé pour envoyer le son. Écouteurs et téléphone doivent gérer le même pour en profiter ; un iPhone passe par l’AAC."],["Bluetooth 5.3","La version de la norme. Elle compte moins que le codec : la qualité dépend d’abord de ce que le téléphone et les écouteurs savent échanger."],["6 h + boîtier","La durée d’écoute avec les écouteurs seuls ; le boîtier ajoute plusieurs recharges. Activer la réduction de bruit la raccourcit."],["IPX4","Protection contre les projections d’eau : suffisant pour la sueur et une averse légère, pas pour une immersion."],["Latence","Le décalage entre l’image et le son. Insensible pour la musique, gênant en vidéo ou en jeu ; un mode « faible latence » aide."],["Multipoint","Connexion à deux appareils à la fois, par exemple l’ordinateur et le téléphone, sans reconnecter à la main."]] },
     { id: "montres", label: "Montres", live: true, href: "montres.html", tone: "blue", icon: "watch",
-      photo: "assets/editorial/montres.svg", photoAlt: "Une montre connectée affichant un tracé de pouls, à côté d’une montre classique",
       blurb: "Pouls, GPS, sommeil et santé mesurés contre des références médicales.", terms: ["Pouls", "GPS", "Sommeil", "Autonomie"],
       pairs: [["AMOLED","Un écran aux couleurs vives et aux noirs profonds. Il consomme davantage quand il reste allumé en permanence."],["GPS intégré","Il permet de suivre une course sans emporter le téléphone. Sans GPS, la montre s’appuie sur celui du téléphone."],["Capteur de pouls optique","Un capteur lumineux au poignet estime le pouls. Il est fiable au repos, moins lors d’efforts très variables ou si la montre bouge."],["5 ATM","Résistance à l’eau testée pour l’équivalent de 50 m de profondeur : douche et piscine, mais pas plongée."],["Autonomie","Quelques jours pour beaucoup de montres connectées à écran vif ; plusieurs semaines pour les montres sportives plus sobres."],["eSIM / LTE","Permet d’appeler et de recevoir des messages sans le téléphone à proximité, avec un forfait en plus."],["Compatibilité","Certaines montres ne fonctionnent pleinement qu’avec un seul système : une Apple Watch ne s’utilise qu’avec un iPhone."]] },
     { id: "projecteurs", label: "Projecteurs", live: true, href: "projecteurs.html", tone: "amber", icon: "projector",
-      photo: "assets/editorial/projecteurs-category-cinema.webp", photoAlt: "Photographie d’un vidéoprojecteur XGIMI en fonctionnement dans une salle de test RTINGS.com",
       blurb: "Luminosité, contraste et distance de projection.", terms: ["Luminosité", "Contraste", "Distance", "Résolution"],
       pairs: [["Lumens ANSI","La luminosité mesurée selon une norme. Des « lumens » sans mention ANSI sont souvent gonflés. Dans une pièce éclairée, il en faut beaucoup plus que dans le noir."],["Résolution native","Le nombre de pixels réel de la puce. Beaucoup de modèles annoncent « 4K supporté » alors qu’ils n’affichent qu’en 1080p, voire moins."],["Contraste","L’écart entre le blanc et le noir. Il compte surtout dans le noir : un faible contraste donne des noirs grisâtres."],["Rapport de projection","Il détermine la taille de l’image à une distance donnée. Un projecteur à courte focale donne une grande image tout près du mur."],["Correction trapèze","Elle redresse l’image quand le projecteur n’est pas bien en face. La correction numérique réduit un peu la netteté."],["Lampe, LED ou laser","La source de lumière. La lampe s’use et se remplace ; LED et laser durent bien plus longtemps."],["Bruit (dB)","Le ventilateur refroidit la source de lumière. Dans une pièce silencieuse, un modèle bruyant se fait entendre pendant tout le film."]] }
   ];
@@ -86,43 +80,5 @@
     if (a.hasAttribute("data-cat-label")) a.textContent = C.startLabel() + " →";
   });
 
-  /* Accueil : un bouton par guide ouvert (le contenu de départ sert de repli sans JavaScript). */
-  var liveLinks = document.getElementById("hx-live-links");
-  if (liveLinks) {
-    liveLinks.innerHTML = C.live().map(function (c) { return '<a class="hm-btn" href="' + c.href + '">' + esc(c.label) + " →</a>"; }).join("");
-  }
-
-  /* Cartes de catégories (accueil) : numéro, nom, résumé et photo (champ « photo » de la catégorie) ou, à défaut, dessin. Les guides ouverts sont des liens, les autres restent en attente. */
-  var cards = document.getElementById("hx-cards");
-  if (cards) {
-    cards.innerHTML = LIST.map(function (c, i) {
-      var live = !!c.live, no = (i < 9 ? "0" : "") + (i + 1);
-      var inner = '<span class="hm-card-no">' + no + '</span>' +
-        '<span class="hm-card-tag' + (live ? "" : " is-soon") + '">' + (live ? "Guide disponible" : "Bientôt") + "</span>" +
-        (c.photo ? '<span class="hm-card-photo"><img src="' + esc(c.photo) + '" alt="' + esc(c.photoAlt || "") + '" loading="lazy" width="640" height="480"></span>'
-                 : '<span class="hm-card-art" aria-hidden="true">' + C.icon(c) + "</span>") +
-        '<span class="hm-card-body"><h3>' + esc(c.label) + "</h3><p>" + esc(c.blurb) + "</p></span>" +
-        (live ? '<span class="hm-card-go">Lire le guide <i aria-hidden="true">→</i></span>' : "");
-      var cls = "hm-card hx-reveal " + (live ? "is-live" : "is-soon");
-      return live
-        ? '<a class="' + cls + '" data-cat="' + c.id + '" href="' + c.href + '">' + inner + "</a>"
-        : '<div class="' + cls + '" data-cat="' + c.id + '">' + inner + "</div>";
-    }).join("");
-  }
-
-  /* Bandeau de mots : termes seuls, toutes catégories mélangées, sans définition. */
-  var marquee = document.getElementById("hx-marquee");
-  if (marquee) {
-    var cols = LIST.map(function (c) { return (c.pairs || []).map(function (p) { return p[0]; }); });
-    var mixed = [], n = 0, more = true;
-    while (more) { more = false; cols.forEach(function (col) { if (col[n]) { mixed.push(col[n]); more = true; } }); n++; }
-    function row(list, rev) {
-      var html = list.map(function (t) { return '<span class="hx-word-chip">' + esc(t) + "</span>"; }).join("");
-      return '<div class="hx-word-row' + (rev ? " is-rev" : "") + '"><div class="hx-word-track"><div class="hx-word-set">' + html + '</div><div class="hx-word-set is-dup" aria-hidden="true">' + html + "</div></div></div>";
-    }
-    var half = Math.ceil(mixed.length / 2);
-    marquee.innerHTML = row(mixed.slice(0, half), false) + row(mixed.slice(half), true);
-    marquee.setAttribute("aria-label", "Quelques notions abordées dans le guide");
-  }
 })();
 
