@@ -35,7 +35,7 @@
   --rouge: #d4331f;
   --marine: #12306b;
   --marine-pale: #dfe6f5;
-  --shadow: 0 4px 12px rgb(17 21 28 / .09);
+  --shadow: 0 1px 0 rgb(17 21 28 / .06);
   --shadow-lg: 0 12px 30px rgb(17 21 28 / .13);
   --head: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
   --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
@@ -62,7 +62,7 @@
   --marine: #a9c0ff;
   --marine-pale: #232b44;
   --dot: #ff7b66;
-  --shadow: 0 4px 12px rgb(0 0 0 / .18);
+  --shadow: 0 1px 0 rgb(0 0 0 / .25);
   --shadow-lg: 0 12px 30px rgb(0 0 0 / .23);
 }
 
@@ -256,32 +256,6 @@ button { cursor: pointer; background: none; border: 0; }
 }
 
 /* ---------- Bandeau défilant ---------- */
-.ga-ticker {
-  background: var(--night);
-  color: var(--night-ink);
-  border-bottom: 1px solid var(--line-soft);
-  overflow: hidden;
-}
-.dark-theme .ga-ticker { border-color: var(--paper); }
-.ga-ticker-track {
-  display: flex;
-  width: max-content;
-  animation: ga-ticker 30s linear infinite;
-}
-.ga-ticker-track > span {
-  display: inline-flex;
-  font: 500 12px var(--mono);
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  padding: 13px 0;
-  white-space: nowrap;
-}
-.ga-ticker-track em { font-style: normal; color: var(--accent); padding: 0 10px; }
-@keyframes ga-ticker { to { transform: translateX(-50%); } }
-.ga-ticker:hover .ga-ticker-track, .ga-ticker:focus-within .ga-ticker-track { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) {
-  .ga-ticker-track { animation: none; }
-}
 
 /* ---------- Tiroirs (recherche, catégories) ---------- */
 .search-panel, .category-menu { position: fixed; inset: 0; z-index: 90; }
@@ -388,6 +362,7 @@ button { cursor: pointer; background: none; border: 0; }
 .hx-js .hx-reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s var(--ease) var(--d, 0s), transform .75s var(--ease) var(--d, 0s); }
 .hx-js .hx-reveal.is-in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {.hx-reveal, 
+
 }
 
 /* ---------- Divers ---------- */

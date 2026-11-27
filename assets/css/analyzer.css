@@ -18,7 +18,7 @@
 .model-analyzer-card > h3 { font-size: clamp(22px, 3vw, 34px); margin: 2px 0 0; }
 .model-analyzer-card > p { margin: 0; color: var(--ink-soft); font-size: 15px; }
 .model-analyzer-card h4 { margin: 12px 0 2px; font: 800 14px var(--head); letter-spacing: .02em; text-transform: uppercase; }
-.model-analyzer-note { padding-left: 12px; border-left: 3px solid var(--accent); font-size: 14px; }
+.model-analyzer-note { padding: 10px 14px; border: 1px solid var(--line-soft); background: var(--paper-3); font-size: 14px; }
 .model-analyzer-source-note a { font-weight: 600; }
 .model-analyzer-specs { display: grid; gap: 18px; margin-top: 6px; }
 .spec-group > h4 { margin: 0 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--ink); }
@@ -87,6 +87,6 @@
   color: var(--night-ink);
 }
 .analyseur-page .page-simple-hero :is(.breadcrumb, .breadcrumb a, .pg-lead) { color: var(--night-mute); }
-.analyseur-page .page-simple-hero h1 mark { color: var(--accent); }
+.analyseur-page .page-simple-hero h1 mark { background: none; color: #ff7b66; font-style: normal; }
 .analyseur-page .page-simple-hero :focus-visible { outline-color: var(--accent); }
 .analyseur-page .analyzer-switch a[aria-current] { border-color: var(--accent); }

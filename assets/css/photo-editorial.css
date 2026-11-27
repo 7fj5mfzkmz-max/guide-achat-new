@@ -3,18 +3,6 @@
 .photo-editorial .pl-profile-photo img { object-fit: cover; }
 .photo-editorial .pl-profile:hover .pl-profile-photo img { transform: scale(1.04); }
 .photo-editorial .pl-profile-photo img { transition: transform .5s ease; }
-.photo-editorial .pl-note-hand {
-  display: inline-flex; align-items: flex-start; gap: 6px; margin: 0 0 14px;
-  font: 600 clamp(20px, 2vw, 26px)/1.1 'Caveat', 'Segoe Script', cursive;
-  color: var(--ink-soft, var(--h-soft)); transform: rotate(-2deg);
-}
-.photo-editorial .pl-note-hand svg {
-  width: 44px; height: 30px; margin-top: 12px; fill: none; stroke: currentColor;
-  stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round;
-}
-@media (max-width: 700px) {
-  .photo-editorial .pl-note-hand { font-size: 20px; }
-}
 @media (prefers-reduced-motion: reduce) {
   .photo-editorial .pl-profile-photo img { transition: none; }
   .photo-editorial .pl-profile:hover .pl-profile-photo img { transform: none; }

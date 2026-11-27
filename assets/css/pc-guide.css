@@ -4,7 +4,7 @@
    (--paper, --ink, --accent, --line, --shadow, --head, --sans, --mono).
    ============================================================ */
 .pg {--pg-g:#15803d;--pg-o:#b45309;--pg-r:#b91c1c;--pg-b:#1d4ed8}
-.dark-theme .pg {--pg-g:#4ade80;--pg-o:#fbbf24;--pg-r:#f87171;--pg-b:#93c5fd}
+.dark-theme .pg {--pg-g:#7cd698;--pg-o:#fbbf24;--pg-r:#f87171;--pg-b:#93c5fd}
 
 
 /* ---------- sections ---------- */
@@ -24,11 +24,11 @@
 /* balayage du scanner : la ligne descend en boucle */
 .pg-wdscan {animation:pgScan 3.6s linear infinite;pointer-events:none}
 @keyframes pgScan {0%{transform:translateY(-10px)}88%{transform:translateY(300px)}100%{transform:translateY(300px)}}
-.pg-wdbeam {filter:drop-shadow(0 0 6px #35e0ff)}
+.pg-wdbeam {filter:drop-shadow(0 0 6px #ffd028)}
 /* lecture des données : référence + composants */
 .pg-wdref { display: flex; margin-top: 12px; padding: 10px 12px; border: 1px solid #1d2b38; background: #0d141b; }
 .pg-wdlbl {font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#5d7488}
-.pg-wdref b {font:700 clamp(15px,2.4vw,21px) var(--mono);color:#35e0ff;letter-spacing:.04em}
+.pg-wdref b {font:700 clamp(15px,2.4vw,21px) var(--mono);color:#ffd028;letter-spacing:.04em}
 .pg-wdspecs {display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:6px}
 .pg-wdspecs span {border:1px solid #1d2b38;background:#0d141b;padding:7px 9px;font:400 11.5px/1.35 var(--mono);color:#b9c6d2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pg-wdspecs b {display:block;font:700 9.5px var(--mono);letter-spacing:.12em;color:var(--accent);margin-bottom:2px}
@@ -38,8 +38,8 @@
 .pg-wdwrap.is-glitch .pg-wdref b {animation:wdTxt .44s steps(3,end) both}
 .pg-wdwrap.is-glitch .pg-wdspecs span {animation:wdTxt .44s steps(3,end) both}
 @keyframes wdJit {0%{transform:translate(3px,-2px)}33%{transform:translate(-4px,2px)}66%{transform:translate(2px,3px)}100%{transform:none}}
-@keyframes wdLap {0%,100%{filter:none}33%{filter:drop-shadow(2px 0 #ff2e88) drop-shadow(-2px 0 #35e0ff)}66%{filter:drop-shadow(-3px 1px #ff2e88) drop-shadow(3px -1px #35e0ff)}}
-@keyframes wdTxt {0%,100%{text-shadow:none;opacity:1}33%{text-shadow:2px 0 #ff2e88,-2px 0 #35e0ff;opacity:.55}66%{text-shadow:-2px 1px #ff2e88,2px -1px #35e0ff;opacity:.8}}
+@keyframes wdLap {0%,100%{filter:none}33%{filter:drop-shadow(2px 0 #ff7b66) drop-shadow(-2px 0 #ffd028)}66%{filter:drop-shadow(-3px 1px #ff7b66) drop-shadow(3px -1px #ffd028)}}
+@keyframes wdTxt {0%,100%{text-shadow:none;opacity:1}33%{text-shadow:2px 0 #ff7b66,-2px 0 #ffd028;opacity:.55}66%{text-shadow:-2px 1px #ff7b66,2px -1px #ffd028;opacity:.8}}
 /* pause : mouvement réduit, économe, hors écran */
 .pg[data-motion="off"] .pg-wdscan, .fx-lite .pg-wdscan {animation-play-state:paused}
 @media(prefers-reduced-motion:reduce) {
@@ -148,7 +148,7 @@
 .pg-px {animation:pgPulse 2.4s ease-in-out infinite alternate}
 @keyframes pgPulse {0%,100%{fill-opacity:.35}50%{fill-opacity:1}}
 .pg-core {animation:pgCore 2.8s ease-in-out infinite}
-@keyframes pgCore {0%,100%{opacity:.25;filter:none}45%,60%{opacity:1;filter:brightness(1.3) drop-shadow(0 0 5px #35e0ff)}}
+@keyframes pgCore {0%,100%{opacity:.25;filter:none}45%,60%{opacity:1;filter:brightness(1.3) drop-shadow(0 0 5px #ffd028)}}
 .pg-flow {animation:pgFlow 1s linear infinite}
 @keyframes pgFlow {to{stroke-dashoffset:-18}}
 .pg-twinkle {animation:pgTw 2.6s ease-in-out infinite}
@@ -170,7 +170,7 @@
 .pg-fillbar {transform-origin:left;animation:pgFill 4.5s ease-in-out infinite alternate}
 @keyframes pgFill {from{transform:scaleX(.18)}to{transform:scaleX(.92)}}
 .pg-cell {opacity:.12;animation:pgCell 3.2s ease-in-out infinite}
-@keyframes pgCell {0%{opacity:.12}15%,80%{opacity:1;filter:drop-shadow(0 0 6px #4ade80)}100%{opacity:.12}}
+@keyframes pgCell {0%{opacity:.12}15%,80%{opacity:1;filter:drop-shadow(0 0 6px #7cd698)}100%{opacity:.12}}
 .pg-beam {animation:pgBeam 5.5s ease-in-out infinite}
 @keyframes pgBeam {0%,100%{transform:rotate(-11deg)}22%{transform:rotate(7deg)}44%{transform:rotate(-5deg)}62%{transform:rotate(3deg)}80%{transform:rotate(-2deg)}}
 .pg-pan {animation:pgPan 5.5s ease-in-out infinite}
@@ -218,20 +218,20 @@
 .pg-wdref>div {flex:1;display:flex;flex-direction:column;gap:3px;min-width:0}
 .pg-wdref b.same {font:700 clamp(15px,2.4vw,21px) var(--mono);color:#e8eef5;letter-spacing:.04em}
 .pg-wdref em {font:600 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;font-style:normal}
-.pg-wdref em.ok {color:#4ade80}
-.pg-wdref em.ko {color:#ff2e88}
-.pg-wdtags .pg-tag path {stroke:#35e0ff;stroke-width:1.5;stroke-dasharray:3 3;fill:none}
-.pg-wdtags .pg-tag circle {fill:#35e0ff}
-.pg-wdtags .pg-tag rect {fill:#0a1219;stroke:#35e0ff;stroke-width:1.5}
-.pg-wdtags .pg-tag text {fill:#35e0ff;font:700 11px JetBrains Mono,monospace;letter-spacing:.1em}
-.pg-wdtags .pg-tag.is-diff path {stroke:#ff2e88}
-.pg-wdtags .pg-tag.is-diff circle {fill:#ff2e88}
-.pg-wdtags .pg-tag.is-diff rect {fill:#ff2e88;stroke:#ff2e88}
+.pg-wdref em.ok {color:#7cd698}
+.pg-wdref em.ko {color:#ff7b66}
+.pg-wdtags .pg-tag path {stroke:#ffd028;stroke-width:1.5;stroke-dasharray:3 3;fill:none}
+.pg-wdtags .pg-tag circle {fill:#ffd028}
+.pg-wdtags .pg-tag rect {fill:#0a1219;stroke:#ffd028;stroke-width:1.5}
+.pg-wdtags .pg-tag text {fill:#ffd028;font:700 11px JetBrains Mono,monospace;letter-spacing:.1em}
+.pg-wdtags .pg-tag.is-diff path {stroke:#ff7b66}
+.pg-wdtags .pg-tag.is-diff circle {fill:#ff7b66}
+.pg-wdtags .pg-tag.is-diff rect {fill:#ff7b66;stroke:#ff7b66}
 .pg-wdtags .pg-tag.is-diff text {fill:#0a0f14}
-.pg-wdspecs span.is-diff {border-color:#ff2e88;background:#2a0f1e;color:#fff}
-.pg-wdspecs span.is-diff b {color:#ff2e88}
+.pg-wdspecs span.is-diff {border-color:#ff7b66;background:#2a0f1e;color:#fff}
+.pg-wdspecs span.is-diff b {color:#ff7b66}
 .pg-wdkey {grid-column:1/-1;margin:4px 0 0;font:500 10.5px var(--mono);letter-spacing:.06em;color:#7f93a6;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
 .pg-wdkey i {width:10px;height:10px;display:inline-block;margin-left:8px}
 .pg-wdkey i:first-child {margin-left:0}
-.pg-wdkey i.s {background:#35e0ff}
-.pg-wdkey i.d {background:#ff2e88}
+.pg-wdkey i.s {background:#ffd028}
+.pg-wdkey i.d {background:#ff7b66}
