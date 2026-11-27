@@ -120,13 +120,20 @@
   }
   function viewConfirm(label, onYes, onNo) {
     show('<div class="model-analyzer-card" role="group" aria-labelledby="ma-q"><h3 id="ma-q">Avez-vous bien sélectionné ' + esc(label) + " ?</h3>" +
-      "<p>Le modèle n’a pas pu être identifié avec certitude. Confirmez la référence avant de lancer l’analyse.</p>" +
+      "<p>Confirmez le modèle trouvé avant de lancer l’analyse.</p>" +
       '<div class="model-analyzer-actions"><button class="btn" type="button" data-act="yes" data-autofocus>Oui, c’est bien ce modèle</button><button class="btn btn-secondary" type="button" data-act="no">Non</button></div></div>');
     stage.querySelector('[data-act="yes"]').addEventListener("click", onYes);
     stage.querySelector('[data-act="no"]').addEventListener("click", onNo);
   }
   function viewManual(note, withCapture) {
-    var capture = withCapture ? '<div class="model-analyzer-capture"><strong>Le site bloque la lecture automatique.</strong><p>Saisissez la marque et la référence affichées sur la fiche : le guide retrouve ensuite ses caractéristiques.</p></div>' : '';
+    /* Site qui bloque les robots : la lecture se fait dans le navigateur de la personne (signet « Capturer »),
+       qui voit la page comme elle la voit. Le nom capturé est ensuite confirmé avant toute analyse. */
+    var bm = withCapture && window.PhoneAnalyzerCapture ? window.PhoneAnalyzerCapture.bookmarklet(window.location.origin, state.category) : "";
+    var capture = withCapture ? '<div class="model-analyzer-capture"><strong>Le site bloque la lecture automatique.</strong>' +
+      (bm ? '<p>Deux façons de continuer :</p><ol><li>Glissez le bouton <a class="btn btn-secondary" href="' + esc(bm) + '" title="À glisser dans la barre de favoris">Capturer cette page</a> dans vos favoris.</li>' +
+        '<li>Ouvrez la fiche du produit dans votre navigateur, là où elle s’affiche normalement, puis cliquez sur ce favori.</li></ol>' +
+        '<p>Ou saisissez la marque et la référence ci-dessous.</p>' :
+        '<p>Saisissez la marque et la référence affichées sur la fiche : le guide retrouve ensuite ses caractéristiques.</p>') + '</div>' : '';
     show('<div class="model-analyzer-card"><h3>Quel modèle recherchez-vous ?</h3><p>' + esc(note || "Le lien ne permet pas d’identifier le modèle avec certitude.") + " Saisissez sa marque et sa référence complète.</p>" + capture +
       '<form class="model-analyzer-input-row" data-manual><input type="text" data-autofocus required placeholder="' + (state.category === "pc-portables" ? "Ex. Asus Vivobook 15" : "Ex. Nokia G10") + '" aria-label="Marque et modèle" autocomplete="off"><button class="btn" type="submit">Utiliser ce modèle</button></form>' + retryButton() + "</div>");
     stage.querySelector("[data-manual]").addEventListener("submit", function (e) {
@@ -393,8 +400,7 @@
         if (v === "different") return viewManual("La capture indique « " + shown + " » mais la fiche trouvée est « " + found + " » : ce n’est pas le même modèle. Saisissez la référence exacte.", false);
         data.captured = { name: shown };
         state.page = data; state.identity = data.identity || null; state.year = ck.year || null;
-        var hintConflict = !!(ck.urlHint && ck.urlHint !== shown && verdict(ck.urlHint, found) === "different");
-        if (v === "same" && !hintConflict) return showAnalysis(null, data);
+        /* Une capture ne part jamais en analyse sans confirmation : la personne valide le modèle trouvé. */
         return viewConfirm(found, function () { showAnalysis(null, data); }, function () { viewManual("Saisissez la référence exacte du modèle.", false); });
       }, function () { return attempt(); });
     }

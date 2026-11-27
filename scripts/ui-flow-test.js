@@ -140,6 +140,9 @@ async function main() {
     await run('Capture navigateur : le nom capturé est résolu puis analysé [' + pageName + ']', async () => {
       const cap = encodeURIComponent(JSON.stringify({ u: 'https://www.amazon.fr/Samsung-Galaxy-A56/dp/B0TEST1234', t: 'Samsung Galaxy A56' }));
       const page = await open(pageName.split('#')[0] + '#capture=' + cap, 'real');
+      /* Une capture est confirmée par la personne avant toute analyse */
+      await page.waitForSelector('[data-act="yes"]', { timeout: 20000 });
+      await page.click('[data-act="yes"]');
       await waitAnalysis(page);
       const t = await stageText(page);
       assert(/Samsung Galaxy A56/.test(t), 'le modèle capturé doit être analysé');

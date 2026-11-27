@@ -25,7 +25,8 @@
   /* Code du signet : lit JSON-LD Product, #productTitle, og:title, h1 puis ouvre le guide avec le résultat. */
   function bookmarklet(origin, category) {
     var page = category === "pc-portables" ? "pc-portables.html" : "analyseur.html?cat=smartphones";
-    var code = "(function(){try{var d=document,q=function(n){var e=d.querySelector('meta[property=\"'+n+'\"],meta[name=\"'+n+'\"]');return e?e.content:''},ld=[];" +
+    var host = String(origin || "").replace(/^https?:\/\//, "");
+    var code = "(function(){try{if(location.host==='" + host + "'){alert('Ouvrez d’abord la fiche du produit, puis cliquez sur ce favori.');return}var d=document,q=function(n){var e=d.querySelector('meta[property=\"'+n+'\"],meta[name=\"'+n+'\"]');return e?e.content:''},ld=[];" +
       "d.querySelectorAll('script[type=\"application/ld+json\"]').forEach(function(s){try{ld.push(JSON.parse(s.textContent))}catch(e){}});var p=null;" +
       "(function w(x){if(!x||p)return;if(Array.isArray(x))return x.forEach(w);if(typeof x==='object'){var t=x['@type'];if(t==='Product'||(Array.isArray(t)&&t.indexOf('Product')>-1)){p=x;return}w(x['@graph'])}})(ld);" +
       "var a=d.getElementById('productTitle'),h=d.querySelector('h1'),b=p&&p.brand?(p.brand.name||p.brand):'';" +
